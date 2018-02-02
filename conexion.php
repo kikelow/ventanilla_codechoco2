@@ -1,6 +1,6 @@
 <?php 
 
-$conn = mysqli_connect('localhost','root','Harinson.31461197');
+$conn = mysqli_connect('localhost','root','');
 
 if (!$conn) {
 	die('No se pudo conectar : '.mysqli_error());

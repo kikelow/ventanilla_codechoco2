@@ -1,5 +1,16 @@
 <?php 
-        require_once('conexion.php');  
+ 
+ if (is_file('conexion.php')){
+    
+        require_once('conexion.php');
+        
+        }
+        else {
+    
+        require_once('../../conexion.php');
+        
+ 
+    }
  ?>
 
 <div class="col s12 m12 l12">
@@ -18,7 +29,8 @@
 
             <div class="input-field col s12 m4 l4">
     
-                <select name="t_persona" id="t_persona">
+                <select name="t_persona" id="t_persona" class="validate">
+                  <option disabled selected>Seleccione...</option>
                   <?php 
                     $s="select id,nombre from tipo_persona order by id";
                     $r= mysqli_query($conn,$s) or die("Error");
@@ -34,7 +46,8 @@
             </div>
 
             <div class="input-field col s12 m4 l4">
-                <select name="t_identificacion">
+                <select name="t_identificacion" id="t_identificacion" class="validate">
+                  <option disabled selected>Seleccione...</option>
                   <?php 
                     $s="select id,nombre from tipo_identificacion order by id";
                     $r= mysqli_query($conn,$s) or die("Error");
@@ -107,6 +120,7 @@
              
             <div class="input-field col s12 m2 l2" >
                 <select name="region" id="region">
+                  <option disabled selected>Seleccione...</option>
                   <?php 
                     
                     $s="select id,nombre from region  ";
@@ -130,16 +144,6 @@
 
             <div class="input-field col s12 m3 l3">
                 <select id="municipio" name="municipio">
-                  <?php 
-                
-                    $s="select id,nombre from municipio order by id";
-                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
-                    if(mysqli_num_rows($r)>0){
-                      while($rw=mysqli_fetch_assoc($r)){
-                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
-                      }         
-                    }
-                  ?>
                 </select>
                 <label>Municipio</label>
             </div>
@@ -185,6 +189,7 @@
             <div class="input-field col s12 m3 l3">
 
                  <select id="asosiacion" name="asosiacion">
+                  <option disabled selected>Seleccione...</option>
                   <?php 
                     $s="select id,nombre from si_no order by id desc";
                     $r= mysqli_query($conn,$s) or die("Error");
@@ -212,6 +217,7 @@
             <div class="input-field col s12 m3 l3">
 
                   <select id="pot" name="pot">
+                    <option disabled selected>Seleccione...</option>
                   <?php 
                     $s="select id,nombre from si_no order by id desc";
                     $r= mysqli_query($conn,$s) or die("Error");
@@ -232,6 +238,7 @@
               
             <div class="input-field col s12 m6 l6">      
                   <select id="famiempresa" name="famiempresa">
+                    <option disabled selected>Seleccione...</option>
                     <?php 
                     $s="select id,nombre from si_no order by id desc";
                     $r= mysqli_query($conn,$s) or die("Error");
@@ -247,6 +254,7 @@
 
             <div class="input-field col s12 m6 l6">      
                   <select id="tamaño_empresa" name="tamaño_empresa">
+                    <option disabled selected>Seleccione...</option>
                     <?php 
                     $s="select id,nombre from tamaño_empresa order by id";
                     $r= mysqli_query($conn,$s) or die("Error");
@@ -282,6 +290,7 @@
       <div class="row">
         <div class="input-field col s12 m6 l6" style="margin-top: 51px">
           <select id="impacto_amb" name="impacto_amb" >
+            <option disabled selected>Seleccione...</option>
                   <?php 
                     $s="select id,nombre from si_no order by id desc";
                     $r= mysqli_query($conn,$s) or die("Error");
@@ -304,6 +313,7 @@
       <div class="row">
         <div class="input-field col s12 m6 l6" style="margin-top: 51px">
           <select id="impacto_soc" name="impacto_soc">
+            <option disabled selected>Seleccione...</option>
                   <?php 
                     $s="select id,nombre from si_no order by id desc";
                     $r= mysqli_query($conn,$s) or die("Error");
@@ -337,6 +347,7 @@
         <div class="row">
         <div class="input-field col s12 m4 l4" style="margin-top: 30px">
           <select id="categoria" name="categoria">
+            <option disabled selected>Seleccione...</option>
                   <?php 
                     $s="select id,nombre from categoria order by id";
                     $r= mysqli_query($conn,$s) or die("Error");
@@ -352,30 +363,14 @@
 
           <div class="input-field col s12 m4 l4" style="margin-top: 30px">
           <select id="sector" name="sector">
-                  <?php 
-                    $s="select id,nombre from sector order by id";
-                    $r= mysqli_query($conn,$s) or die("Error");
-                    if(mysqli_num_rows($r)>0){
-                      while($rw=mysqli_fetch_assoc($r)){
-                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
-                      }         
-                    }
-                  ?>
+                  
                   </select>
                   <label ">Sector</label>
                 </div>
 
           <div class="input-field col s12 m4 l4" style="margin-top: 30px">
           <select id="subsector" name="subsector" >
-                  <?php 
-                    $s="select id,nombre from subsector order by id";
-                    $r= mysqli_query($conn,$s) or die("Error");
-                    if(mysqli_num_rows($r)>0){
-                      while($rw=mysqli_fetch_assoc($r)){
-                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
-                      }         
-                    }
-                  ?>
+                  
                   </select>
                   <label ">Subsector</label>
         </div>
@@ -568,16 +563,16 @@
             <div class="divider"></div>
             <div style="">
               <div class="input-field col s12 m4 l4">
-                <input disabled id="total_3" type="text" class="validate">
-                <label for="total_3">Total</label>
-              </div>
-              <div class="input-field col s12 m4 l4">
                 <input id="masculino_3" name="masculino_3" type="text" class="validate">
                 <label for="masculino_3">Masculino</label>
               </div>
               <div class="input-field col s12 m4 l4">
                 <input id="femenino_3" name="femenino_3" type="text" class="validate">
                 <label for="femenino_3">Femenino</label>
+              </div>
+              <div class="input-field col s12 m4 l4">
+                <input disabled id="total_3" type="text" class="validate">
+                <label for="total_3"></label>
               </div>
             </div>
           </div>
@@ -802,22 +797,22 @@
         <div class="col s12 m6 l9">
         <div class="row">
         <div class="col s12"></div>
-        <p>
-              <input type="checkbox" id="t1"  name="actividad_emp[]" value="Producción materia prima" />
-              <label for="t1">Producción materia prima</label>
-        </p>
-        <p>
-              <input type="checkbox" id="t2"  name="actividad_emp[]" value="Transformación de materia prima propia" />
-              <label for="t2">Transformación de materia prima propia</label>
-        </p>
-        <p>
-              <input type="checkbox" id="t4" name="actividad_emp[]" value="Transformación de materia de proveedores" />
-              <label for="t4">Transformación de materia de proveedores</label>
-        </p>
-        <p>
-              <input type="checkbox" id="t3" name="actividad_emp[]" value="Comercialización" />
-              <label for="t3">Comercialización</label>
-        </p>
+        <?php 
+            $i = "";
+            $s="select id,nombre from actividad_item order by id ";
+            $r= mysqli_query($conn,$s) or die("Error");
+            if(mysqli_num_rows($r)>0){
+              while($rw=mysqli_fetch_assoc($r)){
+                 $i= $i+1;
+              echo"
+              <p>
+                <input type='checkbox' id='t".$i."'  name='actividad_emp[]' value='$rw[id]' />
+                <label for='t".$i."'>$rw[nombre]</label>
+              </p>";
+
+              }         
+            }
+        ?>
         </div>
         </div>
         </div>
@@ -1011,5 +1006,5 @@
 </div>
 </div>
 
-
+<script type="text/javascript" src="js/accion_registro.js"></script>
 
