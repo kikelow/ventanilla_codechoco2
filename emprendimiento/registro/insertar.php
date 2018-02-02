@@ -27,7 +27,10 @@ include "../../conexion.php";
 		$empresa_id=$resul[0];
 	}
 	//insertar datos en la tabla empleado sexo
-	$s="INSERT INTO `empleado_sexo`(`empresa_id`, `masculino`, `femenino`, `socio_empleado_id`) VALUES('$empresa_id','$_POST[masculino_1]','$_POST[femenino_1]','1'), ('$empresa_id','$_POST[masculino_2]','$_POST[femenino_2]','2'), ('$empresa_id','$_POST[masculino_3]','$_POST[femenino_3]','3')";
+	$s="INSERT INTO `empleado_sexo`(`empresa_id`, `socio_empleado_id`, `sexo_id`, `cantidad`) VALUES
+	('$empresa_id','1','1','$_POST[masculino_1]'),('$empresa_id','1','2','$_POST[femenino_1]'),
+	('$empresa_id','2','1','$_POST[masculino_2]'),('$empresa_id','2','2','$_POST[femenino_2]'),
+	('$empresa_id','3','1','$_POST[masculino_3]'),('$empresa_id','3','2','$_POST[femenino_3]')";
 	// mysqli_query($conn,$s);
 
 	//insertar datos en la tabla empleado_edad
@@ -49,8 +52,8 @@ include "../../conexion.php";
 	//insetar datos en la tabla activdad_empresa
 	$check = $_POST['actividad_emp'];
 	for ($i=0; $i <sizeof($check); $i++) { 
-		$s="INSERT INTO `actividad_empresa`(`empresa_id`, `actividad`) VALUES('$empresa_id','".$check[$i]."')";
-		// mysqli_query($conn,$s);
+		$s="INSERT INTO `actividad_empresa`(`empresa_id`, `actividad_item_id`) VALUES('$empresa_id','".$check[$i]."')";
+		// mysqli_query($conn,$s) ;
 	}
 
 	// Insertar datos en la tabla de bienes o servicios

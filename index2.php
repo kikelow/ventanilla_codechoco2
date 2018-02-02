@@ -8,7 +8,10 @@
 	
 	<link rel="stylesheet" type="text/css" href="css/materialize.min.css" media="screen,projection">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/select2.css">
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<script src="js/jquery.min.js"  type="text/javascript"></script>
+
 </head>
 <body>
 
@@ -17,12 +20,12 @@
 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
        <ul class="side-nav" id="mobile-demo">
-        <li><a href="index2.php?modulo=emprendimiento/formato_inscripcion" class="collection-item active black-text">Formato de Inscripción</a></li>
-        <li><a href="index2.php?modulo=emprendimiento/formato_informacion_as" class="collection-item  black-text">Formato de Información AS</a></li>
-        <li> <a href="index2.php?modulo=emprendimiento/hoja_verificacion_1" class="collection-item  black-text">Hoja de Verificación 1</a></li>
-        <li> <a href="index2.php?modulo=emprendimiento/hoja_verificacion_2" class="collection-item black-text">Hoja de Verificación 2</a></li>
-        <li> <a href="index2.php?modulo=emprendimiento/registro_fotografico" class="collection-item black-text">Registro Fotografico</a></li>
-        <li><a href="index2.php?modulo=emprendimiento/plan_mejora" class="collection-item black-text">Plan de Mejora</a></li>
+        <li><a href="index2.php?modulo=evaluacion/formato_inscripcion" class="collection-item active black-text">Formato de Inscripción</a></li>
+        <li><a href="index2.php?modulo=evaluacion/formato_informacion_as" class="collection-item  black-text">Formato de Información AS</a></li>
+        <li> <a href="index2.php?modulo=evaluacion/hoja_verificacion_1" class="collection-item  black-text">Hoja de Verificación 1</a></li>
+        <li> <a href="index2.php?modulo=evaluacion/hoja_verificacion_2" class="collection-item black-text">Hoja de Verificación 2</a></li>
+        <li> <a href="index2.php?modulo=evaluacion/registro_fotografico" class="collection-item black-text">Registro Fotografico</a></li>
+        <li><a href="index2.php?modulo=evaluacion/plan_mejora" class="collection-item black-text">Plan de Mejora</a></li>
       </ul>
 </nav>
 
@@ -50,11 +53,11 @@
       </div>	 
 </aside>
 
-<div id="contenedor" style="min-height: 701px;">
-<section id="base1" style="overflow-y: auto;max-height: 700px;">
+<div id="contenedor" style="min-height: 701px; ">
+<section id="base1" style="overflow-y: auto;">
 <div class="row">
 <div class="col s12 m12 l12">
-  <div class="card grey lighten-4 ">
+  <div class="card grey lighten-4 " style="height: auto;display:inline-block;width: 100%;">
     <div class="card-content black-text">
       
     		
@@ -66,7 +69,7 @@
                				 include_once($archivo);
               			}else
               			{
-                		include_once("emprendimiento/formato_inscripcion/index2.php");
+                		include_once("evaluacion/formato_inscripcion/index2.php");
              			 }
 		?>		
 		
@@ -82,7 +85,6 @@
 	pie de pagina
 </footer>
 
-<script src="js/jquery.min.js"  type="text/javascript"></script>
 <script src="js/materialize.min.js"  type="text/javascript"></script>
 <script type="text/javascript">
 	 $(document).ready(function(){
