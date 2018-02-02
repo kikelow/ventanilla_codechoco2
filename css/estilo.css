@@ -1,5 +1,5 @@
 
-.sub_line{
+.sub_line2{
   text-decoration: none;
   position: relative;
   padding: 8px;
@@ -8,18 +8,6 @@
   margin-top: 13px;
   color:#33691e;
   -webkit-transition: width .5s, height .5s,margin-right .5s, margin-top .5s;
-}
-.li_barra{
-	height: 64px;
-	width: 2px;
-	background-color: #d68500;
-	margin-top: 13px;
-}
-.li_barra2{
-	height: 59px;
-	width: 2px;
-	background-color: #d68500;
-	margin-top: 5px;
 }
 .sb{
 	padding-top: 4px;
@@ -48,15 +36,16 @@
 
 
 }
-.sub_line2{
+.sub_line{
   text-decoration: none;
   position: relative;
   padding: 8px;
   padding-bottom: 0px;
   padding-top: 0px;
   margin-top: 13px;
-  color:#33691e;
+  color:#1b5e20;
   -webkit-transition: width .5s, height .5s,margin-right .5s, margin-top .5s;
+  font-weight: 500;
 }
 .sub_line2:before {
   content: "";
@@ -164,6 +153,9 @@ ul li {
 img#logo{
 	-webkit-transition: width .5s, height .5s,margin-right .5s, margin-top .5s;
 }
+#menu_movil i{
+	-webkit-transition: width .5s, height .5s,margin-right .5s, margin-top .5s;
+}
 #logo_a{
 	-webkit-transition: all 1s ease-in-out;
 	-moz-transition: all 1s ease-in-out;
@@ -207,7 +199,13 @@ img#logo{
 }
 #m_verdes{
 	/*min-height: 500px;*/
-	background-image: url("../img/p4.jpeg");
+	background-image: url("../img/p4.jpg");
+	background-size: cover;
+	min-height: 500px;
+  	height: auto;
+}
+#mv_registro{
+	background-image: url("../img/p5.jpg");
 	background-size: cover;
 	min-height: 500px;
   	height: auto;
@@ -218,4 +216,7 @@ img#logo{
 #noticiasyeventos{
 	height: 490px;
 
+}
+.cp_notice{
+	height: 203px;
 }
