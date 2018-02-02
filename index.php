@@ -8,6 +8,9 @@
 	<link rel="stylesheet" type="text/css" href="css/materialize.min.css" media="screen,projection">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+
+	<link href="https://fonts.googleapis.com/css?family=Merriweather:700i" rel="stylesheet">
+
 	<!--<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>-->
 </head>
 <body>
@@ -23,19 +26,19 @@
 		<ul id="ul1" class="left hide-on-med-and-down uli" style="margin-top: 30px">
 			
 			<li><a class="sub_line"  href="index.php?modulo=emprendimiento/inicio">Inicio</a></li>
-			<li class="black-text li_barra" id="li_barra1" ></li>
+			
 			<li><a class="sub_line"  href="index.php?modulo=emprendimiento/q_somos">¿Quienes Somos?</a></li>
-			<li class="black-text li_barra" id="li_barra2" ></li>
+			
 			<li><a class="sub_line"  href="index.php?modulo=emprendimiento/m_verdes">Mercados Verdes</a></li>
-			<li class="black-text li_barra" id="li_barra3" ></li>
+			
 			<li><a class="sub_line"  href="index.php?modulo=emprendimiento/registro">Registro</a></li>
 		</ul>
 		<ul id="ul2" class="right hide-on-med-and-down uli" style="margin-top: 30px">
-			<li class="black-text li_barra" id="li_barra6" ></li>
+			
 			<li><a class="sub_line"  href="index.php?modulo=emprendimiento/noticias">Noticias</a></li>
-			<li class="black-text li_barra" id="li_barra4" ></li>
+			
 			<li><a class="sub_line"  href="#">Normatividad</a></li>
-			<li class="black-text li_barra" id="li_barra5" ></li>
+			
 			<li><a class="sub_line"  href="#">Documentación</a></li>
 		</ul>			     
 	</div>
@@ -43,11 +46,11 @@
 </div>
 
 <ul class="side-nav" id="mobile-demo">
-	<li><a class="sub_line"  href="#">Inicio</a></li>
-	<li><a class="sub_line"  href="#">¿Quienes Somos?</a></li>
-	<li><a class="sub_line"  href="#">Mercados Verdes</a></li>
-	<li><a class="sub_line"  href="#">Registro</a></li>
-	<li><a class="sub_line"  href="#">Noticias</a></li>
+	<li><a class="sub_line"  href="index.php?modulo=emprendimiento/inicio">Inicio</a></li>
+	<li><a class="sub_line"  href="index.php?modulo=emprendimiento/q_somos">¿Quienes Somos?</a></li>
+	<li><a class="sub_line"  href="index.php?modulo=emprendimiento/m_verdes">Mercados Verdes</a></li>
+	<li><a class="sub_line"  href="index.php?modulo=emprendimiento/registro">Registro</a></li>
+	<li><a class="sub_line"  href="index.php?modulo=emprendimiento/noticias">Noticias</a></li>
 	<li><a class="sub_line"  href="#">Normatividad</a></li>
 	<li><a class="sub_line"  href="#">Documentación</a></li>    
 </ul>
@@ -77,7 +80,7 @@
 </section>	
 </div>
 
-<footer class="page-footer" style="background-color: #d68500db">
+<footer class="page-footer" style="background-color: #00853bed">
 	<div class="container">
     <div class="row">
       <div class="col l6 s12">
@@ -100,11 +103,9 @@
       </div>
     </div>
   </div>
-  <div class="footer-copyright">
+  <div class="footer-copyright" style="background-color: #00853b">
     <div class="container">
     © <?php echo date('Y'); ?> Copyright Text
-   
-
    <a class="grey-text text-lighten-4 right" href="#!"> Desarrollo: <i class="fa fa-code"></i> Harinson Palacios | David Raga
     </div>
   </div>
@@ -145,13 +146,8 @@
 	$("#ul1").removeClass("left");
 	$("#ul2").removeClass("right");
 	$(".uli").css({"margin-left":"80px"},{"padding-bottom":"0px"});
-	$("#li_barra1").removeClass("li_barra").addClass("li_barra2");
-	$("#li_barra2").removeClass("li_barra").addClass("li_barra2");
-	$("#li_barra3").removeClass("li_barra").addClass("li_barra2");
-	$("#li_barra4").removeClass("li_barra").addClass("li_barra2");
-	$("#li_barra5").removeClass("li_barra").addClass("li_barra2");
-	$("#li_barra6").removeClass("li_barra").addClass("li_barra2");
-
+	$("#menu_movil > i").css({"margin-top":"0px"});
+	
 	}else{
 		
 			$("#logo").css({"margin-top": "5px", "width": "140px","height":"140px"});
@@ -163,12 +159,8 @@
 			$("#ul1").addClass("left");
 			$("#ul2").addClass("right");
 			$(".uli").css({"margin-left":"0px"});
-			$("#li_barra1").removeClass("li_barra2").addClass("li_barra");
-			$("#li_barra2").removeClass("li_barra2").addClass("li_barra");
-			$("#li_barra3").removeClass("li_barra2").addClass("li_barra");
-			$("#li_barra4").removeClass("li_barra2").addClass("li_barra");
-			$("#li_barra5").removeClass("li_barra2").addClass("li_barra");
-			$("#li_barra6").removeClass("li_barra2").addClass("li_barra");
+			$("#menu_movil > i").css({"margin-top":"46px"});
+			
 
 			
 	}
