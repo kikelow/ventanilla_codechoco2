@@ -35,11 +35,11 @@
 <div class="row" id="mv_registro">
   <div class="col s12">
       <div>
-        <p class="white-text center">¿Quieres tener la oportunidad de impulsar tu negocio, a base materiales de la naturaleza?</p>
+        <h2 class="white-text center">¿Tiene un negocio a base de recursos naturales? Aprovecha esta oportunidad en mercados verdes.</h2>
       </div>
       
-      <div  style="margin: auto;width: 116px;margin-top: 210px">
-         <button>Registralo aquí</button>
+      <div  style="margin: auto;width: 200px;margin-top: 210px">
+         <a class="boton_personalizado" href="index.php?modulo=emprendimiento/registro">Registralo aquí</a>
       </div>
   </div>
 </div>
