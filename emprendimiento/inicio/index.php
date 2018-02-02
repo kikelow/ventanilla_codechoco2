@@ -32,41 +32,64 @@
   </ul>
 </div> 
 
+<div class="row" id="mv_registro">
+  <div class="col s12">
+      <div>
+        <p class="white-text center">¿Quieres tener la oportunidad de impulsar tu negocio, a base materiales de la naturaleza?</p>
+      </div>
+      
+      <div  style="margin: auto;width: 116px;margin-top: 210px">
+         <button>Registralo aquí</button>
+      </div>
+  </div>
+</div>
 
-
-<div class="row" style="height: auto;">
-
-    <p class="green-text flow-text center sub_line2"><strong>Noticias y Eventos</strong></p>
-        <div class="card-panel" id="noticiasyeventos" style="background-color: #d68501;display: inline-block;">
-          <div class="row" style="margin-top: 147px;">
+<div class="row" style="margin-bottom: 0px;">
+    <p style="margin-bottom: 0px;" class="green-text flow-text center sub_line2"><strong>Noticias y Eventos</strong></p>
+      <div class="card-panel" id="noticiasyeventos" style="background-color: #43a047;">
+          <div class="row" style="margin-top: 80px;">
             <span class="white-text"> 
-        <div class="col s12 m4 l4 ">
-                <div class="card-panel ">
-                  <span class="white-text">I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-                  </span>
+              <div class="col s12 m6 l4 ">
+                <p style="font-family: 'Merriweather', serif;text-align: center">Desempleo en 2017 se mantuvo en un dígito: llegó a 9,4 por ciento.</p>
+                <div class="card-panel cp_notice black-text " style="overflow: hidden;text-align: justify;">
+                    Santa Marta, la ciudad con menor desempleo y Quibdó, la que tuvo mayor número de desocupados en el año completo. En diciembre, desempleo nacional fue 8,6 por ciento
+                    <span><hr></span>
+                    <span >Fuente: Revista Semana.</span>
+                    <span style="float: right;"><a class="waves-effect waves-black hoverable">Ver Mas...</a></span>
                 </div>
+
               </div>
 
-          <div class="col s12 m4 l4 ">
-            <div class="card-panel ">
-              <span class="white-text">I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-              </span>
-            </div>
-          </div>
+            <div class="col s12 m6 l4 ">
+                <p style="font-family: 'Merriweather', serif;text-align: center">Desempleo en 2017 se mantuvo en un dígito: llegó a 9,4 por ciento.</p>
+                <div class="card-panel cp_notice black-text " style="overflow: hidden;text-align: justify;">
+                    Santa Marta, la ciudad con menor desempleo y Quibdó, la que tuvo mayor número de desocupados en el año completo. En diciembre, desempleo nacional fue 8,6 por ciento
+                    <span><hr></span>
+                    <span >Fuente: Revista Semana.</span>
+                    <span style="float: right;"><a class="waves-effect waves-black hoverable">Ver Mas...</a></span>
+                </div>
 
-            <div class="col s12 m4 l4 ">
-              <div class="card-panel ">
-                <span class="white-text">I am a very simple card. I am good at containing small bits of information.
-                I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-                </span>
               </div>
-            </div>
+
+              <div class="col s12 l4 ">
+                <p style="font-family: 'Merriweather', serif;text-align: center">Te invitamos a celebrar la reapertura de nuestra ventanilla, visítanos.</p>
+                <div class="card-panel cp_notice black-text " style="overflow: hidden;text-align: justify;">
+                    <p>Lugar: Codechocó</p>
+                    <p>Hora: 2 p.m</p>
+                    <p>Fecha: 12/01/2013</p>
+                    <span><hr></span>
+                    <span >Responsable: Codechocó.</span>
+                    <span style="float: right;"><a class="waves-effect waves-black hoverable">Ver Mas...</a></span>
+                </div>
+
+              </div>
           </span>
         </div>    
     </div>
  </div>
+
+    
+        
 
 
 <p class="green-text flow-text center sub_line2"><strong>Negocios Verdes</strong></p>       
