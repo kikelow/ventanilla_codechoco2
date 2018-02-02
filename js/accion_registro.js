@@ -3,7 +3,7 @@ $('#region').change(function(){
 	var region = $('#region').val()
 	
 	$.ajax({
-		url: 'emprendimientos/registro/combo.php',
+		url: 'emprendimiento/registro/combo.php',
 		type: 'POST',
 		 // dataType: "json",
 		data: {region: region},
