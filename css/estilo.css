@@ -205,7 +205,7 @@ img#logo{
   	height: auto;
 }
 #mv_registro{
-	background-image: url("../img/p5.jpg");
+	background-image: url("../img/p6.jpg");
 	background-size: cover;
 	min-height: 500px;
   	height: auto;
@@ -220,3 +220,18 @@ img#logo{
 .cp_notice{
 	height: 203px;
 }
+  .boton_personalizado{
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #00853bb3;
+    border-radius: 40px;
+    border: 2px solid #00853b;
+    -webkit-transition: all .15s ease-out;
+  }
+  .boton_personalizado:hover{
+    color:#e4ff00d4;
+    background-color: transparent;
+      }
