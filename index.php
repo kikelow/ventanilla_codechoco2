@@ -61,7 +61,7 @@
 <div id="contenedor" style="min-height: 701px;">
 
 <section id="base" style="min-height: 700px;background-color: white">
-
+raga
  <?php 
                    $mod = @$_GET['modulo'];
                    $archivo = $mod.'/index.php';
