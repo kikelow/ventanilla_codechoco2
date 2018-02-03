@@ -10,8 +10,10 @@
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
 
 	<link href="https://fonts.googleapis.com/css?family=Merriweather:700i" rel="stylesheet">
-
+	
 	<!--<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>-->
+
+	<script src="js/jquery.min.js"  type="text/javascript"></script>
 </head>
 <body>
 	<header >
@@ -112,9 +114,8 @@
 
 
 
-<script src="js/jquery.min.js"  type="text/javascript"></script>
 <script src="js/materialize.min.js"  type="text/javascript"></script>
-<script type="text/javascript" src="js/accion_registro.js"></script>
+
 <script type="text/javascript">
 	 $(document).ready(function(){
 	 	

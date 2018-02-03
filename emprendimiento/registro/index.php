@@ -521,13 +521,10 @@
       <div class="row" style="text-align: center;background-color: #bdbdbd;margin-bottom: 0px;">4. Información Empresa</div>
       <div class="row">
         <div class="col s12 m4 l4" style="border: 1px solid">
-            Número de socios
+            1.Número de socios
             <div class="divider"></div>
             <div style="">
-              <div class="input-field col s12 m4 l4">
-                <input disabled id="total_1" type="text" class="validate">
-                <label for="total_1">Total</label>
-              </div>
+              
               <div class="input-field col s12 m4 l4">
                 <input id="masculino_1" name="masculino_1" type="text" class="validate">
                 <label for="masculino_1">Masculino</label>
@@ -536,30 +533,39 @@
                 <input id="femenino_1" name="femenino_1" type="text" class="validate">
                 <label for="femenino_1">Femenino</label>
               </div>
+              <div class="input-field col s12 m4 l4">
+                <input disabled value="0" id="total_1" type="text" class="validate">
+                <label for="total_1">Total</label>
+              </div>
             </div>
           </div>
 
-          <div class="col s12 m4 l4" style="border: 1px solid">
-            Cuantos socios vinculados laboralmente con la empresa
+          <div class="col s12 m4 l4" style="border: 1px solid;">
+            2.Cuantos socios vinculados laboralmente con la empresa
             <div class="divider"></div>
             <div style="">
-              <div class="input-field col s12 m4 l4">
-                <input disabled id="total_2" type="text" class="validate">
-                <label for="total_2">Total</label>
-              </div>
-              <div class="input-field col s12 m4 l4">
+              
+              <div class="input-field col s12 m4 l3">
                 <input id="masculino_2" name="masculino_2" type="text" class="validate">
                 <label for="masculino_2">Masculino</label>
               </div>
-              <div class="input-field col s12 m4 l4">
+              <div class="input-field col s12 m4 l3">
                 <input id="femenino_2" name="femenino_2" type="text" class="validate">
                 <label for="femenino_2">Femenino</label>
+              </div>
+              <div class="input-field col s12 m4 l3">
+                <input disabled value="0" id="total_2" type="text" class="validate">
+                <label for="total_2">Total</label>
+                
+              </div>
+              <div class="col s12 m4 l3">
+                <div id="mensaje1"></div>
               </div>
             </div>
           </div>
 
           <div class="col s12 m4 l4" style="border: 1px solid">
-           Número de empleados
+           3.Número de empleados
             <div class="divider"></div>
             <div style="">
               <div class="input-field col s12 m4 l4">
@@ -571,8 +577,8 @@
                 <label for="femenino_3">Femenino</label>
               </div>
               <div class="input-field col s12 m4 l4">
-                <input disabled id="total_3" type="text" class="validate">
-                <label for="total_3"></label>
+                <input disabled value="0" id="total_3" type="text" class="validate">
+                <label for="total_3">Total</label>
               </div>
             </div>
           </div>
@@ -596,7 +602,9 @@
                 <label for="mayor_50">Entre Mayores 50</label>
               </div>
             </div>
+            <div id="mensaje_edad"></div>
           </div>
+
         </div>
         <!-- Para la edad -->
         <!-- Vinculacion -->
