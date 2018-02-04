@@ -1,5 +1,6 @@
 <?php 
 include "../../conexion.php";
+
  // Inserto los datos del representante legal
 	 $s="INSERT INTO `persona`( `identificacion`,  `nombre1`, `nombre2`, `apellido1`, `paellido2`, `correo`, `celular`, `fijo`, `direccion`) VALUES ('$_POST[documento]','$_POST[representante]','','','','$_POST[correo]','$_POST[celular]','$_POST[fijo]','$_POST[direccion_c]')";
 	// mysqli_query($conn,$s);
