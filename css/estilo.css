@@ -189,7 +189,7 @@ img#logo{
 }
 
 .slider .indicators .indicator-item.active {
-    background-color: #212121;
+    background-color: #000000;
 }
 #q_somos{
 	background-image: url("../img/p3.jpeg");
@@ -199,13 +199,13 @@ img#logo{
 }
 #m_verdes{
 	/*min-height: 500px;*/
-	background-image: url("../img/p4.jpg");
+	background-image: url("../img/p6.jpg");
 	background-size: cover;
 	min-height: 500px;
   	height: auto;
 }
 #mv_registro{
-	background-image: url("../img/p6.jpg");
+	background-image: url("../img/p7.jpg");
 	background-size: cover;
 	min-height: 500px;
   	height: auto;
@@ -234,4 +234,21 @@ img#logo{
   .boton_personalizado:hover{
     color:#e4ff00d4;
     background-color: transparent;
-      }
+   }
+  #slider-1{
+  	height: 452px !important;
+  }
+  #slider3{
+  	height: 480px !important;
+  }
+  #sliderp ul#ulimg{
+  	height: 500px !important;
+  }
+  ul.indicators{
+  	z-index: 100;
+  }
+.sticky{
+	position: fixed;
+	z-index: 200;
+	
+}

@@ -34,12 +34,17 @@
 
 <div class="row" id="mv_registro">
   <div class="col s12">
-      <div>
-        <h2 class="white-text center">¿Tiene un negocio a base de recursos naturales? Aprovecha esta oportunidad en mercados verdes.</h2>
+
+      <div class="row">
+        <div class="col s12">
+           <h2 class="white-text center">¿Tiene un negocio a base de recursos naturales? Aprovecha esta oportunidad en mercados verdes.</h2>
+        </div>
       </div>
       
-      <div  style="margin: auto;width: 200px;margin-top: 210px">
-         <a class="boton_personalizado" href="index.php?modulo=emprendimiento/registro">Registralo aquí</a>
+      <div  class="row" style="margin: auto;width: 200px;margin-top: 210px">
+        <div class="col s12">
+          <a class="boton_personalizado" href="index.php?modulo=emprendimiento/registro">Registralo aquí</a>
+        </div>
       </div>
   </div>
 </div>
