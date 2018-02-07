@@ -27,7 +27,7 @@
       <div class="row" style="text-align: center;background-color: #bdbdbd;">1. Información General</div>
             <div class="row">
 
-            <div class="input-field col s12 m4 l4">
+            <div class="input-field col s12 m4 l4" id="person">
     
                 <select name="t_persona" id="t_persona" class="validate">
                   <option disabled selected>Seleccione...</option>
@@ -41,11 +41,11 @@
                     }
                   ?>
                 </select>
-                <label>Tipo de persona</label>  
+                <label >Tipo de persona</label>  
                         
             </div>
 
-            <div class="input-field col s12 m4 l4">
+            <div class="input-field col s12 m4 l4" id="identifica">
                 <select name="t_identificacion" id="t_identificacion" class="validate">
                   <option disabled selected>Seleccione...</option>
                   <?php 

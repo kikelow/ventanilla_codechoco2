@@ -123,23 +123,24 @@ $("#registrar_emp").click(function(event) {
 	 }
 	var r = parseInt(entre_18_30) + parseInt(entre_30_50) + parseInt(mayor_50)
 	var total_edad = isNaN(r)  ? 0 : r;
-	 alert (total_edad)
+	 alert (r)
 ///aqui inician las validaciones
 	
 if (! $('#t_persona').val()) {
-	alert('selecc')
 	$('.collapsible').collapsible('close', 0);
 	$('.collapsible').collapsible('open', 0);
-	$('#t_persona').focus().addClass("invalid")
+	$('#person').focus().addClass("red-text")
 }
 // else if ( ! $('#t_identificacion').val()) {
 // 	$('.collapsible').collapsible('close', 0);
 // 	$('.collapsible').collapsible('open', 0);
-// 	$('#t_identificacion').focus().addClass("invalid")
+//	$('#person').focus().removeClass("red-text")
+// 	$('#identifica').addClass("red-text")
 // }
 // else if ($('#identificacion').val()=="") {
 // 	$('.collapsible').collapsible('close', 0);
 // 	$('.collapsible').collapsible('open', 0);
+// 	$('#identifica').removeClass("red-text")
 // 	$('#identificacion').focus().addClass("invalid")
 // }else if ($('#razon_social').val()=="") {
 // 	 $('.collapsible').collapsible('close', 0);
@@ -173,17 +174,17 @@ if (! $('#t_persona').val()) {
 // 	 $('#total_2').focus().addClass("invalid")
 // 	 $('#mensaje1').html('<span class="red-text">El total no puede ser mayor al de la pregunta 1</span>')
 // }
-else if ( (parseInt($('#femenino_2').val())  > parseInt($('#femenino_1').val())) || (parseInt($('#masculino_2').val())  > parseInt($('#masculino_1').val())) ) {
-	 $('.collapsible').collapsible('close', 3);
-	 $('.collapsible').collapsible('open', 3);
-	 $('#total_2').focus().removeClass("invalid")
-	 $('#mensaje1').focus()
-	 $('#mensaje1').html('<span class="red-text">El valor del sexo no puede ser mayor al de la pregunta 1</span>')
-}
+// else if ( (parseInt($('#femenino_2').val())  > parseInt($('#femenino_1').val())) || (parseInt($('#masculino_2').val())  > parseInt($('#masculino_1').val())) ) {
+// 	 $('.collapsible').collapsible('close', 3);
+// 	 $('.collapsible').collapsible('open', 3);
+// 	 $('#total_2').focus().removeClass("invalid")
+// 	 $('#mensaje1').focus()
+// 	 $('#mensaje1').html('<span class="red-text">El valor del sexo no puede ser mayor al de la pregunta 1</span>')
+// }
 else if ( parseInt(total_edad) != parseInt(total_3)) {
 	 $('.collapsible').collapsible('close', 3);
 	 $('.collapsible').collapsible('open', 3);
-	 $('mensaje1').html("")
+	 $('#mensaje1').html(" ")
 	 $('#mensaje_edad').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
 }
 else {

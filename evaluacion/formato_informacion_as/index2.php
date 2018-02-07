@@ -29,22 +29,22 @@ require_once('conexion.php');
       <div class="row" style="text-align: center;background-color: #bdbdbd;">1.1 Tenencia de la tierra</div>
 
           <?php 
-            $i = "";
+            $i = 11;
             $s="SELECT id,nombre from opciones where codigo LIKE '%TT%'  order by id ";
             $r= mysqli_query($conn,$s) or die("Error");
             if(mysqli_num_rows($r)>0){
               while($rw=mysqli_fetch_assoc($r)){
-                 $i= $i+1;
+                 $i++;
               echo"
                <div class='row'>
               <div class='input-field col s12 m6 l6'>
                 <p>
-                <input type='checkbox' id='tt".$i."'  name='tierra[rr$i][]' value='$rw[id]' />
+                <input type='checkbox' class='ch' id='tt".$i."'  name='tierra[]' value='$rw[id]' />
                 <label for='tt".$i."'>$rw[nombre]</label>
               </p>
               </div>
               <div class='input-field col s12 m6 l6'>
-                <input  type='text' name='tierra[rr$i][]' id='desc_t".$i."' />
+                <input  type='text' name='desc_t[]' id='desc_t".$i."' />
                 <label for='desc_t".$i."'>Descripcion</label>
               </div>
               </div>";
