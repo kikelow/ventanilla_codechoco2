@@ -4,8 +4,8 @@ require_once('conexion.php');
 
 <div class="row">
  
-    <div class="input-field col s12 m12 l12  "><br>
-        <select id="empresa" style="width: 100%; left: -20px;" name="empresa" >
+    <div class="input-field col s12 m12 l12  ">
+        <select id="empresa" style="width: 100%; left: -20px;" name="empresa" required="required">
           <option disabled selected="">Seleccione un emprendimiento al cual quiere aplicarle el "formato de informacion AS"</option>
           <?php 
                     $s="select id,razon_social from empresa ";
@@ -35,7 +35,7 @@ require_once('conexion.php');
             if(mysqli_num_rows($r)>0){
               while($rw=mysqli_fetch_assoc($r)){
                  $i++;
-              echo"
+       echo"
                <div class='row'>
               <div class='input-field col s12 m6 l6'>
                 <p>
@@ -44,7 +44,7 @@ require_once('conexion.php');
               </p>
               </div>
               <div class='input-field col s12 m6 l6'>
-                <input  type='text' name='desc_t[]' id='desc_t".$i."' />
+                <input disabled type='text' name='desc_t[]' id='desc_t".$i."' />
                 <label for='desc_t".$i."'>Descripcion</label>
               </div>
               </div>";

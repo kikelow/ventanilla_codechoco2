@@ -171,10 +171,7 @@ img#logo{
     background-color: #000000;
 }
 #q_somos{
-	background-image: url("../img/p3.jpeg");
-	background-size: cover;
-	min-height: 500px;
-  	height: auto;
+	
 }
 #m_verdes{
 	/*min-height: 500px;*/
@@ -295,5 +292,6 @@ div.nav ul li a.active{
 	border-radius: 6px;
 }
 .parallax-container {
-      height:650px;
+      min-height:650px;
+      height: auto;
     }

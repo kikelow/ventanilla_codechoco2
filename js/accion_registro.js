@@ -123,13 +123,15 @@ $("#registrar_emp").click(function(event) {
 	 }
 	var r = parseInt(entre_18_30) + parseInt(entre_30_50) + parseInt(mayor_50)
 	var total_edad = isNaN(r)  ? 0 : r;
-	 alert (r)
+	 // alert (r)
 ///aqui inician las validaciones
 	
 if (! $('#t_persona').val()) {
 	$('.collapsible').collapsible('close', 0);
 	$('.collapsible').collapsible('open', 0);
-	$('#person').focus().addClass("red-text")
+	$('#person').focus().addClass("red-text");
+
+	alert("Debe seleccioar el tipo de persona");
 }
 // else if ( ! $('#t_identificacion').val()) {
 // 	$('.collapsible').collapsible('close', 0);
