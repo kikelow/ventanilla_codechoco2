@@ -123,7 +123,41 @@ $("#registrar_emp").click(function(event) {
 	 }
 	var r = parseInt(entre_18_30) + parseInt(entre_30_50) + parseInt(mayor_50)
 	var total_edad = isNaN(r)  ? 0 : r;
-	 alert (r)
+//total de los valores de tipo de vinculacion laboral
+var indefinido = $('#indefinido').val()
+var definido = $('#definido').val()
+var por_dias = $('#por_dias').val()
+if (indefinido == "") {
+	indefinido = 0
+}
+else if (definido == "") {
+	definido = 0
+}
+else if (por_dias == "") {
+	por_dias = 0
+}
+var r = parseInt(indefinido) + parseInt(definido) + parseInt(por_dias)
+var total_vinculacion = isNaN(r)  ? 0 : r;
+//total de valores de nivel educativo
+var primaria = $('#primaria').val()
+var bachillerato = $('#bachillerato').val()
+var tecnico = $('#tecnico').val()
+var universitario = $('#universitario').val()
+var otro = $('#otro').val()
+if (primaria == "") {
+	primaria = 0
+}else if (bachillerato == "") {
+	bachillerato = 0
+}else if (tecnico == "") {
+	tecnico = 0
+}else if (universitario == "") {
+	universitario = 0
+}else if (otro == "") {
+	otro = 0
+}
+var r = parseInt(primaria)+parseInt(bachillerato)+parseInt(tecnico)+parseInt(universitario)+parseInt(otro)
+var total_educativo = isNaN(r)  ? 0 : r;
+
 ///aqui inician las validaciones
 	
 if (! $('#t_persona').val()) {
@@ -181,11 +215,23 @@ if (! $('#t_persona').val()) {
 // 	 $('#mensaje1').focus()
 // 	 $('#mensaje1').html('<span class="red-text">El valor del sexo no puede ser mayor al de la pregunta 1</span>')
 // }
-else if ( parseInt(total_edad) != parseInt(total_3)) {
+// else if ( parseInt(total_edad) != parseInt(total_3)) {
+// 	 $('.collapsible').collapsible('close', 3);
+// 	 $('.collapsible').collapsible('open', 3);
+// 	 $('#mensaje1').html(" ")
+// 	 $('#mensaje_edad').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
+// }
+// else if ( parseInt(total_vinculacion) != parseInt(total_3)) {
+// 	 $('.collapsible').collapsible('close', 3);
+// 	 $('.collapsible').collapsible('open', 3);
+// 	 $('#mensaje_edad').html(" ")
+// 	 $('#mensaje_vinculacion').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
+// }
+else if ( parseInt(total_educativo) != parseInt(total_3)) {
 	 $('.collapsible').collapsible('close', 3);
 	 $('.collapsible').collapsible('open', 3);
-	 $('#mensaje1').html(" ")
-	 $('#mensaje_edad').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
+	 $('#mensaje_vinculacion').html(" ")
+	 $('#mensaje_educativo').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
 }
 else {
 
