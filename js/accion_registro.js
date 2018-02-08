@@ -124,6 +124,9 @@ $("#registrar_emp").click(function(event) {
 	var r = parseInt(entre_18_30) + parseInt(entre_30_50) + parseInt(mayor_50)
 	var total_edad = isNaN(r)  ? 0 : r;
 	 // alert (r)
+
+
+	 
 ///aqui inician las validaciones
 	
 if (! $('#t_persona').val()) {

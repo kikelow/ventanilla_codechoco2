@@ -208,8 +208,8 @@ img#logo{
     -webkit-transition: all .15s ease-out;
   }
   .boton_personalizado:hover{
-    color:#e4ff00d4;
-    background-color: transparent;
+    color:#000;
+    background-color:  #00853b4a;
    }
   #slider-1{
   	height: 452px !important;
@@ -238,7 +238,7 @@ div.nav{
 }
 
 div.nav.black{
-	background:rgba(0,0,0,0.8);
+	background:#fff !important;
 	height: 100px;
 	padding: 10px 100px;
 }
@@ -279,7 +279,7 @@ div.nav ul li a{
 }
 
 div.nav.black ul li a {
-	color: #fff;
+	color: #000;
 }
 
 div.nav ul li a:focus{

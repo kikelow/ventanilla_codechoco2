@@ -3,6 +3,10 @@ include "../../conexion.php";
 $empresa = $_GET['empresa'];
 $t_tierra = $_POST['tierra'];
 
+
+if (isset($empresa)) {
+	# code...
+}
 $desc_tierra = array_values(array_filter($_POST['desc_t']));
 var_dump($desc_tierra);
 	for ($i=0; $i <sizeof($desc_tierra); $i++) {
