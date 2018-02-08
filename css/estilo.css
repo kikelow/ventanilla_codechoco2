@@ -270,7 +270,7 @@ div.nav ul li{
 
 div.nav ul li a{
 	line-height: 80px;
-	color: #151515;
+	color: #4475b2;
 	padding: 12px 15px;
 	text-decoration: none;
 	text-transform: uppercase;
@@ -287,7 +287,7 @@ div.nav ul li a:focus{
 }
 
 div.nav ul li a.active{
-	background: #E2472F;
+	background: #6db467;
 	color: #fff;
 	border-radius: 6px;
 }
