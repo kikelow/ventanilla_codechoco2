@@ -626,7 +626,6 @@
                 <label for="por_dias">Por días (Jornales) promedio en el año</label>
               </div>
             </div>
-            <div id="mensaje_vinculacion"></div>
           </div>
           <div class="col s12 m6 l6" style="border: 1px solid">
             Nivel educativo (Indicar Nº de empleados)
@@ -653,7 +652,6 @@
                 <label for="otro">Otro</label>
               </div>
             </div>
-            <div id="mensaje_educativo"></div>
           </div>
         </div>
         <!-- Nivel educativo -->
@@ -832,7 +830,6 @@
         <div class="row">
         <div class="input-field col s12 m12 l12">
                   <select id="etapa_empresa" name="etapa_empresa">
-                    <option disabled selected>Seleccione...</option>
                   <?php 
                     $s="select id,nombre from etapa_empresa order by id ";
                     $r= mysqli_query($conn,$s) or die("Error");

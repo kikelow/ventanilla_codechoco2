@@ -123,6 +123,7 @@ $("#registrar_emp").click(function(event) {
 	 }
 	var r = parseInt(entre_18_30) + parseInt(entre_30_50) + parseInt(mayor_50)
 	var total_edad = isNaN(r)  ? 0 : r;
+
 //total de los valores de tipo de vinculacion laboral
 var indefinido = $('#indefinido').val()
 var definido = $('#definido').val()
@@ -158,12 +159,15 @@ if (primaria == "") {
 var r = parseInt(primaria)+parseInt(bachillerato)+parseInt(tecnico)+parseInt(universitario)+parseInt(otro)
 var total_educativo = isNaN(r)  ? 0 : r;
 
+	 // alert (r)
 ///aqui inician las validaciones
 	
 if (! $('#t_persona').val()) {
 	$('.collapsible').collapsible('close', 0);
 	$('.collapsible').collapsible('open', 0);
-	$('#person').focus().addClass("red-text")
+	$('#person').focus().addClass("red-text");
+
+	alert("Debe seleccioar el tipo de persona");
 }
 // else if ( ! $('#t_identificacion').val()) {
 // 	$('.collapsible').collapsible('close', 0);

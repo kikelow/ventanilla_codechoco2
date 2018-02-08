@@ -171,10 +171,7 @@ img#logo{
     background-color: #000000;
 }
 #q_somos{
-	background-image: url("../img/p3.jpeg");
-	background-size: cover;
-	min-height: 500px;
-  	height: auto;
+	
 }
 #m_verdes{
 	/*min-height: 500px;*/
@@ -211,8 +208,8 @@ img#logo{
     -webkit-transition: all .15s ease-out;
   }
   .boton_personalizado:hover{
-    color:#e4ff00d4;
-    background-color: transparent;
+    color:#000;
+    background-color:  #00853b4a;
    }
   #slider-1{
   	height: 452px !important;
@@ -241,7 +238,7 @@ div.nav{
 }
 
 div.nav.black{
-	background:rgba(0,0,0,0.8);
+	background:#fff !important;
 	height: 100px;
 	padding: 10px 100px;
 }
@@ -273,7 +270,7 @@ div.nav ul li{
 
 div.nav ul li a{
 	line-height: 80px;
-	color: #151515;
+	color: #4475b2;
 	padding: 12px 15px;
 	text-decoration: none;
 	text-transform: uppercase;
@@ -282,7 +279,7 @@ div.nav ul li a{
 }
 
 div.nav.black ul li a {
-	color: #fff;
+	color: #000;
 }
 
 div.nav ul li a:focus{
@@ -290,10 +287,11 @@ div.nav ul li a:focus{
 }
 
 div.nav ul li a.active{
-	background: #E2472F;
+	background: #6db467;
 	color: #fff;
 	border-radius: 6px;
 }
 .parallax-container {
-      height:650px;
+      min-height:650px;
+      height: auto;
     }
