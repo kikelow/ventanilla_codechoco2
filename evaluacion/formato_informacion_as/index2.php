@@ -582,51 +582,52 @@ require_once('conexion.php');
       <div class="collapsible-body"><span>
         
       <div class="row" style="text-align: center;background-color: #bdbdbd;">2. Información Sobre Certificaciones</div>
-      <?php 
+      <div class='row'>
+        <?php 
             $i = 0;
             $ver = "";
-            $s="SELECT id,nombre from opciones where codigo LIKE '%CE%'  order by id ";
-            $r= mysqli_query($conn,$s) or die("Error");
-            if(mysqli_num_rows($r)>0){
-              while($rw=mysqli_fetch_assoc($r)){
-                 $i++;
+            $s1="SELECT id,nombre from opciones where codigo LIKE '%CE%'  order by id ";
+            $r1= mysqli_query($conn,$s1) or die("Error");
+            if(mysqli_num_rows($r1)>0){
+              while($rw=mysqli_fetch_assoc($r1)){
+                       $i++;
 
-       echo"
-       <div class='row'>
-            <div class='input-field col s12 m4 l3'>
-              <p>
-                <input type='checkbox' class='cer' id='ce".$i."'  name='certificacion[]' value='$rw[id]' />
-                <label for='ce".$i."'>$rw[nombre]</label>
-              </p>
-            </div>
-            <div class='input-field col s12 m3 l2'>
-              <select id='cert_etapa[]' name='cert_etapa[]'>";
-               $s="select id,nombre from etapa ";
-            $r= mysqli_query($conn,$s) or die('Error');
-            if(mysqli_num_rows($r)>0){
-              while($result=mysqli_fetch_assoc($r)){
-                  echo'<option value='.$result[id].'>'.$result[nombre].'</option>';
-              }
-            }
-           echo"</select>
-              <label>Etapa</label>
-            </div>
-            <div class='input-field col s12 m2 l2'>
-              <input  type='text' name='cert_vigencia[]' id='cert_vigencia".$i."' />
-                <label for='cert_vigencia".$i."'>Vigencia</label>
-            </div>
-            <div class='input-field col s12 m3 l5'>
-             <input  type='text' name='cert_desc[]' id='cert_desc".$i."' />
-                <label for='cert_desc".$i."'>Descripcion</label>
-            </div>
-        </div>";
-            // echo($ver);
+             echo"
+             
+                  <div class='input-field col s12 m4 l3'>
+                    <p>
+                      <input type='checkbox' class='cer' id='ce".$i."'name='certificacion[]' value='$rw[id]' />
+                      <label for='ce".$i."'>$rw[nombre]</label>
+                    </p>
+                  </div>
+                  <div class='input-field col s12 m3 l2'>
+                    <select id='cert_etapa[]' name='cert_etapa[]'>";
+                     $s="select id,nombre from etapa ";
+                  $r= mysqli_query($conn,$s) or die('Error');
+                  if(mysqli_num_rows($r)>0){
+                    while($result=mysqli_fetch_assoc($r)){
+                        echo"<option value=".$result['id'].">".$result['nombre' ]."</option>";
+                    }
+                  }
+                 echo"</select>
+                    <label>Etapa</label>
+                  </div>
+                  <div class='input-field col s12 m2 l2'>
+                    <input  type='text' name='cert_vigencia[]' id='cert_vigencia".$i."' />
+                      <label for='cert_vigencia".$i."'>Vigencia</label>
+                  </div>
+                  <div class='input-field col s12 m3 l5'>
+                   <input  type='text' name='cert_desc[]' id='cert_desc".$i."' />
+                      <label for='cert_desc".$i."'>Descripcion</label>
+                  </div>
+              ";
+                  echo($ver);
               }  
 
             } 
 
         ?>
-       
+       </div>
                   </span></div>
   </li>
 
