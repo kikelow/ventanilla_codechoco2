@@ -249,10 +249,15 @@ div.nav div.logo{
 	float: left !important;
 	font-size: 24px;
 	transition: .3s
+  padding-left:5px;
 }
 
 div.nav.black.logo{
 	color: #fff;
+}
+div.nav.black div#div_logo{
+  background-color: #fff;
+  transition: .3s;
 }
 
 div.nav ul{
@@ -295,3 +300,16 @@ div.nav ul li a.active{
       min-height:650px;
       height: auto;
     }
+
+#div_logo{
+    padding: 5px;
+    margin: 0px !important;
+    width: 130px;
+    height: 126px;
+    margin-right: 0px;
+    background-color: transparent;
+    border-radius: 68px;
+    transition: .3s;
+    display: inline-block;
+}
+
