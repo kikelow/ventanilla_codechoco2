@@ -66,32 +66,45 @@ require_once('conexion.php');
             <div class="divider"></div>
       
               <div class="input-field col s12 m3 l2">
-              <input disabled="" type="text"  name="">
               <label for="disabled">Registro Invima</label>
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Aplica</option>
-                <option value="2">No Aplica</option>
+               <select id="invima_a_na" name="invima_a_na">
+                <?php 
+                    $s="select id,nombre from aplica_noaplica order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Cumple</option>
-                <option value="2">No Cumple</option>
+               <select id="invima_c_nc" name="invima_c_nc">
+                <?php 
+                    $s="select id,nombre from cumple_nocumple order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-                <input  type="text" name="v" id="last_name" class="validate">
-                <label for="last_name">Vigencia</label>
+                <input  type="text" id="invima_vigencia" name="invima_vigencia" class="validate">
+                <label for="invima_vigencia">Vigencia</label>
               </div>
 
               <div class="input-field col s12 m3 l4">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Observacion</label>
+                <input id="invima_obs" name="invima_obs" type="text" class="validate">
+                <label for="invima_obs">Observacion</label>
               </div>
 
               <div class="row">
@@ -100,27 +113,41 @@ require_once('conexion.php');
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Aplica</option>
-                <option value="2">No Aplica</option>
+               <select id="ica_a_na" name="ica_a_na">
+                <?php 
+                    $s="select id,nombre from aplica_noaplica order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Cumple</option>
-                <option value="2">No Cumple</option>
+               <select id="ica_c_nc" name="ica_c_nc">
+                <?php 
+                    $s="select id,nombre from cumple_nocumple order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Vigencia</label>
+                <input id="ica_vigencia" name="ica_vigencia" type="text" class="validate">
+                <label for="ica_vigencia">Vigencia</label>
               </div>
 
               <div class="input-field col s12 m3 l4">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Observacion</label>
+                <input id="ica_obs" name="ica_obs" type="text" class="validate">
+                <label for="ica_obs">Observacion</label>
               </div>
           </div>
 
@@ -130,27 +157,41 @@ require_once('conexion.php');
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Aplica</option>
-                <option value="2">No Aplica</option>
+               <select id="turismo_a_na" name="turismo_a_na">
+                <?php 
+                    $s="select id,nombre from aplica_noaplica order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Cumple</option>
-                <option value="2">No Cumple</option>
+               <select id="turismo_c_nc" name="turismo_c_nc">
+                <?php 
+                    $s="select id,nombre from cumple_nocumple order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Vigencia</label>
+                <input id="turismo_vigencia" name="turismo_vigencia" type="text" class="validate">
+                <label for="turismo_vigencia">Vigencia</label>
               </div>
 
               <div class="input-field col s12 m3 l4">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Observacion</label>
+                <input id="turismo_obs" name="turismo_obs" type="text" class="validate">
+                <label for="turismo_obs">Observacion</label>
               </div>
           </div>
        
@@ -160,27 +201,41 @@ require_once('conexion.php');
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Aplica</option>
-                <option value="2">No Aplica</option>
+               <select id="forestal_a_na" name="forestal_a_na">
+                <?php 
+                    $s="select id,nombre from aplica_noaplica order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Cumple</option>
-                <option value="2">No Cumple</option>
+               <select id="forestal_c_nc" name="forestal_c_nc">
+                <?php 
+                    $s="select id,nombre from cumple_nocumple order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Vigencia</label>
+                <input id="forestal_vigencia" name="forestal_vigencia" type="text" class="validate">
+                <label for="forestal_vigencia">Vigencia</label>
               </div>
 
               <div class="input-field col s12 m3 l4">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Observacion</label>
+                <input id="forestal_obs" name="forestal_obs" type="text" class="validate">
+                <label for="forestal_obs">Observacion</label>
               </div>
           </div>
    
@@ -201,27 +256,41 @@ require_once('conexion.php');
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Aplica</option>
-                <option value="2">No Aplica</option>
+               <select id="aprovechamiento_a_na" name="aprovechamiento_a_na">
+               <?php 
+                    $s="select id,nombre from aplica_noaplica order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Cumple</option>
-                <option value="2">No Cumple</option>
+               <select id="aprovechamiento_c_nc" name="aprovechamiento_c_nc">
+                <?php 
+                    $s="select id,nombre from cumple_nocumple order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Vigencia</label>
+                <input id="aprovechamiento_vigencia" name="aprovechamiento_vigencia" type="text" class="validate">
+                <label for="aprovechamiento_vigencia">Vigencia</label>
               </div>
 
               <div class="input-field col s12 m3 l4">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Observacion</label>
+                <input id="aprovechamiento_obs" name="aprovechamiento_obs" type="text" class="validate">
+                <label for="aprovechamiento_obs">Observacion</label>
               </div>
 
               <div class="row">
@@ -230,57 +299,85 @@ require_once('conexion.php');
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Aplica</option>
-                <option value="2">No Aplica</option>
+               <select id="aguas_a_na" name="aguas_a_na">
+                <?php 
+                    $s="select id,nombre from aplica_noaplica order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Cumple</option>
-                <option value="2">No Cumple</option>
+               <select id="aguas_c_nc" name="aguas_c_nc">
+                 <?php 
+                    $s="select id,nombre from cumple_nocumple order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Vigencia</label>
+                <input id="aguas_vigencia" name="aguas_vigencia" type="text" class="validate">
+                <label for="aguas_vigencia">Vigencia</label>
               </div>
 
               <div class="input-field col s12 m3 l4">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Observacion</label>
+                <input id="aguas_obs" name="aguas_obs" type="text" class="validate">
+                <label for="aguas_obs">Observacion</label>
               </div>
           </div>
 
            <div class="row">
         <div class="input-field col s12 m3 l2">
-               <label>Permiso de Vencimiento o Emiciones</label>
+               <label>Permiso de Vertimientos o Emisiones</label>
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Aplica</option>
-                <option value="2">No Aplica</option>
+               <select id="emiciones_a_na" name="emiciones_a_na">
+                <?php 
+                    $s="select id,nombre from aplica_noaplica order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Cumple</option>
-                <option value="2">No Cumple</option>
+               <select id="emiciones_c_nc" name="emiciones_c_nc">
+                <?php 
+                    $s="select id,nombre from cumple_nocumple order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Vigencia</label>
+                <input id="emiciones_vigencia" name="emiciones_vigencia" type="text" class="validate">
+                <label for="emiciones_vigencia">Vigencia</label>
               </div>
 
               <div class="input-field col s12 m3 l4">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Observacion</label>
+                <input id="emiciones_obs" name="emiciones_obs" type="text" class="validate">
+                <label for="emiciones_obs">Observacion</label>
               </div>
           </div>
        
@@ -290,27 +387,41 @@ require_once('conexion.php');
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Aplica</option>
-                <option value="2">No Aplica</option>
+               <select id="arboles_a_na" name="arboles_a_na">
+                <?php 
+                    $s="select id,nombre from aplica_noaplica order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Cumple</option>
-                <option value="2">No Cumple</option>
+               <select id="arboles_c_nc" name="arboles_c_nc">
+                <?php 
+                    $s="select id,nombre from cumple_nocumple order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Vigencia</label>
+                <input id="arboles_vigencia" name="arboles_vigencia" type="text" class="validate">
+                <label for="arboles_vigencia">Vigencia</label>
               </div>
 
               <div class="input-field col s12 m3 l4">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Observacion</label>
+                <input id="arboles_obs" name="arboles_obs" type="text" class="validate">
+                <label for="arboles_obs">Observacion</label>
               </div>
           </div>
 
@@ -320,27 +431,41 @@ require_once('conexion.php');
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Aplica</option>
-                <option value="2">No Aplica</option>
+               <select id="movilizacion_a_na" name="movilizacion_a_na">
+                <?php 
+                    $s="select id,nombre from aplica_noaplica order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Cumple</option>
-                <option value="2">No Cumple</option>
+               <select id="movilizacion_c_nc" name="movilizacion_c_nc">
+                <?php 
+                    $s="select id,nombre from cumple_nocumple order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Vigencia</label>
+                <input id="movilizacion_vigencia" name="movilizacion_vigencia" type="text" class="validate">
+                <label for="movilizacion_vigencia">Vigencia</label>
               </div>
 
               <div class="input-field col s12 m3 l4">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Observacion</label>
+                <input id="movilizacion_obs" name="movilizacion_obs" type="text" class="validate">
+                <label for="movilizacion_obs">Observacion</label>
               </div>
           </div>
    
@@ -360,27 +485,41 @@ require_once('conexion.php');
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Aplica</option>
-                <option value="2">No Aplica</option>
+               <select id="ambiental_a_na" name="ambiental_a_na">
+                <?php 
+                    $s="select id,nombre from aplica_noaplica order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Cumple</option>
-                <option value="2">No Cumple</option>
+               <select id="ambiental_c_nc" name="ambiental_c_nc">
+               <?php 
+                    $s="select id,nombre from cumple_nocumple order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Vigencia</label>
+                <input id="ambiental_vigencia" name="ambiental_vigencia" type="text" class="validate">
+                <label for="ambiental_vigencia">Vigencia</label>
               </div>
 
               <div class="input-field col s12 m3 l4">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Observacion</label>
+                <input id="ambiental_obs" name="ambiental_obs" type="text" class="validate">
+                <label for="ambiental_obs">Observacion</label>
               </div>
       </div>
     </div>
@@ -396,27 +535,41 @@ require_once('conexion.php');
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Aplica</option>
-                <option value="2">No Aplica</option>
+               <select id="otros_a_na" name="otros_a_na">
+                <?php 
+                    $s="select id,nombre from aplica_noaplica order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-               <select>
-                <option value="1">Cumple</option>
-                <option value="2">No Cumple</option>
+               <select id="otros_c_nc" name="otros_c_nc">
+                <?php 
+                    $s="select id,nombre from cumple_nocumple order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
               </select>
               </div>
 
               <div class="input-field col s12 m2 l2">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Vigencia</label>
+                <input id="otros_vigencia" name="otros_vigencia" type="text" class="validate">
+                <label for="otros_vigencia">Vigencia</label>
               </div>
 
               <div class="input-field col s12 m3 l4">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Observacion</label>
+                <input id="otros_obs" name="otros_obs" type="text" class="validate">
+                <label for="otros_obs">Observacion</label>
               </div>
       </div>
     </div>
@@ -429,180 +582,50 @@ require_once('conexion.php');
       <div class="collapsible-body"><span>
         
       <div class="row" style="text-align: center;background-color: #bdbdbd;">2. Información Sobre Certificaciones</div>
-        <div class="row">
-            <div class="input-field col s12 m4 l3">
-              <p>
-                <input type="checkbox" id="cert1" />
-                <label for="cert1">Certificación Orgánica</label>
-              </p>
-            </div>
-            <div class="input-field col s12 m3 l2">
-              <select>
-                <option value="1">Propuesta</option>
-                <option value="2">En Proceso</option>
-                <option value="3">Emitida</option>
-              </select>
-              <label>Etapa</label>
-            </div>
-            <div class="input-field col s12 m2 l2">
-              <label for="desc">Vigencia</label>
-              <input name="Vigencia" type="text" id="Vigencia" />
-            </div>
-            <div class="input-field col s12 m3 l5">
-              <label for="desc">Descripcion</label>
-              <input name="desc1" type="text" id="desc1" />
-            </div>
-        </div>
+      <?php 
+            $i = 0;
+            $ver = "";
+            $s="SELECT id,nombre from opciones where codigo LIKE '%CE%'  order by id ";
+            $r= mysqli_query($conn,$s) or die("Error");
+            if(mysqli_num_rows($r)>0){
+              while($rw=mysqli_fetch_assoc($r)){
+                 $i++;
 
-        <div class="row">
-            <div class="input-field col s12 m4 l3">
+       echo"
+       <div class='row'>
+            <div class='input-field col s12 m4 l3'>
               <p>
-                <input type="checkbox" id="cert2" />
-                <label for="cert2">Comercio Justo</label>
+                <input type='checkbox' class='cer' id='ce".$i."'  name='certificacion[]' value='$rw[id]' />
+                <label for='ce".$i."'>$rw[nombre]</label>
               </p>
             </div>
-            <div class="input-field col s12 m3 l2">
-              <select>
-                <option value="1">Propuesta</option>
-                <option value="2">En Proceso</option>
-                <option value="3">Emitida</option>
-              </select>
+            <div class='input-field col s12 m3 l2'>
+              <select id='cert_etapa[]' name='cert_etapa[]'>";
+               $s="select id,nombre from etapa ";
+            $r= mysqli_query($conn,$s) or die('Error');
+            if(mysqli_num_rows($r)>0){
+              while($result=mysqli_fetch_assoc($r)){
+                  echo'<option value='.$result[id].'>'.$result[nombre].'</option>';
+              }
+            }
+           echo"</select>
               <label>Etapa</label>
             </div>
-            <div class="input-field col s12 m2 l2">
-              <label for="desc">Vigencia</label>
-              <input name="Vigencia" type="text" id="Vigencia" />
+            <div class='input-field col s12 m2 l2'>
+              <input  type='text' name='cert_vigencia[]' id='cert_vigencia".$i."' />
+                <label for='cert_vigencia".$i."'>Vigencia</label>
             </div>
-            <div class="input-field col s12 m3 l5">
-              <label for="desc">Descripcion</label>
-              <input name="desc1" type="text" id="desc1" />
+            <div class='input-field col s12 m3 l5'>
+             <input  type='text' name='cert_desc[]' id='cert_desc".$i."' />
+                <label for='cert_desc".$i."'>Descripcion</label>
             </div>
-        </div>
+        </div>";
+            // echo($ver);
+              }  
 
-        <div class="row">
-            <div class="input-field col s12 m4 l3">
-              <p>
-                <input type="checkbox" id="cert3" />
-                <label for="cert3">Análisis de Peligros y Puntos Críticos de Control (APPCC</label>
-              </p>
-            </div>
-            <div class="input-field col s12 m3 l2">
-              <select>
-                <option value="1">Propuesta</option>
-                <option value="2">En Proceso</option>
-                <option value="3">Emitida</option>
-              </select>
-              <label>Etapa</label>
-            </div>
-            <div class="input-field col s12 m2 l2">
-              <label for="desc">Vigencia</label>
-              <input name="Vigencia" type="text" id="Vigencia" />
-            </div>
-            <div class="input-field col s12 m3 l5">
-              <label for="desc">Descripcion</label>
-              <input name="desc1" type="text" id="desc1" />
-            </div>
-        </div>
+            } 
 
-        <div class="row">
-            <div class="input-field col s12 m4 l3">
-              <p>
-                <input type="checkbox" id="cert4" />
-                <label for="cert4">Buenas Practicas de Manufactura (BPM)</label>
-              </p>
-            </div>
-            <div class="input-field col s12 m3 l2">
-              <select>
-                <option value="1">Propuesta</option>
-                <option value="2">En Proceso</option>
-                <option value="3">Emitida</option>
-              </select>
-              <label>Etapa</label>
-            </div>
-            <div class="input-field col s12 m2 l2">
-              <label for="desc">Vigencia</label>
-              <input name="Vigencia" type="text" id="Vigencia" />
-            </div>
-            <div class="input-field col s12 m3 l5">
-              <label for="desc">Descripcion</label>
-              <input name="desc1" type="text" id="desc1" />
-            </div>
-        </div>
-
-         <div class="row">
-            <div class="input-field col s12 m4 l3">
-              <p>
-                <input type="checkbox" id="cert5" />
-                <label for="cert5">Buenas Practicas Agrícolas (BPA)</label>
-              </p>
-            </div>
-            <div class="input-field col s12 m3 l2">
-              <select>
-                <option value="1">Propuesta</option>
-                <option value="2">En Proceso</option>
-                <option value="3">Emitida</option>
-              </select>
-              <label>Etapa</label>
-            </div>
-            <div class="input-field col s12 m2 l2">
-              <label for="desc">Vigencia</label>
-              <input name="Vigencia" type="text" id="Vigencia" />
-            </div>
-            <div class="input-field col s12 m3 l5">
-              <label for="desc">Descripcion</label>
-              <input name="desc1" type="text" id="desc1" />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="input-field col s12 m4 l3">
-              <p>
-                <input type="checkbox" id="cert6" />
-                <label for="cert6">Buenas Practicas Pecuarias</label>
-              </p>
-            </div>
-            <div class="input-field col s12 m3 l2">
-              <select>
-                <option value="1">Propuesta</option>
-                <option value="2">En Proceso</option>
-                <option value="3">Emitida</option>
-              </select>
-              <label>Etapa</label>
-            </div>
-            <div class="input-field col s12 m2 l2">
-              <label for="desc">Vigencia</label>
-              <input name="Vigencia" type="text" id="Vigencia" />
-            </div>
-            <div class="input-field col s12 m3 l5">
-              <label for="desc">Descripcion</label>
-              <input name="desc1" type="text" id="desc1" />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="input-field col s12 m4 l3">
-              <p>
-                <input type="checkbox" id="cert7" />
-                <label for="cert7">Rainforest Alliance</label>
-              </p>
-            </div>
-            <div class="input-field col s12 m3 l2">
-              <select>
-                <option value="1">Propuesta</option>
-                <option value="2">En Proceso</option>
-                <option value="3">Emitida</option>
-              </select>
-              <label>Etapa</label>
-            </div>
-            <div class="input-field col s12 m2 l2">
-              <label for="desc">Vigencia</label>
-              <input name="Vigencia" type="text" id="Vigencia" />
-            </div>
-            <div class="input-field col s12 m3 l5">
-              <label for="desc">Descripcion</label>
-              <input name="desc1" type="text" id="desc1" />
-            </div>
-        </div>
+        ?>
        
                   </span></div>
   </li>
