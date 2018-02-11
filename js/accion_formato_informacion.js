@@ -547,18 +547,17 @@ $('[name="programa[]"]#programa4').click(function() {
 
 //verificar si selecciona si en el div de institucion
 $('#insti').find('*').prop('disabled', true);
-// $('#insti').hide()
+$('#insti').hide()
 $('#valida_institucion').change(function(event) {
   if ($('#valida_institucion').val() == 1) {
       $('#insti').find('*').prop('disabled', true);
-        $('#apoyo_tipo_entidad').material_select()
-      // $('#insti').hide()
+      $('[name="apoyo_tipo_entidad[]"]').material_select()
+      $('#insti').hide()
   }else{
-    // $('#insti').find('*').prop('disabled', false);
-    $('#ins_campos').find('*').prop('disabled', false);
-    $('select').find('*').prop('disabled', false);
-    $('#apoyo_tipo_entidad').material_select()
-     // $('#insti').show()
+    $('#insti').find('*').prop('disabled', false);
+     $('select').find('*').prop('disabled', false);
+    $('[name="apoyo_tipo_entidad[]"]').material_select()
+     $('#insti').show()
   }
 });
 //verificar si selecciona si en el div de trabajadores
@@ -570,6 +569,7 @@ $('#valida_trabajadores').change(function(event) {
       $('#trabaja').hide()
   }else{
     $('#trabaja').find('[name="programa[]"]').prop('disabled', false);
+    $('#otro_pro').find('*').prop('disabled', false);
      $('#trabaja').show()
   }
 });
@@ -579,10 +579,13 @@ $('#div_activi').hide()
 $('#valida_actividades').change(function(event) {
   if ($('#valida_actividades').val() == 1) {
       $('#div_activi').find('*').prop('disabled', true);
+       $('#otro_activi_recurso').material_select()
       $('#div_activi').hide()
   }else{
     $('#div_activi').find('[name="actividad[]"]').prop('disabled', false);
+     $('#otro_act').find('*').prop('disabled', false);
     $('select').find('*').prop('disabled', false);
+    $('#otro_activi_recurso').material_select()
      $('#div_activi').show()
   }
 });

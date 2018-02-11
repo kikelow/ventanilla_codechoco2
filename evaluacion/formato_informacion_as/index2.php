@@ -52,6 +52,18 @@ require_once('conexion.php');
               }         
             }
         ?>
+         <div class='row'>
+              <div class='input-field col s12 m6 l6'>
+                <p>
+                <input type='text' id='otro_tierra_nom'  name='otro_tierra_nom'/>
+                <label for='otro_tierra_nom'>Otro. ¿Cual?</label>
+              </p>
+              </div>
+              <div class='input-field col s12 m6 l6'>
+                <input type='text' name='otro_tierra_desc' id='otro_tierra_desc' />
+                <label for='otro_tierra_desc'>Descripcion</label>
+              </div>
+          </div>
           
                   </span></div>
   </li>
@@ -739,6 +751,22 @@ require_once('conexion.php');
             } 
 
         ?>
+          <div class="row">
+            <div class='input-field col s12 m4 l5'>
+                      <input type='text' name='otro_conservacion_nom' id='otro_conservacion_nom' />
+                      <label for='otro_conservacion_nom'>Otro. ¿Cual?</label>
+                    </div>
+                        
+                    <div class='input-field col s12 m4 l2 '>
+                       <input type='text' name='otro_conservacion_area' id='otro_conservacion_area' />
+                      <label for='otro_conservacion_area'>Area</label>
+                    </div>
+
+                     <div class='input-field col s12 m4 l5'>
+                        <input type='text' name='otro_conservacion_desc' id='otro_conservacion_desc' />
+                      <label for='otro_conservacion_desc'>Descripción</label>
+                    </div>
+          </div>
             </div>
   <div class="row" style="border: 1px solid">
     <p>Área de los ecosistemas</p>
@@ -767,6 +795,16 @@ require_once('conexion.php');
               }         
             }
         ?>
+        <div class="row">
+          <div class='input-field col s12 m6 l6'>
+                <input type='text' name='otro_ecosistema_nom' id='otro_ecosistema_nom' />
+                <label for='otro_ecosistema_nom'>Otro. ¿Cual?</label>
+              </div>
+              <div class='input-field col s12 m6 l6'>
+                <input type='text' name='otro_ecosistema_area' id='otro_ecosistema_area' />
+                <label for='otro_ecosistema_area'>Área</label>
+              </div>
+        </div>
   </div>
 
 
@@ -861,7 +899,7 @@ require_once('conexion.php');
               while($rw=mysqli_fetch_assoc($r)){
                  $i++;
        echo"
-              <div class=' col s12 m4 l4'>
+              <div class=' col s12 m3 l3'>
                          <input type='checkbox'  id='involucra".$i."'  name='involucra[]' value='$rw[id]' />
                 <label for='involucra".$i."'>$rw[nombre]</label>
                     </div>
@@ -871,6 +909,11 @@ require_once('conexion.php');
               }         
             }
         ?>
+
+                <div class='input-field col s12 m4 l3'>
+                  <input type='text' id='otro_involucra_nom' name='otro_involucra_nom' />
+                  <label for='otro_involucra_nom'>Otro. ¿Cual?</label>
+                </div>
             </div>
         </div>
         
@@ -925,6 +968,32 @@ require_once('conexion.php');
             } 
 
         ?>
+        <div class="row" id="otro_act">
+           <div class='input-field col s12 m4 l3'>
+                  <input type='text' id='otro_activi_nom' name='otro_activi_nom'/>
+                      <label for='otro_activi_nom'>Otro. ¿Cual?</label>
+                </div>
+
+                <div class='input-field col s12 m4 l4'>
+                 <input  type='text' name='otro_activi_desc' id='otro_activi_desc' />
+                      <label for='otro_activi_desc'>Descripción</label>
+                </div>
+
+                <div class='input-field col s12 m4 l5'>
+                <select name='otro_activi_recurso' id='otro_activi_recurso'>
+                  <?php  
+                     $s="select id,nombre from recurso ";
+                  $r= mysqli_query($conn,$s) or die('Error');
+                  if(mysqli_num_rows($r)>0){
+                    while($result=mysqli_fetch_assoc($r)){
+                        echo"<option value=".$result['id'].">".$result['nombre' ]."</option>";
+                    }
+                  }
+                  ?>
+                </select>
+                <label>Fuente de Recursos</label>
+                </div>
+        </div>
       </div>
     </div>
 
@@ -966,6 +1035,17 @@ require_once('conexion.php');
             } 
 
         ?>
+        <div class='row' id="otro_pro">
+          <div class='input-field col s12 m4 l4'>
+            <input type='text' id='otro_programa_nom' name='otro_programa_nom'/>
+                <label for='otro_programa_nom'>Otro. ¿Cual?</label>
+          </div>
+
+          <div class='input-field col s12 m4 l8'>
+           <input  type='text' name='otro_programa_desc' id='otro_programa_desc' />
+                <label for='otro_programa_desc'>Descripción</label>
+          </div>
+        </div>
         
       </div>
     </div>
@@ -984,7 +1064,7 @@ require_once('conexion.php');
             <div class="col s12 m12 l12" id="insti" style="border: 1px solid">
             <p>Apoyo por parte de institución pública o privada</p> 
             <div class="divider"></div>
-            <div id="ins_campos">
+            
             <?php 
               for ($i=0; $i < 5 ; $i++){ 
              echo"
@@ -999,7 +1079,7 @@ require_once('conexion.php');
                   <label for=''>Entidad</label>
                 </div>
 
-                <div class='input-field col s12 m2 l2'>
+                <div class='input-field col s12 m2 l2' >
                  <select name='apoyo_tipo_entidad[]'>";
                   $s="select id,nombre from orientacion ";
                   $r= mysqli_query($conn,$s) or die('Error');
@@ -1020,7 +1100,7 @@ require_once('conexion.php');
             } 
 
         ?>
-          </div>
+       
       </div>
     </div>
 
@@ -1044,16 +1124,16 @@ require_once('conexion.php');
           <p>Costo promedio de insumos totales</p>
           <div class="divider"></div>
            <div class="input-field col s12 m4 l4">
-              <input type="text" />
-              <label for="">Semanal</label>
+              <input type="text" id="insumo_semanal" name="insumo_semanal" />
+              <label for="insumo_semanal">Semanal</label>
             </div>
             <div class="input-field col s12 m4 l4">
-              <input type="text" />
-              <label for="">Mensual</label>
+              <input type="text" id="insumo_mensual" name="insumo_mensual" />
+              <label for="insumo_mensual">Mensual</label>
             </div>
             <div class="input-field col s12 m4 l4">
-              <input type="text" />
-              <label for="">Anual</label>
+              <input type="text" id="insumo_anual" name="insumo_anual" />
+              <label for="insumo_anual">Anual</label>
             </div>  
       </div>
 
@@ -1061,28 +1141,28 @@ require_once('conexion.php');
           <p>Costo promedio de mano de obra</p>
           <div class="divider"></div>
            <div class="input-field col s12 m4 l4">
-              <input type="text" />
-              <label for="">Semanal</label>
+              <input type="text" id="obra_semanal" name="obra_semanal" />
+              <label for="obra_semanal">Semanal</label>
             </div>
             <div class="input-field col s12 m4 l4">
-              <input type="text" />
-              <label for="">Mensual</label>
+              <input type="text" id="obra_mensual" name="obra_mensual" />
+              <label for="obra_mensual">Mensual</label>
             </div>
             <div class="input-field col s12 m4 l4">
-              <input type="text" />
-              <label for="">Anual</label>
+              <input type="text" id="obra_anual" name="obra_anual" />
+              <label for="obra_anual">Anual</label>
             </div>  
       </div>
       <div class="col s12 m6 l4" style="border: 1px solid" >
           <p>Total de ventas realizadas</p>
           <div class="divider"></div>
            <div class="input-field col s12 m4 l6">
-              <input type="text" />
-              <label for="">Valor</label>
+              <input type="text" id="venta_valor" name="venta_valor" />
+              <label for="venta_valor">Valor</label>
             </div>
             <div class="input-field col s12 m4 l6">
-              <input type="text" />
-              <label for="">Año</label>
+              <input type="text" id="venta_anio" name="venta_anio" />
+              <label for="venta_anio">Año</label>
             </div>
       </div>
     </div>

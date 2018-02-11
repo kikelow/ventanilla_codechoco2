@@ -12,6 +12,10 @@ if (isset($empresa)) {
 				// mysqli_query($conn,$s);
 		}
 
+//registrar datos de otros tenencia de tierra
+$s="INSERT INTO `otro_tenencia_tierra`(`empresa_id`, `nombre`, `descripcion`) VALUES('$empresa','$_POST[otro_tierra_nom]','$_POST[otro_tierra_desc]')";
+// mysqli_query($conn,$s);
+
 // registar datos en la tabla registro
 	$s = "INSERT INTO `registro`(`empresa_id`, `opciones_id`, `aplica_noaplica_id`, `cumple_nocumple_id`, `vigencia`, `observacion`) VALUES 
 	('$empresa','18','$_POST[invima_a_na]','$_POST[invima_c_nc]','$_POST[invima_vigencia]','$_POST[invima_obs]'),
@@ -52,7 +56,7 @@ $s="INSERT INTO `certificacion`(`empresa_id`, `opciones_id`, `etapa_id`, `vigenc
 //registrar datos de otros certificacion
 $s="INSERT INTO `otros_certificacion`(`empresa_id`, `nombre`, `etapa_id`, `vigencia`, `observacion`) VALUES('$empresa','$_POST[otro_certificacion]','$_POST[otro_cert_etapa]','$_POST[otro_cert_vigencia]','$_POST[otro_cert_obs]')";
 // mysqli_query($conn,$s);
-echo($s);
+
 //resgistrar datos en la tabla conservacion
 $conservacion = $_POST['conservacion'];
 $conser_area = $_POST['conser_area'];
@@ -61,6 +65,9 @@ for ($i=0; $i <sizeof($conservacion); $i++) {
 $s="INSERT INTO `conservacion`(`empresa_id`, `opciones_id`, `area`, `descripcion`) VALUES ('$empresa','".$conservacion[$i]."','".$conser_area[$i]."','".$conser_desc[$i]."')";
 // mysqli_query($conn,$s);
 }
+//registrar datos de otros conservacion
+$s="INSERT INTO `otros_conservacion`(`empresa_id`, `nombre`, `area`, `descripcion`) VALUES('$empresa','$_POST[otro_conservacion_nom]','$_POST[otro_conservacion_area]','$_POST[otro_conservacion_desc]')";
+// mysqli_query($conn,$s);
 
 //registrar datos en la tabla plan_manejo
 $plan = $_POST['plan'];
@@ -81,6 +88,9 @@ for ($i=0; $i <sizeof($ecosistemas); $i++) {
 $s="INSERT INTO `ecosistema`(`empresa_id`, `opciones_id`, `area`) VALUES ('$empresa','".$ecosistemas[$i]."','".$ecosistemas_area[$i]."')";
 // mysqli_query($conn,$s);
 }
+//registrar datos de otros ecosistemas
+$s="INSERT INTO `otros_ecosistema`(`empresa_id`, `nombre`, `area`) VALUES('$empresa','$_POST[otro_ecosistema_nom]','$_POST[otro_ecosistema_area]')";
+// mysqli_query($conn,$s);
 
 //registrar datos en la tabla involucra 
 $involucra = $_POST['involucra'];
@@ -88,6 +98,10 @@ for ($i=0; $i <sizeof($involucra); $i++) {
 $s="INSERT INTO `involucra`(`empresa_id`, `opciones_id`) VALUES ('$empresa','".$involucra[$i]."')";
 // mysqli_query($conn,$s);
 }
+//registrar datos de otros involucra
+$s="INSERT INTO `otro_involucra`(`empresa_id`, `nombre`) VALUES('$empresa','$_POST[otro_involucra_nom]')";
+// mysqli_query($conn,$s);
+
 
 //registrar datos en la tabla actividades 
 $actividad = $_POST['actividad'];
@@ -97,6 +111,9 @@ for ($i=0; $i <sizeof($actividad); $i++) {
 $s="INSERT INTO `actividades`(`empresa_id`, `opciones_id`, `recurso_id`, `descripcion`) VALUES ('$empresa','".$actividad[$i]."','".$actividad_recurso[$i]."','".$actividad_desc[$i]."')";
 // mysqli_query($conn,$s);
 }
+//registrar datos de otros actividades
+$s="INSERT INTO `otro_actividades`(`empresa_id`, `nombre`, `descripcion`, `recurso_id`) VALUES('$empresa','$_POST[otro_activi_nom]','$_POST[otro_activi_desc]','$_POST[otro_activi_recurso]')";
+mysqli_query($conn,$s);
 
 //registrar datos en la tabla programa 
 $programa = $_POST['programa'];
@@ -105,8 +122,10 @@ $programa_desc = $_POST['programa_desc'];
 for ($i=0; $i <sizeof($programa); $i++) {
 $s="INSERT INTO `programa`(`empresa_id`, `opciones_id`, `descripcion`) VALUES ('$empresa','".$programa[$i]."','".$programa_desc[$i]."')";
 // mysqli_query($conn,$s);
-
 }
+//registrar datos de otros programa
+$s="INSERT INTO `otro_programa`(`empresa_id`, `nombre`, `descripcion`) VALUES('$empresa','$_POST[otro_programa_nom]','$_POST[otro_programa_desc]')";
+// mysqli_query($conn,$s);
 
 //registrar datos en la tabla institucion 
 $apoyo = $_POST['apoyo'];
@@ -135,6 +154,18 @@ $s="INSERT INTO `sost_economica`(`empresa_id`, `bien_servicio`, `vendida_anual`,
 // mysqli_query($conn,$s);
 // echo($s);
 }
+
+//registrar datos de insumos totales
+$s="INSERT INTO `costo_insumos`(`empresa_id`, `semanal`, `mensual`, `anual`) VALUES('$empresa','$_POST[insumo_semanal]','$_POST[insumo_mensual]','$_POST[insumo_anual]')";
+mysqli_query($conn,$s);
+
+//registrar datos de mano de obra total
+$s="INSERT INTO `costo_mano_obra`(`empresa_id`, `semanal`, `mensual`, `anual`) VALUES('$empresa','$_POST[obra_semanal]','$_POST[obra_mensual]','$_POST[obra_anual]')";
+mysqli_query($conn,$s);
+
+//registrar datos de ventas realizadas
+$s="INSERT INTO `total_ventas`(`empresa_id`, `valor`, `anio`) VALUES('$empresa','$_POST[venta_valor]','$_POST[venta_anio]')";
+mysqli_query($conn,$s);
 
 
 }
