@@ -571,6 +571,33 @@ require_once('conexion.php');
                 <input id="otros_obs" name="otros_obs" type="text" class="validate">
                 <label for="otros_obs">Observacion</label>
               </div>
+
+
+
+              <div class="input-field col s12 m5 l5">
+               <input id="otro_legislacion" name="otro_legislacion" type="text" class="validate">
+                <label for="otro_legislacion">Otro. ¿Cual?</label>
+              </div>
+
+
+              <div class="input-field col s12 m3 l3">
+               <select id="otro_legislacion_c_nc" name="otro_legislacion_c_nc">
+                <?php 
+                    $s="select id,nombre from cumple_nocumple order by id desc ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
+              </select>
+              </div>
+
+              <div class="input-field col s12 m4 l4">
+                <input id="otros_legislacion_obs" name="otros_legislacion_obs" type="text" class="validate">
+                <label for="otros_legislacion_obs">Observacion</label>
+              </div>
       </div>
     </div>
         
@@ -581,8 +608,19 @@ require_once('conexion.php');
       <div class="collapsible-header" style="font-weight: bold;"> <i class="material-icons"></i>2. Información Sobre Certificaciones</div>
       <div class="collapsible-body"><span>
         
+        <div class="row">
+        <div class='input-field col s12 m8 l8'>
+               <select id="valida_certificacion">
+                 <option disabled selected>Seleccione una opcion</option>
+                 <option value="1">No</option>
+                 <option value="2">Si</option>
+               </select>   
+            <label>¿La iniciativa involucra a miembros de las comunidades locales?</label> 
+          </div>
+      </div>
+      <div  id='div_certificacion'>
       <div class="row" style="text-align: center;background-color: #bdbdbd;">2. Información Sobre Certificaciones</div>
-      <div class='row'>
+      
         <?php 
             $i = 0;
             $ver = "";
@@ -591,17 +629,16 @@ require_once('conexion.php');
             if(mysqli_num_rows($r1)>0){
               while($rw=mysqli_fetch_assoc($r1)){
                        $i++;
-//dfdffdf
              echo"
-             
+             <div class='row' >
                   <div class='input-field col s12 m4 l3'>
                     <p>
-                      <input type='checkbox' class='cer' id='ce".$i."'name='certificacion[]' value='$rw[id]' />
+                      <input type='checkbox' class='cer' id='ce".$i."' name='certificacion[]' value='$rw[id]' />
                       <label for='ce".$i."'>$rw[nombre]</label>
                     </p>
                   </div>
                   <div class='input-field col s12 m3 l2'>
-                    <select id='cert_etapa[]' name='cert_etapa[]'>";
+                    <select disabled name='cert_etapa[]' id='cert_etapa".$i."'>";
                      $s="select id,nombre from etapa ";
                   $r= mysqli_query($conn,$s) or die('Error');
                   if(mysqli_num_rows($r)>0){
@@ -613,21 +650,49 @@ require_once('conexion.php');
                     <label>Etapa</label>
                   </div>
                   <div class='input-field col s12 m2 l2'>
-                    <input  type='text' name='cert_vigencia[]' id='cert_vigencia".$i."' />
+                    <input disabled  type='text' name='cert_vigencia[]' id='cert_vigencia".$i."' />
                       <label for='cert_vigencia".$i."'>Vigencia</label>
                   </div>
                   <div class='input-field col s12 m3 l5'>
-                   <input  type='text' name='cert_desc[]' id='cert_desc".$i."' />
-                      <label for='cert_desc".$i."'>Descripcion</label>
-                  </div>
+                   <input disabled  type='text' name='cert_obs[]' id='cert_obs".$i."' />
+                      <label for='cert_obs".$i."'>Observación</label>
+                  </div> </div>
               ";
-                  echo($ver);
               }  
 
             } 
 
         ?>
-       </div>
+        <div class='row' id="otr_cert">
+                  <div class='input-field col s12 m4 l3'>
+                    <input type='text' name='otro_certificacion' id='otro_certificacion' />
+                      <label for='otro_certificacion'>Otro. ¿Cual?</label>
+                  </div>
+                  <div class='input-field col s12 m3 l2'>
+                    <select  name='otro_cert_etapa' id='otro_cert_etapa'>
+                    <?php 
+                    $s="select id,nombre from etapa ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                      }         
+                    }
+                  ?>
+                 </select >
+                    <label>Etapa</label>
+                  </div>
+                  <div class='input-field col s12 m2 l2'>
+                    <input  type='text' name='otro_cert_vigencia' id='otro_cert_vigencia' />
+                      <label for='otro_cert_vigencia'>Vigencia</label>
+                  </div>
+                  <div class='input-field col s12 m3 l5'>
+                   <input  type='text' name='otro_cert_obs' id='otro_cert_obs' />
+                      <label for='otro_cert_obs'>Observación</label>
+                  </div> </div>
+
+        </div>
+      
                   </span></div>
   </li>
 
@@ -643,409 +708,121 @@ require_once('conexion.php');
       <div class="row" style="border: 1px solid">
                   <p>Practicas de conservación</p> 
                   <div class="divider"></div>
-            
-                    <div class="input-field col s12 m4 l5">
-                          <input type="checkbox" id="rr" />
-                          <label for="rr">Sistemas silvopastoriles</label>
+                  <?php 
+            $i = 0;
+            $ver = "";
+            $s1="SELECT id,nombre from opciones where codigo LIKE '%PC%'  order by id ";
+            $r1= mysqli_query($conn,$s1) or die("Error");
+            if(mysqli_num_rows($r1)>0){
+              while($rw=mysqli_fetch_assoc($r1)){
+                       $i++;
+             echo"
+                    <div class='row'>
+                    <div class='input-field col s12 m4 l5'>
+                         <input type='checkbox'  id='conser".$i."' name='conservacion[]' value='$rw[id]' />
+                      <label for='conser".$i."'>$rw[nombre]</label>
                     </div>
                         
-                    <div class="input-field col s12 m4 l2 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
+                    <div class='input-field col s12 m4 l2 '>
+                       <input disabled  type='text' name='conser_area[]' id='conser_area".$i."' />
+                      <label for='conser_area".$i."'>Area</label>
                     </div>
 
-                     <div class="input-field col s12 m4 l5">
-                        <input  id="descrip" type="text" class="validate">
-                        <label for="descrip">Descripción</label>
-                    </div>    
-
-        
-                    <div class="input-field col s12 m4 l5">
-                          <input type="checkbox" id="s1" />
-                          <label for="s1">Sistemas silvicultura</label>
+                     <div class='input-field col s12 m4 l5'>
+                        <input disabled  type='text' name='conser_desc[]' id='conser_desc".$i."' />
+                      <label for='conser_desc".$i."'>Descripción</label>
                     </div>
-                        
-                    <div class="input-field col s12 m4 l2 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
                     </div>
+              ";
+              }  
 
-                     <div class="input-field col s12 m4 l5">
-                        <input  id="descrip" type="text" class="validate">
-                        <label for="descrip">Descripción</label>
-                    </div> 
+            } 
 
-
-
-                    <div class="input-field col s12 m4 l5">
-                          <input type="checkbox" id="s2" />
-                          <label for="s2">Agroforestería</label>
-                    </div>
-                        
-                    <div class="input-field col s12 m4 l2">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div>
-
-                     <div class="input-field col s12 m4 l5">
-                        <input  id="descrip" type="text" class="validate">
-                        <label for="descrip">Descripción</label>
-                    </div> 
-
-
-
-                     <div class="input-field col s12 m4 l5">
-                          <input type="checkbox" id="s3" />
-                          <label for="s3">Cultivos mixtos</label>
-                    </div>
-                        
-                    <div class="input-field col s12 m4 l2 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div>
-
-                     <div class="input-field col s12 m4 l5">
-                        <input  id="descrip" type="text" class="validate">
-                        <label for="descrip">Descripción</label>
-                    </div> 
-
-
-                     <div class="input-field col s12 m4 l5">
-                          <input type="checkbox" id="s4" />
-                          <label for="s4">Cercas vivas /Barreras rompevientos /Corredores de conectividad de bosques</label>
-                    </div>
-                        
-                    <div class="input-field col s12 m4 l2 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div>
-
-                     <div class="input-field col s12 m4 l5">
-                        <input  id="descrip" type="text" class="validate">
-                        <label for="descrip">Descripción</label>
-                    </div> 
-
-
-
-                     <div class="input-field col s12 m4 l5">
-                          <input type="checkbox" id="s5" />
-                          <label for="s5">Bosques para protección de nacimientos de agua, quebradas, ríos y lagunas</label>
-                    </div>
-                        
-                    <div class="input-field col s12 m4 l2 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div>
-
-                     <div class="input-field col s12 m4 l5">
-                        <input  id="descrip" type="text" class="validate">
-                        <label for="descrip">Descripción</label>
-                    </div>
-
-
-
-
-                     <div class="input-field col s12 m4 l5">
-                          <input type="checkbox" id="s6" />
-                          <label for="s6">Cercas o aislamiento para protección de nacimientos de agua, quebradas, ríos y lagunas</label>
-                    </div>
-                        
-                    <div class="input-field col s12 m4 l2 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div>
-
-                     <div class="input-field col s12 m4 l5">
-                        <input  id="descrip" type="text" class="validate">
-                        <label for="descrip">Descripción</label>
-                    </div> 
-
-
-
-                     <div class="input-field col s12 m4 l5">
-                          <input type="checkbox" id="s7" />
-                          <label for="s7">Buen uso de los recursos hídricos</label>
-                    </div>
-                        
-                    <div class="input-field col s12 m4 l2 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div>
-
-                     <div class="input-field col s12 m4 l5">
-                        <input  id="descrip" type="text" class="validate">
-                        <label for="descrip">Descripción</label>
-                    </div> 
-
-
-
-                     <div class="input-field col s12 m4 l5">
-                          <input type="checkbox" id="s8" />
-                          <label for="s8">Control biologico de plagas</label>
-                    </div>
-                        
-                    <div class="input-field col s12 m4 l2 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div>
-
-                     <div class="input-field col s12 m4 l5">
-                        <input  id="descrip" type="text" class="validate">
-                        <label for="descrip">Descripción</label>
-                    </div> 
-
-
-
-                    <div class="input-field col s12 m4 l5">
-                          <input type="checkbox" id="s9" />
-                          <label for="s9">Fertilización orgánica</label>
-                    </div>
-                        
-                    <div class="input-field col s12 m4 l2 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div>
-
-                     <div class="input-field col s12 m4 l5">
-                        <input  id="descrip" type="text" class="validate">
-                        <label for="descrip">Descripción</label>
-                    </div> 
-
-
-                    <div class="input-field col s12 m4 l5">
-                          <input type="checkbox" id="s10" />
-                          <label for="s10">Labranza mínima</label>
-                    </div>
-                        
-                    <div class="input-field col s12 m4 l2 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div>
-
-                     <div class="input-field col s12 m4 l5">
-                        <input  id="descrip" type="text" class="validate">
-                        <label for="descrip">Descripción</label>
-                    </div>
-
-
-
-                    <div class="input-field col s12 m4 l5">
-                          <input type="checkbox" id="s11" />
-                          <label for="s11">Uso de fuentes alternativas de energia</label>
-                    </div>
-                        
-                    <div class="input-field col s12 m4 l2 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div>
-
-                     <div class="input-field col s12 m4 l5">
-                        <input  id="descrip" type="text" class="validate">
-                        <label for="descrip">Descripción</label>
-                    </div> 
-
-
-
-                     <div class="input-field col s12 m4 l5">
-                          <input type="checkbox" id="s12" />
-                          <label for="s12">Uso de practicas y/o tecnologias bajas en carbono</label>
-                    </div>
-                        
-                    <div class="input-field col s12 m4 l2 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div>
-
-                     <div class="input-field col s12 m4 l5">
-                        <input  id="descrip" type="text" class="validate">
-                        <label for="descrip">Descripción</label>
-                    </div> 
+        ?>
             </div>
+  <div class="row" style="border: 1px solid">
+    <p>Área de los ecosistemas</p>
+    <div class="divider"></div>
+    <?php 
+            $i = 0;
+            $s="SELECT id,nombre from opciones where codigo LIKE '%AC%'  order by id ";
+            $r= mysqli_query($conn,$s) or die("Error");
+            if(mysqli_num_rows($r)>0){
+              while($rw=mysqli_fetch_assoc($r)){
+                 $i++;
+       echo"
+               <div class='row'>
+              <div class='input-field col s12 m6 l6'>
+                <p>
+                <input type='checkbox'  id='ecosistemas".$i."'  name='ecosistemas[]' value='$rw[id]' />
+                <label for='ecosistemas".$i."'>$rw[nombre]</label>
+              </p>
+              </div>
+              <div class='input-field col s12 m6 l6'>
+                <input disabled type='text' name='ecosistemas_area[]' id='ecosistemas_area".$i."' />
+                <label for='ecosistemas_area".$i."'>Área</label>
+              </div>
+              </div>";
 
-
-
-
+              }         
+            }
+        ?>
+  </div>
 
 
             <div class="row" style="border: 1px solid">
-                  <p>Área de los ecosistemas</p> 
+                  <p>Plan de manejo o Plan de uso</p> 
                   <div class="divider"></div>
-            
-                    <div class="input-field col s12 m6 l6">
-                          <input type="checkbox" id="e1" />
-                          <label for="e1">Bosque ándino o niebla</label>
+                   <?php 
+            $i = 0;
+            $ver = "";
+            $s1="SELECT id,nombre from opciones where codigo LIKE '%PM%'  order by id ";
+            $r1= mysqli_query($conn,$s1) or die("Error");
+            if(mysqli_num_rows($r1)>0){
+              while($rw=mysqli_fetch_assoc($r1)){
+                       $i++;
+             echo"
+             <div class='input-field col s12 m5 l5'>
+                        <input type='checkbox' id='plan".$i."' name='plan[]' value='$rw[id]' />
+                      <label for='plan".$i."'>$rw[nombre]</label>
                     </div>
-                        
-                    <div class="input-field col s12 m6 l6 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div>  
-
-
-                     <div class="input-field col s12 m6 l6">
-                          <input type="checkbox" id="e2" />
-                          <label for="e2">Bosque húmedo</label>
+                    <div class='input-field col s12 m2 l2'>
+                        <select disabled name='plan_a_na[]' id='plan_a_na".$i."'>";
+                         $s2="select id,nombre from aplica_noaplica order by id desc ";
+                  $r2= mysqli_query($conn,$s2) or die('Error');
+                  if(mysqli_num_rows($r2)>0){
+                    while($rw2=mysqli_fetch_assoc($r2)){
+                        echo"<option value=".$rw2['id'].">".$rw2['nombre' ]."</option>";
+                    }
+                  }
+                     echo"</select>
                     </div>
-                        
-                    <div class="input-field col s12 m6 l6 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div> 
-
-
-                     <div class="input-field col s12 m6 l6">
-                          <input type="checkbox" id="e3" />
-                          <label for="e3">Bosque seco</label>
-                    </div>
-                        
-                    <div class="input-field col s12 m6 l6 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div> 
-
-
-                     <div class="input-field col s12 m6 l6">
-                          <input type="checkbox" id="e4" />
-                          <label for="e4">Páramo</label>
-                    </div>
-                        
-                    <div class="input-field col s12 m6 l6 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div> 
-
-
-                     <div class="input-field col s12 m6 l6">
-                          <input type="checkbox" id="e5" />
-                          <label for="e5">Marinos</label>
-                    </div>
-                        
-                    <div class="input-field col s12 m6 l6 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div>  
-
-
-                     <div class="input-field col s12 m6 l6">
-                          <input type="checkbox" id="e7" />
-                          <label for="e7">Sabana</label>
-                    </div>
-                        
-                    <div class="input-field col s12 m6 l6 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div>  
-
-
-                     <div class="input-field col s12 m6 l6">
-                          <input type="checkbox" id="e8" />
-                          <label for="e8">Manglas</label>
-                    </div>
-                        
-                    <div class="input-field col s12 m6 l6 ">
-                        <input  id="area" type="text" class="validate">
-                        <label for="area">Área(ha)</label>
-                    </div> 
-            </div>
-
-
-
-            <div class="row" style="border: 1px solid">
-                  <p>Área de los ecosistemas</p> 
-                  <div class="divider"></div>
-            
-                    <div class="input-field col s12 m5 l5">
-                          <input type="checkbox" id="p1" />
-                          <label for="p1">Protocolo o plan de aprovechamiento para productos silvestres maderables y no maderables</label>
-                    </div>
-                    <div class="input-field col s12 m2 l2">
-                        <select>
-                          <option value="" disabled selected>Seleccione</option>
-                          <option value="1">Aplica</option>
-                          <option value="2">No Aplica</option>
-                        </select>
+                    <div class='input-field col s12 m2 l2'>
+                        <select disabled name='plan_c_nc[]' id='plan_c_nc".$i."'>";
+                          $s3="select id,nombre from cumple_nocumple order by id desc ";
+                  $r3= mysqli_query($conn,$s3) or die('Error');
+                  if(mysqli_num_rows($r3)>0){
+                    while($rw3=mysqli_fetch_assoc($r3)){
+                        echo"<option value=".$rw3['id'].">".$rw3['nombre' ]."</option>";
+                    }
+                  }
+                     echo"</select>
                         <!-- <label>Materialize Select</label> -->
                     </div>
-                    <div class="input-field col s12 m2 l2">
-                        <select>
-                          <option value="" disabled selected>Seleccione</option>
-                          <option value="1">Cumple</option>
-                          <option value="2">No Cumple</option>
-                        </select>
-                        <!-- <label>Materialize Select</label> -->
+                     <div class='input-field col s12 m1 l1 '>
+                         <input disabled  type='text' name='plan_vigencia[]' id='plan_vigencia".$i."' />
+                      <label for='plan_vigencia".$i."'>Vigencia</label>
                     </div>
-                     <div class="input-field col s12 m1 l1 ">
-                        <input  id="vigencia" type="text" class="validate">
-                        <label for="vigencia">Vigencia</label>
+                    <div class='input-field col s12 m2 l2 '>
+                        <input disabled  type='text' name='plan_desc[]' id='plan_desc".$i."' />
+                      <label for='plan_desc".$i."'>Observación</label>
                     </div>
-                    <div class="input-field col s12 m2 l2 ">
-                        <input  id="observacion" type="text" class="validate">
-                        <label for="observacion">Observación</label>
-                    </div>
+              ";
+              }  
 
+            } 
 
-
-                    <div class="input-field col s12 m5 l5">
-                          <input type="checkbox" id="p2" />
-                          <label for="p2">Estudio de capacidad de carga para ecoturismo</label>
-                    </div>
-                    <div class="input-field col s12 m2 l2">
-                        <select>
-                          <option value="" disabled selected>Seleccione</option>
-                          <option value="1">Aplica</option>
-                          <option value="2">No Aplica</option>
-                        </select>
-                        <!-- <label>Materialize Select</label> -->
-                    </div>
-                    <div class="input-field col s12 m2 l2">
-                        <select>
-                          <option value="" disabled selected>Seleccione</option>
-                          <option value="1">Cumple</option>
-                          <option value="2">No Cumple</option>
-                        </select>
-                        <!-- <label>Materialize Select</label> -->
-                    </div>
-                     <div class="input-field col s12 m1 l1 ">
-                        <input  id="vigencia" type="text" class="validate">
-                        <label for="vigencia">Vigencia</label>
-                    </div>
-                    <div class="input-field col s12 m2 l2 ">
-                        <input  id="observacion" type="text" class="validate">
-                        <label for="observacion">Observación</label>
-                    </div>
-
-
-                    <div class="input-field col s12 m5 l5">
-                          <input type="checkbox" id="p3" />
-                          <label for="p3">Plan de manejo ambiental</label>
-                    </div>
-                    <div class="input-field col s12 m2 l2">
-                        <select>
-                          <option value="" disabled selected>Seleccione</option>
-                          <option value="1">Aplica</option>
-                          <option value="2">No Aplica</option>
-                        </select>
-                        <!-- <label>Materialize Select</label> -->
-                    </div>
-                    <div class="input-field col s12 m2 l2">
-                        <select>
-                          <option value="" disabled selected>Seleccione</option>
-                          <option value="1">Cumple</option>
-                          <option value="2">No Cumple</option>
-                        </select>
-                        <!-- <label>Materialize Select</label> -->
-                    </div>
-                     <div class="input-field col s12 m1 l1 ">
-                        <input  id="vigencia" type="text" class="validate">
-                        <label for="vigencia">Vigencia</label>
-                    </div>
-                    <div class="input-field col s12 m2 l2 ">
-                        <input  id="observacion" type="text" class="validate">
-                        <label for="observacion">Observación</label>
-                    </div>
-
-
-
+        ?>
 
             </div>
 
@@ -1065,169 +842,130 @@ require_once('conexion.php');
         
       <div class="row" style="text-align: center;background-color: #bdbdbd;">4. información sostenibilidad Social</div>
         <div class="row">
-            <div class="col s12 m12 l12" style="border: 1px solid">
+          <div class='input-field col s12 m8 l8'>
+               <select id="valida_involucra">
+                 <option disabled selected>Seleccione una opcion</option>
+                 <option value="1">No</option>
+                 <option value="2">Si</option>
+               </select>   
+            <label>¿La iniciativa involucra a miembros de las comunidades locales?</label> 
+          </div>
+            <div class="col s12 m12 l12" id="div_involucra" style="border: 1px solid">
                   <p>¿Cómo involucra los miembros de las cominidades locales?</p> 
                   <div class="divider"></div>
-            
-                    <div class=" col s12 m4 l4">
-                          <input type="checkbox" id="rr" />
-                          <label for="rr">Como Socios</label>
+              <?php 
+            $i = 0;
+            $s="SELECT id,nombre from opciones where codigo LIKE '%IV%'  order by id ";
+            $r= mysqli_query($conn,$s) or die("Error");
+            if(mysqli_num_rows($r)>0){
+              while($rw=mysqli_fetch_assoc($r)){
+                 $i++;
+       echo"
+              <div class=' col s12 m4 l4'>
+                         <input type='checkbox'  id='involucra".$i."'  name='involucra[]' value='$rw[id]' />
+                <label for='involucra".$i."'>$rw[nombre]</label>
                     </div>
-                        
-                    <div class=" col s12 m4 l4">
-                          <input type="checkbox" id="r1" />
-                          <label for="r1">Como Empleados Directos</label>
-                    </div> 
 
-                    <div class=" col s12 m4 l4">
-                          <input type="checkbox" id="r2" />
-                          <label for="r2">Como Empleados Indirectos</label> 
-                    </div>          
+              ";
+
+              }         
+            }
+        ?>
             </div>
         </div>
         
 
         <div class="row">
-            <div class="col s12 m12 l12" style="border: 1px solid">
+          <div class='input-field col s12 m8 l8'>
+               <select id="valida_actividades">
+                 <option disabled selected>Seleccione una opcion</option>
+                 <option value="1">No</option>
+                 <option value="2">Si</option>
+               </select>   
+            <label>¿La iniciativa realiza actividades con los mienbros de las comunidades locales?</label> 
+          </div>
+            <div class="col s12 m12 l12" id="div_activi" style="border: 1px solid">
             <p>Actividades con miembros de las comunidades locales</p> 
             <div class="divider"></div>
-            
-            <div class="row">
-                <div class="input-field col s12 m4 l3">
-                  <input type="checkbox" id="r3" />
-                  <label for="r3">Capacitación</label> 
+             <?php 
+            $i = 0;
+            $ver = "";
+            $s1="SELECT id,nombre from opciones where codigo LIKE '%AM%'  order by id ";
+            $r1= mysqli_query($conn,$s1) or die("Error");
+            if(mysqli_num_rows($r1)>0){
+              while($rw=mysqli_fetch_assoc($r1)){
+                       $i++;
+             echo"
+             <div class='row'>
+                <div class='input-field col s12 m4 l3'>
+                  <input type='checkbox' id='actividad".$i."' name='actividad[]' value='$rw[id]' />
+                      <label for='actividad".$i."'>$rw[nombre]</label>
                 </div>
 
-                <div class="input-field col s12 m4 l4">
-                  <input type="text" />
-                  <label for="">Descripción</label>
+                <div class='input-field col s12 m4 l4'>
+                 <input disabled  type='text' name='actividad_desc[]' id='actividad_desc".$i."' />
+                      <label for='actividad_desc".$i."'>Descripción</label>
                 </div>
 
-                <div class="input-field col s12 m4 l5">
-                 <select>
-                  <option value="1">Propios</option>
-                  <option value="2">Gestionados con otra entidad</option>
-                </select>
+                <div class='input-field col s12 m4 l5' id='act_select'>
+                <select disabled name='actividad_recurso[]' id='actividad_recurso".$i."'>";
+                     $s="select id,nombre from recurso ";
+                  $r= mysqli_query($conn,$s) or die('Error');
+                  if(mysqli_num_rows($r)>0){
+                    while($result=mysqli_fetch_assoc($r)){
+                        echo"<option value=".$result['id'].">".$result['nombre' ]."</option>";
+                    }
+                  }
+                echo"</select>
                 <label>Fuente de Recursos</label>
                 </div>
-            </div>
+            </div>";
+              }  
 
-             <div class="row">
-                <div class="input-field col s12 m4 l3">
-                  <input type="checkbox" id="r4" />
-                  <label for="r4">Asistencia Técnica</label> 
-                </div>
+            } 
 
-                <div class="input-field col s12 m4 l4">
-                  <input type="text" />
-                  <label for="">Descripción</label>
-                </div>
-
-                <div class="input-field col s12 m4 l5">
-                 <select>
-                  <option value="1">Propios</option>
-                  <option value="2">Gestionados con otra entidad</option>
-                </select>
-                <label>Fuente de Recursos</label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-field col s12 m4 l3">
-                  <input type="checkbox" id="r5" />
-                  <label for="r5">Recreación</label> 
-                </div>
-
-                <div class="input-field col s12 m4 l4">
-                  <input type="text" />
-                  <label for="">Descripción</label>
-                </div>
-
-                <div class="input-field col s12 m4 l5">
-                 <select>
-                  <option value="1">Propios</option>
-                  <option value="2">Gestionados con otra entidad</option>
-                </select>
-                <label>Fuente de Recursos</label>
-                </div>
-            </div>
-
-             <div class="row">
-                <div class="input-field col s12 m4 l3">
-                  <input type="checkbox" id="r6" />
-                  <label for="r6">Salud</label> 
-                </div>
-
-                <div class="input-field col s12 m4 l4">
-                  <input type="text" />
-                  <label for="">Descripción</label>
-                </div>
-
-                <div class="input-field col s12 m4 l5">
-                 <select>
-                  <option value="1">Propios</option>
-                  <option value="2">Gestionados con otra entidad</option>
-                </select>
-                <label>Fuente de Recursos</label>
-                </div>
-            </div>
-        
+        ?>
       </div>
     </div>
 
 
     <div class="row">
-            <div class="col s12 m12 l12" style="border: 1px solid">
+      <div class='input-field col s12 m8 l8'>
+               <select id="valida_trabajadores">
+                 <option disabled selected>Seleccione una opcion</option>
+                 <option value="1">No</option>
+                 <option value="2">Si</option>
+               </select>   
+            <label>¿Su iniciativa tiene programas para los trabajadores, empleados?</label> 
+          </div>
+            <div class="col s12 m12 l12" id="trabaja" style="border: 1px solid">
             <p>Programas para los trabajadores</p> 
             <div class="divider"></div>
-            
-            <div class="row">
-                <div class="input-field col s12 m4 l4">
-                  <input type="checkbox" id="l3" />
-                  <label for="l3">Capacitación</label> 
+             <?php 
+            $i = 0;
+            $ver = "";
+            $s1="SELECT id,nombre from opciones where codigo LIKE '%AM%'  order by id ";
+            $r1= mysqli_query($conn,$s1) or die("Error");
+            if(mysqli_num_rows($r1)>0){
+              while($rw=mysqli_fetch_assoc($r1)){
+                       $i++;
+             echo"
+             <div class='row'>
+                <div class='input-field col s12 m4 l4'>
+                  <input type='checkbox' id='programa".$i."' name='programa[]' value='$rw[id]' />
+                      <label for='programa".$i."'>$rw[nombre]</label>
                 </div>
 
-                <div class="input-field col s12 m6 l6">
-                  <input type="text" />
-                  <label for="">Descripción</label>
+                <div class='input-field col s12 m4 l8'>
+                 <input disabled  type='text' name='programa_desc[]' id='programa_desc".$i."' />
+                      <label for='programa_desc".$i."'>Descripción</label>
                 </div>
+                </div>";
+              }  
 
+            } 
 
-             <div class="row">
-                <div class="input-field col s12 m4 l4">
-                  <input type="checkbox" id="l4" />
-                  <label for="l4">Asistencia Técnica</label> 
-                </div>
-
-                <div class="input-field col s12 m6 l6">
-                  <input type="text" />
-                  <label for="">Descripción</label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-field col s12 m4 l4">
-                  <input type="checkbox" id="l5" />
-                  <label for="l5">Recreación</label> 
-                </div>
-
-                <div class="input-field col s12 m6 l6">
-                  <input type="text" />
-                  <label for="">Descripción</label>
-                </div>
-            </div>
-
-             <div class="row">
-                <div class="input-field col s12 m4 l4">
-                  <input type="checkbox" id="l6" />
-                  <label for="l6">Salud</label> 
-                </div>
-
-                <div class="input-field col s12 m6 l6">
-                  <input type="text" />
-                  <label for="">Descripción</label>
-                </div>
-            </div>
+        ?>
         
       </div>
     </div>
@@ -1235,38 +973,54 @@ require_once('conexion.php');
 
 
         <div class="row">
-            <div class="col s12 m12 l12" style="border: 1px solid">
+          <div class='input-field col s12 m8 l8'>
+               <select id="valida_institucion">
+                 <option disabled selected>Seleccione una opcion</option>
+                 <option value="1">No</option>
+                 <option value="2">Si</option>
+               </select>   
+            <label>¿La iniciativa o el empresario han recibido algún apoyo por parte de una institución pública o privada?</label> 
+          </div>
+            <div class="col s12 m12 l12" id="insti" style="border: 1px solid">
             <p>Apoyo por parte de institución pública o privada</p> 
             <div class="divider"></div>
-            
-            <div class="row">
-                <div class="input-field col s12 m3 l3">
-                  <input type="text"  />
+            <div id="ins_campos">
+            <?php 
+              for ($i=0; $i < 5 ; $i++){ 
+             echo"
+             <div class='row'>
+                <div class='input-field col s12 m3 l3'>
+                  <input type='text' name='apoyo[]'  />
                   <label>Tipo de apoyo</label> 
                 </div>
 
-                <div class="input-field col s12 m3 l3">
-                  <input type="text" />
-                  <label for="">Entidad</label>
+                <div class='input-field col s12 m5 l5'>
+                  <input type='text' name='apoyo_entidad[]' />
+                  <label for=''>Entidad</label>
                 </div>
 
-                <div class="input-field col s12 m3 l3">
-                 <select>
-                  <option value="1">Privada</option>
-                  <option value="2">Pública</option>
-                  <option value="2">ONG</option>
-                </select>
+                <div class='input-field col s12 m2 l2'>
+                 <select name='apoyo_tipo_entidad[]'>";
+                  $s="select id,nombre from orientacion ";
+                  $r= mysqli_query($conn,$s) or die('Error');
+                  if(mysqli_num_rows($r)>0){
+                    while($result=mysqli_fetch_assoc($r)){
+                        echo"<option value=".$result['id'].">".$result['nombre' ]."</option>";
+                    }
+                  }
+               echo" </select>
                 <label>Tipo de entidad</label>
                 </div>
 
-                <div class="input-field col s12 m3 l3">
-                  <input type="text" />
-                  <label for="">Año</label>
+                <div class='input-field col s12 m2 l2'>
+                  <input type='text' name='año[]' />
+                  <label for=''>Año</label>
                 </div>
-            </div>
+            </div>";
+            } 
 
-          
-        
+        ?>
+          </div>
       </div>
     </div>
 
@@ -1279,65 +1033,57 @@ require_once('conexion.php');
         
       <div class="row" style="text-align: center;background-color: #bdbdbd;">5. sostenibilidad Economica</div>
       <div class="row">
-            <div class="col s12 m12 l12" style="border: 1px solid">
+            <div class="col s12 m12 l12" id="bien_servi" style="border: 1px solid">
             
-            <div class="row">
-                <div class="input-field col s12 m3 l3">
-                  <input type="text"  />
-                  <label>Bien y/o servicio</label> 
-                </div>
 
-                <div class="input-field col s12 m3 l3">
-                  <input type="text" />
-                  <label for="">unidades vendidas anual</label>
-                </div>
+      </div>
+    </div>
 
-                <div class="input-field col s12 m3 l3">
-                 <select>
-                      <option value="" disabled selected>Seleccione...</option>
-                      <option value="1">Kg</option>
-                      <option value="2">Lb</option>
-                  </select>
-                  <label>Unidad de medida</label>
-                </div>
-
-                <div class="input-field col s12 m3 l3">
-                  <input type="text" />
-                  <label for="">Especifique unidades</label>
-                </div>
-
-                <div class="input-field col s12 m2 l2">
-                  <input type="text" />
-                  <label for="">Costo producción unidad</label>
-                </div>
-
-                <div class="input-field col s12 m2 l2">
-                  <input type="text" />
-                  <label for="">Precio venta unitario</label>
-                </div>
-
-                <div class="input-field col s12 m2 l2">
-                  <input type="text" />
-                  <label for="">Ganacias por unidad</label>
-                </div>
-
-                <div class="input-field col s12 m2 l2">
-                  <input type="text" />
-                  <label for="">Ventas anuales</label>
-                </div>
-
-                <div class="input-field col s12 m4 l4">
-                  <select>
-                      <option value="" disabled selected>Seleccione...</option>
-                      <option value="1">Si</option>
-                      <option value="2">No</option>
-                  </select>
-                  <label>Los ingresos son superiores a los costos</label>
-                </div>
+    <div class="row" >
+        <div class="col s12 m6 l4" style="border: 1px solid" >
+          <p>Costo promedio de insumos totales</p>
+          <div class="divider"></div>
+           <div class="input-field col s12 m4 l4">
+              <input type="text" />
+              <label for="">Semanal</label>
             </div>
-            <div class="divider grey"></div>
-            sdgsdfgsdf
+            <div class="input-field col s12 m4 l4">
+              <input type="text" />
+              <label for="">Mensual</label>
+            </div>
+            <div class="input-field col s12 m4 l4">
+              <input type="text" />
+              <label for="">Anual</label>
+            </div>  
+      </div>
 
+      <div class="col s12 m6 l4" style="border: 1px solid" >
+          <p>Costo promedio de mano de obra</p>
+          <div class="divider"></div>
+           <div class="input-field col s12 m4 l4">
+              <input type="text" />
+              <label for="">Semanal</label>
+            </div>
+            <div class="input-field col s12 m4 l4">
+              <input type="text" />
+              <label for="">Mensual</label>
+            </div>
+            <div class="input-field col s12 m4 l4">
+              <input type="text" />
+              <label for="">Anual</label>
+            </div>  
+      </div>
+      <div class="col s12 m6 l4" style="border: 1px solid" >
+          <p>Total de ventas realizadas</p>
+          <div class="divider"></div>
+           <div class="input-field col s12 m4 l6">
+              <input type="text" />
+              <label for="">Valor</label>
+            </div>
+            <div class="input-field col s12 m4 l6">
+              <input type="text" />
+              <label for="">Año</label>
+            </div>
       </div>
     </div>
       </span></div>
