@@ -376,138 +376,6 @@
         </div>
       </div>
 
-        <!-- <div class="row" style="background-color: #e0e0e0;">Selecciona la categoría a la que pertenece el Negocio Verde</div>
-        <div class="row" style="background-color: #e0e0e0;">
-
-
-        <div class="col s12 m6 l3">Bienes y servicios sostenibles provenientes de recursos naturales</div>
-        <div class="col s12 m6 l9">
-        <div class="row">Biocomercio
-
-        <div class="col s12"></div>
-          
-        <p>
-              <input class="with-gap" name="categorias" type="radio" id="test1" />
-              <label for="test1">Maderables</label>
-        </p>
-         
-        <p>
-              <input class="with-gap" name="categorias" type="radio" id="test2" />
-              <label for="test2">No Maderables</label>
-        </p>
-
-        <p>
-              <input class="with-gap" name="categorias" type="radio" id="test3" />
-              <label for="test3">Productos derivados de la Fauna Silvestre</label>
-        </p>
-
-        <p>
-              <input class="with-gap" name="categorias" type="radio" id="test4" />
-              <label for="test4">Turismo de naturaleza / Ecoturismo</label>
-        </p>
-
-        <p>
-              <input class="with-gap" name="categorias" type="radio" id="test5" />
-              <label for="test5">Recursos geneticos y productos derivados</label>
-        </p>
-
-        </div>
-       
-        
-
-        <div class="row">Agrosistemas Sostenibles             
-        <div class="divider" style="background-color: black;"></div>   
-        <p>
-              <input class="with-gap" name="categorias" type="radio" id="test6" />
-              <label for="test6">Sistemas de producción ecológico, biológico, orgánico </label>
-        </p>
-         
-
-        </div>
-
-
-
-        </div>
-        </div>
-        <div class="divider" style="background-color: black;"></div>
-
-
-
-        <div class="row" style="background-color: #e0e0e0;margin-top: 20px;">
-        <div class="col s12 m6 l3">Ecoproductos Industriales</div>
-        <div class="col s12 m6 l9">
-        <div class="row">         
-        <div class="col s12"></div>
-        <p>
-              <input class="with-gap" name="categorias" type="radio" id="test7" />
-              <label for="test7">Aprovechamiento y valoración de residuos</label>
-        </p>
-        </div>
-        <div class="row">Fuentes no convencionales de energía renovable
-        <div class="divider" style="background-color: black;"></div>
-        <div class="col s12"></div>
-        <p>
-              <input class="with-gap" name="categorias" type="radio" id="tes1" />
-              <label for="tes1">Energía Solar</label>
-        </p>
-        <p>
-              <input class="with-gap" name="categorias" type="radio" id="tes2" />
-              <label for="tes2">Energía Eólica</label>
-        </p>
-        <p>
-              <input class="with-gap" name="categorias" type="radio" id="tes3" />
-              <label for="tes3">Energía Geotérmica</label>
-        </p>
-        <p>
-              <input class="with-gap" name="categorias" type="radio" id="tes4" />
-              <label for="tes4">Biomasa</label>
-        </p>
-        <p>
-              <input class="with-gap" name="categorias" type="radio" id="tes5" />
-              <label for="tes5">Energía de los mares</label>
-        </p>
-        <p>
-              <input class="with-gap" name="categorias" type="radio" id="tes6" />
-              <label for="tes6">Pequeños aprovechamientos hidroeléctricos</label>
-        </p>
-        </div>
-        <div class="divider" style="background-color: black;"></div>
-        <div class="row">         
-        <div class="col s12"></div>
-        <p>
-              <input class="with-gap" name="categorias" type="radio" id="test7" />
-              <label for="test7">Construcción Sostenible</label>
-        </p>
-        <p>                                              
-              <input class="with-gap" name="categorias" type="radio" id="test8" />
-              <label for="test8">Otros bienes y Productos Verdes Sostenibles  </label>
-        </p>
-        </div>
-        </div>
-        </div>
-
-
-        <div class="row" style="background-color: #e0e0e0;margin-top: 20px;">
-        <div class="col s12 m6 l3">Mercados de Carbono</div>
-        <div class="col s12 m6 l9">
-        <div class="row">         
-        <div class="col s12"></div>
-        <p>
-              <input class="with-gap" name="categorias" type="radio" id="test9" />
-              <label for="test9">Mercado Regulado</label>
-        </p>
-        </div>
-        <div class="divider" style="background-color: black;"></div>
-        <div class="row">         
-        <div class="col s12"></div>
-        <p>
-              <input class="with-gap" name="categorias" type="radio" id="test10" />
-              <label for="test10">Mercado Voluntario</label>
-        </p>
-        </div>
-        </div> -->
-        <!-- </div> -->
-      
 
       </span></div>
     </li>
@@ -626,6 +494,7 @@
                 <label for="por_dias">Por días (Jornales) promedio en el año</label>
               </div>
             </div>
+            <div id="mensaje_vinculacion"></div>
           </div>
           <div class="col s12 m6 l6" style="border: 1px solid">
             Nivel educativo (Indicar Nº de empleados)
@@ -652,6 +521,7 @@
                 <label for="otro">Otro</label>
               </div>
             </div>
+            <div id="mensaje_educativo"></div>
           </div>
         </div>
         <!-- Nivel educativo -->

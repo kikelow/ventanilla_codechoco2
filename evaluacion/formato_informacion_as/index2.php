@@ -4,7 +4,7 @@ require_once('conexion.php');
 
 <div class="row">
  
-    <div class="input-field col s12 m12 l12  ">
+    <div class="input-field col s12 m12 l12  " id="div_empresa">
         <select id="empresa" style="width: 100%; left: -20px;" name="empresa" required="required">
           <option disabled selected="">Seleccione un emprendimiento al cual quiere aplicarle el "formato de informacion AS"</option>
           <?php 
@@ -1120,7 +1120,7 @@ require_once('conexion.php');
     </div>
 
     <div class="row" >
-        <div class="col s12 m6 l4" style="border: 1px solid" >
+        <div class="col s12 m12 l4" style="border: 1px solid" >
           <p>Costo promedio de insumos totales</p>
           <div class="divider"></div>
            <div class="input-field col s12 m4 l4">
@@ -1137,7 +1137,7 @@ require_once('conexion.php');
             </div>  
       </div>
 
-      <div class="col s12 m6 l4" style="border: 1px solid" >
+      <div class="col s12 m12 l4" style="border: 1px solid" >
           <p>Costo promedio de mano de obra</p>
           <div class="divider"></div>
            <div class="input-field col s12 m4 l4">
@@ -1153,14 +1153,14 @@ require_once('conexion.php');
               <label for="obra_anual">Anual</label>
             </div>  
       </div>
-      <div class="col s12 m6 l4" style="border: 1px solid" >
+      <div class="col s12 m12 l4" style="border: 1px solid" >
           <p>Total de ventas realizadas</p>
           <div class="divider"></div>
-           <div class="input-field col s12 m4 l6">
+           <div class="input-field col s12 m6 l6">
               <input type="text" id="venta_valor" name="venta_valor" />
               <label for="venta_valor">Valor</label>
             </div>
-            <div class="input-field col s12 m4 l6">
+            <div class="input-field col s12 m6 l6">
               <input type="text" id="venta_anio" name="venta_anio" />
               <label for="venta_anio">Año</label>
             </div>

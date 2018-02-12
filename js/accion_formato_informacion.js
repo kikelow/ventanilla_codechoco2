@@ -646,6 +646,7 @@ if ($('#empresa').val() == null) {
 	$('#empresa').selected = true;
 	var $toastContent = $('<span>Debe escoger un emprendimiento</span>');
 	Materialize.toast($toastContent, 1800);
+  document.getElementById('div_empresa').scrollIntoView();
 }
 
 

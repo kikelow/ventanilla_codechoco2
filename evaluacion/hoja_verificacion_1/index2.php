@@ -1,41 +1,62 @@
  <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-          <label for="first_name">First Name</label>
+    <form>
+      <div class="row" style="border: 1px solid;">
+        Cumplimiento legal
+        <div class="divider"></div>
+        <!-- <div class="input-field col s12 m2 l2">
+          
+          <label for="">Cumplimiento legal</label>
+        </div> -->
+        <div class="input-field col s12 m7 l7">
+          <!-- <input type="text" id="" name="" /> -->
+          <label for="">¿La organizacion incumple la legislacion ambiental nacional aplicable? ver los resultados obtenidos en el formato de informacion As en el numeral 2 de legislacion ambiental
+            
+          </label>
         </div>
-        <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate">
-          <label for="last_name">Last Name</label>
+        <div class="input-field col s12 m1 l1">
+          <select>
+            <option>Aplica</option>
+            <option>No Aplica</option>
+          </select>
+          <!-- <label for="">Cumplimiento legal</label> -->
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input disabled value="I am not editable" id="disabled" type="text" class="validate">
-          <label for="disabled">Disabled</label>
+         <div class="input-field col s12 m2 l2">
+          <input type="text" id="" name="" />
+          <label for="">Observaciones</label>
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password">Password</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
-          <label for="email">Email</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s12">
-          This is an inline input field:
-          <div class="input-field inline">
-            <input id="email" type="email" class="validate">
-            <label for="email" data-error="wrong" data-success="right">Email</label>
-          </div>
+         <div class="input-field col s12 m2 l2">
+          <input type="text" id="r" name="r" />
+          <label for="r">Medios de verificacion</label>
         </div>
       </div>
+      
+      <div class="divider"></div>
+
+      <div class="row">
+        <div class="input-field col s12 m2 l2">
+          
+          <label for="">Cumplimiento legal</label>
+        </div>
+        <div class="input-field col s12 m5 l5">
+          <!-- <input type="text" id="" name="" /> -->
+          <label for="">¿La organizacion incumple la legislacion ambiental nacional aplicable? ver los resultados obtenidos en el formato de informacion As en el numeral 2 de legislacion ambiental</label>
+        </div>
+        <div class="input-field col s12 m1 l1">
+          <select>
+            <option>Aplica</option>
+            <option>No Aplica</option>
+          </select>
+          <!-- <label for="">Cumplimiento legal</label> -->
+        </div>
+         <div class="input-field col s12 m2 l2">
+          <input type="text" id="" name="" />
+          <label for="">Observaciones</label>
+        </div>
+         <div class="input-field col s12 m2 l2">
+          <input type="text" id="r" name="r" />
+          <label for="r">Medios de verificacion</label>
+        </div>
+      </div>
+      
     </form>
   </div>
