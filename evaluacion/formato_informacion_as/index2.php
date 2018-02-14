@@ -1,7 +1,7 @@
 <?php 
 require_once('conexion.php');
  ?>
-
+<span class="card-title"><center>Formato de informacion AS</center></span>
 <div class="row">
  
     <div class="input-field col s12 m12 l12  " id="div_empresa">
