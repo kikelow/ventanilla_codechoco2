@@ -35,9 +35,8 @@ $s="INSERT INTO `otro_tenencia_tierra`(`empresa_id`, `nombre`, `descripcion`) VA
 
 //Registrar datos en la tabla licencia
 	$s = "INSERT INTO `licencia`(`empresa_id`, `opciones_id`, `aplica_noaplica_id`, `cumple_nocumple_id`, `vigencia`, `observacion`) VALUES 
-	('$empresa','27','$_POST[ambiental_a_na]','$_POST[ambiental_c_nc]','$_POST[ambiental_vigencia]','$_POST[ambiental_obs]'),
-	('$empresa','28','$_POST[otros_a_na]','$_POST[otros_c_nc]','$_POST[otros_vigencia]','$_POST[otros_obs]')";
-	// mysqli_query($conn,$s);
+	('$empresa','27','$_POST[ambiental_a_na]','$_POST[ambiental_c_nc]','$_POST[ambiental_vigencia]','$_POST[ambiental_obs]')";
+	// mysqli_query($conn,$s); 
 
 //Registrar datos en la tabla otros legislacion 
 	$s= "INSERT INTO `otros_legislacion`(`empresa_id`, `nombre`, `cumple_nocumple_id`, `observacion`) VALUES ('$empresa','$_POST[otro_legislacion]','$_POST[otro_legislacion_c_nc]','$_POST[otros_legislacion_obs]')";
@@ -113,7 +112,7 @@ $s="INSERT INTO `actividades`(`empresa_id`, `opciones_id`, `recurso_id`, `descri
 }
 //registrar datos de otros actividades
 $s="INSERT INTO `otro_actividades`(`empresa_id`, `nombre`, `descripcion`, `recurso_id`) VALUES('$empresa','$_POST[otro_activi_nom]','$_POST[otro_activi_desc]','$_POST[otro_activi_recurso]')";
-mysqli_query($conn,$s);
+// mysqli_query($conn,$s);
 
 //registrar datos en la tabla programa 
 $programa = $_POST['programa'];
@@ -157,15 +156,15 @@ $s="INSERT INTO `sost_economica`(`empresa_id`, `bien_servicio`, `vendida_anual`,
 
 //registrar datos de insumos totales
 $s="INSERT INTO `costo_insumos`(`empresa_id`, `semanal`, `mensual`, `anual`) VALUES('$empresa','$_POST[insumo_semanal]','$_POST[insumo_mensual]','$_POST[insumo_anual]')";
-mysqli_query($conn,$s);
+// mysqli_query($conn,$s);
 
 //registrar datos de mano de obra total
 $s="INSERT INTO `costo_mano_obra`(`empresa_id`, `semanal`, `mensual`, `anual`) VALUES('$empresa','$_POST[obra_semanal]','$_POST[obra_mensual]','$_POST[obra_anual]')";
-mysqli_query($conn,$s);
+// mysqli_query($conn,$s);
 
 //registrar datos de ventas realizadas
 $s="INSERT INTO `total_ventas`(`empresa_id`, `valor`, `anio`) VALUES('$empresa','$_POST[venta_valor]','$_POST[venta_anio]')";
-mysqli_query($conn,$s);
+// mysqli_query($conn,$s);
 
 
 }

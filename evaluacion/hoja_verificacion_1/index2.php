@@ -7,7 +7,7 @@ require_once('conexion.php');
  
     <div class="input-field col s12 m12 l12  " id="div_empresa">
         <select id="empresa" style="width: 100%; left: -20px;" name="empresa" required="required">
-          <option disabled selected="">Seleccione un emprendimiento al cual quiere aplicarle el "formato de informacion AS"</option>
+          <option disabled selected="">Seleccione un emprendimiento al cual quiere aplicarle la "Hoja de verificacion 1"</option>
           <?php 
                     $s="select id,razon_social from empresa ";
                     $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
