@@ -1,4 +1,3 @@
-
 $(window).on('scroll', function() {
 	if ($(window).scrollTop()) {
 		$('div.nav').addClass('black');
