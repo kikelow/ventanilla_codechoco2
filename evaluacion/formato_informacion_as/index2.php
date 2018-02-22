@@ -1,6 +1,7 @@
 <?php 
 require_once('conexion.php');
  ?>
+    
 <span class="card-title"><center>Formato de informacion AS</center></span>
 <div class="row">
  
@@ -1171,6 +1172,5 @@ require_once('conexion.php');
 </ul>
 <button type="submit" class="waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="registrar_informacion"><i class="material-icons right">add</i>Registrar informacion AS</button>
 </form> 
-
 <script type="text/javascript" src="js/select2.js"></script>
 <script type="text/javascript" src="js/accion_formato_informacion.js"></script>

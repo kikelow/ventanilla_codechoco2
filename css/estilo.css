@@ -1,4 +1,19 @@
+.tabs .indicator{
+  background-color:#81c784;;
+}
+.tabs .tab a{
+  color: #81c784;
+}
 
+.tabs .tab a:hover, .tabs .tab a.active {
+    color: #81c784;
+
+}
+
+.collection .collection-item.active {
+    background-color: #81c784;
+    /*color: #eafaf9;*/
+}
 .sub_line2{
   text-decoration: none;
   position: relative;
@@ -96,6 +111,10 @@ section#base{
 		padding-top:30px;
 		
 	}
+  a.button-collapse{
+        margin-bottom: -20px;
+    margin-top: -5px;
+  }
 }
 
 
