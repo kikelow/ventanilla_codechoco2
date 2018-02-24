@@ -31,7 +31,7 @@
             <p class="center login-form-text " style="font-family: 'Alegreya Sans', sans-serif;font-size: 18px;">(Administrativos)</p>
           </div>
         </div>
-        <div class="row margin">
+        <div class="row margin" style="border-top: 1px solid #e0e0e0">
           <div class="input-field col s12 m2 l2">
             <i class="material-icons">person</i>
           </div>
