@@ -33,22 +33,22 @@
 </div>
 
   <div class="parallax-container">
-      <div class="nav animatedParent">
+      <!-- <div class="nav animatedParent">
       <div id="div_logo" class="animated growIn slow">
         <a  class="brand-logo" href="#"><img class="logo" id="logo" src="img/logo1.png" style="width:118px;height:118px;padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;padding-top: 5px;"></a> 
       </div>
       
       <ul class="hide-on-med-and-down" >
         <li><a class="sub_line"  href="index.php?modulo=emprendimiento/inicio">Inicio</a></li>
-            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/q_somos">¿Quienes Somos?</a></li>
-            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/m_verdes">Mercados Verdes</a></li>
+            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/q_somos">¿Quienes Somos?</a></li> -->
+           <!--  <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/m_verdes">Mercados Verdes</a></li>
             <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/registro">Registro</a></li>
             <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/noticias">Noticias</a></li>  
             <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="#">Normatividad</a></li>
             <li><a class="sub_line" style="margin-right:  10px;font-family: 'Sniglet', cursive" href="#">Documentación</a></li>
         <li><a style="font-family: 'Sniglet', cursive" href="#" class="active hoverable">Login</a></li>
       </ul>
-  </div>
+  </div> --> 
 
 
 <div class="section white" style="background-color: #f5f5f5">
@@ -143,7 +143,7 @@
     <!-- <span class="black-text">  -->
       <div class="col s12 m4 l4 animatedParent animateOnce">
         <p class="animated fadeInDown slow" style="font-family: 'Sniglet',cursiva ;text-align: center">Desempleo en 2017 se mantuvo en un dígito: llegó a 9,4 por ciento.</p>
-        <div class="card-panel cp_notice black-text" style="overflow: hidden;text-align: justify;">
+        <div class="card-panel cp_notice black-text" style="overflow: hidden;text-align: justify;font-family: 'Nanum Myeongjo', serif;font-style: italic;">
             Santa Marta, la ciudad con menor desempleo y Quibdó, la que tuvo mayor número de desocupados en el año completo. En diciembre, desempleo nacional fue 8,6 por ciento
             <span><hr></span>
             <span >Fuente: Revista Semana.</span>
@@ -154,7 +154,7 @@
 
     <div class="col s12 m4 l4 animatedParent animateOnce">
         <p class="animated fadeInDown " style="font-family: 'Sniglet', serif;text-align: center">Desempleo en 2017 se mantuvo en un dígito: llegó a 9,4 por ciento.</p>
-        <div class="card-panel cp_notice black-text" style="overflow: hidden;text-align: justify;">
+        <div class="card-panel cp_notice black-text" style="overflow: hidden;text-align: justify;font-family: 'Nanum Myeongjo', serif;">
             Santa Marta, la ciudad con menor desempleo y Quibdó, la que tuvo mayor número de desocupados en el año completo. En diciembre, desempleo nacional fue 8,6 por ciento
             <span><hr></span>
             <span >Fuente: Revista Semana.</span>
@@ -164,7 +164,7 @@
 
       <div class="col s12 m4 l4 animatedParent animateOnce">
         <p class="animated fadeInDown " style="font-family: 'Sniglet', serif;text-align: center">Te invitamos a celebrar la reapertura de nuestra ventanilla, visítanos.</p>
-        <div class="card-panel cp_notice black-tex " style="overflow: hidden;text-align: justify;">
+        <div class="card-panel cp_notice black-tex " style="overflow: hidden;text-align: justify;font-family: 'Nanum Myeongjo', serif;">
             <p>Lugar: Codechocó</p>
             <p>Hora: 2 p.m</p>
             <p>Fecha: 12/01/2013</p>

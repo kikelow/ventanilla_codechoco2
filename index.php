@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="css/animations.css" type="text/css">
   <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
   <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-  <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Sniglet" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Sniglet|Nanum+Myeongjo:800" rel="stylesheet">
 </head>
 <body >
 
@@ -29,7 +29,7 @@
             <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/noticias">Noticias</a></li>  
             <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="#">Normatividad</a></li>
             <li><a class="sub_line" style="margin-right:  10px;font-family: 'Sniglet', cursive" href="#">Documentación</a></li>
-        <li><a style="font-family: 'Sniglet', cursive" href="#" class="active hoverable">Login</a></li>
+        <li><a style="font-family: 'Sniglet', cursive" href="access/login.php" class="active hoverable">Login</a></li>
       </ul>
   </div>
 
