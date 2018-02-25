@@ -774,7 +774,7 @@ require_once('conexion.php');
     <div class="divider"></div>
     <?php 
             $i = 0;
-            $s="SELECT id,nombre from opciones where codigo LIKE '%AC%'  order by id ";
+            $s="SELECT id,nombre from opciones where codigo LIKE '%AREA_ECO%'  order by id ";
             $r= mysqli_query($conn,$s) or die("Error");
             if(mysqli_num_rows($r)>0){
               while($rw=mysqli_fetch_assoc($r)){
@@ -934,7 +934,7 @@ require_once('conexion.php');
              <?php 
             $i = 0;
             $ver = "";
-            $s1="SELECT id,nombre from opciones where codigo LIKE '%AM%'  order by id ";
+            $s1="SELECT id,nombre from opciones where codigo LIKE '%ACTIVIDAD_COMU%'  order by id ";
             $r1= mysqli_query($conn,$s1) or die("Error");
             if(mysqli_num_rows($r1)>0){
               while($rw=mysqli_fetch_assoc($r1)){
@@ -1014,7 +1014,7 @@ require_once('conexion.php');
              <?php 
             $i = 0;
             $ver = "";
-            $s1="SELECT id,nombre from opciones where codigo LIKE '%AM%'  order by id ";
+            $s1="SELECT id,nombre from opciones where codigo LIKE '%ACTIVIDAD_COMU%'  order by id ";
             $r1= mysqli_query($conn,$s1) or die("Error");
             if(mysqli_num_rows($r1)>0){
               while($rw=mysqli_fetch_assoc($r1)){

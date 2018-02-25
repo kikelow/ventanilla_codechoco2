@@ -166,6 +166,8 @@ $s="INSERT INTO `costo_mano_obra`(`empresa_id`, `semanal`, `mensual`, `anual`) V
 $s="INSERT INTO `total_ventas`(`empresa_id`, `valor`, `anio`) VALUES('$empresa','$_POST[venta_valor]','$_POST[venta_anio]')";
 // mysqli_query($conn,$s);
 
+$s="UPDATE `empresa` SET `informacion_as`='si' WHERE id = '$empresa'";
+// mysqli_query($conn,$s);
 
 }
 

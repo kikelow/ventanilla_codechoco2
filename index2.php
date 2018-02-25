@@ -49,18 +49,18 @@
         </div>
       </div>	 
 </aside>
-<div class="row " style="padding: 0px;width: 100%">
-    <div class="col s12 right"  style="width: 80%">
-      <ul class="tabs grey lighten-4 swipeable" id="tabs-swipe-demo">
-        <li class="tab col s3 "><a href="#test-swipe-1" class=""><strong>Registrar</strong> </a></li>
-        <li class="tab col s3"><a  href="#test-swipe-2"><strong>Modificar</strong></a></li>
-        <!-- <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li> -->
-        <li class="tab col s3"><a href="#test-swipe-3"><strong>Registrar</strong></a></li>
+
+<div class="row right" style="width: 80%;" id="sub_tabs">
+    <div class="col s12" style="">
+      <ul class="tabs grey lighten-4">
+        <li class="tab col s3"><a href="#test1"><strong>REGISTRAR</strong></a></li>
+        <li class="tab col s3"><a href="#test2"><strong>mODIFICAR</strong></a></li>
+     
       </ul>
     </div>
-    <!-- <nav class="white right hide-on-large-only">	 -->
-	<div class="white right hide-on-large-only">
-		<a href="#" data-activates="mobile-demo" class="button-collapse "><i class="material-icons black-text">menu</i></a>
+
+ <div class="white  hide-on-large-only" style="width: 100%">
+    <a href="#" data-activates="mobile-demo" class="button-collapse "><i class="material-icons black-text">menu</i></a>
 
        <ul class="side-nav" id="mobile-demo">
         <li><a href="index2.php?modulo=evaluacion/formato_inscripcion" class="collection-item active black-text">Formato de Inscripción</a></li>
@@ -71,45 +71,36 @@
         <li><a href="index2.php?modulo=evaluacion/plan_mejora" class="collection-item black-text">Plan de Mejora</a></li>
       </ul>
      </div>   
-<!-- </nav> -->
- <div id="test-swipe-1" class="col s12 right" style="margin-left: -15px; width: 80%">
-<!-- <div id="contenedor  " class="" style="min-height: 701px; width: 100%"> -->
-<section id="base1" style="">
-<div class="row">
-<div class="col s12 m12 l12" style="padding-left: 0px; padding-right: 0px">
-	<center><h4>Sección para Registrar</h4></center>
-  <div class="card grey lighten-4 " style="height: auto;display:inline-block;width: 100%;">
-    <div class="card-content black-text">
-      
-		<?php 
-            			 $mod = @$_GET['modulo'];
-            			 $archivo = $mod.'/index2.php';
 
-              			if (file_exists($archivo) and !empty($_GET['modulo'])) {
-               				 include_once($archivo);
-              			}else
-              			{
-                		include_once("evaluacion/formato_inscripcion/index2.php");
-             			 }
-		?>		
-		
 
+    <div> 
+    <?php 
+                   $mod = @$_GET['modulo'];
+                   $archivo = $mod.'/index2.php';
+
+                   if (file_exists($archivo) and !empty($_GET['modulo'])) {
+                      include_once($archivo);
+                   }else
+                   {
+                   include_once("evaluacion/formato_inscripcion/index2.php");
+                   }
+    ?>    
     </div>
-  </div>
-</div>
-</div>
-</section>	
-    <div id="test-swipe-2" class="col s12 right" style="margin-left: -15px; width: 60%" ><h4>Sección para Modificar</h4></div>
-    <div id="test-swipe-3" class="col s12"><h4> Reportes</h4></div>
-  </div>
-</div>
- </div>
 
 
-<footer class="grey darken-3" style="height: 50px ;background-color:green">
-	pie de pagina
+    <!-- <div id="test2" class="col s12">Test 2</div> -->
+   
+  </div>
+
+
+
+
+
+
+
+<footer class="grey darken-3" style="height: 60px;display:inline-block;width: 100%;" >
+  pie de pagina
 </footer>
-
 <script src="js/materialize.min.js"  type="text/javascript"></script>
 <script type="text/javascript">
 	 $(document).ready(function(){

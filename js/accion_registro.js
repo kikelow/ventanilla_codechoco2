@@ -1,3 +1,5 @@
+
+
 var total_3 =""
 
 // verificar el total socios de la empresa
@@ -107,7 +109,7 @@ $('#sector').change(function(event) {
 
 
 //acciones para validar y luego registrar
-$("#registrar_emp").click(function(event) {
+$("#form_registro").submit(function(event) {
 	event.preventDefault(); 
 //total de los valores de edad de los empleados
 	 var entre_18_30 = $('#entre_18_30').val()
@@ -165,6 +167,7 @@ var total_educativo = isNaN(r)  ? 0 : r;
 if (! $('#t_persona').val()) {
 	$('.collapsible').collapsible('close', 0);
 	$('.collapsible').collapsible('open', 0);
+	 // $('#person').attr('required');
 	$('#person').focus().addClass("red-text");
 
 	alert("Debe seleccioar el tipo de persona");
@@ -205,32 +208,32 @@ if (! $('#t_persona').val()) {
 // 	 $('.collapsible').collapsible('open', 3);
 // 	 $('#total_1').focus().addClass("invalid")
 // }
-// else if (Number($('#total_2').val())  > Number($('#total_1').val())) {
-// 	 $('.collapsible').collapsible('close', 3);
-// 	 $('.collapsible').collapsible('open', 3);
-// 	 $('#total_1').focus().removeClass("invalid")
-// 	 $('#total_2').focus().addClass("invalid")
-// 	 $('#mensaje1').html('<span class="red-text">El total no puede ser mayor al de la pregunta 1</span>')
-// }
-// else if ( (Number($('#femenino_2').val())  > Number($('#femenino_1').val())) || (Number($('#masculino_2').val())  > Number($('#masculino_1').val())) ) {
-// 	 $('.collapsible').collapsible('close', 3);
-// 	 $('.collapsible').collapsible('open', 3);
-// 	 $('#total_2').focus().removeClass("invalid")
-// 	 $('#mensaje1').focus()
-// 	 $('#mensaje1').html('<span class="red-text">El valor del sexo no puede ser mayor al de la pregunta 1</span>')
-// }
-// else if ( Number(total_edad) != Number(total_3)) {
-// 	 $('.collapsible').collapsible('close', 3);
-// 	 $('.collapsible').collapsible('open', 3);
-// 	 $('#mensaje1').html(" ")
-// 	 $('#mensaje_edad').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
-// }
-// else if ( Number(total_vinculacion) != Number(total_3)) {
-// 	 $('.collapsible').collapsible('close', 3);
-// 	 $('.collapsible').collapsible('open', 3);
-// 	 $('#mensaje_edad').html(" ")
-// 	 $('#mensaje_vinculacion').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
-// }
+else if (Number($('#total_2').val())  > Number($('#total_1').val())) {
+	 $('.collapsible').collapsible('close', 3);
+	 $('.collapsible').collapsible('open', 3);
+	 $('#total_1').focus().removeClass("invalid")
+	 $('#total_2').focus().addClass("invalid")
+	 $('#mensaje1').html('<span class="red-text">El total no puede ser mayor al de la pregunta 1</span>')
+}
+else if ( (Number($('#femenino_2').val())  > Number($('#femenino_1').val())) || (Number($('#masculino_2').val())  > Number($('#masculino_1').val())) ) {
+	 $('.collapsible').collapsible('close', 3);
+	 $('.collapsible').collapsible('open', 3);
+	 $('#total_2').focus().removeClass("invalid")
+	 $('#mensaje1').focus()
+	 $('#mensaje1').html('<span class="red-text">El valor del sexo no puede ser mayor al de la pregunta 1</span>')
+}
+else if ( Number(total_edad) != Number(total_3)) {
+	 $('.collapsible').collapsible('close', 3);
+	 $('.collapsible').collapsible('open', 3);
+	 $('#mensaje1').html(" ")
+	 $('#mensaje_edad').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
+}
+else if ( Number(total_vinculacion) != Number(total_3)) {
+	 $('.collapsible').collapsible('close', 3);
+	 $('.collapsible').collapsible('open', 3);
+	 $('#mensaje_edad').html(" ")
+	 $('#mensaje_vinculacion').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
+}
 else if (Number(total_educativo) != Number(total_3)) {
 	 $('.collapsible').collapsible('close', 3);
 	 $('.collapsible').collapsible('open', 3);
@@ -241,15 +244,98 @@ else if (Number(total_educativo) != Number(total_3)) {
 else {
 
 alert('todo bien')
-	// $.ajax({
-	// 	url: 'emprendimiento/registro/insertar.php',
-	// 	type: 'POST',
-	// 	data: $("#form_registro").serialize(),
-	// })
-	// .done(function(respuesta) {
-	// 	console.log(respuesta)
-	// })
+	$.ajax({
+		url: 'emprendimiento/registro/insertar.php',
+		type: 'POST',
+		data: $("#form_registro").serialize(),
+	})
+	.done(function(respuesta) {
+		console.log(respuesta)
+	})
 	
 	}
 
+});
+////////////////////////////////////////------modificar------ ////////////////////////////////////////////////////////////////////////
+$('#empresa').select2()
+// $('#form_modificar').hide()
+$('#empresa').change(function(event) { 
+var empresa_id = $('#empresa').val()
+// var region_m = $('#region_m').val()
+// alert(region_m)
+$.ajax({
+  url: 'evaluacion/formato_inscripcion/llenar_formulario.php',
+   type: 'POST',
+   data: {empresa_id: empresa_id},
+ })
+ .done(function(respuesta) {
+  $('#cargar_info').html(respuesta)
+  // alert(respuesta)
+ })
+
+});
+
+//comobos de region departamento y municipio
+$('#region_m').change(function(event) { 
+var region_m = $('#region_m').val()
+
+$.ajax({
+   url: 'evaluacion/formato_inscripcion/combo_departamento_modificar.php',
+   type: 'POST',
+   data: {region_m: region_m},
+ })
+ .done(function(respuesta) {
+ 	$('#departamento_m').html(" <option disabled selected>Seleccione...</option>")
+    $('#departamento_m').append(respuesta)
+	$('#departamento_m').material_select();
+ })
+
+$('#municipio_m').html(" <option disabled selected>Seleccione...</option>")
+$('#municipio_m').material_select();
+});
+$('#departamento_m').change(function(event) { 
+var departamento_m = $('#departamento_m').val()
+$.ajax({
+   url: 'evaluacion/formato_inscripcion/combo_municipio_modificar.php',
+   type: 'POST',
+   data: {departamento_m: departamento_m},
+ })
+ .done(function(respuesta) {
+ 	$('#municipio_m').html(" <option disabled selected>Seleccione...</option>")
+    $('#municipio_m').append(respuesta)
+	$('#municipio_m').material_select();
+ })
+});
+
+//comobos de categoria sector y sub_sector
+$('#categoria_m').change(function(event) { 
+var categoria_m = $('#categoria_m').val()
+
+$.ajax({
+   url: 'evaluacion/formato_inscripcion/combo_sector_modificar.php',
+   type: 'POST',
+   data: {categoria_m: categoria_m},
+ })
+ .done(function(respuesta) {
+ 	$('#sector_m').html(" <option disabled selected>Seleccione...</option>")
+    $('#sector_m').append(respuesta)
+	$('#sector_m').material_select();
+ })
+
+$('#subsector_m').html(" <option disabled selected>Seleccione...</option>")
+$('#subsector_m').material_select();
+});
+
+$('#sector_m').change(function(event) { 
+var sector_m = $('#sector_m').val()
+$.ajax({
+   url: 'evaluacion/formato_inscripcion/combo_subsector_modificar.php',
+   type: 'POST',
+   data: {sector_m: sector_m},
+ })
+ .done(function(respuesta) {
+ 	$('#subsector_m').html(" <option disabled selected>Seleccione...</option>")
+    $('#subsector_m').append(respuesta)
+	$('#subsector_m').material_select();
+ })
 });
