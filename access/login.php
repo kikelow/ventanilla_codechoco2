@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login</title>
+  <title>Inicio de Sesión</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="../css/materialize.min.css" media="screen,projection">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -21,7 +21,7 @@
 <body style="background-color: #00853b">
  
 
-  <div id="login-page" class="row" style="position: absolute;top:0;left:0;right:0;bottom: 0;margin:auto;width:25%;">
+  <div id="login-page" class="row" style="position: absolute;top:0;left:0;right:0;bottom: 0;margin:auto;width:25%;margin-top: 50px;">
     <div class="col s12 z-depth-4 card-panel">
       <form class="login-form">
         <div class="row">

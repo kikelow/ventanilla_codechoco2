@@ -102,6 +102,8 @@
   pie de pagina
 </footer>
 <script src="js/materialize.min.js"  type="text/javascript"></script>
+<script type="text/javascript" src="js/select2.js"></script>
+<script type="text/javascript" src="js/accion_registro.js"></script>
 <script type="text/javascript">
 	 $(document).ready(function(){
 	 	$('.carousel.carousel-slider').carousel({fullWidth: true});

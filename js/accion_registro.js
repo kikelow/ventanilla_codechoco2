@@ -1,6 +1,8 @@
 
 
-var total_3 =""
+
+
+var total_3 ="";
 
 // verificar el total socios de la empresa
 $('#femenino_1, #masculino_1').keyup(function(event) {
