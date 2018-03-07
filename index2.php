@@ -53,8 +53,8 @@
 <div class="row right" style="width: 80%;" id="sub_tabs">
     <div class="col s12" style="">
       <ul class="tabs grey lighten-4">
-        <li class="tab col s3"><a href="#test1"><strong>REGISTRAR</strong></a></li>
-        <li class="tab col s3"><a href="#test2"><strong>mODIFICAR</strong></a></li>
+        <li class="tab col s3"><a href="#test1" id="e"><strong>REGISTRAR</strong></a></li>
+        <li class="tab col s3"><a href="#test2"><strong>MODIFICAR</strong></a></li>
      
       </ul>
     </div>
@@ -109,6 +109,10 @@
 	    $('.carousel.carousel-slider').carousel('next');
 	    $(".button-collapse").sideNav();
 	    $('select').material_select();
+
+      // $('#e').click(function(event) {
+      //   alert('message?: DOMString');
+      // });
 	    });	
 </script>
 </body>

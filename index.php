@@ -13,6 +13,7 @@
   <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
   <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
   <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Sniglet|Nanum+Myeongjo:800" rel="stylesheet">
+  <script src="js/jquery.min.js"  type="text/javascript"></script>
 </head>
 <body >
 
@@ -84,7 +85,7 @@
 </div>
 </footer>
 
-<script src="js/jquery.min.js"  type="text/javascript"></script>
+
 <script src="js/materialize.min.js"  type="text/javascript"></script>
 <script src='js/css3-animate-it.js'></script>
 <script src='slick/slick.min.js'></script>

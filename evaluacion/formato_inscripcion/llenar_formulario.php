@@ -1192,28 +1192,39 @@ $otro_m = "";
         <div class='col s12 m6 l9'>
         <div class='row'>
         <div class='col s12'></div>";
-        $actividad_item ="";
-            $i = "";
-            $s1="SELECT actividad_item_id from actividad_empresa WHERE empresa_id = '$_POST[empresa_id]'";
+        $actividad_item =array();
+        $id_activi = array();
+            $i = 0;
+            $s1="SELECT * from actividad_empresa WHERE empresa_id = '$_POST[empresa_id]'";
             $r1= mysqli_query($conn,$s1) or die('Error');
             if(mysqli_num_rows($r1)>0){
-              while($rw1=mysqli_fetch_array($r1)){
-                $actividad_item=$rw1[0];
-            $s="SELECT id,nombre from actividad_item where id='$actividad_item' order by id ";
+              while($rw1=mysqli_fetch_assoc($r1)){
+                  $s="SELECT id,nombre from actividad_item WHERE id = '".$rw1['actividad_item_id']."' order by id ";
             $r= mysqli_query($conn,$s) or die("Error");
             if(mysqli_num_rows($r)>0){
               while($rw=mysqli_fetch_assoc($r)){
-                 $i= $i+1;
-              $datos.="
-              <p>
-                <input type='checkbox' id='t_m$i' checked='checked'  name='actividad_emp_m[]' value='$rw[id]' />
-                <label for='t_m$i'>$rw[nombre]</label>
-              </p>";
+                $i++;
+                 if ($rw1['confirmacion'] == 'si' ) {
+                 $datos.="
+                  <p>
+                    <input type='checkbox' id='t_m$i' checked='checked'  name='actividad_emp_m[]' value='$rw[id]' />
+                    <label for='t_m$i'>$rw[nombre]</label>
+                    <input type='hidden' id='t".$i."'  name='actividad_emp_hidden_m[]' value='$rw[id]' />
+                  </p>";
+                }else{
+                  $datos.="
+                  <p>
+                    <input type='checkbox' id='t_m$i'   name='actividad_emp_m[]' value='$rw[id]' />
+                    <label for='t_m$i'>$rw[nombre]</label>
+                    <input type='hidden' id='t".$i."'  name='actividad_emp_hidden_m[]' value='$rw[id]' />
+                  </p>";
 
-              }         
+                 }
+
+              }
             }
-              } 
-
+                }
+                      
             }
     $datos.="
         </div>

@@ -251,6 +251,7 @@ alert('todo bien')
 	})
 	.done(function(respuesta) {
 		console.log(respuesta)
+		
 	})
 	
 	}
@@ -338,4 +339,28 @@ $.ajax({
     $('#subsector_m').append(respuesta)
 	$('#subsector_m').material_select();
  })
+});
+
+// cuando de click en el botton modificar
+$('#modificar_emp').click(function(event) {
+	event.preventDefault();
+	if (! $('#empresa').val()) {
+	$('.collapsible').collapsible('close', 0);
+	$('.collapsible').collapsible('open', 0);
+	 // $('#person').attr('required');
+	$('#person').focus().addClass("red-text");
+
+	alert("Debe seleccioar una empresa");
+}else {
+	var empresa = $('#empresa').val()
+	$.ajax({
+		url: 'evaluacion/formato_inscripcion/modificar.php?empresa='+empresa,
+		type: 'POST',
+		data: $('#form_modificar').serialize(),
+	})
+	.done(function(respuesta) {
+		// alert(respuesta);
+	})
+}
+	
 });
