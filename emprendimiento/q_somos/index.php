@@ -65,6 +65,9 @@
 
 </div> -->
 
+<div class="contenedor">
+  
+    
 <div class="row" style="margin-top: 100px">
   <div class="col s12">
     <h5 class="center">Quienes Sómos</h5>
@@ -95,16 +98,17 @@
         </div>
       </div>
 
-      <div class="row">
+      
+     </p>
+  </div>
+</div>
+    
+<div class="row">
         <div class="col s12">
           <h5 class="center">Quienes Sómos</h5>
           <p class="justify"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita neque, fugit. Nisi explicabo rem iure similique asperiores, ea amet veniam totam hic obcaecati velit, eligendi recusandae excepturi. Perferendis, perspiciatis illo!</span>
         </div>
       </div>   
-     </p>
-  </div>
-</div>
-    
 
 <div class="row">
    <div class="col s12 ">
@@ -113,4 +117,6 @@
   
    </p>
    </div>
+</div>
+
 </div>

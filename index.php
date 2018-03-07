@@ -6,15 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="css/materialize.min.css" media="screen,projection">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="css/animate.min.css">
   <link rel="stylesheet" type="text/css" href="css/estilo.css">
   <link href="https://fonts.googleapis.com/css?family=Merriweather:700i" rel="stylesheet">
   <link rel="stylesheet" href="css/animations.css" type="text/css">
+    <link rel="stylesheet" href="css/w3.css" type="text/css">
   <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
   <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
   <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Sniglet|Nanum+Myeongjo:800" rel="stylesheet">
   <script src="js/jquery.min.js"  type="text/javascript"></script>
 </head>
+<script src="js/jquery.min.js"  type="text/javascript"></script>
+
 <body >
 
       <div class="nav animatedParent">
@@ -37,7 +39,8 @@
 <!-- <div id="contenedor" style="min-height: 701px;">
 
 <section id="base" style="min-height: 700px;background-color: white"> -->
- <?php 
+<div style="height: auto;min-height: 700px;">
+   <?php 
                    $mod = @$_GET['modulo'];
                    $archivo = $mod.'/index.php';
 
@@ -48,6 +51,8 @@
                     include_once("emprendimiento/inicio/index.php");
                    }
     ?>    
+
+</div>
 
 <!-- </section>  
 </div> -->
@@ -85,7 +90,10 @@
 </div>
 </footer>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d343ef909b5512bf708ad02aad258f7d76583073
 <script src="js/materialize.min.js"  type="text/javascript"></script>
 <script src='js/css3-animate-it.js'></script>
 <script src='slick/slick.min.js'></script>

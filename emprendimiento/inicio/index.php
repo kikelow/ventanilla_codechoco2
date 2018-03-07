@@ -59,33 +59,33 @@
         <div class="col s12 m3 l3">
             <div>
               <h2 style="text-align: center;"> <i class="material-icons icons_grandes">account_balance</i></h2>
-               <h5 style="text-align: center;" class="green-text flow-text">servicio 1</h5>
-               <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, iusto laboriosam cumque deserunt labore laborum id perspiciatis tempora nobis quam, quod maxime vero officiis libero, at nemo. Maiores, beatae, mollitia?</p>
-               <p style="text-align: center;"><a  href="#">Más información >></a></p>
+               <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">servicio 1</h5>
+               <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio</p>
+               <p style="text-align: center;"><a class=" waves-effect waves-light btn  hoverable btn-flat  white-text" style="background-color: #00853bed;border-radius: 20px;" href="#">Más información </a></p>
             </div>  
         </div>
          <div class="col s12 m3 l3">
             <div>
               <h2 style="text-align: center;"> <i class="material-icons icons_grandes">shopping_basket</i></h2>
-               <h5 style="text-align: center;" class="green-text flow-text">servicio 2</h5>
-               <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, iusto laboriosam cumque deserunt labore laborum id perspiciatis tempora nobis quam, quod maxime vero officiis libero, at nemo. Maiores, beatae, mollitia?</p>
-               <p style="text-align: center;"><a  href="#">Más información >></a></p>
+               <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">servicio 2</h5>
+               <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio</p>
+               <!-- <p style="text-align: center;"> --><a class=" waves-effect waves-light btn  hoverable btn-flat  white-text hoverable" style="background-color: #00853bed;border-radius: 20px;" href="#">Más información </a><!-- </p> -->
             </div>  
         </div>
          <div class="col s12 m3 l3">
             <div>
               <h2 style="text-align: center;"> <i class="material-icons icons_grandes">supervisor_account</i></h2>
-               <h5 style="text-align: center;" class="green-text flow-text">servicio 3</h5>
-               <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, iusto laboriosam cumque deserunt labore laborum id perspiciatis tempora nobis quam, quod maxime vero officiis libero, at nemo. Maiores, beatae, mollitia?</p>
-               <p style="text-align: center;"><a  href="#">Más información >></a></p>
+               <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">servicio 3</h5>
+               <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio</p>
+               <p style="text-align: center;"><a class=" waves-effect waves-light btn  hoverable btn-flat  white-text" style="background-color: #00853bed;border-radius: 20px;" href="#">Más información </a></p>
             </div>  
         </div>
         <div class="col s12 m3 l3">
             <div>
               <h2 style="text-align: center;"> <i class="material-icons icons_grandes">forum</i></h2>
-               <h5 style="text-align: center;" class="green-text flow-text">servicio 4</h5>
-               <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, iusto laboriosam cumque deserunt labore laborum id perspiciatis tempora nobis quam, quod maxime vero officiis libero, at nemo. Maiores, beatae, mollitia?</p>
-               <p style="text-align: center;"><a  href="#">Más información >></a></p>
+               <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">servicio 4</h5>
+               <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio</p>
+               <p style="text-align: center;"><a class=" waves-effect waves-light btn  hoverable btn-flat  white-text" style="background-color: #00853bed;border-radius: 20px;" href="#">Más información </a></p>
             </div>  
         </div>
 
@@ -133,123 +133,119 @@
   
 
 
-<div class="section" style="background-color: #f5f5f5">
+<div class="section" style="background-color:#c7ebd4;">
   <div class="row container ">
-
-
-
-
   <div class="row noticias" style="margin-top: 80px;">
     <!-- <span class="black-text">  -->
-      <div class="col s12 m4 l4 animatedParent animateOnce">
-        <p class="animated fadeInDown slow" style="font-family: 'Sniglet',cursiva ;text-align: center">Desempleo en 2017 se mantuvo en un dígito: llegó a 9,4 por ciento.</p>
-        <div class="card-panel cp_notice black-text" style="overflow: hidden;text-align: justify;font-family: 'Nanum Myeongjo', serif;font-style: italic;">
-            Santa Marta, la ciudad con menor desempleo y Quibdó, la que tuvo mayor número de desocupados en el año completo. En diciembre, desempleo nacional fue 8,6 por ciento
-            <span><hr></span>
-            <span >Fuente: Revista Semana.</span>
-            <span style="float: right;"><a class="waves-effect waves-black ">Ver Mas...</a></span>
+    <div class="col s12 m4 l4">
+        <div class="w3-card-4">
+            <header class="w3-container " style="background-color:  #00853b">
+              <h1 class="white-text">Titulo noticia</h1>
+            </header>
+
+        <div class="w3-container" style="background-color:  #fff">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
 
-      </div>
-
-    <div class="col s12 m4 l4 animatedParent animateOnce">
-        <p class="animated fadeInDown " style="font-family: 'Sniglet', serif;text-align: center">Desempleo en 2017 se mantuvo en un dígito: llegó a 9,4 por ciento.</p>
-        <div class="card-panel cp_notice black-text" style="overflow: hidden;text-align: justify;font-family: 'Nanum Myeongjo', serif;">
-            Santa Marta, la ciudad con menor desempleo y Quibdó, la que tuvo mayor número de desocupados en el año completo. En diciembre, desempleo nacional fue 8,6 por ciento
-            <span><hr></span>
-            <span >Fuente: Revista Semana.</span>
-            <span style="float: right;"><a class="waves-effect waves-black ">Ver Mas...</a></span>
+        <footer class="w3-container " style="background-color:  #00853b">
+          <h5 class="white-text">Fuente o responsbale de la noticia</h5>
+        </footer>
         </div>
-      </div>
+    </div>
 
-      <div class="col s12 m4 l4 animatedParent animateOnce">
-        <p class="animated fadeInDown " style="font-family: 'Sniglet', serif;text-align: center">Te invitamos a celebrar la reapertura de nuestra ventanilla, visítanos.</p>
-        <div class="card-panel cp_notice black-tex " style="overflow: hidden;text-align: justify;font-family: 'Nanum Myeongjo', serif;">
-            <p>Lugar: Codechocó</p>
-            <p>Hora: 2 p.m</p>
-            <p>Fecha: 12/01/2013</p>
-            <span><hr></span>
-            <span >Responsable: Codechocó.</span>
-            <span style="float: right;"><a class="waves-effect waves-black ">Ver Mas...</a></span>
+     <div class="col s12 m4 l4">
+        <div class="w3-card-4">
+            <header class="w3-container " style="background-color:  #00853b">
+              <h1 class="white-text">Titulo noticia</h1>
+            </header>
+
+        <div class="w3-container" style="background-color:  #fff">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
-      </div>
 
-      <div class="col s12  animatedParent animateOnce">
-        <p class="animated fadeInDown " style="font-family: 'Sniglet',cursiva ;text-align: center">Desempleo en 2017 se mantuvo en un dígito: llegó a 9,4 por ciento.</p>
-        <div class="card-panel cp_notice black-text" style="overflow: hidden;text-align: justify;">
-            Santa Marta, la ciudad con menor desempleo y Quibdó, la que tuvo mayor número de desocupados en el año completo. En diciembre, desempleo nacional fue 8,6 por ciento
-            <span><hr></span>
-            <span >Fuente: Revista Semana.</span>
-            <span style="float: right;"><a class="waves-effect waves-black ">Ver Mas...</a></span>
+        <footer class="w3-container " style="background-color:  #00853b">
+          <h5 class="white-text">Fuente o responsbale de la noticia</h5>
+        </footer>
         </div>
-      </div>
-      
-            <div class="col s12  animatedParent animateOnce">
-        <p class="animated fadeInDown " style="font-family: 'Sniglet',cursiva ;text-align: center">Desempleo en 2017 se mantuvo en un dígito: llegó a 9,4 por ciento.</p>
-        <div class="card-panel cp_notice black-text" style="overflow: hidden;text-align: justify;">
-            Santa Marta, la ciudad con menor desempleo y Quibdó, la que tuvo mayor número de desocupados en el año completo. En diciembre, desempleo nacional fue 8,6 por ciento
-            <span><hr></span>
-            <span >Fuente: Revista Semana.</span>
-            <span style="float: right;"><a class="waves-effect waves-black ">Ver Mas...</a></span>
+    </div>
+
+     <div class="col s12 m4 l4">
+        <div class="w3-card-4">
+            <header class="w3-container " style="background-color:  #00853b">
+              <h1 class="white-text">Titulo noticia</h1>
+            </header>
+
+        <div class="w3-container" style="background-color:  #fff;">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
-      </div>
 
-      <div class="col s12  animatedParent animateOnce">
-        <p class="animated fadeInDown " style="font-family: 'Sniglet',cursiva ;text-align: center">Desempleo en 2017 se mantuvo en un dígito: llegó a 9,4 por ciento.</p>
-        <div class="card-panel cp_notice black-text" style="overflow: hidden;text-align: justify;">
-            Santa Marta, la ciudad con menor desempleo y Quibdó, la que tuvo mayor número de desocupados en el año completo. En diciembre, desempleo nacional fue 8,6 por ciento
-            <span><hr></span>
-            <span >Fuente: Revista Semana.</span>
-            <span style="float: right;"><a class="waves-effect waves-black ">Ver Mas...</a></span>
+        <footer class="w3-container " style="background-color:  #00853b">
+          <h5 class="white-text">Fuente o responsbale de la noticia</h5>
+        </footer>
         </div>
-      </div>
+    </div>
 
-      <div class="col s12  animatedParent animateOnce">
-        <p class="animated fadeInDown " style="font-family: 'Sniglet',cursiva ;text-align: center">Desempleo en 2017 se mantuvo en un dígito: llegó a 9,4 por ciento.</p>
-        <div class="card-panel cp_notice black-text" style="overflow: hidden;text-align: justify;">
-            Santa Marta, la ciudad con menor desempleo y Quibdó, la que tuvo mayor número de desocupados en el año completo. En diciembre, desempleo nacional fue 8,6 por ciento
-            <span><hr></span>
-            <span >Fuente: Revista Semana.</span>
-            <span style="float: right;"><a class="waves-effect waves-black ">Ver Mas...</a></span>
+     <div class="col s12 m4 l4">
+        <div class="w3-card-4">
+            <header class="w3-container " style="background-color:  #00853b">
+              <h1 class="white-text">Titulo noticia</h1>
+            </header>
+
+        <div class="w3-container" style="background-color:  #fff">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
-      </div>
 
-      <div class="col s12  animatedParent animateOnce">
-        <p class="animated fadeInDown " style="font-family: 'Sniglet',cursiva ;text-align: center">Desempleo en 2017 se mantuvo en un dígito: llegó a 9,4 por ciento.</p>
-        <div class="card-panel cp_notice black-text" style="overflow: hidden;text-align: justify;">
-            Santa Marta, la ciudad con menor desempleo y Quibdó, la que tuvo mayor número de desocupados en el año completo. En diciembre, desempleo nacional fue 8,6 por ciento
-            <span><hr></span>
-            <span >Fuente: Revista Semana.</span>
-            <span style="float: right;"><a class="waves-effect waves-black ">Ver Mas...</a></span>
+        <footer class="w3-container " style="background-color:  #00853b">
+          <h5 class="white-text">Fuente o responsbale de la noticia</h5>
+        </footer>
         </div>
-      </div>
+    </div>
 
-       <div class="col s12  animatedParent animateOnce">
-        <p class="animated fadeInDown " style="font-family: 'Sniglet',cursiva ;text-align: center">Desempleo en 2017 se mantuvo en un dígito: llegó a 9,4 por ciento.</p>
-        <div class="card-panel cp_notice black-text" style="overflow: hidden;text-align: justify;">
-            Santa Marta, la ciudad con menor desempleo y Quibdó, la que tuvo mayor número de desocupados en el año completo. En diciembre, desempleo nacional fue 8,6 por ciento
-            <span><hr></span>
-            <span >Fuente: Revista Semana.</span>
-            <span style="float: right;"><a class="waves-effect waves-black ">Ver Mas...</a></span>
+     <div class="col s12 m4 l4">
+        <div class="w3-card-4">
+            <header class="w3-container " style="background-color:  #00853b">
+              <h1 class="white-text">Titulo noticia</h1>
+            </header>
+
+        <div class="w3-container" style="background-color:  #fff">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
-      </div>
 
+        <footer class="w3-container " style="background-color:  #00853b">
+          <h5 class="white-text">Fuente o responsbale de la noticia</h5>
+        </footer>
+        </div>
+    </div>
 
+     <div class="col s12 m4 l4">
+        <div class="w3-card-4">
+            <header class="w3-container " style="background-color:  #00853b">
+              <h1 class="white-text">Titulo noticia</h1>
+            </header>
+
+        <div class="w3-container" style="background-color:  #fff">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+
+        <footer class="w3-container " style="background-color:  #00853b">
+          <h5 class="white-text">Fuente o responsbale de la noticia</h5>
+        </footer>
+        </div>
+    </div>
   <!-- </span> -->
 </div>    
 </div>
 </div>
 
-
-
+<div class="divider"></div>
 
 <div class="parallax-container">
   
-<div id="info_mv" style="height: auto;min-height: 500px;background-color: #e0e0e0" > 
+<div id="info_mv" style="height: auto;min-height: 500px;" > 
   <div class="row"> 
     <div class="row" style="background-color: ">
       <div class="col s12">
-        <h4 style="text-align: center;margin-top: 50px; " class="green-text flow-text">Mercados Verdes</h4>
+        <h4 style="text-align: center;margin-top: 50px;color: #00853b;font-weight: bold;" class="flow-text">Negocios Verdes</h4>
         <p style="text-align: center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis fuga molestias asperiores, laudantium pariatur magni doloremque, quos adipisci, saepe eius nam consequuntur minus. Suscipit ducimus eligendi architecto nulla labore atque!</p>
       </div>
     </div>
@@ -262,20 +258,20 @@
       <div class="col s12 m6 l6">
         <div class="row" >
           <div class="col s12">
-            <h5 style="text-align: center"  class="green-text flow-text">info 1</h5>
-            <p style="text-align: center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi natus ea, repellat quo tenetur. Culpa laudantium eaque nulla ea quam dolorum modi qui dolorem dignissimos velit voluptates, illum dicta nobis.</p>
+            <h5 style="text-align: center;color: #00853b;font-weight: bold;"  class="flow-text">info 1</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi natus ea, repellat quo tenetur. Culpa laudantium eaque nulla ea quam dolorum modi qui dolorem dignissimos velit voluptates, illum dicta nobis.</p>
           </div>
         </div>
        <div class="row">
           <div class="col s12" >
-            <h5 style="text-align: center" class="green-text flow-text" >info 2</h5>
-            <p style="text-align: center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, nam ad natus minus, inventore illum minima quia commodi iste officiis eos autem voluptates architecto doloribus vero animi provident rerum quisquam?</p>
+            <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text" >info 2</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, nam ad natus minus, inventore illum minima quia commodi iste officiis eos autem voluptates architecto doloribus vero animi provident rerum quisquam?</p>
           </div>
         </div>
         <div class="row">
           <div class="col s12" >
-            <h5 style="text-align: center" class="green-text flow-text" >info 3</h5>
-            <p style="text-align: center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus mollitia atque ipsum ut deleniti architecto assumenda minus molestias quibusdam possimus similique neque delectus praesentium, ipsam tenetur deserunt aperiam, corrupti ipsa!</p>
+            <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text" >info 3</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus mollitia atque ipsum ut deleniti architecto assumenda minus molestias quibusdam possimus similique neque delectus praesentium, ipsam tenetur deserunt aperiam, corrupti ipsa!</p>
           </div>
         </div>
       </div>
@@ -343,11 +339,7 @@
 </div>
 
 
-
-    
-
-
-     
+<div class="divider"></div>
 
 <div class="section white">
   <div class="row">      
@@ -458,6 +450,8 @@
 </div>
 
 
+<div class="divider"></div>
+
 <div class="section">
   <div class="row-container">
     <div class="row">
@@ -497,20 +491,27 @@
 
       <div class="col s12 m6 l6">
         <div id="logo_container">
-          <div id="logo_codechoco" style="height: 327px;">
-            <img class="responsive-img" src="img/logo1.png" alt="" width="327px" height="" style="float: left">
+          <!-- <div id="logo_codechoco" > -->
+            <img class="responsive-img" src="img/logo_code.png" alt="" width="163px" height="163px" >
+          <!-- </div>
+          <div id="logo_vetanilla"> -->
+            <img class="responsive-img" src="img/logo1.png" alt="" width="163px" height="163px" style="">
+          <!-- </div> -->
+          <!-- <div id="logo_codechoco" > -->
+            <img class="responsive-img" src="img/logo_code.png" alt="" width="163px" height="163px" >
+
+            <img class="responsive-img" src="img/logo1.png" alt="" width="163px" height="163px" style="">
           </div>
-          <div id="logo_vetanilla">
-            <img src="img/p1.jpg" alt="" width="327px" height="224px" style="float: right;">
-          </div>
+       
         </div>     
       </div>
     </div>
   </div>
 </div>
 
+<div class="divider"></div>
 
-<div class="section  indigo darken-1">
+<div class="section" style="background-color: #00853ba3">
   <div class="row container">
     <div class="row">
       <div class="col s12 m4 l4">
@@ -526,7 +527,7 @@
   <h4 class="green-text flow-text center" style="text-transform: uppercase;margin-bottom: 0px;margin-top: 30px;"><strong>Colaboradores</strong></h4>
   <div class="row">
     <div class="responsive" id="slider">
-        <div style="margin-left: 5px;margin-right: 5px;"><img src="img/p0.jpg" alt="" height="" ></div>
+        <div style="margin-left: 5px;margin-right: 5px;"><img src="img/logo_code.png" alt="" height="" ></div>
         <div style="margin-left: 5px;margin-right: 5px;"><img src="img/p1.jpg" alt="" height="" ></div>
         <div style="margin-left: 5px;margin-right: 5px;"><img src="img/p3.jpg" alt="" height="" ></div>
         <div style="margin-left: 5px;margin-right: 5px;"><img src="img/p2.jpg" alt="" height="" ></div>
@@ -536,6 +537,7 @@
         <div style="margin-left: 5px;margin-right: 5px;"><img src="img/p8.jpg" alt="" height="" ></div>
       </div>
       </div>
+
     </div>
   </div>
 </div>
