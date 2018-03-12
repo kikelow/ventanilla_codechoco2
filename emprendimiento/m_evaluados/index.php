@@ -1,5 +1,5 @@
-<div class="row" style="margin-top: 150px;">
-	
+<div class="teal lighten-5" style="margin: 0px;padding: 0px;width: 100%;height: auto;margin-top: 20px;">
+<div class="row" style="margin-top: 150px;">	
 	<div class="row" style="
     margin-bottom: 0px;">
 		<div class="col s12 m4 l4" style="padding-right: 0px;">
@@ -136,7 +136,7 @@
 				
 	</div>
 </div>
-
+</div>
 
 
 

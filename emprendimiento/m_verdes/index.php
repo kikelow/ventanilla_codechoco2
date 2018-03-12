@@ -1,6 +1,7 @@
-<div class="contenedor">
+<div class="" style="margin: 0px;padding: 0px;width: 100%;height: auto;">
+<div class="contenedor teal lighten-5">
 
-  <div class="row" style="margin-top: 100px;">
+  <div class="row" style="margin-top: 100px;margin-bottom: 0px;">
   <div class="row">
   <div class="col s12">
     <h5 class="center">Mercados verdes</h5>
@@ -53,14 +54,15 @@
    </div>
 </div>
 
-<div class="row" style="background-color: #f5f5f5;">
+<div class="row" style="background-color: #e0e0e0;">
   Documentos de interes.
   <div class="divider"></div>
-  <div class="row" style="background-color: #fff;margin-bottom: 1px"><div class="col s12"><a href="">Documento 1</a></div></div>
-  <div class="row" style="background-color: #fff;margin-bottom: 1px"><div class="col s12"><a href="">Documento 2</a></div></div>
+  <div class="row" style="background-color: #fff;margin-bottom: 1px"><div class="col s12"><a style="color:#00695c;" href="">Documento 1</a></div></div>
+  <div class="row" style="background-color: #fff;margin-bottom: 1px"><div class="col s12"><a style="color:#00695c;" href="">Documento 2</a></div></div>
   
   
 </div>
 </div>  
 
+</div>
 </div>

@@ -57,35 +57,35 @@
     <div class="row" >
 
         <div class="col s12 m3 l3">
-            <div>
-              <h2 style="text-align: center;"> <i class="material-icons icons_grandes">account_balance</i></h2>
-               <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">servicio 1</h5>
-               <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio</p>
-               <p style="text-align: center;"><a class=" waves-effect waves-light btn  hoverable btn-flat  white-text" style="background-color: #00853bed;border-radius: 20px;" href="#">Más información </a></p>
+            <div class="animatedParent">
+              <h2 class="animated growIn" style="text-align: center;"> <i class="material-icons icons_grandes">account_balance</i></h2>
+               <h5 class="animated growIn" style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">servicio 1</h5>
+               <p class="animated growIn" style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio</p>
+               <p class="animated growIn" style="text-align: center;"><a class=" waves-effect waves-light btn  hoverable btn-flat  white-text" style="background-color: #00853bed;border-radius: 20px;" href="#">Más información </a></p>
             </div>  
         </div>
          <div class="col s12 m3 l3">
-            <div>
-              <h2 style="text-align: center;"> <i class="material-icons icons_grandes">shopping_basket</i></h2>
-               <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">servicio 2</h5>
-               <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio</p>
-               <!-- <p style="text-align: center;"> --><a class=" waves-effect waves-light btn  hoverable btn-flat  white-text hoverable" style="background-color: #00853bed;border-radius: 20px;" href="#">Más información </a><!-- </p> -->
+            <div class="animatedParent">
+              <h2 class="animated growIn" style="text-align: center;"> <i class="material-icons icons_grandes">shopping_basket</i></h2>
+               <h5 class="animated growIn" style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">servicio 2</h5>
+               <p class="animated growIn" style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio</p>
+               <p class="animated growIn" style="text-align: center;"><a class=" waves-effect waves-light btn  hoverable btn-flat  white-text hoverable" style="background-color: #00853bed;border-radius: 20px;" href="#">Más información </a></p>
             </div>  
         </div>
          <div class="col s12 m3 l3">
-            <div>
-              <h2 style="text-align: center;"> <i class="material-icons icons_grandes">supervisor_account</i></h2>
-               <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">servicio 3</h5>
-               <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio</p>
-               <p style="text-align: center;"><a class=" waves-effect waves-light btn  hoverable btn-flat  white-text" style="background-color: #00853bed;border-radius: 20px;" href="#">Más información </a></p>
+            <div class="animatedParent">
+              <h2 class="animated growIn" style="text-align: center;"> <i class="material-icons icons_grandes">supervisor_account</i></h2>
+               <h5 class="animated growIn" style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">servicio 3</h5>
+               <p class="animated growIn" style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio</p>
+               <p class="animated growIn" style="text-align: center;"><a class=" waves-effect waves-light btn  hoverable btn-flat  white-text" style="background-color: #00853bed;border-radius: 20px;" href="#">Más información </a></p>
             </div>  
         </div>
         <div class="col s12 m3 l3">
-            <div>
-              <h2 style="text-align: center;"> <i class="material-icons icons_grandes">forum</i></h2>
-               <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">servicio 4</h5>
-               <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio</p>
-               <p style="text-align: center;"><a class=" waves-effect waves-light btn  hoverable btn-flat  white-text" style="background-color: #00853bed;border-radius: 20px;" href="#">Más información </a></p>
+            <div class="animatedParent">
+              <h2 class="animated growIn" style="text-align: center;"> <i class="material-icons icons_grandes">forum</i></h2>
+               <h5 class="animated growIn" style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">servicio 4</h5>
+               <p class="animated growIn" style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio</p>
+               <p class="animated growIn" style="text-align: center;"><a class=" waves-effect waves-light btn  hoverable btn-flat  white-text" style="background-color: #00853bed;border-radius: 20px;" href="#">Más información </a></p>
             </div>  
         </div>
 
@@ -244,34 +244,34 @@
 <div id="info_mv" style="height: auto;min-height: 500px;" > 
   <div class="row"> 
     <div class="row" style="background-color: ">
-      <div class="col s12">
-        <h4 style="text-align: center;margin-top: 50px;color: #00853b;font-weight: bold;" class="flow-text">Negocios Verdes</h4>
-        <p style="text-align: center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis fuga molestias asperiores, laudantium pariatur magni doloremque, quos adipisci, saepe eius nam consequuntur minus. Suscipit ducimus eligendi architecto nulla labore atque!</p>
+      <div class="col s12 animatedParent">
+        <h4 style="text-align: center;margin-top: 50px;color: #00853b;font-weight: bold;" class="flow-text animated fadeInDown">Negocios Verdes</h4>
+        <p style="text-align: center" class="animated fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis fuga molestias asperiores, laudantium pariatur magni doloremque, quos adipisci, saepe eius nam consequuntur minus. Suscipit ducimus eligendi architecto nulla labore atque!</p>
       </div>
     </div>
     <div class="row" >
-      <div class="col s12 m6 l6">
-        <div id="div_mv_img">
-          <img class="responsive-img" src="img/logo_nv.png" height="493" width="302" style="margin-left: 170px;margin-top: 50px">
+      <div class="col s12 m6 l6" >
+        <div id="div_mv_img" class="animatedParent">
+          <img class="animated growIn responsive-img" src="img/logo_nv.png" height="493" width="302" style="margin-left: 170px;margin-top: 50px">
         </div>
       </div>
       <div class="col s12 m6 l6">
         <div class="row" >
-          <div class="col s12">
-            <h5 style="text-align: center;color: #00853b;font-weight: bold;"  class="flow-text">info 1</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi natus ea, repellat quo tenetur. Culpa laudantium eaque nulla ea quam dolorum modi qui dolorem dignissimos velit voluptates, illum dicta nobis.</p>
+          <div class="col s12 animatedParent">
+            <h5 style="text-align: center;color: #00853b;font-weight: bold;"  class="flow-text animated fadeInDown">info 1</h5>
+            <p class="animated fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi natus ea, repellat quo tenetur. Culpa laudantium eaque nulla ea quam dolorum modi qui dolorem dignissimos velit voluptates, illum dicta nobis.</p>
           </div>
         </div>
        <div class="row">
-          <div class="col s12" >
-            <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text" >info 2</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, nam ad natus minus, inventore illum minima quia commodi iste officiis eos autem voluptates architecto doloribus vero animi provident rerum quisquam?</p>
+          <div class="col s12 animatedParent" >
+            <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text animated fadeInDown" >info 2</h5>
+            <p class="animated fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, nam ad natus minus, inventore illum minima quia commodi iste officiis eos autem voluptates architecto doloribus vero animi provident rerum quisquam?</p>
           </div>
         </div>
         <div class="row">
-          <div class="col s12" >
-            <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text" >info 3</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus mollitia atque ipsum ut deleniti architecto assumenda minus molestias quibusdam possimus similique neque delectus praesentium, ipsam tenetur deserunt aperiam, corrupti ipsa!</p>
+          <div class="col s12 animatedParent" >
+            <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text animated fadeInDown" >info 3</h5>
+            <p class="animated fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus mollitia atque ipsum ut deleniti architecto assumenda minus molestias quibusdam possimus similique neque delectus praesentium, ipsam tenetur deserunt aperiam, corrupti ipsa!</p>
           </div>
         </div>
       </div>
@@ -341,9 +341,9 @@
 
 <div class="divider"></div>
 
-<div class="section white">
+<div class="section" style="background-color: #c7ebd47a;">
   <div class="row">      
-    <p class="green-text flow-text center "><strong>Negocios Evaluados</strong></p>       
+    <h5 class="flow-text" style="text-align: center;color: #00853b;font-weight: bold;">Negocios Evaluados</h5>       
       <div class="row mercados" style="margin:20px">
 
        <div class="col s12 m3 l3">
@@ -455,7 +455,7 @@
 <div class="section">
   <div class="row-container">
     <div class="row">
-       <h4 class="green-text flow-text center" style="text-transform: uppercase;border-bottom:  1px solid green;text-align:  center;margin-bottom: 16px;margin-top: 0px;margin-left: 550px;ma;margin-right: 550px;">Contáctenos</h4>
+       <h5 class="flow-text" style="text-align: center;color: #00853b;font-weight: bold;">Contáctenos</h5> 
       <div class="col s12 m6 l6">
 
         <div class="card-panel white">
@@ -511,20 +511,12 @@
 
 <div class="divider"></div>
 
-<div class="section" style="background-color: #00853ba3">
+<div class="section" style="background-color:#c7ebd4;">
   <div class="row container">
-    <div class="row">
-      <div class="col s12 m4 l4">
-        <div style="height: 450px;overflow-y: scroll;">
-          <a class="twitter-timeline" href="https://twitter.com/CodechocoPrensa?ref_src=twsrc%5Etfw">Tweets by CodechocoPrensa</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </div>
-      </div>
-      <div class="col s12 m8 l8" id="target">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1191.7568271640066!2d-76.66211064842435!3d5.688497543935587!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x56e752a545b566e4!2sCodechoc%C3%B3!5e0!3m2!1ses-419!2sco!4v1519148260818" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-      </div>
-    </div>
-  
-  <h4 class="green-text flow-text center" style="text-transform: uppercase;margin-bottom: 0px;margin-top: 30px;"><strong>Colaboradores</strong></h4>
+  <h5 class="flow-text center" style="margin-bottom: 5px;margin-top: 30px;color: #00853b;font-weight: bold;">Colaboradores</h5>
+
+
+
   <div class="row">
     <div class="responsive" id="slider">
         <div style="margin-left: 5px;margin-right: 5px;"><img src="img/logo_code.png" alt="" height="" ></div>
@@ -537,72 +529,33 @@
         <div style="margin-left: 5px;margin-right: 5px;"><img src="img/p8.jpg" alt="" height="" ></div>
       </div>
       </div>
-
     </div>
   </div>
-</div>
 
-<!-- 
-<div class="parallax-container">
-  <div class="parallax"><img src="img/p6.jpg">
+<div class="section" style="background-color: #00853b14;">
+  <div class="row container">
+    <div class="row">
+      <div class="col s12 m4 l4">
+        <h4 style="text-transform: uppercase;font-weight: bold;color: #00853b;">Facebook</h4>
+        <div class="divider" style="background-color:#00853b;margin-bottom: 10px;"></div>
 
-  <div class="row" style="margin-bottom: 0px; margin-top: 10px;">
-  <div id="q_somos" class="col s12 m12 l12">
-    <div class="row ">
-      <div class="animatedParent animateOnce">
-        <p class="green-text flow-text center animated fadeInDown" style="font-weight: bold;">¿Quienes Somos?</p>
       </div>
-      
-      <div class="animatedParent animateOnce col s12 m4 l4" data-sequence="500">
-        <p class="green-text flow-text center animated fadeInLeft  " data-id="1" style="margin-top: 50px;font-weight: bold;">¿Quienes Somos?</p>
-
-        <p class="regular black-text animated fadeInLeft er " data-id="2" style="text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.  
-        </p>
-      </div>      
-
-      <div class="animatedParent animateOnce col s12 m4 l4" data-sequence="500">
-        <p class="green-text flow-text center animated fadeIn " data-id="1" style="margin-top: 50px;font-weight: bold;">Misión</p>
-
-        <p class="regular  black-text animated fadeIn slowest" data-id="2" style="text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.  
-        </p>
-      </div>      
-    
-      <div class="animatedParent animateOnce col s12 m4 l4" data-sequence="500"> 
-        <p class="green-text flow-text center animated fadeInRight " data-id="1" style="margin-top: 50px;font-weight: bold;">Visión</p>
-
-        <p class="regular black-text animated fadeInRight slower" data-id="2" style="text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.  
-        </p>
-
- -->
-
-  
-        <!-- <div class="row">
-        <div class="animatedParent animateOnce col s12 m12 l12">
-          <a class="waves-effect waves-light btn white green-text animated lightSpeedInRight slow" id="btn_movil" style="margin-top: 70px;font-weight: bold">Ver mas...</a>
+      <div class="col s12 m4 l4" >
+        <div style="">
+          <h4 style="text-transform: uppercase;font-weight: bold;color: #00853b;">Twitter</h4>
+          <div class="divider" style="background-color:#00853b;margin-bottom: 10px;"></div>
+          <div style="height: 450px;overflow-y: scroll;"> 
+            <a class="twitter-timeline" href="https://twitter.com/CodechocoPrensa?ref_src=twsrc%5Etfw">Tweets by CodechocoPrensa</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
         </div>
-      </div>  
-      </div>  
-        
+      </div>
+      <div class="col s12 m4 l4">
+        <div style="height: 450px">
+          <h4 style="text-transform: uppercase;font-weight: bold;color: #00853b;">Ubicación</h4>
+          <div class="divider" style="background-color:#00853b;margin-bottom: 10px;"></div>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1191.7568271640066!2d-76.66211064842435!3d5.688497543935587!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x56e752a545b566e4!2sCodechoc%C3%B3!5e0!3m2!1ses-419!2sco!4v1519148260818" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
-  </div>  
-</div>
-
-  
   </div>
 </div>
- -->

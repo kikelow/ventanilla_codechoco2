@@ -376,6 +376,8 @@ div.nav ul li a.active{
   bottom: 0px;
   margin: auto;
   height: auto;
+  border-left: 1px solid #80cbc4;
+  border-right: 1px solid #80cbc4;
 }
 
 /*hover para egocios evaluados */
@@ -533,4 +535,14 @@ div.nav ul li a.active{
    -ms-transition-delay: 0.2s;
    transition-delay: 0.2s;
 }
-        
+
+.img-container{
+  width: 400px;
+  height: 300px;
+
+}
+
+.img-container img{
+
+  
+}

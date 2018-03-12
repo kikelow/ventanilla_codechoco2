@@ -76,11 +76,11 @@
 </div>
 
  -->
-
+<div class="teal lighten-5" style="margin: 0px;padding: 0px;width: 100%;height: auto;">
 <div class="row"  style="margin-top: 150px;width: 90%">
   <div class="col s12 m12 l12">
     <div class="row" ><h6>Últimas Noticias</h6></div> 
-    <div class="divider"></div>
+    <div class="divider teal lighten-3"></div>
   </div>
     <div class="row">
         <div class="col s12 m2 l2 ">
@@ -88,11 +88,11 @@
         </div>
         <div class="col s12 m10 l10">
           <p>Hora</p>
-          <h3>TITULO LARGO Y DESCRIPTIVO</h3>
+          <h3><a href="">TITULO LARGO Y DESCRIPTIVO</a></h3> <!-- falta link modular-->
           <h6>Breve descripción</h6>
 
         </div>
     </div>
-    <div class="divider"></div>
+    <div class="divider teal lighten-3"></div>
 </div>
- 
+</div>
