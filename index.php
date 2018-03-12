@@ -90,11 +90,6 @@
   </div>
 </div>
 </footer>
-
-<<<<<<< HEAD
-
-=======
->>>>>>> d343ef909b5512bf708ad02aad258f7d76583073
 <script src="js/materialize.min.js"  type="text/javascript"></script>
 <script src='js/css3-animate-it.js'></script>
 <script src='slick/slick.min.js'></script>

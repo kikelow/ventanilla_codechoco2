@@ -1,5 +1,5 @@
 .tabs .indicator{
-  background-color:#81c784;;
+  background-color:#81c784;
 }
 .tabs .tab a{
   color: #81c784;
@@ -75,7 +75,7 @@
   width: 0;
   height: 2px;
   width: 100%;
-  background-color: #fff; /*#6db467*/
+  background-color: #00853b;
   animation: width 0.5s;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
@@ -545,4 +545,11 @@ div.nav ul li a.active{
 .img-container img{
 
   
+}
+.hr_title{
+  width: 222px;
+  height: 2px;
+  background-color: #00853b59;
+  margin: auto;
+  margin-top: 4px;
 }

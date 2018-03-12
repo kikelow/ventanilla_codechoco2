@@ -245,7 +245,9 @@
   <div class="row"> 
     <div class="row" style="background-color: ">
       <div class="col s12 animatedParent">
-        <h4 style="text-align: center;margin-top: 50px;color: #00853b;font-weight: bold;" class="flow-text animated fadeInDown">Negocios Verdes</h4>
+        <h4 style="text-align: center;margin-top: 50px;color: #00853b;font-weight: bold;" class="flow-text animated fadeInDown">
+          Negocios Verdes<span><hr class="hr_title"></span></h4>
+
         <p style="text-align: center" class="animated fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis fuga molestias asperiores, laudantium pariatur magni doloremque, quos adipisci, saepe eius nam consequuntur minus. Suscipit ducimus eligendi architecto nulla labore atque!</p>
       </div>
     </div>
@@ -258,19 +260,19 @@
       <div class="col s12 m6 l6">
         <div class="row" >
           <div class="col s12 animatedParent">
-            <h5 style="text-align: center;color: #00853b;font-weight: bold;"  class="flow-text animated fadeInDown">info 1</h5>
+            <h5 style="text-align: center;color: #00853b;font-weight: bold;"  class="flow-text animated fadeInDown">info 1<span><hr class="hr_title"></span></h5>
             <p class="animated fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi natus ea, repellat quo tenetur. Culpa laudantium eaque nulla ea quam dolorum modi qui dolorem dignissimos velit voluptates, illum dicta nobis.</p>
           </div>
         </div>
        <div class="row">
           <div class="col s12 animatedParent" >
-            <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text animated fadeInDown" >info 2</h5>
+            <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text animated fadeInDown" >info 2<span><hr class="hr_title"></span></h5>
             <p class="animated fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, nam ad natus minus, inventore illum minima quia commodi iste officiis eos autem voluptates architecto doloribus vero animi provident rerum quisquam?</p>
           </div>
         </div>
         <div class="row">
           <div class="col s12 animatedParent" >
-            <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text animated fadeInDown" >info 3</h5>
+            <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text animated fadeInDown" >info 3<span><hr class="hr_title"></span></h5>
             <p class="animated fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus mollitia atque ipsum ut deleniti architecto assumenda minus molestias quibusdam possimus similique neque delectus praesentium, ipsam tenetur deserunt aperiam, corrupti ipsa!</p>
           </div>
         </div>
@@ -343,7 +345,7 @@
 
 <div class="section" style="background-color: #c7ebd47a;">
   <div class="row">      
-    <h5 class="flow-text" style="text-align: center;color: #00853b;font-weight: bold;">Negocios Evaluados</h5>       
+    <h5 class="flow-text" style="text-align: center;color: #00853b;font-weight: bold;">Negocios Evaluados<span><hr class="hr_title"></span></h5>       
       <div class="row mercados" style="margin:20px">
 
        <div class="col s12 m3 l3">
@@ -455,7 +457,7 @@
 <div class="section">
   <div class="row-container">
     <div class="row">
-       <h5 class="flow-text" style="text-align: center;color: #00853b;font-weight: bold;">Contáctenos</h5> 
+       <h5 class="flow-text" style="text-align: center;color: #00853b;font-weight: bold;">Contáctenos<span><hr class="hr_title"></span></h5> 
       <div class="col s12 m6 l6">
 
         <div class="card-panel white">
@@ -513,7 +515,7 @@
 
 <div class="section" style="background-color:#c7ebd4;">
   <div class="row container">
-  <h5 class="flow-text center" style="margin-bottom: 5px;margin-top: 30px;color: #00853b;font-weight: bold;">Colaboradores</h5>
+  <h5 class="flow-text center" style="margin-bottom: 5px;margin-top: 30px;color: #00853b;font-weight: bold;">Colaboradores<span><hr class="hr_title"></span></h5>
 
 
 
@@ -537,13 +539,13 @@
     <div class="row">
       <div class="col s12 m4 l4">
         <h4 style="text-transform: uppercase;font-weight: bold;color: #00853b;">Facebook</h4>
-        <div class="divider" style="background-color:#00853b;margin-bottom: 10px;"></div>
+        <div class="divider" style="background-color:#00853b59;margin-bottom: 10px;"></div>
 
       </div>
       <div class="col s12 m4 l4" >
         <div style="">
           <h4 style="text-transform: uppercase;font-weight: bold;color: #00853b;">Twitter</h4>
-          <div class="divider" style="background-color:#00853b;margin-bottom: 10px;"></div>
+          <div class="divider" style="background-color:#00853b59;margin-bottom: 10px;"></div>
           <div style="height: 450px;overflow-y: scroll;"> 
             <a class="twitter-timeline" href="https://twitter.com/CodechocoPrensa?ref_src=twsrc%5Etfw">Tweets by CodechocoPrensa</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
           </div>
@@ -552,7 +554,7 @@
       <div class="col s12 m4 l4">
         <div style="height: 450px">
           <h4 style="text-transform: uppercase;font-weight: bold;color: #00853b;">Ubicación</h4>
-          <div class="divider" style="background-color:#00853b;margin-bottom: 10px;"></div>
+          <div class="divider" style="background-color:#00853b59;margin-bottom: 10px;"></div>
           <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1191.7568271640066!2d-76.66211064842435!3d5.688497543935587!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x56e752a545b566e4!2sCodechoc%C3%B3!5e0!3m2!1ses-419!2sco!4v1519148260818" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
         </div>
       </div>
