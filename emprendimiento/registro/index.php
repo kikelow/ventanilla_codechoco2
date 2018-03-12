@@ -686,6 +686,7 @@
               <p>
                 <input type='checkbox' id='t".$i."'  name='actividad_emp[]' value='$rw[id]' />
                 <label for='t".$i."'>$rw[nombre]</label>
+                 <input type='hidden' id='t".$i."'  name='actividad_emp_hidden[]' value='$rw[id]' />
               </p>";
 
               }         

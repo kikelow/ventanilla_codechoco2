@@ -5,7 +5,7 @@ $opcion = $_POST['opcion'];
 $verifica1_si_no = $_POST['verifica1_si_no'];
 $verificacion1_obs = $_POST['verificacion1_obs'];
 $verificacion1_veri = $_POST['verificacion1_veri'];
-var_dump($verifica1_si_no);
+// var_dump($verifica1_si_no);
 if (isset($empresa)) {
 //registrar datos en la tabla Verificacion1
 	for ($i=0; $i <sizeof($opcion); $i++) {
