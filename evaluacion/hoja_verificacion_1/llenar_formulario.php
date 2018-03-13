@@ -38,7 +38,7 @@ if (is_file('conexion.php')){
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica1_si_no_m[]' id='verifica1_si_no_m".$i."'>";
-          $s2="SELECT si_no_noaplica_id,observacion,verificacion from verificacion_1 WHERE opciones_id = '$opciones_id'  ";
+          $s2="SELECT si_no_noaplica_id,observacion,verificacion from verificacion_1 WHERE opciones_id = '$opciones_id' AND empresa_id = '$empresa' ";
                   $r2= mysqli_query($conn,$s2) or die(mysqli_error($conn));
                   if(mysqli_num_rows($r2)>0){
                     while($result2=mysqli_fetch_assoc($r2)){
@@ -105,7 +105,7 @@ if (is_file('conexion.php')){
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica1_si_no_m[]' id='verifica1_si_no_m".$i."'>";
-          $s2="SELECT si_no_noaplica_id,observacion,verificacion from verificacion_1 WHERE opciones_id = '$opciones_id'  ";
+          $s2="SELECT si_no_noaplica_id,observacion,verificacion from verificacion_1 WHERE opciones_id = '$opciones_id'  AND empresa_id = '$empresa'";
                   $r2= mysqli_query($conn,$s2) or die(mysqli_error($conn));
                   if(mysqli_num_rows($r2)>0){
                     while($result2=mysqli_fetch_assoc($r2)){
@@ -166,7 +166,7 @@ if (is_file('conexion.php')){
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica1_si_no_m[]' id='verifica1_si_no_m".$i."'>";
-          $s2="SELECT si_no_noaplica_id,observacion,verificacion from verificacion_1 WHERE opciones_id = '$opciones_id'  ";
+          $s2="SELECT si_no_noaplica_id,observacion,verificacion from verificacion_1 WHERE opciones_id = '$opciones_id' AND empresa_id = '$empresa'  ";
                   $r2= mysqli_query($conn,$s2) or die(mysqli_error($conn));
                   if(mysqli_num_rows($r2)>0){
                     while($result2=mysqli_fetch_assoc($r2)){
@@ -227,7 +227,7 @@ if (is_file('conexion.php')){
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica1_si_no_m[]' id='verifica1_si_no_m".$i."'>";
-          $s2="SELECT si_no_noaplica_id,observacion,verificacion from verificacion_1 WHERE opciones_id = '$opciones_id'  ";
+          $s2="SELECT si_no_noaplica_id,observacion,verificacion from verificacion_1 WHERE opciones_id = '$opciones_id' AND empresa_id = '$empresa' ";
                   $r2= mysqli_query($conn,$s2) or die(mysqli_error($conn));
                   if(mysqli_num_rows($r2)>0){
                     while($result2=mysqli_fetch_assoc($r2)){
@@ -288,7 +288,7 @@ if (is_file('conexion.php')){
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica1_si_no_m[]' id='verifica1_si_no_m".$i."'>";
-          $s2="SELECT si_no_noaplica_id,observacion,verificacion from verificacion_1 WHERE opciones_id = '$opciones_id'  ";
+          $s2="SELECT si_no_noaplica_id,observacion,verificacion from verificacion_1 WHERE opciones_id = '$opciones_id' AND empresa_id = '$empresa' ";
                   $r2= mysqli_query($conn,$s2) or die(mysqli_error($conn));
                   if(mysqli_num_rows($r2)>0){
                     while($result2=mysqli_fetch_assoc($r2)){
@@ -329,7 +329,7 @@ if (is_file('conexion.php')){
 			   
 			   
 
-echo"</ul> <button  class='waves-effect green darken-2 btn right' style='margin-bottom: 8px' id='modificar_verificacion1'><i class='material-icons right'>add</i>Modificar Hoja de verificacion 1</button>
+echo"</ul> <button  class=' green darken-2 btn right' style='margin-bottom: 8px' id='modificar_verificacion1'><i class='material-icons right'>add</i>Modificar Hoja de verificacion 1</button>
 <script type='text/javascript' src='js/accion_verificacion1.js'></script>
 
 

@@ -97,7 +97,7 @@
 
             <div class="input-field col s12 m4 l4">
                   <input id="correo" name="correo" type="email" class="validate">
-                  <label for="correo">Correo *</label>
+                  <label for="correo">Correo</label>
             </div>
 
             </div>
@@ -105,13 +105,13 @@
             <div class="row">
               
             <div class="input-field col s12 m4 l4">
-                  <input id="fijo" name="fijo" type="text" class="validate">
+                  <input id="fijo" name="fijo" type="number" class="validate">
                   <label for="fijo">Teléfono fijo</label>
             </div>
 
 
             <div class="input-field col s12 m4 l4">
-                  <input id="celular" name="celular" type="text" class="validate">
+                  <input id="celular" name="celular" type="number" class="validate">
                   <label for="celular">Celular</label>
             </div>
             <div class="input-field col s12 m4 l4">
@@ -123,7 +123,7 @@
 
             <div class="row">
              
-            <div class="input-field col s12 m2 l2" >
+            <div class="input-field col s12 m2 l2" id="region_valida">
                 <select name="region" id="region">
                   <option disabled selected>Seleccione...</option>
                   <?php 
@@ -140,14 +140,14 @@
                 <label>Region</label>
             </div>
 
-            <div class="input-field col s12 m2 l2" id="s">
+            <div class="input-field col s12 m2 l2" id="depto_valida">
                 <select id="departamento" name="departamento" class="dep">
                   
                 </select>
                 <label>Departamento</label>
             </div>
 
-            <div class="input-field col s12 m3 l3">
+            <div class="input-field col s12 m3 l3" id="municipio_valida">
                 <select id="municipio" name="municipio">
                 </select>
                 <label>Municipio</label>
@@ -168,7 +168,7 @@
             <div class="row">
 
             <div class="input-field col s12 m3 l3">
-                  <input id="autoridad_ambiental" name="autoridad_ambiental" type="text" class="validate" value="Codechocó">
+                  <input id="autoridad_ambiental" name="autoridad_ambiental" type="text" class="validate" value="Codechocó" readonly>
                   <label for="autoridad-ambiental">Autoridad ambiental</label>
             </div>
 
@@ -194,7 +194,6 @@
             <div class="input-field col s12 m3 l3">
 
                  <select id="asosiacion" name="asosiacion">
-                  <option disabled selected>Seleccione...</option>
                   <?php 
                     $s="select id,nombre from si_no order by id desc";
                     $r= mysqli_query($conn,$s) or die("Error");
@@ -210,7 +209,7 @@
             </div>
               
             <div class="input-field col s12 m3 l3">
-                  <input id="num_asociados" name="num_asociados" type="text" class="validate">
+                  <input id="num_asociados" name="num_asociados" type="number" class="validate">
                   <label for="num_asociados">Numero de asociados</label>
             </div>
 
@@ -222,7 +221,6 @@
             <div class="input-field col s12 m3 l3">
 
                   <select id="pot" name="pot">
-                    <option disabled selected>Seleccione...</option>
                   <?php 
                     $s="select id,nombre from si_no order by id desc";
                     $r= mysqli_query($conn,$s) or die("Error");
@@ -243,7 +241,7 @@
               
             <div class="input-field col s12 m6 l6">      
                   <select id="famiempresa" name="famiempresa">
-                    <option disabled selected>Seleccione...</option>
+                    <!-- <option disabled selected>Seleccione...</option> -->
                     <?php 
                     $s="select id,nombre from si_no order by id desc";
                     $r= mysqli_query($conn,$s) or die("Error");
@@ -259,7 +257,7 @@
 
             <div class="input-field col s12 m6 l6">      
                   <select id="tamaño_empresa" name="tamaño_empresa">
-                    <option disabled selected>Seleccione...</option>
+                    <!-- <option disabled selected>Seleccione...</option> -->
                     <?php 
                     $s="select id,nombre from tamaño_empresa order by id";
                     $r= mysqli_query($conn,$s) or die("Error");
@@ -295,7 +293,7 @@
       <div class="row">
         <div class="input-field col s12 m6 l6" style="margin-top: 51px">
           <select id="impacto_amb" name="impacto_amb" >
-            <option disabled selected>Seleccione...</option>
+            <!-- <option disabled selected>Seleccione...</option> -->
                   <?php 
                     $s="select id,nombre from si_no order by id desc";
                     $r= mysqli_query($conn,$s) or die("Error");
@@ -318,7 +316,7 @@
       <div class="row">
         <div class="input-field col s12 m6 l6" style="margin-top: 51px">
           <select id="impacto_soc" name="impacto_soc">
-            <option disabled selected>Seleccione...</option>
+            <!-- <option disabled selected>Seleccione...</option> -->
                   <?php 
                     $s="select id,nombre from si_no order by id desc";
                     $r= mysqli_query($conn,$s) or die("Error");
@@ -350,7 +348,7 @@
 
         <div class="row" style="text-align: center;background-color: #bdbdbd;margin-bottom: 0px;">3. Categoria de Negocios Verdes</div>
         <div class="row">
-        <div class="input-field col s12 m4 l4" style="margin-top: 30px">
+        <div class="input-field col s12 m4 l4" style="margin-top: 30px" id="categoria_valida">
           <select id="categoria" name="categoria">
             <option disabled selected>Seleccione...</option>
                   <?php 
@@ -366,14 +364,14 @@
                   <label ">Categoria</label>
                 </div>  
 
-          <div class="input-field col s12 m4 l4" style="margin-top: 30px">
+          <div class="input-field col s12 m4 l4" style="margin-top: 30px" id="sector_valida">
           <select id="sector" name="sector">
                   
                   </select>
                   <label ">Sector</label>
                 </div>
 
-          <div class="input-field col s12 m4 l4" style="margin-top: 30px">
+          <div class="input-field col s12 m4 l4" style="margin-top: 30px" id="subsector_valida">
           <select id="subsector" name="subsector" >
                   
                   </select>
@@ -399,15 +397,15 @@
             <div style="">
               
               <div class="input-field col s12 m4 l4">
-                <input id="masculino_1" name="masculino_1" type="text" class="validate">
+                <input id="masculino_1" name="masculino_1" type="number" class="validate">
                 <label for="masculino_1">Masculino</label>
               </div>
               <div class="input-field col s12 m4 l4">
-                <input id="femenino_1" name="femenino_1" type="text" class="validate">
+                <input id="femenino_1" name="femenino_1" type="number" class="validate">
                 <label for="femenino_1">Femenino</label>
               </div>
               <div class="input-field col s12 m3 l3">
-                <input disabled value="0" id="total_1" type="text" class="validate">
+                <input value="0" id="total_1" type="number" class="validate" readonly>
                 <label for="total_1">Total</label>
               </div>
             </div>
@@ -419,15 +417,15 @@
             <div style="">
               
               <div class="input-field col s12 m4 l3">
-                <input id="masculino_2" name="masculino_2" type="text" class="validate">
+                <input id="masculino_2" name="masculino_2" type="number" class="validate">
                 <label for="masculino_2">Masculino</label>
               </div>
               <div class="input-field col s12 m4 l3">
-                <input id="femenino_2" name="femenino_2" type="text" class="validate">
+                <input id="femenino_2" name="femenino_2" type="number" class="validate">
                 <label for="femenino_2">Femenino</label>
               </div>
               <div class="input-field col s12 m4 l3">
-                <input disabled value="0" id="total_2" type="text" class="validate">
+                <input disabled value="0" id="total_2" type="number" class="validate">
                 <label for="total_2">Total</label>
                 
               </div>
@@ -442,15 +440,15 @@
             <div class="divider"></div>
             <div style="">
               <div class="input-field col s12 m4 l4">
-                <input id="masculino_3" name="masculino_3" type="text" class="validate">
+                <input id="masculino_3" name="masculino_3" type="number" class="validate">
                 <label for="masculino_3">Masculino</label>
               </div>
               <div class="input-field col s12 m4 l4">
-                <input id="femenino_3" name="femenino_3" type="text" class="validate">
+                <input id="femenino_3" name="femenino_3" type="number" class="validate">
                 <label for="femenino_3">Femenino</label>
               </div>
               <div class="input-field col s12 m4 l4">
-                <input disabled value="0" id="total_3" type="text" class="validate">
+                <input disabled value="0" id="total_3" type="number" class="validate">
                 <label for="total_3">Total</label>
               </div>
             </div>
@@ -463,15 +461,15 @@
             <div class="divider"></div>
             <div style="">
               <div class="input-field col s12 m4 l4">
-                <input id="entre_18_30" name="entre_18_30" type="text" class="validate">
+                <input id="entre_18_30" name="entre_18_30" type="number" class="validate">
                 <label for="entre_18_30">Entre 18-30</label>
               </div>
               <div class="input-field col s12 m4 l4">
-                <input id="entre_30_50" name="entre_30_50" type="text" class="validate">
+                <input id="entre_30_50" name="entre_30_50" type="number" class="validate">
                 <label for="entre_30_50">Entre 30-50</label>
               </div>
               <div class="input-field col s12 m4 l4">
-                <input id="mayor_50" name="mayor_50" type="text" class="validate">
+                <input id="mayor_50" name="mayor_50" type="number" class="validate">
                 <label for="mayor_50">Entre Mayores 50</label>
               </div>
             </div>
@@ -487,15 +485,15 @@
             <div class="divider"></div>
             <div style="">
               <div class="input-field col s12 m2 l2">
-                <input id="indefinido" name="indefinido" type="text" class="validate">
+                <input id="indefinido" name="indefinido" type="number" class="validate">
                 <label for="indefinido">Indefinido</label>
               </div>
               <div class="input-field col s12 m3 l3">
-                <input id="definido" name="definido" type="text" class="validate">
+                <input id="definido" name="definido" type="number" class="validate">
                 <label for="definido">Ter. definido</label>
               </div>
               <div class="input-field col s12 m7 l7">
-                <input id="por_dias" name="por_dias" type="text" class="validate">
+                <input id="por_dias" name="por_dias" type="number" class="validate">
                 <label for="por_dias">Por días (Jornales) promedio en el año</label>
               </div>
             </div>
@@ -506,23 +504,23 @@
             <div class="divider"></div>
             <div style="">
               <div class="input-field col s12 m2 l2">
-                <input id="primaria" name="primaria" type="text" class="validate">
+                <input id="primaria" name="primaria" type="number" class="validate">
                 <label for="primaria">Primaria</label>
               </div>
               <div class="input-field col s12 m2 l2">
-                <input id="bachillerato" name="bachillerato" type="text" class="validate">
+                <input id="bachillerato" name="bachillerato" type="number" class="validate">
                 <label for="bachillerato">Bachillerato</label>
               </div>
               <div class="input-field col s12 m2 l2 ">
-                <input id="tecnico" name="tecnico" type="text" class="validate">
+                <input id="tecnico" name="tecnico" type="number" class="validate">
                 <label for="tecnico">Técnicio</label>
               </div>
               <div class="input-field col s12 m3 l3">
-                <input id="universitario" name="universitario" type="text" class="validate">
+                <input id="universitario" name="universitario" type="number" class="validate">
                 <label for="universitario">Universitario</label>
               </div>
               <div class="input-field col s12 m3 l3">
-                <input id="otro" name="otro" type="text" class="validate">
+                <input id="otro" name="otro" type="number" class="validate">
                 <label for="otro">Otro</label>
               </div>
             </div>
@@ -551,7 +549,7 @@
             </div>
 
             <div class="input-field col s12 m6 l6">
-                 <input id="indigena" name="indigena" type="text" class="validate">
+                 <input id="indigena" name="indigena" type="number" class="validate">
                 <label for="indigena">Nº de empleados</label>
             </div> 
           
@@ -570,7 +568,7 @@
                 <label>Personas en situacion de discapacidad</label>
             </div>
             <div class="input-field col s12 m6 l6">
-                 <input id="discapacitado" name="discapacitado" type="text" class="validate">
+                 <input id="discapacitado" name="discapacitado" type="number" class="validate">
                 <label for="discapacitado">Nº de empleados</label>
             </div>  
 
@@ -590,7 +588,7 @@
                 <label>Adultos mayores</label>
             </div>
             <div class="input-field col s12 m6 l6">
-                 <input id="adulto" name="adulto" type="text" class="validate">
+                 <input id="adulto" name="adulto" type="number" class="validate">
                 <label for="adulto">Nº de empleados</label>
             </div>      
         
@@ -610,7 +608,7 @@
                 <label>Madres cabeza de familia</label>
             </div>
             <div class="input-field col s12 m6 l6">
-                 <input id="madre_familia" name="madre_familia" type="text" class="validate">
+                 <input id="madre_familia" name="madre_familia" type="number" class="validate">
                 <label for="madre_familia">Nº de empleados</label>
             </div>      
           
@@ -630,7 +628,7 @@
                 <label>Reinsertados</label>
             </div>
             <div class="input-field col s12 m6 l6">
-                 <input id="reinsertados" name="reinsertados" type="text" class="validate">
+                 <input id="reinsertados" name="reinsertados" type="number" class="validate">
                 <label for="reinsertados">Nº de empleados</label>
             </div>             
           
@@ -650,7 +648,7 @@
                 <label>Desplazados</label>
             </div>
             <div class="input-field col s12 m6 l6">
-                 <input id="desplazado" name="desplazado" type="text" class="validate">
+                 <input id="desplazado" name="desplazado" type="number" class="validate">
                 <label for="desplazado">Nº de empleados</label>
             </div>  
 
@@ -669,7 +667,7 @@
                 <label>Otros</label>
             </div>
             <div class="input-field col s12 m6 l6">
-                 <input id="demografia_otro" name="demografia_otro" type="text" class="validate">
+                 <input id="demografia_otro" name="demografia_otro" type="number" class="validate">
                 <label for="demografia_otro">Nº de empleados</label>
             </div>            
         </div>
@@ -884,7 +882,7 @@
 </div>
 </li>
 </ul>
- <button type="submit" class="waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="registrar_emp"><i class="material-icons right">add</i>Registrar emprendimiento</button>
+ <button type="button" class="waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="registrar_emp"><i class="material-icons right">add</i>Registrar emprendimiento</button>
 </form>
 </div>
 </div>
@@ -932,6 +930,9 @@
       </div>        
 </div>
 
+<div id="preload" class="">
+      <div class="indeterminate"></div>
+  </div>
 <form id="form_modificar" >
     <div id="cargar_info"></div>
 </form>
@@ -947,6 +948,6 @@
     </section>  
   </div>
 </div>
-<script type="text/javascript" src="js/select2.js"></script>
-<script type="text/javascript" src="js/accion_registro.js"></script>
+<!-- <script type="text/javascript" src="js/select2.js"></script> -->
+<!-- <script type="text/javascript" src="js/accion_registro.js"></script> -->
 

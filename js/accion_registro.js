@@ -1,7 +1,4 @@
 
-
-
-
 var total_3 ="";
 
 // verificar el total socios de la empresa
@@ -62,7 +59,10 @@ $('#region').change(function(event) {
         $('#departamento').html('<option disabled selected>Seleccione...</option>')  
         $('#departamento').append(respuesta)
 		$('#departamento').material_select();
+
 	})
+		$('#municipio').html('<option disabled selected>Seleccione...</option>')
+		$('#municipio').material_select();
 });
 
 //llenar combo municipio
@@ -93,6 +93,9 @@ $('#categoria').change(function(event) {
         $('#sector').append(respuesta)
 		$('#sector').material_select();
 	})
+
+	$('#subsector').html('<option disabled selected>Seleccione...</option>')
+	$('#subsector').material_select();
 });
 //llenar combo subsector
 $('#sector').change(function(event) {
@@ -111,8 +114,9 @@ $('#sector').change(function(event) {
 
 
 //acciones para validar y luego registrar
-$("#form_registro").submit(function(event) {
+$("#registrar_emp").click(function(event) {
 	event.preventDefault(); 
+
 //total de los valores de edad de los empleados
 	 var entre_18_30 = $('#entre_18_30').val()
 	 var entre_30_50 = $('#entre_30_50').val()
@@ -171,45 +175,83 @@ if (! $('#t_persona').val()) {
 	$('.collapsible').collapsible('open', 0);
 	 // $('#person').attr('required');
 	$('#person').focus().addClass("red-text");
-
-	alert("Debe seleccioar el tipo de persona");
+	// alert("Debe seleccioar el tipo de persona");
+	$('html, body').animate({scrollTop: $( $( '#person' ) ).offset().top}, 1000);
 }
-// else if ( ! $('#t_identificacion').val()) {
-// 	$('.collapsible').collapsible('close', 0);
-// 	$('.collapsible').collapsible('open', 0);
-//	$('#person').focus().removeClass("red-text")
-// 	$('#identifica').addClass("red-text")
-// }
-// else if ($('#identificacion').val()=="") {
-// 	$('.collapsible').collapsible('close', 0);
-// 	$('.collapsible').collapsible('open', 0);
-// 	$('#identifica').removeClass("red-text")
-// 	$('#identificacion').focus().addClass("invalid")
-// }else if ($('#razon_social').val()=="") {
-// 	 $('.collapsible').collapsible('close', 0);
-// 	 $('.collapsible').collapsible('open', 0);
-// 	 $('#razon_social').focus().addClass("invalid")
-// }
-// else if ($('#representante').val()=="") {
-// 	 $('.collapsible').collapsible('close', 0);
-// 	 $('.collapsible').collapsible('open', 0);
-// 	 $('#representante').focus().addClass("invalid")
-// }
-// else if ($('#documento').val()=="") {
-// 	 $('.collapsible').collapsible('close', 0);
-// 	 $('.collapsible').collapsible('open', 0);
-// 	 $('#documento').focus().addClass("invalid")
-// }
-// else if ($('#correo').val()=="") {
-// 	 $('.collapsible').collapsible('close', 0);
-// 	 $('.collapsible').collapsible('open', 0);
-// 	 $('#correo').focus().addClass("invalid")
-// }
-// else if ($('#total_1').val()==0) {
-// 	 $('.collapsible').collapsible('close', 3);
-// 	 $('.collapsible').collapsible('open', 3);
-// 	 $('#total_1').focus().addClass("invalid")
-// }
+else if ( ! $('#t_identificacion').val()) {
+	$('.collapsible').collapsible('close', 0);
+	$('.collapsible').collapsible('open', 0);
+	$('#person').focus().removeClass("red-text")
+	$('#identifica').addClass("red-text")
+	$('html, body').animate({scrollTop: $( $( '#identifica' ) ).offset().top}, 1000);
+}
+else if ($('#identificacion').val()=="") {
+	$('.collapsible').collapsible('close', 0);
+	$('.collapsible').collapsible('open', 0);
+	$('#identifica').removeClass("red-text")
+	$('#identificacion').focus().addClass("invalid")
+}else if ($('#razon_social').val()=="") {
+	 $('.collapsible').collapsible('close', 0);
+	 $('.collapsible').collapsible('open', 0);
+	 $('#razon_social').focus().addClass("invalid")
+}
+else if ($('#representante').val()=="") {
+	 $('.collapsible').collapsible('close', 0);
+	 $('.collapsible').collapsible('open', 0);
+	 $('#representante').focus().addClass("invalid")
+}
+else if ($('#documento').val()=="") {
+	 $('.collapsible').collapsible('close', 0);
+	 $('.collapsible').collapsible('open', 0);
+	 $('#documento').focus().addClass("invalid")
+}
+else if ( ! $('#region').val()) {
+	$('.collapsible').collapsible('close', 0);
+	$('.collapsible').collapsible('open', 0);
+	$('#region_valida').addClass("red-text")
+	$('html, body').animate({scrollTop: $( $( '#region_valida')).offset().top}, 1000);
+}
+else if ( ! $('#departamento').val()) {
+	$('.collapsible').collapsible('close', 0);
+	$('.collapsible').collapsible('open', 0);
+	$('#region_valida').focus().removeClass("red-text")
+	$('#depto_valida').addClass("red-text")
+	$('html, body').animate({scrollTop: $( $( '#depto_valida')).offset().top}, 1000);
+}
+else if ( ! $('#municipio').val()) {
+	$('.collapsible').collapsible('close', 0);
+	$('.collapsible').collapsible('open', 0);
+	$('#depto_valida').focus().removeClass("red-text")
+	$('#municipio_valida').addClass("red-text")
+	$('html, body').animate({scrollTop: $( $( '#municipio_valida')).offset().top}, 1000);
+}
+else if ( ! $('#categoria').val()) {
+	$('.collapsible').collapsible('close',2);
+	$('.collapsible').collapsible('open', 2);
+	$('#municipio_valida').removeClass("red-text")
+	$('#categoria_valida').addClass("red-text")
+	$('html, body').animate({scrollTop: $( $( '#categoria_valida')).offset().top}, 1000);
+}
+else if ( ! $('#sector').val()) {
+	$('.collapsible').collapsible('close',2);
+	$('.collapsible').collapsible('open',2);
+	$('#categoria_valida').removeClass("red-text")
+	$('#sector_valida').addClass("red-text")
+	$('html, body').animate({scrollTop: $( $( '#sector_valida')).offset().top}, 1000);
+}
+else if ( ! $('#subsector').val()) {
+	$('.collapsible').collapsible('close',2);
+	$('.collapsible').collapsible('open', 2);
+	$('#sector_valida').removeClass("red-text")
+	$('#subsector_valida').addClass("red-text")
+	$('html, body').animate({scrollTop: $( $('#subsector_valida')).offset().top}, 1000);
+}
+else if ($('#total_1').val()==0) {
+	$('#subsector_valida').removeClass("red-text")
+	 $('.collapsible').collapsible('close', 3);
+	 $('.collapsible').collapsible('open', 3);
+	 $('#total_1').focus().addClass("invalid")
+}
 else if (Number($('#total_2').val())  > Number($('#total_1').val())) {
 	 $('.collapsible').collapsible('close', 3);
 	 $('.collapsible').collapsible('open', 3);
@@ -244,15 +286,21 @@ else if (Number(total_educativo) != Number(total_3)) {
 	 document.getElementById('mensaje_educativo').scrollIntoView();
 }
 else {
-
-alert('todo bien')
 	$.ajax({
 		url: 'emprendimiento/registro/insertar.php',
 		type: 'POST',
 		data: $("#form_registro").serialize(),
 	})
 	.done(function(respuesta) {
-		console.log(respuesta)
+		$('#registrar_emp').attr('disabled', 'disabled');
+		swal ({
+  				icon: "success",
+  				 text: "Datos INSERTADOS exitosamente!",
+  				 button: {
+    				visible: false
+  				},
+			});
+		setTimeout("document.location=document.location",1500);
 		
 	})
 	
@@ -260,6 +308,8 @@ alert('todo bien')
 
 });
 ////////////////////////////////////////------modificar------ ////////////////////////////////////////////////////////////////////////
+
+//para cargar el formulario
 $('#empresa').select2()
 // $('#form_modificar').hide()
 $('#empresa').change(function(event) { 
@@ -270,15 +320,21 @@ $.ajax({
   url: 'evaluacion/formato_inscripcion/llenar_formulario.php',
    type: 'POST',
    data: {empresa_id: empresa_id},
- })
- .done(function(respuesta) {
+ //   beforeSend: function() {
+ //   	// alert('message?: DOMString')
+ //       $('#preload').addClass('progress')
+ //    },success: function(respuesta) {
+ //       $('#cargar_info').html(respuesta)
+ // //  // alert(respuesta)
+ //    }
+ }).done(function(respuesta) {
   $('#cargar_info').html(respuesta)
   // alert(respuesta)
  })
 
 });
 
-//comobos de region departamento y municipio
+//comobox de region departamento y municipio
 $('#region_m').change(function(event) { 
 var region_m = $('#region_m').val()
 
@@ -343,17 +399,213 @@ $.ajax({
  })
 });
 
-// cuando de click en el botton modificar
+
+
+
+var total_3_m ="";
+// verificar el total socios de la empresa
+$('#femenino_1_m, #masculino_1_m').keyup(function(event) {
+	var masculino_1_m = $('#masculino_1_m').val()
+	var femenino_1_m = $('#femenino_1_m').val()
+	
+	if (masculino_1_m == "") {
+		masculino_1_m = 0
+	}else if (femenino_1_m == "") {
+		femenino_1_m = 0
+	}
+	var resul_1 = Number(masculino_1_m) + Number(femenino_1_m)
+	var total_1 = isNaN(resul_1)  ? 0 : resul_1;
+	$('#total_1_m').val(total_1)
+});
+// verificar el total socios vinculados con la empresa
+$('#femenino_2_m, #masculino_2_m').keyup(function(event) {
+	var masculino_2_m = $('#masculino_2_m').val()
+	var femenino_2_m = $('#femenino_2_m').val()
+	
+	if (masculino_2_m == "") {
+		masculino_2_m = 0
+	}else if (femenino_2_m == "") {
+		femenino_2_m = 0
+	}
+	var resul_2 = Number(masculino_2_m) + Number(femenino_2_m)
+	var total_2 = isNaN(resul_2)  ? 0 : resul_2;
+	$('#total_2_m').val(total_2)
+});
+// verificar el total  de empleados 
+$('#femenino_3_m, #masculino_3_m').keyup(function(event) {
+	var masculino_3_m = $('#masculino_3_m').val()
+	var femenino_3_m = $('#femenino_3_m').val()
+	
+	if (masculino_3_m == "") {
+		masculino_3_m = 0
+	}else if (femenino_3_m == "") {
+		femenino_3_m = 0
+	}
+	var resul_3 = Number(masculino_3_m) + Number(femenino_3_m)
+	total_3_m = isNaN(resul_3)  ? 0 : resul_3;
+	$('#total_3_m').val(total_3_m)
+});
+
+
+//_____________________ cuando de click en el botton modificar_____________________________________________
 $('#modificar_emp').click(function(event) {
+	 var entre_18_30 = $('#entre_18_30_m').val()
+	 var entre_30_50 = $('#entre_30_50_m').val()
+	 var mayor_50 = $('#mayor_50_m').val()
+	 if (entre_18_30 == "") {
+	 	entre_18_30 = 0
+	 }
+	 else if (entre_30_50 == "") {
+	 	entre_30_50 = 0
+	 }else if (mayor_50 == "") {
+	 	mayor_50 = 0
+	 }
+	var r = Number(entre_18_30) + Number(entre_30_50) + Number(mayor_50)
+	var total_edad = isNaN(r)  ? 0 : r;
+
+//total de los valores de tipo de vinculacion laboral
+var indefinido = $('#indefinido_m').val()
+var definido = $('#definido_m').val()
+var por_dias = $('#por_dias_m').val()
+if (indefinido == "") {
+	indefinido = 0
+}
+else if (definido == "") {
+	definido = 0
+}
+else if (por_dias == "") {
+	por_dias = 0
+}
+var r = Number(indefinido) + Number(definido) + Number(por_dias)
+var total_vinculacion = isNaN(r)  ? 0 : r;
+//total de valores de nivel educativo
+var primaria = $('#primaria_m').val()
+var bachillerato = $('#bachillerato_m').val()
+var tecnico = $('#tecnico_m').val()
+var universitario = $('#universitario_m').val()
+var otro = $('#otro_m').val()
+if (primaria == "") {
+	primaria = 0
+}else if (bachillerato == "") {
+	bachillerato = 0
+}else if (tecnico == "") {
+	tecnico = 0
+}else if (universitario == "") {
+	universitario = 0
+}else if (otro == "") {
+	otro = 0
+}
+var r = Number(primaria)+Number(bachillerato)+Number(tecnico)+Number(universitario)+Number(otro)
+var total_educativo = isNaN(r)  ? 0 : r;
+
+//validaciones
+
 	event.preventDefault();
-	if (! $('#empresa').val()) {
+ if ($('#identificacion_m').val()=="") {
 	$('.collapsible').collapsible('close', 0);
 	$('.collapsible').collapsible('open', 0);
-	 // $('#person').attr('required');
-	$('#person').focus().addClass("red-text");
-
-	alert("Debe seleccioar una empresa");
-}else {
+	$('#identificacion_m').focus().addClass("invalid")
+}else if ($('#razon_social_m').val()=="") {
+	 $('.collapsible').collapsible('close', 0);
+	 $('.collapsible').collapsible('open', 0);
+	 $('#razon_social_m').focus().addClass("invalid")
+}
+else if ($('#representante_m').val()=="") {
+	 $('.collapsible').collapsible('close', 0);
+	 $('.collapsible').collapsible('open', 0);
+	 $('#representante_m').focus().addClass("invalid")
+}
+else if ($('#documento_m').val()=="") {
+	 $('.collapsible').collapsible('close', 0);
+	 $('.collapsible').collapsible('open', 0);
+	 $('#documento_m').focus().addClass("invalid")
+}
+else if ( ! $('#region_m').val()) {
+	$('.collapsible').collapsible('close', 0);
+	$('.collapsible').collapsible('open', 0);
+	$('#region_valida2').addClass("red-text")
+	$('html, body').animate({scrollTop: $( $( '#region_valida2')).offset().top}, 1000);
+}
+else if ( ! $('#departamento_m').val()) {
+	$('.collapsible').collapsible('close', 0);
+	$('.collapsible').collapsible('open', 0);
+	$('#region_valida2').focus().removeClass("red-text")
+	$('#depto_valida2').addClass("red-text")
+	$('html, body').animate({scrollTop: $( $( '#depto_valida2')).offset().top}, 1000);
+}
+else if ( ! $('#municipio_m').val()) {
+	$('.collapsible').collapsible('close', 0);
+	$('.collapsible').collapsible('open', 0);
+	$('#depto_valida2').focus().removeClass("red-text")
+	$('#municipio_valida2').addClass("red-text")
+	$('html, body').animate({scrollTop: $( $( '#municipio_valida2')).offset().top}, 1000);
+}
+else if ( ! $('#categoria_m').val()) {
+	$('.collapsible').collapsible('close',2);
+	$('.collapsible').collapsible('open', 2);
+	$('#municipio_valida2').removeClass("red-text")
+	$('#categoria_valida2').addClass("red-text")
+	$('html, body').animate({scrollTop: $( $( '#categoria_valida2')).offset().top}, 1000);
+}
+else if ( ! $('#sector_m').val()) {
+	$('.collapsible').collapsible('close',2);
+	$('.collapsible').collapsible('open',2);
+	// $('#categoria_valida2').removeClass("red-text")
+	$('#sector_valida2').addClass("red-text")
+	$('html, body').animate({scrollTop: $( $( '#sector_valida2')).offset().top}, 1000);
+}
+else if ( ! $('#subsector_m').val()) {
+	$('.collapsible').collapsible('close',2);
+	$('.collapsible').collapsible('open', 2);
+	$('#sector_valida2').removeClass("red-text")
+	$('#subsector_valida2').addClass("red-text")
+	$('html, body').animate({scrollTop: $( $('#subsector_valida2')).offset().top}, 1000);
+}
+else if ($('#total_1_m').val()==0) {
+	$('#sector_valida2').removeClass("red-text")
+	 $('.collapsible').collapsible('close', 3);
+	 $('.collapsible').collapsible('open', 3);
+	 $('#total_1_m').focus().addClass("invalid")
+}
+else if (Number($('#total_2_m').val())  > Number($('#total_1_m').val())) {
+	 $('.collapsible').collapsible('close', 3);
+	 $('.collapsible').collapsible('open', 3);
+	 $('#total_1_m').focus().removeClass("invalid")
+	 $('#total_2_m').focus().addClass("invalid")
+	 $('#mensaje1_m').html('<span class="red-text">El total no puede ser mayor al de la pregunta 1</span>')
+	 $('html, body').animate({scrollTop: $( $( '#mensaje1_m')).offset().top}, 1000);
+}
+else if ( (Number($('#femenino_2_m').val())  > Number($('#femenino_1_m').val())) || (Number($('#masculino_2_m').val())  > Number($('#masculino_1_m').val())) ) {
+	 $('.collapsible').collapsible('close', 3);
+	 $('.collapsible').collapsible('open', 3);
+	 $('#total_2_m').focus().removeClass("invalid")
+	 $('#mensaje1_m').focus()
+	 $('#mensaje1_m').html('<span class="red-text">El valor del sexo no puede ser mayor al de la pregunta 1</span>')
+	 $('html, body').animate({scrollTop: $( $( '#mensaje1_m')).offset().top}, 1000);
+}
+else if ( Number(total_edad) != Number($('#total_3_m').val())) {
+	 $('.collapsible').collapsible('close', 3);
+	 $('.collapsible').collapsible('open', 3);
+	 $('#mensaje1_m').html(" ")
+	 $('#mensaje_edad2').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
+ 	 $('html, body').animate({scrollTop: $( $( '#mensaje_edad2')).offset().top}, 1000);
+}
+else if ( Number(total_vinculacion) != Number($('#total_3_m').val())) {
+	 $('.collapsible').collapsible('close', 3);
+	 $('.collapsible').collapsible('open', 3);
+	 $('#mensaje_edad2').html(" ")
+	 $('#mensaje_vinculacion2').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
+	  $('html, body').animate({scrollTop: $( $( '#mensaje_vinculacion2')).offset().top}, 1000);
+}
+else if (Number(total_educativo) != Number($('#total_3_m').val())) {
+	 $('.collapsible').collapsible('close', 3);
+	 $('.collapsible').collapsible('open', 3);
+	 $('#mensaje_vinculacion2').html(" ")
+	 $('#mensaje_educativo2').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
+	 $('html, body').animate({scrollTop: $( $( '#mensaje_educativo2')).offset().top}, 1000);	 
+}
+else {
+	$('#mensaje_educativo2').html(" ")
 	var empresa = $('#empresa').val()
 	$.ajax({
 		url: 'evaluacion/formato_inscripcion/modificar.php?empresa='+empresa,
@@ -361,7 +613,14 @@ $('#modificar_emp').click(function(event) {
 		data: $('#form_modificar').serialize(),
 	})
 	.done(function(respuesta) {
-		// alert(respuesta);
+		swal ({
+  				icon: "success",
+  				 text: "Datos MODIFICADOS exitosamente!",
+  				 button: {
+    				visible: false
+  				},
+			});
+		setTimeout("document.location=document.location",1500);
 	})
 }
 	

@@ -4,8 +4,12 @@ $('#empresa').select2();
 $('#empresa_m').select2();
 });
 
+/// Insertar
 $('#btn_verificacion1').click(function(event) {
 	 event.preventDefault();
+if (! $('#empresa').val()) {
+	Materialize.toast('Debe seleccionar un emprendimiento de la lista desplegable!', 2000)
+}else {
 	 var empresa = $('#empresa').val()
 	 $.ajax({
  		url: 'evaluacion/hoja_verificacion_1/insertar.php?empresa='+empresa,
@@ -13,11 +17,21 @@ $('#btn_verificacion1').click(function(event) {
 	 	data: $('#form_verificacion1').serialize(),
 	 })
 	 .done(function(respuesta) {
-	 	console.log(respuesta);
+	 	$('#btn_verificacion1').attr('disabled', 'disabled');
+	 	swal ({
+  				icon: "success",
+  				 text: "Datos INSERTADOS exitosamente!",
+  				 button: {
+    				visible: false
+  				},
+			});
+		setTimeout("document.location=document.location",1500);
 	 })
+}
 	 
 });
 
+//cargar formulario
 $('#empresa_m').change(function(event) {
 	event.preventDefault();
 	var empresa_m = $('#empresa_m').val()
@@ -34,6 +48,8 @@ $('#empresa_m').change(function(event) {
 	
 });
 
+
+///modificar
 $('#modificar_verificacion1').click(function(event) {
 	event.preventDefault();
 	var empresa_m = $('#empresa_m').val()
@@ -43,7 +59,15 @@ $('#modificar_verificacion1').click(function(event) {
 		data: $('#form_modificar_verificacion1').serialize(),
 	})
 	.done(function(respuesta) {
-		alert(respuesta);
+		$('#modificar_verificacion1').attr('disabled', 'disabled');
+		swal ({
+  				icon: "success",
+  				 text: "Datos MODIFICADOS exitosamente!",
+  				 button: {
+    				visible: false
+  				},
+			});
+		setTimeout("document.location=document.location",1500);
 	})
 	
 });

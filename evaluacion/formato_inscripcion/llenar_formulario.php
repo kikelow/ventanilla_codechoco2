@@ -478,7 +478,7 @@ $otro_m = "";
 
             <div class='input-field col s12 m4 l4'>
                   <input id='correo_m' name='correo_m' type='email' class='validate' value='$correo'>
-                  <label for='correo_m' class='activar'>Correo *</label>
+                  <label for='correo_m' class='activar'>Correo</label>
             </div>
 
             </div>
@@ -486,13 +486,13 @@ $otro_m = "";
             <div class='row'>
               
             <div class='input-field col s12 m4 l4'>
-                  <input id='fijo_m' name='fijo_m' type='text' class='validate' value='$fijo'>
+                  <input id='fijo_m' name='fijo_m' type='number' class='validate' value='$fijo'>
                   <label for='fijo_m' class='activar'>Teléfono fijo</label>
             </div>
 
 
             <div class='input-field col s12 m4 l4'>
-                  <input id='celular_m' name='celular_m' type='text' class='validate' value='$celular'>
+                  <input id='celular_m' name='celular_m' type='number' class='validate' value='$celular'>
                   <label for='celular_m' class='activar'>Celular</label>
             </div>
             <div class='input-field col s12 m4 l4'>
@@ -505,7 +505,7 @@ $otro_m = "";
 
             <div class='row'>
 
-            <div class='input-field col s12 m2 l2'>
+            <div class='input-field col s12 m2 l2' id='region_valida2'>
                 <select name='region_m' id='region_m' class='validate'>";
                     $s="select id,nombre from region ";
             $r= mysqli_query($conn,$s) or die('Error');
@@ -525,7 +525,7 @@ $otro_m = "";
                 </select>
                 <label >Region</label>      
             </div>
-            <div class='input-field col s12 m2 l2' >
+            <div class='input-field col s12 m2 l2' id='depto_valida2' >
               <select name='departamento_m' id='departamento_m' class='validate'>";
                 $s="SELECT id,nombre from departamento where region_id ='$region_id'";
             $r= mysqli_query($conn,$s) or die('Error');
@@ -545,7 +545,7 @@ $otro_m = "";
                 </select>
                 <label >Departamento</label>      
             </div>
-            <div class='input-field col s12 m2 l3' >";
+            <div class='input-field col s12 m2 l3' id='municipio_valida2' >";
               $datos.="<select name='municipio_m' id='municipio_m' class='validate'>";   
             $s="SELECT id,nombre from municipio where departamento_id ='$departamento_id'";
             $r= mysqli_query($conn,$s) or die('Error');
@@ -626,7 +626,7 @@ $otro_m = "";
             </div>
               
             <div class='input-field col s12 m3 l3'>
-                  <input id='num_asociados_m' name='num_asociados_m' type='text' value='$num_socios' class='validate'>
+                  <input id='num_asociados_m' name='num_asociados_m' type='number' value='$num_socios' class='validate'>
                   <label for='num_asociados_m' class='activar'>Numero de asociados</label>
             </div>
 
@@ -790,7 +790,7 @@ $otro_m = "";
 
         <div class='row' style='text-align: center;background-color: #bdbdbd;margin-bottom: 0px;'>3. Categoria de Negocios Verdes</div>
         <div class='row'>
-        <div class='input-field col s12 m4 l4' style='margin-top: 30px'>
+        <div class='input-field col s12 m4 l4' style='margin-top: 30px' id='categoria_valida2'>
           <select name='categoria_m' id='categoria_m' class='validate'>";
                 $s="SELECT id,nombre from categoria";
             $r= mysqli_query($conn,$s) or die('Error');
@@ -811,8 +811,8 @@ $otro_m = "";
                   <label '>Categoria</label>
                 </div>  
 
-          <div class='input-field col s12 m4 l4' style='margin-top: 30px'>
-         <select name='sector_m' id='sector_m' class='validate'>";
+          <div class='input-field col s12 m4 l4' style='margin-top: 30px' id='sector_valida2'>
+         <select name='sector_m' id='sector_m' class='validate' >";
                 $s="SELECT id,nombre from sector where categoria_id ='$categoria_id'";
             $r= mysqli_query($conn,$s) or die('Error');
             if(mysqli_num_rows($r)>0){
@@ -832,7 +832,7 @@ $otro_m = "";
                   <label '>Sector</label>
                 </div>
 
-          <div class='input-field col s12 m4 l4' style='margin-top: 30px'>
+          <div class='input-field col s12 m4 l4' style='margin-top: 30px' id='subsector_valida2'>
           <select name='subsector_m' id='subsector_m' class='validate'>";
                 $s="SELECT id,nombre from subsector where sector_id ='$sector_id'";
             $r= mysqli_query($conn,$s) or die('Error');
@@ -867,15 +867,15 @@ $otro_m = "";
             
               
               <div class='input-field col s12 m4 l4'>
-                <input id='masculino_1_m' name='masculino_1_m' value='$masculino1' type='text' class='validate'>
+                <input id='masculino_1_m' name='masculino_1_m' value='$masculino1' type='number' class='validate'>
                 <label for='masculino_1_m' class='activar'>Masculino</label>
               </div>
               <div class='input-field col s12 m4 l4'>
-                <input id='femenino_1_m' name='femenino_1_m' value='$femenino1' type='text' class='validate'>
+                <input id='femenino_1_m' name='femenino_1_m' value='$femenino1' type='number' class='validate'>
                 <label for='femenino_1_m' class='activar'>Femenino</label>
               </div>
               <div class='input-field col s12 m3 l3'>
-                <input disabled value='$total1' id='total_1_m' type='text' class='validate'>
+                <input  value='$total1' id='total_1_m' type='number' class='validate' readonly>
                 <label for='total_1_m'  class='activar'>Total</label>
               </div>
             
@@ -887,20 +887,20 @@ $otro_m = "";
             
               
               <div class='input-field col s12 m4 l3'>
-                <input id='masculino_2_m' name='masculino_2_m' type='text' value='$masculino2' class='validate'>
+                <input id='masculino_2_m' name='masculino_2_m' type='number' value='$masculino2' class='validate'>
                 <label for='masculino_2'_m class='activar'>Masculino</label>
               </div>
               <div class='input-field col s12 m4 l3'>
-                <input id='femenino_2_m' name='femenino_2_m' type='text' value='$femenino2' class='validate'>
+                <input id='femenino_2_m' name='femenino_2_m' type='number' value='$femenino2' class='validate'>
                 <label for='femenino_2_m' class='activar'>Femenino</label>
               </div>
               <div class='input-field col s12 m4 l3'>
-                <input disabled value='$total2' id='total_2_m' type='text' class='validate'>
+                <input disabled value='$total2' id='total_2_m' type='number' class='validate'>
                 <label for='total_2_m' class='activar'>Total</label>
                 
               </div>
               <div class='col s12 m2 l2'>
-                <div id='mensaje1'></div>
+                <div id='mensaje1_m'></div>
               </div>
             
           </div>
@@ -909,15 +909,15 @@ $otro_m = "";
            3.Número de empleados
             <div class='divider'></div>
               <div class='input-field col s12 m4 l4'>
-                <input id='masculino_3_m' name='masculino_3_m' value='$masculino3' type='text' class='validate'>
+                <input id='masculino_3_m' name='masculino_3_m' value='$masculino3' type='number' class='validate'>
                 <label for='masculino_3_m' class='activar'>Masculino</label>
               </div>
               <div class='input-field col s12 m4 l4'>
-                <input id='femenino_3_m' name='femenino_3_m' value='$femenino3' type='text' class='validate'>
+                <input id='femenino_3_m' name='femenino_3_m' value='$femenino3' type='number' class='validate'>
                 <label for='femenino_3_m' class='activar'>Femenino</label>
               </div>
               <div class='input-field col s12 m4 l4'>
-                <input disabled value='$total3' id='total_3' type='text' class='validate'>
+                <input disabled value='$total3' id='total_3_m' type='number' class='validate'>
                 <label for='total_3_m' class='activar'>Total</label>
               </div>
           </div>
@@ -929,19 +929,19 @@ $otro_m = "";
             Edad (Indicar Nº de empleados)
             <div class='divider'></div>
               <div class='input-field col s12 m4 l4'>
-                <input id='entre_18_30_m' name='entre_18_30_m' value='$entre_18_30' type='text' class='validate'>
+                <input id='entre_18_30_m' name='entre_18_30_m' value='$entre_18_30' type='number' class='validate'>
                 <label for='entre_18_30_m' class='activar'>Entre 18-30</label>
               </div>
               <div class='input-field col s12 m4 l4'>
-                <input id='entre_30_50_m' name='entre_30_50_m' value='$entre_30_50' type='text' class='validate'>
+                <input id='entre_30_50_m' name='entre_30_50_m' value='$entre_30_50' type='number' class='validate'>
                 <label for='entre_30_50_m' class='activar'>Entre 30-50</label>
               </div>
               <div class='input-field col s12 m4 l4'>
-                <input id='mayor_50_m' name='mayor_50_m' value='$mayor_50' type='text' class='validate'>
+                <input id='mayor_50_m' name='mayor_50_m' value='$mayor_50' type='number' class='validate'>
                 <label for='mayor_50_m' class='activar'>Entre Mayores 50</label>
               </div>
 
-            <div id='mensaje_edad'></div>
+            <div id='mensaje_edad2'></div>
           </div>
         </div>
 
@@ -951,46 +951,46 @@ $otro_m = "";
             <div class='divider'></div>
         
               <div class='input-field col s12 m2 l2'>
-                <input id='indefinido_m' name='indefinido_m' value='$indefinido' type='text' class='validate'>
+                <input id='indefinido_m' name='indefinido_m' value='$indefinido' type='number' class='validate'>
                 <label for='indefinido_m' class='activar'>Indefinido</label>
               </div>
               <div class='input-field col s12 m3 l3'>
-                <input id='definido_m' name='definido_m' value='$definido' type='text' class='validate'>
+                <input id='definido_m' name='definido_m' value='$definido' type='number' class='validate'>
                 <label for='definido_m' class='activar'>Ter. definido</label>
               </div>
               <div class='input-field col s12 m7 l7'>
-                <input id='por_dias_m' name='por_dias_m' value='$por_dias' type='text' class='validate'>
+                <input id='por_dias_m' name='por_dias_m' value='$por_dias' type='number' class='validate'>
                 <label for='por_dias_m' class='activar'>Por días (Jornales) promedio en el año</label>
               </div>
 
-            <div id='mensaje_vinculacion'></div>
+            <div id='mensaje_vinculacion2'></div>
           </div>
           <div class='col s12 m6 l6' style='border: 1px solid'>
             Nivel educativo (Indicar Nº de empleados)
             <div class='divider'></div>
         
               <div class='input-field col s12 m2 l2'>
-                <input id='primaria_m' name='primaria_m' value='$primaria' type='text' class='validate'>
+                <input id='primaria_m' name='primaria_m' value='$primaria' type='number' class='validate'>
                 <label for='primaria_m' class='activar'>Primaria</label>
               </div>
               <div class='input-field col s12 m2 l2'>
-                <input id='bachillerato_m' name='bachillerato_m' value='$bachillerato' type='text' class='validate'>
+                <input id='bachillerato_m' name='bachillerato_m' value='$bachillerato' type='number' class='validate'>
                 <label for='bachillerato_m' class='activar'>Bachillerato</label>
               </div>
               <div class='input-field col s12 m2 l2 '>
-                <input id='tecnico_m' name='tecnico_m' value='$tecnico' type='text' class='validate'>
+                <input id='tecnico_m' name='tecnico_m' value='$tecnico' type='number' class='validate'>
                 <label for='tecnico_m' class='activar'>Técnicio</label>
               </div>
               <div class='input-field col s12 m3 l3'>
-                <input id='universitario_m' name='universitario_m' value='$universitario' type='text' class='validate'>
+                <input id='universitario_m' name='universitario_m' value='$universitario' type='number' class='validate'>
                 <label for='universitario_m' class='activar'>Universitario</label>
               </div>
               <div class='input-field col s12 m3 l3'>
-                <input id='otro_m' name='otro_m' value='$otro_m' type='text' class='validate'>
+                <input id='otro_m' name='otro_m' value='$otro_m' type='number' class='validate'>
                 <label for='otro_m' class='activar'>Otro</label>
               </div>
 
-            <div id='mensaje_educativo'></div>
+            <div id='mensaje_educativo2'></div>
           </div>
         </div>
 
@@ -1020,7 +1020,7 @@ $otro_m = "";
             </div>
 
             <div class='input-field col s12 m6 l6'>
-                 <input id='indigena_m' name='indigena_m' value='$indigena' type='text' class='validate'>
+                 <input id='indigena_m' name='indigena_m' value='$indigena' type='number' class='validate'>
                 <label for='indigena_m' class='activar'>Nº de empleados</label>
             </div> 
           
@@ -1046,13 +1046,13 @@ $otro_m = "";
                 <label>Personas en situacion de discapacidad</label>
             </div>
             <div class='input-field col s12 m6 l6'>
-                 <input id='discapacitado_m' value='$discapacitado' name='discapacitado_m' type='text' class='validate'>
+                 <input id='discapacitado_m' value='$discapacitado' name='discapacitado_m' type='number' class='validate'>
                 <label for='discapacitado_m' class='activar'>Nº de empleados</label>
             </div>  
 
          
           <div class='input-field col s12 m6 l6'>
-                  <select name='cmb_adulto' id='cmb_adulto' class='validate'>";
+                  <select name='cmb_adulto_m' id='cmb_adulto_m' class='validate'>";
                   
                     $s="SELECT id,nombre from si_no";
             $r= mysqli_query($conn,$s) or die('Error');
@@ -1073,7 +1073,7 @@ $otro_m = "";
                 <label>Adultos mayores</label>
             </div>
             <div class='input-field col s12 m6 l6'>
-                 <input id='adulto_m' value='$adulto' name='adulto_m' type='text' class='validate'>
+                 <input id='adulto_m' value='$adulto' name='adulto_m' type='number' class='validate'>
                 <label for='adulto_m' class='activar'>Nº de empleados</label>
             </div>      
         
@@ -1100,7 +1100,7 @@ $otro_m = "";
                 <label>Madres cabeza de familia</label>
             </div>
             <div class='input-field col s12 m6 l6'>
-                 <input id='madre_familia_m' value='$madre_familia' name='madre_familia_m' type='text' class='validate'>
+                 <input id='madre_familia_m' value='$madre_familia' name='madre_familia_m' type='number' class='validate'>
                 <label for='madre_familia_m' class='activar'>Nº de empleados</label>
             </div>      
           
@@ -1127,7 +1127,7 @@ $otro_m = "";
                 <label>Reinsertados</label>
             </div>
             <div class='input-field col s12 m6 l6'>
-                 <input id='reinsertados_m' value='$reinsertados' name='reinsertados_m' type='text' class='validate'>
+                 <input id='reinsertados_m' value='$reinsertados' name='reinsertados_m' type='number' class='validate'>
                 <label for='reinsertados_m' class='activar'>Nº de empleados</label>
             </div>             
           
@@ -1154,7 +1154,7 @@ $otro_m = "";
                 <label>Desplazados</label>
             </div>
             <div class='input-field col s12 m6 l6'>
-                 <input id='desplazado_m' value='$desplazado' name='desplazado_m' type='text' class='validate'>
+                 <input id='desplazado_m' value='$desplazado' name='desplazado_m' type='number' class='validate'>
                 <label for='desplazado_m' class='activar'>Nº de empleados</label>
             </div>  
 
@@ -1180,7 +1180,7 @@ $otro_m = "";
                 <label>Otros</label>
             </div>
             <div class='input-field col s12 m6 l6'>
-                 <input id='demografia_otro_m' value='$demografia_otro' name='demografia_otro_m' type='text' class='validate'>
+                 <input id='demografia_otro_m' value='$demografia_otro' name='demografia_otro_m' type='number' class='validate'>
                 <label for='demografia_otro_m' class='activar'>Nº de empleados</label>
             </div>            
         </div>
@@ -1275,8 +1275,8 @@ $otro_m = "";
               while($rw=mysqli_fetch_array($r)){
                 $i++;
                 $datos.="<div class='input-field col s12 m12 l12'>
-                  <input id='b1_m$i' name='b1_m$i' type='text' value='$rw[0]' class='validate' >
-                  <label for='b1_m$i' class='activar'>Bien y/o servicio $i</label>
+                  <input id='bien_m$i' name='bienes_m[]' type='text' value='$rw[0]' class='validate' >
+                  <label for='bien_m$i' class='activar'>Bien y/o servicio $i</label>
                 </div>";
               } 
             }

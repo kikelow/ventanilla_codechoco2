@@ -11,7 +11,9 @@ if (isset($empresa)) {
 	for ($i=0; $i <sizeof($opcion); $i++) {
 	
 			$s="INSERT INTO `verificacion_1`(`empresa_id`, `opciones_id`, `si_no_noaplica_id`, `observacion`, `verificacion`) VALUES('$empresa','".$opcion[$i]."','".$verifica1_si_no[$i]."','".$verificacion1_obs[$i]."','".$verificacion1_veri[$i]."')";
-				mysqli_query($conn,$s);
+				// mysqli_query($conn,$s);
 		}
+	$s="UPDATE `empresa` SET `verificacion1`='si' WHERE id = '$empresa'";
+// mysqli_query($conn,$s);
 }
  ?>

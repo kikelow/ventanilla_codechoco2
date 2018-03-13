@@ -18,7 +18,7 @@ require_once('conexion.php');
         <select id="empresa" style="width: 100%; left: -20px;" name="empresa" required="required">
           <option disabled selected="">Seleccione un emprendimiento al cual quiere aplicarle la "Hoja de verificacion 1"</option>
           <?php 
-                    $s="SELECT id,razon_social from empresa where informacion_as = 'si'";
+                    $s="SELECT id,razon_social from empresa where informacion_as = 'si' AND verificacion1 ='no'";
                     $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
                     if(mysqli_num_rows($r)>0){
                       while($rw=mysqli_fetch_assoc($r)){

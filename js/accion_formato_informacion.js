@@ -1,8 +1,8 @@
 $(document).ready(function() {
 $('#empresa').select2();
+$('#empresa_m').select2();
 
 $('[name="tierra[]"]#tt12').click(function() {
-
     if($(this).is(':checked')) {
       $('[name="desc_t[]"]#desc_t12').removeAttr('disabled');
 
@@ -546,77 +546,49 @@ $('[name="programa[]"]#programa4').click(function() {
 })
 
 //verificar si selecciona si en el div de institucion
-$('#insti').find('*').prop('disabled', true);
 $('#insti').hide()
 $('#valida_institucion').change(function(event) {
   if ($('#valida_institucion').val() == 1) {
-      $('#insti').find('*').prop('disabled', true);
-      $('[name="apoyo_tipo_entidad[]"]').material_select()
       $('#insti').hide()
   }else{
-    $('#insti').find('*').prop('disabled', false);
-     $('select').find('*').prop('disabled', false);
-    $('[name="apoyo_tipo_entidad[]"]').material_select()
      $('#insti').show()
   }
 });
 //verificar si selecciona si en el div de trabajadores
-$('#trabaja').find('*').prop('disabled', true);
 $('#trabaja').hide()
 $('#valida_trabajadores').change(function(event) {
   if ($('#valida_trabajadores').val() == 1) {
-    $('#trabaja').find('*').prop('disabled', true);
       $('#trabaja').hide()
   }else{
-    $('#trabaja').find('[name="programa[]"]').prop('disabled', false);
-    $('#otro_pro').find('*').prop('disabled', false);
      $('#trabaja').show()
   }
 });
 //verificar si selecciona si en el div de actividades
-$('#div_activi').find('*').prop('disabled', true);
 $('#div_activi').hide()
 $('#valida_actividades').change(function(event) {
   if ($('#valida_actividades').val() == 1) {
-      $('#div_activi').find('*').prop('disabled', true);
-       $('#otro_activi_recurso').material_select()
       $('#div_activi').hide()
   }else{
-    $('#div_activi').find('[name="actividad[]"]').prop('disabled', false);
-     $('#otro_act').find('*').prop('disabled', false);
-    $('select').find('*').prop('disabled', false);
-    $('#otro_activi_recurso').material_select()
      $('#div_activi').show()
   }
 });
 //verificar si selecciona si en el div de involucra
-$('#div_involucra').find('*').prop('disabled', true);
 $('#div_involucra').hide()
 $('#valida_involucra').change(function(event) {
   if ($('#valida_involucra').val() == 1) {
-      $('#div_involucra').find('*').prop('disabled', true);
       $('#div_involucra').hide()
   }else{
-    $('#div_involucra').find('*').prop('disabled', false);
-    $('#div_certificacion').find('[name="involucra[]"]').prop('disabled', false);
      $('#div_involucra').show()
   }
 });
 //verificar si selecciona si en el div de certificacion
-$('#div_certificacion').find('*').prop('disabled', true);
 $('#div_certificacion').hide()
 $('#valida_certificacion').change(function(event) {
   if ($('#valida_certificacion').val() == 1) {
-    $('#div_certificacion').find('*').prop('disabled', true);
-    $('#otro_cert_etapa').material_select()
     $('#div_certificacion').hide()
   }else{
      $('#div_certificacion').find('[name="certificacion[]"]').prop('disabled', false);
-     $('#otr_cert').find('*').prop('disabled', false);
-      $('select').find('*').prop('disabled', false);
-     $('#otro_cert_etapa').material_select()
      $('#div_certificacion').show()
-
   }
 });
 
@@ -648,10 +620,7 @@ if ($('#empresa').val() == null) {
 	var $toastContent = $('<span>Debe escoger un emprendimiento</span>');
 	Materialize.toast($toastContent, 1800);
 }
-
-
 else {
-alert('todo bien')
 var empresa = $('#empresa').val() 
 	$.ajax({
 		url: 'evaluacion/formato_informacion_as/insertar.php?empresa='+empresa,
@@ -659,12 +628,497 @@ var empresa = $('#empresa').val()
 		data: $('#form_informacion').serialize(),
 	})
 	.done(function(respuesta) {
-		console.log(respuesta);
+		swal ({
+          icon: "success",
+           text: "Datos INSERTADOS exitosamente!",
+           button: {
+            visible: false
+          },
+      });
+    setTimeout("document.location=document.location",1500);
 	})
 	}
 });
 
 
+//-------------Cargar formulario-----------
+$('#empresa_m').change(function(event) {
+  event.preventDefault();
+  var empresa_m = $('#empresa_m').val()
+  $.ajax({
+    url: 'evaluacion/formato_informacion_as/llenar_formulario.php',
+    type: 'POST',
+    data: {empresa_m: empresa_m},
+  })
+  .done(function(respuesta) {
+    // console.log(respuesta)
+    $('#cargar_info').html(respuesta)
+  })
+
+});
+
+//----------validaciones para modificar-------------------------
+
+///tenencia tierra
+$('[name="tierra_m[]"]#tt_m12').click(function() {
+    if($(this).is(':checked')) {
+      $('[name="desc_t_m[]"]#desc_t_m12').removeAttr('disabled');
+
+    } else {
+      $('[name="desc_t_m[]"]#desc_t_m12').attr('disabled','disabled');
+    }
+});
 
 
+
+$('[name="tierra_m[]"]#tt_m13').click(function() {
+    if($(this).is(':checked')) {
+      $('[name="desc_t_m[]"]#desc_t_m13').removeAttr('disabled');
+
+    } else {
+      $('[name="desc_t_m[]"]#desc_t_m13').attr('disabled','disabled');
+    }
+});
+
+
+
+$('[name="tierra_m[]"]#tt_m14').click(function() {
+    if($(this).is(':checked')) {
+      $('[name="desc_t_m[]"]#desc_t_m14').removeAttr('disabled');
+
+    } else {
+      $('[name="desc_t_m[]"]#desc_t_m14').attr('disabled','disabled');
+    }
+});
+
+$('[name="tierra_m[]"]#tt_m15').click(function() {
+    if($(this).is(':checked')) {
+      $('[name="desc_t_m[]"]#desc_t_m15').removeAttr('disabled');
+
+    } else {
+      $('[name="desc_t_m[]"]#desc_t_m15').attr('disabled','disabled');
+    }
+});
+
+$('[name="tierra_m[]"]#tt_m16').click(function() {
+
+    if($(this).is(':checked')) {
+      $('[name="desc_t_m[]"]#desc_t_m16').removeAttr('disabled');
+
+    } else {
+      $('[name="desc_t_m[]"]#desc_t_m16').attr('disabled','disabled');
+    }
+});
+
+$('[name="tierra_m[]"]#tt_m17').click(function() {
+    if($(this).is(':checked')) {
+      $('[name="desc_t_m[]"]#desc_t_m17').removeAttr('disabled');
+
+    } else {
+      $('[name="desc_t_m[]"]#desc_t_m17').attr('disabled','disabled');
+    }
+})
+
+//verificar si selecciona si en el div de certificacion
+$('#div_certificacion_m').hide()
+$('#valida_certificacion_m').change(function(event) {
+  if ($('#valida_certificacion_m').val() == 1) {
+    $('#div_certificacion_m').hide()
+  }else{
+     $('#div_certificacion_m').find('[name="certificacion[]"]').prop('disabled', false);
+     $('#div_certificacion_m').show()
+  }
+});
+//certificacion habilitar al seleccionar el check
+ $('[name="certificacion_m[]"]#ce_m1').click(function() {
+     if($(this).is(':checked')) {
+ 
+       $('[name="cert_etapa_m[]"]#cert_etapa_m1').removeAttr('disabled');
+       $('[name="cert_etapa_m[]"]#cert_etapa_m1').material_select();
+       $('[name="cert_vigencia_m[]"]#cert_vigencia_m1').removeAttr('disabled');
+        $('[name="cert_obs_m[]"]#cert_obs_m1').removeAttr('disabled');
+ 
+     } else {
+        $('[name="cert_etapa_m[]"]#cert_etapa_m1').attr('disabled','disabled');
+         $('[name="cert_etapa_m[]"]#cert_etapa_m1').material_select();
+        $('[name="cert_vigencia_m[]"]#cert_vigencia_m1').attr('disabled','disabled');
+        $('[name="cert_obs_m[]"]#cert_obs_m1').attr('disabled','disabled');
+     }
+ })
+ 
+ $('[name="certificacion_m[]"]#ce_m2').click(function() {
+     if($(this).is(':checked')) {
+ 
+       $('[name="cert_etapa_m[]"]#cert_etapa_m2').removeAttr('disabled');
+       $('[name="cert_etapa_m[]"]#cert_etapa_m2').material_select();
+       $('[name="cert_vigencia_m[]"]#cert_vigencia_m2').removeAttr('disabled');
+        $('[name="cert_obs_m[]"]#cert_obs_m2').removeAttr('disabled');
+ 
+     } else {
+        $('[name="cert_etapa_m[]"]#cert_etapa_m2').attr('disabled','disabled');
+         $('[name="cert_etapa_m[]"]#cert_etapa_m2').material_select();
+        $('[name="cert_vigencia_m[]"]#cert_vigencia_m2').attr('disabled','disabled');
+        $('[name="cert_obs_m[]"]#cert_obs_m2').attr('disabled','disabled');
+     }
+ })
+ 
+ $('[name="certificacion_m[]"]#ce_m3').click(function() {
+     if($(this).is(':checked')) {
+ 
+       $('[name="cert_etapa_m[]"]#cert_etapa_m3').removeAttr('disabled');
+       $('[name="cert_etapa_m[]"]#cert_etapa_m3').material_select();
+       $('[name="cert_vigencia_m[]"]#cert_vigencia_m3').removeAttr('disabled');
+        $('[name="cert_obs_m[]"]#cert_obs_m3').removeAttr('disabled');
+ 
+     } else {
+        $('[name="cert_etapa_m[]"]#cert_etapa_m3').attr('disabled','disabled');
+         $('[name="cert_etapa_m[]"]#cert_etapa_m3').material_select();
+        $('[name="cert_vigencia_m[]"]#cert_vigencia_m3').attr('disabled','disabled');
+        $('[name="cert_obs_m[]"]#cert_obs_m3').attr('disabled','disabled');
+     }
+ })
+ 
+ $('[name="certificacion_m[]"]#ce_m4').click(function() {
+     if($(this).is(':checked')) {
+ 
+       $('[name="cert_etapa_m[]"]#cert_etapa_m4').removeAttr('disabled');
+       $('[name="cert_etapa_m[]"]#cert_etapa_m4').material_select();
+       $('[name="cert_vigencia_m[]"]#cert_vigencia_m4').removeAttr('disabled');
+        $('[name="cert_obs_m[]"]#cert_obs_m4').removeAttr('disabled');
+ 
+     } else {
+        $('[name="cert_etapa_m[]"]#cert_etapa_m4').attr('disabled','disabled');
+         $('[name="cert_etapa_m[]"]#cert_etapa_m4').material_select();
+        $('[name="cert_vigencia_m[]"]#cert_vigencia_m4').attr('disabled','disabled');
+        $('[name="cert_obs_m[]"]#cert_obs_m4').attr('disabled','disabled');
+     }
+ })
+ 
+ $('[name="certificacion_m[]"]#ce_m5').click(function() {
+     if($(this).is(':checked')) {
+ 
+       $('[name="cert_etapa_m[]"]#cert_etapa_m5').removeAttr('disabled');
+       $('[name="cert_etapa_m[]"]#cert_etapa_m5').material_select();
+       $('[name="cert_vigencia_m[]"]#cert_vigencia_m5').removeAttr('disabled');
+        $('[name="cert_obs_m[]"]#cert_obs_m5').removeAttr('disabled');
+ 
+     } else {
+        $('[name="cert_etapa_m[]"]#cert_etapa_m5').attr('disabled','disabled');
+         $('[name="cert_etapa_m[]"]#cert_etapa_m5').material_select();
+        $('[name="cert_vigencia_m[]"]#cert_vigencia_m5').attr('disabled','disabled');
+        $('[name="cert_obs_m[]"]#cert_obs_m5').attr('disabled','disabled');
+     }
+ })
+ 
+ $('[name="certificacion_m[]"]#ce_m6').click(function() {
+     if($(this).is(':checked')) {
+ 
+       $('[name="cert_etapa_m[]"]#cert_etapa_m6').removeAttr('disabled');
+       $('[name="cert_etapa_m[]"]#cert_etapa_m6').material_select();
+       $('[name="cert_vigencia_m[]"]#cert_vigencia_m6').removeAttr('disabled');
+        $('[name="cert_obs_m[]"]#cert_obs_m6').removeAttr('disabled');
+ 
+     } else {
+        $('[name="cert_etapa_m[]"]#cert_etapa_m6').attr('disabled','disabled');
+         $('[name="cert_etapa_m[]"]#cert_etapa_m6').material_select();
+        $('[name="cert_vigencia_m[]"]#cert_vigencia_m6').attr('disabled','disabled');
+        $('[name="cert_obs_m[]"]#cert_obs_m6').attr('disabled','disabled');
+     }
+ })
+ 
+ $('[name="certificacion_m[]"]#ce_m7').click(function() {
+     if($(this).is(':checked')) {
+ 
+       $('[name="cert_etapa_m[]"]#cert_etapa_m7').removeAttr('disabled');
+       $('[name="cert_etapa_m[]"]#cert_etapa_m7').material_select();
+       $('[name="cert_vigencia_m[]"]#cert_vigencia_m7').removeAttr('disabled');
+        $('[name="cert_obs_m[]"]#cert_obs_m7').removeAttr('disabled');
+ 
+     } else {
+        $('[name="cert_etapa_m[]"]#cert_etapa_m7').attr('disabled','disabled');
+         $('[name="cert_etapa_m[]"]#cert_etapa_m7').material_select();
+        $('[name="cert_vigencia_m[]"]#cert_vigencia_m7').attr('disabled','disabled');
+        $('[name="cert_obs_m[]"]#cert_obs_m7').attr('disabled','disabled');
+     }
+ })
+
+// Practicas de conservacion habilitar al seleccionar el check
+ $('[name="conservacion_m[]"]#conser_m1').click(function() {
+     if($(this).is(':checked')) {
+       $('[name="conser_area_m[]"]#conser_area_m1').removeAttr('disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m1').removeAttr('disabled');
+ 
+     } else {
+        $('[name="conser_area_m[]"]#conser_area_m1').attr('disabled','disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m1').attr('disabled','disabled');
+     }
+ })
+ 
+ $('[name="conservacion_m[]"]#conser_m2').click(function() {
+     if($(this).is(':checked')) {
+       $('[name="conser_area_m[]"]#conser_area_m2').removeAttr('disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m2').removeAttr('disabled');
+ 
+     } else {
+        $('[name="conser_area_m[]"]#conser_area_m2').attr('disabled','disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m2').attr('disabled','disabled');
+     }
+ })
+ 
+ $('[name="conservacion_m[]"]#conser_m3').click(function() {
+     if($(this).is(':checked')) {
+       $('[name="conser_area_m[]"]#conser_area_m3').removeAttr('disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m3').removeAttr('disabled');
+ 
+     } else {
+        $('[name="conser_area_m[]"]#conser_area_m3').attr('disabled','disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m3').attr('disabled','disabled');
+     }
+ })
+ 
+ $('[name="conservacion_m[]"]#conser_m4').click(function() {
+     if($(this).is(':checked')) {
+       $('[name="conser_area_m[]"]#conser_area_m4').removeAttr('disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m4').removeAttr('disabled');
+ 
+     } else {
+        $('[name="conser_area_m[]"]#conser_area_m4').attr('disabled','disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m4').attr('disabled','disabled');
+     }
+ })
+ 
+ $('[name="conservacion_m[]"]#conser_m5').click(function() {
+     if($(this).is(':checked')) {
+       $('[name="conser_area_m[]"]#conser_area_m5').removeAttr('disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m5').removeAttr('disabled');
+ 
+     } else {
+        $('[name="conser_area_m[]"]#conser_area_m5').attr('disabled','disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m5').attr('disabled','disabled');
+     }
+ })
+ $('[name="conservacion_m[]"]#conser_m6').click(function() {
+     if($(this).is(':checked')) {
+       $('[name="conser_area_m[]"]#conser_area_m6').removeAttr('disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m6').removeAttr('disabled');
+ 
+     } else {
+        $('[name="conser_area_m[]"]#conser_area_m6').attr('disabled','disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m6').attr('disabled','disabled');
+     }
+ })
+ $('[name="conservacion_m[]"]#conser_m7').click(function() {
+     if($(this).is(':checked')) {
+       $('[name="conser_area_m[]"]#conser_area_m7').removeAttr('disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m7').removeAttr('disabled');
+ 
+     } else {
+        $('[name="conser_area_m[]"]#conser_area_m7').attr('disabled','disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m7').attr('disabled','disabled');
+     }
+ })
+ $('[name="conservacion_m[]"]#conser_m8').click(function() {
+     if($(this).is(':checked')) {
+       $('[name="conser_area_m[]"]#conser_area_m8').removeAttr('disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m8').removeAttr('disabled');
+ 
+     } else {
+        $('[name="conser_area_m[]"]#conser_area_m8').attr('disabled','disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m8').attr('disabled','disabled');
+     }
+ })
+ $('[name="conservacion_m[]"]#conser_m9').click(function() {
+     if($(this).is(':checked')) {
+       $('[name="conser_area_m[]"]#conser_area_m9').removeAttr('disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m9').removeAttr('disabled');
+ 
+     } else {
+        $('[name="conser_area_m[]"]#conser_area_m9').attr('disabled','disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m9').attr('disabled','disabled');
+     }
+ })
+ $('[name="conservacion_m[]"]#conser_m10').click(function() {
+     if($(this).is(':checked')) {
+       $('[name="conser_area_m[]"]#conser_area_m10').removeAttr('disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m10').removeAttr('disabled');
+ 
+     } else {
+        $('[name="conser_area_m[]"]#conser_area_m10').attr('disabled','disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m10').attr('disabled','disabled');
+     }
+ })
+ 
+ $('[name="conservacion_m[]"]#conser_m11').click(function() {
+     if($(this).is(':checked')) {
+       $('[name="conser_area_m[]"]#conser_area_m11').removeAttr('disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m11').removeAttr('disabled');
+ 
+     } else {
+        $('[name="conser_area_m[]"]#conser_area_m11').attr('disabled','disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m11').attr('disabled','disabled');
+     }
+ })
+ 
+ $('[name="conservacion_m[]"]#conser_m12').click(function() {
+     if($(this).is(':checked')) {
+       $('[name="conser_area_m[]"]#conser_area_m12').removeAttr('disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m12').removeAttr('disabled');
+ 
+     } else {
+        $('[name="conser_area_m[]"]#conser_area_m12').attr('disabled','disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m12').attr('disabled','disabled');
+     }
+ })
+ $('[name="conservacion_m[]"]#conser_m13').click(function() {
+     if($(this).is(':checked')) {
+       $('[name="conser_area_m[]"]#conser_area_m13').removeAttr('disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m13').removeAttr('disabled');
+ 
+     } else {
+        $('[name="conser_area_m[]"]#conser_area_m13').attr('disabled','disabled');
+        $('[name="conser_desc_m[]"]#conser_desc_m13').attr('disabled','disabled');
+     }
+ })
+
+
+ //Area de ecosistema habilitar al seleccionar el check
+ $('[name="ecosistemas_m[]"]#ecosistemas_m1').click(function() {
+ 
+     if($(this).is(':checked')) {
+       $('[name="ecosistemas_area_m[]"]#ecosistemas_area_m1').removeAttr('disabled');
+ 
+     } else {
+       $('[name="ecosistemas_area_m[]"]#ecosistemas_area_m1').attr('disabled','disabled');
+     }
+ })
+ 
+ $('[name="ecosistemas_m[]"]#ecosistemas_m2').click(function() {
+ 
+     if($(this).is(':checked')) {
+       $('[name="ecosistemas_area_m[]"]#ecosistemas_area_m2').removeAttr('disabled');
+ 
+     } else {
+       $('[name="ecosistemas_area_m[]"]#ecosistemas_area_m2').attr('disabled','disabled');
+     }
+ })
+ $('[name="ecosistemas_m[]"]#ecosistemas_m3').click(function() {
+ 
+     if($(this).is(':checked')) {
+       $('[name="ecosistemas_area_m[]"]#ecosistemas_area_m3').removeAttr('disabled');
+ 
+     } else {
+       $('[name="ecosistemas_area_m[]"]#ecosistemas_area_m3').attr('disabled','disabled');
+     }
+ })
+ $('[name="ecosistemas_m[]"]#ecosistemas_m4').click(function() {
+ 
+     if($(this).is(':checked')) {
+       $('[name="ecosistemas_area_m[]"]#ecosistemas_area_m4').removeAttr('disabled');
+ 
+     } else {
+       $('[name="ecosistemas_area_m[]"]#ecosistemas_area_m4').attr('disabled','disabled');
+     }
+ })
+ $('[name="ecosistemas_m[]"]#ecosistemas_m5').click(function() {
+ 
+     if($(this).is(':checked')) {
+       $('[name="ecosistemas_area_m[]"]#ecosistemas_area_m5').removeAttr('disabled');
+ 
+     } else {
+       $('[name="ecosistemas_area_m[]"]#ecosistemas_area_m5').attr('disabled','disabled');
+     }
+ })
+ $('[name="ecosistemas_m[]"]#ecosistemas_m6').click(function() {
+ 
+     if($(this).is(':checked')) {
+       $('[name="ecosistemas_area_m[]"]#ecosistemas_area_m6').removeAttr('disabled');
+ 
+     } else {
+       $('[name="ecosistemas_area_m[]"]#ecosistemas_area_m6').attr('disabled','disabled');
+     }
+ })
+ $('[name="ecosistemas_m[]"]#ecosistemas_m7').click(function() {
+ 
+     if($(this).is(':checked')) {
+       $('[name="ecosistemas_area_m[]"]#ecosistemas_area_m7').removeAttr('disabled');
+ 
+     } else {
+       $('[name="ecosistemas_area_m[]"]#ecosistemas_area_m7').attr('disabled','disabled');
+     }
+ })
+
+
+// Plan de manejo habilitar al seleccionar el check
+ $('[name="plan_m[]"]#plan_m1').click(function() {
+     if($(this).is(':checked')) {
+       $('[name="plan_a_na_m[]"]#plan_a_na_m1').removeAttr('disabled');
+       $('[name="plan_a_na_m[]"]#plan_a_na_m1').material_select();
+       $('[name="plan_c_nc_m[]"]#plan_c_nc_m1').removeAttr('disabled');
+       $('[name="plan_c_nc_m[]"]#plan_c_nc_m1').material_select();
+        $('[name="plan_vigencia_m[]"]#plan_vigencia_m1').removeAttr('disabled');
+        $('[name="plan_desc_m[]"]#plan_desc_m1').removeAttr('disabled');
+ 
+     } else {
+        $('[name="plan_a_na_m[]"]#plan_a_na_m1').attr('disabled','disabled');
+         $('[name="plan_a_na_m[]"]#plan_a_na_m1').material_select();
+        $('[name="plan_c_nc_m[]"]#plan_c_nc_m1').attr('disabled','disabled');
+        $('[name="plan_c_nc_m[]"]#plan_c_nc_m1').material_select();
+        $('[name="plan_vigencia_m[]"]#plan_vigencia_m1').attr('disabled','disabled');
+        $('[name="plan_desc_m[]"]#plan_desc_m1').attr('disabled','disabled');
+     }
+ })
+ $('[name="plan_m[]"]#plan_m2').click(function() {
+     if($(this).is(':checked')) {
+       $('[name="plan_a_na_m[]"]#plan_a_na_m2').removeAttr('disabled');
+       $('[name="plan_a_na_m[]"]#plan_a_na_m2').material_select();
+       $('[name="plan_c_nc_m[]"]#plan_c_nc_m2').removeAttr('disabled');
+       $('[name="plan_c_nc_m[]"]#plan_c_nc_m2').material_select();
+        $('[name="plan_vigencia_m[]"]#plan_vigencia_m2').removeAttr('disabled');
+        $('[name="plan_desc_m[]"]#plan_desc_m2').removeAttr('disabled');
+ 
+     } else {
+        $('[name="plan_a_na_m[]"]#plan_a_na_m2').attr('disabled','disabled');
+         $('[name="plan_a_na_m[]"]#plan_a_na_m2').material_select();
+        $('[name="plan_c_nc_m[]"]#plan_c_nc_m2').attr('disabled','disabled');
+        $('[name="plan_c_nc_m[]"]#plan_c_nc_m2').material_select();
+        $('[name="plan_vigencia_m[]"]#plan_vigencia_m2').attr('disabled','disabled');
+        $('[name="plan_desc_m[]"]#plan_desc_m2').attr('disabled','disabled');
+     }
+ })
+ $('[name="plan_m[]"]#plan_m3').click(function() {
+     if($(this).is(':checked')) {
+       $('[name="plan_a_na_m[]"]#plan_a_na_m3').removeAttr('disabled');
+       $('[name="plan_a_na_m[]"]#plan_a_na_m3').material_select();
+       $('[name="plan_c_nc_m[]"]#plan_c_nc_m3').removeAttr('disabled');
+       $('[name="plan_c_nc_m[]"]#plan_c_nc_m3').material_select();
+        $('[name="plan_vigencia_m[]"]#plan_vigencia_m3').removeAttr('disabled');
+        $('[name="plan_desc_m[]"]#plan_desc_m3').removeAttr('disabled');
+ 
+     } else {
+        $('[name="plan_a_na_m[]"]#plan_a_na_m3').attr('disabled','disabled');
+         $('[name="plan_a_na_m[]"]#plan_a_na_m3').material_select();
+        $('[name="plan_c_nc_m[]"]#plan_c_nc_m3').attr('disabled','disabled');
+        $('[name="plan_c_nc_m[]"]#plan_c_nc_m3').material_select();
+        $('[name="plan_vigencia_m[]"]#plan_vigencia_m3').attr('disabled','disabled');
+        $('[name="plan_desc_m[]"]#plan_desc_m3').attr('disabled','disabled');
+     }
+ })
+ $('[name="plan_m[]"]#plan_m4').click(function() {
+     if($(this).is(':checked')) {
+       $('[name="plan_a_na_m[]"]#plan_a_na_m4').removeAttr('disabled');
+       $('[name="plan_a_na_m[]"]#plan_a_na_m4').material_select();
+       $('[name="plan_c_nc_m[]"]#plan_c_nc_m4').removeAttr('disabled');
+       $('[name="plan_c_nc_m[]"]#plan_c_nc_m4').material_select();
+        $('[name="plan_vigencia_m[]"]#plan_vigencia_m4').removeAttr('disabled');
+        $('[name="plan_desc_m[]"]#plan_desc_m4').removeAttr('disabled');
+ 
+     } else {
+        $('[name="plan_a_na_m[]"]#plan_a_na_m4').attr('disabled','disabled');
+         $('[name="plan_a_na_m[]"]#plan_a_na_m4').material_select();
+        $('[name="plan_c_nc_m[]"]#plan_c_nc_m4').attr('disabled','disabled');
+        $('[name="plan_c_nc_m[]"]#plan_c_nc_m4').material_select();
+        $('[name="plan_vigencia_m[]"]#plan_vigencia_m4').attr('disabled','disabled');
+        $('[name="plan_desc_m[]"]#plan_desc_m4').attr('disabled','disabled');
+     }
+ })
 

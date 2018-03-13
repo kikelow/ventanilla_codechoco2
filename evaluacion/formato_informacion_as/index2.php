@@ -1,6 +1,14 @@
 <?php 
 require_once('conexion.php');
  ?>
+ <div id="test1" class="col s12" style="padding-right: 0px; padding-left: 0px">
+  <div id="test-swipe-1" class="col s12 right" style="margin-left: -15px; width: 100%">
+    <section id="" style="">
+      <div class="row">
+        <div class="col s12 m12 l12" style="padding-left: 0px; padding-right: 0px">
+          <center><h4>Sección para Registrar</h4></center>
+          <div class="card grey lighten-4 " style="height: auto;display:inline-block;width: 100%;">
+            <div class="card-content black-text">
     
 <span class="card-title"><center>Formato de informacion AS</center></span>
 <div class="row">
@@ -9,7 +17,7 @@ require_once('conexion.php');
         <select id="empresa" style="width: 100%; left: -20px;" name="empresa" required="required">
           <option disabled selected="">Seleccione un emprendimiento al cual quiere aplicarle el "formato de informacion AS"</option>
           <?php 
-                    $s="select id,razon_social from empresa ";
+                    $s="SELECT id,razon_social from empresa WHERE informacion_as = 'no' ";
                     $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
                     if(mysqli_num_rows($r)>0){
                       while($rw=mysqli_fetch_assoc($r)){
@@ -42,6 +50,7 @@ require_once('conexion.php');
                 <p>
                 <input type='checkbox' class='ch' id='tt".$i."'  name='tierra[]' value='$rw[id]' />
                 <label for='tt".$i."'>$rw[nombre]</label>
+                <input type='hidden' id='tt".$i."'  name='tierra_hidden[]' value='$rw[id]' />
               </p>
               </div>
               <div class='input-field col s12 m6 l6'>
@@ -541,7 +550,7 @@ require_once('conexion.php');
      <div class="row">
             <div class="col s12 m12 l12" style="border: 1px solid">
             <p>Otros</p> 
-            <div class="divider"></div>
+           <!--  <div class="divider"></div>
       
               <div class="input-field col s12 m3 l2">
                <label>Plan de Manejo Ambiental</label>
@@ -550,13 +559,13 @@ require_once('conexion.php');
               <div class="input-field col s12 m2 l2">
                <select id="otros_a_na" name="otros_a_na">
                 <?php 
-                    $s="select id,nombre from aplica_noaplica order by id desc ";
-                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
-                    if(mysqli_num_rows($r)>0){
-                      while($rw=mysqli_fetch_assoc($r)){
-                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
-                      }         
-                    }
+                    // $s="select id,nombre from aplica_noaplica order by id desc ";
+                    // $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    // if(mysqli_num_rows($r)>0){
+                    //   while($rw=mysqli_fetch_assoc($r)){
+                    //   echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                    //   }         
+                    // }
                   ?>
               </select>
               </div>
@@ -564,13 +573,13 @@ require_once('conexion.php');
               <div class="input-field col s12 m2 l2">
                <select id="otros_c_nc" name="otros_c_nc">
                 <?php 
-                    $s="select id,nombre from cumple_nocumple order by id desc ";
-                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
-                    if(mysqli_num_rows($r)>0){
-                      while($rw=mysqli_fetch_assoc($r)){
-                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
-                      }         
-                    }
+                    // $s="select id,nombre from cumple_nocumple order by id desc ";
+                    // $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    // if(mysqli_num_rows($r)>0){
+                    //   while($rw=mysqli_fetch_assoc($r)){
+                    //   echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                    //   }         
+                    // }
                   ?>
               </select>
               </div>
@@ -583,7 +592,7 @@ require_once('conexion.php');
               <div class="input-field col s12 m3 l4">
                 <input id="otros_obs" name="otros_obs" type="text" class="validate">
                 <label for="otros_obs">Observacion</label>
-              </div>
+              </div> -->
 
 
 
@@ -648,6 +657,7 @@ require_once('conexion.php');
                     <p>
                       <input type='checkbox' class='cer' id='ce".$i."' name='certificacion[]' value='$rw[id]' />
                       <label for='ce".$i."'>$rw[nombre]</label>
+                      <input type='hidden' id='ce".$i."'  name='certificacion_hidden[]' value='$rw[id]' />
                     </p>
                   </div>
                   <div class='input-field col s12 m3 l2'>
@@ -734,6 +744,7 @@ require_once('conexion.php');
                     <div class='input-field col s12 m4 l5'>
                          <input type='checkbox'  id='conser".$i."' name='conservacion[]' value='$rw[id]' />
                       <label for='conser".$i."'>$rw[nombre]</label>
+                       <input type='hidden'  name='conservacion_hidden[]' value='$rw[id]' />
                     </div>
                         
                     <div class='input-field col s12 m4 l2 '>
@@ -785,6 +796,7 @@ require_once('conexion.php');
                 <p>
                 <input type='checkbox'  id='ecosistemas".$i."'  name='ecosistemas[]' value='$rw[id]' />
                 <label for='ecosistemas".$i."'>$rw[nombre]</label>
+                <input type='hidden' id='ce".$i."'  name='ecosistemas_hidden[]' value='$rw[id]' />
               </p>
               </div>
               <div class='input-field col s12 m6 l6'>
@@ -814,7 +826,6 @@ require_once('conexion.php');
                   <div class="divider"></div>
                    <?php 
             $i = 0;
-            $ver = "";
             $s1="SELECT id,nombre from opciones where codigo LIKE '%PM%'  order by id ";
             $r1= mysqli_query($conn,$s1) or die("Error");
             if(mysqli_num_rows($r1)>0){
@@ -824,10 +835,11 @@ require_once('conexion.php');
              <div class='input-field col s12 m5 l5'>
                         <input type='checkbox' id='plan".$i."' name='plan[]' value='$rw[id]' />
                       <label for='plan".$i."'>$rw[nombre]</label>
+                      <input type='hidden'   name='plan_hidden[]' value='$rw[id]' />
                     </div>
                     <div class='input-field col s12 m2 l2'>
                         <select disabled name='plan_a_na[]' id='plan_a_na".$i."'>";
-                         $s2="select id,nombre from aplica_noaplica order by id desc ";
+                         $s2="SELECT id,nombre from aplica_noaplica order by id desc ";
                   $r2= mysqli_query($conn,$s2) or die('Error');
                   if(mysqli_num_rows($r2)>0){
                     while($rw2=mysqli_fetch_assoc($r2)){
@@ -838,7 +850,7 @@ require_once('conexion.php');
                     </div>
                     <div class='input-field col s12 m2 l2'>
                         <select disabled name='plan_c_nc[]' id='plan_c_nc".$i."'>";
-                          $s3="select id,nombre from cumple_nocumple order by id desc ";
+                          $s3="SELECT id,nombre from cumple_nocumple order by id desc ";
                   $r3= mysqli_query($conn,$s3) or die('Error');
                   if(mysqli_num_rows($r3)>0){
                     while($rw3=mysqli_fetch_assoc($r3)){
@@ -864,9 +876,6 @@ require_once('conexion.php');
         ?>
 
             </div>
-
-
-
       </span></div>
     </li>
 
@@ -894,7 +903,7 @@ require_once('conexion.php');
                   <div class="divider"></div>
               <?php 
             $i = 0;
-            $s="SELECT id,nombre from opciones where codigo LIKE '%IV%'  order by id ";
+            $s="SELECT id,nombre from opciones where codigo LIKE '%INVOLUCRA%'  order by id ";
             $r= mysqli_query($conn,$s) or die("Error");
             if(mysqli_num_rows($r)>0){
               while($rw=mysqli_fetch_assoc($r)){
@@ -903,6 +912,7 @@ require_once('conexion.php');
               <div class=' col s12 m3 l3'>
                          <input type='checkbox'  id='involucra".$i."'  name='involucra[]' value='$rw[id]' />
                 <label for='involucra".$i."'>$rw[nombre]</label>
+                <input type='hidden' id='ce".$i."'  name='involucra_hidden[]' value='$rw[id]' />
                     </div>
 
               ";
@@ -944,6 +954,7 @@ require_once('conexion.php');
                 <div class='input-field col s12 m4 l3'>
                   <input type='checkbox' id='actividad".$i."' name='actividad[]' value='$rw[id]' />
                       <label for='actividad".$i."'>$rw[nombre]</label>
+                      <input type='hidden'   name='actividad_hidden[]' value='$rw[id]' />
                 </div>
 
                 <div class='input-field col s12 m4 l4'>
@@ -1024,6 +1035,7 @@ require_once('conexion.php');
                 <div class='input-field col s12 m4 l4'>
                   <input type='checkbox' id='programa".$i."' name='programa[]' value='$rw[id]' />
                       <label for='programa".$i."'>$rw[nombre]</label>
+                      <input type='hidden'  name='programa_hidden[]' value='$rw[id]' />
                 </div>
 
                 <div class='input-field col s12 m4 l8'>
@@ -1071,13 +1083,13 @@ require_once('conexion.php');
              echo"
              <div class='row'>
                 <div class='input-field col s12 m3 l3'>
-                  <input type='text' name='apoyo[]'  />
-                  <label>Tipo de apoyo</label> 
+                  <input type='text' id='apoyo".$i."' name='apoyo[]'  />
+                  <label for='apoyo".$i."'>Tipo de apoyo</label>
                 </div>
 
                 <div class='input-field col s12 m5 l5'>
-                  <input type='text' name='apoyo_entidad[]' />
-                  <label for=''>Entidad</label>
+                  <input type='text' id='entidad".$i."' name='apoyo_entidad[]' />
+                  <label for='entidad".$i."'>Entidad</label>
                 </div>
 
                 <div class='input-field col s12 m2 l2' >
@@ -1094,8 +1106,8 @@ require_once('conexion.php');
                 </div>
 
                 <div class='input-field col s12 m2 l2'>
-                  <input type='text' name='año[]' />
-                  <label for=''>Año</label>
+                  <input type='text' id='anio".$i."' name='año[]' />
+                  <label for='anio".$i."'>Año</label>
                 </div>
             </div>";
             } 
@@ -1172,5 +1184,59 @@ require_once('conexion.php');
 </ul>
 <button type="submit" class="waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="registrar_informacion"><i class="material-icons right">add</i>Registrar informacion AS</button>
 </form> 
+ </div>
+          </div>
+        </div>
+      </div>
+    </section>  
+  </div>
+</div>
+
+
+<!--___________________________________ Seccion para modificar_______________________ -->
+<div id="test2" class="col s12" style="padding-right: 0px; padding-left: 0px">
+  <div id="test-swipe-2" class="col s12 right" style="margin-left: -15px; width: 100%">
+    <section id="" style="">
+      <div class="row">
+        <div class="col s12 m12 l12" style="padding-left: 0px; padding-right: 0px">
+          <center><h4 style="margin-top: 0px">Sección para Modificar</h4></center>
+          <div class="card grey lighten-4 " style="height: auto;display:inline-block;width: 100%;margin-left: 0px; margin-top: 0px">
+            <div class="card-content black-text">
+                <!-- <div class="col s12 m12 l12"> -->
+  <!-- <div class="card grey lighten-4 "  style="height: auto;display:inline-block;width: 100%;"> -->
+<span class="card-title"><center>Formato de información AS</center></span>
+  <div class="row">
+ 
+    <div class="input-field col s12 m12 l12  " id="div_empresa">
+        <select id="empresa_m" style="width: 100%; left: -20px;" name="empresa_m" required="required">
+          <option disabled selected="">Seleccione un emprendimiento al cual desea realizarle MODIFICACIONES</option>
+          <?php 
+                    $s="SELECT id,razon_social from empresa where informacion_as = 'si' ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[razon_social]</option>";          
+                      }         
+                    }
+                  ?>
+        </select>
+      </div>        
+</div>
+
+<form id="form_modificar_informacion">
+    <div id="cargar_info"></div>
+</form>
+
+</div>
+</div>
+</div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>  
+  </div>
+</div>
 <script type="text/javascript" src="js/select2.js"></script>
 <script type="text/javascript" src="js/accion_formato_informacion.js"></script>

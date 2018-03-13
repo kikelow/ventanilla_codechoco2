@@ -14,7 +14,7 @@ if (isset($empresa)) {
 			$s="UPDATE `verificacion_1` SET 
 			`si_no_noaplica_id`= '$si_no_noaplica[$i]',
 			`observacion`= '$observacion[$i]',
-			`verificacion`='$verificacion[$i]'  WHERE opciones_id ='".$opcion[$i]."' ";
+			`verificacion`='$verificacion[$i]'  WHERE empresa_id = '$empresa' AND opciones_id ='".$opcion[$i]."' ";
 				mysqli_query($conn,$s) or die(mysqli_error($conn));
 		}
 }

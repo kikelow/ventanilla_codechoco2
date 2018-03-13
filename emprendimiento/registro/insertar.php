@@ -53,12 +53,8 @@ include "../../conexion.php";
 	$check = $_POST['actividad_emp'];
 	$confirmacion = $_POST['actividad_emp_hidden'];
 
-	// echo($check[2]);
 	$resultado_chequeado = array_intersect($confirmacion,$check);
 	$resultadom_nochequeado = array_diff($confirmacion,$check);
-	// print_r($check);
-	// print_r($confirmacion);
-	// print_r($resultado);
 	$y = 0;
 	for ($i=0; $i <sizeof($confirmacion); $i++) {
 		$y++;
