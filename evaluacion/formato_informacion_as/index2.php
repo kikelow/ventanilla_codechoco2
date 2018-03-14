@@ -943,7 +943,6 @@ require_once('conexion.php');
             <div class="divider"></div>
              <?php 
             $i = 0;
-            $ver = "";
             $s1="SELECT id,nombre from opciones where codigo LIKE '%ACTIVIDAD_COMU%'  order by id ";
             $r1= mysqli_query($conn,$s1) or die("Error");
             if(mysqli_num_rows($r1)>0){
@@ -1024,7 +1023,6 @@ require_once('conexion.php');
             <div class="divider"></div>
              <?php 
             $i = 0;
-            $ver = "";
             $s1="SELECT id,nombre from opciones where codigo LIKE '%ACTIVIDAD_COMU%'  order by id ";
             $r1= mysqli_query($conn,$s1) or die("Error");
             if(mysqli_num_rows($r1)>0){

@@ -880,6 +880,571 @@ echo "</div>
       </span></div></li>";
 
 
+echo "<li>
+      <div class='collapsible-header' style='font-weight: bold;'><i class='material-icons'></i>4. información sostenibilidad Social</div>
+      <div class='collapsible-body'><span>
+        
+      <div class='row' style='text-align: center;background-color: #bdbdbd;'>4. información sostenibilidad Social</div>
+        <div class='row'>
+          <div class='input-field col s12 m8 l8'>
+               <select id='valida_involucra_m'>
+                 <option disabled selected>Seleccione una opcion</option>
+                 <option value='1'>No</option>
+                 <option value='2'>Si</option>
+               </select>   
+            <label>¿La iniciativa involucra a miembros de las comunidades locales?</label> 
+          </div>
+            <div class='col s12 m12 l12' id='div_involucra_m' style='border: 1px solid'>
+                  <p>¿Cómo involucra los miembros de las cominidades locales?</p> 
+                  <div class='divider'></div>";
+
+
+
+          $i = 0;
+          $opciones_id='';
+      $s4="SELECT * from involucra WHERE empresa_id = '$_POST[empresa_m]' order by opciones_id ";
+            $r4= mysqli_query($conn,$s4) or die("Error");
+            if(mysqli_num_rows($r4)>0){
+              while($rw4=mysqli_fetch_assoc($r4)){
+                $opciones_id = $rw4['opciones_id'];
+
+            $s="SELECT id,nombre from opciones where id = '$opciones_id'";
+            $r= mysqli_query($conn,$s) or die("Error");
+            if(mysqli_num_rows($r)>0){
+              while($rw=mysqli_fetch_assoc($r)){
+                 $i++;
+                 if ($rw4['confirmacion']=='si') {
+                   echo"
+              <div class=' col s12 m3 l3'>
+                         <input type='checkbox' checked='checked'  id='involucra_m".$i."'  name='involucra_m[]' value='$rw[id]' />
+                <label for='involucra_m".$i."'>$rw[nombre]</label>
+                <input type='hidden' name='involucra_m_hidden[]' value='$rw[id]' />
+                    </div>
+
+              ";
+                 }else{
+                  echo"
+              <div class=' col s12 m3 l3'>
+                         <input type='checkbox'  id='involucra_m".$i."'  name='involucra_m[]' value='$rw[id]' />
+                <label for='involucra_m".$i."'>$rw[nombre]</label>
+                <input type='hidden' name='involucra_m_hidden[]' value='$rw[id]' />
+                    </div>
+
+              ";
+
+                 }
+
+       
+              }         
+            }
+            }         
+            }
+
+            $nombre = "";
+            $s="SELECT * from otro_involucra where empresa_id = '$_POST[empresa_m]'";
+            $r= mysqli_query($conn,$s) or die("Error");
+            if(mysqli_num_rows($r)>0){
+              while($rw=mysqli_fetch_assoc($r)){
+                $nombre = $rw['nombre'];
+              }
+            }
+
+            echo "<div class='input-field col s12 m4 l3'>
+                  <input type='text' id='otro_involucra_nom_m' name='otro_involucra_nom_m' value='$nombre
+                  ' />
+                  <label for='otro_involucra_nom_m' class='activar'>Otro. ¿Cual?</label>
+                </div>
+            </div>
+        </div>";
+
+        echo "<div class='row'>
+          <div class='input-field col s12 m8 l8'>
+               <select id='valida_actividades_m'>
+                 <option disabled selected>Seleccione una opcion</option>
+                 <option value='1'>No</option>
+                 <option value='2'>Si</option>
+               </select>   
+            <label>¿La iniciativa realiza actividades con los mienbros de las comunidades locales?</label> 
+          </div>
+            <div class='col s12 m12 l12' id='div_activi_m' style='border: 1px solid'>
+            <p>Actividades con miembros de las comunidades locales</p> 
+            <div class='divider'></div>";
+
+              $i = 0;
+              $opciones_id='';
+              $recurso_id = "";
+              $descripcion = "";
+      $s4="SELECT * from actividades WHERE empresa_id = '$_POST[empresa_m]' order by opciones_id ";
+            $r4= mysqli_query($conn,$s4) or die("Error");
+            if(mysqli_num_rows($r4)>0){
+              while($rw4=mysqli_fetch_assoc($r4)){
+                $opciones_id = $rw4['opciones_id'];
+                $recurso_id = $rw4['recurso_id'];
+                $descripcion= $rw4['descripcion'];
+
+            $s1="SELECT id,nombre from opciones where id = '$opciones_id' ";
+            $r1= mysqli_query($conn,$s1) or die("Error");
+            if(mysqli_num_rows($r1)>0){
+              while($rw=mysqli_fetch_assoc($r1)){
+                   $i++;
+                if ($rw4['confirmacion'] == 'si') {
+                  echo"
+             <div class='row'>
+                <div class='input-field col s12 m4 l3'>
+                  <input type='checkbox' checked='checked' id='actividad_m".$i."' name='actividad_m[]' value='$rw[id]' />
+                      <label for='actividad_m".$i."'>$rw[nombre]</label>
+                      <input type='hidden'   name='actividad_m_hidden[]' value='$rw[id]' />
+                </div>
+
+                <div class='input-field col s12 m4 l4'>
+                 <input   type='text' name='actividad_desc_m[]' id='actividad_desc_m".$i."' value='$descripcion' />
+                      <label for='actividad_desc_m".$i."' class='activar'>Descripción</label>
+                </div>
+
+                <div class='input-field col s12 m4 l5' id='act_select'>
+                <select  name='actividad_recurso_m[]' id='actividad_recurso_m".$i."'>";
+                     $s="select id,nombre from recurso ";
+                  $r= mysqli_query($conn,$s) or die('Error');
+                  if(mysqli_num_rows($r)>0){
+                    while($result=mysqli_fetch_assoc($r)){
+                      if ($result['id'] == $recurso_id) {
+                        echo"<option selected='selected' value=".$result['id'].">".$result['nombre' ]."</option>";
+                      }else{
+                         echo"<option value=".$result['id'].">".$result['nombre' ]."</option>";
+                      }
+
+                       
+                    }
+                  }
+                echo"</select>
+                <label>Fuente de Recursos</label>
+                </div>
+            </div>";
+                }else{
+                  echo"
+             <div class='row'>
+                <div class='input-field col s12 m4 l3'>
+                  <input type='checkbox' id='actividad_m".$i."' name='actividad_m[]' value='$rw[id]' />
+                      <label for='actividad_m".$i."'>$rw[nombre]</label>
+                      <input type='hidden'   name='actividad_m_hidden[]' value='$rw[id]' />
+                </div>
+
+                <div class='input-field col s12 m4 l4'>
+                 <input disabled  type='text' name='actividad_desc_m[]' id='actividad_desc_m".$i."' value='$descripcion' />
+                      <label for='actividad_desc_m".$i."' class='activar'>Descripción</label>
+                </div>
+
+                <div class='input-field col s12 m4 l5' id='act_select'>
+                <select disabled name='actividad_recurso_m[]' id='actividad_recurso_m".$i."'>";
+                     $s="select id,nombre from recurso ";
+                  $r= mysqli_query($conn,$s) or die('Error');
+                  if(mysqli_num_rows($r)>0){
+                    while($result=mysqli_fetch_assoc($r)){
+                      if ($result['id'] == $recurso_id) {
+                        echo"<option selected='selected' value=".$result['id'].">".$result['nombre' ]."</option>";
+                      }else{
+                         echo"<option value=".$result['id'].">".$result['nombre' ]."</option>";
+                      }
+
+                       
+                    }
+                  }
+                echo"</select>
+                <label>Fuente de Recursos</label>
+                </div>
+            </div>";
+                }
+
+                    
+             
+              }  
+
+            } 
+          }  
+
+            } 
+
+            $nombre = "";
+            $descripcion = "";
+            $recurso_id = "";
+            $s="SELECT * from otro_actividades WHERE empresa_id = '$_POST[empresa_m]' ";
+                  $r= mysqli_query($conn,$s) or die('Error');
+                  if(mysqli_num_rows($r)>0){
+                    while($result=mysqli_fetch_assoc($r)){
+                       $nombre = $result['nombre'];
+                       $descripcion = $result['descripcion'];
+                       $recurso_id = $result['recurso_id'];
+                    }
+                  }
+
+            echo "<div class='row' id='otro_act'>
+           <div class='input-field col s12 m4 l3'>
+                  <input type='text' id='otro_activi_nom_m' name='otro_activi_nom_m' value='$nombre'/>
+                      <label for='otro_activi_nom_m' class='activar'>Otro. ¿Cual?</label>
+                </div>
+
+                <div class='input-field col s12 m4 l4'>
+                 <input  type='text' name='otro_activi_desc_m' id='otro_activi_desc_m' value='$descripcion' />
+                      <label for='otro_activi_desc_m' class='activar'>Descripción</label>
+                </div>
+
+                <div class='input-field col s12 m4 l5'>
+                <select name='otro_activi_recurso_m' id='otro_activi_recurso_m'>"; 
+                     $s="SELECT id,nombre from recurso ";
+                  $r= mysqli_query($conn,$s) or die('Error');
+                  if(mysqli_num_rows($r)>0){
+                    while($result=mysqli_fetch_assoc($r)){
+                      if ($result['id']==$recurso_id) {
+                        echo"<option selected='selected' value=".$result['id'].">".$result['nombre' ]."</option>";
+                      }else{
+                        echo"<option value=".$result['id'].">".$result['nombre' ]."</option>";
+                    }
+                      }
+                  }
+                  
+            echo "    </select>
+                <label>Fuente de Recursos</label>
+                </div>
+        </div>
+      </div>
+    </div>";
+
+    echo "<div class='row'>
+      <div class='input-field col s12 m8 l8'>
+               <select id='valida_trabajadores_m'>
+                 <option disabled selected>Seleccione una opcion</option>
+                 <option value='1'>No</option>
+                 <option value='2'>Si</option>
+               </select>   
+            <label>¿Su iniciativa tiene programas para los trabajadores, empleados?</label> 
+          </div>
+            <div class='col s12 m12 l12' id='trabaja_m' style='border: 1px solid'>
+            <p>Programas para los trabajadores</p> 
+            <div class='divider'></div>";
+            $opciones_id='';
+            $descripcion = "";
+            $i = 0;
+      $s4="SELECT * from programa WHERE empresa_id = '$_POST[empresa_m]' order by opciones_id ";
+            $r4= mysqli_query($conn,$s4) or die("Error");
+            if(mysqli_num_rows($r4)>0){
+              while($rw4=mysqli_fetch_assoc($r4)){
+                $opciones_id = $rw4['opciones_id'];
+                $descripcion = $rw4['descripcion'];
+
+           
+            $s1="SELECT id,nombre from opciones where id = '$opciones_id' ";
+            $r1= mysqli_query($conn,$s1) or die("Error");
+            if(mysqli_num_rows($r1)>0){
+              while($rw=mysqli_fetch_assoc($r1)){
+                 $i++;
+                if ($rw4['confirmacion']=='si') {
+                   echo"
+             <div class='row'>
+                <div class='input-field col s12 m4 l4'>
+                  <input type='checkbox' checked='checked' id='programa_m".$i."' name='programa_m[]' value='$rw[id]' />
+                      <label for='programa_m".$i."'>$rw[nombre]</label>
+                      <input type='hidden'  name='programa_m_hidden[]' value='$rw[id]' />
+                </div>
+
+                <div class='input-field col s12 m4 l8'>
+                 <input  type='text' name='programa_desc_m[]' id='programa_desc_m".$i."' value='$descripcion' />
+                      <label for='programa_desc_m".$i."' class='activar'>Descripción</label>
+                </div>
+                </div>";
+                }else{
+                   echo"
+             <div class='row'>
+                <div class='input-field col s12 m4 l4'>
+                  <input type='checkbox' id='programa_m".$i."' name='programa_m[]' value='$rw[id]' />
+                      <label for='programa_m".$i."'>$rw[nombre]</label>
+                      <input type='hidden'  name='programa_m_hidden[]' value='$rw[id]' />
+                </div>
+
+                <div class='input-field col s12 m4 l8'>
+                 <input disabled  type='text' name='programa_desc_m[]' id='programa_desc_m".$i."' value='$descripcion' />
+                      <label for='programa_desc_m".$i."' class='activar'>Descripción</label>
+                </div>
+                </div>";
+                }
+              }  
+
+            } 
+
+             }  
+
+            } 
+
+            $nombre="";
+            $descripcion="";
+            $s1="SELECT * from otro_programa where empresa_id = '$_POST[empresa_m]' ";
+            $r1= mysqli_query($conn,$s1) or die("Error");
+            if(mysqli_num_rows($r1)>0){
+              while($rw=mysqli_fetch_assoc($r1)){
+                $nombre= $rw['nombre'];
+                $descripcion= $rw['descripcion'];
+              }
+            }
+
+            echo "<div class='row' id=''>
+          <div class='input-field col s12 m4 l4'>
+            <input type='text' id='otro_programa_nom_m' name='otro_programa_nom_m' value='$nombre'/>
+                <label for='otro_programa_nom_m' class='activar'>Otro. ¿Cual?</label>
+          </div>
+
+          <div class='input-field col s12 m4 l8'>
+           <input  type='text' name='otro_programa_desc_m' id='otro_programa_desc_m' value='$descripcion' />
+                <label for='otro_programa_desc_m' class='activar'>Descripción</label>
+          </div>
+        </div>
+        
+      </div>
+    </div>";
+
+
+    echo " <div class='row'>
+          <div class='input-field col s12 m8 l8'>
+               <select id='valida_institucion_m'>
+                 <option disabled selected>Seleccione una opcion</option>
+                 <option value='1'>No</option>
+                 <option value='2'>Si</option>
+               </select>   
+            <label>¿La iniciativa o el empresario han recibido algún apoyo por parte de una institución pública o privada?</label> 
+          </div>
+            <div class='col s12 m12 l12' id='insti_m' style='border: 1px solid'>
+            <p>Apoyo por parte de institución pública o privada</p> 
+            <div class='divider'></div>";
+
+            $apoyo="";
+            $entidad="";
+            $orientacion_id="";
+            $año="";
+            $s1="SELECT * from institucion where empresa_id = '$_POST[empresa_m]' ";
+            $r1= mysqli_query($conn,$s1) or die("Error");
+            if(mysqli_num_rows($r1)>0){
+              while($rw=mysqli_fetch_assoc($r1)){
+                $apoyo= $rw['apoyo'];
+                $entidad= $rw['entidad'];
+                $orientacion_id= $rw['orientacion_id'];
+                $año= $rw['año'];
+             
+            echo"
+             <div class='row'>
+                <div class='input-field col s12 m3 l3'>
+                  <input type='text' id='apoyo_m".$i."' name='apoyo_m[]' value='$apoyo' />
+                  <label for='apoyo_m".$i."' class='activar'>Tipo de apoyo</label>
+                </div>
+
+                <div class='input-field col s12 m5 l5'>
+                  <input type='text' id='entidad_m".$i."' name='apoyo_entidad_m[]' value='$entidad' />
+                  <label for='entidad_m".$i."' class='activar'>Entidad</label>
+                </div>
+
+                <div class='input-field col s12 m2 l2' >
+                 <select name='apoyo_tipo_entidad_m[]'>";
+                  $s="select id,nombre from orientacion ";
+                  $r= mysqli_query($conn,$s) or die('Error');
+                  if(mysqli_num_rows($r)>0){
+                    while($result=mysqli_fetch_assoc($r)){
+                      if ($result['id'] == $orientacion_id) {
+                       echo"<option selected='selected' value=".$result['id'].">".$result['nombre' ]."</option>";
+                      }else{
+                        echo"<option value=".$result['id'].">".$result['nombre' ]."</option>";
+                      }
+                    }
+                  }
+               echo" </select>
+                <label>Tipo de entidad</label>
+                </div>
+
+                <div class='input-field col s12 m2 l2'>
+                  <input type='text' id='anio_m".$i."' name='año_m[]' value='$año' />
+                  <label for='anio_m".$i."' class='activar'>Año</label>
+                </div>
+            </div>";
+             }
+            }
+            echo "</div></div>
+      </span></div></li>";
+
+      echo "<li>
+      <div class='collapsible-header' style='font-weight: bold;'><i class='material-icons'></i>5. sostenibilidad Economica</div>
+      <div class='collapsible-body'><span>
+        
+      <div class='row' style='text-align: center;background-color: #bdbdbd;'>5. sostenibilidad Economica</div>
+      <div class='row'>
+      <div class='col s12 m12 l12' id='bien_servi' style='border: 1px solid'>";
+
+       $i = 0;
+            $ver = "";
+            $s1="SELECT * from sost_economica where empresa_id = '$_POST[empresa_m]'";
+            $r1= mysqli_query($conn,$s1) or die("Error");
+            if(mysqli_num_rows($r1)>0){
+              while($rw=mysqli_fetch_assoc($r1)){
+                       $i++;
+             echo"
+             <div class='row'>
+                
+                <div class='input-field col s12 m3 l3'>
+                 <input readonly  type='text' name='bien_m[]' id='bien_m".$i."' value='$rw[bien_servicio]' />
+                      <label for='bien_m".$i."' class='activar'></label>
+                </div>
+                 <div class='input-field col s12 m3 l3'>
+                 <input   type='text' name='unidad_v_anual_m[]' id='unidad_v_anual_m".$i."' value='$rw[vendida_anual]'/>
+                      <label for='unidad_v_anual_m".$i."' class='activar'>unidades vendidas anual</label>
+                </div>
+
+                <div class='input-field col s12 m3 l3'>
+                <select  name='unidad_medida_m[]' id='unidad_medida_m".$i."'>";
+                     $s="select id,nombre from unidad_medida ";
+                  $r= mysqli_query($conn,$s) or die('Error');
+                  if(mysqli_num_rows($r)>0){
+                    while($result=mysqli_fetch_assoc($r)){
+                      if ($result['id'] == $rw['unidad_medida_id']) {
+                        echo"<option selected='selected' value=".$result['id'].">".$result['nombre' ]."</option>";
+                      }else{
+                        echo"<option value=".$result['id'].">".$result['nombre' ]."</option>";
+                      }
+                    }
+                  }
+                echo"</select>
+                <label>Unidad de medida</label>
+                </div>
+                <div class='input-field col s12 m3 l3'>
+                 <input   type='text' name='espe_unidad_m[]' id='espe_unidad_m".$i."' value='$rw[esp_unidad]'/>
+                      <label for='espe_unidad_m".$i."' class='activar'>Especifique unidades</label>
+                </div>
+                <div class='input-field col s12 m2 l2'>
+                 <input   type='text' name='costo_pro_unidad_m[]' id='costo_pro_unidad_m".$i."' value='$rw[costo_produccion]'/>
+                      <label for='costo_pro_unidad_m".$i."' class='activar'>Costo producción unidad</label>
+                </div>
+                <div class='input-field col s12 m2 l2'>
+                 <input   type='text' name='precio_v_unitario_m[]' id='precio_v_unitario_m".$i."' value='$rw[precio_v_unitario]' />
+                      <label for='precio_v_unitario_m".$i."' class='activar'>Precio venta unitario</label>
+                </div>
+                <div class='input-field col s12 m2 l2'>
+                 <input   type='text' name='ganancia_unidad_m[]' id='ganancia_unidad_m".$i."' value='$rw[ganancia_unidad]' />
+                      <label for='ganancia_unidad_m".$i."' class='activar'>Ganacias por unidad</label>
+                </div>
+                <div class='input-field col s12 m2 l2'>
+                 <input   type='text' name='venta_anual_m[]' id='venta_anual_m".$i."' value='$rw[ventas_anual]'/>
+                      <label for='venta_anual_m".$i."' class='activar'>Ventas anuales</label>
+                </div>
+
+                <div class='input-field col s12 m4 l4'>
+                <select  name='ingresos_sup_costo_m[]' id='ingresos_sup_costo_m".$i."'>";
+                     $s2="select id,nombre from si_no ";
+                  $r2= mysqli_query($conn,$s2) or die('Error');
+                  if(mysqli_num_rows($r2)>0){
+                    while($result2=mysqli_fetch_assoc($r2)){
+                      if ($result2['id']==$rw['si_no_id']) {
+                       echo"<option selected='selected' value=".$result2['id'].">".$result2['nombre' ]."</option>";
+                      }else{
+                        echo"<option value=".$result2['id'].">".$result2['nombre' ]."</option>";
+                      }
+                    }
+                  }
+                echo"</select>
+                <label>Los ingresos son superiores a los costos</label>
+                </div>
+            </div>
+             <div class='divider '></div>";
+             
+              }  
+
+            } 
+            echo "</div></div>";
+
+            $semanal="";
+            $mensual = "";
+            $anual = "";
+            $s1="SELECT * from costo_insumos where empresa_id = '$_POST[empresa_m]'";
+            $r1= mysqli_query($conn,$s1) or die("Error");
+            if(mysqli_num_rows($r1)>0){
+              while($rw=mysqli_fetch_assoc($r1)){
+                $semanal = $rw['semanal'];
+                $mensual = $rw['mensual'];
+                $anual = $rw['anual'];
+              }
+            }
+            echo "<div class='row' >
+        <div class='col s12 m12 l4' style='border: 1px solid' >
+          <p>Costo promedio de insumos totales</p>
+          <div class='divider'></div>
+           <div class='input-field col s12 m4 l4'>
+              <input type='text' id='insumo_semanal_m' name='insumo_semanal_m' value='$semanal' />
+              <label for='insumo_semanal_m' class='activar'>Semanal</label>
+            </div>
+            <div class='input-field col s12 m4 l4'>
+              <input type='text' id='insumo_mensual_m' name='insumo_mensual_m' value='$mensual' />
+              <label for='insumo_mensual_m' class='activar'>Mensual</label>
+            </div>
+            <div class='input-field col s12 m4 l4'>
+              <input type='text' id='insumo_anual_m' name='insumo_anual_m' value='$anual' />
+              <label for='insumo_anual_m' class='activar'>Anual</label>
+            </div>  
+      </div>";
+
+            $semanal="";
+            $mensual = "";
+            $anual = "";
+            $s1="SELECT * from costo_mano_obra where empresa_id = '$_POST[empresa_m]'";
+            $r1= mysqli_query($conn,$s1) or die("Error");
+            if(mysqli_num_rows($r1)>0){
+              while($rw=mysqli_fetch_assoc($r1)){
+                $semanal = $rw['semanal'];
+                $mensual = $rw['mensual'];
+                $anual = $rw['anual'];
+              }
+            }
+            echo " <div class='col s12 m12 l4' style='border: 1px solid' >
+          <p>Costo promedio de mano de obra</p>
+          <div class='divider'></div>
+           <div class='input-field col s12 m4 l4'>
+              <input type='text' id='obra_semanal_m' name='obra_semanal_m' value='$semanal' />
+              <label for='obra_semanal_m' class='activar'>Semanal</label>
+            </div>
+            <div class='input-field col s12 m4 l4'>
+              <input type='text' id='obra_mensual_m' name='obra_mensual_m' value='$mensual' />
+              <label for='obra_mensual_m' class='activar'>Mensual</label>
+            </div>
+            <div class='input-field col s12 m4 l4'>
+              <input type='text' id='obra_anual_m' name='obra_anual_m' value='$anual' />
+              <label for='obra_anual_m' class='activar'>Anual</label>
+            </div>  
+      </div>";
+
+       $valor = "";
+            $anio = "";
+            $s1="SELECT * from total_ventas where empresa_id = '$_POST[empresa_m]'";
+            $r1= mysqli_query($conn,$s1) or die("Error");
+            if(mysqli_num_rows($r1)>0){
+              while($rw=mysqli_fetch_assoc($r1)){
+                $valor = $rw['valor'];
+                $anio = $rw['anio'];
+               
+              }
+            }
+            echo "<div class='col s12 m12 l4' style='border: 1px solid' >
+          <p>Total de ventas realizadas</p>
+          <div class='divider'></div>
+           <div class='input-field col s12 m6 l6'>
+              <input type='text' id='venta_valor' name='venta_valor' value='$valor' />
+              <label for='venta_valor' class='activar'>Valor</label>
+            </div>
+            <div class='input-field col s12 m6 l6'>
+              <input type='text' id='venta_anio' name='venta_anio' value='$anio' />
+              <label for='venta_anio' class='activar'>Año</label>
+            </div>
+      </div>
+      </div>
+      </span></div>
+    </li>
+</ul>
+<button type='submit' class='waves-effect green darken-2 btn right' style='margin-bottom: 8px' id='modificar_informacion'><i class='material-icons right'>add</i>Modificar informacion AS</button>
+</form> 
+ </div>";
+
+
 
  echo "
 <script type='text/javascript' src='js/accion_formato_informacion.js'></script>
