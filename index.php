@@ -2,7 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>templete</title>
+  <title>Ventanilla de Emprendimientos Verdes</title>
+
+  <link rel="shortcut icon" href="img/favicon2.ico" type="image/x-icon">
+  <link rel="icon" href="img/favicon2.ico" type="image/x-icon">
+
+ <!--  <link rel="apple-touch-icon" sizes="57x57" href="img/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="img/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="img/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="img/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="img/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="img/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="img/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="img/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+  <link rel="manifest" href="img/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="img/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+ -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="css/materialize.min.css" media="screen,projection">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -27,7 +50,7 @@
       <ul class="hide-on-med-and-down" >
         <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/inicio">Inicio</a></li>
             <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/q_somos">¿Quienes Somos?</a></li>
-            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="#">Servicios</a></li>
+            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/servicios">Servicios</a></li>
             <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/m_verdes">Negocios Verdes</a></li>
             <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/registro">Registro</a></li>
             <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/noticias">Noticias</a></li>  
@@ -40,7 +63,7 @@
 <!-- <div id="contenedor" style="min-height: 701px;">
 
 <section id="base" style="min-height: 700px;background-color: white"> -->
-<div style="height: auto;min-height: 700px;">
+<div style="height: auto;min-height: 500px;">
    <?php 
                    $mod = @$_GET['modulo'];
                    $archivo = $mod.'/index.php';

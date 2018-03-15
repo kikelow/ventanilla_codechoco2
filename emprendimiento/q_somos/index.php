@@ -1,4 +1,4 @@
-
+<!-- 
 
 <div class="teal lighten-5" style="margin: 0px;padding: 0px;width: 100%;height: auto;">
   
@@ -60,3 +60,24 @@
 
 </div>
 
+ -->
+
+ <div class="row" style="background-color: #00853b14;padding-top: 150px;">
+   <div class="row">
+     <div class="col s12">
+        <div style="width: 300px;height: 300px;margin:auto;">
+          <img src="img/logo1.png" alt="" width="300" height="300">
+        </div> 
+     </div>
+   </div>
+   <div class="divider"></div>
+   <div class="row">
+    <h3 class="diagonal" style="text-align: center;">quienes sómos</h3> <div class="divider" style=" background-color:  #00853b;"></div>
+      <div class="col s12">
+         <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, debitis, alias ratione repudiandae voluptate nam eaque perspiciatis necessitatibus, asperiores quis blanditiis facere laboriosam corporis commodi incidunt accusantium vitae iusto omnis.</span>
+         <span>Commodi mollitia corporis et asperiores quae. Facilis ipsa hic accusamus quo at numquam, recusandae cum quasi. Unde repellat ducimus repudiandae ipsa, eius, et tenetur. Blanditiis sequi, libero nesciunt eligendi nihil.</span>
+         <span>Minima fugit cupiditate ad, veritatis itaque. Nemo dolorem totam sit error labore harum recusandae ullam, nostrum repudiandae quod unde in perspiciatis dignissimos quidem aspernatur, placeat quae incidunt, reprehenderit architecto odit.</span>
+         <span>Sequi recusandae quod, mollitia veniam. Modi ipsam ut temporibus optio obcaecati asperiores numquam id veniam odio vel eaque quam molestiae pariatur rem, fugiat tempore mollitia quasi. Optio distinctio dicta quaerat?</span></p>
+      </div>
+    </div>
+ </div>

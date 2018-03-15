@@ -1,4 +1,4 @@
-
+<!-- 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +35,7 @@
             <li><a class="sub_line" style="margin-right:  10px;font-family: 'Sniglet', cursive" href="#">Documentación</a></li>
         <li><a style="font-family: 'Sniglet', cursive" href="access/login.php" class="active hoverable">Login</a></li>
       </ul>
-  </div>
+  </div> -->
 
 <!-- <div id="contenedor" style="min-height: 701px;">
 
@@ -49,13 +49,13 @@
 		</div>
 		<div class="col s12 m7 l7">
 			<div class="notice-container">
-				<h5>TITULO PARA NOTICIAS PUBLICADAS EL DIA DE HOY</h5>
-				<hr>
+				<h5 style="background-color: #00853b;color:#fff;padding-left: 5px;">TITULO PARA NOTICIAS PUBLICADAS EL DIA DE HOY</h5>
+				
 				<p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto accusantium eos consectetur perspiciatis minima. Aliquam nihil dolores reprehenderit odit eaque repellendus totam in, obcaecati error magnam, nam tempora. Incidunt, doloremque.</span><span>Omnis modi quidem, eos asperiores! Tenetur temporibus veritatis eius reprehenderit assumenda quos asperiores? Repellendus minus delectus, obcaecati, quisquam iusto nam aspernatur nulla! Laudantium iusto voluptates fugiat eius officia sunt, quibusdam.</span></p>
 
 
 
-				<p>2017-06-10 10:23 a.m</p>
+				<p style="background-color: #00853b;color:#fff;padding-left: 5px;">2017-06-10 10:23 a.m</p>
 			</div>
 		</div>
 	</div>	
@@ -67,7 +67,7 @@
 
 <!-- </section>  
 </div> -->
-
+<!-- 
 </body>
 </html>
 <footer class="page-footer" style="background-color: #00853bed;">
@@ -121,3 +121,4 @@
 </script>
 
 
+ -->
