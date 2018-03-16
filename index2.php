@@ -5,7 +5,7 @@
 	<title>Administrativos</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Ventanilla de Emprendiminetos Verdes</title>
-	
+	<link rel="icon" href="img/favicon2.ico" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" href="css/materialize.min.css" media="screen,projection">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/select2.css">
