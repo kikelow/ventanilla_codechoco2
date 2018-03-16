@@ -568,3 +568,14 @@ div.nav ul li a.active{
   margin: auto;
   margin-top: 4px;
 }
+.diagonal{
+   width: max-content;
+    height: 0px;
+    border-right: 60px solid transparent;
+    border-bottom: 35px solid #00853b;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+}

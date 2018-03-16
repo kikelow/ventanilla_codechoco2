@@ -40,7 +40,7 @@
 			<img class="c_img"  src="img/p3.jpg" alt="">
 			<div class="mask">  
 		        <h2>Razón Social</h2>  
-		        <p>Descripción breve del negocio, como minimo </p>
+		        <p>Descripción breve del negocio, como minimo 12 palabras ueve diez oce doce</p>
 		        <a href="#" class="info">Lee más</a>  
 		    </div>	
 		</div>
