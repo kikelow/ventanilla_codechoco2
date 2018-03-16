@@ -646,7 +646,7 @@ $('#empresa_m').change(function(event) {
   event.preventDefault();
   var empresa_m = $('#empresa_m').val()
   $.ajax({
-    url: 'evaluacion/formato_informacion_as/llenar_formulario.php',
+    url: 'evaluacion/formato_informacion_as/modificar/llenar_formulario.php',
     type: 'POST',
     data: {empresa_m: empresa_m},
   })
@@ -1252,4 +1252,27 @@ $('#valida_institucion_m').change(function(event) {
   }else{
      $('#insti_m').show()
   }
+});
+
+//boton de modificar
+$('#modificar_informacion').click(function(event) {
+  event.preventDefault();
+  var empresa_m = $('#empresa_m').val()
+  $.ajax({
+    url: 'evaluacion/formato_informacion_as/modificar/modificar.php?empresa='+empresa_m,
+    type: 'POST',
+    data: $('#form_modificar_informacion').serialize(),
+  })
+  .done(function(respuesta) {
+    // $('#modificar_informacion').attr('disabled', 'disabled');
+    swal ({
+          icon: "success",
+           text: "Datos MODIFICADOS exitosamente!",
+           button: {
+            visible: false
+          },
+      });
+    setTimeout("document.location=document.location",1500);
+  })
+  
 });

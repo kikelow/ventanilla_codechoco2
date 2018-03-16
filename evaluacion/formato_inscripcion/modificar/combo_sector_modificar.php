@@ -1,6 +1,7 @@
 <?php
-include "../../conexion.php";
-$s="SELECT id,nombre from departamento where region_id = '".$_POST["region_m"]."' order by id desc";
+include "../../../conexion.php";
+
+$s="SELECT id,nombre from sector where categoria_id = '".$_POST["categoria_m"]."'";
 $cs= mysqli_query($conn,$s);
 if(mysqli_num_rows($cs)>0){
 while ($rw=mysqli_fetch_assoc($cs)) {

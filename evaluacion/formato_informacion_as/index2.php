@@ -1,13 +1,13 @@
 <?php 
 require_once('conexion.php');
  ?>
- <div id="test1" class="col s12" style="padding-right: 0px; padding-left: 0px">
-  <div id="test-swipe-1" class="col s12 right" style="margin-left: -15px; width: 100%">
+<div id="test2" class="col s12" style="padding-right: 0px; padding-left: 0px">
+  <div id="test-swipe-2" class="col s12 " style="margin-left: -15px; width: 100%">
     <section id="" style="">
       <div class="row">
         <div class="col s12 m12 l12" style="padding-left: 0px; padding-right: 0px">
-          <center><h4>Sección para Registrar</h4></center>
-          <div class="card grey lighten-4 " style="height: auto;display:inline-block;width: 100%;">
+          <center><h4 style="margin-top: 0px">Sección para Registrar</h4></center>
+           <div class="card grey lighten-4 " style="height: auto;display:inline-block;width: 98%;margin-left: 20px; margin-top: 0px">
             <div class="card-content black-text">
     
 <span class="card-title"><center>Formato de informacion AS</center></span>
@@ -1135,15 +1135,15 @@ require_once('conexion.php');
           <p>Costo promedio de insumos totales</p>
           <div class="divider"></div>
            <div class="input-field col s12 m4 l4">
-              <input type="text" id="insumo_semanal" name="insumo_semanal" />
+              <input type="number" id="insumo_semanal" name="insumo_semanal" />
               <label for="insumo_semanal">Semanal</label>
             </div>
             <div class="input-field col s12 m4 l4">
-              <input type="text" id="insumo_mensual" name="insumo_mensual" />
+              <input type="number" id="insumo_mensual" name="insumo_mensual" />
               <label for="insumo_mensual">Mensual</label>
             </div>
             <div class="input-field col s12 m4 l4">
-              <input type="text" id="insumo_anual" name="insumo_anual" />
+              <input type="number" id="insumo_anual" name="insumo_anual" />
               <label for="insumo_anual">Anual</label>
             </div>  
       </div>
@@ -1152,15 +1152,15 @@ require_once('conexion.php');
           <p>Costo promedio de mano de obra</p>
           <div class="divider"></div>
            <div class="input-field col s12 m4 l4">
-              <input type="text" id="obra_semanal" name="obra_semanal" />
+              <input type="number" id="obra_semanal" name="obra_semanal" />
               <label for="obra_semanal">Semanal</label>
             </div>
             <div class="input-field col s12 m4 l4">
-              <input type="text" id="obra_mensual" name="obra_mensual" />
+              <input type="number" id="obra_mensual" name="obra_mensual" />
               <label for="obra_mensual">Mensual</label>
             </div>
             <div class="input-field col s12 m4 l4">
-              <input type="text" id="obra_anual" name="obra_anual" />
+              <input type="number" id="obra_anual" name="obra_anual" />
               <label for="obra_anual">Anual</label>
             </div>  
       </div>
@@ -1168,11 +1168,11 @@ require_once('conexion.php');
           <p>Total de ventas realizadas</p>
           <div class="divider"></div>
            <div class="input-field col s12 m6 l6">
-              <input type="text" id="venta_valor" name="venta_valor" />
+              <input type="number" id="venta_valor" name="venta_valor" />
               <label for="venta_valor">Valor</label>
             </div>
             <div class="input-field col s12 m6 l6">
-              <input type="text" id="venta_anio" name="venta_anio" />
+              <input type="number" id="venta_anio" name="venta_anio" />
               <label for="venta_anio">Año</label>
             </div>
       </div>
@@ -1180,7 +1180,7 @@ require_once('conexion.php');
       </span></div>
     </li>
 </ul>
-<button type="submit" class="waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="registrar_informacion"><i class="material-icons right">add</i>Registrar informacion AS</button>
+<button type="submit" class="waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="registrar_informacion"><i class="material-icons right">add</i>Registrar </button>
 </form> 
  </div>
           </div>
@@ -1191,50 +1191,6 @@ require_once('conexion.php');
 </div>
 
 
-<!--___________________________________ Seccion para modificar_______________________ -->
-<div id="test2" class="col s12" style="padding-right: 0px; padding-left: 0px">
-  <div id="test-swipe-2" class="col s12 right" style="margin-left: -15px; width: 100%">
-    <section id="" style="">
-      <div class="row">
-        <div class="col s12 m12 l12" style="padding-left: 0px; padding-right: 0px">
-          <center><h4 style="margin-top: 0px">Sección para Modificar</h4></center>
-          <div class="card grey lighten-4 " style="height: auto;display:inline-block;width: 100%;margin-left: 0px; margin-top: 0px">
-            <div class="card-content black-text">
-                <!-- <div class="col s12 m12 l12"> -->
-  <!-- <div class="card grey lighten-4 "  style="height: auto;display:inline-block;width: 100%;"> -->
-<span class="card-title"><center>Formato de información AS</center></span>
-  <div class="row">
- 
-    <div class="input-field col s12 m12 l12  " id="div_empresa">
-        <select id="empresa_m" style="width: 100%; left: -20px;" name="empresa_m" required="required">
-          <option disabled selected="">Seleccione un emprendimiento al cual desea realizarle MODIFICACIONES</option>
-          <?php 
-                    $s="SELECT id,razon_social from empresa where informacion_as = 'si' ";
-                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
-                    if(mysqli_num_rows($r)>0){
-                      while($rw=mysqli_fetch_assoc($r)){
-                      echo"<option value='$rw[id]'>$rw[razon_social]</option>";          
-                      }         
-                    }
-                  ?>
-        </select>
-      </div>        
-</div>
 
-<form id="form_modificar_informacion">
-    <div id="cargar_info"></div>
-</form>
-
-</div>
-</div>
-</div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>  
-  </div>
-</div>
 <script type="text/javascript" src="js/select2.js"></script>
 <script type="text/javascript" src="js/accion_formato_informacion.js"></script>

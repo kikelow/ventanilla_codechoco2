@@ -3,12 +3,12 @@ require_once('conexion.php');
         $i = 0;  
  ?>
  <div id="test1" class="col s12" style="padding-right: 0px; padding-left: 0px">
-  <div id="test-swipe-1" class="col s12 right" style="margin-left: -15px; width: 100%">
+  <div id="test-swipe-1" class="col s12 " style="margin-left: -15px; width: 100%">
     <section id="" style="">
       <div class="row">
         <div class="col s12 m12 l12" style="padding-left: 0px; padding-right: 0px">
           <center><h4>Sección para Registrar</h4></center>
-          <div class="card grey lighten-4 " style="height: auto;display:inline-block;width: 100%;">
+          <div class="card grey lighten-4 " style="height: auto;display:inline-block;width: 98%; margin-left: 20px">
             <div class="card-content black-text">
 
  <span class="card-title"><center>Hoja de verificación 2</center></span>

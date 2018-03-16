@@ -7,10 +7,6 @@ if (isset($empresa)) {
 $t_tierra_check = $_POST['tierra'];
 $t_tierra_confirmacion = $_POST['tierra_hidden'];
 $desc_tierra = $_POST['desc_t'];
-// var_dump($t_tierra_check);
-
-// $resultado_chequeado = array_intersect($t_tierra_confirmacion,$t_tierra_check);
-// var_dump(array_values($resultado_chequeado));
 $resultadom_nochequeado = array_values(array_diff($t_tierra_confirmacion,$t_tierra_check));
 
 	for ($i=0; $i <sizeof($t_tierra_confirmacion); $i++) {
@@ -146,7 +142,6 @@ for ($i=0; $i <sizeof($ecosistemas_hidden); $i++) {
 //registrar datos de otros ecosistemas
 $s="INSERT INTO `otros_ecosistema`(`empresa_id`, `nombre`, `area`) VALUES('$empresa','$_POST[otro_ecosistema_nom]','$_POST[otro_ecosistema_area]')";
 // mysqli_query($conn,$s);
-
 //---------------------------------------------------------------------------------------------------------
 //registrar datos en la tabla plan_manejo
 $plan = $_POST['plan'];
@@ -259,7 +254,7 @@ $s="INSERT INTO `institucion`(`empresa_id`, `apoyo`, `entidad`, `orientacion_id`
 $bien = $_POST['bien'];
 $unidad_v_anual = $_POST['unidad_v_anual'];
 $unidad_medida = $_POST['unidad_medida'];
-$espe_unidad = $_POST['espe_unidad'];
+// $espe_unidad = $_POST['espe_unidad'];
 $costo_pro_unidad = $_POST['costo_pro_unidad'];
 $precio_v_unitario = $_POST['precio_v_unitario'];
 $ganancia_unidad = $_POST['ganancia_unidad'];
@@ -267,11 +262,10 @@ $venta_anual = $_POST['venta_anual'];
 $ingresos_sup_costo = $_POST['ingresos_sup_costo'];
 
 for ($i=0; $i <sizeof($bien); $i++) {
-$s="INSERT INTO `sost_economica`(`empresa_id`, `bien_servicio`, `vendida_anual`, `unidad_medida_id`, `esp_unidad`, `costo_produccion`, `precio_v_unitario`, `ganancia_unidad`, `ventas_anual`, `si_no_id`) VALUES ('$empresa','".$bien[$i]."','".$unidad_v_anual[$i]."','".$unidad_medida[$i]."','".$espe_unidad[$i]."','".$costo_pro_unidad[$i]."','".$precio_v_unitario[$i]."','".$ganancia_unidad[$i]."','".$venta_anual[$i]."','".$ingresos_sup_costo[$i]."')";
+$s="INSERT INTO `sost_economica`(`empresa_id`, `bien_servicio`, `vendida_anual`, `unidad_medida_id`,`costo_produccion`, `precio_v_unitario`, `ganancia_unidad`, `ventas_anual`, `si_no_id`) VALUES ('$empresa','".$bien[$i]."','".$unidad_v_anual[$i]."','".$unidad_medida[$i]."','".$costo_pro_unidad[$i]."','".$precio_v_unitario[$i]."','".$ganancia_unidad[$i]."','".$venta_anual[$i]."','".$ingresos_sup_costo[$i]."')";
 // mysqli_query($conn,$s);
-// echo($s);
 }
-
+//---------------------------------------------------------------------------------------------------------
 //registrar datos de insumos totales
 $s="INSERT INTO `costo_insumos`(`empresa_id`, `semanal`, `mensual`, `anual`) VALUES('$empresa','$_POST[insumo_semanal]','$_POST[insumo_mensual]','$_POST[insumo_anual]')";
 // mysqli_query($conn,$s);

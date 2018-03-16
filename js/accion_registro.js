@@ -317,7 +317,7 @@ var empresa_id = $('#empresa').val()
 // var region_m = $('#region_m').val()
 // alert(region_m)
 $.ajax({
-  url: 'evaluacion/formato_inscripcion/llenar_formulario.php',
+  url: 'evaluacion/formato_inscripcion/modificar/llenar_formulario.php',
    type: 'POST',
    data: {empresa_id: empresa_id},
  //   beforeSend: function() {
@@ -339,7 +339,7 @@ $('#region_m').change(function(event) {
 var region_m = $('#region_m').val()
 
 $.ajax({
-   url: 'evaluacion/formato_inscripcion/combo_departamento_modificar.php',
+   url: 'evaluacion/formato_inscripcion/modificar/combo_departamento_modificar.php',
    type: 'POST',
    data: {region_m: region_m},
  })
@@ -355,7 +355,7 @@ $('#municipio_m').material_select();
 $('#departamento_m').change(function(event) { 
 var departamento_m = $('#departamento_m').val()
 $.ajax({
-   url: 'evaluacion/formato_inscripcion/combo_municipio_modificar.php',
+   url: 'evaluacion/formato_inscripcion/modificar/combo_municipio_modificar.php',
    type: 'POST',
    data: {departamento_m: departamento_m},
  })
@@ -371,7 +371,7 @@ $('#categoria_m').change(function(event) {
 var categoria_m = $('#categoria_m').val()
 
 $.ajax({
-   url: 'evaluacion/formato_inscripcion/combo_sector_modificar.php',
+   url: 'evaluacion/formato_inscripcion/modificar/combo_sector_modificar.php',
    type: 'POST',
    data: {categoria_m: categoria_m},
  })
@@ -388,7 +388,7 @@ $('#subsector_m').material_select();
 $('#sector_m').change(function(event) { 
 var sector_m = $('#sector_m').val()
 $.ajax({
-   url: 'evaluacion/formato_inscripcion/combo_subsector_modificar.php',
+   url: 'evaluacion/formato_inscripcion/modificar/combo_subsector_modificar.php',
    type: 'POST',
    data: {sector_m: sector_m},
  })
@@ -608,7 +608,7 @@ else {
 	$('#mensaje_educativo2').html(" ")
 	var empresa = $('#empresa').val()
 	$.ajax({
-		url: 'evaluacion/formato_inscripcion/modificar.php?empresa='+empresa,
+		url: 'evaluacion/formato_inscripcion/modificar/modificar.php?empresa='+empresa,
 		type: 'POST',
 		data: $('#form_modificar').serialize(),
 	})

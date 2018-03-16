@@ -7,7 +7,7 @@
         }
         else {
     
-        require_once('../../conexion.php');
+        require_once('../../../conexion.php');
     }
 
     echo"<ul class='collapsible' data-collapsible='accordion'>
@@ -38,7 +38,7 @@
               </div>
               <div class='input-field col s12 m6 l6'>
                 <input  type='text' name='desc_t_m[]' id='desc_t_m".$i."' value='$rw1[descripcion]' />
-                <label for='desc_t".$i."'  class='activar'>Descripcion</label>
+                <label for='desc_t_m".$i."'  class='activar'>Descripcion</label>
               </div>
               </div>";
                 }else{
@@ -53,7 +53,7 @@
               </div>
               <div class='input-field col s12 m6 l6'>
                 <input disabled type='text' name='desc_t_m[]' id='desc_t_m".$i."' />
-                <label for='desc_t".$i."'>Descripcion</label>
+                <label for='desc_t_m".$i."'>Descripcion</label>
               </div>
               </div>";
                  }
@@ -1286,14 +1286,14 @@ echo "<li>
                 
                 <div class='input-field col s12 m3 l3'>
                  <input readonly  type='text' name='bien_m[]' id='bien_m".$i."' value='$rw[bien_servicio]' />
-                      <label for='bien_m".$i."' class='activar'></label>
+                      <label for='bien_m".$i."' class='activar'>Bien o servicio</label>
                 </div>
                  <div class='input-field col s12 m3 l3'>
-                 <input   type='text' name='unidad_v_anual_m[]' id='unidad_v_anual_m".$i."' value='$rw[vendida_anual]'/>
+                 <input   type='number' name='unidad_v_anual_m[]' id='unidad_v_anual_m".$i."' value='$rw[vendida_anual]'/>
                       <label for='unidad_v_anual_m".$i."' class='activar'>unidades vendidas anual</label>
                 </div>
 
-                <div class='input-field col s12 m3 l3'>
+                <div class='input-field col s12 m2 l2'>
                 <select  name='unidad_medida_m[]' id='unidad_medida_m".$i."'>";
                      $s="select id,nombre from unidad_medida ";
                   $r= mysqli_query($conn,$s) or die('Error');
@@ -1309,24 +1309,21 @@ echo "<li>
                 echo"</select>
                 <label>Unidad de medida</label>
                 </div>
-                <div class='input-field col s12 m3 l3'>
-                 <input   type='text' name='espe_unidad_m[]' id='espe_unidad_m".$i."' value='$rw[esp_unidad]'/>
-                      <label for='espe_unidad_m".$i."' class='activar'>Especifique unidades</label>
-                </div>
-                <div class='input-field col s12 m2 l2'>
-                 <input   type='text' name='costo_pro_unidad_m[]' id='costo_pro_unidad_m".$i."' value='$rw[costo_produccion]'/>
+                
+                <div class='input-field col s12 m4 l4'>
+                 <input   type='number' name='costo_pro_unidad_m[]' id='costo_pro_unidad_m".$i."' value='$rw[costo_produccion]'/>
                       <label for='costo_pro_unidad_m".$i."' class='activar'>Costo producción unidad</label>
                 </div>
                 <div class='input-field col s12 m2 l2'>
-                 <input   type='text' name='precio_v_unitario_m[]' id='precio_v_unitario_m".$i."' value='$rw[precio_v_unitario]' />
+                 <input   type='number' name='precio_v_unitario_m[]' id='precio_v_unitario_m".$i."' value='$rw[precio_v_unitario]' />
                       <label for='precio_v_unitario_m".$i."' class='activar'>Precio venta unitario</label>
                 </div>
                 <div class='input-field col s12 m2 l2'>
-                 <input   type='text' name='ganancia_unidad_m[]' id='ganancia_unidad_m".$i."' value='$rw[ganancia_unidad]' />
+                 <input   type='number' name='ganancia_unidad_m[]' id='ganancia_unidad_m".$i."' value='$rw[ganancia_unidad]' />
                       <label for='ganancia_unidad_m".$i."' class='activar'>Ganacias por unidad</label>
                 </div>
                 <div class='input-field col s12 m2 l2'>
-                 <input   type='text' name='venta_anual_m[]' id='venta_anual_m".$i."' value='$rw[ventas_anual]'/>
+                 <input   type='number' name='venta_anual_m[]' id='venta_anual_m".$i."' value='$rw[ventas_anual]'/>
                       <label for='venta_anual_m".$i."' class='activar'>Ventas anuales</label>
                 </div>
 
@@ -1371,15 +1368,15 @@ echo "<li>
           <p>Costo promedio de insumos totales</p>
           <div class='divider'></div>
            <div class='input-field col s12 m4 l4'>
-              <input type='text' id='insumo_semanal_m' name='insumo_semanal_m' value='$semanal' />
+              <input type='number' id='insumo_semanal_m' name='insumo_semanal_m' value='$semanal' />
               <label for='insumo_semanal_m' class='activar'>Semanal</label>
             </div>
             <div class='input-field col s12 m4 l4'>
-              <input type='text' id='insumo_mensual_m' name='insumo_mensual_m' value='$mensual' />
+              <input type='number' id='insumo_mensual_m' name='insumo_mensual_m' value='$mensual' />
               <label for='insumo_mensual_m' class='activar'>Mensual</label>
             </div>
             <div class='input-field col s12 m4 l4'>
-              <input type='text' id='insumo_anual_m' name='insumo_anual_m' value='$anual' />
+              <input type='number' id='insumo_anual_m' name='insumo_anual_m' value='$anual' />
               <label for='insumo_anual_m' class='activar'>Anual</label>
             </div>  
       </div>";
@@ -1400,15 +1397,15 @@ echo "<li>
           <p>Costo promedio de mano de obra</p>
           <div class='divider'></div>
            <div class='input-field col s12 m4 l4'>
-              <input type='text' id='obra_semanal_m' name='obra_semanal_m' value='$semanal' />
+              <input type='number' id='obra_semanal_m' name='obra_semanal_m' value='$semanal' />
               <label for='obra_semanal_m' class='activar'>Semanal</label>
             </div>
             <div class='input-field col s12 m4 l4'>
-              <input type='text' id='obra_mensual_m' name='obra_mensual_m' value='$mensual' />
+              <input type='number' id='obra_mensual_m' name='obra_mensual_m' value='$mensual' />
               <label for='obra_mensual_m' class='activar'>Mensual</label>
             </div>
             <div class='input-field col s12 m4 l4'>
-              <input type='text' id='obra_anual_m' name='obra_anual_m' value='$anual' />
+              <input type='number' id='obra_anual_m' name='obra_anual_m' value='$anual' />
               <label for='obra_anual_m' class='activar'>Anual</label>
             </div>  
       </div>";
@@ -1428,11 +1425,11 @@ echo "<li>
           <p>Total de ventas realizadas</p>
           <div class='divider'></div>
            <div class='input-field col s12 m6 l6'>
-              <input type='text' id='venta_valor' name='venta_valor' value='$valor' />
+              <input type='number' id='venta_valor' name='venta_valor' value='$valor' />
               <label for='venta_valor' class='activar'>Valor</label>
             </div>
             <div class='input-field col s12 m6 l6'>
-              <input type='text' id='venta_anio' name='venta_anio' value='$anio' />
+              <input type='number' id='venta_anio' name='venta_anio' value='$anio' />
               <label for='venta_anio' class='activar'>Año</label>
             </div>
       </div>
@@ -1440,7 +1437,7 @@ echo "<li>
       </span></div>
     </li>
 </ul>
-<button type='submit' class='waves-effect green darken-2 btn right' style='margin-bottom: 8px' id='modificar_informacion'><i class='material-icons right'>add</i>Modificar informacion AS</button>
+<button type='submit' class='waves-effect yellow darken-4  btn right' style='margin-bottom: 8px' id='modificar_informacion'><i class='material-icons right'>create</i>Modificar </button>
 </form> 
  </div>";
 
@@ -1452,7 +1449,6 @@ echo "<li>
 $(document).ready(function(){
     $('select').material_select();
  $('.collapsible').collapsible();
- 
  $('.activar').addClass('active')
 
   })

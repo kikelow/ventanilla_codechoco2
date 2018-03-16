@@ -1,13 +1,5 @@
   <?php 
-    if (is_file('conexion.php')){
-    
-        require_once('conexion.php');
-        
-        }
-        else {
-    
-        require_once('../../conexion.php');
-    }
+    include "../../../conexion.php";
     $tipo_persona ="";
     $tipo_identificacion ="";
     $identificacion ="";
@@ -1377,7 +1369,7 @@ $otro_m = "";
     </div>
     </li>
 </ul>
-<button  class='waves-effect green darken-2 btn right' style='margin-bottom: 8px' id='modificar_emp'><i class='material-icons right'>add</i>Modificar emprendimiento</button>
+<button  class='waves-effect yellow darken-4 btn right' style='margin-bottom: 8px' id='modificar_emp'><i class='material-icons right'>create</i>Modificar</button>
 <script type='text/javascript' src='js/accion_registro.js'></script>
 
 

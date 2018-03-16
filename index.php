@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Sniglet|Nanum+Myeongjo:800" rel="stylesheet">
   <script src="js/jquery.min.js"  type="text/javascript"></script>
 </head>
-<script src="js/jquery.min.js"  type="text/javascript"></script>
+<!-- <script src="js/jquery.min.js"  type="text/javascript"></script> -->
 
 <body >
 

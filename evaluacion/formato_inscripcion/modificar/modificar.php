@@ -1,5 +1,5 @@
 <?php 
-include "../../conexion.php";
+include "../../../conexion.php";
 	$empresa = $_GET['empresa'];
 	$persona_id="";
 

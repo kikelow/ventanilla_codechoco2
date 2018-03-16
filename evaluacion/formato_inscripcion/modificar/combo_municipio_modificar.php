@@ -1,5 +1,5 @@
 <?php
-include "../../conexion.php";
+include "../../../conexion.php";
 
 $s="SELECT id,nombre from municipio where departamento_id = '".$_POST["departamento_m"]."'";
 $cs= mysqli_query($conn,$s);

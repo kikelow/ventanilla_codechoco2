@@ -1,0 +1,52 @@
+<?php  
+if (is_file('conexion.php')){
+    
+        require_once('conexion.php');
+        
+        }
+        else {
+    
+        require_once('../../../conexion.php');
+        
+ 
+    }
+?>
+<div id="test2" class="col s12" style="padding-right: 0px; padding-left: 0px">
+  <div id="test-swipe-2" class="col s12 " style="margin-left: -15px; width: 100%">
+    <section id="" style="">
+      <div class="row">
+        <div class="col s12 m12 l12" style="padding-left: 0px; padding-right: 0px">
+          <center><h4 style="margin-top: 0px">Sección para Modificar</h4></center>
+          <div class="card grey lighten-4 " style="height: auto;display:inline-block;width: 98%;margin-left: 20px; margin-top: 0px">
+            <div class="card-content black-text">
+                <!-- <div class="col s12 m12 l12"> -->
+  <!-- <div class="card grey lighten-4 "  style="height: auto;display:inline-block;width: 100%;"> -->
+<span class="card-title"><center>Formato de inscripción</center></span>
+  <div class="row">
+ 
+    <div class="input-field col s12 m12 l12  " id="div_empresa">
+        <select id="empresa" style="width: 100%; left: -20px;" name="empresa" required="required">
+          <option disabled selected="">Seleccione un emprendimiento al cual desea realizarle MODIFICACIONES</option>
+          <?php 
+                    $s="select id,razon_social from empresa ";
+                    $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
+                    if(mysqli_num_rows($r)>0){
+                      while($rw=mysqli_fetch_assoc($r)){
+                      echo"<option value='$rw[id]'>$rw[razon_social]</option>";          
+                      }         
+                    }
+                  ?>
+        </select>
+      </div>        
+</div>
+
+<div id="preload" class="">
+      <div class="indeterminate"></div>
+  </div>
+<form id="form_modificar" >
+    <div id="cargar_info"></div>
+</form>
+
+</div>
+</div>
+</div>

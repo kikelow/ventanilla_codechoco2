@@ -1,5 +1,5 @@
 <?php 
-include "../../conexion.php";
+include "../../../conexion.php";
 $empresa = $_GET['empresa'];
 $opcion = $_POST['opcion_m'];
 $si_no_noaplica = $_POST['verifica1_si_no_m'];

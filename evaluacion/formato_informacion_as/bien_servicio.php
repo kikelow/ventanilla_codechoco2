@@ -17,14 +17,14 @@ $empresa = $_POST['empresa_id'];
                 
                 <div class='input-field col s12 m3 l3'>
                  <input readonly  type='text' name='bien[]' id='bien".$i."' value='$rw[nombre]' />
-                      <label for='bien".$i."'></label>
+                      <label for='bien".$i."' class='activar'>Bien o servicio</label>
                 </div>
                  <div class='input-field col s12 m3 l3'>
-                 <input   type='text' name='unidad_v_anual[]' id='unidad_v_anual".$i."'/>
+                 <input   type='number' name='unidad_v_anual[]' id='unidad_v_anual".$i."'/>
                       <label for='unidad_v_anual".$i."'>unidades vendidas anual</label>
                 </div>
 
-                <div class='input-field col s12 m3 l3'>
+                <div class='input-field col s12 m2 l2'>
                 <select  name='unidad_medida[]' id='unidad_medida".$i."'>";
                      $s="select id,nombre from unidad_medida ";
                   $r= mysqli_query($conn,$s) or die('Error');
@@ -36,24 +36,21 @@ $empresa = $_POST['empresa_id'];
                 $ver.="</select>
                 <label>Unidad de medida</label>
                 </div>
-                <div class='input-field col s12 m3 l3'>
-                 <input   type='text' name='espe_unidad[]' id='espe_unidad".$i."'/>
-                      <label for='espe_unidad".$i."'>Especifique unidades</label>
-                </div>
-                <div class='input-field col s12 m2 l2'>
-                 <input   type='text' name='costo_pro_unidad[]' id='costo_pro_unidad".$i."'/>
+                
+                <div class='input-field col s12 m4 l4'>
+                 <input   type='number' name='costo_pro_unidad[]' id='costo_pro_unidad".$i."'/>
                       <label for='costo_pro_unidad".$i."'>Costo producción unidad</label>
                 </div>
                 <div class='input-field col s12 m2 l2'>
-                 <input   type='text' name='precio_v_unitario[]' id='precio_v_unitario".$i."'/>
+                 <input   type='number' name='precio_v_unitario[]' id='precio_v_unitario".$i."'/>
                       <label for='precio_v_unitario".$i."'>Precio venta unitario</label>
                 </div>
                 <div class='input-field col s12 m2 l2'>
-                 <input   type='text' name='ganancia_unidad[]' id='ganancia_unidad".$i."'/>
+                 <input   type='number' name='ganancia_unidad[]' id='ganancia_unidad".$i."'/>
                       <label for='ganancia_unidad".$i."'>Ganacias por unidad</label>
                 </div>
                 <div class='input-field col s12 m2 l2'>
-                 <input   type='text' name='venta_anual[]' id='venta_anual".$i."'/>
+                 <input   type='number' name='venta_anual[]' id='venta_anual".$i."'/>
                       <label for='venta_anual".$i."'>Ventas anuales</label>
                 </div>
 
@@ -75,6 +72,14 @@ $empresa = $_POST['empresa_id'];
               }  
 
             } 
-            echo($ver)
+            echo($ver);
+             echo "
+ <script type='text/javascript'>
+$(document).ready(function(){
+ $('.activar').addClass('active')
+
+  })
+</script>
+";
 
 ?>

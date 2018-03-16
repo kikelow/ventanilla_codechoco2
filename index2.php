@@ -30,7 +30,53 @@
       </ul>
         
 </nav> -->
-<aside style="background-color: white;width: 20%" class="hide-on-small-only hide-on-med-only" >
+<aside id="left-sidebar-nav" >
+  <ul id="nav-mobile" class="side-nav fixed  grey lighten-4 " style="padding-top: 10px;width: 19%;">
+    <li class="logo center"><img id="logo-container" src="img/logo1.png" class="brand-logo responsive-img " style="width: 150px">
+            </img></li>
+        <li class="no-padding">
+          <ul class="collapsible collapsible-accordion">
+            <li class="bold"><a class="collapsible-header  waves-effect waves-green men ">Formato de Inscripción</a>
+              <div class="collapsible-body">
+                <ul>
+                  <li class=""><a href="index2.php?modulo=evaluacion/formato_inscripcion">Insertar</a></li>
+                  <li><a href="index2.php?modulo=evaluacion/formato_inscripcion/modificar">Modificar</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="bold"><a class="collapsible-header  waves-effect waves-green men">Formato de informacion AS</a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="index2.php?modulo=evaluacion/formato_informacion_as">Insertar</a></li>
+                  <li><a href="index2.php?modulo=evaluacion/formato_informacion_as/modificar">Modificar</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="bold"><a class="collapsible-header  waves-effect waves-green men">Hoja de verificacón 1</a>
+              <div class="collapsible-body">
+                <ul>
+                  <li class="s"><a href="index2.php?modulo=evaluacion/hoja_verificacion_1">Insertar</a></li>
+                  <li><a href="index2.php?modulo=evaluacion/hoja_verificacion_1/modificar">Modificar</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="bold"><a class="collapsible-header  waves-effect waves-green men">Hoja de verificacón 2</a>
+              <div class="collapsible-body">
+                <ul>
+                  <li class="s"><a href="index2.php?modulo=evaluacion/hoja_verificacion_2">Insertar</a></li>
+                  <li><a href="#!">Modificar</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <!-- <li class="bold"><a href="mobile.html" class="waves-effect waves-teal">Mobile</a></li>
+        <li class="bold"><a href="showcase.html" class="waves-effect waves-teal">Showcase</a></li>
+        <li class="bold"><a href="themes.html" class="waves-effect waves-teal">Themes</a></li> -->
+      </ul>
+  <!-- <a href="# " data-activates="slide-out " class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only cyan "><i class="mdi-navigation-menu "></i></a> -->
+</aside>
+<!-- <aside style="background-color: white;width: 20%" class="hide-on-small-only hide-on-med-only" >
 
 	 <div class="row" style="min-height: 700px;border-right: 4px solid;border-color: #e0e0e0 ;margin-bottom: 0px;">
         <div class="col s12 m12 l12" >
@@ -49,19 +95,20 @@
           </div>
         </div>
       </div>	 
-</aside>
+</aside> -->
 
-<div class="row right" style="width: 80%;" id="sub_tabs">
+<!-- <div class="row right" style="width: 80%;" id="sub_tabs">
     <div class="col s12" style="">
       <ul class="tabs grey lighten-4">
         <li class="tab col s3"><a href="#test1" id="e"><strong>REGISTRAR</strong></a></li>
         <li class="tab col s3"><a href="#test2"><strong>MODIFICAR</strong></a></li>
      
       </ul>
-    </div>
-
- <div class="white  hide-on-large-only" style="width: 100%">
-    <a href="#" data-activates="mobile-demo" class="button-collapse "><i class="material-icons black-text">menu</i></a>
+    </div> -->
+<nav class="white  hide-on-large-only">
+ <div class=" " style="width: 100%">
+    <a href="#" data-activates="mobile-demo" class="button-collapse center"><i class="material-icons black-text">menu</i></a>
+    <a href="#" class="brand-logo center black-text"></a>
 
        <ul class="side-nav" id="mobile-demo">
         <li><a href="index2.php?modulo=evaluacion/formato_inscripcion" class="collection-item active black-text">Formato de Inscripción</a></li>
@@ -72,9 +119,9 @@
         <li><a href="index2.php?modulo=evaluacion/plan_mejora" class="collection-item black-text">Plan de Mejora</a></li>
       </ul>
      </div>   
+</nav>
 
-
-    <div> 
+    <div class="right" style="margin-top: 15px; width:80%;" id="contenedor"  > 
     <?php 
                    $mod = @$_GET['modulo'];
                    $archivo = $mod.'/index2.php';
@@ -98,10 +145,10 @@
 
 
 
-
+<!-- 
 <footer class="grey darken-3" style="height: 60px;display:inline-block;width: 100%;" >
   pie de pagina
-</footer>
+</footer> -->
 <script src="js/materialize.min.js"  type="text/javascript"></script>
   <script type="text/javascript" src="js/select2.js"></script>
   <script type="text/javascript" src="js/accion_registro.js"></script>
@@ -116,9 +163,14 @@
 	    $(".button-collapse").sideNav();
 	    $('select').material_select();
 
-      // $('#e').click(function(event) {
-      //   alert('message?: DOMString');
-      // });
+      $( document ).ready(function() {
+//   $( document ).ready(function() {
+  $("").on("click", function(){
+    $(".check").find(".active").removeClass("active");
+    $(this).addClass("active");
+    $('.s').addClass('active')
+  });
+});
 	    });	
 </script>
 </body>

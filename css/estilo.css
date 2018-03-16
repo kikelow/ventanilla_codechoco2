@@ -1,3 +1,6 @@
+/*.side-nav li>a{
+  color: #4d8247;
+}*/
 .tabs .indicator{
   background-color:#81c784;
 }
@@ -125,12 +128,24 @@ section#base{
   div#sub_tabs{
     width: 100%
   }
+  div#contenedor{
+    width: 100% !important;
+  }
+  aside{
+    width: 0% !important;
+  }
 }
 
 @media only screen and (min-width: 100px) and (max-width: 600px){
 	#div_mv_img{
 		
 	}
+  div#contenedor{
+    width: 100% !important;
+  }
+  aside{
+    width: 0% !important;
+  }
 }
 
 aside{

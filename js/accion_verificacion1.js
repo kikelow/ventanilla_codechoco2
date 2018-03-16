@@ -37,7 +37,7 @@ $('#empresa_m').change(function(event) {
 	var empresa_m = $('#empresa_m').val()
 
 	$.ajax({
-		url: 'evaluacion/hoja_verificacion_1/llenar_formulario.php',
+		url: 'evaluacion/hoja_verificacion_1/modificar/llenar_formulario.php',
 		type: 'POST',
 		data: {empresa_m: empresa_m},
 	})
@@ -54,7 +54,7 @@ $('#modificar_verificacion1').click(function(event) {
 	event.preventDefault();
 	var empresa_m = $('#empresa_m').val()
 	$.ajax({
-		url: 'evaluacion/hoja_verificacion_1/modificar.php?empresa='+empresa_m,
+		url: 'evaluacion/hoja_verificacion_1/modificar/modificar.php?empresa='+empresa_m,
 		type: 'POST',
 		data: $('#form_modificar_verificacion1').serialize(),
 	})

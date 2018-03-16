@@ -6,7 +6,7 @@ if (is_file('conexion.php')){
         }
         else {
     
-        require_once('../../conexion.php');
+        require_once('../../../conexion.php');
     }
 
     $i = 0;
@@ -329,7 +329,7 @@ if (is_file('conexion.php')){
 			   
 			   
 
-echo"</ul> <button  class=' green darken-2 btn right' style='margin-bottom: 8px' id='modificar_verificacion1'><i class='material-icons right'>add</i>Modificar Hoja de verificacion 1</button>
+echo"</ul> <button  class=' yellow darken-4 btn right' style='margin-bottom: 8px' id='modificar_verificacion1'><i class='material-icons right'>create</i>Modificar</button>
 <script type='text/javascript' src='js/accion_verificacion1.js'></script>
 
 
