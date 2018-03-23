@@ -1,3 +1,4 @@
+ 
  <?php 
 require_once('conexion.php');
         $i = 0;  
@@ -18,7 +19,7 @@ require_once('conexion.php');
         <select id="empresa" style="width: 100%; left: -20px;" name="empresa" required="required">
           <option disabled selected="">Seleccione un emprendimiento al cual quiere aplicarle la "Hoja de verificacion 2"</option>
           <?php 
-                    $s="SELECT id,razon_social from empresa where verificacion1 = 'si' ";
+                    $s="SELECT id,razon_social from empresa where verificacion1 = 'si' AND verificacion2 = 'no' ";
                     $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
                     if(mysqli_num_rows($r)>0){
                       while($rw=mysqli_fetch_assoc($r)){
@@ -30,7 +31,9 @@ require_once('conexion.php');
       </div>        
 </div>
  <div class="row">
-    <form id="form_verificacion2" enctype="multipart/form-data" action="evaluacion/hoja_verificacion_2/insertar.php">
+  <hr style="border: 1px solid green">
+  <h5>Nivel 1. Criterios de Cumplimiento de Negocios Verdes</h5>
+    <form id="form_verificacion2" method = "post" enctype="multipart/form-data" action="evaluacion/hoja_verificacion_2/insertar.php">
        <ul class="collapsible" data-collapsible="accordion">
     <li>
       <div class="collapsible-header" style="font-weight: bold;"> <i class="material-icons"></i>Viabilidad económica del Negocio</div>
@@ -54,7 +57,7 @@ require_once('conexion.php');
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
-          <option disabled selected>Seleccione...</option>";
+          ";
             $s1="select id,nombre from calificador ";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
@@ -68,11 +71,17 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for=''>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones</label>
         </div>
-         <div class='input-field col s12 m4 l4' style='margin-top: 52px'>
-            <input  type='file' name='verificacion2_e' id='verificacion2_evidencia".$i."' />
-           
+         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' >
+      </div>
+            
           </div>
         </div>
       <div class='divider'></div>";
@@ -105,7 +114,7 @@ require_once('conexion.php');
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
-          <option disabled selected>Seleccione...</option>";
+          ";
             $s1="select id,nombre from calificador ";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
@@ -119,10 +128,16 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for=''>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones</label>
         </div>
-         <div class='input-field col s12 m4 l4' style='margin-top: 52px'>
-            <input  type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."' />
+         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' >
+      </div>
             
           </div>
         </div>
@@ -157,7 +172,7 @@ require_once('conexion.php');
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
-          <option disabled selected>Seleccione...</option>";
+          ";
             $s1="select id,nombre from calificador ";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
@@ -171,10 +186,16 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for=''>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones</label>
         </div>
-         <div class='input-field col s12 m4 l4' style='margin-top: 52px'>
-            <input  type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."' />
+         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' >
+      </div>
             
           </div>
         </div>
@@ -210,7 +231,7 @@ require_once('conexion.php');
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
-          <option disabled selected>Seleccione...</option>";
+          ";
             $s1="select id,nombre from calificador ";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
@@ -224,10 +245,16 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for=''>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones</label>
         </div>
-         <div class='input-field col s12 m4 l4' style='margin-top: 52px'>
-            <input  type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."' />
+         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' >
+      </div>
             
           </div>
         </div>
@@ -244,7 +271,7 @@ require_once('conexion.php');
       <div class="collapsible-header" style="font-weight: bold;"> <i class="material-icons"></i>Sustitución de sustancias o materiales peligrosos</div>
       <div class="collapsible-body">
          <div class="row" style="text-align: center;background-color: #bdbdbd;">Sustitución de sustancias o materiales peligrosos</div>
-      <div class="row" style="border: 1px solid;height: auto;display:inline-block; width: 100% ">
+      <div class="row" style="border: 1px solid;height: 170px;display:inline-block; width: 100% ">
         <div class="divider" ></div>
         <?php
 
@@ -262,7 +289,7 @@ require_once('conexion.php');
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
-          <option disabled selected>Seleccione...</option>";
+          ";
             $s1="select id,nombre from calificador ";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
@@ -276,14 +303,20 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for=''>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones</label>
         </div>
-         <div class='input-field col s12 m4 l4' style='margin-top: 52px'>
-            <input  type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."' />
+         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' >
+      </div>
             
           </div>
         </div>
-      <div class='divider'></div>";
+      ";
 
               }         
             }
@@ -313,7 +346,7 @@ require_once('conexion.php');
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
-          <option disabled selected>Seleccione...</option>";
+          ";
             $s1="select id,nombre from calificador ";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
@@ -327,10 +360,16 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for=''>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones</label>
         </div>
-         <div class='input-field col s12 m4 l4' style='margin-top: 52px'>
-            <input  type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."' />
+        <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' >
+      </div>
             
           </div>
         </div>
@@ -365,7 +404,7 @@ require_once('conexion.php');
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
-          <option disabled selected>Seleccione...</option>";
+          ";
             $s1="select id,nombre from calificador ";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
@@ -379,10 +418,16 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for=''>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones</label>
         </div>
-         <div class='input-field col s12 m4 l4' style='margin-top: 52px'>
-            <input  type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."' />
+         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' >
+      </div>
             
           </div>
         </div>
@@ -417,7 +462,7 @@ require_once('conexion.php');
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
-          <option disabled selected>Seleccione...</option>";
+          ";
             $s1="select id,nombre from calificador ";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
@@ -431,10 +476,16 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for=''>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones</label>
         </div>
-         <div class='input-field col s12 m4 l4' style='margin-top: 52px'>
-            <input  type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."' />
+         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' >
+      </div>
             
           </div>
         </div>
@@ -470,7 +521,7 @@ require_once('conexion.php');
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
-          <option disabled selected>Seleccione...</option>";
+          ";
             $s1="select id,nombre from calificador ";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
@@ -484,10 +535,16 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for=''>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones</label>
         </div>
-         <div class='input-field col s12 m4 l4' style='margin-top: 52px'>
-            <input  type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."' />
+         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' >
+      </div>
             
           </div>
         </div>
@@ -522,7 +579,7 @@ require_once('conexion.php');
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
-          <option disabled selected>Seleccione...</option>";
+          ";
             $s1="select id,nombre from calificador ";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
@@ -536,10 +593,16 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for=''>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones</label>
         </div>
-         <div class='input-field col s12 m4 l4' style='margin-top: 52px'>
-            <input  type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."' />
+         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' >
+      </div>
             
           </div>
         </div>
@@ -574,7 +637,7 @@ require_once('conexion.php');
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
-          <option disabled selected>Seleccione...</option>";
+          ";
             $s1="select id,nombre from calificador ";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
@@ -588,10 +651,16 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for=''>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones</label>
         </div>
-         <div class='input-field col s12 m4 l4' style='margin-top: 52px'>
-            <input  type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."' />
+         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' >
+      </div>
             
           </div>
         </div>
@@ -605,8 +674,129 @@ require_once('conexion.php');
       </li>
     
     </ul>
+   <h5> Nivel 2. Criterios Adicionales (ideales) Negocios Verdes</h5> 
+
+   <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header" style="font-weight: bold;"> <i class="material-icons"></i> Esquemas, programas o reconocimientos ambientales o
+sociales implementados o recibidos.</div>
+      <div class="collapsible-body">
+         <div class="row" style="text-align: center;background-color: #bdbdbd;">Esquemas, programas o reconocimientos ambientales o
+sociales implementados o recibidos.</div>
+      <div class="row" style="border: 1px solid;height: auto;display:inline-block; width: 100% ">
+        <div class="divider" ></div>
+        <?php
+
+            $s="SELECT id,nombre from opciones where codigo LIKE '%ESQUEMAS_RECONOCIMIENTOS%'  order by id ";
+            $r= mysqli_query($conn,$s) or die("Error");
+            if(mysqli_num_rows($r)>0){
+              while($rw=mysqli_fetch_assoc($r)){
+
+                 $i++;
+       echo"
+       <div class='row'>
+                <div class='input-field col s12 m4 l4'>
+           <input type='hidden' name='verificacion2_opcion[]' value='$rw[id]' />
+          <label for=''>$rw[nombre]</label>
+        </div>
+        <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
+          <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
+          ";
+            $s1="select id,nombre from calificador ";
+                  $r1= mysqli_query($conn,$s1) or die('Error');
+                  if(mysqli_num_rows($r1)>0){
+                    while($result1=mysqli_fetch_assoc($r1)){
+                        echo"<option value=".$result1['id'].">".$result1['nombre' ]."</option>";
+                    }
+                  }
+        echo"
+          </select>
+         <label for=''>(0, 0.5, 1, N/A)</label>
+        </div>
+         <div class='input-field col s12 m2 l2'>
+          <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
+          <label for='verificacion2_obs".$i."'>Observaciones</label>
+        </div>
+         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' >
+      </div>
+            
+          </div>
+        </div>
+      <div class='divider'></div>";
+
+              }         
+            }
+        ?>
+        
+      </div>
+      </li>
+
+      <li>
+      <div class="collapsible-header" style="font-weight: bold;"> <i class="material-icons"></i> Responsabilidad social al interior de la empresa adicional</div>
+      <div class="collapsible-body">
+         <div class="row" style="text-align: center;background-color: #bdbdbd;">Responsabilidad social al interior de la empresa adicional</div>
+      <div class="row" style="border: 1px solid;height: auto;display:inline-block; width: 100% ">
+        <div class="divider" ></div>
+        <?php
+
+            $s="SELECT id,nombre from opciones where codigo LIKE '%RESPON_SOCIAL_ADICCIONAL%'  order by id ";
+            $r= mysqli_query($conn,$s) or die("Error");
+            if(mysqli_num_rows($r)>0){
+              while($rw=mysqli_fetch_assoc($r)){
+
+                 $i++;
+       echo"
+       <div class='row'>
+                <div class='input-field col s12 m4 l4'>
+           <input type='hidden' name='verificacion2_opcion[]' value='$rw[id]' />
+          <label for=''>$rw[nombre]</label>
+        </div>
+        <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
+          <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
+          ";
+            $s1="select id,nombre from calificador ";
+                  $r1= mysqli_query($conn,$s1) or die('Error');
+                  if(mysqli_num_rows($r1)>0){
+                    while($result1=mysqli_fetch_assoc($r1)){
+                        echo"<option value=".$result1['id'].">".$result1['nombre' ]."</option>";
+                    }
+                  }
+        echo"
+          </select>
+         <label for=''>(0, 0.5, 1, N/A)</label>
+        </div>
+         <div class='input-field col s12 m2 l2'>
+          <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
+          <label for='verificacion2_obs".$i."'>Observaciones</label>
+        </div>
+         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' >
+      </div>
+            
+          </div>
+        </div>
+      <div class='divider'></div>";
+
+              }         
+            }
+        ?>
+        
+      </div>
+      </li>
+   </ul>
           
-      <button type="submit" class="waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="btn_verificacion2"><i class="material-icons right">add</i>Registrar Hoja de Verificación 2</button>
+      <button type="submit" class="waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="btn_verificacion2"><i class="material-icons right">add</i>Registrar</button>
     </form>
   </div>
 

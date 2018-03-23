@@ -23,14 +23,14 @@ if (is_file('conexion.php')){
             <div class="card-content black-text">
                 <!-- <div class="col s12 m12 l12"> -->
   <!-- <div class="card grey lighten-4 "  style="height: auto;display:inline-block;width: 100%;"> -->
-<span class="card-title"><center>Hoja de verificación 1</center></span>
+<span class="card-title"><center>Hoja de verificación 2</center></span>
   <div class="row">
  
     <div class="input-field col s12 m12 l12  " id="div_empresa">
         <select id="empresa_m" style="width: 100%; left: -20px;" name="empresa_m" required="required">
           <option disabled selected="">Seleccione un emprendimiento al cual desea realizarle MODIFICACIONES</option>
           <?php 
-                    $s="SELECT id,razon_social from empresa where verificacion1 = 'si' ";
+                    $s="SELECT id,razon_social from empresa where verificacion2 = 'si' ";
                     $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
                     if(mysqli_num_rows($r)>0){
                       while($rw=mysqli_fetch_assoc($r)){
@@ -42,7 +42,11 @@ if (is_file('conexion.php')){
       </div>        
 </div>
 
-<form id="form_modificar_verificacion1">
+<div id="preload" class="">
+      <div class="indeterminate"></div>
+  </div>
+
+<form id="form_modificar_verificacion2">
     <div id="cargar_info"></div>
 </form>
 
@@ -58,4 +62,4 @@ if (is_file('conexion.php')){
   </div>
 </div>
   <script type="text/javascript" src="js/select2.js"></script>
-<script type="text/javascript" src="js/accion_verificacion1.js"></script>
+<script type="text/javascript" src="js/accion_verificacion2.js"></script>
