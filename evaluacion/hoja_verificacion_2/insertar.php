@@ -1,35 +1,32 @@
 <?php 
-// $empresa = $_GET['empresa'];
-// $opcion = $_POST['verificacion2_opcion'];
-// $calificador = $_POST['verifica2_calificador'];
-// $observacion = $_POST['verificacion2_obs'];
+include "../../conexion.php";
+$empresa = $_GET['empresa'];
+$opcion = $_POST['verificacion2_opcion'];
+$calificador = $_POST['verifica2_calificador'];
+$observacion = $_POST['verificacion2_obs'];
 
-// var_dump($_FILES);
+$limite_kb = 300;
+for ($key=0; $key <sizeof($opcion); $key++) {
+    if ($_FILES["verificacion2_evidencia"]["size"][$key] > 0) {
+          if ($_FILES["verificacion2_evidencia"]["size"][$key] <= $limite_kb * 1024) {
+            
+             $tmp_name = $_FILES["verificacion2_evidencia"]["tmp_name"][$key];
 
+        $name = basename($_FILES["verificacion2_evidencia"]["name"][$key]);
+        $ruta = "subidas/".$_POST['verificacion2_opcion'][$key]."_$_GET[empresa]_$name";
+        $nombre = "".$_POST['verificacion2_opcion'][$key]."_$_GET[empresa]_$name";
 
-// for ($i=0; $i <sizeof($_FILES['verificacion2_evidencia']); $i++) {
-// if ($_FILES['verificacion2_evidencia1']["error"] > 0)
-//   {
-//   echo "Error: " . $_FILES['verificacion2_evidencia1']['error'] . "<br>";
-//   }else
-//   {
-//   // echo "Nombre: " . $_FILES['verificacion2_evidencia1']['name'] . "<br>";
-//   // echo "Tipo: " . $_FILES['verificacion2_evidencia1']['type'] . "<br>";
-//   // echo "Tamaño: " . ($_FILES["verificacion2_evidencia1"]["size"] / 1024) . " kB<br>";
-//   // echo "Carpeta temporal: " . $_FILES['verificacion2_evidencia1']['tmp_name'];
+        move_uploaded_file($tmp_name, $ruta);
 
-//   /*ahora co la funcion move_uploaded_file lo guardaremos en el destino que queramos*/
-// move_uploaded_file($_FILES['verificacion2_evidencia1']['tmp_name'],
-// "subidas/" . $_FILES['verificacion2_evidencia1']['name']);
-// }
-// print_r($_FILES);
-// }
+        $s="INSERT INTO `verificacion_2`(`empresa_id`, `opciones_id`, `calificador_id`, `observacion`, `evidencia`) VALUES ('$empresa','$opcion[$key]','$calificador[$key]','$observacion[$key]','$nombre')";
+        // mysqli_query($conn,$s) or die(mysqli_error($conn));
+        }
+    }else{
+         $s="INSERT INTO `verificacion_2`(`empresa_id`, `opciones_id`, `calificador_id`, `observacion`, `evidencia`) VALUES ('$empresa','$opcion[$key]','$calificador[$key]','$observacion[$key]','')";
+        // mysqli_query($conn,$s) or die(mysqli_error($conn));
 
-$carpeta = 'subidas/';
-opendir($carpeta);
-$destino = $carpeta.$_FILES['verificacion2_e']['name'];
-copy($_FILES['verificacion2_e']['tmp_name'], $destino);
-echo'archivo subido exitosamente';
-$nombre = $_FILES['verificacion2_e']['name'];
-echo($nombre);
+    }    
+}
+$s="UPDATE `empresa` SET `verificacion2`='si' WHERE id = '$empresa'";
+// mysqli_query($conn,$s);
 ?>

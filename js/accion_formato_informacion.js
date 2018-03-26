@@ -626,17 +626,28 @@ var empresa = $('#empresa').val()
 		url: 'evaluacion/formato_informacion_as/insertar.php?empresa='+empresa,
 		type: 'POST',
 		data: $('#form_informacion').serialize(),
-	})
-	.done(function(respuesta) {
-		swal ({
+    beforeSend: function() {
+      $('#registrar_informacion').attr('disabled', 'disabled');
+    // console.log('cargando')
+    swal ({
+          // icon: "success",
+           text: "Procesando información!",
+           button: {
+            visible: false
+          },
+      });
+    },success: function(respuesta) {
+      swal ({
           icon: "success",
            text: "Datos INSERTADOS exitosamente!",
            button: {
             visible: false
           },
       });
-    setTimeout("document.location=document.location",1500);
+      setTimeout("document.location=document.location",1500);
+    }
 	})
+	
 	}
 });
 
@@ -1262,17 +1273,27 @@ $('#modificar_informacion').click(function(event) {
     url: 'evaluacion/formato_informacion_as/modificar/modificar.php?empresa='+empresa_m,
     type: 'POST',
     data: $('#form_modificar_informacion').serialize(),
-  })
-  .done(function(respuesta) {
-    // $('#modificar_informacion').attr('disabled', 'disabled');
+    beforeSend: function() {
+      $('#modificar_informacion').attr('disabled', 'disabled');
+    // console.log('cargando')
     swal ({
+          // icon: "success",
+           text: "Procesando información!",
+           button: {
+            visible: false
+          },
+      });
+    },success: function(respuesta) {
+      swal ({
           icon: "success",
            text: "Datos MODIFICADOS exitosamente!",
            button: {
             visible: false
           },
       });
-    setTimeout("document.location=document.location",1500);
+      setTimeout("document.location=document.location",1500);
+    }
   })
+ 
   
 });

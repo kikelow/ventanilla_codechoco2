@@ -39,7 +39,7 @@
             <li class="bold"><a class="collapsible-header  waves-effect waves-green men ">Formato de Inscripción</a>
               <div class="collapsible-body">
                 <ul>
-                  <li class=""><a href="index2.php?modulo=evaluacion/formato_inscripcion">Insertar</a></li>
+                  <li class=""><a href="index2.php?modulo=evaluacion/formato_inscripcion">Registrar</a></li>
                   <li><a href="index2.php?modulo=evaluacion/formato_inscripcion/modificar">Modificar</a></li>
                 </ul>
               </div>
@@ -47,7 +47,7 @@
             <li class="bold"><a class="collapsible-header  waves-effect waves-green men">Formato de informacion AS</a>
               <div class="collapsible-body">
                 <ul>
-                  <li><a href="index2.php?modulo=evaluacion/formato_informacion_as">Insertar</a></li>
+                  <li><a href="index2.php?modulo=evaluacion/formato_informacion_as">Registrar</a></li>
                   <li><a href="index2.php?modulo=evaluacion/formato_informacion_as/modificar">Modificar</a></li>
                 </ul>
               </div>
@@ -55,7 +55,7 @@
             <li class="bold"><a class="collapsible-header  waves-effect waves-green men">Hoja de verificacón 1</a>
               <div class="collapsible-body">
                 <ul>
-                  <li class="s"><a href="index2.php?modulo=evaluacion/hoja_verificacion_1">Insertar</a></li>
+                  <li class="s"><a href="index2.php?modulo=evaluacion/hoja_verificacion_1">Registrar</a></li>
                   <li><a href="index2.php?modulo=evaluacion/hoja_verificacion_1/modificar">Modificar</a></li>
                 </ul>
               </div>
@@ -63,8 +63,16 @@
             <li class="bold"><a class="collapsible-header  waves-effect waves-green men">Hoja de verificacón 2</a>
               <div class="collapsible-body">
                 <ul>
-                  <li class="s"><a href="index2.php?modulo=evaluacion/hoja_verificacion_2">Insertar</a></li>
-                  <li><a href="#!">Modificar</a></li>
+                  <li class="s"><a href="index2.php?modulo=evaluacion/hoja_verificacion_2">Registrar</a></li>
+                  <li><a href="index2.php?modulo=evaluacion/hoja_verificacion_2/modificar">Modificar</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="bold"><a class="collapsible-header  waves-effect waves-green men">Plan de mejora</a>
+              <div class="collapsible-body">
+                <ul>
+                  <li class="s"><a href="index2.php?modulo=evaluacion/hoja_verificacion_2">Registrar</a></li>
+                  <li><a href="index2.php?modulo=evaluacion/hoja_verificacion_2/modificar">Modificar</a></li>
                 </ul>
               </div>
             </li>

@@ -10,22 +10,22 @@ $resultadom_nochequeado = array_values(array_diff($t_tierra_confirmacion,$t_tier
 	for ($i=0; $i <sizeof($t_tierra_confirmacion); $i++) {
 		if ($t_tierra_check[$i]) {
 			$s="UPDATE `tenencia_tierra` SET `descripcion`= '$desc_tierra[$i]',`confirmacion`='si' WHERE empresa_id = '$empresa' AND opciones_id = '$t_tierra_check[$i]' ";
-			// mysqli_query($conn,$s);
+			mysqli_query($conn,$s);
 		}
 		else if (!$t_tierra_check) {
 			$s="UPDATE `tenencia_tierra` SET `descripcion`= '',`confirmacion`='no' WHERE empresa_id = '$empresa' AND opciones_id = '$t_tierra_confirmacion[$i]' ";
-			// mysqli_query($conn,$s);
+			mysqli_query($conn,$s);
 		}		
 	}
 	for ($i=0; $i <sizeof($resultadom_nochequeado); $i++) {
 		if ($resultadom_nochequeado[$i]) {
 			$s="UPDATE `tenencia_tierra` SET `descripcion`= '',`confirmacion`='no' WHERE empresa_id = '$empresa' AND opciones_id = '$resultadom_nochequeado[$i]' ";
-			// mysqli_query($conn,$s);
+			mysqli_query($conn,$s);
 		}	
 	}
 //Modificar datos de otros tenencia de tierra
 $s="UPDATE `otro_tenencia_tierra` SET `nombre`='$_POST[otro_tierra_nom_m]',`descripcion`='$_POST[otro_tierra_desc_m]' WHERE empresa_id = '$empresa'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 //---------------------------------------------------------------------------------------------------------
 // Modificar datos en la tabla registro
 $registro_hidden_m = $_POST['registro_hidden_m'];
@@ -36,7 +36,7 @@ $registro_obs_m = $_POST['registro_obs_m'];
 
 for ($i=0; $i <sizeof($registro_hidden_m); $i++) {
 	$s="UPDATE `registro` SET `aplica_noaplica_id`= '$registro_a_na_m[$i]',`cumple_nocumple_id`='$registro_c_nc_m[$i]',`vigencia`='$registro_vigencia_m[$i]',`observacion`='$registro_obs_m[$i]'  WHERE empresa_id = '$empresa' AND opciones_id = '$registro_hidden_m[$i]'";
-	// mysqli_query($conn,$s);
+	mysqli_query($conn,$s);
 }
 //---------------------------------------------------------------------------------------------------------
 //Modificar datos en la tabla permiso
@@ -48,7 +48,7 @@ $permiso_obs_m = $_POST['permiso_obs_m'];
 
 for ($i=0; $i <sizeof($permiso_hidden_m); $i++) {
 	$s="UPDATE `permiso` SET `aplica_noaplica_id`= '$permiso_a_na_m[$i]',`cumple_nocumple_id`='$permiso_c_nc_m[$i]',`vigencia`='$permiso_vigencia_m[$i]',`observacion`='$permiso_obs_m[$i]'  WHERE empresa_id = '$empresa' AND opciones_id = '$permiso_hidden_m[$i]'";
-	// mysqli_query($conn,$s);
+	mysqli_query($conn,$s);
 }
 //---------------------------------------------------------------------------------------------------------
 //Registrar datos en la tabla licencia
@@ -59,7 +59,7 @@ $licencia_vigencia_m = $_POST['licencia_vigencia_m'];
 $licencia_obs_m = $_POST['licencia_obs_m'];
 for ($i=0; $i <sizeof($licencia_hidden_m); $i++) {
 $s = "UPDATE `licencia` SET `aplica_noaplica_id`='$licencia_a_na_m[$i]',`cumple_nocumple_id`='$licencia_c_nc_m[$i]',`vigencia`='$licencia_vigencia_m[$i]',`observacion`='$licencia_obs_m[$i]' WHERE empresa_id = '$empresa' AND opciones_id = '$licencia_hidden_m[$i]'";
-	// mysqli_query($conn,$s);
+	mysqli_query($conn,$s);
 }
 //--------------------------------------------------------------------------------------------------------- 
 //Modificar datos en la tabla otros legislacion 
@@ -67,7 +67,7 @@ $otro_legislacion_m  = $_POST['otro_legislacion_m'];
 $otro_legislacion_c_nc_m = $_POST['otro_legislacion_c_nc_m'];
 $otros_legislacion_obs_m = $_POST['otros_legislacion_obs_m'];
 $s="UPDATE `otros_legislacion` SET `nombre`='$otro_legislacion_m',`cumple_nocumple_id`='$otro_legislacion_c_nc_m',`observacion`='$otros_legislacion_obs_m' WHERE empresa_id = '$empresa'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 //--------------------------------------------------------------------------------------------------------- 
 
 //Modificar datos en la tabla de certificacion
@@ -81,16 +81,16 @@ $resultadom_nochequeado = array_values(array_diff($certificacion_m_hidden,$certi
 for ($i=0; $i <sizeof($certificacion_m_hidden); $i++) {
 	if ($certificacion_m[$i]) {
 $s="UPDATE `certificacion` SET `etapa_id`='$cert_etapa_m[$i]',`vigencia`='$cert_vigencia_m[$i]',`observacion`='$cert_obs_m[$i]',`confirmacion`='si' WHERE empresa_id='$empresa' AND opciones_id = '$certificacion_m[$i]'";
-	// mysqli_query($conn,$s);
+	mysqli_query($conn,$s);
 	}else if (!$certificacion_m) {
 		$s="UPDATE `certificacion` SET `etapa_id`='1',`vigencia`='',`observacion`='',`confirmacion`='no' WHERE empresa_id='$empresa' AND opciones_id = '$certificacion_m_hidden[$i]'";
-	// mysqli_query($conn,$s);
+	mysqli_query($conn,$s);
 	}
 }
 for ($i=0; $i <sizeof($resultadom_nochequeado); $i++) {
 		if ($resultadom_nochequeado[$i]) {
 	$s="UPDATE `certificacion` SET `etapa_id`='1',`vigencia`='',`observacion`='',`confirmacion`='no' WHERE empresa_id='$empresa' AND opciones_id = '$resultadom_nochequeado[$i]'";
-	// mysqli_query($conn,$s);
+	mysqli_query($conn,$s);
 
 		}	
 	}
@@ -100,7 +100,7 @@ $otro_cert_etapa_m = $_POST['otro_cert_etapa_m'];
 $otro_cert_vigencia_m = $_POST['otro_cert_vigencia_m'];
 $otro_cert_obs_m = $_POST['otro_cert_obs_m'];
 $s="UPDATE `otros_certificacion` SET `nombre`='$otro_certificacion_m',`etapa_id`='$otro_cert_etapa_m',`vigencia`='$otro_cert_vigencia_m',`observacion`='$otro_cert_obs_m' WHERE empresa_id = '$empresa'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 //---------------------------------------------------------------------------------------------------------
 //resgistrar datos en la tabla conservacion
 $conservacion_m = $_POST['conservacion_m'];
@@ -111,16 +111,16 @@ $resultadom_nochequeado = array_values(array_diff($conservacion_m_hidden,$conser
 for ($i=0; $i <sizeof($conservacion_m_hidden); $i++) {
 	if ($conservacion_m[$i]) {
 $s="UPDATE `conservacion` SET `area`='$conser_area_m[$i]',`descripcion`='$conser_desc_m[$i]',`confirmacion`='si' WHERE empresa_id = '$empresa' AND opciones_id = '$conservacion_m[$i]'";
-	// mysqli_query($conn,$s);
+	mysqli_query($conn,$s);
 	}else if (!$conservacion_m) {
 $s="UPDATE `conservacion` SET `area`='',`descripcion`='',`confirmacion`='no' WHERE empresa_id = '$empresa' AND opciones_id = '$conservacion_m_hidden[$i]'";
-	// mysqli_query($conn,$s);
+	mysqli_query($conn,$s);
 	}
 }
 for ($i=0; $i <sizeof($resultadom_nochequeado); $i++) {
 	if ($resultadom_nochequeado[$i]) {
 $s="UPDATE `conservacion` SET `area`='',`descripcion`='',`confirmacion`='no' WHERE empresa_id = '$empresa' AND opciones_id = '$resultadom_nochequeado[$i]'";
-	// mysqli_query($conn,$s);
+	mysqli_query($conn,$s);
 	}
 }
 
@@ -130,7 +130,7 @@ $otro_conservacion_area_m = $_POST['otro_conservacion_area_m'];
 $otro_conservacion_desc_m = $_POST['otro_conservacion_desc_m'];
 
 $s="UPDATE `otros_conservacion` SET `nombre`='$otro_conservacion_nom_m',`area`='$otro_conservacion_area_m',`descripcion`='$otro_conservacion_desc_m' WHERE empresa_id = '$empresa'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 //---------------------------------------------------------------------------------------------------------
 
 //Modificar datos en la tabla ecosistemas 
@@ -141,23 +141,23 @@ $ecosistema_nochequeado = array_values(array_diff($ecosistemas_m_hidden, $ecosis
 for ($i=0; $i <sizeof($ecosistemas_m_hidden); $i++) {
 	if ($ecosistemas_m[$i]) {
 		$s="UPDATE `ecosistema` SET `area`='$ecosistemas_area_m[$i]',`confirmacion`='si' WHERE empresa_id = '$empresa' AND opciones_id = '$ecosistemas_m[$i]'";
-		// mysqli_query($conn,$s);
+		mysqli_query($conn,$s);
 	}else if (!$ecosistemas_m) {
 		$s="UPDATE `ecosistema` SET `area`='',`confirmacion`='no' WHERE empresa_id = '$empresa' AND opciones_id = '$ecosistemas_m_hidden[$i]'";
-		// mysqli_query($conn,$s);
+		mysqli_query($conn,$s);
 	}
 }
 for ($i=0; $i <sizeof($ecosistema_nochequeado); $i++) {
 	if ($ecosistema_nochequeado[$i]) {
 		$s="UPDATE `ecosistema` SET `area`='',`confirmacion`='no' WHERE empresa_id = '$empresa' AND opciones_id = '$ecosistema_nochequeado[$i]'";
-		// mysqli_query($conn,$s);
+		mysqli_query($conn,$s);
 	}
 }
 //Modificar datos de otros ecosistemas
 $otro_ecosistema_nom_m = $_POST['otro_ecosistema_nom_m'];
 $otro_ecosistema_area_m = $_POST['otro_ecosistema_area_m'];
 $s="UPDATE `otros_ecosistema` SET `nombre`='$otro_ecosistema_nom_m',`area`='$otro_ecosistema_area_m' WHERE empresa_id = '$empresa'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 //---------------------------------------------------------------------------------------------------------
 
 //Modificar datos en la tabla plan_manejo
@@ -192,19 +192,19 @@ $involucra_nochequeado = array_diff($involucra_m_hidden, $involucra_m);
 for ($i=0; $i <sizeof($involucra_m_hidden); $i++) {
 	if ($involucra_nochequeado[$i]) {
 		$s="UPDATE `involucra` SET `confirmacion`='no'  WHERE empresa_id = '$empresa' AND opciones_id = '$involucra_nochequeado[$i]'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 	}else if ($involucra_chequeado[$i]) {
 		$s="UPDATE `involucra` SET `confirmacion`='si'  WHERE empresa_id = '$empresa' AND opciones_id = '$involucra_chequeado[$i]'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 	}else if (!$involucra_m) {
 		$s="UPDATE `involucra` SET `confirmacion`='no'  WHERE empresa_id = '$empresa' AND opciones_id = '$involucra_m_hidden[$i]'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 	}
 }
 //Modificar datos de otros involucra
 $otro_involucra_nom_m = $_POST['otro_involucra_nom_m'];
 $s="UPDATE `otro_involucra` SET `nombre`='$otro_involucra_nom_m' WHERE empresa_id = '$empresa'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 //---------------------------------------------------------------------------------------------------------
 
 //Modificar datos en la tabla actividades 
@@ -217,16 +217,16 @@ $actividad_nochequeado = array_values(array_diff($actividad_m_hidden, $actividad
 for ($i=0; $i <sizeof($actividad_m_hidden); $i++) {
 	if ($actividad_m[$i]) {
 	$s="UPDATE `actividades` SET `recurso_id`= '$actividad_recurso_m[$i]',`descripcion`='$actividad_desc_m[$i]',`confirmacion`='si'  WHERE empresa_id = '$empresa' AND opciones_id = '$actividad_m[$i]'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 	}else if (!$actividad_m) {
 		$s="UPDATE `actividades` SET `recurso_id`= '1',`descripcion`='',`confirmacion`='no'  WHERE empresa_id = '$empresa' AND opciones_id = '$actividad_m_hidden[$i]'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 	}
 }
 for ($i=0; $i <sizeof($actividad_nochequeado); $i++) {
 	if ($actividad_nochequeado[$i]) {
 		$s="UPDATE `actividades` SET `recurso_id`= '1',`descripcion`='',`confirmacion`='no'  WHERE empresa_id = '$empresa' AND opciones_id = '$actividad_nochequeado[$i]'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 	}
 }
 //Modificar datos de otros actividades
@@ -246,22 +246,22 @@ $programa_nochequeado = array_values(array_diff($programa_m_hidden, $programa_m)
 for ($i=0; $i <sizeof($programa_m_hidden); $i++) {
 	if ($programa_m[$i]) {
 	$s="UPDATE `programa` SET `descripcion`='$programa_desc_m[$i]',`confirmacion`='si'  WHERE empresa_id = '$empresa' AND opciones_id = '$programa_m[$i]'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 	}else if (!$programa_m) {
 	$s="UPDATE `programa` SET `descripcion`='',`confirmacion`='no'  WHERE empresa_id = '$empresa' AND opciones_id = '$programa_m_hidden[$i]'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 	}
 }
 for ($i=0; $i <sizeof($programa_nochequeado); $i++) {
 	$s="UPDATE `programa` SET `descripcion`='',`confirmacion`='no'  WHERE empresa_id = '$empresa' AND opciones_id = '$programa_nochequeado[$i]'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 }
 
 //Modificar datos de otros programa
 $otro_programa_nom_m = $_POST['otro_programa_nom_m'];
 $otro_programa_desc_m = $_POST['otro_programa_desc_m'];
 $s="UPDATE `otro_programa` SET `nombre`='$otro_programa_nom_m',`descripcion`='$otro_programa_desc_m' WHERE empresa_id = '$empresa'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 //---------------------------------------------------------------------------------------------------------
 
 //Modificar datos en la tabla institucion 
@@ -298,20 +298,20 @@ $r = mysqli_query($conn,$s);
 while ($rw = mysqli_fetch_assoc($r)) {
 	$sost_id = $rw['id'];
 $s="UPDATE `sost_economica` SET `bien_servicio`='$bien_m[$i]',`vendida_anual`='$unidad_v_anual_m[$i]',`unidad_medida_id`='$unidad_medida_m[$i]',`costo_produccion`='$costo_pro_unidad_m[$i]',`precio_v_unitario`='$precio_v_unitario_m[$i]',`ganancia_unidad`='$ganancia_unidad_m[$i]',`ventas_anual`='$venta_anual_m[$i]',`si_no_id`='$ingresos_sup_costo_m[$i]' WHERE empresa_id = '$empresa' AND id ='$sost_id'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 $i++;
 }
 //---------------------------------------------------------------------------------------------------------
 //Modificar datos de insumos totales
 $s="UPDATE `costo_insumos` SET `semanal`='$_POST[insumo_semanal_m]',`mensual`='$_POST[insumo_mensual_m]',`anual`='$_POST[insumo_anual_m]' WHERE empresa_id='$empresa'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 
 //Modificar datos de mano de obra total
 $s="UPDATE `costo_mano_obra` SET `semanal`='$_POST[obra_semanal_m]',`mensual`='$_POST[obra_mensual_m]',`anual`='$_POST[obra_anual_m]' WHERE empresa_id='$empresa'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 
 //Modificar datos de ventas realizadas
 $s="UPDATE `total_ventas` SET `valor`='$_POST[venta_valor]',`anio`='$_POST[venta_anio]' WHERE empresa_id='$empresa'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 
 ?>

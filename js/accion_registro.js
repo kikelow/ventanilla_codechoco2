@@ -290,18 +290,26 @@ else {
 		url: 'emprendimiento/registro/insertar.php',
 		type: 'POST',
 		data: $("#form_registro").serialize(),
-	})
-	.done(function(respuesta) {
-		$('#registrar_emp').attr('disabled', 'disabled');
-		swal ({
+		beforeSend: function() {
+	  	$('#registrar_emp').attr('disabled', 'disabled');
+   	// console.log('cargando')
+   	swal ({
+  				// icon: "success",
+  				 text: "Procesando información!",
+  				 button: {
+    				visible: false
+  				},
+			});
+    },success: function(respuesta) {
+    	swal ({
   				icon: "success",
   				 text: "Datos INSERTADOS exitosamente!",
   				 button: {
     				visible: false
   				},
 			});
-		setTimeout("document.location=document.location",1500);
-		
+    	setTimeout("document.location=document.location",1500);
+    }
 	})
 	
 	}
@@ -324,10 +332,12 @@ $.ajax({
  //   	// alert('message?: DOMString')
  //       $('#preload').addClass('progress')
  //    },success: function(respuesta) {
+ //    	$('#preload').removeClass('progress')
  //       $('#cargar_info').html(respuesta)
  // //  // alert(respuesta)
  //    }
- }).done(function(respuesta) {
+ })
+.done(function(respuesta) {
   $('#cargar_info').html(respuesta)
   // alert(respuesta)
  })
@@ -611,16 +621,26 @@ else {
 		url: 'evaluacion/formato_inscripcion/modificar/modificar.php?empresa='+empresa,
 		type: 'POST',
 		data: $('#form_modificar').serialize(),
-	})
-	.done(function(respuesta) {
-		swal ({
+		beforeSend: function() {
+	  	$('#modificar_emp').attr('disabled', 'disabled');
+   	// console.log('cargando')
+   	swal ({
+  				// icon: "success",
+  				 text: "Procesando información!",
+  				 button: {
+    				visible: false
+  				},
+			});
+    },success: function(respuesta) {
+    	swal ({
   				icon: "success",
   				 text: "Datos MODIFICADOS exitosamente!",
   				 button: {
     				visible: false
   				},
 			});
-		setTimeout("document.location=document.location",1500);
+    	setTimeout("document.location=document.location",1500);
+    }
 	})
 }
 	
