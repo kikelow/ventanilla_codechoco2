@@ -19,14 +19,14 @@ for ($key=0; $key <sizeof($opcion); $key++) {
         move_uploaded_file($tmp_name, $ruta);
 
         $s="INSERT INTO `verificacion_2`(`empresa_id`, `opciones_id`, `calificador_id`, `observacion`, `evidencia`) VALUES ('$empresa','$opcion[$key]','$calificador[$key]','$observacion[$key]','$nombre')";
-        // mysqli_query($conn,$s) or die(mysqli_error($conn));
+        mysqli_query($conn,$s) or die(mysqli_error($conn));
         }
     }else{
          $s="INSERT INTO `verificacion_2`(`empresa_id`, `opciones_id`, `calificador_id`, `observacion`, `evidencia`) VALUES ('$empresa','$opcion[$key]','$calificador[$key]','$observacion[$key]','')";
-        // mysqli_query($conn,$s) or die(mysqli_error($conn));
+        mysqli_query($conn,$s) or die(mysqli_error($conn));
 
     }    
 }
 $s="UPDATE `empresa` SET `verificacion2`='si' WHERE id = '$empresa'";
-// mysqli_query($conn,$s);
+mysqli_query($conn,$s);
 ?>

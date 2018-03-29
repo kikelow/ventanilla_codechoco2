@@ -62,7 +62,7 @@ require_once('conexion.php');
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
-                        echo"<option value=".$result1['id'].">".$result1['nombre' ]."</option>";
+                        echo"<option value=".$result1['id']." valor=".$result1['nombre']." >".$result1['nombre' ]."</option>";
                     }
                   }
         echo"
@@ -177,7 +177,7 @@ require_once('conexion.php');
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
-                        echo"<option value=".$result1['id'].">".$result1['nombre' ]."</option>";
+                        echo"<option value=".$result1['id']." >".$result1['nombre' ]."</option>";
                     }
                   }
         echo"
@@ -795,10 +795,107 @@ sociales implementados o recibidos.</div>
       </div>
       </li>
    </ul>
-          
+        
+      <div class="row">
+      <div class="col s12 m6 l12">
+        <table class="bordered">
+          <thead>
+            <tr>
+              <th style="width: 100%;" class="green center" colspan="2">Resultado Nivel 1. Criterios de Cumplimiento de Negocios Verdes</th>
+            </tr>
+            <tr>
+              <th style="width: 90%;" class="grey darken-1">Criterio</th>
+              <th style="" class="grey darken-1">Promedio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Viabilidad económica del Negocio</td>
+              <td id="prom1">0.00%</td>
+            </tr>
+            <tr>
+              <td>Impacto Ambiental Positivo  y contribución a la conservación y preservación de los recursos ecosistemicos</td>
+              <td id="prom2">0.00%</td>
+            </tr>
+            <tr>
+              <td>Enfoque ciclo de vida del bien o servicio</td>
+              <td id="prom3">0.00%</td>
+            </tr>
+            <tr>
+              <td>Vida útil</td>
+              <td id="prom4">0.00%</td>
+            </tr>
+            <tr>
+              <td>Sustitución de sustancias o materiales peligrosos</td>
+              <td id="prom5">0.00%</td>
+            </tr>
+            <tr>
+              <td>Reciclabilidad y/o uso de materiales reciclados</td>
+              <td id="prom6">0.00%</td>
+            </tr>
+            <tr>
+              <td>Uso eficiente y sostenible de recursos para la producción de bienes o servicios</td>
+              <td id="prom7">0.00%</td>
+            </tr>
+            <tr>
+              <td>Responsabilidad social al interior de la empresa</td>
+              <td id="prom8">0.00%</td>
+            </tr>
+            <tr>
+              <td>Responsabilidad social en la cadena de valor de la empresa</td>
+              <td id="prom9">0.00%</td>
+            </tr>
+            <tr>
+              <td>Responsabilidad social al exterior de la empresa</td>
+              <td id="prom10">0.00%</td>
+            </tr>
+            <tr>
+              <td>Comunicación de atributos del bien y servicio</td>
+              <td id="prom11">0.00%</td>
+            </tr>
+            <tr>
+              <th class=" grey lighten-1">Puntaje total </th>
+              <th class="grey lighten-1" id="total">0.00% </th>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+        <table style="margin-top:20px">
+          <thead>
+            <tr>
+              <th style="width: 100%;" class="green center" colspan="2">Resultado Nivel 2. Criterios Adicionales (ideales) Negocios Verdes</th>
+            </tr>
+            <tr>
+              <th style="width: 90%;" class="grey darken-1">Criterio</th>
+              <th style="" class="grey darken-1">Promedio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Esquemas, programas o reconocimientos implementados o recibidos</td>
+              <td id="prom12">0.00%</td>
+            </tr>
+            <tr>
+              <td>Responsabilidad social al interior de la empresa adicional</td>
+              <td id="prom13">0.00%</td>
+            </tr>
+            <tr>
+              <th class=" grey lighten-1">Puntaje total </th>
+              <th class="grey lighten-1" id="total2">0.00% </th>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+     <hr> 
       <button type="submit" class="waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="btn_verificacion2"><i class="material-icons right">add</i>Registrar</button>
     </form>
+  <!-- <div class="divider"></div>   -->
   </div>
+  
 
    </div>
           </div>
@@ -807,6 +904,7 @@ sociales implementados o recibidos.</div>
     </section>  
   </div>
 </div>
+
 
   <script type="text/javascript" src="js/select2.js"></script>
 <script type="text/javascript" src="js/accion_verificacion2.js"></script>
