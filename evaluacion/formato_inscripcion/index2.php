@@ -291,47 +291,9 @@
       </div>
 
       <div class="row">
-        <div class="input-field col s12 m6 l6" style="margin-top: 51px">
-          <select id="impacto_amb" name="impacto_amb" >
-            <!-- <option disabled selected>Seleccione...</option> -->
-                  <?php 
-                    $s="select id,nombre from si_no order by id desc";
-                    $r= mysqli_query($conn,$s) or die("Error");
-                    if(mysqli_num_rows($r)>0){
-                      while($rw=mysqli_fetch_assoc($r)){
-                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
-                      }         
-                    }
-                  ?>
-                  </select>
-                  <label ">¿Su actuvidad o producto tiene impacto ambiental positivo?</label>
-        </div>
-        <div class="input-field col s12 m6 l6">
+        <div class="input-field col s12 m12 l12">
                 <textarea id="desc_imp_ambiental" name="desc_imp_ambiental" class="materialize-textarea"></textarea>
-                <label for="desc_imp_ambiental">¿Por qué?</label>
-              </div>
-      </div>
-      
-
-      <div class="row">
-        <div class="input-field col s12 m6 l6" style="margin-top: 51px">
-          <select id="impacto_soc" name="impacto_soc">
-            <!-- <option disabled selected>Seleccione...</option> -->
-                  <?php 
-                    $s="select id,nombre from si_no order by id desc";
-                    $r= mysqli_query($conn,$s) or die("Error");
-                    if(mysqli_num_rows($r)>0){
-                      while($rw=mysqli_fetch_assoc($r)){
-                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
-                      }         
-                    }
-                  ?>
-                  </select>
-                  <label ">¿Su actuvidad o producto tiene impacto social positivo?</label>
-        </div>
-        <div class="input-field col s12 m6 l6">
-                <textarea id="desc_imp_social" name="desc_imp_social" class="materialize-textarea"></textarea>
-                <label for="desc_imp_social">¿Por qué?</label>
+                <label for="desc_imp_ambiental">Caracteristicas generales de su negocio verde (incluir el impacto ambiental positivo generado)</label>
               </div>
       </div>
 
@@ -729,7 +691,7 @@
         
         <div class="col s12"></div>
         
-        <div class="input-field col s12 m12 l12">
+        <div class="input-field col s12 m12 l12" id="bien_servi"  >
 
           <input id="b1" name="b1" type="text" class="validate" >
           <label for="b1">Bien y/o servicio 1</label>
@@ -751,10 +713,9 @@
           <input id="b5" name="b5" type="text" class="validate" >
           <label for="b5">Bien y/o servicio 5</label>
         </div>
-
-        <div class="input-field col s12 m12 l12">
+        <div class="input-field col s12 m12 l12" >
           <input id="b_lider" name="b_lider" type="text" class="validate" >
-          <label for="b_lider">Bien o servicio lider</label>
+          <label for="b_lider">Bien o servicio lider (No debe estar dentro de los bienes o servicios enlistados anteriormente )</label>
         </div>
         </div>
         </div>
@@ -782,25 +743,7 @@
                  <input id="legal" name="legal" type="text" class="validate">
                 <label for="legal">Años de funcionamiento de la empresa</label>
             </div>    
-             <div class="row" style="border-bottom: 1px solid"></div>
-            <div class="input-field col s12 m5 l5">              
-                 <select id="cmb_personeria" name="cmb_personeria">
-                  <?php 
-                    $s="select id,nombre from si_no order by id desc ";
-                    $r= mysqli_query($conn,$s) or die("Error");
-                    if(mysqli_num_rows($r)>0){
-                      while($rw=mysqli_fetch_assoc($r)){
-                      echo"<option value='$rw[id]'>$rw[nombre]</option>";          
-                      }         
-                    }
-                  ?>
-                </select>
-                <label>¿Cuenta con personeria juridica?</label>
-            </div>
-            <div class="input-field col s12 m7 l7">
-                 <input id="personeria" name="personeria" type="text" class="validate">
-                <label for="personeria">Tipo de personeria juridica (Unipersonal, SAS, coorporación, asociación, entre otros) </label>
-            </div>      
+             
         
         
         <div class="row" style="border-bottom: 1px solid"></div>
