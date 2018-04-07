@@ -34,39 +34,39 @@
     $s="SELECT * from empresa WHERE id = '$_POST[empresa_id]'";
             $r= mysqli_query($conn,$s) or die('Error');
             if(mysqli_num_rows($r)>0){
-              while($rw=mysqli_fetch_array($r)){
-                $tipo_persona = $rw[1];
-                $tipo_identificacion = $rw[2];
-                $identificacion=$rw[3];
-                $razon_social= $rw[4];
-                $persona_id = $rw[5];
-                $municipio_id = $rw[6];
-                $vereda = $rw[7];
-                $direccion_predio = $rw[8];
-                $aut_ambiental= $rw[9];
-                $coordenada_n= $rw[10];
-                $coordenada_w= $rw[11];
-                $altitud= $rw[12];
-                $area= $rw[13];
-                $pot = $rw[14];
-                $famiempresa = $rw[15];
-                $tamaño_empresa =$rw[16];
-                $desc_negocio = $rw[18];
-                $impacto_amb = $rw[19];
-                $desc_imp_ambiental = $rw[20];
-                $impacto_soc = $rw[21];
-                $desc_imp_social = $rw[22];
-                $num_socios= $rw[23];
-                $asociacion= $rw[24];
-                $subsector_id = $rw[25]; 
-                $etapa_empresa = $rw[26];
+              while($rw=mysqli_fetch_assoc($r)){
+                $tipo_persona = $rw['tipo_persona_id'];
+                $tipo_identificacion = $rw['tipo_identificacion_id'];
+                $identificacion=$rw['identificacion'];
+                $razon_social= $rw['razon_social'];
+                $persona_id = $rw['persona_id'];
+                $municipio_id = $rw['municipio_id'];
+                $vereda = $rw['vereda'];
+                $direccion_predio = $rw['direccion'];
+                $aut_ambiental= $rw['aut_ambiental'];
+                $coordenada_n= $rw['coodenadas_n'];
+                $coordenada_w= $rw['coordenadas_w'];
+                $altitud= $rw['altitud'];
+                $area= $rw['area'];
+                $pot = $rw['si_no_pot_id'];
+                $famiempresa = $rw['fami_empresa_si_no'];
+                $tamaño_empresa =$rw['tamaño_empresa_id'];
+                $desc_negocio = $rw['descripcion'];
+                // $impacto_amb = $rw['desc_impacto_amb'];
+                $desc_imp_ambiental = $rw['desc_impacto_amb'];
+                // $impacto_soc = $rw[21];
+                // $desc_imp_social = $rw[22];
+                $num_socios= $rw['num_socios'];
+                $asociacion= $rw['asociacion_si_no'];
+                $subsector_id = $rw['subsector_id']; 
+                $etapa_empresa = $rw['etapa_empresa_id'];
 
-                $cmb_legal = $rw[27];
-                $legal = $rw[28];
-                $cmb_personeria= $rw[29];
-                $personeria= $rw[30];
-                $cmb_ope_actualidad = $rw[31]; 
-                $año_desp_registro = $rw[32];
+                $cmb_legal = $rw['const_legalmente_sino'];
+                $legal = $rw['año_funcionamiento'];
+                // $cmb_personeria= $rw[29];
+                // $personeria= $rw[30];
+                $cmb_ope_actualidad = $rw['opera_actualmente_sino']; 
+                $año_desp_registro = $rw['año_func_desp_reg_camara'];
               } 
 
             }
@@ -141,7 +141,7 @@ $region_id = "";
               } 
 
             }
-            $s="SELECT cantidad from empleado_sexo WHERE empresa_id = '$_POST[empresa_id]' AND socio_empleado_id = '1' AND sexo_id = '1'";
+            $s="SELECT cantidad from empleado_sexo WHERE empresa_id = '$_POST[empresa_id]' AND socio_empleado_id = '1' AND sexo_id = '2'";
             $r= mysqli_query($conn,$s) or die('Error');
             if(mysqli_num_rows($r)>0){
               while($rw=mysqli_fetch_array($r)){
@@ -161,7 +161,7 @@ $region_id = "";
               } 
 
             }
-            $s="SELECT cantidad from empleado_sexo WHERE empresa_id = '$_POST[empresa_id]' AND socio_empleado_id = '2' AND sexo_id = '1'";
+            $s="SELECT cantidad from empleado_sexo WHERE empresa_id = '$_POST[empresa_id]' AND socio_empleado_id = '2' AND sexo_id = '2'";
             $r= mysqli_query($conn,$s) or die('Error');
             if(mysqli_num_rows($r)>0){
               while($rw=mysqli_fetch_array($r)){
@@ -182,7 +182,7 @@ $region_id = "";
               } 
 
             }
-            $s="SELECT cantidad from empleado_sexo WHERE empresa_id = '$_POST[empresa_id]' AND socio_empleado_id = '3' AND sexo_id = '1'";
+            $s="SELECT cantidad from empleado_sexo WHERE empresa_id = '$_POST[empresa_id]' AND socio_empleado_id = '3' AND sexo_id = '2'";
             $r= mysqli_query($conn,$s) or die('Error');
             if(mysqli_num_rows($r)>0){
               while($rw=mysqli_fetch_array($r)){
@@ -715,59 +715,9 @@ $otro_m = "";
       </div>
 
       <div class='row'>
-        <div class='input-field col s12 m6 l6' style='margin-top: 51px'>
-          <select name='impacto_amb_m' id='impacto_amb_m' class='validate'>";
-                  
-                    $s="SELECT id,nombre from si_no";
-            $r= mysqli_query($conn,$s) or die('Error');
-            if(mysqli_num_rows($r)>0){
-              while($rw=mysqli_fetch_assoc($r)){
-                
-                if ($rw["id"]==$impacto_amb) {
-                  $datos.="ECHO '<option value='$rw[id]' selected='selected'> $rw[nombre]</option>'";
-                }else{
-                  $datos.="echo'<option value='$rw[id]'>$rw[nombre]</option>'";
-                }
-
-              } 
-
-            }
-                $datos.="  
-                </select>
-                  <label>¿Su actuvidad o producto tiene impacto ambiental positivo?</label>
-        </div>
-        <div class='input-field col s12 m6 l6'>
+        <div class='input-field col s12 m12 l12'>
                 <textarea id='desc_imp_ambiental_m' name='desc_imp_ambiental_m' class='materialize-textarea' >$desc_imp_ambiental</textarea>
                 <label for='desc_imp_ambiental_m' class='activar'>¿Por qué?</label>
-              </div>
-      </div>
-      
-
-      <div class='row'>
-        <div class='input-field col s12 m6 l6' style='margin-top: 51px'>
-          <select name='impacto_soc_m' id='impacto_soc_m' class='validate'>";
-                  
-                    $s="SELECT id,nombre from si_no";
-            $r= mysqli_query($conn,$s) or die('Error');
-            if(mysqli_num_rows($r)>0){
-              while($rw=mysqli_fetch_assoc($r)){
-                
-                if ($rw["id"]==$impacto_soc) {
-                  $datos.="ECHO '<option value='$rw[id]' selected='selected'> $rw[nombre]</option>'";
-                }else{
-                  $datos.="echo'<option value='$rw[id]'>$rw[nombre]</option>'";
-                }
-
-              } 
-
-            }
-                $datos.="  
-                </select>
-                  <label>¿Su actuvidad o producto tiene impacto social positivo?</label>
-        </div>
-        <div class='input-field col s12 m6 l6'>
-                <textarea id='desc_imp_social_m' name='desc_imp_social_m' class='materialize-textarea'>$desc_imp_social</textarea>
-                <label for='desc_imp_social_m' class='activar'>¿Por qué?</label>
               </div>
       </div>
 
@@ -1258,7 +1208,7 @@ $otro_m = "";
         
         <div class='row'>
         
-        <div class='col s12'></div>";
+        <div class='col s12' ></div>";
         
         $i="";
             $s="SELECT nombre from bienes_servicios WHERE empresa_id = '$_POST[empresa_id]' and lider =''";
@@ -1273,9 +1223,9 @@ $otro_m = "";
               } 
             }
         $datos.="
-        <div class='input-field col s12 m12 l12'>
+        <div class='input-field col s12 m12 l12' id='bien_servi_m'>
           <input id='b_lider_m' value='$b_lider' name='b_lider_m' type='text' class='validate' >
-          <label for='b_lider_m' class='activar'>Bien o servicio lider</label>
+          <label for='b_lider_m' class='activar'>Bien o servicio lider (No debe estar dentro de los bienes o servicios enlistados anteriormente )</label>
         </div>
         </div>
         </div>
@@ -1309,32 +1259,7 @@ $otro_m = "";
                  <input id='legal_m' name='legal_m' value='$legal' type='text' class='validate'>
                 <label for='legal_m' class='activar'>Años de funcionamiento de la empresa</label>
             </div>    
-             <div class='row' style='border-bottom: 1px solid'></div>
-            <div class='input-field col s12 m5 l5'>              
-                <select name='cmb_personeria_m' id='cmb_personeria_m' class='validate'>";
-                  
-                    $s="SELECT id,nombre from si_no";
-            $r= mysqli_query($conn,$s) or die('Error');
-            if(mysqli_num_rows($r)>0){
-              while($rw=mysqli_fetch_assoc($r)){
-                
-                if ($rw["id"]==$cmb_personeria) {
-                  $datos.="ECHO '<option value='$rw[id]' selected='selected'> $rw[nombre]</option>'";
-                }else{
-                  $datos.="echo'<option value='$rw[id]'>$rw[nombre]</option>'";
-                }
-
-              } 
-
-            }
-                $datos.="  
-                </select>
-                <label>¿Cuenta con personeria juridica?</label>
-            </div>
-            <div class='input-field col s12 m7 l7'>
-                 <input id='personeria_m' value='$personeria' name='personeria_m' type='text' class='validate'>
-                <label for='personeria_m' class='activar'>Tipo de personeria juridica (Unipersonal, SAS, coorporación, asociación, entre otros) </label>
-            </div>      
+             
         
         
         <div class='row' style='border-bottom: 1px solid'></div>

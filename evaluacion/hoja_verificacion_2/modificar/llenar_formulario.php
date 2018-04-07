@@ -901,11 +901,296 @@ sociales implementados o recibidos.</div>
 
               }
           }
-          echo "</div></li>";
+          echo "</div></li></ul>";
 
-          echo"</ul> <button  class=' yellow darken-4 btn right' style='margin-bottom: 8px' id='modificar_verificacion2'><i class='material-icons right'>create</i>Modificar</button>
+          $division = 0;
+$suma = 0;
+$s="SELECT verificacion_2.id, calificador.nombre AS calificador FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id = 86 OR verificacion_2.opciones_id = 87 OR verificacion_2.opciones_id = 88 OR verificacion_2.opciones_id = 89 OR verificacion_2.opciones_id = 137 AND verificacion_2.empresa_id = '$empresa'";
+$r = mysqli_query($conn,$s);
+while ($rw = mysqli_fetch_assoc($r)) {
+  if ($rw['calificador'] == 'N/A') {
+    $division = $division;
+  }else{
+    $division++;
+  }
+$suma = $suma + $rw['calificador'];
+}
+$prom1 = round($suma/$division*100, 2) ;
+
+$division = 0;
+$suma = 0;
+$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 90 AND verificacion_2.opciones_id <= 97 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+  $r = mysqli_query($conn,$s);
+  while ($rw = mysqli_fetch_assoc($r)) {
+    if ($rw['calificador'] == 'N/A') {
+      $division = $division;
+    }else{
+      $division++;
+    }
+  $suma = $suma + $rw['calificador'];
+  }
+  $prom2 =  round($suma/$division*100, 2) ;
+
+$division = 0;
+$suma = 0;
+$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 98 AND verificacion_2.opciones_id <= 102 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+  $r = mysqli_query($conn,$s);
+  while ($rw = mysqli_fetch_assoc($r)) {
+    if ($rw['calificador'] == 'N/A') {
+      $division = $division;
+    }else{
+      $division++;
+    }
+  $suma = $suma + $rw['calificador'];
+  }
+  $prom3=  round($suma/$division*100, 2) ;
+
+$division = 0;
+$suma = 0;
+$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 103 AND verificacion_2.opciones_id <= 105 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+  $r = mysqli_query($conn,$s);
+  while ($rw = mysqli_fetch_assoc($r)) {
+    if ($rw['calificador'] == 'N/A') {
+      $division = $division;
+    }else{
+      $division++;
+    }
+  $suma = $suma + $rw['calificador'];
+  }
+  $prom4=  round($suma/$division*100, 2) ;
 
 
+$division = 0;
+$suma = 0;
+$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id = 106 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+  $r = mysqli_query($conn,$s);
+  while ($rw = mysqli_fetch_assoc($r)) {
+    if ($rw['calificador'] == 'N/A') {
+      $division = $division;
+    }else{
+      $division++;
+    }
+  $suma = $suma + $rw['calificador'];
+  }
+  $prom5=  round($suma/$division*100, 2) ;
+
+
+$division = 0;
+$suma = 0;
+$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 107 AND verificacion_2.opciones_id <= 110 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+  $r = mysqli_query($conn,$s);
+  while ($rw = mysqli_fetch_assoc($r)) {
+    if ($rw['calificador'] == 'N/A') {
+      $division = $division;
+    }else{
+      $division++;
+    }
+  $suma = $suma + $rw['calificador'];
+  }
+  $prom6=  round($suma/$division*100, 2) ;
+
+
+$division = 0;
+$suma = 0;
+$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 111 AND verificacion_2.opciones_id <= 116 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+  $r = mysqli_query($conn,$s);
+  while ($rw = mysqli_fetch_assoc($r)) {
+    if ($rw['calificador'] == 'N/A') {
+      $division = $division;
+    }else{
+      $division++;
+    }
+  $suma = $suma + $rw['calificador'];
+  }
+  $prom7=  round($suma/$division*100, 2) ;
+
+
+$division = 0;
+$suma = 0;
+$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 117 AND verificacion_2.opciones_id <= 119 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+  $r = mysqli_query($conn,$s);
+  while ($rw = mysqli_fetch_assoc($r)) {
+    if ($rw['calificador'] == 'N/A') {
+      $division = $division;
+    }else{
+      $division++;
+    }
+  $suma = $suma + $rw['calificador'];
+  }
+  $prom8=  round($suma/$division*100, 2) ;
+
+  $division = 0;
+$suma = 0;
+$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 120 AND verificacion_2.opciones_id <= 122 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+  $r = mysqli_query($conn,$s);
+  while ($rw = mysqli_fetch_assoc($r)) {
+    if ($rw['calificador'] == 'N/A') {
+      $division = $division;
+    }else{
+      $division++;
+    }
+  $suma = $suma + $rw['calificador'];
+  }
+  $prom9=  round($suma/$division*100, 2) ;
+
+
+$division = 0;
+$suma = 0;
+$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 123 AND verificacion_2.opciones_id <= 128 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+  $r = mysqli_query($conn,$s);
+  while ($rw = mysqli_fetch_assoc($r)) {
+    if ($rw['calificador'] == 'N/A') {
+      $division = $division;
+    }else{
+      $division++;
+    }
+  $suma = $suma + $rw['calificador'];
+  }
+  $prom10=  round($suma/$division*100, 2) ;
+
+$division = 0;
+$suma = 0;
+$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 129 AND verificacion_2.opciones_id <= 130 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+  $r = mysqli_query($conn,$s);
+  while ($rw = mysqli_fetch_assoc($r)) {
+    if ($rw['calificador'] == 'N/A') {
+      $division = $division;
+    }else{
+      $division++;
+    }
+  $suma = $suma + $rw['calificador'];
+  }
+  $prom11=  round($suma/$division*100, 2) ;
+
+  $suma_total = $prom1+$prom2+$prom3+$prom4+$prom5+$prom6+$prom7+$prom8+$prom9+$prom10+$prom11;
+  $prom_total1= round($suma_total/11, 2);
+
+$division = 0;
+$suma = 0;
+$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 133 AND verificacion_2.opciones_id <= 134 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+  $r = mysqli_query($conn,$s);
+  while ($rw = mysqli_fetch_assoc($r)) {
+    if ($rw['calificador'] == 'N/A') {
+      $division = $division;
+    }else{
+      $division++;
+    }
+  $suma = $suma + $rw['calificador'];
+  }
+  $prom12=  round($suma/$division*100, 2) ;
+
+$division = 0;
+$suma = 0;
+$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 135 AND verificacion_2.opciones_id <= 136 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+  $r = mysqli_query($conn,$s);
+  while ($rw = mysqli_fetch_assoc($r)) {
+    if ($rw['calificador'] == 'N/A') {
+      $division = $division;
+    }else{
+      $division++;
+    }
+  $suma = $suma + $rw['calificador'];
+  }
+  $prom13=  round($suma/$division*100, 2) ;
+
+  $suma_total2 = $prom12+$prom13;
+  $prom_total2= round($suma_total2/2, 2);
+
+          echo'<table class="" style="margin-top:20px">
+          <thead>
+            <tr>
+              <th style="width: 100%;" class="green center" colspan="2">Resultado Nivel 1. Criterios de Cumplimiento de Negocios Verdes</th>
+            </tr>
+            <tr>
+              <th style="width: 90%;" class="grey darken-1">Criterio</th>
+              <th style="" class="grey darken-1">Promedio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Viabilidad económica del Negocio</td>
+              <td id="prom1m">'.$prom1.'% <input type="hidden" id="td1" value="'.$prom1.'" /> </td>
+            </tr>
+            <tr>
+              <td>Impacto Ambiental Positivo  y contribución a la conservación y preservación de los recursos ecosistemicos</td>
+              <td id="prom2m">'.$prom2.'% <input type="hidden" id="td2" value="'.$prom2.'" /></td>
+            </tr>
+            <tr>
+              <td>Enfoque ciclo de vida del bien o servicio</td>
+              <td id="prom3m">'.$prom3.'% <input type="hidden" id="td3" value="'.$prom3.'" /></td>
+            </tr>
+            <tr>
+              <td>Vida útil</td>
+              <td id="prom4m">'.$prom4.'% <input type="hidden" id="td4" value="'.$prom4.'" /></td>
+            </tr>
+            <tr>
+              <td>Sustitución de sustancias o materiales peligrosos</td>
+              <td id="prom5m">'.$prom5.'% <input type="hidden" id="td5" value="'.$prom5.'" /></td>
+            </tr>
+            <tr>
+              <td>Reciclabilidad y/o uso de materiales reciclados</td>
+              <td id="prom6m">'.$prom6.'% <input type="hidden" id="td6" value="'.$prom6.'" /></td>
+            </tr>
+            <tr>
+              <td>Uso eficiente y sostenible de recursos para la producción de bienes o servicios</td>
+              <td id="prom7m">'.$prom7.'% <input type="hidden" id="td7" value="'.$prom7.'" /></td>
+            </tr>
+            <tr>
+              <td>Responsabilidad social al interior de la empresa</td>
+              <td id="prom8m">'.$prom8.'% <input type="hidden" id="td8" value="'.$prom8.'" /></td>
+            </tr>
+            <tr>
+              <td>Responsabilidad social en la cadena de valor de la empresa</td>
+              <td id="prom9m">'.$prom9.'% <input type="hidden" id="td9" value="'.$prom9.'" /></td>
+            </tr>
+            <tr>
+              <td>Responsabilidad social al exterior de la empresa</td>
+              <td id="prom10m">'.$prom10.'% <input type="hidden" id="td10" value="'.$prom10.'" /></td>
+            </tr>
+            <tr>
+              <td>Comunicación de atributos del bien y servicio</td>
+              <td id="prom11m">'.$prom11.'% <input type="hidden" id="td11" value="'.$prom11.'" /></td>
+            </tr>
+            <tr>
+              <th class=" grey lighten-1">Puntaje total </th>
+              <th class="grey lighten-1" id="totalm">'.$prom_total1.'% </th>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+        <table style="margin-top:20px">
+          <thead>
+            <tr>
+              <th style="width: 100%;" class="green center" colspan="2">Resultado Nivel 2. Criterios Adicionales (ideales) Negocios Verdes</th>
+            </tr>
+            <tr>
+              <th style="width: 90%;" class="grey darken-1">Criterio</th>
+              <th style="" class="grey darken-1">Promedio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Esquemas, programas o reconocimientos implementados o recibidos</td>
+              <td id="prom12m">'.$prom12.'% <input type="hidden" id="td12" value="'.$prom12.'" /></td>
+            </tr>
+            <tr>
+              <td>Responsabilidad social al interior de la empresa adicional</td>
+              <td id="prom13m">'.$prom13.'%  <input type="hidden" id="td13" value="'.$prom13.'" /></td>
+            </tr>
+            <tr>
+              <th class=" grey lighten-1">Puntaje total </th>
+              <th class="grey lighten-1" id="total2m">'.$prom_total2.'% </th>
+            </tr>
+            
+          </tbody>
+        </table>
+';
+
+          echo"<hr>  <button  class=' yellow darken-4 btn right' style='margin-bottom: 8px' id='modificar_verificacion2'><i class='material-icons right'>create</i>Modificar</button>
+
+<script type='text/javascript' src='js/accion_verificacion2.js'></script>
 	<script type='text/javascript'>
 $(document).ready(function(){
     $('select').material_select();

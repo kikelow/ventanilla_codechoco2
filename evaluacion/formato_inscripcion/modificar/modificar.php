@@ -20,7 +20,31 @@ $s = "UPDATE `persona` SET `identificacion`='$_POST[documento_m]',
 	mysqli_query($conn,$s);	
 
 //modificar datos de la tabla persona
-	$s ="UPDATE `empresa` SET `tipo_persona_id`='$_POST[t_persona_m]',`tipo_identificacion_id`='$_POST[t_identificacion_m]',`identificacion`='$_POST[identificacion_m]',`razon_social`='$_POST[razon_social_m]',`municipio_id`=$_POST[municipio_m],`vereda`='$_POST[vereda_m]',`direccion`='$_POST[direccion_p_m]',`coodenadas_n`='$_POST[coordenada_n_m]',`coordenadas_w`='$_POST[coordenada_w_m]',`altitud`='$_POST[altitud_m]',`area`='$_POST[area_m]',`si_no_pot_id`=$_POST[pot_m],`fami_empresa_si_no`='$_POST[famiempresa_m]',`tamaño_empresa_id`='$_POST[tamaño_empresa_m]',`descripcion`='$_POST[desc_negocio_m]',`impacto_amb_si_no`='$_POST[impacto_amb_m]',`desc_impacto_amb`='$_POST[desc_imp_ambiental_m]',`impacto_soc_si_no`='$_POST[impacto_soc_m]',`desc_impacto_soc`='$_POST[desc_imp_social_m]',`num_socios`='$_POST[num_asociados_m]',`asociacion_si_no`='$_POST[asociacion_m]',`subsector_id`='$_POST[subsector_m]',`etapa_empresa_id`='$_POST[etapa_empresa_m]',`const_legalmente_sino`='$_POST[cmb_legal_m]',`año_funcionamiento`='$_POST[legal_m]',`personeria_juridi_sino`='$_POST[cmb_personeria_m]',`tipo_personeria`='$_POST[personeria_m]',`opera_actualmente_sino`='$_POST[cmb_ope_actualidad_m]',`año_func_desp_reg_camara`='$_POST[año_desp_registro_m]' WHERE id = '$empresa'";
+	$s ="UPDATE `empresa` SET 
+	`tipo_persona_id`='$_POST[t_persona_m]',
+	`tipo_identificacion_id`='$_POST[t_identificacion_m]',
+	`identificacion`='$_POST[identificacion_m]',
+	`razon_social`='$_POST[razon_social_m]',
+	`municipio_id`=$_POST[municipio_m],
+	`vereda`='$_POST[vereda_m]',
+	`direccion`='$_POST[direccion_p_m]',
+	`coodenadas_n`='$_POST[coordenada_n_m]',
+	`coordenadas_w`='$_POST[coordenada_w_m]',
+	`altitud`='$_POST[altitud_m]',
+	`area`='$_POST[area_m]',
+	`si_no_pot_id`=$_POST[pot_m],
+	`fami_empresa_si_no`='$_POST[famiempresa_m]',
+	`tamaño_empresa_id`='$_POST[tamaño_empresa_m]',
+	`descripcion`='$_POST[desc_negocio_m]',
+	`desc_impacto_amb`='$_POST[desc_imp_ambiental_m]',
+	`num_socios`='$_POST[num_asociados_m]',
+	`asociacion_si_no`='$_POST[asociacion_m]',
+	`subsector_id`='$_POST[subsector_m]',
+	`etapa_empresa_id`='$_POST[etapa_empresa_m]',
+	`const_legalmente_sino`='$_POST[cmb_legal_m]',
+	`año_funcionamiento`='$_POST[legal_m]',
+	`opera_actualmente_sino`='$_POST[cmb_ope_actualidad_m]',
+	`año_func_desp_reg_camara`='$_POST[año_desp_registro_m]' WHERE id = '$empresa'";
 	mysqli_query($conn,$s) ;
 
 // modificar datos en la tabla empleado sexo

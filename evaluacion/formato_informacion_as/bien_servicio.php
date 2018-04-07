@@ -4,11 +4,11 @@ $empresa = $_POST['empresa_id'];
 
  $i = 0;
             $ver = "";
-            $s1="SELECT id,nombre from bienes_servicios where empresa_id = '$empresa' order by id ";
-            $r1= mysqli_query($conn,$s1) or die("Error");
+            $s1="SELECT id,nombre,lider from bienes_servicios where empresa_id = '$empresa' order by id ";
+            $r1= mysqli_query($conn,$s1);
             if(mysqli_num_rows($r1)>0){
               while($rw=mysqli_fetch_assoc($r1)){
-              	if ($rw['nombre'] != "") {
+              	if ($rw['nombre'] != "" || $rw['lider'] != "" ) {
               		
               	
                        $i++;
@@ -16,7 +16,7 @@ $empresa = $_POST['empresa_id'];
              <div class='row'>
                 
                 <div class='input-field col s12 m3 l3'>
-                 <input readonly  type='text' name='bien[]' id='bien".$i."' value='$rw[nombre]' />
+                 <input readonly  type='text' name='bien[]' id='bien".$i."' value='$rw[nombre]$rw[lider]' />
                       <label for='bien".$i."' class='activar'>Bien o servicio</label>
                 </div>
                  <div class='input-field col s12 m3 l3'>

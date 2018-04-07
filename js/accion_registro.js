@@ -282,7 +282,22 @@ else if (Number(total_educativo) != Number(total_3)) {
 	 $('.collapsible').collapsible('open', 3);
 	 $('#mensaje_vinculacion').html(" ")
 	 $('#mensaje_educativo').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
-	 document.getElementById('mensaje_educativo').scrollIntoView();
+	// document.getElementById('mensaje_educativo').scrollIntoView();
+$('html, body').animate({scrollTop: $( $( '#mensaje_educativo' ) ).offset().top}, 1000);
+
+}
+else if ($('#b_lider').val()=="") {
+	$('.collapsible').collapsible('close', 3);
+	 $('.collapsible').collapsible('open', 3);
+	$('#b_lider').focus().addClass("invalid")
+	$('html, body').animate({scrollTop: $( $( '#bien_servi' ) ).offset().top}, 1000);
+}
+else if ($('#b_lider').val()== $('#b1').val() || $('#b_lider').val()== $('#b2').val()|| $('#b_lider').val()== $('#b3').val() || $('#b_lider').val()== $('#b4').val()|| $('#b_lider').val()== $('#b5').val()) {
+	$('.collapsible').collapsible('close', 3);
+	$('.collapsible').collapsible('open', 3);
+	$('#b_lider').focus().addClass("invalid")
+	$('html, body').animate({scrollTop: $( $( '#bien_servi' ) ).offset().top}, 1000);
+	Materialize.toast('No debe estar dentro de los bienes o servicios enlistados anteriormente!', 2000)
 }
 else {
 	$.ajax({
@@ -612,6 +627,19 @@ else if (Number(total_educativo) != Number($('#total_3_m').val())) {
 	 $('#mensaje_vinculacion2').html(" ")
 	 $('#mensaje_educativo2').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
 	 $('html, body').animate({scrollTop: $( $( '#mensaje_educativo2')).offset().top}, 1000);	 
+}
+else if ($('#b_lider_m').val()=="") {
+	$('.collapsible').collapsible('close', 3);
+	 $('.collapsible').collapsible('open', 3);
+	$('#b_lider_m').focus().addClass("invalid")
+	$('html, body').animate({scrollTop: $( $( '#bien_servi_m' ) ).offset().top}, 1000);
+}
+else if ($('#b_lider_m').val()== $('#bien_m1').val() || $('#b_lider_m').val()== $('#bien_m2').val()|| $('#b_lider_m').val()== $('#bien_m3').val() || $('#b_lider_m').val()== $('#bien_m4').val()|| $('#b_lider_m').val()== $('#bien_m5').val()) {
+	$('.collapsible').collapsible('close', 3);
+	$('.collapsible').collapsible('open', 3);
+	$('#b_lider_m').focus().addClass("invalid")
+	$('html, body').animate({scrollTop: $( $( '#bien_servi_m' ) ).offset().top}, 1000);
+	Materialize.toast('No debe estar dentro de los bienes o servicios enlistados anteriormente!', 2000)
 }
 else {
 	$('#mensaje_educativo2').html(" ")
