@@ -1,5 +1,5 @@
 <?php include "conexion.php"; 
-  $s = "SELECT * from contenido where id =7" ;
+  $s = "SELECT * from contenido where id =4" ;
   $res = mysqli_query($conn,$s) or die(mysqli_error($conn));
 ?>
  <div class="row" style="background-color: #00853b14;padding-top: 150px;">

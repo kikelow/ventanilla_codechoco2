@@ -1,4 +1,3 @@
-
 var total_3 ="";
 
 // verificar el total socios de la empresa

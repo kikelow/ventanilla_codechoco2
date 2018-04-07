@@ -579,3 +579,12 @@ div.nav ul li a.active{
     padding-left: 10px;
     padding-right: 10px;
 }
+
+.oculto{
+  display: none;
+  height: 600px;
+} 
+.oculto2{
+  display: none;
+  height: 300px;
+} 

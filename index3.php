@@ -9,7 +9,8 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/select2.css">
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
-	<script src="js/jquery.min.js"  type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="js/Trumbowyg-master/dist/ui/trumbowyg.min.css">
+	
 
   <link href="https://fonts.googleapis.com/css?family=Merriweather:700i" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Sniglet|Nanum+Myeongjo:800" rel="stylesheet">
@@ -62,10 +63,6 @@
                    }
     ?>    
     </div>
-
-
-    <!-- <div id="test2" class="col s12">Test 2</div> -->
-   
   </div>
 
 
@@ -80,23 +77,14 @@
    <div class="col s12 m6 l6 ">Desarrollo: David y Harinson</div>
  </div>
 </footer>
+<script src="js/jquery.min.js"  type="text/javascript"></script>
   <script src="js/materialize.min.js"  type="text/javascript"></script>
   <script type="text/javascript" src="js/select2.js"></script>
   <script type="text/javascript" src="js/admin_content_crud.js"></script>
   <script type="text/javascript" src="js/sweetalert.js"></script>
-   <script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
+   <script type="text/javascript" src="js/Trumbowyg-master/dist/trumbowyg.min.js"></script>
    <script type="text/javascript">
-      tinymce.init({
-        selector: '#textarea1',
-        plugins: [
-          "advlist autolink autosave link image lists charmap print preview hr anchor pagebreak",
-          "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-          "table contextmenu directionality emoticons template textcolor paste fullpage textcolor colorpicker textpattern"
-        ],
-        toolbar1: "newdocument fullpage | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect",
-        toolbar2: "cut copy paste | searchreplace | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor image media code | insertdatetime preview | forecolor backcolor",
-        toolbar3: "table | hr removeformat | subscript superscript | charmap | print fullscreen | ltr rtl | visualchars visualblocks nonbreaking  pagebreak restoredraft",
-      });
+      $('textarea').trumbowyg();
    </script>
   <script>
     $(document).ready(function(){
