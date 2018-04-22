@@ -23,17 +23,17 @@ session_start();
 </head>
 <body>
 
-<nav class="white navbar-fixed grey lighten-4 right" style="width: 80%">	
+<nav class="black-text navbar-fixed grey lighten-4 right" style="width: 80%">	
 	<div class="nav-wrapper">
       <!-- <a href="#" class="brand-logo">Logo</a> -->
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Cerrar sesion</a></li>
+      <ul id="nav-mobile" class="right ">
+        <li><a href="access/cerrar_sesion.php" class="black-text"><i class="material-icons">power_settings_new</i></a></li>
         <!-- <li><a href="badges.html">Components</a></li>
         <li><a href="collapsible.html">JavaScript</a></li> -->
       </ul>
     </div>
-        
     </nav>
+
     <aside id="left-sidebar-nav" >
       <ul id="nav-mobile" class="side-nav fixed  grey lighten-4 " style="padding-top: 10px;width: 19%;">
         <li class="logo center"><img id="logo-container" src="img/logo1.png" class="brand-logo responsive-img " style="width: 150px">
@@ -120,7 +120,7 @@ session_start();
      
       </ul>
     </div> -->
-    <nav class="white  hide-on-large-only">
+    <nav class="grey lighten-4  hide-on-large-only">
      <div class=" " style="width: 100%">
       <a href="#" data-activates="mobile-demo" class="button-collapse center"><i class="material-icons black-text">menu</i></a>
       <a href="#" class="brand-logo center black-text"></a>
