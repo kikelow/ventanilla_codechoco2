@@ -12,11 +12,11 @@ $i = 0;
             <div class="card-content black-text">
               <!-- <div class="col s12 m12 l12"> -->
                 <!-- <div class="card grey lighten-4 "  style=""> -->
-                  <span class="card-title"><center>Resumen de cada emprendimiento</center></span>
+                  <span class="card-title"><h5><p> Resumen de cada emprendimiento</p></h5></span>
                   <hr>
                   <div class="row">
                    
-                    <div class="input-field col s12 m8 l8  " id="div_empresa">
+                    <div class="input-field col s12 m9 l9  " id="div_empresa">
                       <select id="empresa" style="width: 100%; left: -20px;" name="empresa" required="required">
                         <option disabled selected="">Seleccione un emprendimiento"</option>
                         <?php 
@@ -30,7 +30,7 @@ $i = 0;
                         ?>
                       </select>
                     </div>  
-                    <div class="col s12 m4 l4">
+                    <div class="col s12 m3 l3">
                      <button class="waves-effect green darken-2 btn" style="margin-top: 8px" id="reporte1"><i class="material-icons right">picture_as_pdf</i>Generar PDF</button>
                    </div>      
                  </div>

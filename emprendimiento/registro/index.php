@@ -768,12 +768,12 @@
     </li>
 
 
-<!-- <li>
+<li>
 <div class="collapsible-header" style="font-weight: bold;"><i class="material-icons"></i>5. Información del verificador y empresario</div>
 <div class="collapsible-body">
 <span>     
 <div class="row" style="text-align: center;background-color: #bdbdbd;margin-bottom: 0px;">5. Información del verificador y empresario</div>
-<div class="row" style="text-align: center;background-color: #e0e0e0;">Verificador</div>
+<!-- <div class="row" style="text-align: center;background-color: #e0e0e0;">Verificador</div>
 <div class="row">
   <div class="input-field col s12 m3 l3">
     <input type="text" name="" id="1">
@@ -791,35 +791,40 @@
     <input type="text" name="" id="4">
     <label for="4">Cargo</label>
   </div>
-</div>
+</div> -->
 <div class="row" style="text-align: center;background-color: #e0e0e0;">Empresario</div>
 <div class="row">
-  <div class="input-field col s12 m3 l3">
-    <input type="text" name="" id="11">
-    <label for="11">Nombre del entrevistado</label>
+  <div class="input-field col s12 m4 l4">
+    <input type="text" name="entrevistado" id="entrevistado">
+    <label for="entrevistado">Nombre de quien suministra la información</label>
   </div>
-  <div class="input-field col s12 m3 l3">
-    <input type="text" name="" id="22">
-    <label for="22">Identificación</label>
+  <div class="input-field col s12 m4 l4">
+    <input type="text" name="identificacion_entrevistado" id="identificacion_entrevistado">
+    <label for="identificacion_entrevistado">Identificación</label>
   </div>
-  <div class="input-field col s12 m3 l3">
-    <input type="text" name="" id="33">
-    <label for="33">Empresa</label>
-  </div>
-  <div class="input-field col s12 m3 l3">
-    <input type="text" name="" id="44">
-    <label for="44">Cargo</label>
-  </div>
-</div>
-<div class="row">
-  <div class="input-field col s12 m12 l12">
-    <textarea id="observacion" class="materialize-textarea"></textarea>
-    <label for="observacion">Observaciones Generales</label>
+  <div class="input-field col s12 m4 l4">
+    <input type="text" name="cargo_entrevistado" id="cargo_entrevistado">
+    <label for="cargo_entrevistado">Cargo</label>
   </div>
 </div>
 </span>
 </div>
-</li> -->
+</li>
+
+<li>
+<div class="collapsible-header" style="font-weight: bold;"><i class="material-icons"></i>6. Observaciones generales</div>
+<div class="collapsible-body">
+<span>     
+<div class="row" style="text-align: center;background-color: #bdbdbd;margin-bottom: 0px;">6. Observaciones generales</div>
+<div class="row">
+  <div class="input-field col s12 m12 l12">
+    <textarea id="observacion_general" id="observacion_general" class="materialize-textarea"></textarea>
+    <label for="observacion_general">Observaciones Generales</label>
+  </div>
+</div>
+</span>
+</div>
+</li>
 </ul>
  <button type="button" class="waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="registrar_emp"><i class="material-icons right">add</i>Registrar emprendimiento</button>
 </form>

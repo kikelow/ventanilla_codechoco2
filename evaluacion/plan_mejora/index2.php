@@ -12,7 +12,7 @@ require_once('conexion.php');
             <div class="card-content black-text">
                 <!-- <div class="col s12 m12 l12"> -->
   <!-- <div class="card grey lighten-4 "  style=""> -->
-<span class="card-title"><center>Plan de mejora</center></span>
+<span class="card-title"><center><h5>Plan de mejora</h5></center></span>
 <div class="row">
  
     <div class="input-field col s12 m12 l12  " id="div_empresa">

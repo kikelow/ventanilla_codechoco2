@@ -11,7 +11,7 @@
           <div class="card grey lighten-4 " style="height: auto;display:inline-block;width: 98%; margin-left: 20px">
             <div class="card-content black-text">
 
-             <span class="card-title"><center>Hoja de verificación 1</center></span>
+             <span class="card-title"><center><h5> Hoja de verificación 1</h5></center></span>
              <div class="row">
                
               <div class="input-field col s12 m12 l12  " id="div_empresa">

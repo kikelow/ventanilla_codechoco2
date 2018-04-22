@@ -10,7 +10,7 @@ require_once('conexion.php');
            <div class="card grey lighten-4 " style="height: auto;display:inline-block;width: 98%;margin-left: 20px; margin-top: 0px">
             <div class="card-content black-text">
     
-<span class="card-title"><center>Formato de informacion AS</center></span>
+<span class="card-title"><center><h5> Formato de informacion AS</h5></center></span>
 <div class="row">
  
     <div class="input-field col s12 m12 l12  " id="div_empresa">

@@ -40,7 +40,11 @@ if(isset($_GET["empresa"])){
    while ($rw=mysqli_fetch_assoc($r)) {
     $lider = $rw['lider'];
    }
-
+//Cabezera del pdf
+   $cabezera='
+    <h4>Ventanilla de emprendimientos verdes</h4>
+     ';
+//Cuerpo del pdf
    $html.='
   <style>
           th{
@@ -501,6 +505,8 @@ $html.='<table class="" style="margin-top:20px">
   }
   $mpdf = new mPDF();
   $mpdf->debug = false;
+  $mpdf->SetHeader($cabezera);
+  // $mpdf->Addpage();
   // print($html);
   $mpdf->SetTitle($razon_social);//nombre del pdf
   $mpdf->writeHTML($html);
