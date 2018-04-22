@@ -67,16 +67,6 @@
 
 
 
-
-
-
-
-<!-- <footer class="grey lighten-3" style="height: 60px;display: inline-block;width: 100%;position: relative;">
- <div class="row">
-   <div class="col s12 m6 l6 ">&copy Ventanilla de emprendimientos verdes</div>
-   <div class="col s12 m6 l6 ">Desarrollo: David y Harinson</div>
- </div>
-</footer> -->
 <script src="js/jquery.min.js"  type="text/javascript"></script>
   <script src="js/materialize.min.js"  type="text/javascript"></script>
   <script type="text/javascript" src="js/select2.js"></script>
@@ -86,6 +76,8 @@
    <script type="text/javascript">
       $('textarea').trumbowyg();
    </script>
+
+
    <script src="js/Trumbowyg-master/plugins/upload/trumbowyg.upload.js"></script>
   <script>
     $(document).ready(function(){
