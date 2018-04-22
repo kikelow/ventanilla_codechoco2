@@ -380,6 +380,7 @@ div.nav ul li a.active{
 }
 .col2{
   padding-left: 0px !important;
+
 }
 .contenedor
 {
@@ -585,6 +586,10 @@ div.nav ul li a.active{
   height: 600px;
 } 
 .oculto2{
+  display: none;
+  height: 300px;
+} 
+.oculto3{
   display: none;
   height: 300px;
 } 

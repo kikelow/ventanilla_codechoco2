@@ -13,6 +13,24 @@ $('#btn_new_content2').click(function() {
 	}
 });
 
+///////////////////////////////////
+
+// $('#btn_cerrar_content').attr('disabled','disabled');
+// $('#btn_abrir_content').click(function() {
+
+// 	if ($('.oculto').show('slow')) {
+// 		$('#btn_cerrar_content').attr('disabled','disabled');
+// 		$('#btn_new_content3').removeAttr('disabled','disabled');
+// 	}	
+// });
+// $('#btn_new_content3').click(function() {
+// 	if ($('.oculto').hide('slow')) {
+// 		$('#btn_cerrar_content').removeAttr('disabled','disabled');
+// 		$('#btn_new_content3').attr('disabled','disabled');
+// 	}
+// });
+//////////////////
+
 // para image
 $('#btn_new_image2').attr('disabled','disabled');
 $('#btn_new_image').click(function() {
@@ -31,6 +49,27 @@ $('#btn_new_image2').click(function() {
 		$('#btn_new_image2').attr('disabled','disabled');
 	}
 });
+
+// para archivo
+
+$('#btn_cerrar_archivo').attr('disabled','disabled');
+$('#btn_new_archivo').click(function() {
+	
+	if ($('.oculto3').show('slow')) {
+		$('#btn_new_archivo').attr('disabled','disabled');
+		$('#btn_cerrar_archivo').removeAttr('disabled','disabled');
+	}	
+});
+
+
+$('#btn_cerrar_archivo').click(function() {
+	
+	if ($('.oculto3').hide('slow')) {
+		$('#btn_new_archivo').removeAttr('disabled','disabled');
+		$('#btn_cerrar_archivo').attr('disabled','disabled');
+	}
+});
+
 
 // guardar content 
 $('#btn_guardar_content').click(function(event) {
@@ -55,7 +94,7 @@ $('#btn_guardar_content').click(function(event) {
             visible: false
           },
       });
-      window.setTimeout('location.reload()', 1000);
+      //window.setTimeout('location.reload()', 1000);
     }
   })
 });
@@ -74,13 +113,15 @@ function cargar_datos_qs(id){
 			console.log(result);
 			var content = $.parseJSON(result);
 
- 					$('#id2').val(content["id"]);
-   					$('#titulo2').val(content["titulo"]);
-	   				$('#alias2  option[value='+content['alias_id']+']').attr('selected',true);
-	   				$('#alias2').material_select();
-	   				$('#alias2').attr("disabled");
-
-					$('#descripcion2').trumbowyg('html',content["descripcion"] );
+					$('.oculto').show('slow')
+ 					$('#id').val(content["id"]);
+   					$('#titulo').val(content["titulo"]);
+	   				$('#alias  option[value='+content['alias_id']+']').attr('selected',true);
+	   				$('#alias').material_select();
+	   				$('#alias').attr("disabled");
+					$('#descripcion').trumbowyg('html',content["descripcion"] );
+					$('#imagen').val(content["id_img_page"]);
+					$('#imagen').material_select();
 				
 			} 
 		}			
@@ -91,9 +132,10 @@ function cargar_datos_qs(id){
 function editar_qs(){
 
 	var datos = {
-		"id":$('#id2').val(),
-		"titulo":$('#titulo2').val(),
-		"descripcion":$('#descripcion2').val()
+		"id":$('#id').val(),
+		"titulo":$('#titulo').val(),
+		"descripcion":$('#descripcion').val(),
+		"imagen":$('#imagen').val()
 	}
 
 	$.ajax({
@@ -109,7 +151,7 @@ function editar_qs(){
 			  button: false
 			});
 			
-			window.setTimeout('location.reload()', 1000);
+			//window.setTimeout('location.reload()', 1000);
 		}
 	});
 }
@@ -141,3 +183,138 @@ function borrar_datos_qs(id){
 	  }
 	});
 }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+$('#btn_guardar_not').click(function(event) {
+  event.preventDefault();
+  $.ajax({
+    url: 'content_admin/content_save/guardar_nt.php',
+    type: 'POST',
+    data: $('#content_form_nt').serialize(),
+    beforeSend: function() {
+    swal ({
+          // icon: "success",
+           text: "Procesando información!",
+           button: {
+            visible: false
+          },
+      });
+    },success: function(respuesta) {
+      swal ({
+          icon: "success",
+           text: "Datos Guardados Exitosamente!",
+           button: {
+            visible: false
+          },
+      });
+      //window.setTimeout('location.reload()', 1000);
+    }
+  })
+});
+
+
+function cargar_datos_nt(id){
+	$.ajax({
+	type: "POST",
+	url: "content_admin/content_load/cargar_nt.php",
+	data: {id:id},
+	cache: false,
+		success: function(result){
+
+			if (result != false) {
+
+			console.log(result);
+			var content = $.parseJSON(result);
+
+					//$('.oculto').show('slow')
+ 					$('#id_nt').val(content["id"]);
+   					$('#titulo_nt').val(content["titulo"]);
+	   				$('#autor_nt').val(content["fuente_autor"]);
+					$('#descripcion_nt').trumbowyg('html',content["descripcion"] );
+					$('#imagen_nt').val(content["id_img_page"]);
+					$('#imagen_nt').material_select();
+				
+			} 
+		}			
+	});
+}
+
+
+function editar_nt(){
+
+	var datos = {
+		"id":$('#id_nt').val(),
+		"titulo":$('#titulo_nt').val(),
+		"descripcion":$('#descripcion_nt').val(),
+		"autor":$('#autor_nt').val(),
+		"imagen":$('#imagen_nt').val()
+	}
+
+	$.ajax({
+	type: "POST",
+	url: "content_admin/content_edit/editar_nt.php",
+	data: datos,
+	cache: false,
+		success: function(result){
+			swal({
+			  title: "Muy Bien!",
+			  text: "Registro actualizado satisfactoriamente!",
+			  icon: "success",
+			  button: false
+			});
+			
+			//window.setTimeout('location.reload()', 1000);
+		}
+	});
+}
+
+function borrar_datos_nt(id){
+	swal({
+	  title: "Estás seguro?",
+	  text: "Una vez eliminado, no podrá recuperar este registro!",
+	  icon: "warning",
+	  buttons: true,
+	  dangerMode: true,
+	})
+	.then((willDelete) => {
+	  if (willDelete) {
+	    $.ajax({
+		type: "POST",
+		url: "content_admin/content_delete/borrar_nt.php",
+		data: {id:id},
+		cache: false,
+			success: function(result){
+				swal("¡El registro ha sido eliminado!", {
+			      icon: "success",
+			    });
+				window.setTimeout('location.reload()',900); 
+			}
+		});
+	  } else {
+	    swal("¡Tu registro está seguro!");
+	  }
+	});
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////77
+
+
+$('#btn_guardar_image').click(function() {
+
+	var formData = new FormData($("#image_form")[0]);
+	    var ruta = "content_admin/content_save/guardar_imagenes.php";
+	    $.ajax({
+	        url: ruta,
+	        type: "POST",
+	        data: formData,
+	        contentType: false,
+	        processData: false,
+	    success: function(datos)
+	        {
+	            $("#respuesta").html(datos);
+	        }
+	 });
+});
+
