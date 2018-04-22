@@ -22,7 +22,7 @@ if (is_file('conexion.php')){
             <div class="card-content black-text">
                 <!-- <div class="col s12 m12 l12"> -->
   <!-- <div class="card grey lighten-4 "  style="height: auto;display:inline-block;width: 100%;"> -->
-<span class="card-title"><center>Formato de información AS</center></span>
+<span class="card-title"><center><h5> Formato de informacion AS</h5></center></span>
   <div class="row">
  
     <div class="input-field col s12 m12 l12  " id="div_empresa">
