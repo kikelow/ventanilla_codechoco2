@@ -1,3 +1,11 @@
+<?php 
+ob_start();
+session_start();
+  if(!isset($_SESSION["vev_verificador"])){
+    header("Location:index.php");
+    // exit();
+  }else{
+ ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,20 +23,17 @@
 </head>
 <body>
 
-<!-- <nav class="white navbar-fixed grey lighten-4 " style="width: 81%">	
-	
-		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-
-       <ul class="side-nav" id="mobile-demo">
-        <li><a href="index2.php?modulo=evaluacion/formato_inscripcion" class="collection-item active black-text">Formato de Inscripción</a></li>
-        <li><a href="index2.php?modulo=evaluacion/formato_informacion_as" class="collection-item  black-text">Formato de Información AS</a></li>
-        <li> <a href="index2.php?modulo=evaluacion/hoja_verificacion_1" class="collection-item  black-text">Hoja de Verificación 1</a></li>
-        <li> <a href="index2.php?modulo=evaluacion/hoja_verificacion_2" class="collection-item black-text">Hoja de Verificación 2</a></li>
-        <li> <a href="index2.php?modulo=evaluacion/registro_fotografico" class="collection-item black-text">Registro Fotografico</a></li>
-        <li><a href="index2.php?modulo=evaluacion/plan_mejora" class="collection-item black-text">Plan de Mejora</a></li>
+<nav class="black-text navbar-fixed grey lighten-4 right" style="width: 80%">	
+	<div class="nav-wrapper">
+      <!-- <a href="#" class="brand-logo">Logo</a> -->
+      <ul id="nav-mobile" class="right ">
+        <li><a href="access/cerrar_sesion.php" class="black-text"><i class="material-icons">power_settings_new</i></a></li>
+        <!-- <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li> -->
       </ul>
-        
-    </nav> -->
+    </div>
+    </nav>
+
     <aside id="left-sidebar-nav" >
       <ul id="nav-mobile" class="side-nav fixed  grey lighten-4 " style="padding-top: 10px;width: 19%;">
         <li class="logo center"><img id="logo-container" src="img/logo1.png" class="brand-logo responsive-img " style="width: 150px">
@@ -115,7 +120,7 @@
      
       </ul>
     </div> -->
-    <nav class="white  hide-on-large-only">
+    <nav class="grey lighten-4  hide-on-large-only">
      <div class=" " style="width: 100%">
       <a href="#" data-activates="mobile-demo" class="button-collapse center"><i class="material-icons black-text">menu</i></a>
       <a href="#" class="brand-logo center black-text"></a>
@@ -185,3 +190,7 @@
 </script>
 </body>
 </html>
+<?php 
+}
+ob_end_flush();
+ ?>

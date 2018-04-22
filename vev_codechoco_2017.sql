@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-02-2018 a las 02:25:09
+-- Tiempo de generación: 23-04-2018 a las 01:34:52
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.6.23
 
@@ -31,16 +31,23 @@ CREATE TABLE `actividades` (
   `empresa_id` int(11) NOT NULL,
   `opciones_id` int(11) NOT NULL,
   `recurso_id` int(11) NOT NULL,
-  `descripcion` varchar(50) COLLATE utf8_bin NOT NULL
+  `descripcion` varchar(50) COLLATE utf8_bin NOT NULL,
+  `confirmacion` varchar(10) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `actividades`
 --
 
-INSERT INTO `actividades` (`id`, `empresa_id`, `opciones_id`, `recurso_id`, `descripcion`) VALUES
-(1, 12, 57, 2, 'fffff'),
-(2, 12, 59, 1, 'hhhhh');
+INSERT INTO `actividades` (`id`, `empresa_id`, `opciones_id`, `recurso_id`, `descripcion`, `confirmacion`) VALUES
+(15, 11, 58, 1, '22', 'si'),
+(16, 11, 60, 2, '44', 'si'),
+(17, 11, 57, 1, '', 'no'),
+(18, 11, 59, 1, '', 'no'),
+(19, 16, 58, 1, '', 'si'),
+(20, 16, 60, 2, '', 'si'),
+(21, 16, 57, 1, '', 'no'),
+(22, 16, 59, 1, '', 'no');
 
 -- --------------------------------------------------------
 
@@ -51,18 +58,33 @@ INSERT INTO `actividades` (`id`, `empresa_id`, `opciones_id`, `recurso_id`, `des
 CREATE TABLE `actividad_empresa` (
   `id` int(11) NOT NULL,
   `empresa_id` int(11) NOT NULL,
-  `actividad_item_id` int(11) NOT NULL
+  `actividad_item_id` int(11) NOT NULL,
+  `confirmacion` varchar(3) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `actividad_empresa`
 --
 
-INSERT INTO `actividad_empresa` (`id`, `empresa_id`, `actividad_item_id`) VALUES
-(1, 1, 1),
-(2, 1, 3),
-(11, 8, 2),
-(12, 8, 4);
+INSERT INTO `actividad_empresa` (`id`, `empresa_id`, `actividad_item_id`, `confirmacion`) VALUES
+(141, 13, 1, 'no'),
+(142, 13, 2, 'si'),
+(143, 13, 3, 'no'),
+(161, 1, 1, 'si'),
+(162, 1, 2, 'no'),
+(163, 1, 3, 'si'),
+(168, 8, 1, 'no'),
+(169, 8, 2, 'si'),
+(170, 8, 3, 'si'),
+(300, 11, 1, 'no'),
+(301, 11, 2, 'no'),
+(302, 11, 3, 'si'),
+(304, 15, 1, 'no'),
+(305, 15, 2, 'no'),
+(306, 15, 3, 'no'),
+(308, 16, 1, 'no'),
+(309, 16, 2, 'no'),
+(310, 16, 3, 'no');
 
 -- --------------------------------------------------------
 
@@ -81,9 +103,30 @@ CREATE TABLE `actividad_item` (
 
 INSERT INTO `actividad_item` (`id`, `nombre`) VALUES
 (1, 'Producción materia prima'),
-(2, 'Transformación de materia prima'),
-(3, 'Transformación de materia de proveedores'),
-(4, 'Comercialización');
+(2, 'Transformación'),
+(3, 'Comercialización');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `alias`
+--
+
+CREATE TABLE `alias` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `alias`
+--
+
+INSERT INTO `alias` (`id`, `nombre`) VALUES
+(1, 'Quienes somos'),
+(2, 'Servicios'),
+(3, 'Negocios verdes'),
+(4, 'Noticias'),
+(5, 'Mercados evaluados');
 
 -- --------------------------------------------------------
 
@@ -107,6 +150,37 @@ INSERT INTO `aplica_noaplica` (`id`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `archivo_page`
+--
+
+CREATE TABLE `archivo_page` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(70) COLLATE utf8_bin NOT NULL,
+  `ruta` varchar(100) COLLATE utf8_bin NOT NULL,
+  `contenido_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `area`
+--
+
+CREATE TABLE `area` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(150) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `area`
+--
+
+INSERT INTO `area` (`id`, `nombre`) VALUES
+(1, 'No aplica');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `bienes_servicios`
 --
 
@@ -122,18 +196,42 @@ CREATE TABLE `bienes_servicios` (
 --
 
 INSERT INTO `bienes_servicios` (`id`, `empresa_id`, `nombre`, `lider`) VALUES
-(1, 1, 'madera', ''),
-(2, 1, 'maderita', ''),
-(3, 1, 'madera la tooo', ''),
-(4, 1, '', ''),
-(5, 1, '', ''),
-(6, 1, '', 'madera la too'),
+(1, 1, 'ggggg', ''),
+(2, 1, 'll', ''),
+(3, 1, 'ff', ''),
+(4, 1, 'dd', ''),
+(5, 1, 'hhh', ''),
+(6, 1, '', 'madera la too 111'),
 (31, 8, 'alguno', ''),
 (32, 8, '', ''),
 (33, 8, '', ''),
 (34, 8, '', ''),
 (35, 8, '', ''),
-(36, 8, '', 'alguno');
+(36, 8, '', 'pepino'),
+(37, 11, 'pera', ''),
+(38, 11, 'yuca', ''),
+(39, 11, 'papa', ''),
+(40, 11, '', ''),
+(41, 11, '', ''),
+(42, 11, '', 'remolacha'),
+(43, 13, 'algo', ''),
+(44, 13, 'prueba', ''),
+(45, 13, '', ''),
+(46, 13, '', ''),
+(47, 13, '', ''),
+(48, 13, '', 'Patacones'),
+(49, 15, '', ''),
+(50, 15, '', ''),
+(51, 15, '', ''),
+(52, 15, '', ''),
+(53, 15, '', ''),
+(54, 15, '', 'algunito'),
+(55, 16, '', ''),
+(56, 16, '', ''),
+(57, 16, '', ''),
+(58, 16, '', ''),
+(59, 16, '', ''),
+(60, 16, '', 'ese mismo');
 
 -- --------------------------------------------------------
 
@@ -188,18 +286,29 @@ CREATE TABLE `certificacion` (
   `opciones_id` int(11) NOT NULL,
   `etapa_id` int(11) NOT NULL,
   `vigencia` varchar(30) COLLATE utf8_bin NOT NULL,
-  `observacion` varchar(50) COLLATE utf8_bin NOT NULL
+  `observacion` varchar(50) COLLATE utf8_bin NOT NULL,
+  `confirmacion` varchar(10) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `certificacion`
 --
 
-INSERT INTO `certificacion` (`id`, `empresa_id`, `opciones_id`, `etapa_id`, `vigencia`, `observacion`) VALUES
-(1, 12, 66, 1, 'uno', 'uno'),
-(2, 12, 68, 2, 'tres', 'tres'),
-(3, 12, 70, 1, '', ''),
-(4, 12, 72, 3, 'siete', 'siete');
+INSERT INTO `certificacion` (`id`, `empresa_id`, `opciones_id`, `etapa_id`, `vigencia`, `observacion`, `confirmacion`) VALUES
+(39, 11, 66, 2, '1', '11', 'si'),
+(40, 11, 68, 1, '3', '33', 'si'),
+(41, 11, 70, 1, '5', '55', 'si'),
+(42, 11, 72, 1, '7', '77', 'si'),
+(43, 11, 67, 1, '', '', 'no'),
+(44, 11, 69, 1, '', '', 'no'),
+(45, 11, 71, 1, '', '', 'no'),
+(46, 16, 69, 1, '', '', 'si'),
+(47, 16, 71, 1, '', '', 'si'),
+(48, 16, 66, 1, '', '', 'no'),
+(49, 16, 67, 1, '', '', 'no'),
+(50, 16, 68, 1, '', '', 'no'),
+(51, 16, 70, 1, '', '', 'no'),
+(52, 16, 72, 1, '', '', 'no');
 
 -- --------------------------------------------------------
 
@@ -212,17 +321,63 @@ CREATE TABLE `conservacion` (
   `empresa_id` int(11) NOT NULL,
   `opciones_id` int(11) NOT NULL,
   `area` varchar(15) COLLATE utf8_bin NOT NULL,
-  `descripcion` text COLLATE utf8_bin NOT NULL
+  `descripcion` text COLLATE utf8_bin NOT NULL,
+  `confirmacion` varchar(10) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `conservacion`
 --
 
-INSERT INTO `conservacion` (`id`, `empresa_id`, `opciones_id`, `area`, `descripcion`) VALUES
-(1, 13, 29, 'uno', 'uno'),
-(2, 13, 32, 'tin', 'tin'),
-(3, 13, 35, 'tan', 'tan');
+INSERT INTO `conservacion` (`id`, `empresa_id`, `opciones_id`, `area`, `descripcion`, `confirmacion`) VALUES
+(43, 11, 29, '1', '11', 'si'),
+(44, 11, 31, '3', '33', 'si'),
+(45, 11, 33, '5', '55', 'si'),
+(46, 11, 35, '7', '77', 'si'),
+(47, 11, 37, '9', '99', 'si'),
+(48, 11, 30, '', '', 'no'),
+(49, 11, 32, '', '', 'no'),
+(50, 11, 34, '', '', 'no'),
+(51, 11, 36, '', '', 'no'),
+(52, 11, 38, '', '', 'no'),
+(53, 11, 39, '', '', 'no'),
+(54, 11, 40, '', '', 'no'),
+(55, 11, 41, '', '', 'no'),
+(56, 16, 35, '78', '78', 'si'),
+(57, 16, 38, '4', '4', 'si'),
+(58, 16, 29, '', '', 'no'),
+(59, 16, 30, '', '', 'no'),
+(60, 16, 31, '', '', 'no'),
+(61, 16, 32, '', '', 'no'),
+(62, 16, 33, '', '', 'no'),
+(63, 16, 34, '', '', 'no'),
+(64, 16, 36, '', '', 'no'),
+(65, 16, 37, '', '', 'no'),
+(66, 16, 39, '', '', 'no'),
+(67, 16, 40, '', '', 'no'),
+(68, 16, 41, '', '', 'no');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `contenido`
+--
+
+CREATE TABLE `contenido` (
+  `id` int(11) NOT NULL,
+  `titulo` varchar(60) COLLATE utf8_bin NOT NULL,
+  `alias_id` int(11) NOT NULL,
+  `descripcion` text COLLATE utf8_bin NOT NULL,
+  `id_img_page` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `contenido`
+--
+
+INSERT INTO `contenido` (`id`, `titulo`, `alias_id`, `descripcion`, `id_img_page`) VALUES
+(3, 'sfdas', 2, 'sdfsdfdsf', 1),
+(4, 'Negocios Verdes', 3, '<h5 style="text-align: center;"><strong>¿Qué son los Negocios Verdes?</strong></h5><p style="text-align: justify; ">Contempla las actividades económicas en las que se ofertan bienes o servicios, que generan impactos ambientales positivos y además incorporan buenas prácticas ambientales, sociales y económicas con enfoque de ciclo de vida, contribuyendo a la conservación del ambiente como capital natural que soporta el desarrollo del territorio.</p>', 3);
 
 -- --------------------------------------------------------
 
@@ -243,10 +398,8 @@ CREATE TABLE `costo_insumos` (
 --
 
 INSERT INTO `costo_insumos` (`id`, `empresa_id`, `semanal`, `mensual`, `anual`) VALUES
-(1, 12, 20000, 50, 2015),
-(2, 1, 0, 0, 0),
-(3, 12, 0, 0, 0),
-(4, 1, 0, 0, 0);
+(5, 11, 200000, 300000, 5000000),
+(6, 16, 4, 45, 68);
 
 -- --------------------------------------------------------
 
@@ -267,10 +420,8 @@ CREATE TABLE `costo_mano_obra` (
 --
 
 INSERT INTO `costo_mano_obra` (`id`, `empresa_id`, `semanal`, `mensual`, `anual`) VALUES
-(1, 12, 32, 56, 2015),
-(2, 1, 0, 0, 0),
-(3, 12, 0, 0, 0),
-(4, 1, 0, 0, 0);
+(5, 11, 2323, 55, 3256),
+(6, 16, 87, 112, 12);
 
 -- --------------------------------------------------------
 
@@ -310,20 +461,34 @@ CREATE TABLE `demografia` (
 --
 
 INSERT INTO `demografia` (`id`, `empresa_id`, `desc_demografia_id`, `si_no_id`, `cantidad`) VALUES
-(1, 1, 1, 1, 1),
-(2, 1, 2, 1, 2),
-(3, 1, 3, 1, 3),
-(4, 1, 4, 1, 4),
-(5, 1, 5, 1, 5),
-(6, 1, 6, 2, 0),
-(7, 1, 7, 2, 0),
+(1, 1, 1, 2, 1),
+(2, 1, 2, 2, 2),
+(3, 1, 3, 2, 3),
+(4, 1, 4, 2, 4),
+(5, 1, 5, 2, 5),
+(6, 1, 6, 1, 0),
+(7, 1, 7, 1, 0),
 (36, 8, 1, 2, 0),
 (37, 8, 2, 2, 0),
 (38, 8, 3, 2, 0),
 (39, 8, 4, 2, 0),
 (40, 8, 5, 2, 0),
 (41, 8, 6, 2, 0),
-(42, 8, 7, 2, 0);
+(42, 8, 7, 2, 0),
+(43, 15, 1, 2, 0),
+(44, 15, 2, 2, 0),
+(45, 15, 3, 2, 0),
+(46, 15, 4, 2, 0),
+(47, 15, 5, 2, 0),
+(48, 15, 6, 2, 0),
+(49, 15, 7, 2, 0),
+(50, 16, 1, 2, 0),
+(51, 16, 2, 2, 0),
+(52, 16, 3, 2, 0),
+(53, 16, 4, 2, 0),
+(54, 16, 5, 2, 0),
+(55, 16, 6, 2, 0),
+(56, 16, 7, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -381,17 +546,29 @@ CREATE TABLE `ecosistema` (
   `id` int(11) NOT NULL,
   `empresa_id` int(11) NOT NULL,
   `opciones_id` int(11) NOT NULL,
-  `area` varchar(20) COLLATE utf8_bin NOT NULL
+  `area` varchar(20) COLLATE utf8_bin NOT NULL,
+  `confirmacion` varchar(10) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `ecosistema`
 --
 
-INSERT INTO `ecosistema` (`id`, `empresa_id`, `opciones_id`, `area`) VALUES
-(1, 11, 42, 'uno yo'),
-(2, 11, 44, 'tres otro'),
-(3, 11, 46, 'aja');
+INSERT INTO `ecosistema` (`id`, `empresa_id`, `opciones_id`, `area`, `confirmacion`) VALUES
+(25, 11, 42, '1', 'si'),
+(26, 11, 44, '3', 'si'),
+(27, 11, 46, '5', 'si'),
+(28, 11, 48, '7', 'si'),
+(29, 11, 43, '', 'no'),
+(30, 11, 45, '', 'no'),
+(31, 11, 47, '', 'no'),
+(32, 16, 43, '4', 'si'),
+(33, 16, 45, '4', 'si'),
+(34, 16, 42, '', 'no'),
+(35, 16, 44, '', 'no'),
+(36, 16, 46, '', 'no'),
+(37, 16, 47, '', 'no'),
+(38, 16, 48, '', 'no');
 
 -- --------------------------------------------------------
 
@@ -432,11 +609,17 @@ CREATE TABLE `empleado_edad` (
 
 INSERT INTO `empleado_edad` (`id`, `empresa_id`, `edad_id`, `cantidad`) VALUES
 (1, 1, 1, '5'),
-(2, 1, 2, '10'),
+(2, 1, 2, ''),
 (3, 1, 3, '15'),
 (16, 8, 1, ''),
 (17, 8, 2, ''),
-(18, 8, 3, '');
+(18, 8, 3, ''),
+(19, 15, 1, ''),
+(20, 15, 2, ''),
+(21, 15, 3, ''),
+(22, 16, 1, ''),
+(23, 16, 2, ''),
+(24, 16, 3, '');
 
 -- --------------------------------------------------------
 
@@ -458,17 +641,29 @@ CREATE TABLE `empleado_sexo` (
 
 INSERT INTO `empleado_sexo` (`id`, `empresa_id`, `socio_empleado_id`, `sexo_id`, `cantidad`) VALUES
 (1, 1, 1, 1, 10),
-(2, 1, 1, 2, 10),
-(3, 1, 2, 1, 10),
-(4, 1, 2, 2, 5),
-(5, 1, 3, 1, 10),
-(6, 1, 3, 2, 20),
+(2, 1, 1, 2, 11),
+(3, 1, 2, 1, 7),
+(4, 1, 2, 2, 9),
+(5, 1, 3, 1, 11),
+(6, 1, 3, 2, 9),
 (31, 8, 1, 1, 0),
-(32, 8, 1, 2, 0),
+(32, 8, 1, 2, 7),
 (33, 8, 2, 1, 0),
 (34, 8, 2, 2, 0),
 (35, 8, 3, 1, 0),
-(36, 8, 3, 2, 0);
+(36, 8, 3, 2, 0),
+(37, 15, 1, 1, 4),
+(38, 15, 1, 2, 5),
+(39, 15, 2, 1, 2),
+(40, 15, 2, 2, 5),
+(41, 15, 3, 1, 0),
+(42, 15, 3, 2, 0),
+(43, 16, 1, 1, 0),
+(44, 16, 1, 2, 5),
+(45, 16, 2, 1, 0),
+(46, 16, 2, 2, 0),
+(47, 16, 3, 1, 0),
+(48, 16, 3, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -483,6 +678,7 @@ CREATE TABLE `empresa` (
   `identificacion` varchar(15) COLLATE utf8_bin NOT NULL,
   `razon_social` varchar(50) COLLATE utf8_bin NOT NULL,
   `persona_id` int(11) NOT NULL COMMENT 'Representante_legal',
+  `empresario_id` int(11) NOT NULL,
   `municipio_id` int(11) NOT NULL,
   `vereda` varchar(100) COLLATE utf8_bin NOT NULL,
   `direccion` varchar(100) COLLATE utf8_bin NOT NULL,
@@ -496,20 +692,16 @@ CREATE TABLE `empresa` (
   `tamaño_empresa_id` int(11) NOT NULL,
   `fecha_registro` varchar(40) COLLATE utf8_bin NOT NULL,
   `descripcion` text COLLATE utf8_bin NOT NULL,
-  `impacto_amb_si_no` int(11) NOT NULL,
   `desc_impacto_amb` text COLLATE utf8_bin NOT NULL,
-  `impacto_soc_si_no` int(11) NOT NULL,
-  `desc_impacto_soc` text COLLATE utf8_bin NOT NULL,
   `num_socios` int(11) NOT NULL,
   `asociacion_si_no` int(11) NOT NULL COMMENT 'Asociacion',
   `subsector_id` int(11) NOT NULL,
   `etapa_empresa_id` int(11) NOT NULL,
   `const_legalmente_sino` int(11) NOT NULL,
   `año_funcionamiento` int(11) NOT NULL,
-  `personeria_juridi_sino` int(11) NOT NULL,
-  `tipo_personeria` varchar(100) COLLATE utf8_bin NOT NULL,
   `opera_actualmente_sino` int(11) NOT NULL,
   `año_func_desp_reg_camara` int(11) NOT NULL,
+  `obs_general` text COLLATE utf8_bin NOT NULL,
   `informacion_as` varchar(2) COLLATE utf8_bin NOT NULL,
   `verificacion1` varchar(2) COLLATE utf8_bin NOT NULL,
   `verificacion2` varchar(2) COLLATE utf8_bin NOT NULL,
@@ -520,11 +712,33 @@ CREATE TABLE `empresa` (
 -- Volcado de datos para la tabla `empresa`
 --
 
-INSERT INTO `empresa` (`id`, `tipo_persona_id`, `tipo_identificacion_id`, `identificacion`, `razon_social`, `persona_id`, `municipio_id`, `vereda`, `direccion`, `aut_ambiental`, `coodenadas_n`, `coordenadas_w`, `altitud`, `area`, `si_no_pot_id`, `fami_empresa_si_no`, `tamaño_empresa_id`, `fecha_registro`, `descripcion`, `impacto_amb_si_no`, `desc_impacto_amb`, `impacto_soc_si_no`, `desc_impacto_soc`, `num_socios`, `asociacion_si_no`, `subsector_id`, `etapa_empresa_id`, `const_legalmente_sino`, `año_funcionamiento`, `personeria_juridi_sino`, `tipo_personeria`, `opera_actualmente_sino`, `año_func_desp_reg_camara`, `informacion_as`, `verificacion1`, `verificacion2`, `plan_mejora`) VALUES
-(1, 1, 1, '123', 'prueba1', 1, 1, 'tutunendo', 'no se', 'Codechocó', '56', '32', '45', '12', 2, 1, 2, '2018-02-25 00:34:50', 'prueba1', 1, 'prueba1', 1, 'prueba1', 23, 2, 1, 3, 1, 2, 1, 'SAS', 1, 3, 'no', 'no', 'no', 'no'),
-(8, 1, 1, '1232', 'prueba2', 8, 5, 'no se', 'no se', 'Codechocó', '', '', '', '', 1, 1, 2, '2018-02-25 00:53:52', '', 1, '', 1, '', 0, 1, 6, 1, 2, 0, 2, '', 2, 0, 'no', 'no', 'no', 'no'),
-(11, 1, 1, '1232', 'no hacer prueba con este', 11, 5, 'no se', 'no se', 'Codechocó', '', '', '', '', 1, 1, 2, '2018-02-25 00:54:29', '', 1, '', 1, '', 0, 1, 6, 1, 2, 0, 2, '', 2, 0, 'no', 'no', 'no', 'no'),
-(13, 1, 2, '', 'no hacer prueba con este', 13, 1, '', '', 'Codechocó', '', '', '', '', 2, 1, 2, '2018-02-25 01:01:33', '', 1, '', 1, '', 0, 1, 5, 1, 2, 0, 2, '', 2, 0, 'no', 'no', 'no', 'no');
+INSERT INTO `empresa` (`id`, `tipo_persona_id`, `tipo_identificacion_id`, `identificacion`, `razon_social`, `persona_id`, `empresario_id`, `municipio_id`, `vereda`, `direccion`, `aut_ambiental`, `coodenadas_n`, `coordenadas_w`, `altitud`, `area`, `si_no_pot_id`, `fami_empresa_si_no`, `tamaño_empresa_id`, `fecha_registro`, `descripcion`, `desc_impacto_amb`, `num_socios`, `asociacion_si_no`, `subsector_id`, `etapa_empresa_id`, `const_legalmente_sino`, `año_funcionamiento`, `opera_actualmente_sino`, `año_func_desp_reg_camara`, `obs_general`, `informacion_as`, `verificacion1`, `verificacion2`, `plan_mejora`) VALUES
+(1, 1, 1, '123456', 'prueba1', 1, 1, 1, 'tutunendo city', 'no me acuerdo', 'Codechocó', '56', '32', '45', '12', 2, 1, 2, '2018-02-25 00:34:50', 'prueba1', 'prueba1', 18, 2, 1, 1, 1, 9, 1, 5, '', 'no', 'no', 'no', 'no'),
+(8, 1, 1, '1232', 'prueba2', 8, 1, 5, 'no se', 'no se', 'Codechocó', '', '', '', '', 1, 1, 2, '2018-02-25 00:53:52', '', '', 0, 1, 6, 1, 2, 0, 2, 0, '', 'no', 'no', 'no', 'no'),
+(11, 1, 1, '1232', 'no hacer prueba con este 11', 11, 1, 5, 'no se', 'no se', 'Codechocó', '', '', '', '', 1, 1, 2, '2018-02-25 00:54:29', '', '', 0, 1, 6, 1, 2, 0, 2, 0, '', 'si', 'si', 'no', 'no'),
+(13, 1, 2, '12364897', 'no hacer prueba con este 13', 13, 1, 1, '', '', 'Codechocó', '', '', '', '', 2, 1, 2, '2018-02-25 01:01:33', 'descripcion 13', 'está mas o menos', 0, 1, 5, 1, 2, 0, 2, 0, '', 'si', 'si', 'si', 'no'),
+(15, 2, 1, '3415406546', 'Pesquera', 15, 1, 2, '', '', 'Codechocó', '', '', '', '', 2, 2, 2, '2018-04-04 16:21:24', 'sdakjsghdkajh ', 'kjaghskdhjagsda', 10, 1, 1, 1, 1, 10, 1, 4, '', 'no', 'no', 'no', 'no'),
+(16, 2, 1, '44535435', 'agcuaman', 16, 1, 1, '', '', 'Codechocó', '', '', '', '', 2, 1, 3, '2018-04-04 16:41:33', 'asmmmmmmm', 'askkkkkkkkkkkkkkkkkkkkkkk', 5, 1, 1, 1, 1, 5, 1, 4, '', 'si', 'no', 'no', 'no');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `empresario`
+--
+
+CREATE TABLE `empresario` (
+  `id` int(11) NOT NULL,
+  `identificacion` varchar(15) COLLATE utf8_bin NOT NULL,
+  `nombre` varchar(100) COLLATE utf8_bin NOT NULL,
+  `cargo` varchar(100) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `empresario`
+--
+
+INSERT INTO `empresario` (`id`, `identificacion`, `nombre`, `cargo`) VALUES
+(1, '165465', 'perea', 'chismoso');
 
 -- --------------------------------------------------------
 
@@ -570,6 +784,29 @@ INSERT INTO `etapa_empresa` (`id`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `img_page`
+--
+
+CREATE TABLE `img_page` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(60) COLLATE utf8_bin NOT NULL,
+  `ruta` varchar(100) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `img_page`
+--
+
+INSERT INTO `img_page` (`id`, `nombre`, `ruta`) VALUES
+(1, 'NO APLICA', 'NO APLICA'),
+(2, 'LOGO VENTANILLA', 'img_content/logo1.png'),
+(3, 'LOGO MERCADOS VERDES', 'img_content/logo_nv.png'),
+(4, 'PARA T', 'img_content/hp.jpeg'),
+(5, 'PARA T', 'img_content/hp.jpeg');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `institucion`
 --
 
@@ -587,11 +824,16 @@ CREATE TABLE `institucion` (
 --
 
 INSERT INTO `institucion` (`id`, `empresa_id`, `apoyo`, `entidad`, `orientacion_id`, `año`) VALUES
-(6, 11, 'uno', 'xxx', 1, '2013'),
-(7, 11, '', '', 1, ''),
-(8, 11, 'tres', 'yyy', 3, '2569'),
-(9, 11, '', '', 1, ''),
-(10, 11, '', '', 1, '');
+(21, 11, 'mercancia', 'No recuerdo el nombre', 3, '2001'),
+(22, 11, '', '', 2, ''),
+(23, 11, 'alambres', 'doblamos', 2, '2003'),
+(24, 11, '', '', 2, ''),
+(25, 11, 'computadores', 'Soft', 1, '2005'),
+(26, 16, '', '', 1, ''),
+(27, 16, '', '', 1, ''),
+(28, 16, 'sdfgsd', 'ajjjjjjjjjj', 3, '2015'),
+(29, 16, '', '', 1, ''),
+(30, 16, '', '', 1, '');
 
 -- --------------------------------------------------------
 
@@ -602,16 +844,21 @@ INSERT INTO `institucion` (`id`, `empresa_id`, `apoyo`, `entidad`, `orientacion_
 CREATE TABLE `involucra` (
   `id` int(11) NOT NULL,
   `empresa_id` int(11) NOT NULL,
-  `opciones_id` int(11) NOT NULL
+  `opciones_id` int(11) NOT NULL,
+  `confirmacion` varchar(10) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `involucra`
 --
 
-INSERT INTO `involucra` (`id`, `empresa_id`, `opciones_id`) VALUES
-(3, 11, 53),
-(4, 11, 55);
+INSERT INTO `involucra` (`id`, `empresa_id`, `opciones_id`, `confirmacion`) VALUES
+(37, 11, 53, 'si'),
+(38, 11, 54, 'no'),
+(39, 11, 55, 'si'),
+(40, 16, 53, 'no'),
+(41, 16, 54, 'si'),
+(42, 16, 55, 'no');
 
 -- --------------------------------------------------------
 
@@ -634,7 +881,29 @@ CREATE TABLE `licencia` (
 --
 
 INSERT INTO `licencia` (`id`, `empresa_id`, `opciones_id`, `aplica_noaplica_id`, `cumple_nocumple_id`, `vigencia`, `observacion`) VALUES
-(13, 13, 27, 2, 1, '10', 'mnl,');
+(14, 11, 27, 2, 2, '1', '11'),
+(15, 16, 27, 2, 2, '5', '8');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `login`
+--
+
+CREATE TABLE `login` (
+  `id` int(11) NOT NULL,
+  `usuario` varchar(50) COLLATE utf8_bin NOT NULL,
+  `clave` varchar(50) COLLATE utf8_bin NOT NULL,
+  `persona_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `login`
+--
+
+INSERT INTO `login` (`id`, `usuario`, `clave`, `persona_id`) VALUES
+(1, 'admin', 'admin', 17),
+(3, 'raga', 'raga', 11);
 
 -- --------------------------------------------------------
 
@@ -703,12 +972,46 @@ INSERT INTO `nivel_educativo` (`id`, `empresa_id`, `nivel_id`, `cantiad`) VALUES
 (2, 1, 2, 5),
 (3, 1, 3, 5),
 (4, 1, 4, 5),
-(5, 1, 5, 10),
+(5, 1, 5, 0),
 (26, 8, 1, 0),
 (27, 8, 2, 0),
 (28, 8, 3, 0),
 (29, 8, 4, 0),
-(30, 8, 5, 0);
+(30, 8, 5, 0),
+(31, 15, 1, 0),
+(32, 15, 2, 0),
+(33, 15, 3, 0),
+(34, 15, 4, 0),
+(35, 15, 5, 0),
+(36, 16, 1, 0),
+(37, 16, 2, 0),
+(38, 16, 3, 0),
+(39, 16, 4, 0),
+(40, 16, 5, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `noticia`
+--
+
+CREATE TABLE `noticia` (
+  `id` int(11) NOT NULL,
+  `titulo` varchar(300) COLLATE utf8_bin NOT NULL,
+  `descripcion` text COLLATE utf8_bin NOT NULL,
+  `fecha_publicacion` datetime NOT NULL,
+  `fuente_autor` varchar(100) COLLATE utf8_bin NOT NULL,
+  `id_img_page` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `noticia`
+--
+
+INSERT INTO `noticia` (`id`, `titulo`, `descripcion`, `fecha_publicacion`, `fuente_autor`, `id_img_page`) VALUES
+(2, 'seguda - 2', 'sdfafdas - 2', '2018-04-20 21:53:49', 'dasdsds - 2', 2),
+(3, 'otra wera', '<p style="text-align: justify;">la&nbsp; otra de la calle tal que paso por mi casa me dijp que eras listoadssdadasdsa dasdasd asdasdas dasdsa dsa dasdasdsadasd sdffdfddddfdffdsfdsfdf dsfdsfd sfds fdsfdfdf dsf dsfdsfds fdsfdsfdsfds fdsfdsfdsf dsfdfdfdds fdsf dsf dsfdf dfdf df dsf df df df ds fdfd fdfdfdf dfd fd fdfdf df df d fdfdfdfdfs dfdfdfdfdf dfdfdfdf dfdfdfdd fddfds fdsfdf dsf</p>', '2018-04-20 22:18:58', 'yo mismo', 2),
+(4, 'Colombia y 5 países más dejarán de participar en Unasur', '<p>Un total de seis países de la Unión de Naciones Suramericanas () comunicaron a Bolivia, que ostenta la presidencia temporal del bloque, su decisión de "no participar en las distintas instancias", hasta que no se garantice "el funcionamiento adecuado de la organización".&nbsp;</p><br style=""><p>El documento, al que este viernes tuvo acceso Efe, está dirigido al ministro de Relaciones Exteriores boliviano, Fernando Huanacuni,&nbsp;está firmado por los cancilleres de Argentina, <strong>Colombia, Chile, Brasil, Paraguay y Perú.</strong></p>', '2018-04-20 23:07:59', 'ElTiempo.com', 4);
 
 -- --------------------------------------------------------
 
@@ -768,9 +1071,9 @@ INSERT INTO `opciones` (`id`, `codigo`, `nombre`) VALUES
 (50, 'PM2', 'Estudio de capacidad de carga para ecoturismo'),
 (51, 'PM3', 'Plan de manejo ambiental'),
 (52, 'PM4', 'Otro documento'),
-(53, 'IV1', 'Como socios'),
-(54, 'IV2', 'Como empleados directos'),
-(55, 'IV3', 'Como empleados indirectos'),
+(53, 'INVOLUCRA1', 'Como socios'),
+(54, 'INVOLUCRA2', 'Como empleados directos'),
+(55, 'INVOLUCRA3', 'Como empleados indirectos'),
 (57, 'ACTIVIDAD_COMU1', 'Capacitación'),
 (58, 'ACTIVIDAD_COMU2', 'Asistencia técnica'),
 (59, 'ACTIVIDAD_COMU3', 'Recreación'),
@@ -844,7 +1147,12 @@ INSERT INTO `opciones` (`id`, `codigo`, `nombre`) VALUES
 (127, 'RESPO_SOCIAL_EXTERIOR5', '¿La organización tiene mecanismo de consulta a las comunidades aledañas y clientes, y da respuesta a las quejas o reclamos de las mismas?'),
 (128, 'RESPO_SOCIAL_EXTERIOR6', '¿La organización protege el conocimiento Ancestral o tradicional y lo salvaguarda?'),
 (129, 'COMUNICACION_ATRIBUTOS1', '¿Se comunican los atributos ambientales y sociales del bien o servicio a los clientes y el público en general?'),
-(130, 'COMUNICACION_ATRIBUTOS2', '¿La organización involucra actividades de educación y cultura ambiental?');
+(130, 'COMUNICACION_ATRIBUTOS2', '¿La organización involucra actividades de educación y cultura ambiental?'),
+(133, 'ESQUEMAS_RECONOCIMIENTOS1', '¿ El bien o servicio tiene ecoetiquetas, cartas de reconocimiento, registros de auditorias, sellos etc.? ¿Cuáles?'),
+(134, 'ESQUEMAS_RECONOCIMIENTOS2', '¿ La organización mide su huella de carbono, regulación hídrica o servicios ecosistemicos? ¿Cuál(es)?'),
+(135, 'RESPON_SOCIAL_ADICCIONAL1', '¿La organización otorga condiciones sociales y pago de salarios mejores a las exigidas por la legislación nacional vigente?'),
+(136, 'RESPON_SOCIAL_ADICCIONAL2', '¿La organización contrata personal en estado de vulnerabilidad?'),
+(137, 'VIABILIDAD_ECONOMICA5', '¿Las ventas del bien o servicio son suficientes para hacerle frente a las necesidades financieras (gastos, remuneración de sus empleados, otros)?');
 
 -- --------------------------------------------------------
 
@@ -887,8 +1195,8 @@ CREATE TABLE `otros_certificacion` (
 --
 
 INSERT INTO `otros_certificacion` (`id`, `empresa_id`, `nombre`, `etapa_id`, `vigencia`, `observacion`) VALUES
-(1, 12, 'ese mismo', 3, '2018', 'si señor'),
-(3, 11, 'nbjkh', 2, 'sss', 'efw');
+(4, 11, 'algunita', 2, '8', '88'),
+(5, 16, '', 1, '', 'kkk');
 
 -- --------------------------------------------------------
 
@@ -909,7 +1217,8 @@ CREATE TABLE `otros_conservacion` (
 --
 
 INSERT INTO `otros_conservacion` (`id`, `empresa_id`, `nombre`, `area`, `descripcion`) VALUES
-(2, 12, 'practica mejor pesca', '20', 'mejor pesca del año');
+(3, 11, 'Otrico', 'otro', 'otroooo'),
+(4, 16, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -929,7 +1238,8 @@ CREATE TABLE `otros_ecosistema` (
 --
 
 INSERT INTO `otros_ecosistema` (`id`, `empresa_id`, `nombre`, `area`) VALUES
-(1, 12, 'Jungla', '500');
+(2, 11, 'Jungla', '8898'),
+(3, 16, '', '');
 
 -- --------------------------------------------------------
 
@@ -950,7 +1260,8 @@ CREATE TABLE `otros_legislacion` (
 --
 
 INSERT INTO `otros_legislacion` (`id`, `empresa_id`, `nombre`, `cumple_nocumple_id`, `observacion`) VALUES
-(2, 12, 'uno ahí', 1, 'bueno');
+(4, 11, 'otro--', 1, '11111'),
+(5, 16, 'mmm', 2, 'hgjk');
 
 -- --------------------------------------------------------
 
@@ -971,7 +1282,8 @@ CREATE TABLE `otro_actividades` (
 --
 
 INSERT INTO `otro_actividades` (`id`, `empresa_id`, `nombre`, `descripcion`, `recurso_id`) VALUES
-(3, 13, 'ggdsh', 'kjdsfs', 1);
+(4, 11, 'Alguna', 'algunita', 2),
+(5, 16, '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -990,9 +1302,8 @@ CREATE TABLE `otro_involucra` (
 --
 
 INSERT INTO `otro_involucra` (`id`, `empresa_id`, `nombre`) VALUES
-(1, 12, 'Como Amigos'),
-(2, 12, ''),
-(3, 12, '');
+(4, 11, 'De ninguna forma            '),
+(5, 16, '46545');
 
 -- --------------------------------------------------------
 
@@ -1012,7 +1323,8 @@ CREATE TABLE `otro_programa` (
 --
 
 INSERT INTO `otro_programa` (`id`, `empresa_id`, `nombre`, `descripcion`) VALUES
-(1, 12, 'de caza', 'muy bueno');
+(2, 11, 'Pencion', 'Pencionsita'),
+(3, 16, '', 'klp');
 
 -- --------------------------------------------------------
 
@@ -1032,8 +1344,8 @@ CREATE TABLE `otro_tenencia_tierra` (
 --
 
 INSERT INTO `otro_tenencia_tierra` (`id`, `empresa_id`, `nombre`, `descripcion`) VALUES
-(1, 12, 'Minero', 'mina'),
-(2, 12, 'Minero', 'mina');
+(3, 11, 'algunos', 'no se cuales'),
+(4, 16, '', '');
 
 -- --------------------------------------------------------
 
@@ -1074,11 +1386,16 @@ CREATE TABLE `permiso` (
 --
 
 INSERT INTO `permiso` (`id`, `empresa_id`, `opciones_id`, `aplica_noaplica_id`, `cumple_nocumple_id`, `vigencia`, `observacion`) VALUES
-(1, 13, 22, 2, 2, '1', 'a'),
-(2, 13, 23, 2, 2, '2', 'b'),
-(3, 13, 24, 2, 1, '3', 'c'),
-(4, 13, 25, 2, 2, '4', 'd'),
-(5, 13, 26, 2, 2, '5', 'e');
+(6, 11, 22, 2, 2, '1', '11'),
+(7, 11, 23, 1, 1, '2', '22'),
+(8, 11, 24, 2, 2, '3', '33'),
+(9, 11, 25, 1, 2, '4', '44'),
+(10, 11, 26, 2, 2, '5', '55'),
+(11, 16, 22, 2, 2, '', ''),
+(12, 16, 23, 2, 2, '', ''),
+(13, 16, 24, 2, 2, '', ''),
+(14, 16, 25, 2, 1, '1', '2'),
+(15, 16, 26, 2, 2, '', '');
 
 -- --------------------------------------------------------
 
@@ -1096,27 +1413,25 @@ CREATE TABLE `persona` (
   `correo` varchar(30) COLLATE utf8_bin NOT NULL,
   `celular` varchar(15) COLLATE utf8_bin NOT NULL,
   `fijo` varchar(15) COLLATE utf8_bin NOT NULL,
-  `direccion` varchar(40) COLLATE utf8_bin NOT NULL
+  `direccion` varchar(40) COLLATE utf8_bin NOT NULL,
+  `rol_id` int(11) NOT NULL,
+  `entidad` varchar(150) COLLATE utf8_bin NOT NULL,
+  `area_id` int(11) NOT NULL,
+  `cargo` varchar(150) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`id`, `identificacion`, `nombre1`, `nombre2`, `apellido1`, `paellido2`, `correo`, `celular`, `fijo`, `direccion`) VALUES
-(1, '456', 'prueba1', '', '', '', 'asda@gmail.com', '889', '46', 'bogota'),
-(2, '123', 'yo', '', '', '', 'asda@gmail.com', '', '', ''),
-(3, '123', 'yo', '', '', '', 'asda@gmail.com', '', '', ''),
-(4, '123', 'yo', '', '', '', 'asda@gmail.com', '', '', ''),
-(5, '123', 'yo', '', '', '', 'asda@gmail.com', '', '', ''),
-(6, '123', 'yo', '', '', '', 'asda@gmail.com', '', '', ''),
-(7, '123', 'yo', '', '', '', 'asda@gmail.com', '', '', ''),
-(8, '123', 'yo', '', '', '', 'asda@gmail.com', '', '', ''),
-(9, '123', 'yo', '', '', '', 'asda@gmail.com', '', '', ''),
-(10, '123', 'yo', '', '', '', 'asda@gmail.com', '', '', ''),
-(11, '123', 'yo', '', '', '', 'asda@gmail.com', '', '', ''),
-(12, '', '', '', '', '', '', '', '', ''),
-(13, '', '', '', '', '', '', '', '', '');
+INSERT INTO `persona` (`id`, `identificacion`, `nombre1`, `nombre2`, `apellido1`, `paellido2`, `correo`, `celular`, `fijo`, `direccion`, `rol_id`, `entidad`, `area_id`, `cargo`) VALUES
+(1, '1020', 'prueba1', '', '', '', 'asda@gmail.commm', '88910', '468', 'bogota dc', 4, '', 1, ''),
+(8, '123', 'yo', '', '', '', 'asda@gmail.com', '', '', '', 4, '', 1, ''),
+(11, '123', 'yo', '', '', '', 'asda@gmail.com', '321256346', '', '', 2, '', 1, ''),
+(13, '107789456', 'Hrinson', '', '', '', 'tbs47@hotmail.com', '3157894653', '6728695', 'pablo sexto', 4, '', 1, ''),
+(15, '895466', 'Alfalfa', '', '', '', 'asfas@hotmail.com', '', '', '', 4, '', 1, ''),
+(16, '456546', 'yo', '', '', '', 'asda@gmail.com', '', '', '', 4, '', 1, ''),
+(17, '1235464', 'hh', '', 'hh', 'jj', 'dasd@hotm.copm', '3201646', '67125', 'hgjahsdjk', 1, '', 1, '');
 
 -- --------------------------------------------------------
 
@@ -1131,16 +1446,51 @@ CREATE TABLE `plan_manejo` (
   `aplica_noaplica_id` int(11) NOT NULL,
   `cumple_nocumple_id` int(11) NOT NULL,
   `vigencia` varchar(100) COLLATE utf8_bin NOT NULL,
-  `observacion` varchar(100) COLLATE utf8_bin NOT NULL
+  `observacion` varchar(100) COLLATE utf8_bin NOT NULL,
+  `confirmacion` varchar(10) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `plan_manejo`
 --
 
-INSERT INTO `plan_manejo` (`id`, `empresa_id`, `opciones_id`, `aplica_noaplica_id`, `cumple_nocumple_id`, `vigencia`, `observacion`) VALUES
-(1, 13, 49, 1, 1, 'uno', 'uno'),
-(2, 13, 51, 2, 2, 'tres', 'ambiental');
+INSERT INTO `plan_manejo` (`id`, `empresa_id`, `opciones_id`, `aplica_noaplica_id`, `cumple_nocumple_id`, `vigencia`, `observacion`, `confirmacion`) VALUES
+(21, 11, 49, 1, 1, '1', '111', 'si'),
+(22, 11, 51, 1, 2, '3', '333', 'si'),
+(23, 11, 50, 2, 2, '', '', 'no'),
+(24, 11, 52, 2, 2, '', '', 'no'),
+(25, 16, 50, 2, 2, '56', '', 'si'),
+(26, 16, 52, 2, 2, '78', '', 'si'),
+(27, 16, 49, 2, 2, '', '', 'no'),
+(28, 16, 51, 2, 2, '', '', 'no');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `plan_mejora`
+--
+
+CREATE TABLE `plan_mejora` (
+  `id` int(11) NOT NULL,
+  `empresa_id` int(11) NOT NULL,
+  `opciones_id` int(11) NOT NULL,
+  `acciones` text COLLATE utf8_bin NOT NULL,
+  `actor` text COLLATE utf8_bin NOT NULL,
+  `resultado` text COLLATE utf8_bin NOT NULL,
+  `1` varchar(1) COLLATE utf8_bin NOT NULL,
+  `2` varchar(1) COLLATE utf8_bin NOT NULL,
+  `3` varchar(1) COLLATE utf8_bin NOT NULL,
+  `4` varchar(1) COLLATE utf8_bin NOT NULL,
+  `5` varchar(1) COLLATE utf8_bin NOT NULL,
+  `6` varchar(1) COLLATE utf8_bin NOT NULL,
+  `7` varchar(1) COLLATE utf8_bin NOT NULL,
+  `8` varchar(1) COLLATE utf8_bin NOT NULL,
+  `9` varchar(1) COLLATE utf8_bin NOT NULL,
+  `10` varchar(1) COLLATE utf8_bin NOT NULL,
+  `11` varchar(1) COLLATE utf8_bin NOT NULL,
+  `12` varchar(1) COLLATE utf8_bin NOT NULL,
+  `observacion` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -1152,16 +1502,23 @@ CREATE TABLE `programa` (
   `id` int(11) NOT NULL,
   `empresa_id` int(11) NOT NULL,
   `opciones_id` int(11) NOT NULL,
-  `descripcion` varchar(50) COLLATE utf8_bin NOT NULL
+  `descripcion` varchar(50) COLLATE utf8_bin NOT NULL,
+  `confirmacion` varchar(10) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `programa`
 --
 
-INSERT INTO `programa` (`id`, `empresa_id`, `opciones_id`, `descripcion`) VALUES
-(1, 13, 57, 'capa'),
-(2, 13, 59, 'recre');
+INSERT INTO `programa` (`id`, `empresa_id`, `opciones_id`, `descripcion`, `confirmacion`) VALUES
+(17, 11, 57, '1111', 'si'),
+(18, 11, 59, '33333', 'si'),
+(19, 11, 58, '', 'no'),
+(20, 11, 60, '', 'no'),
+(21, 16, 59, 'kjhgjk', 'si'),
+(22, 16, 57, '', 'no'),
+(23, 16, 58, '', 'no'),
+(24, 16, 60, '', 'no');
 
 -- --------------------------------------------------------
 
@@ -1227,10 +1584,35 @@ CREATE TABLE `registro` (
 --
 
 INSERT INTO `registro` (`id`, `empresa_id`, `opciones_id`, `aplica_noaplica_id`, `cumple_nocumple_id`, `vigencia`, `observacion`) VALUES
-(1, 1, 18, 2, 2, '10', 'invima'),
-(2, 1, 19, 2, 2, '20', 'ica'),
-(3, 1, 20, 2, 2, '30', 'turismo'),
-(4, 1, 21, 2, 2, '40', 'forestal');
+(5, 11, 18, 1, 1, '1', '11'),
+(6, 11, 19, 1, 1, '2', '22'),
+(7, 11, 20, 2, 2, '3', '33'),
+(8, 11, 21, 2, 2, '4', '44'),
+(9, 16, 18, 2, 2, '', ''),
+(10, 16, 19, 2, 2, '', ''),
+(11, 16, 20, 1, 2, '10', '20'),
+(12, 16, 21, 2, 2, '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `rol`
+--
+
+CREATE TABLE `rol` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`id`, `nombre`) VALUES
+(1, 'Administrador de contenido'),
+(2, 'Verificador'),
+(3, 'Administrador verificador'),
+(4, 'Representante legal');
 
 -- --------------------------------------------------------
 
@@ -1348,7 +1730,6 @@ CREATE TABLE `sost_economica` (
   `bien_servicio` varchar(100) COLLATE utf8_bin NOT NULL,
   `vendida_anual` double NOT NULL,
   `unidad_medida_id` int(11) NOT NULL,
-  `esp_unidad` varchar(50) COLLATE utf8_bin NOT NULL,
   `costo_produccion` double NOT NULL,
   `precio_v_unitario` double NOT NULL,
   `ganancia_unidad` double NOT NULL,
@@ -1360,12 +1741,12 @@ CREATE TABLE `sost_economica` (
 -- Volcado de datos para la tabla `sost_economica`
 --
 
-INSERT INTO `sost_economica` (`id`, `empresa_id`, `bien_servicio`, `vendida_anual`, `unidad_medida_id`, `esp_unidad`, `costo_produccion`, `precio_v_unitario`, `ganancia_unidad`, `ventas_anual`, `si_no_id`) VALUES
-(1, 12, 'carro', 8, 1, 'hj', 5, 3, 54, 65, 1),
-(2, 12, 'moto', 0, 1, '', 0, 0, 0, 0, 1),
-(3, 12, 'algo', 59, 1, '', 54, 23, 23, 23, 2),
-(4, 12, 'mas', 0, 1, '', 0, 0, 0, 0, 1),
-(5, 12, 'yuca', 0, 1, '', 0, 0, 0, 0, 1);
+INSERT INTO `sost_economica` (`id`, `empresa_id`, `bien_servicio`, `vendida_anual`, `unidad_medida_id`, `costo_produccion`, `precio_v_unitario`, `ganancia_unidad`, `ventas_anual`, `si_no_id`) VALUES
+(6, 8, 'alguno', 50, 1, 2500, 100, 50, 800000, 1),
+(7, 11, 'pera', 10, 2, 15, 35, 1000, 20000, 1),
+(8, 11, 'yuca', 1, 2, 23, 50, 20, 20000, 2),
+(9, 11, 'papa', 231, 2, 21, 231, 651, 8911, 2),
+(10, 16, 'ese mismo', 10, 1, 5, 23, 56, 87, 1);
 
 -- --------------------------------------------------------
 
@@ -1432,17 +1813,27 @@ CREATE TABLE `tenencia_tierra` (
   `id` int(11) NOT NULL,
   `empresa_id` int(11) NOT NULL,
   `opciones_id` int(11) NOT NULL,
-  `descripcion` varchar(40) COLLATE utf8_bin NOT NULL
+  `descripcion` varchar(40) COLLATE utf8_bin NOT NULL,
+  `confirmacion` varchar(10) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `tenencia_tierra`
 --
 
-INSERT INTO `tenencia_tierra` (`id`, `empresa_id`, `opciones_id`, `descripcion`) VALUES
-(2, 1, 12, 'uno'),
-(3, 1, 14, 'tres'),
-(4, 1, 16, 'cinco');
+INSERT INTO `tenencia_tierra` (`id`, `empresa_id`, `opciones_id`, `descripcion`, `confirmacion`) VALUES
+(69, 11, 12, 'uno', 'si'),
+(70, 11, 14, 'tres', 'si'),
+(71, 11, 16, 'cinco', 'si'),
+(72, 11, 13, '', 'no'),
+(73, 11, 15, '', 'no'),
+(74, 11, 17, '', 'no'),
+(75, 16, 12, 'jhk', 'si'),
+(76, 16, 14, 'kjl', 'si'),
+(77, 16, 13, '', 'no'),
+(78, 16, 15, '', 'no'),
+(79, 16, 16, '', 'no'),
+(80, 16, 17, '', 'no');
 
 -- --------------------------------------------------------
 
@@ -1504,10 +1895,16 @@ CREATE TABLE `tipo_vinculacion` (
 INSERT INTO `tipo_vinculacion` (`id`, `empresa_id`, `vinculacion_id`, `cantidad`) VALUES
 (1, 1, 1, '10'),
 (2, 1, 2, '10'),
-(3, 1, 3, '10'),
+(3, 1, 3, ''),
 (16, 8, 1, ''),
 (17, 8, 2, ''),
-(18, 8, 3, '');
+(18, 8, 3, ''),
+(19, 15, 1, ''),
+(20, 15, 2, ''),
+(21, 15, 3, ''),
+(22, 16, 1, ''),
+(23, 16, 2, ''),
+(24, 16, 3, '');
 
 -- --------------------------------------------------------
 
@@ -1527,10 +1924,8 @@ CREATE TABLE `total_ventas` (
 --
 
 INSERT INTO `total_ventas` (`id`, `empresa_id`, `valor`, `anio`) VALUES
-(1, 12, 23, 2015),
-(2, 1, 0, 0),
-(3, 12, 0, 0),
-(4, 1, 0, 0);
+(5, 11, 5000, 2019),
+(6, 16, 5446, 2200);
 
 -- --------------------------------------------------------
 
@@ -1562,28 +1957,40 @@ CREATE TABLE `verificacion_1` (
   `empresa_id` int(11) NOT NULL,
   `opciones_id` int(11) NOT NULL,
   `si_no_noaplica_id` int(11) NOT NULL,
-  `observacion` text COLLATE utf8_bin NOT NULL,
-  `verificacion` text COLLATE utf8_bin NOT NULL
+  `observacion` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `verificacion_1`
 --
 
-INSERT INTO `verificacion_1` (`id`, `empresa_id`, `opciones_id`, `si_no_noaplica_id`, `observacion`, `verificacion`) VALUES
-(1, 13, 73, 3, '', ''),
-(2, 13, 74, 1, '', ''),
-(3, 13, 75, 1, '', ''),
-(4, 13, 76, 1, '', ''),
-(5, 13, 77, 1, '', ''),
-(6, 13, 78, 1, '', ''),
-(7, 13, 79, 1, '', ''),
-(8, 13, 80, 1, '', ''),
-(9, 13, 81, 1, '', ''),
-(10, 13, 82, 1, '', ''),
-(11, 13, 83, 1, '', ''),
-(12, 13, 84, 1, '', ''),
-(13, 13, 85, 3, '', '');
+INSERT INTO `verificacion_1` (`id`, `empresa_id`, `opciones_id`, `si_no_noaplica_id`, `observacion`) VALUES
+(1, 13, 73, 3, 'kkkk'),
+(2, 13, 74, 2, 'H'),
+(3, 13, 75, 2, 'H'),
+(4, 13, 76, 2, 'H'),
+(5, 13, 77, 2, 'H'),
+(6, 13, 78, 1, 'H'),
+(7, 13, 79, 1, 'H'),
+(8, 13, 80, 1, 'H'),
+(9, 13, 81, 1, 'H'),
+(10, 13, 82, 1, 'H'),
+(11, 13, 83, 2, 'Hj'),
+(12, 13, 84, 2, 'kjh'),
+(13, 13, 85, 3, 'oiji'),
+(14, 11, 73, 2, 'Esta bien'),
+(15, 11, 74, 2, 'Bien'),
+(16, 11, 75, 2, 'Ninguno'),
+(17, 11, 76, 1, 'Tiene que mejorar'),
+(18, 11, 77, 2, 'No los vulnera'),
+(19, 11, 78, 1, 'Algunas veces y no tiene plan de manejo'),
+(20, 11, 79, 1, 'algunas'),
+(21, 11, 80, 2, 'no vulnera'),
+(22, 11, 81, 2, 'no '),
+(23, 11, 82, 2, 'no'),
+(24, 11, 83, 2, 'no'),
+(25, 11, 84, 1, 'tiene conflicto con algunos vecinos'),
+(26, 11, 85, 2, 'Ninguna');
 
 -- --------------------------------------------------------
 
@@ -1597,8 +2004,77 @@ CREATE TABLE `verificacion_2` (
   `opciones_id` int(11) NOT NULL,
   `calificador_id` int(11) NOT NULL,
   `observacion` text COLLATE utf8_bin NOT NULL,
-  `verificaicion` text COLLATE utf8_bin NOT NULL,
-  `evidencia` varchar(50) COLLATE utf8_bin NOT NULL
+  `evidencia` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `verificacion_2`
+--
+
+INSERT INTO `verificacion_2` (`id`, `empresa_id`, `opciones_id`, `calificador_id`, `observacion`, `evidencia`) VALUES
+(556, 13, 86, 3, 'sdaf', '86_13_logo_code.png'),
+(557, 13, 87, 3, 'sdf', ''),
+(558, 13, 88, 3, 'sdf', ''),
+(559, 13, 89, 2, 'sdf', ''),
+(560, 13, 137, 4, 'sdf', '137_13_logo_code.png'),
+(561, 13, 90, 3, 'sdf', ''),
+(562, 13, 91, 3, 'sdf', ''),
+(563, 13, 92, 3, 'sdf', ''),
+(564, 13, 93, 4, 'asdf', ''),
+(565, 13, 94, 3, 'sadf', ''),
+(566, 13, 95, 1, 'sdf', ''),
+(567, 13, 96, 3, 'sdfa', ''),
+(568, 13, 97, 3, 'asdf', ''),
+(569, 13, 98, 1, 'asdf', ''),
+(570, 13, 99, 3, 'asdf', ''),
+(571, 13, 100, 4, 'asdf', ''),
+(572, 13, 101, 3, 'asfd', ''),
+(573, 13, 102, 3, 'asdf', ''),
+(574, 13, 103, 1, 'asdf', ''),
+(575, 13, 104, 2, 'asdf', ''),
+(576, 13, 105, 1, 'asdf', ''),
+(577, 13, 106, 2, 'asdf', ''),
+(578, 13, 107, 3, 'asdf', ''),
+(579, 13, 108, 2, 'asdf', ''),
+(580, 13, 109, 3, 'asdf', ''),
+(581, 13, 110, 3, 'asdf', ''),
+(582, 13, 111, 3, 'asdf', ''),
+(583, 13, 112, 1, 'asdf', ''),
+(584, 13, 113, 1, 'asdfa', ''),
+(585, 13, 114, 1, 'asdf', ''),
+(586, 13, 115, 1, 'asdf', ''),
+(587, 13, 116, 1, 'asdf', ''),
+(588, 13, 117, 1, 'asdf', ''),
+(589, 13, 118, 3, 'asdf', ''),
+(590, 13, 119, 1, 'asdf', ''),
+(591, 13, 120, 3, 'asdf', ''),
+(592, 13, 121, 1, 'asdf', ''),
+(593, 13, 122, 3, 'asdf', ''),
+(594, 13, 123, 1, 'asdf', ''),
+(595, 13, 124, 3, 'asdf', ''),
+(596, 13, 125, 1, 'asdf', ''),
+(597, 13, 126, 3, 'asdf', ''),
+(598, 13, 127, 3, 'sdf', ''),
+(599, 13, 128, 3, 'asdf', ''),
+(600, 13, 129, 1, 'asdf', ''),
+(601, 13, 130, 3, 'asdf', ''),
+(602, 13, 133, 1, 'asdf', ''),
+(603, 13, 134, 3, 'asdf', ''),
+(604, 13, 135, 2, 'asdf', ''),
+(605, 13, 136, 3, 'asdf', '136_13_logo_code.png');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `verificadorxempresa`
+--
+
+CREATE TABLE `verificadorxempresa` (
+  `id` int(11) NOT NULL,
+  `empresa_id` int(11) NOT NULL,
+  `persona_id` int(11) NOT NULL,
+  `fecha_asignacion` text COLLATE utf8_bin NOT NULL,
+  `fecha_retiro` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -1649,9 +2125,28 @@ ALTER TABLE `actividad_item`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `alias`
+--
+ALTER TABLE `alias`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `aplica_noaplica`
 --
 ALTER TABLE `aplica_noaplica`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `archivo_page`
+--
+ALTER TABLE `archivo_page`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `contenido_id` (`contenido_id`);
+
+--
+-- Indices de la tabla `area`
+--
+ALTER TABLE `area`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1689,6 +2184,14 @@ ALTER TABLE `conservacion`
   ADD PRIMARY KEY (`id`),
   ADD KEY `empresa_id` (`empresa_id`),
   ADD KEY `opciones_id` (`opciones_id`);
+
+--
+-- Indices de la tabla `contenido`
+--
+ALTER TABLE `contenido`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_img_page` (`id_img_page`),
+  ADD KEY `alias` (`alias_id`);
 
 --
 -- Indices de la tabla `costo_insumos`
@@ -1775,13 +2278,17 @@ ALTER TABLE `empresa`
   ADD KEY `tamaño_empresa_id` (`tamaño_empresa_id`),
   ADD KEY `municipio_id` (`municipio_id`),
   ADD KEY `fami_empresa_si_no` (`fami_empresa_si_no`),
-  ADD KEY `impcto_amb_si_no` (`impacto_amb_si_no`),
-  ADD KEY `impacto_soc_si_no` (`impacto_soc_si_no`),
   ADD KEY `subsector_id` (`subsector_id`),
   ADD KEY `etapa_empresa_id` (`etapa_empresa_id`),
   ADD KEY `const_legalmente_sino` (`const_legalmente_sino`),
   ADD KEY `opera_actualmente_sino` (`opera_actualmente_sino`),
-  ADD KEY `personeria_juridi_sino` (`personeria_juridi_sino`);
+  ADD KEY `empresario_id` (`empresario_id`);
+
+--
+-- Indices de la tabla `empresario`
+--
+ALTER TABLE `empresario`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `etapa`
@@ -1793,6 +2300,12 @@ ALTER TABLE `etapa`
 -- Indices de la tabla `etapa_empresa`
 --
 ALTER TABLE `etapa_empresa`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `img_page`
+--
+ALTER TABLE `img_page`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1822,6 +2335,13 @@ ALTER TABLE `licencia`
   ADD KEY `empresa_id` (`empresa_id`);
 
 --
+-- Indices de la tabla `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `persona_id` (`persona_id`);
+
+--
 -- Indices de la tabla `municipio`
 --
 ALTER TABLE `municipio`
@@ -1841,6 +2361,13 @@ ALTER TABLE `nivel_educativo`
   ADD PRIMARY KEY (`id`),
   ADD KEY `empresa_id` (`empresa_id`),
   ADD KEY `nivel_id` (`nivel_id`);
+
+--
+-- Indices de la tabla `noticia`
+--
+ALTER TABLE `noticia`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_img_page` (`id_img_page`);
 
 --
 -- Indices de la tabla `opciones`
@@ -1935,7 +2462,9 @@ ALTER TABLE `permiso`
 -- Indices de la tabla `persona`
 --
 ALTER TABLE `persona`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `rol_id` (`rol_id`),
+  ADD KEY `area_id` (`area_id`);
 
 --
 -- Indices de la tabla `plan_manejo`
@@ -1946,6 +2475,14 @@ ALTER TABLE `plan_manejo`
   ADD KEY `opciones_id` (`opciones_id`),
   ADD KEY `aplica_noaplica_id` (`aplica_noaplica_id`),
   ADD KEY `cumple_nocumple_id` (`cumple_nocumple_id`);
+
+--
+-- Indices de la tabla `plan_mejora`
+--
+ALTER TABLE `plan_mejora`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `opciones_id` (`opciones_id`),
+  ADD KEY `empresa_id` (`empresa_id`);
 
 --
 -- Indices de la tabla `programa`
@@ -1977,6 +2514,12 @@ ALTER TABLE `registro`
   ADD KEY `opciones_id` (`opciones_id`),
   ADD KEY `aplica_noaplica_id` (`aplica_noaplica_id`),
   ADD KEY `cumple_nocumple_id` (`cumple_nocumple_id`);
+
+--
+-- Indices de la tabla `rol`
+--
+ALTER TABLE `rol`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `sector`
@@ -2091,6 +2634,14 @@ ALTER TABLE `verificacion_2`
   ADD KEY `opciones_id` (`opciones_id`);
 
 --
+-- Indices de la tabla `verificadorxempresa`
+--
+ALTER TABLE `verificadorxempresa`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `empresa_id` (`empresa_id`),
+  ADD KEY `persona_id` (`persona_id`);
+
+--
 -- Indices de la tabla `vinculacion`
 --
 ALTER TABLE `vinculacion`
@@ -2104,22 +2655,37 @@ ALTER TABLE `vinculacion`
 -- AUTO_INCREMENT de la tabla `actividades`
 --
 ALTER TABLE `actividades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `actividad_empresa`
 --
 ALTER TABLE `actividad_empresa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=311;
 --
 -- AUTO_INCREMENT de la tabla `actividad_item`
 --
 ALTER TABLE `actividad_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de la tabla `alias`
+--
+ALTER TABLE `alias`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `aplica_noaplica`
 --
 ALTER TABLE `aplica_noaplica`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `archivo_page`
+--
+ALTER TABLE `archivo_page`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `area`
+--
+ALTER TABLE `area`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `bienes_servicios`
 --
@@ -2139,22 +2705,27 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `certificacion`
 --
 ALTER TABLE `certificacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- AUTO_INCREMENT de la tabla `conservacion`
 --
 ALTER TABLE `conservacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+--
+-- AUTO_INCREMENT de la tabla `contenido`
+--
+ALTER TABLE `contenido`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `costo_insumos`
 --
 ALTER TABLE `costo_insumos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `costo_mano_obra`
 --
 ALTER TABLE `costo_mano_obra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `cumple_nocumple`
 --
@@ -2164,7 +2735,7 @@ ALTER TABLE `cumple_nocumple`
 -- AUTO_INCREMENT de la tabla `demografia`
 --
 ALTER TABLE `demografia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT de la tabla `departamento`
 --
@@ -2179,7 +2750,7 @@ ALTER TABLE `desc_demografia`
 -- AUTO_INCREMENT de la tabla `ecosistema`
 --
 ALTER TABLE `ecosistema`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT de la tabla `edad`
 --
@@ -2189,17 +2760,22 @@ ALTER TABLE `edad`
 -- AUTO_INCREMENT de la tabla `empleado_edad`
 --
 ALTER TABLE `empleado_edad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT de la tabla `empleado_sexo`
 --
 ALTER TABLE `empleado_sexo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT de la tabla `empresario`
+--
+ALTER TABLE `empresario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `etapa`
 --
@@ -2211,20 +2787,30 @@ ALTER TABLE `etapa`
 ALTER TABLE `etapa_empresa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT de la tabla `img_page`
+--
+ALTER TABLE `img_page`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT de la tabla `institucion`
 --
 ALTER TABLE `institucion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT de la tabla `involucra`
 --
 ALTER TABLE `involucra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT de la tabla `licencia`
 --
 ALTER TABLE `licencia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT de la tabla `login`
+--
+ALTER TABLE `login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `municipio`
 --
@@ -2239,12 +2825,17 @@ ALTER TABLE `nivel`
 -- AUTO_INCREMENT de la tabla `nivel_educativo`
 --
 ALTER TABLE `nivel_educativo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+--
+-- AUTO_INCREMENT de la tabla `noticia`
+--
+ALTER TABLE `noticia`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `opciones`
 --
 ALTER TABLE `opciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 --
 -- AUTO_INCREMENT de la tabla `orientacion`
 --
@@ -2254,42 +2845,42 @@ ALTER TABLE `orientacion`
 -- AUTO_INCREMENT de la tabla `otros_certificacion`
 --
 ALTER TABLE `otros_certificacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `otros_conservacion`
 --
 ALTER TABLE `otros_conservacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `otros_ecosistema`
 --
 ALTER TABLE `otros_ecosistema`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `otros_legislacion`
 --
 ALTER TABLE `otros_legislacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `otro_actividades`
 --
 ALTER TABLE `otro_actividades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `otro_involucra`
 --
 ALTER TABLE `otro_involucra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `otro_programa`
 --
 ALTER TABLE `otro_programa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `otro_tenencia_tierra`
 --
 ALTER TABLE `otro_tenencia_tierra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `pais`
 --
@@ -2299,22 +2890,27 @@ ALTER TABLE `pais`
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT de la tabla `plan_manejo`
 --
 ALTER TABLE `plan_manejo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+--
+-- AUTO_INCREMENT de la tabla `plan_mejora`
+--
+ALTER TABLE `plan_mejora`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `programa`
 --
 ALTER TABLE `programa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT de la tabla `recurso`
 --
@@ -2329,6 +2925,11 @@ ALTER TABLE `region`
 -- AUTO_INCREMENT de la tabla `registro`
 --
 ALTER TABLE `registro`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT de la tabla `rol`
+--
+ALTER TABLE `rol`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `sector`
@@ -2359,7 +2960,7 @@ ALTER TABLE `socio_empleado_item`
 -- AUTO_INCREMENT de la tabla `sost_economica`
 --
 ALTER TABLE `sost_economica`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `subsector`
 --
@@ -2374,7 +2975,7 @@ ALTER TABLE `tamaño_empresa`
 -- AUTO_INCREMENT de la tabla `tenencia_tierra`
 --
 ALTER TABLE `tenencia_tierra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 --
 -- AUTO_INCREMENT de la tabla `tipo_identificacion`
 --
@@ -2389,12 +2990,12 @@ ALTER TABLE `tipo_persona`
 -- AUTO_INCREMENT de la tabla `tipo_vinculacion`
 --
 ALTER TABLE `tipo_vinculacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT de la tabla `total_ventas`
 --
 ALTER TABLE `total_ventas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `unidad_medida`
 --
@@ -2404,11 +3005,16 @@ ALTER TABLE `unidad_medida`
 -- AUTO_INCREMENT de la tabla `verificacion_1`
 --
 ALTER TABLE `verificacion_1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT de la tabla `verificacion_2`
 --
 ALTER TABLE `verificacion_2`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=606;
+--
+-- AUTO_INCREMENT de la tabla `verificadorxempresa`
+--
+ALTER TABLE `verificadorxempresa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `vinculacion`
@@ -2440,11 +3046,26 @@ ALTER TABLE `bienes_servicios`
   ADD CONSTRAINT `bienes_servicios_ibfk_1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`);
 
 --
+-- Filtros para la tabla `certificacion`
+--
+ALTER TABLE `certificacion`
+  ADD CONSTRAINT `certificacion_empresa_id_restrink1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`),
+  ADD CONSTRAINT `certificacion_etapa_id_restrink1` FOREIGN KEY (`etapa_id`) REFERENCES `etapa` (`id`),
+  ADD CONSTRAINT `certificacion_opciones_id_restrink1` FOREIGN KEY (`opciones_id`) REFERENCES `opciones` (`id`);
+
+--
 -- Filtros para la tabla `conservacion`
 --
 ALTER TABLE `conservacion`
   ADD CONSTRAINT `conservacion_ibfk_1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`),
   ADD CONSTRAINT `conservacion_ibfk_2` FOREIGN KEY (`opciones_id`) REFERENCES `opciones` (`id`);
+
+--
+-- Filtros para la tabla `contenido`
+--
+ALTER TABLE `contenido`
+  ADD CONSTRAINT `fk_alias` FOREIGN KEY (`alias_id`) REFERENCES `alias` (`id`),
+  ADD CONSTRAINT `fk_img` FOREIGN KEY (`id_img_page`) REFERENCES `img_page` (`id`);
 
 --
 -- Filtros para la tabla `costo_insumos`
@@ -2503,8 +3124,7 @@ ALTER TABLE `empresa`
   ADD CONSTRAINT `empresa_ibfk_5` FOREIGN KEY (`si_no_pot_id`) REFERENCES `si_no` (`id`),
   ADD CONSTRAINT `empresa_ibfk_6` FOREIGN KEY (`municipio_id`) REFERENCES `municipio` (`id`),
   ADD CONSTRAINT `empresa_ibfk_7` FOREIGN KEY (`fami_empresa_si_no`) REFERENCES `si_no` (`id`),
-  ADD CONSTRAINT `empresa_ibfk_8` FOREIGN KEY (`impacto_amb_si_no`) REFERENCES `si_no` (`id`),
-  ADD CONSTRAINT `empresa_ibfk_9` FOREIGN KEY (`impacto_soc_si_no`) REFERENCES `si_no` (`id`);
+  ADD CONSTRAINT `empresa_ibfk_8` FOREIGN KEY (`empresario_id`) REFERENCES `empresario` (`id`);
 
 --
 -- Filtros para la tabla `institucion`
@@ -2530,6 +3150,12 @@ ALTER TABLE `licencia`
   ADD CONSTRAINT `licencia_ibfk_4` FOREIGN KEY (`cumple_nocumple_id`) REFERENCES `cumple_nocumple` (`id`);
 
 --
+-- Filtros para la tabla `login`
+--
+ALTER TABLE `login`
+  ADD CONSTRAINT `login_restrink1` FOREIGN KEY (`persona_id`) REFERENCES `persona` (`id`);
+
+--
 -- Filtros para la tabla `municipio`
 --
 ALTER TABLE `municipio`
@@ -2541,6 +3167,12 @@ ALTER TABLE `municipio`
 ALTER TABLE `nivel_educativo`
   ADD CONSTRAINT `nivel_educativo_ibfk_1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`),
   ADD CONSTRAINT `nivel_educativo_ibfk_2` FOREIGN KEY (`nivel_id`) REFERENCES `nivel` (`id`);
+
+--
+-- Filtros para la tabla `noticia`
+--
+ALTER TABLE `noticia`
+  ADD CONSTRAINT `fk_img2` FOREIGN KEY (`id_img_page`) REFERENCES `img_page` (`id`);
 
 --
 -- Filtros para la tabla `otros_certificacion`
@@ -2603,6 +3235,13 @@ ALTER TABLE `permiso`
   ADD CONSTRAINT `permiso_ibfk_4` FOREIGN KEY (`cumple_nocumple_id`) REFERENCES `cumple_nocumple` (`id`);
 
 --
+-- Filtros para la tabla `persona`
+--
+ALTER TABLE `persona`
+  ADD CONSTRAINT `rol_restrink1` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`id`),
+  ADD CONSTRAINT `rol_restrink2` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`);
+
+--
 -- Filtros para la tabla `plan_manejo`
 --
 ALTER TABLE `plan_manejo`
@@ -2610,6 +3249,13 @@ ALTER TABLE `plan_manejo`
   ADD CONSTRAINT `plan_manejo_ibfk_2` FOREIGN KEY (`opciones_id`) REFERENCES `opciones` (`id`),
   ADD CONSTRAINT `plan_manejo_ibfk_3` FOREIGN KEY (`aplica_noaplica_id`) REFERENCES `aplica_noaplica` (`id`),
   ADD CONSTRAINT `plan_manejo_ibfk_4` FOREIGN KEY (`cumple_nocumple_id`) REFERENCES `cumple_nocumple` (`id`);
+
+--
+-- Filtros para la tabla `plan_mejora`
+--
+ALTER TABLE `plan_mejora`
+  ADD CONSTRAINT `plan_mejora_restrink1` FOREIGN KEY (`opciones_id`) REFERENCES `opciones` (`id`),
+  ADD CONSTRAINT `plan_mejora_restrink2` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`);
 
 --
 -- Filtros para la tabla `programa`
@@ -2682,6 +3328,13 @@ ALTER TABLE `verificacion_2`
   ADD CONSTRAINT `verificacion_2_restrink1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`),
   ADD CONSTRAINT `verificacion_2_restrink2` FOREIGN KEY (`opciones_id`) REFERENCES `opciones` (`id`),
   ADD CONSTRAINT `verificacion_2_restrink3` FOREIGN KEY (`calificador_id`) REFERENCES `calificador` (`id`);
+
+--
+-- Filtros para la tabla `verificadorxempresa`
+--
+ALTER TABLE `verificadorxempresa`
+  ADD CONSTRAINT `verificador_restrink1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`),
+  ADD CONSTRAINT `verificador_restrink2` FOREIGN KEY (`persona_id`) REFERENCES `persona` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

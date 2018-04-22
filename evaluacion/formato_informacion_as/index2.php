@@ -1,4 +1,11 @@
 <?php 
+session_start();
+  if(!isset($_SESSION["vev_verificador"])){
+    header("Location:index.php");
+    exit();
+  }
+ ?>
+<?php 
 require_once('conexion.php');
  ?>
 <div id="test2" class="col s12" style="padding-right: 0px; padding-left: 0px">

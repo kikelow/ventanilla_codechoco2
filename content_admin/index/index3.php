@@ -1,3 +1,9 @@
+<?php 
+  if(!isset($_SESSION["vev_admin_contenido"])){
+    header("Location:index.php");
+    exit();
+  }
+ ?>
 <div class="row">
 	<div class="col s12"><h4 class="diagonal" style="text-align: center;">Contenidos</h4> <div class="divider" style=" background-color:  #00853b;"></div></div>
 </div>

@@ -1,3 +1,10 @@
+<?php 
+session_start();
+  if(!isset($_SESSION["vev_verificador"])){
+    header("Location:index.php");
+    exit();
+  }
+ ?>
  <?php 
  require_once('conexion.php');
  $i = 0;  
