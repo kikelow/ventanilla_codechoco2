@@ -1,3 +1,11 @@
+<?php 
+ob_start();
+session_start();
+  if(!isset($_SESSION["vev_admin_contenido"])){
+    header("Location:index.php");
+    // exit();
+  }else{
+ ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -90,3 +98,7 @@
   </script>
 </body>
 </html>
+<?php 
+}
+ob_end_flush();
+ ?>

@@ -8,12 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="../css/materialize.min.css" media="screen,projection">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="css/animate.min.css">
-  <link rel="stylesheet" type="text/css" href="css/estilo.css">
+  <link rel="stylesheet" type="text/css" href="../css/estilo.css">
   <link href="https://fonts.googleapis.com/css?family=Merriweather:700i" rel="stylesheet">
-  <link rel="stylesheet" href="css/animations.css" type="text/css">
-  <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-  <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
   <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:700|Londrina+Outline|Sniglet|Barlow" rel="stylesheet">
  
 </head>
@@ -23,7 +19,7 @@
 
   <div id="login-page" class="row" style="position: absolute;top:0;left:0;right:0;bottom: 0;margin:auto;width:25%;margin-top: 50px;">
     <div class="col s12 z-depth-4 card-panel">
-      <form class="login-form">
+      <form class="login-form" id="login">
         <div class="row">
           <div class="input-field col s12 center">
             <img src="../img/logo1.png" alt="" class="circle responsive-img valign profile-image-login" width="115" height="120">
@@ -51,7 +47,7 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <a href="#" class="btn waves-effect waves-light col s12 " style="background-color: #00853b">Iniciar sesión</a>
+            <a href="#" type="submit" id="btn_login" class="btn waves-effect waves-light col s12 " style="background-color: #00853b">Iniciar sesión</a>
           </div>
         </div>
       </form>
@@ -62,10 +58,9 @@
 
 <script src="../js/jquery.min.js"  type="text/javascript"></script>
 <script src="../js/materialize.min.js"  type="text/javascript"></script>
-<script src='js/css3-animate-it.js'></script>
-<script src='slick/slick.min.js'></script>
-<script src='js/slider_1.js'></script>
-<script src="js/style.js"  type="text/javascript"></script>
+
+<script type="text/javascript" src="../js/access.js"></script>
+
 <script type="text/javascript">
    $(document).ready(function(){
     $('.carousel.carousel-slider').carousel({fullWidth: true});

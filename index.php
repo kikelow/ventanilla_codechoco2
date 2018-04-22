@@ -1,3 +1,14 @@
+<?php 
+  session_start();
+  if (isset($_SESSION["vev_admin_contenido"])){
+    header("Location:index3.php");
+  }else if (isset($_SESSION["vev_verificador"])) {
+      header("Location:index2.php");
+  }else if (isset($_SESSION["vev_admin_verificador"])) {
+      // header("Location:index3.php");
+  }
+  else{
+ ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -134,5 +145,8 @@
    
       }); 
 </script>
+<?php 
+}
+?>
 
 

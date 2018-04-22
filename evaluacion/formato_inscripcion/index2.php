@@ -1,4 +1,12 @@
 <?php 
+// ob_start();
+// session_start();
+  if(!isset($_SESSION["vev_verificador"])){
+    header("Location:../../index.php");
+    exit();
+  }
+ ?>
+<?php 
  
  if (is_file('conexion.php')){
     
