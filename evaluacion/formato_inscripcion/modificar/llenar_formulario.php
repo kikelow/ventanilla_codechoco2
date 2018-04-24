@@ -5,6 +5,7 @@
     $identificacion ="";
     $razon_social = "";
     $persona_id ="";
+    $empresario_id="";
     $municipio_id = "";
     $vereda = "";
     $direccion_predio = "";
@@ -31,6 +32,7 @@
     $personeria="";
     $cmb_ope_actualidad="";
     $año_desp_registro="";
+    $observacion_general="";
     $s="SELECT * from empresa WHERE id = '$_POST[empresa_id]'";
             $r= mysqli_query($conn,$s) or die('Error');
             if(mysqli_num_rows($r)>0){
@@ -40,6 +42,7 @@
                 $identificacion=$rw['identificacion'];
                 $razon_social= $rw['razon_social'];
                 $persona_id = $rw['persona_id'];
+                $empresario_id = $rw['empresario_id'];
                 $municipio_id = $rw['municipio_id'];
                 $vereda = $rw['vereda'];
                 $direccion_predio = $rw['direccion'];
@@ -67,6 +70,7 @@
                 // $personeria= $rw[30];
                 $cmb_ope_actualidad = $rw['opera_actualmente_sino']; 
                 $año_desp_registro = $rw['año_func_desp_reg_camara'];
+                $observacion_general = $rw['obs_general'];
               } 
 
             }
@@ -80,13 +84,28 @@
     $s="SELECT * from persona WHERE id = '$persona_id'";
             $r= mysqli_query($conn,$s) or die('Error');
             if(mysqli_num_rows($r)>0){
-              while($rw=mysqli_fetch_array($r)){
-                $documento = $rw[1];
-                $nombre = $rw[2];
-                $correo=$rw[6];
-                $celular= $rw[7];
-                $fijo= $rw[8];
-                $direccion= $rw[9];
+              while($rw=mysqli_fetch_assoc($r)){
+                $documento = $rw['identificacion'];
+                $nombre = $rw['nombre1'];
+                $correo=$rw['correo'];
+                $celular= $rw['celular'];
+                $fijo= $rw['fijo'];
+                $direccion= $rw['direccion'];
+              } 
+
+            }
+
+    //seleccionar todos los datos del empresario
+        $documento_empresario ="";
+        $nombre_empresario ="";
+        $cargo_empresario ="";
+    $s="SELECT * from empresario WHERE id = '$empresario_id'";
+            $r= mysqli_query($conn,$s) or die('Error');
+            if(mysqli_num_rows($r)>0){
+              while($rw=mysqli_fetch_assoc($r)){
+                $documento_empresario = $rw['identificacion'];
+                $nombre_empresario = $rw['nombre'];
+                $cargo_empresario=$rw['cargo'];
               } 
 
             }
@@ -1293,6 +1312,45 @@ $otro_m = "";
       </span>
     </div>
     </li>
+    <li>
+<div class='collapsible-header' style='font-weight: bold;'><i class='material-icons'></i>5. Información del verificador y empresario</div>
+<div class='collapsible-body'>
+<span>     
+<div class='row' style='text-align: center;background-color: #bdbdbd;margin-bottom: 0px;'>5. Información del verificador y empresario</div>
+
+<div class='row' style='text-align: center;background-color: #e0e0e0;'>Empresario</div>
+<div class='row'>
+  <div class='input-field col s12 m4 l4'>
+    <input type='text' name='entrevistado_m' id='entrevistado_m' value='$nombre_empresario'>
+    <label for='entrevistado_m' class='activar'>Nombre del entrevistado</label>
+  </div>
+  <div class='input-field col s12 m4 l4'>
+    <input type='text' name='identificacion_entrevistado_m' id='identificacion_entrevistado_m' value='$documento_empresario'>
+    <label for='identificacion_entrevistado_m' class='activar'>Identificación</label>
+  </div>
+  <div class='input-field col s12 m4 l4'>
+    <input type='text' name='cargo_entrevistado_m' id='cargo_entrevistado_m' value='$cargo_empresario'>
+    <label for='cargo_entrevistado_m' class='activar'>Cargo</label>
+  </div>
+</div>
+</span>
+</div>
+</li>
+
+<li>
+<div class='collapsible-header' style='font-weight: bold;'><i class='material-icons'></i>6. Observaciones generales</div>
+<div class='collapsible-body'>
+<span>     
+<div class='row' style='text-align: center;background-color: #bdbdbd;margin-bottom: 0px;'>6. Observaciones generales</div>
+<div class='row'>
+  <div class='input-field col s12 m12 l12'>
+    <textarea id='observacion_general_m' name='observacion_general_m' class='materialize-textarea'>$observacion_general</textarea>
+    <label for='observacion_general_m' class='activar'>Observaciones Generales</label>
+  </div>
+</div>
+</span>
+</div>
+</li>
 </ul>
 <button  class='waves-effect yellow darken-4 btn right' style='margin-bottom: 8px' id='modificar_emp'><i class='material-icons right'>create</i>Modificar</button>
 <script type='text/javascript' src='js/accion_registro.js'></script>

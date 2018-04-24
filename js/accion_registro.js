@@ -299,6 +299,27 @@ else if ($('#b_lider').val()== $('#b1').val() || $('#b_lider').val()== $('#b2').
 	$('html, body').animate({scrollTop: $( $( '#bien_servi' ) ).offset().top}, 1000);
 	Materialize.toast('No debe estar dentro de los bienes o servicios enlistados anteriormente!', 2000)
 }
+else if ($('#entrevistado').val() == "") {
+	$('.collapsible').collapsible('close', 4);
+	 $('.collapsible').collapsible('open', 4);
+	 $('#entrevistado').focus().addClass("invalid")
+}
+else if ($('#identificacion_entrevistado').val() == "") {
+	$('.collapsible').collapsible('close', 4);
+	 $('.collapsible').collapsible('open', 4);
+	 $('#identificacion_entrevistado').focus().addClass("invalid")
+}
+else if ($('#cargo_entrevistado').val() == "") {
+	$('.collapsible').collapsible('close', 4);
+	 $('.collapsible').collapsible('open', 4);
+	 $('#cargo_entrevistado').focus().addClass("invalid")
+}
+else if ($('#observacion_general').val() == "") {
+	$('.collapsible').collapsible('close', 5);
+	 $('.collapsible').collapsible('open', 5);
+	 $('#observacion_general').focus().addClass("invalid")
+}
+
 else {
 	$.ajax({
 		url: 'emprendimiento/registro/insertar.php',
@@ -315,6 +336,7 @@ else {
   				},
 			});
     },success: function(respuesta) {
+    	// console.log(respuesta)
     	swal ({
   				icon: "success",
   				 text: "Datos INSERTADOS exitosamente!",
@@ -640,6 +662,26 @@ else if ($('#b_lider_m').val()== $('#bien_m1').val() || $('#b_lider_m').val()== 
 	$('#b_lider_m').focus().addClass("invalid")
 	$('html, body').animate({scrollTop: $( $( '#bien_servi_m' ) ).offset().top}, 1000);
 	Materialize.toast('No debe estar dentro de los bienes o servicios enlistados anteriormente!', 2000)
+}
+else if ($('#entrevistado_m').val() == "") {
+	$('.collapsible').collapsible('close', 4);
+	 $('.collapsible').collapsible('open', 4);
+	 $('#entrevistado_m').focus().addClass("invalid")
+}
+else if ($('#identificacion_entrevistado_m').val() == "") {
+	$('.collapsible').collapsible('close', 4);
+	 $('.collapsible').collapsible('open', 4);
+	 $('#identificacion_entrevistado_m').focus().addClass("invalid")
+}
+else if ($('#cargo_entrevistado_m').val() == "") {
+	$('.collapsible').collapsible('close', 4);
+	 $('.collapsible').collapsible('open', 4);
+	 $('#cargo_entrevistado_m').focus().addClass("invalid")
+}
+else if ($('#observacion_general_m').val() == "") {
+	$('.collapsible').collapsible('close', 5);
+	 $('.collapsible').collapsible('open', 5);
+	 $('#observacion_general_m').focus().addClass("invalid")
 }
 else {
 	$('#mensaje_educativo2').html(" ")

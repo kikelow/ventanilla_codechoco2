@@ -32,7 +32,7 @@
             <i class="material-icons">person</i>
           </div>
           <div class="input-field col s12 m10 l10">
-            <input id="username" type="text">
+            <input id="username" type="text" autofocus>
             <label for="username" class="center-align">Usuario</label>
           </div>
         </div>
@@ -58,6 +58,7 @@
 
 <script src="../js/jquery.min.js"  type="text/javascript"></script>
 <script src="../js/materialize.min.js"  type="text/javascript"></script>
+<script type="text/javascript" src="../js/sweetalert.js"></script>
 
 <script type="text/javascript" src="../js/access.js"></script>
 

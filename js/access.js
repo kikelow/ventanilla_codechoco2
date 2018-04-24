@@ -27,14 +27,33 @@ $(document).ready(function() {
 			.done(function(data) {
 				// if (data == true) {
 					if (data == '1') {
+						swal({
+						  icon: "success",
+						  text:"Redireccionando",
+						  button: false,
+						});
 					window.location.replace("../index3.php");
 					}else if (data == '2') {
+						swal({
+						  icon: "success",
+						  text:"Redireccionando",
+						  button: false,
+						});
 						window.location.replace("../index2.php");
 					}
 					else if (data == '3') {
+						swal({
+						  icon: "success",
+						  text:"Redireccionando",
+						  button: false,
+						});
 						alert('administrador verificador')
 					}else if (!data) {
-						alert('No existe')
+						swal({
+						  icon: "error",
+						  text:"Datos incorrectos, intentalo nuevamente.",
+						  button: true,
+						});
 					}
 				// }
 				// else{
