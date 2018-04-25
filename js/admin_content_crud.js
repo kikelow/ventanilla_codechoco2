@@ -94,7 +94,7 @@ $('#btn_guardar_content').click(function(event) {
             visible: false
           },
       });
-      //window.setTimeout('location.reload()', 1000);
+      window.setTimeout('location.reload()', 1000);
     }
   })
 });
@@ -151,7 +151,7 @@ function editar_qs(){
 			  button: false
 			});
 			
-			//window.setTimeout('location.reload()', 1000);
+			window.setTimeout('location.reload()', 1000);
 		}
 	});
 }
@@ -300,6 +300,114 @@ function borrar_datos_nt(id){
 
 ///////////////////////////////////////////////////////////////////////////////////////////77
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////        para archivos       ///////////////////////////////
+
+
+
+$('#btn_guardar_archivo').click(function() {
+
+	var formData = new FormData($("#archivo_form")[0]);
+	    var ruta = "content_admin/content_save/guardar_file.php";
+	    $.ajax({
+	        url: ruta,
+	        type: "POST",
+	        data: formData,
+	        contentType: false,
+	        processData: false,
+	    success: function(datos)
+	        {
+	            $("#respuesta").html(datos);
+	        }
+	 });
+});
+
+
+function cargar_datos_nt(id){
+	$.ajax({
+	type: "POST",
+	url: "content_admin/content_load/cargar_nt.php",
+	data: {id:id},
+	cache: false,
+		success: function(result){
+
+			if (result != false) {
+
+			console.log(result);
+			var content = $.parseJSON(result);
+
+					//$('.oculto').show('slow')
+ 					$('#id_nt').val(content["id"]);
+   					$('#titulo_nt').val(content["titulo"]);
+	   				$('#autor_nt').val(content["fuente_autor"]);
+					$('#descripcion_nt').trumbowyg('html',content["descripcion"] );
+					$('#imagen_nt').val(content["id_img_page"]);
+					$('#imagen_nt').material_select();
+				
+			} 
+		}			
+	});
+}
+
+
+function editar_nt(){
+
+	var datos = {
+		"id":$('#id_nt').val(),
+		"titulo":$('#titulo_nt').val(),
+		"descripcion":$('#descripcion_nt').val(),
+		"autor":$('#autor_nt').val(),
+		"imagen":$('#imagen_nt').val()
+	}
+
+	$.ajax({
+	type: "POST",
+	url: "content_admin/content_edit/editar_nt.php",
+	data: datos,
+	cache: false,
+		success: function(result){
+			swal({
+			  title: "Muy Bien!",
+			  text: "Registro actualizado satisfactoriamente!",
+			  icon: "success",
+			  button: false
+			});
+			
+			//window.setTimeout('location.reload()', 1000);
+		}
+	});
+}
+
+function borrar_datos_nt(id){
+	swal({
+	  title: "Estás seguro?",
+	  text: "Una vez eliminado, no podrá recuperar este registro!",
+	  icon: "warning",
+	  buttons: true,
+	  dangerMode: true,
+	})
+	.then((willDelete) => {
+	  if (willDelete) {
+	    $.ajax({
+		type: "POST",
+		url: "content_admin/content_delete/borrar_nt.php",
+		data: {id:id},
+		cache: false,
+			success: function(result){
+				swal("¡El registro ha sido eliminado!", {
+			      icon: "success",
+			    });
+				window.setTimeout('location.reload()',900); 
+			}
+		});
+	  } else {
+	    swal("¡Tu registro está seguro!");
+	  }
+	});
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////77
 
 $('#btn_guardar_image').click(function() {
 

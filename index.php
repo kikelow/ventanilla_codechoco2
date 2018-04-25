@@ -133,6 +133,7 @@
 <script src='slick/slick.min.js'></script>
 <script src='js/slider_1.js'></script>
 <script src="js/style.js"  type="text/javascript"></script>
+<script src="js/cargar_noticia.js"  type="text/javascript"></script>
 <script type="text/javascript">
    $(document).ready(function(){
     $('.carousel.carousel-slider').carousel({fullWidth: true});

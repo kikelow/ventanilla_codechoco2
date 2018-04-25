@@ -26,6 +26,16 @@ session_start();
 </head>
 <body>
 
+<nav class="black-text navbar-fixed grey lighten-4 right" style="width: 80%"> 
+  <div class="nav-wrapper">
+      <!-- <a href="#" class="brand-logo">Logo</a> -->
+      <ul id="nav-mobile" class="right ">
+        <li><a href="access/cerrar_sesion.php" class="black-text"><i class="material-icons">power_settings_new</i></a></li>
+        <!-- <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li> -->
+      </ul>
+    </div>
+    </nav>
 
 <aside id="left-sidebar-nav" >
   <ul id="nav-mobile" class="side-nav fixed  grey lighten-4 " style="padding-top: 10px;width: 19%;">

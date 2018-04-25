@@ -1,45 +1,4 @@
-<!-- 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>templete</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="../../css/materialize.min.css" media="screen,projection">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="../../css/estilo.css">
-  <link href="https://fonts.googleapis.com/css?family=Merriweather:700i" rel="stylesheet">
-  <link rel="stylesheet" href="css/animations.css" type="text/css">
-    <link rel="stylesheet" href="css/w3.css" type="text/css">
-  <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-  <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-  <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Sniglet|Nanum+Myeongjo:800" rel="stylesheet">
-</head>
-<script src="../../js/jquery.min.js"  type="text/javascript"></script>
-
-<body >
-
-      <div class="nav animatedParent">
-      <div id="div_logo" class="animated growIn slow">
-        <a  class="brand-logo" href="#"><img class="logo" id="logo" src="../../img/logo1.png" style="width:118px;height:118px;padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;padding-top: 5px;"></a> 
-      </div>
-      
-      <ul class="hide-on-med-and-down" >
-        <li><a class="sub_line"  href="index.php?modulo=emprendimiento/inicio">Inicio</a></li>
-            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/q_somos">¿Quienes Somos?</a></li>
-            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/m_verdes">Negocios Verdes</a></li>
-            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/registro">Registro</a></li>
-            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/noticias">Noticias</a></li>  
-            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/m_evaluados">Negocios Evaluados</a></li>
-            <li><a class="sub_line" style="margin-right:  10px;font-family: 'Sniglet', cursive" href="#">Documentación</a></li>
-        <li><a style="font-family: 'Sniglet', cursive" href="access/login.php" class="active hoverable">Login</a></li>
-      </ul>
-  </div> -->
-
-<!-- <div id="contenedor" style="min-height: 701px;">
-
-<section id="base" style="min-height: 700px;background-color: white"> -->
 <div class="contenedor">
 	<div class="row" style="margin-top: 150px;">
 		<div class="col s12 m5 l5">

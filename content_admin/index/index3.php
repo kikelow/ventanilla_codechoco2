@@ -408,7 +408,26 @@
   					<div class='file-path-wrapper'>
     					<input class='file-path validate' type='text' >
   					</div>  
-    			</div>   			
+    			</div> 
+
+    			<div class="input-field col s12">
+				  		    <select name="contenido" id="contenido">
+				  		      <option value="" disabled selected>Seleccione...</option>
+				  
+				  				<?php 
+				  				$s = "SELECT * from contenido order by id asc";
+				  				$r = mysqli_query($conn,$s) or die (mysqli_error($conn));
+				  				if (mysqli_num_rows($r)>0) {
+				  					while ($data=mysqli_fetch_assoc($r)) {
+				  				?>
+				  		      <option value="<?php echo $data['id'] ?>"><?php echo $data['titulo'] ?></option>			   
+				  				<?php }
+				  				} ?>
+				  			 </select>
+				  		    <label>Contenido</label>
+				  	</div>
+
+
 	      </form>
 			<div class="col s12">
 				<a href="#!" id="btn_guardar_archivo" class="waves-effect waves-white btn-flat white-text right" style=" background-color:  #00853b;margin-top: 10px;">Guardar</a>  
@@ -424,11 +443,11 @@
 			          	  <th>ID</th>
 			              <th>Nombre</th>
 			              <th>Ruta</th>
-			             
+			              <th>Contenido</th>
 			          </tr>
 			        </thead>
 					<?php 
-					$s = "SELECT * from img_page ";
+					$s = "SELECT a.id,a.nombre,a.ruta,c.titulo as contenido from archivo_page a,contenido c where a.contenido_id = c.id ";
 					$r = mysqli_query($conn,$s) or die (mysqli_error($conn));
 					if (mysqli_num_rows($r)>0) {
 						while ($data=mysqli_fetch_assoc($r)) {
@@ -438,6 +457,7 @@
 				          	<td><?php echo "$data[id]"; ?></td>
 				            <td><?php echo "$data[nombre]"; ?></td>
 				            <td><?php echo "$data[ruta]"; ?></td>
+				            <td><?php echo "$data[contenido]"; ?></td>
 				            <td><a href="#modal_editar_content_q_somos" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
 				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
 				          </tr>
