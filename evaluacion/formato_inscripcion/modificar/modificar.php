@@ -2,11 +2,13 @@
 include "../../../conexion.php";
 	$empresa = $_GET['empresa'];
 	$persona_id="";
+	$empresario_id = "";
 
-	$s="SELECT persona_id FROM empresa WHERE id = '$empresa'";
+	$s="SELECT persona_id,empresario_id FROM empresa WHERE id = '$empresa'";
 	$cs=mysqli_query($conn,$s);
-	while($resul=mysqli_fetch_array($cs)){
-		$persona_id=$resul[0];
+	while($resul=mysqli_fetch_assoc($cs)){
+		$persona_id=$resul['persona_id'];
+		$empresario_id=$resul['empresario_id'];
 	}
 
 // modificar los datos del representante legal
@@ -17,6 +19,12 @@ $s = "UPDATE `persona` SET `identificacion`='$_POST[documento_m]',
 	`fijo`='$_POST[fijo_m]',
 	`direccion`='$_POST[direccion_c_m]'
 	WHERE id = '$persona_id'";
+	mysqli_query($conn,$s);	
+
+// modificar los datos del empresario entrevistado
+$s = "UPDATE `empresario` SET `identificacion`='$_POST[identificacion_entrevistado_m]',
+	`nombre`='$_POST[entrevistado_m]',
+	`cargo`='$_POST[cargo_entrevistado_m]' WHERE id = '$empresario_id'";
 	mysqli_query($conn,$s);	
 
 //modificar datos de la tabla persona
@@ -44,7 +52,8 @@ $s = "UPDATE `persona` SET `identificacion`='$_POST[documento_m]',
 	`const_legalmente_sino`='$_POST[cmb_legal_m]',
 	`año_funcionamiento`='$_POST[legal_m]',
 	`opera_actualmente_sino`='$_POST[cmb_ope_actualidad_m]',
-	`año_func_desp_reg_camara`='$_POST[año_desp_registro_m]' WHERE id = '$empresa'";
+	`año_func_desp_reg_camara`='$_POST[año_desp_registro_m]',
+	`obs_general`='$_POST[observacion_general_m]' WHERE id = '$empresa'";
 	mysqli_query($conn,$s) ;
 
 // modificar datos en la tabla empleado sexo

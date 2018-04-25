@@ -21,11 +21,11 @@
     }
  ?>
  <div  class="col s12" style="padding-right: 0px; padding-left: 0px">
+          <center><h4 style="margin-top: 0px">Sección para Registrar</h4></center>
   <div  class="col s12 " style="margin-left: -15px; width: 100%">
     <section id="" style="">
       <div class="row">
         <div class="col s12 m12 l12" style="padding-left: 0px; padding-right: 0px">
-          <center><h4 style="margin-top: 0px">Sección para Registrar</h4></center>
           <div class="card grey lighten-4 " style="height: auto;display:inline-block;width: 98%;margin-left: 20px; margin-top: 0px">
             <div class="card-content black-text">
                 <!-- <div class="col s12 m12 l12"> -->
@@ -785,25 +785,7 @@
 <div class="collapsible-body">
 <span>     
 <div class="row" style="text-align: center;background-color: #bdbdbd;margin-bottom: 0px;">5. Información del verificador y empresario</div>
-<!-- <div class="row" style="text-align: center;background-color: #e0e0e0;">Verificador</div>
-<div class="row">
-  <div class="input-field col s12 m3 l3">
-    <input type="text" name="" id="1">
-    <label for="1">Nombre del verificador</label>
-  </div>
-  <div class="input-field col s12 m3 l3">
-    <input type="text" name="" id="2">
-    <label for="2">Entidad</label>
-  </div>
-  <div class="input-field col s12 m3 l3">
-    <input type="text" name="" id="3">
-    <label for="3">Area</label>
-  </div>
-  <div class="input-field col s12 m3 l3">
-    <input type="text" name="" id="4">
-    <label for="4">Cargo</label>
-  </div>
-</div> -->
+
 <div class="row" style="text-align: center;background-color: #e0e0e0;">Empresario</div>
 <div class="row">
   <div class="input-field col s12 m4 l4">
@@ -830,7 +812,7 @@
 <div class="row" style="text-align: center;background-color: #bdbdbd;margin-bottom: 0px;">6. Observaciones generales</div>
 <div class="row">
   <div class="input-field col s12 m12 l12">
-    <textarea id="observacion_general" id="observacion_general" class="materialize-textarea"></textarea>
+    <textarea id="observacion_general" name="observacion_general" class="materialize-textarea"></textarea>
     <label for="observacion_general">Observaciones Generales</label>
   </div>
 </div>

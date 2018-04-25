@@ -1,10 +1,4 @@
-<?php 
-session_start();
-  if(!isset($_SESSION["vev_admin_contenido"])){
-    header("Location:index.php");
-    exit();
-  }
- ?>
+
 <?php 
 	 require_once ('../../mpdf60/mpdf.php');
 if(isset($_GET["empresa"])){
