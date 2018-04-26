@@ -109,7 +109,7 @@
 				            <td><a href="#content_form" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
 				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
 				          </tr>
-			      		</tbody>
+			      		
 					<?php }
 					} ?>
 			        </tbody>
@@ -148,7 +148,7 @@
 				            <td><a href="#form_content" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
 				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
 				          </tr>
-			      		</tbody>
+			      		
 					<?php }
 					} ?>
 			        </tbody>
@@ -189,7 +189,7 @@
 				            <td><a href="#content_form" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
 				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
 				          </tr>
-			      		</tbody>
+			      		
 					<?php }
 					} ?>
 			        </tbody>
@@ -231,7 +231,7 @@
 				            <td><a href="#modal_editar_content_q_somos" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_nt('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
 				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_nt('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
 				          </tr>
-			      		</tbody>
+			      	
 					<?php }
 					} ?>
 			        </tbody>
@@ -370,7 +370,7 @@
 				            <td><a href="#modal_editar_content_q_somos" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
 				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
 				          </tr>
-			      		</tbody>
+			      	
 					<?php }
 					} ?>
 			        </tbody>
@@ -464,7 +464,7 @@
 			      		</tbody>
 					<?php }
 					} ?>
-			        </tbody>
+
 			      </table>
 	</div>
 

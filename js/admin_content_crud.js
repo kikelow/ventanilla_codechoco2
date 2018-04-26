@@ -426,3 +426,88 @@ $('#btn_guardar_image').click(function() {
 	 });
 });
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////7777
+////////////////////////////////////////7 para usuarios ///////////////////////////////////////////////7
+
+
+function cargar_datos_usuario(id){
+	$.ajax({
+	type: "POST",
+	url: "content_admin/content_load/cargar_usuario.php",
+	data: {id:id},
+	cache: false,
+		success: function(result){
+
+			if (result != false) {
+
+			console.log(result);
+			var content = $.parseJSON(result);
+
+					$('.oculto4').show('slow');
+ 					$('#id').val(content["id"]);
+   					$('#usuario').val(content["usuario"]);
+	   				$('#clave').val(content["clave"]);
+					$('#empleado').val(content["persona_id"]);
+					$('#empleado').material_select();
+				
+			} 
+		}			
+	});
+}
+
+
+function editar_usuario(){
+
+	var datos = {
+		"id":$('#id').val(),
+		"usuario":$('#usuario').val(),
+		"clave":$('#clave').val(),
+		"persona_id":$('#empleado').val()
+	
+	}
+
+	$.ajax({
+	type: "POST",
+	url: "content_admin/content_edit/editar_usuario.php",
+	data: datos,
+	cache: false,
+		success: function(result){
+			swal({
+			  title: "Muy Bien!",
+			  text: "Registro actualizado satisfactoriamente!",
+			  icon: "success",
+			  button: false
+			});
+			
+			window.setTimeout('location.reload()', 1000);
+		}
+	});
+}
+
+function borrar_datos_usuario(id){
+	swal({
+	  title: "Estás seguro?",
+	  text: "Una vez eliminado, no podrá recuperar este registro!",
+	  icon: "warning",
+	  buttons: true,
+	  dangerMode: true,
+	})
+	.then((willDelete) => {
+	  if (willDelete) {
+	    $.ajax({
+		type: "POST",
+		url: "content_admin/content_delete/borrar_usuario.php",
+		data: {id:id},
+		cache: false,
+			success: function(result){
+				swal("¡El registro ha sido eliminado!", {
+			      icon: "success",
+			    });
+				window.setTimeout('location.reload()',900); 
+			}
+		});
+	  } else {
+	    swal("¡Tu registro está seguro!");
+	  }
+	});
+}
