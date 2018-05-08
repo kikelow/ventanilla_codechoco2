@@ -32,14 +32,18 @@ $(document).ready(function() {
 						  text:"Redireccionando",
 						  button: false,
 						});
-					window.location.replace("../index3.php");
+						setInterval(function(){
+							window.location.replace("../index3.php", 50000);
+						},1000)
 					}else if (data == '2') {
 						swal({
 						  icon: "success",
 						  text:"Redireccionando",
 						  button: false,
 						});
-						window.location.replace("../index2.php");
+						setInterval(function(){
+							window.location.replace("../index2.php", 50000);
+						},1000)
 					}
 					else if (data == '3') {
 						swal({
