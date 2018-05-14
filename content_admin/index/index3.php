@@ -227,7 +227,7 @@
 				            <td><?php echo "$data[titulo]"; ?></td>
 				            <td><?php echo "$data[fecha_publicacion]"; ?></td>
 				            <td><?php echo "$data[fuente_autor]"; ?></td>
-				            <td><?php echo "$data[imagen]"; ?></td>
+				           <!--  <td><?php echo "$data[imagen]"; ?></td> -->
 				            <td><a href="#modal_editar_content_q_somos" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_nt('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
 				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_nt('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
 				          </tr>
@@ -352,7 +352,7 @@
 			          <tr>
 			          	  <th>ID</th>
 			              <th>Nombre</th>
-			              <th>Ruta</th>
+			              <th>Ruta Imagen</th>
 			             
 			          </tr>
 			        </thead>
@@ -389,7 +389,7 @@
 <div class="row">
 	<div class="col s12">
 		<a class="waves-effect waves-light btn right " style=" background-color:  #00853b;" id="btn_cerrar_archivo">Cerrar</a>
-		<a class="waves-effect waves-light btn right " style=" background-color:  #00853b;margin-right: 10px;" id="btn_new_archivo">Nueva Archivo</a>
+		<a class="waves-effect waves-light btn right " style=" background-color:  #00853b;margin-right: 10px;" id="btn_new_archivo">Nuevo Archivo</a>
 	</div>
 
 	<div class="col s12">
@@ -442,7 +442,7 @@
 			          <tr>
 			          	  <th>ID</th>
 			              <th>Nombre</th>
-			              <th>Ruta</th>
+			              <th>Ruta Archivo</th>
 			              <th>Contenido</th>
 			          </tr>
 			        </thead>
@@ -471,8 +471,101 @@
 </div>
 
 <!-- modales -->
-      
+
+<!-- para slidee -->
+
+<div class="row">
+	<div class="col s12"><h4 class="diagonal" style="text-align: center;">Slide</h4> <div class="divider" style=" background-color:  #00853b;"></div></div>
+</div>
 
 
-      
+<div class="row">
+	<div class="col s12">
+		<a class="waves-effect waves-light btn right " style=" background-color:  #00853b;" id="btn_cerrar_slide">Cerrar</a>
+		<a class="waves-effect waves-light btn right " style=" background-color:  #00853b;margin-right: 10px;" id="btn_new_slide">Nuevo Slide</a>
+	</div>
 
+	<div class="col s12">
+		<div class="oculto5 s12">
+		<form action="" id="slide_form" method="post">
+	      		<div class="input-field col s12">
+	             <input placeholder="" id="titulo_slide" type="text" class="validate" name="titulo_slide">
+	             <label for="titulo">Titulo</label>
+    	        </div>					
+
+    	        <div class="input-field col s12">
+			          <textarea id="descripcion_slide" class="materialize-textarea" name="descripcion_slide"></textarea>
+			          <label for="textarea">Descripción</label>
+			        </div> 
+
+				<!--  <div class='file-field input-field col s12'>
+     				<div class='btn'>
+    					<span>Archivo</span>
+    					<input type='file' name='file' id='file'>
+  					</div>
+  					<div class='file-path-wrapper'>
+    					<input class='file-path validate' type='text' >
+  					</div>  
+    			</div>  -->
+
+    			<div class="input-field col s12">
+				  		    <select name="img_slide" id="img_slide">
+				  		      <option value="" disabled selected>Seleccione...</option>
+				  
+				  				<?php 
+				  				$s = "SELECT * from img_page order by id asc";
+				  				$r = mysqli_query($conn,$s) or die (mysqli_error($conn));
+				  				if (mysqli_num_rows($r)>0) {
+				  					while ($data=mysqli_fetch_assoc($r)) {
+				  				?>
+				  		      <option value="<?php echo $data['id'] ?>"><?php echo $data['nombre'] ?></option>			   
+				  				<?php }
+				  				} ?>
+				  			 </select>
+				  		    <label>Imagen</label>
+				  	</div>
+
+
+	      </form>
+			<div class="col s12">
+				<a href="#!" id="btn_guardar_slide" class="waves-effect waves-white btn-flat white-text right" style=" background-color:  #00853b;margin-top: 10px;">Guardar</a>  
+			</div>
+		</div>
+	</div>
+
+	<div class="col s12">
+		 <table class="responsive-table highlight" id="tabla_img">
+			        <thead>
+			          <tr>
+			          	  <th>ID</th>
+			              <th>Titulo</th>
+			              <th>Descripción</th>
+			              <th>Ruta Imagen</th>
+			          </tr>
+			        </thead>
+				 	<?php 
+					$s = "SELECT a.id,a.titulo,a.descripcion,i.ruta as ruta from slide a,img_page i where a.img_page_id = i.id ";
+					$r = mysqli_query($conn,$s) or die (mysqli_error($conn));
+					if (mysqli_num_rows($r)>0) {
+						while ($data=mysqli_fetch_assoc($r)) {
+					?> 
+			      	   <tbody>
+				          <tr>
+				          	<td><?php echo "$data[id]"; ?></td>
+				            <td><?php echo "$data[titulo]"; ?></td>
+				            <td><?php echo "$data[descripcion]"; ?></td>
+				            <td><?php echo "$data[ruta]"; ?></td>
+				            <td><a href="#modal_editar_content_q_somos" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
+				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
+				          </tr>
+			      		</tbody>
+					<?php }
+					} ?>
+
+			      </table> 
+	</div>
+	
+
+</div>
+
+<!-- modales -->

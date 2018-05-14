@@ -36,6 +36,10 @@ $('#btn_new_image2').attr('disabled','disabled');
 $('#btn_new_image').click(function() {
 	
 	if ($('.oculto2').show('slow')) {
+
+		$('#nombre_imagen').focus();
+		$('html, body').animate({scrollTop: $( $( '#nombre_imagen' ) ).offset().top}, 500);
+
 		$('#btn_new_image').attr('disabled','disabled');
 		$('#btn_new_image2').removeAttr('disabled','disabled');
 	}	
@@ -56,6 +60,10 @@ $('#btn_cerrar_archivo').attr('disabled','disabled');
 $('#btn_new_archivo').click(function() {
 	
 	if ($('.oculto3').show('slow')) {
+
+		$('#nombre_archivo').focus();
+		$('html, body').animate({scrollTop: $( $( '#nombre_archivo' ) ).offset().top}, 500);
+
 		$('#btn_new_archivo').attr('disabled','disabled');
 		$('#btn_cerrar_archivo').removeAttr('disabled','disabled');
 	}	
@@ -70,6 +78,32 @@ $('#btn_cerrar_archivo').click(function() {
 	}
 });
 
+/////////////////////////////////////////////////////////////
+/////////// para slide//////////////////////////////////
+
+$('#btn_cerrar_slide').attr('disabled','disabled');
+$('#btn_new_slide').click(function() {
+	
+	if ($('.oculto5').show('slow')) {
+
+		$('#titulo_slide').focus();
+		$('html, body').animate({scrollTop: $( $( '#titulo_slide' ) ).offset().top}, 500);
+
+		$('#btn_new_slide').attr('disabled','disabled');
+		$('#btn_cerrar_slide').removeAttr('disabled','disabled');
+	}	
+});
+
+
+$('#btn_cerrar_slide').click(function() {
+	
+	if ($('.oculto5').hide('slow')) {
+		$('#btn_new_slide').removeAttr('disabled','disabled');
+		$('#btn_cerrar_slide').attr('disabled','disabled');
+	}
+});
+
+///////////////////////////////////////////////////////////
 
 // guardar content 
 $('#btn_guardar_content').click(function(event) {
@@ -509,5 +543,65 @@ function borrar_datos_usuario(id){
 	  } else {
 	    swal("¡Tu registro está seguro!");
 	  }
+	});
+}
+
+////////////////////// slide ///////////////////////////////
+
+$('#btn_guardar_slide').click(function(event) {
+  event.preventDefault();
+  $.ajax({
+    url: 'content_admin/content_save/guardar_slide.php',
+    type: 'POST',
+    data: $('#slide_form').serialize(),
+    beforeSend: function() {
+    swal ({
+          // icon: "success",
+           text: "Procesando información!",
+           button: {
+            visible: false
+          },
+      });
+    },success: function(respuesta) {
+      swal ({
+          icon: "success",
+           text: "Datos Guardados Exitosamente!",
+           button: {
+            visible: false
+          },
+      });
+      //window.setTimeout('location.reload()', 1000);
+    }
+  })
+});
+
+
+///////////7 edit ///////////////////
+
+function editar_usuario(){
+
+	var datos = {
+		"id":$('#id').val(),
+		"usuario":$('#usuario').val(),
+		"clave":$('#clave').val(),
+		"persona_id":$('#empleado').val()
+	
+	}
+
+	$.ajax({
+	type: "POST",
+	url: "content_admin/content_edit/editar_usuario.php",
+	data: datos,
+	cache: false,
+		success: function(result){
+			swal({
+			  title: "Muy Bien!",
+			  text: "Registro actualizado satisfactoriamente!",
+			  icon: "success",
+			  button: false
+			});
+			
+			window.setTimeout('location.reload()', 1000);
+		}
 	});
 }

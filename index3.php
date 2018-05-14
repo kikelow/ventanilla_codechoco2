@@ -30,7 +30,7 @@ session_start();
   <div class="nav-wrapper">
       <!-- <a href="#" class="brand-logo">Logo</a> -->
       <ul id="nav-mobile" class="right ">
-        <li><a href="access/cerrar_sesion.php" class="black-text"><i class="material-icons">power_settings_new</i></a></li>
+        <li><a href="access/cerrar_sesion.php" class="black-text tooltipped" data-position="left" data-tooltip="cerrar sesión"><i class="material-icons">power_settings_new</i></a></li>
         <!-- <li><a href="badges.html">Components</a></li>
         <li><a href="collapsible.html">JavaScript</a></li> -->
       </ul>

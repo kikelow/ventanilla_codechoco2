@@ -34,22 +34,18 @@ $limite_kb = 10240;
         			}else{
         				echo "Error al guardar";
         			}
-
 		        }else 
 					{
 					echo "error al subir el archivo";		        
-
 		        }
         }
         else
         {
         	echo "Ha excedido la el tamaño permito de carga para archivos";
         }
-
     }
     else{
        
     	echo "Debe seleccionar una archivo";
-
     }    
 // ?>
