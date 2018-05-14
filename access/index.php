@@ -5,6 +5,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Inicio de Sesión</title>
+
+  <link rel="shortcut icon" href="../img/favicon2.ico" type="image/x-icon">
+ 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="../img/favicon2.ico" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="../css/materialize.min.css" media="screen,projection">
