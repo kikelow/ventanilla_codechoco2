@@ -67,7 +67,7 @@
 
 		      </form>
 			<div class="col s12">
-				<a href="#!" id="btn_guardar_content" class="modal-action modal-close waves-effect waves-white btn-flat white-text right" style=" background-color:  #00853b;margin-top: 10px;">Guardar</a>
+				<a href="#!" id="btn_guardar_content" class="waves-effect waves-white btn-flat white-text right" style=" background-color:  #00853b;margin-top: 10px;">Guardar</a>
 				<a href="#!" id="btn_modifcar_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="editar_qs()">Modificar</a>
 			</div>
 		</div>
@@ -145,7 +145,7 @@
 				            <td><?php echo "$data[titulo]"; ?></td>
 				            <td><?php echo "$data[alias]"; ?></td>
 				            <td><?php echo "$data[imagen]"; ?></td>
-				            <td><a href="#form_content" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
+				            <td><a href="#content_form" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
 				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
 				          </tr>
 			      		
@@ -228,7 +228,7 @@
 				            <td><?php echo "$data[fecha_publicacion]"; ?></td>
 				            <td><?php echo "$data[fuente_autor]"; ?></td>
 				           <!--  <td><?php echo "$data[imagen]"; ?></td> -->
-				            <td><a href="#modal_editar_content_q_somos" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_nt('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
+				            <td><a href="#content_form_nt" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_nt('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
 				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_nt('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
 				          </tr>
 			      	
@@ -367,7 +367,7 @@
 				          	<td><?php echo "$data[id]"; ?></td>
 				            <td><?php echo "$data[nombre]"; ?></td>
 				            <td><?php echo "$data[ruta]"; ?></td>
-				            <td><a href="#modal_editar_content_q_somos" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
+				            <td><a href="#image_form" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
 				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
 				          </tr>
 			      	

@@ -49,7 +49,7 @@
             <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/noticias">Noticias</a></li>  
             <li><a class="sub_line" style="margin-right:10px;font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/m_evaluados">Negocios Evaluados</a></li>
             
-        <li><a style="font-family: 'Sniglet', cursive" href="access/index.php" class="active hoverable">Login</a></li>
+        <li><a style="font-family: 'Sniglet', cursive" href="access/index.php" class="active hoverable">Iniciar Sesión</a></li>
       </ul>
   </div>
 

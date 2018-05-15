@@ -262,7 +262,7 @@ function cargar_datos_nt(id){
 			console.log(result);
 			var content = $.parseJSON(result);
 
-					//$('.oculto').show('slow')
+					// $('.oculto').show('slow')
  					$('#id_nt').val(content["id"]);
    					$('#titulo_nt').val(content["titulo"]);
 	   				$('#autor_nt').val(content["fuente_autor"]);
