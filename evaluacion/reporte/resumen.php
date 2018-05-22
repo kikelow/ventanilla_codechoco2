@@ -41,6 +41,14 @@ if(isset($_GET["empresa"])){
    while ($rw=mysqli_fetch_assoc($r)) {
     $lider = $rw['lider'];
    }
+
+$verificador='';
+   $s = "SELECT concat(persona.nombre1,' ',ifnull(persona.nombre2,' '),' ',persona.apellido1,' ',persona.paellido2) as verificador FROM verificadorxempresa
+   INNER JOIN persona ON persona.id = verificadorxempresa.persona_id";
+   $r = mysqli_query($conn,$s);
+   while ($rw=mysqli_fetch_assoc($r)) {
+    $verificador = $rw['verificador'];
+   }
 // Cabezera del pdf
    $cabezera='
    <div style="text-align: right; font-weight: bold;">
@@ -160,7 +168,7 @@ if(isset($_GET["empresa"])){
          Nombre del verificador
         </th>
         <td >
-         Yovanny
+         '.$verificador.'
         </td>
         <th align="center">
           Operador
