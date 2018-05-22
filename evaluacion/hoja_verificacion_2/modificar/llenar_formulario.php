@@ -1187,6 +1187,35 @@ $s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.
           </tbody>
         </table>
 ';
+echo '<table style="margin-top:20px;width:100%">
+          <thead>
+            <tr>
+              <th style="width: 100%; background-color:#a5d6a7" class="green center" colspan="2">Resultado Nivel 1 + Nivel 2</th>
+            </tr>
+            <tr>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="width: 90%">Puntaje Total. Criterios de Cumplimiento de Negocios Verdes</td>
+              <td id="puntaje1m" style="width: 10%">'.$prom_total1.'%</td>
+            </tr>
+            <tr>
+              <td>Puntaje Total.  Criterios Adicionales (ideales) Negocios Verdes</td>
+              <td id="puntaje2m">'.$prom_total2.'%</td>
+            </tr>
+            <tr>';
+              $suma_total3 = $prom_total1+$prom_total2;
+              $resultado= round($suma_total3/2, 2);
+           echo '
+              <th class=" grey lighten-1">Resultado</th>
+              <th class="grey lighten-1" id="resultado">'.$resultado.'% </th>
+               <input type="hidden" name="prom_form_m" value="'.$resultado.'" id="prom_form_m" />
+            </tr>
+            
+          </tbody>
+        </table>';
 
           echo"<hr>  <button  class=' yellow darken-4 btn right' style='margin-bottom: 8px' id='modificar_verificacion2'><i class='material-icons right'>create</i>Modificar</button>
 

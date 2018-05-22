@@ -557,8 +557,10 @@ promedio1,promedio2,promedio3,promedio4,promedio5,promedio6,promedio7,promedio8,
 	var prom_total = suma_total/division
 	if (isNaN(prom_total)) {
 		$('#total').html(' ')
+		$('#puntaje1').html('0.00%')
 	}else {	
 	$('#total').html(prom_total.toFixed(2)+'%')
+	$('#puntaje1').html(prom_total.toFixed(2)+'%')
 	}
 
 	if (Number(prom_total) < Number(50)) {
@@ -581,20 +583,31 @@ var arreglo_total = [promedio12,promedio13]
 	}
 	suma_total = suma_total + Number(arreglo_total[i]);
 	}
-	var prom_total = suma_total/division
-	if (isNaN(prom_total)) {
+	var prom_total2 = suma_total/division
+	if (isNaN(prom_total2)) {
 		$('#total2').html(' ')
+		$('#puntaje2').html('0.00%')
 	}else {	
-	$('#total2').html(prom_total.toFixed(2)+'%')
+	$('#total2').html(prom_total2.toFixed(2)+'%')
+		$('#puntaje2').html(prom_total2.toFixed(2)+'%')
 	}
 
-	if (Number(prom_total) < Number(50)) {
+	if (Number(prom_total2) < Number(50)) {
 		$('#total2').removeClass('grey lighten-1')
 		$('#total2').removeClass('green')
 		$('#total2').addClass('red')
 	}else {
 		$('#total2').addClass('green')
 	}
+
+	var sum_puntaje = Number(prom_total) + Number(prom_total2);
+	var resultado = sum_puntaje/2;
+	if (isNaN(resultado)) {
+		$('#resultado').html('0.00%')
+	}else {	
+	$('#resultado').html(resultado.toFixed(2)+'%')
+	}
+	$('#prom_form').val(resultado)
 });
 
 
@@ -1045,8 +1058,10 @@ promedio1,promedio2,promedio3,promedio4,promedio5,promedio6,promedio7,promedio8,
 	var prom_total = suma_total/division
 	if (isNaN(prom_total)) {
 		$('#totalm').html(' ')
+		$('#puntaje1m').html('0.00%')
 	}else {	
 	$('#totalm').html(prom_total.toFixed(2)+'%')
+	$('#puntaje1m').html(prom_total.toFixed(2)+'%')
 	}
 
 	if (Number(prom_total) < Number(50)) {
@@ -1056,6 +1071,7 @@ promedio1,promedio2,promedio3,promedio4,promedio5,promedio6,promedio7,promedio8,
 	}else {
 		$('#totalm').addClass('green')
 	}
+	
 // Promedio total del nivel 2
 var division = 0
 var suma_total = 0
@@ -1069,18 +1085,29 @@ var arreglo_total = [promedio12,promedio13]
 	}
 	suma_total = suma_total + Number(arreglo_total[i]);
 	}
-	var prom_total = suma_total/division
-	if (isNaN(prom_total)) {
+	var prom_total2 = suma_total/division
+	if (isNaN(prom_total2)) {
 		$('#total2m').html(' ')
+		$('#puntaje2m').html('0.00%')
 	}else {	
-	$('#total2m').html(prom_total.toFixed(2)+'%')
+	$('#total2m').html(prom_total2.toFixed(2)+'%')
+	$('#puntaje2m').html(prom_total2.toFixed(2)+'%')
 	}
 
-	if (Number(prom_total) < Number(50)) {
+	if (Number(prom_total2) < Number(50)) {
 		$('#total2m').removeClass('grey lighten-1')
 		$('#total2m').removeClass('green')
 		$('#total2m').addClass('red')
 	}else {
 		$('#total2m').addClass('green')
 	}
+
+	var sum_puntaje = Number(prom_total) + Number(prom_total2);
+	var resultado = sum_puntaje/2;
+	if (isNaN(resultado)) {
+		$('#resultado').html('0.00%')
+	}else {	
+	$('#resultado').html(resultado.toFixed(2)+'%')
+	}
+	$('#prom_form_m').val(resultado)
 });

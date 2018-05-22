@@ -1,5 +1,6 @@
 <?php 
 include "../../../conexion.php";
+$resultado = $_POST['prom_form_m'];
 $empresa = $_GET['empresa'];
 $opcion = $_POST['verificacion2_opcion_m'];
 $calificador = $_POST['verifica2_calificador_m'];
@@ -33,5 +34,7 @@ for ($key=0; $key <sizeof($opcion); $key++) {
         }
     }    
 }
+$s="UPDATE `empresa` SET `puntaje` = '$resultado'  WHERE id = '$empresa'";
+mysqli_query($conn,$s);
 
 ?>

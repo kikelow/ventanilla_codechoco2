@@ -41,9 +41,24 @@ if(isset($_GET["empresa"])){
    while ($rw=mysqli_fetch_assoc($r)) {
     $lider = $rw['lider'];
    }
-//Cabezera del pdf
+// Cabezera del pdf
    $cabezera='
-    <h4>Ventanilla de emprendimientos verdes</h4>
+   <div style="text-align: right; font-weight: bold;">
+   <table align="">
+    <thead>
+      <tr>
+        <td><img class="logo" id="logo" src="../../img/min_ambiente.png" style="padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;padding-top: 5px;"></td>
+
+        <td><img class="logo" id="logo" src="../../img/logo_nv.png" style="width:100px;height:100px;padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;padding-top: 5px;"></td>
+
+        <td><img class="logo" id="logo" src="../../img/logo_code.png" style="width:100px;height:100px;padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;padding-top: 5px;"></td>
+
+        <td><img class="logo" id="logo" src="../../img/logo1.png" style="width:100px;height:100px;padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;padding-top: 5px;"></td>
+      </tr>
+    </thead>
+    
+  </table>
+</div>
      ';
 //Cuerpo del pdf
    $html.='
@@ -53,7 +68,10 @@ if(isset($_GET["empresa"])){
             background-color: #e0e0e0
           }
         </style>
-   <div style="border: 1px solid green; text-align: justify;">Nota: Señor empresario, recuerde que esta es una HOJA RESUMEN de toda la información diligenciada, por tanto, si desea corroborar o saber información adicional, por favor remitirse a la hoja de verificación original y diligenciada</div>
+
+
+<div style="">
+   <div style="border: 1px solid green; text-align: justify">Nota: Señor empresario, recuerde que esta es una HOJA RESUMEN de toda la información diligenciada, por tanto, si desea corroborar o saber información adicional, por favor remitirse a la hoja de verificación original y diligenciada</div>
   <div style="margin-top: 10px; padding-top:5px;padding-bottom: 5px;  background-color:  #a5d6a7">
     <table width="100%">
       <tr>
@@ -500,17 +518,61 @@ $html.='<table class="" style="margin-top:20px">
             
           </tbody>
         </table>
+
+        <table style="margin-top:20px;width:100%">
+          <thead>
+            <tr>
+              <th style="width: 100%; background-color:#a5d6a7" class="green center" colspan="2">Resultado Nivel 1 + Nivel 2</th>
+            </tr>
+            <tr>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="width: 90%">Puntaje Total. Criterios de Cumplimiento de Negocios Verdes</td>
+              <td id="prom12" style="width: 10%">'.$prom_total1.'%</td>
+            </tr>
+            <tr>
+              <td>Puntaje Total.  Criterios Adicionales (ideales) Negocios Verdes</td>
+              <td id="prom13">'.$prom_total2.'%</td>
+            </tr>
+            <tr>';
+              $suma_total3 = $prom_total1+$prom_total2;
+              $resultado= round($suma_total3/2, 2);
+            $html.='
+              <th class=" grey lighten-1">Resultado</th>
+              <th class="grey lighten-1" id="total2">'.$resultado.'% </th>
+            </tr>
+            
+          </tbody>
+        </table>
 ';
   }else{
     $html.='<div style="padding-top:20px">No se han aplicado las hojas de verificación</div>';
   }
+  $html.= '
+     <div style="border: 1px solid green; background-color: #a5d6a7;margin-top: 10px">Recomendaciones Componente Económico</div>
+      <div style="border: 1px solid;height: 180px"></div>
+        
+       <div style="border: 1px solid green; background-color: #a5d6a7;margin-top: 10px">Recomendaciones Componente Ambiental</div>
+      <div style="border: 1px solid;height: 180px;"></div>
+
+        <div style="border: 1px solid green; background-color: #a5d6a7;margin-top: 10px">Recomendaciones Componente Social</div>
+      <div style="border: 1px solid;height: 180px;"></div>
+      </div>
+
+
+     
+      ';
   $mpdf = new mPDF();
   $mpdf->debug = false;
-  $mpdf->SetHeader($cabezera);
-  // $mpdf->Addpage();
-  // print($html);
-  $mpdf->SetTitle($razon_social);//nombre del pdf
+  $mpdf->SetHTMLHeader($cabezera);
+  // $mpdf->SetHTMLFooter('');
   $mpdf->writeHTML($html);
+  $mpdf->Addpage();
+   // $mpdf->writeHTML('<br><br><br><br><br><br><br><br><br><div style="border: 1px solid ">fasdfasdfasdfasdf</div>');
+  $mpdf->SetTitle($razon_social);//nombre del pdf
   $mpdf->Output($razon_social."."."pdf","I");//nombre con el que se guarda el pdf
    }
 ?>

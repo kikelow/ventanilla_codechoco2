@@ -51,7 +51,9 @@ $(document).ready(function() {
 						  text:"Redireccionando",
 						  button: false,
 						});
-						alert('administrador verificador')
+						setInterval(function(){
+							window.location.replace("../index4.php", 50000);
+						},1000)
 					}else if (!data) {
 						swal({
 						  icon: "error",

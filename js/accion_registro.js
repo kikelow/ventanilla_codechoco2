@@ -245,12 +245,12 @@ else if ( ! $('#subsector').val()) {
 	$('#subsector_valida').addClass("red-text")
 	$('html, body').animate({scrollTop: $( $('#subsector_valida')).offset().top}, 1000);
 }
-else if ($('#total_1').val()==0) {
-	$('#subsector_valida').removeClass("red-text")
-	 $('.collapsible').collapsible('close', 3);
-	 $('.collapsible').collapsible('open', 3);
-	 $('#total_1').focus().addClass("invalid")
-}
+// else if ($('#total_1').val()==0) {
+// 	$('#subsector_valida').removeClass("red-text")
+// 	 $('.collapsible').collapsible('close', 3);
+// 	 $('.collapsible').collapsible('open', 3);
+// 	 $('#total_1').focus().addClass("invalid")
+// }
 else if (Number($('#total_2').val())  > Number($('#total_1').val())) {
 	 $('.collapsible').collapsible('close', 3);
 	 $('.collapsible').collapsible('open', 3);
@@ -607,12 +607,12 @@ else if ( ! $('#subsector_m').val()) {
 	$('#subsector_valida2').addClass("red-text")
 	$('html, body').animate({scrollTop: $( $('#subsector_valida2')).offset().top}, 1000);
 }
-else if ($('#total_1_m').val()==0) {
-	$('#sector_valida2').removeClass("red-text")
-	 $('.collapsible').collapsible('close', 3);
-	 $('.collapsible').collapsible('open', 3);
-	 $('#total_1_m').focus().addClass("invalid")
-}
+// else if ($('#total_1_m').val()==0) {
+// 	$('#sector_valida2').removeClass("red-text")
+// 	 $('.collapsible').collapsible('close', 3);
+// 	 $('.collapsible').collapsible('open', 3);
+// 	 $('#total_1_m').focus().addClass("invalid")
+// }
 else if (Number($('#total_2_m').val())  > Number($('#total_1_m').val())) {
 	 $('.collapsible').collapsible('close', 3);
 	 $('.collapsible').collapsible('open', 3);
