@@ -51,22 +51,22 @@ $verificador='';
    }
 // Cabezera del pdf
    $cabezera='
-   <div style="text-align: right; font-weight: bold;">
+   <header><div style="text-align: center; font-weight: bold;">
    <table align="">
     <thead>
       <tr>
-        <td><img class="logo" id="logo" src="../../img/min_ambiente.png" style="padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;padding-top: 5px;"></td>
+        <td><img class="logo" id="logo" src="../../img/min_ambiente.png" style="padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;"></td>
 
-        <td><img class="logo" id="logo" src="../../img/logo_nv.png" style="width:100px;height:100px;padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;padding-top: 5px;"></td>
+        <td><img class="logo" id="logo" src="../../img/logo_nv.png" style="width:100px;height:100px;padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;"></td>
 
-        <td><img class="logo" id="logo" src="../../img/logo_code.png" style="width:100px;height:100px;padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;padding-top: 5px;"></td>
+        <td><img class="logo" id="logo" src="../../img/logo_code.png" style="width:100px;height:100px;padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;"></td>
 
-        <td><img class="logo" id="logo" src="../../img/logo1.png" style="width:100px;height:100px;padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;padding-top: 5px;"></td>
+        <td><img class="logo" id="logo" src="../../img/logo1.png" style="width:100px;height:100px;padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;"></td>
       </tr>
     </thead>
     
   </table>
-</div>
+</div></header>
      ';
 //Cuerpo del pdf
    $html.='
@@ -574,12 +574,12 @@ $html.='<table class="" style="margin-top:20px">
      
       ';
   $mpdf = new mPDF();
-  $mpdf->debug = false;
-  $mpdf->SetHTMLHeader($cabezera);
-  // $mpdf->SetHTMLFooter('');
+
+  // $mpdf->debug = false;
+  $mpdf->SetHeader($cabezera);
+  // $mpdf->SetHTMLFooter('');;
   $mpdf->writeHTML($html);
-  $mpdf->Addpage();
-   // $mpdf->writeHTML('<br><br><br><br><br><br><br><br><br><div style="border: 1px solid ">fasdfasdfasdfasdf</div>');
+  $mpdf->SetHeader($cabezera);
   $mpdf->SetTitle($razon_social);//nombre del pdf
   $mpdf->Output($razon_social."."."pdf","I");//nombre con el que se guarda el pdf
    }

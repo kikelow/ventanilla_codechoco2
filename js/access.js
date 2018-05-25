@@ -42,6 +42,7 @@ $(document).ready(function() {
 						  button: false,
 						});
 						setInterval(function(){
+							// window.setTimeout('../index2.php',5000);
 							window.location.replace("../index2.php", 50000);
 						},1000)
 					}
