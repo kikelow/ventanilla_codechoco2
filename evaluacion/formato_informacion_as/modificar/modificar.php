@@ -1,5 +1,5 @@
 <?php 
-	include "../../conexion.php";
+	include "../../../conexion.php";
 	$empresa = $_GET['empresa'];
 //modificar datos en la tabla tenencia_tierra
 $t_tierra_check = $_POST['tierra_m'];
@@ -301,6 +301,7 @@ $s="UPDATE `sost_economica` SET `bien_servicio`='$bien_m[$i]',`vendida_anual`='$
 mysqli_query($conn,$s);
 $i++;
 }
+// echo $s;
 //---------------------------------------------------------------------------------------------------------
 //Modificar datos de insumos totales
 $s="UPDATE `costo_insumos` SET `semanal`='$_POST[insumo_semanal_m]',`mensual`='$_POST[insumo_mensual_m]',`anual`='$_POST[insumo_anual_m]' WHERE empresa_id='$empresa'";

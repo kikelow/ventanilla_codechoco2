@@ -905,7 +905,9 @@ sociales implementados o recibidos.</div>
 
           $division = 0;
 $suma = 0;
-$s="SELECT verificacion_2.id, calificador.nombre AS calificador FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id = 86 OR verificacion_2.opciones_id = 87 OR verificacion_2.opciones_id = 88 OR verificacion_2.opciones_id = 89 OR verificacion_2.opciones_id = 137 AND verificacion_2.empresa_id = '$empresa'";
+$s="SELECT verificacion_2.empresa_id, calificador.nombre AS calificador,verificacion_2.opciones_id FROM verificacion_2
+INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id
+WHERE verificacion_2.empresa_id = '$empresa' AND verificacion_2.opciones_id IN(86,87,88,89,137) ORDER BY verificacion_2.opciones_id";
 $r = mysqli_query($conn,$s);
 while ($rw = mysqli_fetch_assoc($r)) {
   if ($rw['calificador'] == 'N/A') {

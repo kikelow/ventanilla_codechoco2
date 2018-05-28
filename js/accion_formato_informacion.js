@@ -11,8 +11,6 @@ $('[name="tierra[]"]#tt12').click(function() {
     }
 });
 
-
-
 $('[name="tierra[]"]#tt13').click(function() {
     if($(this).is(':checked')) {
       $('[name="desc_t[]"]#desc_t13').removeAttr('disabled');
@@ -660,16 +658,65 @@ $('#empresa_m').change(function(event) {
     url: 'evaluacion/formato_informacion_as/modificar/llenar_formulario.php',
     type: 'POST',
     data: {empresa_m: empresa_m},
+    beforeSend: function() {
+      $('#form_modificar_informacion').hide()
+      $('#preload').addClass('progress')
+
+    
+    },
+    success: function(respuesta) {
+      $('#form_modificar_informacion').show()
+      $('#preload').removeClass('progress')
+      $('#cargar_info').html(respuesta)
+    }
   })
-  .done(function(respuesta) {
-    // console.log(respuesta)
-    $('#cargar_info').html(respuesta)
-  })
+  // .done(function(respuesta) {
+  //   // console.log(respuesta)
+  //   $('#cargar_info').html(respuesta)
+  // })
 
 });
 
 //----------validaciones para modificar-------------------------
+//validaciones de sostenibilidad economica 
+$('.aut_m').keyup(function(event) {
+  var unidades_vendidas = []
+  for (var i = 0; i <= $('[name="unidad_v_anual_m[]"]').length; i++) {
+      unidades_vendidas.push($('#unidad_v_anual_m'+i).val())
+  }
+ 
+  var costo_pro_unidad = []
+  for (var i = 0; i <= $('[name="costo_pro_unidad_m[]"]').length; i++) {
+      costo_pro_unidad.push($('#costo_pro_unidad_m'+i).val())
+  }
 
+  var precio_v_unitario = []
+  for (var i = 0; i <= $('[name="precio_v_unitario_m[]"]').length; i++) {
+      precio_v_unitario.push($('#precio_v_unitario_m'+i).val())
+  }
+
+  var ganancias = []
+  var ventas = []
+  var total_ventas = 0
+
+  for (var i = 0; i<unidades_vendidas.length; i++) {
+    ganancias.push(precio_v_unitario[i]-costo_pro_unidad[i])
+    $('#ganancia_unidad_m'+i).val(ganancias[i])
+    ventas.push(unidades_vendidas[i]*precio_v_unitario[i])
+    $('#venta_anual_m'+i).val(ventas[i])
+  }
+
+  for (var i = 0;i<ventas.length; i++) {
+    if(isNaN(ventas[i])){
+                continue;
+                 }
+    total_ventas += Number(ventas[i]) 
+    console.log(ventas[i])
+
+  }
+  console.log(total_ventas)
+  $('#venta_valor').val(total_ventas)
+});
 ///tenencia tierra
 $('[name="tierra_m[]"]#tt_m12').click(function() {
     if($(this).is(':checked')) {
@@ -1284,6 +1331,7 @@ $('#modificar_informacion').click(function(event) {
           },
       });
     },success: function(respuesta) {
+      // console.log(respuesta)
       swal ({
           icon: "success",
            text: "Datos MODIFICADOS exitosamente!",

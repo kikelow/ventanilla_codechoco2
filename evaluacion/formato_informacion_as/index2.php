@@ -1177,8 +1177,8 @@ require_once('conexion.php');
           <p>Total de ventas realizadas</p>
           <div class="divider"></div>
            <div class="input-field col s12 m6 l6">
-              <input type="number" id="venta_valor" name="venta_valor" />
-              <label for="venta_valor">Valor</label>
+              <input readonly type="number" id="venta_valor" name="venta_valor" />
+              <label for="venta_valor" class="activar">Valor</label>
             </div>
             <div class="input-field col s12 m6 l6">
               <input type="number" id="venta_anio" name="venta_anio" />

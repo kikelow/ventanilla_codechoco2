@@ -13,7 +13,7 @@ include "../../conexion.php";
 		$persona_id=$resul[0];
 	}
 	//sacar la fecha
-		date_default_timezone_set('UTC');
+		date_default_timezone_set('America/Bogota');
 		$fecha_registro = date("Y-m-d H:i:s");
 
 // Inserto los datos del empresario

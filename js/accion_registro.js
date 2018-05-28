@@ -364,18 +364,15 @@ $.ajax({
   url: 'evaluacion/formato_inscripcion/modificar/llenar_formulario.php',
    type: 'POST',
    data: {empresa_id: empresa_id},
- //   beforeSend: function() {
- //   	// alert('message?: DOMString')
- //       $('#preload').addClass('progress')
- //    },success: function(respuesta) {
- //    	$('#preload').removeClass('progress')
- //       $('#cargar_info').html(respuesta)
- // //  // alert(respuesta)
- //    }
- })
-.done(function(respuesta) {
-  $('#cargar_info').html(respuesta)
-  // alert(respuesta)
+ beforeSend: function() {
+			$('#form_modificar').hide()
+			$('#preload').addClass('progress')
+    },
+    success: function(respuesta) {
+    	$('#form_modificar').show()
+    	$('#preload').removeClass('progress')
+    	$('#cargar_info').html(respuesta)
+    }
  })
 
 });

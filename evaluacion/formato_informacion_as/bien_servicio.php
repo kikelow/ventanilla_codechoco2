@@ -15,12 +15,12 @@ $empresa = $_POST['empresa_id'];
              $ver.="
              <div class='row'>
                 
-                <div class='input-field col s12 m3 l3'>
+                <div class='input-field col s12 m3 l3' id='l'>
                  <input readonly  type='text' name='bien[]' id='bien".$i."' value='$rw[nombre]$rw[lider]' />
                       <label for='bien".$i."' class='activar'>Bien o servicio</label>
                 </div>
                  <div class='input-field col s12 m3 l3'>
-                 <input   type='number' name='unidad_v_anual[]' id='unidad_v_anual".$i."'/>
+                 <input   type='number' name='unidad_v_anual[]' id='unidad_v_anual".$i."' class='aut'/>
                       <label for='unidad_v_anual".$i."'>unidades vendidas anual</label>
                 </div>
 
@@ -38,20 +38,20 @@ $empresa = $_POST['empresa_id'];
                 </div>
                 
                 <div class='input-field col s12 m4 l4'>
-                 <input   type='number' name='costo_pro_unidad[]' id='costo_pro_unidad".$i."'/>
+                 <input   type='number' name='costo_pro_unidad[]' id='costo_pro_unidad".$i."' class='aut'/>
                       <label for='costo_pro_unidad".$i."'>Costo producción unidad</label>
                 </div>
                 <div class='input-field col s12 m2 l2'>
-                 <input   type='number' name='precio_v_unitario[]' id='precio_v_unitario".$i."'/>
+                 <input   type='number' name='precio_v_unitario[]' id='precio_v_unitario".$i."' class='aut'/>
                       <label for='precio_v_unitario".$i."'>Precio venta unitario</label>
                 </div>
                 <div class='input-field col s12 m2 l2'>
-                 <input   type='number' name='ganancia_unidad[]' id='ganancia_unidad".$i."'/>
-                      <label for='ganancia_unidad".$i."'>Ganacias por unidad</label>
+                 <input readonly  type='number' name='ganancia_unidad[]' id='ganancia_unidad".$i."' />
+                      <label for='ganancia_unidad".$i."' class='activar'>Ganacias por unidad</label>
                 </div>
                 <div class='input-field col s12 m2 l2'>
-                 <input   type='number' name='venta_anual[]' id='venta_anual".$i."'/>
-                      <label for='venta_anual".$i."'>Ventas anuales</label>
+                 <input readonly  type='number' name='venta_anual[]' id='venta_anual".$i."'/>
+                      <label for='venta_anual".$i."' class='activar'>Ventas anuales</label>
                 </div>
 
                 <div class='input-field col s12 m4 l4'>
@@ -73,7 +73,7 @@ $empresa = $_POST['empresa_id'];
 
             } 
             echo($ver);
-             echo "
+             echo "<script type='text/javascript' src='js/bien_servicio.js'></script>
  <script type='text/javascript'>
 $(document).ready(function(){
  $('.activar').addClass('active')
