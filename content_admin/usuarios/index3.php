@@ -11,6 +11,7 @@
 	<meta charset="UTF-8">
 	<title>Administración de usuarios</title>
 </head>
+
 <body>
 	<div class="row">
 		<div class="col s12">
@@ -86,7 +87,7 @@
 			  	</div> 
 		      </form>
 
-		      <div class="">
+		      <div class="" >
 				     <!--  <a href="#" id="btn_guardar_usuario" class="right waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" >Guardar</a> -->
 
 				      <a href="#" id="btn_modifcar_usuario" class="right waves-effect waves-white btn-flat white-text" style="background-color:#00853b;margin-right: 10px;" onclick="editar_usuario()">Modificar</a>

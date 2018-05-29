@@ -52,12 +52,18 @@ $('#empresa_m').change(function(event) {
 		url: 'evaluacion/hoja_verificacion_1/modificar/llenar_formulario.php',
 		type: 'POST',
 		data: {empresa_m: empresa_m},
+		beforeSend: function() {
+			$('#form_modificar_verificacion1').hide()
+			$('#preload').addClass('progress')
+
+   	
+    },
+    success: function(respuesta) {
+    	$('#form_modificar_verificacion1').show()
+    	$('#preload').removeClass('progress')
+    	$('#cargar_info').html(respuesta)
+    }
 	})
-	.done(function(respuesta) {
-		console.log(respuesta)
-		$('#cargar_info').html(respuesta)
-	})
-	
 });
 
 

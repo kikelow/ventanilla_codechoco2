@@ -42,6 +42,7 @@ $(document).ready(function() {
 						  button: false,
 						});
 						setInterval(function(){
+							// window.setTimeout('../index2.php',5000);
 							window.location.replace("../index2.php", 50000);
 						},1000)
 					}
@@ -51,7 +52,9 @@ $(document).ready(function() {
 						  text:"Redireccionando",
 						  button: false,
 						});
-						alert('administrador verificador')
+						setInterval(function(){
+							window.location.replace("../index4.php", 50000);
+						},1000)
 					}else if (!data) {
 						swal({
 						  icon: "error",

@@ -12,11 +12,18 @@ $('#empresa').change(function(event) {
 		url: 'evaluacion/plan_mejora/llenar_index2.php',
 		type: 'POST',
 		data: {empresa: empresa},
+		beforeSend: function() {
+			$('#form_plan_mejora').hide()
+			$('#preload').addClass('progress')
+   	
+    },
+    success: function(respuesta) {
+    	$('#form_plan_mejora').show()
+    	$('#preload').removeClass('progress')
+    	$('#cargar_infos').html(respuesta)
+    }
 	})
-	.done(function(respuesta) {
-		// console.log(respuesta)
-		$('#cargar_infos').html(respuesta)
-	})
+	
 	
 });
 //------------------------------Enviar Datos Para Insertar--------------------------------------------

@@ -13,7 +13,7 @@ include "../../conexion.php";
 		$persona_id=$resul[0];
 	}
 	//sacar la fecha
-		date_default_timezone_set('UTC');
+		date_default_timezone_set('America/Bogota');
 		$fecha_registro = date("Y-m-d H:i:s");
 
 // Inserto los datos del empresario
@@ -29,7 +29,7 @@ include "../../conexion.php";
 	}
 
 //inserto los datos de la empresa
-	$s="INSERT INTO `empresa`(`tipo_persona_id`, `tipo_identificacion_id`, `identificacion`, `razon_social`, `persona_id`, `empresario_id`, `municipio_id`, `vereda`, `direccion`, `aut_ambiental`, `coodenadas_n`, `coordenadas_w`, `altitud`, `area`, `si_no_pot_id`, `fami_empresa_si_no`, `tamaño_empresa_id`, `fecha_registro`, `descripcion`, `desc_impacto_amb`, `num_socios`, `asociacion_si_no`, `subsector_id`, `etapa_empresa_id`, `const_legalmente_sino`, `año_funcionamiento`, `opera_actualmente_sino`, `año_func_desp_reg_camara`, `obs_general`, `informacion_as`, `verificacion1`, `verificacion2`, `plan_mejora`) VALUES ('$_POST[t_persona]','$_POST[t_identificacion]','$_POST[identificacion]','$_POST[razon_social]','$persona_id','$empresario_id','$_POST[municipio]','$_POST[vereda]','$_POST[direccion_p]','$_POST[autoridad_ambiental]','$_POST[coordenada_n]','$_POST[coordenada_w]','$_POST[altitud]','$_POST[area]','$_POST[pot]','$_POST[famiempresa]','$_POST[tamaño_empresa]','$fecha_registro','$_POST[desc_negocio]','$_POST[desc_imp_ambiental]','$_POST[num_asociados]','$_POST[asosiacion]','$_POST[subsector]','$_POST[etapa_empresa]','$_POST[cmb_legal]','$_POST[legal]','$_POST[cmb_ope_actualidad]','$_POST[año_desp_registro]','$_POST[observacion_general]','no','no','no','no')";
+	$s="INSERT INTO `empresa`(`tipo_persona_id`, `tipo_identificacion_id`, `identificacion`, `razon_social`, `persona_id`, `empresario_id`, `municipio_id`, `vereda`, `direccion`, `aut_ambiental`, `coodenadas_n`, `coordenadas_w`, `altitud`, `area`, `si_no_pot_id`, `fami_empresa_si_no`, `tamaño_empresa_id`, `fecha_registro`, `descripcion`, `desc_impacto_amb`, `num_socios`, `asociacion_si_no`, `subsector_id`, `etapa_empresa_id`, `const_legalmente_sino`, `año_funcionamiento`, `opera_actualmente_sino`, `año_func_desp_reg_camara`, `obs_general`, `informacion_as`, `verificacion1`, `verificacion2`, `plan_mejora`,`puntaje`) VALUES ('$_POST[t_persona]','$_POST[t_identificacion]','$_POST[identificacion]','$_POST[razon_social]','$persona_id','$empresario_id','$_POST[municipio]','$_POST[vereda]','$_POST[direccion_p]','$_POST[autoridad_ambiental]','$_POST[coordenada_n]','$_POST[coordenada_w]','$_POST[altitud]','$_POST[area]','$_POST[pot]','$_POST[famiempresa]','$_POST[tamaño_empresa]','$fecha_registro','$_POST[desc_negocio]','$_POST[desc_imp_ambiental]','$_POST[num_asociados]','$_POST[asosiacion]','$_POST[subsector]','$_POST[etapa_empresa]','$_POST[cmb_legal]','$_POST[legal]','$_POST[cmb_ope_actualidad]','$_POST[año_desp_registro]','$_POST[observacion_general]','no','no','no','no','')";
 	mysqli_query($conn,$s) or die(mysqli_error($conn));
 	echo $s;
 //selecciono el id de la ultima empresa insertada

@@ -48,6 +48,35 @@ $i = 0;
            </div>
 
          </div>
+       <div class="row">
+        <div class="col s12 m12 l12" style="padding-left: 0px; padding-right: 0px">
+          <!-- <center><h4 style="margin-top: 0px">Sección para Registrar</h4></center> -->
+          <div class="card grey lighten-4 " style="height: auto;display:inline-block;width: 98%;margin-left: 20px; margin-top: 0px">
+            <div class="card-content black-text">
+              <!-- <div class="col s12 m12 l12"> -->
+                <!-- <div class="card grey lighten-4 "  style=""> -->
+                  <span class="card-title"><h5><p> Informe General (SÓLO MADS)</p></h5></span>
+                  <hr>
+                  <div class="row">
+                   
+                    <div class="input-field col s12 m12 l9 green lighten-5 " id="div_empresa" style="border: 1px solid green">
+                      <h6>NOTA:  Este documento contiene el resumen de los emprendimientos a los cuales se le han aplicado todas las fases de evaluación</h6>
+                    </div>  
+                    <div class="col s12 m12 l3">
+                     <a class="waves-effect green darken-2 btn"  href="evaluacion/reporte/reporte_general.php"  style="margin-top: 20px" id="reporte1" target="_blank"><i class="material-icons right"></i>Generar Excel</a>
+                   </div>      
+                 </div>
+
+
+               </div>
+             </div>
+           </div>
+
+         </div>
+
+
+
+
        </div>
      </div>
    </div>

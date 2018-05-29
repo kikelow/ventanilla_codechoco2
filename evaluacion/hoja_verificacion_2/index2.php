@@ -896,6 +896,31 @@ sociales implementados o recibidos.</div>
             
           </tbody>
         </table>
+
+        <table style="margin-top:20px">
+          <thead>
+            <tr>
+              <th style="width: 100%;" class="green center" colspan="2">Resultado Nivel 1 + Nivel 2</th>
+            </tr>
+            
+          </thead>
+          <tbody>
+            <tr>
+              <td>Puntaje Total. Criterios de Cumplimiento de Negocios Verdes</td>
+              <td id="puntaje1">0.00%</td>
+            </tr>
+            <tr>
+              <td>Puntaje Total.  Criterios Adicionales (ideales) Negocios Verdes</td>
+              <td id="puntaje2">0.00%</td>
+            </tr>
+            <tr>
+              <th class=" grey lighten-1">Puntaje total </th>
+              <th class="grey lighten-1" id="resultado">0.00% </th>
+               <input type='hidden' name='prom_form' value='' id="prom_form" />
+            </tr>
+            
+          </tbody>
+        </table>
       </div>
     </div>
      <hr> 

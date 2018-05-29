@@ -1289,7 +1289,7 @@ echo "<li>
                       <label for='bien_m".$i."' class='activar'>Bien o servicio</label>
                 </div>
                  <div class='input-field col s12 m3 l3'>
-                 <input   type='number' name='unidad_v_anual_m[]' id='unidad_v_anual_m".$i."' value='$rw[vendida_anual]'/>
+                 <input   type='number' name='unidad_v_anual_m[]' id='unidad_v_anual_m".$i."' value='$rw[vendida_anual]' class='aut_m'/>
                       <label for='unidad_v_anual_m".$i."' class='activar'>unidades vendidas anual</label>
                 </div>
 
@@ -1311,19 +1311,19 @@ echo "<li>
                 </div>
                 
                 <div class='input-field col s12 m4 l4'>
-                 <input   type='number' name='costo_pro_unidad_m[]' id='costo_pro_unidad_m".$i."' value='$rw[costo_produccion]'/>
+                 <input   type='number' name='costo_pro_unidad_m[]' id='costo_pro_unidad_m".$i."' value='$rw[costo_produccion]' class='aut_m'/>
                       <label for='costo_pro_unidad_m".$i."' class='activar'>Costo producción unidad</label>
                 </div>
                 <div class='input-field col s12 m2 l2'>
-                 <input   type='number' name='precio_v_unitario_m[]' id='precio_v_unitario_m".$i."' value='$rw[precio_v_unitario]' />
+                 <input   type='number' name='precio_v_unitario_m[]' id='precio_v_unitario_m".$i."' value='$rw[precio_v_unitario]' class='aut_m' />
                       <label for='precio_v_unitario_m".$i."' class='activar'>Precio venta unitario</label>
                 </div>
                 <div class='input-field col s12 m2 l2'>
-                 <input   type='number' name='ganancia_unidad_m[]' id='ganancia_unidad_m".$i."' value='$rw[ganancia_unidad]' />
+                 <input readonly  type='number' name='ganancia_unidad_m[]' id='ganancia_unidad_m".$i."' value='$rw[ganancia_unidad]' />
                       <label for='ganancia_unidad_m".$i."' class='activar'>Ganacias por unidad</label>
                 </div>
                 <div class='input-field col s12 m2 l2'>
-                 <input   type='number' name='venta_anual_m[]' id='venta_anual_m".$i."' value='$rw[ventas_anual]'/>
+                 <input  readonly type='number' name='venta_anual_m[]' id='venta_anual_m".$i."' value='$rw[ventas_anual]'/>
                       <label for='venta_anual_m".$i."' class='activar'>Ventas anuales</label>
                 </div>
 
@@ -1425,7 +1425,7 @@ echo "<li>
           <p>Total de ventas realizadas</p>
           <div class='divider'></div>
            <div class='input-field col s12 m6 l6'>
-              <input type='number' id='venta_valor' name='venta_valor' value='$valor' />
+              <input readonly type='number' id='venta_valor' name='venta_valor' value='$valor' />
               <label for='venta_valor' class='activar'>Valor</label>
             </div>
             <div class='input-field col s12 m6 l6'>

@@ -39,6 +39,10 @@ require_once('conexion.php');
         </select>
       </div>        
 </div>
+<div id="preload" class="">
+      <div class="indeterminate"></div>
+  </div>
+
 <form id="form_plan_mejora">
     <div id="cargar_infos"></div>
 </form>

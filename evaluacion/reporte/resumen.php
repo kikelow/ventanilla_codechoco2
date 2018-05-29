@@ -17,8 +17,9 @@ if(isset($_GET["empresa"])){
    $subsector = '';
    $sector = '';
    $categoria = '';
+   $fecha_registro ='';
    
-   $s="SELECT empresa.razon_social,empresa.aut_ambiental,persona.nombre1 AS representante,persona.identificacion,persona.celular,persona.correo,municipio.nombre AS municipio,persona.direccion,empresa.descripcion,empresa.desc_impacto_amb,subsector.nombre AS subsector,sector.nombre AS sector,categoria.nombre AS categoria FROM empresa INNER JOIN persona ON persona.id = empresa.persona_id INNER JOIN municipio ON municipio.id = empresa.municipio_id INNER JOIN subsector ON subsector.id = empresa.subsector_id INNER JOIN sector ON sector.id = subsector.sector_id INNER JOIN categoria ON categoria.id = sector.categoria_id WHERE empresa.id = '$empresa'";
+   $s="SELECT empresa.razon_social,empresa.aut_ambiental,persona.nombre1 AS representante,persona.identificacion,persona.celular,persona.correo,municipio.nombre AS municipio,persona.direccion,empresa.descripcion,empresa.desc_impacto_amb,subsector.nombre AS subsector,sector.nombre AS sector,categoria.nombre AS categoria,empresa.fecha_registro  FROM empresa INNER JOIN persona ON persona.id = empresa.persona_id INNER JOIN municipio ON municipio.id = empresa.municipio_id INNER JOIN subsector ON subsector.id = empresa.subsector_id INNER JOIN sector ON sector.id = subsector.sector_id INNER JOIN categoria ON categoria.id = sector.categoria_id WHERE empresa.id = '$empresa'";
    $r = mysqli_query($conn,$s);
    while ($rw=mysqli_fetch_assoc($r)) {
   $razon_social = $rw['razon_social'];
@@ -34,6 +35,7 @@ if(isset($_GET["empresa"])){
    $subsector = $rw['subsector'];
    $sector = $rw['sector'];
    $categoria = $rw['categoria'];
+   $fecha_registro = $rw['fecha_registro'];
    }
    $lider = '';
    $s = "SELECT lider FROM bienes_servicios WHERE empresa_id = '$empresa' AND lider != '' ";
@@ -41,9 +43,32 @@ if(isset($_GET["empresa"])){
    while ($rw=mysqli_fetch_assoc($r)) {
     $lider = $rw['lider'];
    }
-//Cabezera del pdf
+
+$verificador='';
+   $s = "SELECT concat(persona.nombre1,' ',ifnull(persona.nombre2,' '),' ',persona.apellido1,' ',persona.paellido2) as verificador FROM verificadorxempresa
+   INNER JOIN persona ON persona.id = verificadorxempresa.persona_id";
+   $r = mysqli_query($conn,$s);
+   while ($rw=mysqli_fetch_assoc($r)) {
+    $verificador = $rw['verificador'];
+   }
+// Cabezera del pdf
    $cabezera='
-    <h4>Ventanilla de emprendimientos verdes</h4>
+   <header><div style="text-align: center; font-weight: bold;">
+   <table align="center">
+    <thead>
+      <tr>
+        <td><img class="logo" id="logo" src="../../img/min_ambiente.png" style="padding-bottom: 5px;padding-left: 5px;border-right-width: 7px;border-top-width: 5px;padding-right: 7px;"></td>
+
+        <td><img class="logo" id="logo" src="../../img/logo_nv.png" style="width:80px;height:80px;padding-bottom: 5px;padding-left: 7px;border-right-width: 5px;border-top-width: 5px;padding-right: 7px;"></td>
+
+        <td><img class="logo" id="logo" src="../../img/logo_code.png" style="width:80px;height:80px;padding-bottom: 5px;padding-left: 7px;border-right-width: 5px;border-top-width: 5px;padding-right: 7px;"></td>
+
+        <td><img class="logo" id="logo" src="../../img/logo1.png" style="width:80px;height:80px;padding-bottom: 5px;padding-left: 7px;border-right-width: 5px;border-top-width: 5px;padding-right: 7px;"></td>
+      </tr>
+    </thead>
+    
+  </table>
+</div></header>
      ';
 //Cuerpo del pdf
    $html.='
@@ -53,13 +78,16 @@ if(isset($_GET["empresa"])){
             background-color: #e0e0e0
           }
         </style>
-   <div style="border: 1px solid green; text-align: justify;">Nota: Señor empresario, recuerde que esta es una HOJA RESUMEN de toda la información diligenciada, por tanto, si desea corroborar o saber información adicional, por favor remitirse a la hoja de verificación original y diligenciada</div>
+
+
+<div style="">
+   <div style="border: 1px solid green; text-align: justify">Nota: Señor empresario, recuerde que esta es una HOJA RESUMEN de toda la información diligenciada, por tanto, si desea corroborar o saber información adicional, por favor remitirse a la hoja de verificación original y diligenciada</div>
   <div style="margin-top: 10px; padding-top:5px;padding-bottom: 5px;  background-color:  #a5d6a7">
     <table width="100%">
       <tr>
-        <td width="80%">I. Información general</td>
-        <td width="15%">Fecha de verificación</td>
-        <td width="5%">27/09/2018</td>
+        <td width="50%">I. Información general</td>
+        <td width="25%">Fecha de verificación:</td>
+        <td width="25%">'.$fecha_registro.'</td>
       </tr>
     </table>
   </div>
@@ -142,7 +170,7 @@ if(isset($_GET["empresa"])){
          Nombre del verificador
         </th>
         <td >
-         Yovanny
+         '.$verificador.'
         </td>
         <th align="center">
           Operador
@@ -218,7 +246,9 @@ if(isset($_GET["empresa"])){
             if(mysqli_num_rows($r)>0){
 $division = 0;
 $suma = 0;
-$s="SELECT verificacion_2.id, calificador.nombre AS calificador FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id = 86 OR verificacion_2.opciones_id = 87 OR verificacion_2.opciones_id = 88 OR verificacion_2.opciones_id = 89 OR verificacion_2.opciones_id = 137 AND verificacion_2.empresa_id = '$empresa'";
+$s="SELECT verificacion_2.empresa_id, calificador.nombre AS calificador,verificacion_2.opciones_id FROM verificacion_2
+INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id
+WHERE verificacion_2.empresa_id = '$empresa' AND verificacion_2.opciones_id IN(86,87,88,89,137) ORDER BY verificacion_2.opciones_id";
 $r = mysqli_query($conn,$s);
 while ($rw = mysqli_fetch_assoc($r)) {
   if ($rw['calificador'] == 'N/A') {
@@ -500,17 +530,82 @@ $html.='<table class="" style="margin-top:20px">
             
           </tbody>
         </table>
+
+        <table style="margin-top:20px;width:100%">
+          <thead>
+            <tr>
+              <th style="width: 100%; background-color:#a5d6a7" class="green center" colspan="2">Resultado Nivel 1 + Nivel 2</th>
+            </tr>
+            <tr>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="width: 90%">Puntaje Total. Criterios de Cumplimiento de Negocios Verdes</td>
+              <td id="prom12" style="width: 10%">'.$prom_total1.'%</td>
+            </tr>
+            <tr>
+              <td>Puntaje Total.  Criterios Adicionales (ideales) Negocios Verdes</td>
+              <td id="prom13">'.$prom_total2.'%</td>
+            </tr>
+            <tr>';
+              $suma_total3 = $prom_total1+$prom_total2;
+              $resultado= round($suma_total3/2, 2);
+            $html.='
+              <th class=" grey lighten-1">Resultado</th>
+              <th class="grey lighten-1" id="total2">'.$resultado.'% </th>
+            </tr>
+            
+          </tbody>
+        </table>
 ';
   }else{
-    $html.='<div style="padding-top:20px">No se han aplicado las hojas de verificación</div>';
+    $html.='<div style="margin-top:20px; border:1px solid red; background-color:#ffcdd2">NOTA: No se han aplicado las hojas de verificación</div>';
   }
-  $mpdf = new mPDF();
-  $mpdf->debug = false;
+  $html.= '
+     <div style="border: 1px solid green; background-color: #a5d6a7;margin-top: 20px">Recomendaciones Componente Económico</div>
+      <div style="border: 1px solid;height: 130px"></div>
+        
+       <div style="border: 1px solid green; background-color: #a5d6a7;margin-top: 10px">Recomendaciones Componente Ambiental</div>
+      <div style="border: 1px solid;height: 130px;"></div>
+
+        <div style="border: 1px solid green; background-color: #a5d6a7;margin-top: 10px">Recomendaciones Componente Social</div>
+      <div style="border: 1px solid;height: 130px;"></div>
+      </div>
+      ';
+      date_default_timezone_set('America/Bogota');
+    $fecha_impresion = date("Y-m-d H:i:s");
+
+      $footer = '<table width="100%">
+          <tr>
+            <td align="left">'.$fecha_impresion.'</td>
+            <td align="right">Página: {PAGENO}</td>
+          </tr>
+        </table>';
+
+    $mode=''; // (Blanco para establecer el valor por defecto)<br> 
+    $format=array(216,279); // Ancho y altura de la hoja en mm
+    // Establecemos el tamaño de la fuente por defecto para el documento (pt)<br>
+    $font_s=''; // (Blanco para establecer el valor por defecto)<br>
+    // Establecemos el tipo de letra familia a aplicar en el documento<br>
+    $font_f=''; // (Blanco para establecer el valor por defecto)<br>
+
+    // Establecemos los márgenes de las páginas en milímetros para el documento<br>
+    $marg_l=25;  // Margen izquierdo
+    $marg_r=25;  // Margen derecho
+    $marg_t=30; // Margen superior
+    $marg_b=10; // Margen inferior
+    $marg_h=5;  // Margen de la cabecera de la página
+    $marg_f=5;  // Margen del pie de pagina
+ 
+    $mpdf=new mPDF($mode,$format,$font_s,$font_f,$marg_l,$marg_r,$marg_t,$marg_b,$marg_h,$marg_f);
+  $mpdf->defaultheaderline=0; 
+  $mpdf->defaultfooterline=1; 
   $mpdf->SetHeader($cabezera);
-  // $mpdf->Addpage();
-  // print($html);
-  $mpdf->SetTitle($razon_social);//nombre del pdf
+  $mpdf->SetFooter($footer);
   $mpdf->writeHTML($html);
+  $mpdf->SetTitle($razon_social);//nombre del pdf
   $mpdf->Output($razon_social."."."pdf","I");//nombre con el que se guarda el pdf
    }
 ?>

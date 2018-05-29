@@ -51,6 +51,10 @@ if (is_file('conexion.php')){
       </div>        
 </div>
 
+<div id="preload" class="">
+      <div class="indeterminate"></div>
+  </div>
+
 <form id="form_modificar_verificacion1">
     <div id="cargar_info"></div>
 </form>
