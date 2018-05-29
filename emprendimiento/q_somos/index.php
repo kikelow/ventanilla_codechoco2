@@ -1,4 +1,4 @@
-<?php include "conexion.php"; 
+<!-- <?php include "conexion.php"; 
   $s = "SELECT c.titulo,c.descripcion, i.ruta as ubicacion from contenido c, img_page i where c.id_img_page = i.id and c.id = 1" ;
   $res = mysqli_query($conn,$s) or die(mysqli_error($conn));
 ?>
@@ -26,4 +26,19 @@
          <?php echo "$rw[descripcion]"; }} ?>
       </div>
     </div>
+ </div> -->
+
+ <div class="row" style="margin-top: 200px;">
+   <div class="col s12 m4 l4">
+    <div >
+      <img class="responsive-img" src="img/img_m.png" alt="" width="400" height="400">
+    </div>
+   </div>
+    <div class="col s12 m8 l8">
+      <p>
+        <h1 style="font-family: arial;padding-top:100px;">
+          Esta sección de la pagina se encuentra en mantenimiento. En breve estara disponible.
+        </h1>
+      </p>
+   </div>
  </div>

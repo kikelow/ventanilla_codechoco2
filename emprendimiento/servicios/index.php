@@ -1,4 +1,4 @@
-<div class="row animatedParent" style="margin-top: 150px;">
+<!-- <div class="row animatedParent" style="margin-top: 150px;">
 	<div class="row animated fadeInRight" style="background-color:#00853bb5;margin-bottom: 0px;">
 		<div class="col s12 m8 l8">
 			<h3 style="text-align: center;color: #00853b;font-weight: bold;">Titulo de Servicio<span><hr class="hr_title" style="background-color: #00853b "></span></h3>
@@ -31,4 +31,18 @@
 		</div>
 		
 	</div>
-</div>
+</div> -->
+ <div class="row" style="margin-top: 200px;">
+   <div class="col s12 m4 l4">
+    <div >
+      <img class="responsive-img" src="img/img_m.png" alt="" width="400" height="400">
+    </div>
+   </div>
+    <div class="col s12 m8 l8">
+      <p>
+        <h1 style="font-family: arial;padding-top:100px;">
+          Esta sección de la pagina se encuentra en mantenimiento. En breve estara disponible.
+        </h1>
+      </p>
+   </div>
+ </div>
