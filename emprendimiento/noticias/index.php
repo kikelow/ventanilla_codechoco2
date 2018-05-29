@@ -21,7 +21,7 @@
                 echo "<div class='row'>
                       <input type='hidden' name='' id='id' value='$rw[id]'>
                       <div class='col s12 m2 l2 '>
-                        <img class='c_img' src='content_admin/content_save/$rw[ubicacion]' alt='' style='margin-top: 20px;'>
+                        <img class='c_img' src='content_admin/content_save/img_content/$rw[ubicacion]' alt='' style='margin-top: 20px;'>
                       </div>
                       <div class='col s12 m10 l10'>
                         <p style='font-style: italic;' >Fecha y hora de publicación: $rw[fecha_publicacion]</p>

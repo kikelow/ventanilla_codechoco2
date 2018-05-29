@@ -2,7 +2,7 @@
 include "../../conexion.php";
 
 $nombre = $_POST['nombre_archivo'];
-$contenido = $_POST['contenido'];
+$contenido = $_POST['contenido_archivo'];
 
 
 $limite_kb = 10240;
@@ -25,7 +25,7 @@ $limite_kb = 10240;
 
 		        if ($m != false) {
 		        	
-		        	$s="INSERT INTO `archivo_page` VALUES (null,'$nombre','$ruta','$contenido')";
+		        	$s="INSERT INTO `archivo_page` VALUES (null,'$nombre','$name','$contenido')";
         			$q = mysqli_query($conn,$s) or die(mysqli_error($conn));
 
         			if ($q == true) {

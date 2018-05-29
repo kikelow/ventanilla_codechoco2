@@ -12,7 +12,7 @@
               while($rw=mysqli_fetch_array($res)){
     ?>
 
-          <img src="content_admin/content_save/<?php echo $rw['ubicacion'] ?>" alt="" width="300" height="300">
+          <img src="content_admin/content_save/img_content/<?php echo $rw['ubicacion'] ?>" alt="" width="300" height="300">
         </div> 
      </div>
    </div>

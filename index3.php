@@ -92,7 +92,8 @@ session_start();
   <script type="text/javascript" src="js/sweetalert.js"></script>
    <script type="text/javascript" src="js/Trumbowyg-master/dist/trumbowyg.min.js"></script>
    <script type="text/javascript">
-      $('textarea').trumbowyg();
+      $('#descripcion').trumbowyg();
+      $('#descripcion_nt').trumbowyg();
    </script>
 
 

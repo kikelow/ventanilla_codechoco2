@@ -1,4 +1,6 @@
 $('#btn_new_content2').attr('disabled','disabled');
+// $('#btn_modificar_image').attr('disabled','disabled');
+
 $('#btn_new_content').click(function() {
 
 	if ($('.oculto').show('slow')) {
@@ -12,6 +14,22 @@ $('#btn_new_content2').click(function() {
 		$('#btn_new_content2').attr('disabled','disabled');
 	}
 });
+
+//
+
+// $('#btn_new_image').click(function() {
+
+// 	if ($('.oculto2').show('slow')) {
+// 		$('#btn_modificar_image').attr('disabled','disabled');
+// 		$('#btn_guardar_image').removeAttr('disabled','disabled');
+// 	}	
+// });
+// $('#btn_new_content2').click(function() {
+// 	if ($('.oculto').hide('slow')) {
+// 		$('#btn_new_content').removeAttr('disabled','disabled');
+// 		$('#btn_new_content2').attr('disabled','disabled');
+// 	}
+// });
 
 ///////////////////////////////////
 
@@ -105,6 +123,11 @@ $('#btn_cerrar_slide').click(function() {
 
 ///////////////////////////////////////////////////////////
 
+
+
+
+/////////////////////////////////////////////////////////////////
+
 // guardar content 
 $('#btn_guardar_content').click(function(event) {
   event.preventDefault();
@@ -144,10 +167,9 @@ function cargar_datos_qs(id){
 
 			if (result != false) {
 
-			console.log(result);
 			var content = $.parseJSON(result);
-
-					$('.oculto').show('slow')
+					
+					$('.oculto').show('slow');
  					$('#id').val(content["id"]);
    					$('#titulo').val(content["titulo"]);
 	   				$('#alias  option[value='+content['alias_id']+']').attr('selected',true);
@@ -156,6 +178,8 @@ function cargar_datos_qs(id){
 					$('#descripcion').trumbowyg('html',content["descripcion"] );
 					$('#imagen').val(content["id_img_page"]);
 					$('#imagen').material_select();
+
+					//desabilitar boton guardar
 				
 			} 
 		}			
@@ -219,7 +243,7 @@ function borrar_datos_qs(id){
 }
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////// Noticias //////////////////////////////////////////////
 
 $('#btn_guardar_not').click(function(event) {
   event.preventDefault();
@@ -238,12 +262,12 @@ $('#btn_guardar_not').click(function(event) {
     },success: function(respuesta) {
       swal ({
           icon: "success",
-           text: "Datos Guardados Exitosamente!",
-           button: {
-            visible: false
+          text: "Datos Guardados Exitosamente!",
+          button: {
+           visible: false
           },
       });
-      //window.setTimeout('location.reload()', 1000);
+      // window.setTimeout('location.reload()', 1000);
     }
   })
 });
@@ -299,7 +323,7 @@ function editar_nt(){
 			  button: false
 			});
 			
-			//window.setTimeout('location.reload()', 1000);
+			window.setTimeout('location.reload()', 1000);
 		}
 	});
 }
@@ -323,7 +347,7 @@ function borrar_datos_nt(id){
 				swal("¡El registro ha sido eliminado!", {
 			      icon: "success",
 			    });
-				window.setTimeout('location.reload()',900); 
+				//window.setTimeout('location.reload()',900); 
 			}
 		});
 	  } else {
@@ -333,8 +357,6 @@ function borrar_datos_nt(id){
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////77
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////        para archivos       ///////////////////////////////
 
@@ -350,18 +372,33 @@ $('#btn_guardar_archivo').click(function() {
 	        data: formData,
 	        contentType: false,
 	        processData: false,
-	    success: function(datos)
-	        {
-	            $("#respuesta").html(datos);
-	        }
+	            beforeSend: function() {
+    swal ({
+          // icon: "success",
+           text: "Procesando!",
+           button: {
+            visible: false
+          },
+      });
+    },success: function(respuesta) {
+      swal ({
+          icon: "success",
+          text: "Archivo Guardados Exitosamente!",
+          button: {
+           visible: false
+          },
+      });
+      window.setTimeout('location.reload()', 1000);
+    }
+	   
 	 });
 });
 
 
-function cargar_datos_nt(id){
+function cargar_datos_archivo(id){
 	$.ajax({
 	type: "POST",
-	url: "content_admin/content_load/cargar_nt.php",
+	url: "content_admin/content_load/cargar_file.php",
 	data: {id:id},
 	cache: false,
 		success: function(result){
@@ -371,13 +408,12 @@ function cargar_datos_nt(id){
 			console.log(result);
 			var content = $.parseJSON(result);
 
-					//$('.oculto').show('slow')
- 					$('#id_nt').val(content["id"]);
-   					$('#titulo_nt').val(content["titulo"]);
-	   				$('#autor_nt').val(content["fuente_autor"]);
-					$('#descripcion_nt').trumbowyg('html',content["descripcion"] );
-					$('#imagen_nt').val(content["id_img_page"]);
-					$('#imagen_nt').material_select();
+					$('.oculto3').show('slow')
+ 					$('#id_file').val(content["id"]);
+   					$('#nombre_archivo').val(content["nombre"]);
+	   				$('#nombre_file').val(content["ruta"]);
+					$('#contenido_archivo').val(content["contenido_id"]);
+					$('#contenido_archivo').material_select();
 				
 			} 
 		}			
@@ -385,21 +421,18 @@ function cargar_datos_nt(id){
 }
 
 
-function editar_nt(){
+function editar_file(){
 
-	var datos = {
-		"id":$('#id_nt').val(),
-		"titulo":$('#titulo_nt').val(),
-		"descripcion":$('#descripcion_nt').val(),
-		"autor":$('#autor_nt').val(),
-		"imagen":$('#imagen_nt').val()
-	}
+		var id_file = $('#id_file').val();
+		var formData = new FormData($("#archivo_form")[0]);
 
 	$.ajax({
 	type: "POST",
-	url: "content_admin/content_edit/editar_nt.php",
-	data: datos,
+	url: "content_admin/content_edit/editar_file.php?id_file=" + id_file,
+	data: formData,
 	cache: false,
+    contentType: false,
+	processData: false,
 		success: function(result){
 			swal({
 			  title: "Muy Bien!",
@@ -413,7 +446,7 @@ function editar_nt(){
 	});
 }
 
-function borrar_datos_nt(id){
+function borrar_datos_file(id){
 	swal({
 	  title: "Estás seguro?",
 	  text: "Una vez eliminado, no podrá recuperar este registro!",
@@ -425,7 +458,7 @@ function borrar_datos_nt(id){
 	  if (willDelete) {
 	    $.ajax({
 		type: "POST",
-		url: "content_admin/content_delete/borrar_nt.php",
+		url: "content_admin/content_delete/borrar_file.php",
 		data: {id:id},
 		cache: false,
 			success: function(result){
@@ -441,7 +474,8 @@ function borrar_datos_nt(id){
 	});
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////77
+///////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////// para image ////////////////////////////////////////////7777777 
 
 $('#btn_guardar_image').click(function() {
 
@@ -453,15 +487,125 @@ $('#btn_guardar_image').click(function() {
 	        data: formData,
 	        contentType: false,
 	        processData: false,
-	    success: function(datos)
-	        {
-	            $("#respuesta").html(datos);
-	        }
+	   		    beforeSend: function() {
+    swal ({
+          // icon: "success",
+           text: "Procesando información!",
+           button: {
+            visible: false
+          },
+      });
+    },success: function(respuesta) {
+      swal ({
+          icon: "success",
+          text: "Archivo Guardados Exitosamente!",
+          button: {
+           visible: false
+          },
+      });
+
+       window.setTimeout('location.reload()', 1000);
+    }
 	 });
 });
 
+
+
+function cargar_datos_img(id){
+
+	$.ajax({
+	type: "POST",
+	url: "content_admin/content_load/cargar_img.php",
+	data: {id:id},
+	cache: false,
+		success: function(result){
+
+			if (result != false) {
+
+			console.log(result);
+			var content = $.parseJSON(result);
+
+					$('.oculto2').show('slow');
+
+					// if ($('.oculto2').show('slow')) {
+					// 	$('#btn_guardar_image').attr('disabled','disabled');
+					// 	$('#btn_modifcar_image').removeAttr('disabled','disabled');
+					// }
+
+					
+ 					$('#id_img').val(content["id"]);
+   					$('#nombre_imagen').val(content["nombre"]);
+	   				//$('#file').val(content["ruta"]);
+					//$('#nombre_img').val(content["ruta"]);
+
+					
+					
+				
+			} 
+		}			
+	});
+}
+
+
+function editar_img(){
+
+var id_img = $('#id_img').val();
+
+	// "nombre_imagen":$('#nombre_imagen').val()
+	var formData = new FormData($("#image_form")[0]);
+
+	// }
+	
+	$.ajax({
+	type: "POST",
+	url: "content_admin/content_edit/editar_img.php?id_img="+id_img,
+    data: formData,
+	cache: false,
+    contentType: false,
+	processData: false,
+		success: function(result){
+			swal({
+			  title: "Muy Bien!",
+			  text: "Registro actualizado satisfactoriamente!",
+			  icon: "success",
+			  button: false
+			});
+			
+			//window.setTimeout('location.reload()', 1000);
+		}
+	});
+}
+
+function borrar_datos_img(id){
+	swal({
+	  title: "Estás seguro?",
+	  text: "Una vez eliminado, no podrá recuperar este registro!",
+	  icon: "warning",
+	  buttons: true,
+	  dangerMode: true,
+	})
+	.then((willDelete) => {
+	  if (willDelete) {
+	    $.ajax({
+		type: "POST",
+		url: "content_admin/content_delete/borrar_img.php",
+		data: {id:id},
+		cache: false,
+			success: function(result){
+				swal("¡El registro ha sido eliminado!", {
+			      icon: "success",
+			    });
+				window.setTimeout('location.reload()',900); 
+			}
+		});
+	  } else {
+	    swal("¡Tu registro está seguro!");
+	  }
+	});
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////7777
-////////////////////////////////////////7 para usuarios ///////////////////////////////////////////////7
+//////////////////////////////////////// para usuarios ///////////////////////////////////////////////7
 
 
 function cargar_datos_usuario(id){
@@ -546,7 +690,8 @@ function borrar_datos_usuario(id){
 	});
 }
 
-////////////////////// slide ///////////////////////////////
+////////////////////// slide //////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 $('#btn_guardar_slide').click(function(event) {
   event.preventDefault();
@@ -576,21 +721,49 @@ $('#btn_guardar_slide').click(function(event) {
 });
 
 
-///////////7 edit ///////////////////
 
-function editar_usuario(){
+
+function cargar_datos_slide(id){
+	$.ajax({
+	type: "POST",
+	url: "content_admin/content_load/cargar_slide.php",
+	data: {id:id},
+	cache: false,
+		success: function(result){
+
+			if (result != false) {
+
+			console.log(result);
+			var content = $.parseJSON(result);
+
+					$('.oculto5').show('slow');
+
+ 					$('#id_slide').val(content["id"]);
+   					$('#titulo_slide').val(content["titulo"]);
+   					$('#descripcion_slide').focus();
+	   				$('#descripcion_slide').val(content["descripcion"]);
+					$('#img_slide').val(content["id_img_page"]);
+					$('#img_slide').material_select();
+				
+			} 
+		}			
+	});
+}
+
+
+function editar_slide(){
 
 	var datos = {
-		"id":$('#id').val(),
-		"usuario":$('#usuario').val(),
-		"clave":$('#clave').val(),
-		"persona_id":$('#empleado').val()
+		"id_slide":$('#id_slide').val(),
+		"titulo_slide":$('#titulo_slide').val(),
+		"descripcion_slide":$('#descripcion_slide').val(),
+		"img_slide":$('#img_slide').val()
 	
 	}
 
 	$.ajax({
 	type: "POST",
-	url: "content_admin/content_edit/editar_usuario.php",
+	url: "content_admin/content_edit/editar_slide.php",
 	data: datos,
 	cache: false,
 		success: function(result){
@@ -601,7 +774,35 @@ function editar_usuario(){
 			  button: false
 			});
 			
-			window.setTimeout('location.reload()', 1000);
+			//window.setTimeout('location.reload()', 1000);
 		}
+	});
+}
+
+function borrar_datos_slide(id){
+	swal({
+	  title: "Estás seguro?",
+	  text: "Una vez eliminado, no podrá recuperar este registro!",
+	  icon: "warning",
+	  buttons: true,
+	  dangerMode: true,
+	})
+	.then((willDelete) => {
+	  if (willDelete) {
+	    $.ajax({
+		type: "POST",
+		url: "content_admin/content_delete/borrar_slide.php",
+		data: {id:id},
+		cache: false,
+			success: function(result){
+				swal("¡El registro ha sido eliminado!", {
+			      icon: "success",
+			    });
+				// window.setTimeout('location.reload()',900); 
+			}
+		});
+	  } else {
+	    swal("¡Tu registro está seguro!");
+	  }
 	});
 }

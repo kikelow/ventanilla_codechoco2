@@ -1,56 +1,29 @@
+<div class='slider' id='sliderp' style='background-size: cover;'>
+  <ul class='slides' id='ulimg'>
 
-     <div class="slider" id="sliderp" style="background-size: cover;">
-    <ul class="slides" id="ulimg">
-      <li class="li_extend">
-        <img src="img/p3.jpeg"> 
-        <div class="caption center-align">
-          <h3>Registra tu emprendimiento!</h3>
-          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-        </div>
-      </li>
-      <li class="li_extend">
-        <img src="img/p1.jpg"> 
-        <div class="caption left-align">
-          <h3>Asesorias y acompañamiento</h3>
-          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-        </div>
-      </li>
-      <li class="li_extend">
-        <img src="img/p-3.jpg"> 
-        <div class="caption right-align">
-          <h3> Visibiliza tu negocio</h3>
-          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-        </div>
-      </li>
-      <li class="li_extend">
-      <img src="img/p3.jpg"> 
-      <div class="caption center-align">
-        <h3>Mejora tus posibilidades!</h3>
-        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-      </div>
-    </li>
+<?php include "conexion.php";
+  $s = "SELECT s.titulo,s.descripcion, i.ruta as ubicacion from slide s, img_page i where s.id_img_page = i.id" ;
+  $res = mysqli_query($conn,$s) or die(mysqli_error($conn));
+
+     if(mysqli_num_rows($res)>0){
+        while($rw=mysqli_fetch_array($res)){
+            echo "
+            <li class='li_extend'>
+             <img src='content_admin/content_save/img_content/$rw[ubicacion]'> 
+              <div class='caption center-align'>
+                <h1>$rw[titulo]</h1>
+                <h3 class='light grey-text text-lighten-3'>$rw[descripcion]</h3>
+              </div>
+            </li>";
+        }
+      }
+?>
   </ul>
-</div>
-
-  <div class="parallax-container">
-      <!-- <div class="nav animatedParent">
-      <div id="div_logo" class="animated growIn slow">
-        <a  class="brand-logo" href="#"><img class="logo" id="logo" src="img/logo1.png" style="width:118px;height:118px;padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;padding-top: 5px;"></a> 
-      </div>
-      
-      <ul class="hide-on-med-and-down" >
-        <li><a class="sub_line"  href="index.php?modulo=emprendimiento/inicio">Inicio</a></li>
-            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/q_somos">¿Quienes Somos?</a></li> -->
-           <!--  <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/m_verdes">Mercados Verdes</a></li>
-            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/registro">Registro</a></li>
-            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/noticias">Noticias</a></li>  
-            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="#">Normatividad</a></li>
-            <li><a class="sub_line" style="margin-right:  10px;font-family: 'Sniglet', cursive" href="#">Documentación</a></li>
-        <li><a style="font-family: 'Sniglet', cursive" href="#" class="active hoverable">Login</a></li>
-      </ul>
-  </div> --> 
+</div>    
 
 
+
+<div class="parallax-container">
 <div class="section white" style="background-color: #f5f5f5">
     <div class="row container" >
 
@@ -90,14 +63,10 @@
         </div>
 
     </div>
-
-
-    <!--   <h2 class="header">Parallax</h2>
-      <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p> -->
-
-
     </div>
   </div>
+
+
 
 
 <div class="row" id="mv_registro1">
@@ -130,6 +99,7 @@
 </div>
 
 
+
   
 
 
@@ -137,7 +107,40 @@
   <div class="row container ">
   <div class="row noticias" style="margin-top: 80px;">
     <!-- <span class="black-text">  -->
-    <div class="col s12 m4 l4">
+
+        
+        <?php 
+            $s = "SELECT titulo,descripcion,fuente_autor from noticia";
+
+            $res = mysqli_query($conn,$s) or die(mysqli_error($conn));
+
+           if(mysqli_num_rows($res)>0){
+              while($rw=mysqli_fetch_array($res)){
+
+$titulo_c = substr($rw['titulo'], 0, 26);
+$descripcion_c = substr($rw['descripcion'], 0, 270);
+
+                  echo "
+<div class='col s12 m4 l4'>
+<div class='w3-card-4'>        
+<header class='w3-container ' style='background-color:  #00853b'>
+<h4 class='white-text'>$titulo_c...</h4>
+</header>
+
+<div class='w3-container' style='background-color:  #fff;min-height:210px;max-height:210px;'>
+<p >$descripcion_c...</p>
+</div>
+
+<footer class='w3-container' style='background-color:  #00853b'>
+<h5 class='white-text'>$rw[fuente_autor]</h5>
+</footer></div>
+    </div>";
+              }
+            }
+        ?>
+        
+
+<!--      <div class="col s12 m4 l4">
         <div class="w3-card-4">
             <header class="w3-container " style="background-color:  #00853b">
               <h1 class="white-text">Titulo noticia</h1>
@@ -151,25 +154,9 @@
           <h5 class="white-text">Fuente o responsbale de la noticia</h5>
         </footer>
         </div>
-    </div>
+    </div> -->
 
-     <div class="col s12 m4 l4">
-        <div class="w3-card-4">
-            <header class="w3-container " style="background-color:  #00853b">
-              <h1 class="white-text">Titulo noticia</h1>
-            </header>
-
-        <div class="w3-container" style="background-color:  #fff">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-
-        <footer class="w3-container " style="background-color:  #00853b">
-          <h5 class="white-text">Fuente o responsbale de la noticia</h5>
-        </footer>
-        </div>
-    </div>
-
-     <div class="col s12 m4 l4">
+    <!--  <div class="col s12 m4 l4">
         <div class="w3-card-4">
             <header class="w3-container " style="background-color:  #00853b">
               <h1 class="white-text">Titulo noticia</h1>
@@ -183,9 +170,9 @@
           <h5 class="white-text">Fuente o responsbale de la noticia</h5>
         </footer>
         </div>
-    </div>
+    </div> -->
 
-     <div class="col s12 m4 l4">
+    <!--  <div class="col s12 m4 l4">
         <div class="w3-card-4">
             <header class="w3-container " style="background-color:  #00853b">
               <h1 class="white-text">Titulo noticia</h1>
@@ -199,9 +186,9 @@
           <h5 class="white-text">Fuente o responsbale de la noticia</h5>
         </footer>
         </div>
-    </div>
+    </div> -->
 
-     <div class="col s12 m4 l4">
+  <!--    <div class="col s12 m4 l4">
         <div class="w3-card-4">
             <header class="w3-container " style="background-color:  #00853b">
               <h1 class="white-text">Titulo noticia</h1>
@@ -215,9 +202,9 @@
           <h5 class="white-text">Fuente o responsbale de la noticia</h5>
         </footer>
         </div>
-    </div>
+    </div> -->
 
-     <div class="col s12 m4 l4">
+    <!--  <div class="col s12 m4 l4">
         <div class="w3-card-4">
             <header class="w3-container " style="background-color:  #00853b">
               <h1 class="white-text">Titulo noticia</h1>
@@ -231,7 +218,7 @@
           <h5 class="white-text">Fuente o responsbale de la noticia</h5>
         </footer>
         </div>
-    </div>
+    </div> -->
   <!-- </span> -->
 </div>    
 </div>
