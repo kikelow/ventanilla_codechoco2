@@ -58,6 +58,19 @@ INSERT INTO `actividades` (`id`, `empresa_id`, `opciones_id`, `recurso_id`, `des
 (30, 15, 60, 1, '', 'no');
 
 -- --------------------------------------------------------
+-- CREATE TABLE `tamaño_empresa` (
+--   `id` int(11) NOT NULL,
+--   `nombre` varchar(30) COLLATE utf8_bin NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --
+-- -- Volcado de datos para la tabla `tamaño_empresa`
+-- --
+
+-- INSERT INTO `tamaño_empresa` (`id`, `nombre`) VALUES
+-- (2, 'Micro empresa'),
+-- (3, 'Pequeña empresa'),
+-- (4, 'Mediana empresa');
 
 --
 -- Estructura de tabla para la tabla `actividad_empresa`
@@ -806,57 +819,57 @@ INSERT INTO `empleado_sexo` (`id`, `empresa_id`, `socio_empleado_id`, `sexo_id`,
 -- Estructura de tabla para la tabla `empresa`
 --
 
-CREATE TABLE `empresa` (
-  `id` int(11) NOT NULL,
-  `tipo_persona_id` int(11) NOT NULL,
-  `tipo_identificacion_id` int(11) NOT NULL,
-  `identificacion` varchar(15) COLLATE utf8_bin NOT NULL,
-  `razon_social` varchar(50) COLLATE utf8_bin NOT NULL,
-  `persona_id` int(11) NOT NULL COMMENT 'Representante_legal',
-  `empresario_id` int(11) NOT NULL,
-  `municipio_id` int(11) NOT NULL,
-  `vereda` varchar(100) COLLATE utf8_bin NOT NULL,
-  `direccion` varchar(100) COLLATE utf8_bin NOT NULL,
-  `aut_ambiental` varchar(40) COLLATE utf8_bin NOT NULL,
-  `coodenadas_n` varchar(10) COLLATE utf8_bin NOT NULL,
-  `coordenadas_w` varchar(10) COLLATE utf8_bin NOT NULL,
-  `altitud` varchar(10) COLLATE utf8_bin NOT NULL,
-  `area` varchar(10) COLLATE utf8_bin NOT NULL,
-  `si_no_pot_id` int(11) NOT NULL COMMENT 'tiene o no tiene POT',
-  `fami_empresa_si_no` int(11) NOT NULL COMMENT 'Fami empresa si o no',
-  `tamaño_empresa_id` int(11) NOT NULL,
-  `fecha_registro` varchar(40) COLLATE utf8_bin NOT NULL,
-  `descripcion` text COLLATE utf8_bin NOT NULL,
-  `desc_impacto_amb` text COLLATE utf8_bin NOT NULL,
-  `num_socios` int(11) NOT NULL,
-  `asociacion_si_no` int(11) NOT NULL COMMENT 'Asociacion',
-  `subsector_id` int(11) NOT NULL,
-  `etapa_empresa_id` int(11) NOT NULL,
-  `const_legalmente_sino` int(11) NOT NULL,
-  `año_funcionamiento` int(11) NOT NULL,
-  `opera_actualmente_sino` int(11) NOT NULL,
-  `año_func_desp_reg_camara` int(11) NOT NULL,
-  `obs_general` text COLLATE utf8_bin NOT NULL,
-  `informacion_as` varchar(2) COLLATE utf8_bin NOT NULL,
-  `verificacion1` varchar(2) COLLATE utf8_bin NOT NULL,
-  `verificacion2` varchar(2) COLLATE utf8_bin NOT NULL,
-  `plan_mejora` varchar(2) COLLATE utf8_bin NOT NULL,
-  `puntaje` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- CREATE TABLE `empresa` (
+--   `id` int(11) NOT NULL,
+--   `tipo_persona_id` int(11) NOT NULL,
+--   `tipo_identificacion_id` int(11) NOT NULL,
+--   `identificacion` varchar(15) COLLATE utf8_bin NOT NULL,
+--   `razon_social` varchar(50) COLLATE utf8_bin NOT NULL,
+--   `persona_id` int(11) NOT NULL COMMENT 'Representante_legal',
+--   `empresario_id` int(11) NOT NULL,
+--   `municipio_id` int(11) NOT NULL,
+--   `vereda` varchar(100) COLLATE utf8_bin NOT NULL,
+--   `direccion` varchar(100) COLLATE utf8_bin NOT NULL,
+--   `aut_ambiental` varchar(40) COLLATE utf8_bin NOT NULL,
+--   `coodenadas_n` varchar(10) COLLATE utf8_bin NOT NULL,
+--   `coordenadas_w` varchar(10) COLLATE utf8_bin NOT NULL,
+--   `altitud` varchar(10) COLLATE utf8_bin NOT NULL,
+--   `area` varchar(10) COLLATE utf8_bin NOT NULL,
+--   `si_no_pot_id` int(11) NOT NULL COMMENT 'tiene o no tiene POT',
+--   `fami_empresa_si_no` int(11) NOT NULL COMMENT 'Fami empresa si o no',
+--   `tamaño_empresa_id` int(11) NOT NULL,
+--   `fecha_registro` varchar(40) COLLATE utf8_bin NOT NULL,
+--   `descripcion` text COLLATE utf8_bin NOT NULL,
+--   `desc_impacto_amb` text COLLATE utf8_bin NOT NULL,
+--   `num_socios` int(11) NOT NULL,
+--   `asociacion_si_no` int(11) NOT NULL COMMENT 'Asociacion',
+--   `subsector_id` int(11) NOT NULL,
+--   `etapa_empresa_id` int(11) NOT NULL,
+--   `const_legalmente_sino` int(11) NOT NULL,
+--   `año_funcionamiento` int(11) NOT NULL,
+--   `opera_actualmente_sino` int(11) NOT NULL,
+--   `año_func_desp_reg_camara` int(11) NOT NULL,
+--   `obs_general` text COLLATE utf8_bin NOT NULL,
+--   `informacion_as` varchar(2) COLLATE utf8_bin NOT NULL,
+--   `verificacion1` varchar(2) COLLATE utf8_bin NOT NULL,
+--   `verificacion2` varchar(2) COLLATE utf8_bin NOT NULL,
+--   `plan_mejora` varchar(2) COLLATE utf8_bin NOT NULL,
+--   `puntaje` double NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Volcado de datos para la tabla `empresa`
---
+-- --
+-- -- Volcado de datos para la tabla `empresa`
+-- --
 
-INSERT INTO `empresa` (`id`, `tipo_persona_id`, `tipo_identificacion_id`, `identificacion`, `razon_social`, `persona_id`, `empresario_id`, `municipio_id`, `vereda`, `direccion`, `aut_ambiental`, `coodenadas_n`, `coordenadas_w`, `altitud`, `area`, `si_no_pot_id`, `fami_empresa_si_no`, `tamaño_empresa_id`, `fecha_registro`, `descripcion`, `desc_impacto_amb`, `num_socios`, `asociacion_si_no`, `subsector_id`, `etapa_empresa_id`, `const_legalmente_sino`, `año_funcionamiento`, `opera_actualmente_sino`, `año_func_desp_reg_camara`, `obs_general`, `informacion_as`, `verificacion1`, `verificacion2`, `plan_mejora`, `puntaje`) VALUES
-(1, 1, 1, '123456', 'prueba1', 1, 1, 1, 'tutunendo city', 'no me acuerdo', 'Codechocó', '56', '32', '45', '12', 2, 1, 2, '2018-02-25 00:34:50', 'prueba1', 'prueba1', 18, 2, 1, 1, 1, 9, 1, 5, '', 'no', 'no', 'no', 'no', 0),
-(8, 1, 1, '1232', 'prueba2', 8, 1, 5, 'no se', 'no se', 'Codechocó', '', '', '', '', 1, 1, 2, '2018-02-25 00:53:52', '', '', 0, 1, 6, 1, 2, 0, 2, 0, '', 'no', 'no', 'no', 'no', 0),
-(11, 1, 1, '1232', 'no hacer prueba con este 11', 11, 1, 5, 'no se', 'no se', 'Codechocó', '', '', '', '', 1, 1, 2, '2018-02-25 00:54:29', '', '', 0, 1, 6, 1, 2, 0, 2, 0, 'llllllllllllllllffffffffffffffff', 'si', 'si', 'si', 'si', 68.68),
-(13, 1, 2, '12364897', 'no hacer prueba con este 13', 13, 1, 1, '', '', 'Codechocó', '', '', '', '', 2, 1, 2, '2018-02-25 01:01:33', 'descripcion 13', 'está mas o menos', 0, 1, 5, 3, 1, 0, 2, 0, '', 'si', 'si', 'si', 'si', 60.15),
-(15, 2, 1, '3415406546', 'Pesqueras', 15, 1, 2, '', '', 'Codechocó', '', '', '', '', 2, 2, 2, '2018-04-04 16:21:24', 'sdakjsghdkajh ', 'kjaghskdhjagsda', 10, 1, 1, 1, 1, 10, 1, 4, 'kjashdklajshl pesquera', 'no', 'no', 'no', 'no', 0),
-(16, 2, 1, '44535435', 'agcuaman', 16, 1, 1, '', '', 'Codechocó', '', '', '', '', 2, 1, 3, '2018-04-04 16:41:33', 'asmmmmmmm', 'askkkkkkkkkkkkkkkkkkkkkkk', 5, 1, 1, 1, 1, 5, 1, 4, '', 'si', 'no', 'no', 'no', 0),
-(17, 1, 1, '26260656', 'modisteria roldy five', 20, 4, 2, '', '', 'Codechocó', '', '', '', '', 2, 2, 2, '2018-04-24 03:45:39', 'modisteria buena', 'aporta mucho', 5, 1, 2, 1, 2, 0, 1, 0, 'sisi', 'si', 'si', 'si', 'no', 53.86409090909091),
-(18, 2, 1, 'lllllllll', 'llllll', 21, 5, 5, '', '', 'Codechocó', '', '', '', '', 2, 2, 2, '2018-04-24 03:54:58', 'asdasd', 'asfasfasfasf', 0, 2, 2, 1, 2, 0, 2, 0, 'bbbbbbbbbbbbbbbbbb', 'no', 'no', 'no', 'no', 0);
+-- INSERT INTO `empresa` (`id`, `tipo_persona_id`, `tipo_identificacion_id`, `identificacion`, `razon_social`, `persona_id`, `empresario_id`, `municipio_id`, `vereda`, `direccion`, `aut_ambiental`, `coodenadas_n`, `coordenadas_w`, `altitud`, `area`, `si_no_pot_id`, `fami_empresa_si_no`, `tamaño_empresa_id`, `fecha_registro`, `descripcion`, `desc_impacto_amb`, `num_socios`, `asociacion_si_no`, `subsector_id`, `etapa_empresa_id`, `const_legalmente_sino`, `año_funcionamiento`, `opera_actualmente_sino`, `año_func_desp_reg_camara`, `obs_general`, `informacion_as`, `verificacion1`, `verificacion2`, `plan_mejora`, `puntaje`) VALUES
+-- (1, 1, 1, '123456', 'prueba1', 1, 1, 1, 'tutunendo city', 'no me acuerdo', 'Codechocó', '56', '32', '45', '12', 2, 1, 2, '2018-02-25 00:34:50', 'prueba1', 'prueba1', 18, 2, 1, 1, 1, 9, 1, 5, '', 'no', 'no', 'no', 'no', 0),
+-- (8, 1, 1, '1232', 'prueba2', 8, 1, 5, 'no se', 'no se', 'Codechocó', '', '', '', '', 1, 1, 2, '2018-02-25 00:53:52', '', '', 0, 1, 6, 1, 2, 0, 2, 0, '', 'no', 'no', 'no', 'no', 0),
+-- (11, 1, 1, '1232', 'no hacer prueba con este 11', 11, 1, 5, 'no se', 'no se', 'Codechocó', '', '', '', '', 1, 1, 2, '2018-02-25 00:54:29', '', '', 0, 1, 6, 1, 2, 0, 2, 0, 'llllllllllllllllffffffffffffffff', 'si', 'si', 'si', 'si', 68.68),
+-- (13, 1, 2, '12364897', 'no hacer prueba con este 13', 13, 1, 1, '', '', 'Codechocó', '', '', '', '', 2, 1, 2, '2018-02-25 01:01:33', 'descripcion 13', 'está mas o menos', 0, 1, 5, 3, 1, 0, 2, 0, '', 'si', 'si', 'si', 'si', 60.15),
+-- (15, 2, 1, '3415406546', 'Pesqueras', 15, 1, 2, '', '', 'Codechocó', '', '', '', '', 2, 2, 2, '2018-04-04 16:21:24', 'sdakjsghdkajh ', 'kjaghskdhjagsda', 10, 1, 1, 1, 1, 10, 1, 4, 'kjashdklajshl pesquera', 'no', 'no', 'no', 'no', 0),
+-- (16, 2, 1, '44535435', 'agcuaman', 16, 1, 1, '', '', 'Codechocó', '', '', '', '', 2, 1, 3, '2018-04-04 16:41:33', 'asmmmmmmm', 'askkkkkkkkkkkkkkkkkkkkkkk', 5, 1, 1, 1, 1, 5, 1, 4, '', 'si', 'no', 'no', 'no', 0),
+-- (17, 1, 1, '26260656', 'modisteria roldy five', 20, 4, 2, '', '', 'Codechocó', '', '', '', '', 2, 2, 2, '2018-04-24 03:45:39', 'modisteria buena', 'aporta mucho', 5, 1, 2, 1, 2, 0, 1, 0, 'sisi', 'si', 'si', 'si', 'no', 53.86409090909091),
+-- (18, 2, 1, 'lllllllll', 'llllll', 21, 5, 5, '', '', 'Codechocó', '', '', '', '', 2, 2, 2, '2018-04-24 03:54:58', 'asdasd', 'asfasfasfasf', 0, 2, 2, 1, 2, 0, 2, 0, 'bbbbbbbbbbbbbbbbbb', 'no', 'no', 'no', 'no', 0);
 
 -- --------------------------------------------------------
 
@@ -2128,19 +2141,6 @@ INSERT INTO `subsector` (`id`, `sector_id`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `tamaño_empresa`
 --
 
-CREATE TABLE `tamaño_empresa` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(30) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Volcado de datos para la tabla `tamaño_empresa`
---
-
-INSERT INTO `tamaño_empresa` (`id`, `nombre`) VALUES
-(2, 'Micro empresa'),
-(3, 'Pequeña empresa'),
-(4, 'Mediana empresa');
 
 -- --------------------------------------------------------
 
@@ -2759,20 +2759,20 @@ ALTER TABLE `empleado_sexo`
 --
 -- Indices de la tabla `empresa`
 --
-ALTER TABLE `empresa`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `tipo_persona_id` (`tipo_persona_id`),
-  ADD KEY `tipo_identificacion_id` (`tipo_identificacion_id`),
-  ADD KEY `persona_id` (`persona_id`),
-  ADD KEY `si_no_id` (`si_no_pot_id`),
-  ADD KEY `tamaño_empresa_id` (`tamaño_empresa_id`),
-  ADD KEY `municipio_id` (`municipio_id`),
-  ADD KEY `fami_empresa_si_no` (`fami_empresa_si_no`),
-  ADD KEY `subsector_id` (`subsector_id`),
-  ADD KEY `etapa_empresa_id` (`etapa_empresa_id`),
-  ADD KEY `const_legalmente_sino` (`const_legalmente_sino`),
-  ADD KEY `opera_actualmente_sino` (`opera_actualmente_sino`),
-  ADD KEY `empresario_id` (`empresario_id`);
+-- ALTER TABLE `empresa`
+--   ADD PRIMARY KEY (`id`),
+--   ADD KEY `tipo_persona_id` (`tipo_persona_id`),
+--   ADD KEY `tipo_identificacion_id` (`tipo_identificacion_id`),
+--   ADD KEY `persona_id` (`persona_id`),
+--   ADD KEY `si_no_id` (`si_no_pot_id`),
+--   ADD KEY `tamaño_empresa_id` (`tamaño_empresa_id`),
+--   ADD KEY `municipio_id` (`municipio_id`),
+--   ADD KEY `fami_empresa_si_no` (`fami_empresa_si_no`),
+--   ADD KEY `subsector_id` (`subsector_id`),
+--   ADD KEY `etapa_empresa_id` (`etapa_empresa_id`),
+--   ADD KEY `const_legalmente_sino` (`const_legalmente_sino`),
+--   ADD KEY `opera_actualmente_sino` (`opera_actualmente_sino`),
+--   ADD KEY `empresario_id` (`empresario_id`);
 
 --
 -- Indices de la tabla `empresario`
@@ -3068,8 +3068,8 @@ ALTER TABLE `subsector`
 --
 -- Indices de la tabla `tamaño_empresa`
 --
-ALTER TABLE `tamaño_empresa`
-  ADD PRIMARY KEY (`id`);
+-- ALTER TABLE `tamaño_empresa`
+--   ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `tenencia_tierra`
@@ -3471,8 +3471,8 @@ ALTER TABLE `subsector`
 --
 -- AUTO_INCREMENT de la tabla `tamaño_empresa`
 --
-ALTER TABLE `tamaño_empresa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+-- ALTER TABLE `tamaño_empresa`
+--   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `tenencia_tierra`
 --
@@ -3628,7 +3628,7 @@ ALTER TABLE `empresa`
   ADD CONSTRAINT `empresa_ibfk_1` FOREIGN KEY (`persona_id`) REFERENCES `persona` (`id`),
   ADD CONSTRAINT `empresa_ibfk_2` FOREIGN KEY (`tipo_identificacion_id`) REFERENCES `tipo_identificacion` (`id`),
   ADD CONSTRAINT `empresa_ibfk_3` FOREIGN KEY (`tipo_persona_id`) REFERENCES `tipo_persona` (`id`),
-  ADD CONSTRAINT `empresa_ibfk_4` FOREIGN KEY (`tamaño_empresa_id`) REFERENCES `tamaño_empresa` (`id`),
+  -- ADD CONSTRAINT `empresa_ibfk_4` FOREIGN KEY (`tamaño_empresa_id`) REFERENCES `tamaño_empresa` (`id`),
   ADD CONSTRAINT `empresa_ibfk_5` FOREIGN KEY (`si_no_pot_id`) REFERENCES `si_no` (`id`),
   ADD CONSTRAINT `empresa_ibfk_6` FOREIGN KEY (`municipio_id`) REFERENCES `municipio` (`id`),
   ADD CONSTRAINT `empresa_ibfk_7` FOREIGN KEY (`fami_empresa_si_no`) REFERENCES `si_no` (`id`),

@@ -27,7 +27,7 @@
 <div class="section white" style="background-color: #f5f5f5">
     <div class="row container" >
 
-    <div class="row" >
+ <!--    <div class="row" >
 
         <div class="col s12 m3 l3">
             <div class="animatedParent">
@@ -62,7 +62,22 @@
             </div>  
         </div>
 
+    </div> -->
+     <div class="row">
+   <div class="col s12 m4 l4">
+    <div >
+      <img class="responsive-img" src="img/img_m.png" alt="" width="400" height="400">
     </div>
+   </div>
+    <div class="col s12 m8 l8">
+      <p>
+        <h1 style="font-family: arial;padding-top:100px;">
+          Esta sección de la pagina se encuentra en mantenimiento. En breve estara disponible.
+        </h1>
+      </p>
+   </div>
+ </div>
+
     </div>
   </div>
 
