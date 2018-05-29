@@ -18,6 +18,7 @@ session_start();
 	<link rel="stylesheet" type="text/css" href="css/select2.css">
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
   <link rel="stylesheet" type="text/css" href="js/Trumbowyg-master/dist/ui/trumbowyg.min.css">
+  <script src="js/jquery.min.js"  type="text/javascript"></script>
 	
 
   <link href="https://fonts.googleapis.com/css?family=Merriweather:700i" rel="stylesheet">
@@ -25,13 +26,17 @@ session_start();
   
 </head>
 <body>
+  <ul id="ajuste" class="dropdown-content">
+    <li><a href="index3.php?modulo=content_admin/informacion_personal" class="black-text">Editar perfil</a></li>
+    <li><a href="access/cerrar_sesion.php" class="black-text">Salir</a></li>
+  </ul>
 
 <nav class="black-text navbar-fixed grey lighten-4 right" style="width: 80%"> 
   <div class="nav-wrapper">
       <!-- <a href="#" class="brand-logo">Logo</a> -->
-      <ul id="nav-mobile" class="right ">
-        <li><a href="access/cerrar_sesion.php" class="black-text tooltipped" data-position="left" data-tooltip="cerrar sesión"><i class="material-icons">power_settings_new</i></a></li>
-        <!-- <li><a href="badges.html">Components</a></li>
+      <ul id="nav-mobile" class="right  ">
+     <li><a class="dropdown-button black-text" href="#!" data-activates="ajuste"><i class="material-icons left">settings</i>Configuracion<i class="material-icons right">arrow_drop_down</i></a></li>
+       <!--  <li><a href="badges.html">Components</a></li>
         <li><a href="collapsible.html">JavaScript</a></li> -->
       </ul>
     </div>
@@ -85,7 +90,7 @@ session_start();
 
 
 
-<script src="js/jquery.min.js"  type="text/javascript"></script>
+
   <script src="js/materialize.min.js"  type="text/javascript"></script>
   <script type="text/javascript" src="js/select2.js"></script>
   <script type="text/javascript" src="js/admin_content_crud.js"></script>

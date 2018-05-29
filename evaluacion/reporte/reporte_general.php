@@ -1525,10 +1525,10 @@ $objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "CI7:DU".$fil
 
 
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-header('Content-Disposition: attachment;filename="informe_general.xls"');
+header('Content-Disposition: attachment;filename="informe_general.xlsx"');
 header('Cache-Control: max-age=0');
  
-$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 $objWriter->save('php://output');
 
 
