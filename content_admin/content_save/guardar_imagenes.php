@@ -7,13 +7,13 @@ $nombre = $_POST['nombre_imagen'];
 $limite_kb = 5120;
 
 
-    if ($_FILES["file"]["size"] > 0) {
+    if ($_FILES["file_img"]["size"] > 0) {
 
-          if ($_FILES["file"]["size"] <= $limite_kb * 1024) {
+          if ($_FILES["file_img"]["size"] <= $limite_kb * 1024) {
             
-             $tmp_name = $_FILES["file"]["tmp_name"];
+             $tmp_name = $_FILES["file_img"]["tmp_name"];
 
-		        $name = basename($_FILES["file"]["name"]);
+		        $name = basename($_FILES["file_img"]["name"]);
 		        $ruta = "img_content";
 		        $ruta=$ruta."/".$name;
 
@@ -23,7 +23,7 @@ $limite_kb = 5120;
 
 		        if ($m != false) {
 		        	
-		        	$s="INSERT INTO `img_page` VALUES (null,'$nombre','$ruta')";
+		        	$s="INSERT INTO `img_page` VALUES (null,'$nombre','$name')";
         			$q = mysqli_query($conn,$s) or die(mysqli_error($conn));
 
         			if ($q == true) {

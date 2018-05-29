@@ -67,8 +67,8 @@
 
 		      </form>
 			<div class="col s12">
-				<a href="#!" id="btn_guardar_content" class="waves-effect waves-white btn-flat white-text right" style=" background-color:  #00853b;margin-top: 10px;">Guardar</a>
-				<a href="#!" id="btn_modifcar_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="editar_qs()">Modificar</a>
+				<a href="#!" id="btn_guardar_content" class="waves-effect waves-white btn-flat white-text right" style=" background-color:  #00853b;">Guardar</a>
+				<a href="#!" id="btn_modifcar_qs" class="waves-effect waves-white btn-flat white-text right" style="background-color:#00853b;margin-right: 10px;" onclick="editar_qs()">Modificar</a>
 			</div>
 		</div>
 	</div>
@@ -321,6 +321,11 @@
 	<div class="col s12">
 		<div class="oculto2 s12">
 		<form action="" id="image_form" enctype="multipart/form-data" method="post">
+				
+				<div class="input-field col s12">
+			         <input placeholder="" id="id_img" type="hidden" class="validate" name="id_img">
+			    </div>
+
 	      		<div class="input-field col s12">
 	             <input placeholder="" id="nombre_imagen" type="text" class="validate" name="nombre_imagen">
 	             <label for="nombre_imagen">Nombre</label>
@@ -329,15 +334,16 @@
 				 <div class='file-field input-field col s12'>
      				<div class='btn'>
     					<span>Archivo</span>
-    					<input type='file' name='file' id='file'>
+    					<input type='file' name='file_img' id='file_img'>
   					</div>
   					<div class='file-path-wrapper'>
-    					<input class='file-path validate' type='text' >
+    					<input class='file-path validate' type='text' id="nombre_img">
   					</div>  
     			</div>   			
 	      </form>
 			<div class="col s12">
-				<a href="#!" id="btn_guardar_image" class="modal-action modal-close waves-effect waves-white btn-flat white-text right" style=" background-color:  #00853b;margin-top: 10px;">Guardar</a>  
+				<a href="#!" id="btn_guardar_image" class="modal-action modal-close waves-effect waves-white btn-flat white-text right" style=" background-color:  #00853b;">Guardar</a>
+				<a href="#!" id="btn_modificar_image" class="waves-effect waves-white btn-flat white-text right" style="background-color:#00853b;margin-right: 10px;" onclick="editar_img()">Modificar</a>  
 			</div>
 		
 			
@@ -357,20 +363,42 @@
 			          </tr>
 			        </thead>
 					<?php 
-					$s = "SELECT * from img_page ";
+						$s = "SELECT i.id,i.nombre,i.ruta,n.id_img_page as 'noticia',c.id_img_page as 'contenido',s.id_img_page as 'slide'
+
+							FROM img_page i
+
+							left JOIN noticia n ON i.id = n.id_img_page
+							left JOIN contenido c ON i.id = c.id_img_page
+							left JOIN slide s ON i.id = s.id_img_page";
+
 					$r = mysqli_query($conn,$s) or die (mysqli_error($conn));
 					if (mysqli_num_rows($r)>0) {
 						while ($data=mysqli_fetch_assoc($r)) {
 					?>
 			      	   <tbody>
 				          <tr>
-				          	<td><?php echo "$data[id]"; ?></td>
-				            <td><?php echo "$data[nombre]"; ?></td>
-				            <td><?php echo "$data[ruta]"; ?></td>
-				            <td><a href="#image_form" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
-				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
-				          </tr>
-			      	
+				          	<?php if ($data['id'] == $data['noticia'] || $data['id'] == $data['contenido'] || $data['id'] == $data['slide'] ) { ?>
+				          		
+				          		<td><?php echo "$data[id]"; ?></td>
+				            	<td><?php echo "$data[nombre]"; ?></td>
+				            	<td><?php echo "$data[ruta]"; ?></td>
+				            	<td><a href="#image_form" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_img('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
+				            	<td><a href="#!" id="" class="disabled waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_img('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
+				          		</tr>
+							<?php
+
+				          	}
+				          	else
+				          	{ ?>
+								
+								<td><?php echo "$data[id]"; ?></td>
+				            	<td><?php echo "$data[nombre]"; ?></td>
+				            	<td><?php echo "$data[ruta]"; ?></td>
+				            	<td><a href="#image_form" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_img('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
+				            	<td><a href="#!" id="" class=" waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_img('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
+				          		</tr>
+
+				      <?php } ?>	          			      	
 					<?php }
 					} ?>
 			        </tbody>
@@ -395,6 +423,11 @@
 	<div class="col s12">
 		<div class="oculto3 s12">
 		<form action="" id="archivo_form" enctype="multipart/form-data" method="post">
+
+				<div class="input-field col s12">
+			         <input placeholder="" id="id_file" type="hidden" class="validate" name="id_file">
+			    </div>
+
 	      		<div class="input-field col s12">
 	             <input placeholder="" id="nombre_archivo" type="text" class="validate" name="nombre_archivo">
 	             <label for="nombre_archivo">Nombre</label>
@@ -406,12 +439,12 @@
     					<input type='file' name='file' id='file'>
   					</div>
   					<div class='file-path-wrapper'>
-    					<input class='file-path validate' type='text' >
+    					<input class='file-path validate' type='text' id="nombre_file" >
   					</div>  
     			</div> 
 
     			<div class="input-field col s12">
-				  		    <select name="contenido" id="contenido">
+				  		    <select name="contenido_archivo" id="contenido_archivo">
 				  		      <option value="" disabled selected>Seleccione...</option>
 				  
 				  				<?php 
@@ -430,7 +463,8 @@
 
 	      </form>
 			<div class="col s12">
-				<a href="#!" id="btn_guardar_archivo" class="waves-effect waves-white btn-flat white-text right" style=" background-color:  #00853b;margin-top: 10px;">Guardar</a>  
+				<a href="#!" id="btn_guardar_archivo" class="waves-effect waves-white btn-flat white-text right" style=" background-color:  #00853b;">Guardar</a> 
+				<a href="#!" id="btn_modifcar_archivo" class="waves-effect waves-white btn-flat white-text right" style="background-color:#00853b;margin-right: 10px;" onclick="editar_file()">Modificar</a>  
 			</div>
 		</div>
 	</div>
@@ -455,11 +489,11 @@
 			      	   <tbody>
 				          <tr>
 				          	<td><?php echo "$data[id]"; ?></td>
-				            <td><?php echo "$data[nombre]"; ?></td>
+				            <td><?php echo "$data[nombre]"; ?></td>	
 				            <td><?php echo "$data[ruta]"; ?></td>
 				            <td><?php echo "$data[contenido]"; ?></td>
-				            <td><a href="#modal_editar_content_q_somos" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
-				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
+				            <td><a href="#archivo_form" id="cargar_datos_archivo" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_archivo('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
+				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_file('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
 				          </tr>
 			      		</tbody>
 					<?php }
@@ -488,6 +522,11 @@
 	<div class="col s12">
 		<div class="oculto5 s12">
 		<form action="" id="slide_form" method="post">
+				
+				<div class="input-field col s12">
+			         <input placeholder="" id="id_slide" type="hidden" class="validate" name="id_slide">
+			    </div>
+
 	      		<div class="input-field col s12">
 	             <input placeholder="" id="titulo_slide" type="text" class="validate" name="titulo_slide">
 	             <label for="titulo">Titulo</label>
@@ -528,7 +567,8 @@
 
 	      </form>
 			<div class="col s12">
-				<a href="#!" id="btn_guardar_slide" class="waves-effect waves-white btn-flat white-text right" style=" background-color:  #00853b;margin-top: 10px;">Guardar</a>  
+				<a href="#!" id="btn_guardar_slide" class="waves-effect waves-white btn-flat white-text right" style=" background-color:  #00853b;">Guardar</a>
+				 <a href="#!" id="btn_modifcar_slide" class="right waves-effect waves-white btn-flat white-text" style="background-color:#00853b;margin-right: 10px;" onclick="editar_slide()">Modificar</a>  
 			</div>
 		</div>
 	</div>
@@ -544,7 +584,7 @@
 			          </tr>
 			        </thead>
 				 	<?php 
-					$s = "SELECT a.id,a.titulo,a.descripcion,i.ruta as ruta from slide a,img_page i where a.img_page_id = i.id ";
+					$s = "SELECT a.id,a.titulo,a.descripcion,i.ruta as ruta from slide a,img_page i where a.id_img_page = i.id ";
 					$r = mysqli_query($conn,$s) or die (mysqli_error($conn));
 					if (mysqli_num_rows($r)>0) {
 						while ($data=mysqli_fetch_assoc($r)) {
@@ -555,8 +595,8 @@
 				            <td><?php echo "$data[titulo]"; ?></td>
 				            <td><?php echo "$data[descripcion]"; ?></td>
 				            <td><?php echo "$data[ruta]"; ?></td>
-				            <td><a href="#modal_editar_content_q_somos" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
-				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_qs('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
+				            <td><a href="#slide_form" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_slide('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
+				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_slide('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
 				          </tr>
 			      		</tbody>
 					<?php }

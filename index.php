@@ -49,7 +49,7 @@
             <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/noticias">Noticias</a></li>  
             <li><a class="sub_line" style="margin-right:10px;font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/m_evaluados">Negocios Evaluados</a></li>
             
-        <li><a style="font-family: 'Sniglet', cursive" href="access/index.php" class="active hoverable">Iniciar Sesión</a></li>
+        <li><a style="font-family: 'Sniglet', cursive" href="access/" class="active hoverable">Iniciar Sesión</a></li>
       </ul>
   </div>
 
@@ -105,9 +105,9 @@
       <h5 class="white-text"><i class="fa fa-globe" aria-hidden="true"></i> Información de Contacto</h5>
       <p class="grey-text text-lighten-4">
           <i class="fa fa-map-marker"></i> Quibdó - Chocó <br>
-          <i class="fa fa-building" aria-hidden="true"></i> Cra. 1 #2437 
+          <i class="fa fa-building" aria-hidden="true"></i> Cra. 1 N° 22 - 96
           
-          <br><i class="fa fa-envelope-o"></i> Correos rivergas@live.com - admin@rivergas.com.co.
+          <br><i class="fa fa-envelope-o"></i> Correos: contacto@codechoco.gov.co - defensajudicial@codechoco.gov.co
       </p>
     </div>
     <div class="col l4 offset-l2 s12">
