@@ -255,6 +255,8 @@ $(document).ready(function(){
  $('.collapsible').collapsible();
  $('.activar').addClass('active')
 
+ 
+
 
   })
 

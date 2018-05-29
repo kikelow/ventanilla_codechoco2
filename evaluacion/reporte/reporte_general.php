@@ -28,7 +28,7 @@
     ),
     'fill' => array(
 	'type' => PHPExcel_Style_Fill::FILL_SOLID,
-	// 'color' => array('rgb' => '538DD5')
+	'color' => array('rgb' => 'A5D6A7')
     ),
     'borders' => array(
 	'allborders' => array(
@@ -1212,7 +1212,7 @@
 		}
 
 		$objPHPExcel->getActiveSheet()->SetCellValue('BT'.$fila, '=AVERAGE(V'.$fila.':Z'.$fila.')');
-		$objPHPExcel->getActiveSheet()->getStyle('BT'.$fila.':CG'.$fila)
+		$objPHPExcel->getActiveSheet()->getStyle('BT'.$fila.':CH'.$fila)
     ->getNumberFormat()->applyFromArray( 
         array( 
             'code' => PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE
@@ -1232,9 +1232,11 @@
 		$objPHPExcel->getActiveSheet()->SetCellValue('CF'.$fila, '=AVERAGE(BT'.$fila.':CD'.$fila.')');
 		$objPHPExcel->getActiveSheet()->SetCellValue('CG'.$fila, '=CE'.$fila);
 
+		$objPHPExcel->getActiveSheet()->SetCellValue('CH'.$fila, '=AVERAGE(CF'.$fila.':CG'.$fila.')');
 		// $objPHPExcel->getActiveSheet()->SetCellValue('CH'.$fila, '=IF(AVERAGE(CF'.$fila.':CG'.$fila.')<=10%;"Inicial";IF(AND(AVERAGE(CF'.$fila.':CG'.$fila.')>10%;AVERAGE(CF'.$fila.':CG'.$fila.')<=30%);"Basico";IF(AND(AVERAGE(CF'.$fila.':CG'.$fila.')>30%;AVERAGE(CF'.$fila.':CG'.$fila.')<=50%);"Intermedio";IF(AND(AVERAGE(CF'.$fila.':CG'.$fila.')>50%;AVERAGE(CF'.$fila.':CG'.$fila.')<=80%);"Satisfactorio";IF(AND(AVERAGE(CF'.$fila.':CG'.$fila.')>80%;AVERAGE(CF'.$fila.':CG'.$fila.')<=100%);"Ideal")))))');
 		//Falta de la CH a CK
 
+		$objPHPExcel->getActiveSheet()->SetCellValue('CL'.$fila,$rw['plan_mejora']);
 		// ventas y costos 
 		$s25 = "SELECT empresa.id, SUM(sost_economica.ventas_anual) as venta_total, SUM(sost_economica.costo_produccion) as costo_total FROM empresa
 		    LEFT JOIN sost_economica  ON empresa.id = sost_economica.empresa_id 
@@ -1519,14 +1521,14 @@
 	 	$fila++;
 	 }
 $objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "A7:BS".$fila);
-$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "CH7:DU".$fila);
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "CI7:DU".$fila);
 
 
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-header('Content-Disposition: attachment;filename="informe_general.xlsx"');
+header('Content-Disposition: attachment;filename="informe_general.xls"');
 header('Cache-Control: max-age=0');
  
-$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 $objWriter->save('php://output');
 
 

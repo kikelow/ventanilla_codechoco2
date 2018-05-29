@@ -1,7 +1,6 @@
 $(document).ready(function() {
-	
-	$('#empresa').select2();
 
+	$('#empresa').select2();
 });
 //-----------------------------------Cargar formulario----------------------------------
 $('#empresa').change(function(event) {

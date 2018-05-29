@@ -46,7 +46,8 @@ if(isset($_GET["empresa"])){
 
 $verificador='';
    $s = "SELECT concat(persona.nombre1,' ',ifnull(persona.nombre2,' '),' ',persona.apellido1,' ',persona.paellido2) as verificador FROM verificadorxempresa
-   INNER JOIN persona ON persona.id = verificadorxempresa.persona_id";
+   INNER JOIN persona ON persona.id = verificadorxempresa.persona_id
+   WHERE verificadorxempresa.empresa_id = '$empresa'";
    $r = mysqli_query($conn,$s);
    while ($rw=mysqli_fetch_assoc($r)) {
     $verificador = $rw['verificador'];

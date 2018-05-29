@@ -25,7 +25,7 @@ if(!isset($_SESSION["vev_verificador"])){
 
 
   <ul id="ajuste" class="dropdown-content">
-    <li><a href="#" class="black-text">Cambiar contraseña</a></li>
+    <li><a href="index2.php?modulo=evaluacion/informacion_personal" class="black-text">Editar perfil</a></li>
     <li><a href="access/cerrar_sesion.php" class="black-text">Salir</a></li>
   </ul>
 

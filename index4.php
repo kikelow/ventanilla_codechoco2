@@ -25,7 +25,7 @@ if(!isset($_SESSION["vev_admin_verificador"])){
 
 
   <ul id="ajuste" class="dropdown-content">
-    <li><a href="#" class="black-text">Cambiar contraseña</a></li>
+    <li><a href="index4.php?modulo=asignar_verificador/informacion_personal/" class="black-text">Editar perfil</a></li>
     <li><a href="access/cerrar_sesion.php" class="black-text">Salir</a></li>
   </ul>
 
@@ -48,10 +48,10 @@ if(!isset($_SESSION["vev_admin_verificador"])){
       </img></li>
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
-          <li class="bold"><a class="collapsible-header  waves-green " href="index4.php?modulo=asignar_verificador/persona/">Crear Verificador</a>
-          <li class="bold"><a class="collapsible-header  waves-green " href="index4.php?modulo=asignar_verificador/inicio/">Asignar verificador</a>
-
-          </li>
+          <li class="bold"><a class="collapsible-header  waves-green " href="index4.php?modulo=asignar_verificador/persona/">Crear Verificador</a></li>
+          <li class="bold"><a class="collapsible-header  waves-green " href="index4.php?modulo=asignar_verificador/inicio/">Asignar verificador</a></li>
+          <li class="bold"><a class="collapsible-header  waves-green " href="index4.php?modulo=asignar_verificador/reporte/">Reportes</a></li>
+          
         </ul>
       </li>
 
@@ -98,6 +98,7 @@ if(!isset($_SESSION["vev_admin_verificador"])){
       <li><a href="index2.php?modulo=evaluacion/reporte" class="collection-item black-text">Reportes</a></li> -->
      <li class="bold"><a class="collapsible-header  waves-green " href="index4.php?modulo=asignar_verificador/persona/">Crear Verificador</a>
       <li class="bold"><a class="collapsible-header  waves-green " href="index4.php?modulo=asignar_verificador/inicio/">Asignar Verificador</a>
+
     </ul>
 
   </div>   

@@ -1,6 +1,6 @@
 <?php 
 // session_start();
-  if(!isset($_SESSION["vev_verificador"])){
+  if(!isset($_SESSION["vev_admin_verificador"])){
     header("Location:index.php");
     exit();
   }
