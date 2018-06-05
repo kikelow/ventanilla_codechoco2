@@ -95,17 +95,22 @@ $(document).ready(function(){
       }
     },
     {
-      breakpoint: 600,
+      breakpoint: 992,
       settings: {
         slidesToShow: 2,
-        slidesToScroll: 2
+        slidesToScroll: 2,
+        infinite: true,
+        dots: false
       }
     },
     {
       breakpoint: 480,
       settings: {
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        infinite: true,
+        dots:true,
+        arrows:false
       }
     }
     // You can unslick at a given breakpoint now by adding:
@@ -135,7 +140,7 @@ $(document).ready(function(){
       }
     },
     {
-      breakpoint: 600,
+      breakpoint: 992,
       settings: {
         slidesToShow: 2,
         slidesToScroll: 2

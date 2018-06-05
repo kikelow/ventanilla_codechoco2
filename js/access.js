@@ -74,3 +74,12 @@ $(document).ready(function() {
 		}
 	});
 });
+
+//////////////////////7777
+
+// var mediaquery = window.matchMedia("(max-width: 600px)");
+// if (mediaquery.matches) {
+//    // mediaquery es 600
+// } else {
+//   // mediaquery no es 600
+// }

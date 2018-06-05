@@ -426,7 +426,7 @@ $descripcion_c = substr($rw['descripcion'], 0, 270);
                 <label for="textarea1">Descripción *</label>
               </div>
 
-        <a class="waves-effect waves-light btn " style="margin-left: 250px;" >Enviar</a>
+        <a class="waves-effect waves-light btn" id="btn_contact" style="margin-left: 250px;" >Enviar</a>
       </div>
           </span>
         </div>
@@ -439,14 +439,6 @@ $descripcion_c = substr($rw['descripcion'], 0, 270);
         <div id="logo_container">
           <!-- <div id="logo_codechoco" > -->
             <img class="responsive-img" src="img/logo_code.png" alt="" width="163px" height="163px" >
-          <!-- </div>
-          <div id="logo_vetanilla"> -->
-            <img class="responsive-img" src="img/logo1.png" alt="" width="163px" height="163px" style="">
-          <!-- </div> -->
-          <!-- <div id="logo_codechoco" > -->
-            <img class="responsive-img" src="img/logo_code.png" alt="" width="163px" height="163px" >
-
-            <img class="responsive-img" src="img/logo1.png" alt="" width="163px" height="163px" style="">
           </div>
        
         </div>     

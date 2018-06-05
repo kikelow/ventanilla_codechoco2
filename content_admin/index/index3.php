@@ -83,7 +83,7 @@
 		      <div class="collapsible-body">
 		      	<span>
 
-					<table class="responsive-table highlight" id="tabla_qs">
+					<table class=" highlight" id="tabla_qs">
 			        <thead>
 			          <tr>
 			          	  <th>ID</th>
@@ -163,7 +163,7 @@
 		      <div class="collapsible-body">
 		      	<span>
 		      		<!-- para mercados verdes -->
-					<table class="responsive-table highlight" id="tabla_qs">
+					<table class=" highlight" id="tabla_qs">
 			        <thead>
 			          <tr>
 			          	  <th>ID</th>
@@ -228,7 +228,7 @@
 				            <td><?php echo "$data[fecha_publicacion]"; ?></td>
 				            <td><?php echo "$data[fuente_autor]"; ?></td>
 				           <!--  <td><?php echo "$data[imagen]"; ?></td> -->
-				            <td><a href="#content_form_nt" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_nt('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
+				            <td><a href="#content_form_nt" id="cargar_datos_nt" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_nt('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
 				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_nt('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
 				          </tr>
 			      	
@@ -285,9 +285,13 @@
 				  </form>
 				  
 				    <div class="">
-				      <a href="#" id="btn_guardar_not" class="right waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" >Guardar</a>
+				      <a href="#!" id="btn_guardar_not" class="right waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" >Guardar</a>
 
-				      <a href="#" id="btn_modifcar_not" class="right waves-effect waves-white btn-flat white-text" style="background-color:#00853b;margin-right: 10px;" onclick="editar_nt()">Modificar</a>
+				      <a href="#!" id="btn_modificar_not" class="right waves-effect waves-white btn-flat white-text" style="background-color:#00853b;margin-right: 10px;" onclick="editar_nt()">Modificar</a>
+
+				      <a href="#!" id="btn_limpiar_not" class="right waves-effect waves-white btn-flat white-text" style="background-color:#00853b;margin-right: 10px;" onclick="limpiar_nt()">Limpiar</a>
+
+
 				    </div>
 				  	</div>
 				  </div>
@@ -343,7 +347,8 @@
 	      </form>
 			<div class="col s12">
 				<a href="#!" id="btn_guardar_image" class="modal-action modal-close waves-effect waves-white btn-flat white-text right" style=" background-color:  #00853b;">Guardar</a>
-				<a href="#!" id="btn_modificar_image" class="waves-effect waves-white btn-flat white-text right" style="background-color:#00853b;margin-right: 10px;" onclick="editar_img()">Modificar</a>  
+				<a href="#!" id="btn_modificar_image" class="waves-effect waves-white btn-flat white-text right" style="background-color:#00853b;margin-right: 10px;" onclick="editar_img()">Modificar</a> 
+				<a href="#!" id="btn_limpiar_image" class="waves-effect waves-white btn-flat white-text right" style="background-color:#00853b;margin-right: 10px;" onclick="limpiar_img()">Limpiar</a>  
 			</div>
 		
 			
@@ -351,8 +356,8 @@
 
 		</div>
 	</div>
-
-	<div class="col s12">
+	<div class="row">
+		<div class="col s12">
 		<table class="responsive-table highlight" id="tabla_img">
 			        <thead>
 			          <tr>
@@ -382,8 +387,8 @@
 				          		<td><?php echo "$data[id]"; ?></td>
 				            	<td><?php echo "$data[nombre]"; ?></td>
 				            	<td><?php echo "$data[ruta]"; ?></td>
-				            	<td><a href="#image_form" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_img('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
-				            	<td><a href="#!" id="" class="disabled waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_img('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
+				            	<td><a href="#image_form" id="cargar_datos_img" class="waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_img('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
+				            	<td><a href="#!" id="eliminar_datos_img" class="disabled waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_img('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
 				          		</tr>
 							<?php
 
@@ -394,8 +399,8 @@
 								<td><?php echo "$data[id]"; ?></td>
 				            	<td><?php echo "$data[nombre]"; ?></td>
 				            	<td><?php echo "$data[ruta]"; ?></td>
-				            	<td><a href="#image_form" id="cargar_datos_qs" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_img('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
-				            	<td><a href="#!" id="" class=" waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_img('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
+				            	<td><a href="#image_form" id="cargar_datos_img" class="waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_img('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
+				            	<td><a href="#!" id="eliminar_datos_img" class=" waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_img('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
 				          		</tr>
 
 				      <?php } ?>	          			      	
@@ -404,6 +409,8 @@
 			        </tbody>
 			      </table>
 	</div>
+	</div>
+	
 
 </div>
 
@@ -464,7 +471,8 @@
 	      </form>
 			<div class="col s12">
 				<a href="#!" id="btn_guardar_archivo" class="waves-effect waves-white btn-flat white-text right" style=" background-color:  #00853b;">Guardar</a> 
-				<a href="#!" id="btn_modifcar_archivo" class="waves-effect waves-white btn-flat white-text right" style="background-color:#00853b;margin-right: 10px;" onclick="editar_file()">Modificar</a>  
+				<a href="#!" id="btn_modificar_archivo" class="waves-effect waves-white btn-flat white-text right" style="background-color:#00853b;margin-right: 10px;" onclick="editar_file()">Modificar</a>  
+				<a href="#!" id="btn_eliminar_archivo" class="waves-effect waves-white btn-flat white-text right" style="background-color:#00853b;margin-right: 10px;" onclick="limpiar_file()">Limpiar</a>  
 			</div>
 		</div>
 	</div>
@@ -568,7 +576,8 @@
 	      </form>
 			<div class="col s12">
 				<a href="#!" id="btn_guardar_slide" class="waves-effect waves-white btn-flat white-text right" style=" background-color:  #00853b;">Guardar</a>
-				 <a href="#!" id="btn_modifcar_slide" class="right waves-effect waves-white btn-flat white-text" style="background-color:#00853b;margin-right: 10px;" onclick="editar_slide()">Modificar</a>  
+				 <a href="#!" id="btn_modificar_slide" class="right waves-effect waves-white btn-flat white-text" style="background-color:#00853b;margin-right: 10px;" onclick="editar_slide()">Modificar</a> 
+				 <a href="#!" id="btn_eliminar_slide" class="right waves-effect waves-white btn-flat white-text" style="background-color:#00853b;margin-right: 10px;" onclick="limpiar_slide()">Limpiar</a>  
 			</div>
 		</div>
 	</div>

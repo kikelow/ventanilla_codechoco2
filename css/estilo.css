@@ -1,5 +1,6 @@
 /*.side-nav li>a{
-  color: #4d8247;
+  c
+  olor: #4d8247;
 }*/
 .tabs .indicator{
   background-color:#81c784;
@@ -111,13 +112,27 @@ section#base{
 	#btn_movil{
 		width: 100%;
 	}
-
+  div#login-page{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom: 0;
+    margin:auto;
+    width:80%;
+    font-size: 10px !important; 
+    /*margin-top: 50px;*/
+  }
+  #btn_contact{
+    margin-left: 0px !important;
+    width: 100%;
+  }
 	#menu_movil{
 		float:right;
 	}
 
 	#div_mv_img img{
-		margin-left: 17px !important;
+		margin-left: 0px !important;
     margin-top: 0px !important;
   
 	}
@@ -144,9 +159,10 @@ section#base{
   div#contenedor{
     width: 100% !important;
   }
-  aside{
-    /*width: 0% !important;*/
-     /*height: 0% !important*/
+   a.waves-effect.waves-light.btn.right,button{
+    width: 100%;
+    margin-right: 0px !important;
+    margin-bottom: 5px;
   }
 }
 
@@ -603,3 +619,26 @@ div.nav ul li a.active{
   display: none;
   height: 300px;
 }
+
+.lg{
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom: 0;
+  margin:auto;
+  width:25%;
+  margin-top: 50px;
+}
+
+/*@media only screen and (min-width: 100px) and (max-width: 600px){
+  #div_mv_img{
+    
+  }
+  div#contenedor{
+    width: 100% !important;
+  }
+  aside{
+    /*width: 0% !important;*/
+     /*height: 0% !important*/
+

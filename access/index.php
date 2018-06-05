@@ -10,24 +10,22 @@
   <link rel="stylesheet" type="text/css" href="../css/materialize.min.css" media="screen,projection">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../css/estilo.css">
-  <link href="https://fonts.googleapis.com/css?family=Merriweather:700i" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:700|Londrina+Outline|Sniglet|Barlow" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Merriweather:700i" rel="stylesheet"> -->
+  <!-- <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:700|Londrina+Outline|Sniglet|Barlow" rel="stylesheet"> -->
  
 </head>
 
 <body style="background-color: #00853b">
- 
-
-  <div id="login-page" class="row" style="position: absolute;top:0;left:0;right:0;bottom: 0;margin:auto;width:25%;margin-top: 50px;">
+  <div id="login-page" class="row lg">
     <div class="col s12 z-depth-4 card-panel">
       <form class="login-form" id="login">
         <div class="row">
           <div class="input-field col s12 center">
-            <img src="../img/logo1.png" alt="" class="circle responsive-img valign profile-image-login" width="115" height="120">
-            <p class="center login-form-text " style="font-family: 'Alegreya Sans', sans-serif;font-size: 18px;">Ventanilla de Emprendimientos Verdes</p>
+            <!-- <img src="../img/logo1.png" alt="" class="circle responsive-img valign profile-image-login" width="50" height="40">  -->
+           <!--  <p class="center login-form-text " style="font-family: 'Alegreya Sans', sans-serif;font-size: 18px;">Ventanilla de Emprendimientos Verdes</p> -->
             <p class="center login-form-text " style="font-family: 'Alegreya Sans', sans-serif;font-size: 18px;">(Administrativos)</p>
           </div>
-        </div>
+        </div> 
         <div class="row margin" style="border-top: 1px solid #e0e0e0">
           <div class="input-field col s12 m2 l2">
             <i class="material-icons">person</i>

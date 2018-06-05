@@ -37,7 +37,7 @@
 
     <div class="nav animatedParent">
     <div id="div_logo" class="animated growIn slow">
-      <a  class="brand-logo" href="#"><img class="logo" id="logo" src="img/logo1.png" style="width:118px;height:118px;padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;padding-top: 5px;"></a> 
+      <a  class="brand-logo" href="#"><img class="logo center" id="logo" src="img/logo1.png" style="width:118px;height:118px;padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;padding-top: 5px;"></a> 
     </div>
       
       <ul class="hide-on-med-and-down" >
@@ -53,18 +53,34 @@
       </ul>
   </div>
 
+<!--  -->
 
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large red">
+    <i class="large material-icons">menu</i>
+  </a>
+  <ul>
+    <li><a href="index.php?modulo=emprendimiento/q_somos" class="btn-floating yellow black-text">¿Quienes Somos?</a></li>
+    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+  </ul>
+</div>
+
+<!--  -->
 <nav class="white  hide-on-large-only">
- <div class=" " style="width: 100%">
+ <div style="width: 100%">
     <a href="#" data-activates="mobile-demo" class="button-collapse center"><i class="material-icons black-text">menu</i></a>
+    <a href="#" class="brand-logo center black-text"></a>
   
        <ul class="side-nav" id="mobile-demo">
-        <li><a href="index2.php?modulo=evaluacion/formato_inscripcion" class="collection-item active black-text">Formato de Inscripción</a></li>
-        <li><a href="index2.php?modulo=evaluacion/formato_informacion_as" class="collection-item  black-text">Formato de Información AS</a></li>
-        <li> <a href="index2.php?modulo=evaluacion/hoja_verificacion_1" class="collection-item  black-text">Hoja de Verificación 1</a></li>
-        <li> <a href="index2.php?modulo=evaluacion/hoja_verificacion_2" class="collection-item black-text">Hoja de Verificación 2</a></li>
-        <li> <a href="index2.php?modulo=evaluacion/registro_fotografico" class="collection-item black-text">Registro Fotografico</a></li>
-        <li><a href="index2.php?modulo=evaluacion/plan_mejora" class="collection-item black-text">Plan de Mejora</a></li>
+        <li><a href="index.php?modulo=emprendimiento/inicio" class=" black-text">Inicio</a></li>
+        <li><a href="index.php?modulo=emprendimiento/q_somos" class=" black-text">¿Quienes Somos?</a></li>
+        <li><a href="index.php?modulo=emprendimiento/servicios" class=" black-text">Servicios</a></li>
+        <li> <a href="index.php?modulo=emprendimiento/m_verdes" class=" black-text">Hoja de Verificación 1</a></li>
+        <li> <a href="index.php?modulo=emprendimiento/registro" class="black-text">Hoja de Verificación 2</a></li>
+        <li> <a href="index.php?modulo=emprendimiento/noticias" class="black-text">Registro Fotografico</a></li>
+        <li><a href="index.php?modulo=emprendimiento/m_evaluados" class="black-text">Plan de Mejora</a></li>
       </ul>
      </div>   
 </nav>
@@ -107,7 +123,8 @@
           <i class="fa fa-map-marker"></i> Quibdó - Chocó <br>
           <i class="fa fa-building" aria-hidden="true"></i> Cra. 1 N° 22 - 96
           
-          <br><i class="fa fa-envelope-o"></i> Correos: contacto@codechoco.gov.co - defensajudicial@codechoco.gov.co
+          <br><i class="fa fa-envelope-o"></i> Correos:<br>
+          contacto@codechoco.gov.co
       </p>
     </div>
     <div class="col l4 offset-l2 s12">
@@ -143,9 +160,12 @@
       $('select').material_select();
       $('.parallax').parallax();
       $('.slider').slider({height:700});
+      $('.fixed-action-btn').floatingActionButton();
+
    
       }); 
 </script>
+
 <?php 
 }
 ?>

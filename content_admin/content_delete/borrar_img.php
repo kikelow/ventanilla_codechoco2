@@ -11,7 +11,7 @@ $sql = "DELETE FROM img_page WHERE id='$id'";
  	 	$r=mysqli_query($conn,$sql)or die(mysqli_error($conn));
 
 
-if ($resultado['ruta'] != "") {
+if ($resultado['ruta'] != "" && $r == true) {
 	
 	$ru = "../content_save/img_content/". $resultado['ruta'];
 
@@ -24,31 +24,3 @@ if ($resultado['ruta'] != "") {
 	}
 }
 ?>
-
-
-<?php 
-/*
-
-
-$rm_file = 'jj.php';
-
-if(file_exists($rm_file))
-{
-	if(!unlink($rm_file))
-	{
-		echo "estado=El archivo ".$rm_file ." no se pudo borrar.";
-	}
-	else
-	{
-		echo "estado=El archivo".$rm_file ." fue borrado.";
-	}
-}
-else
-{
-echo "estado=El archivo".$rm_file ."NO EXISTE";
-}
-
-
-*/
- ?>
-

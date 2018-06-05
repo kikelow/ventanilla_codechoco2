@@ -22,6 +22,8 @@
 		              <th>Usuario</th>
 		              <th>Clave</th>
 		              <th>Emplaedo</th>
+		              <th>Editar</th>
+		              <th>Eliminar</th>
 		          </tr>
 		        </thead>
 				<?php require 'conexion.php';

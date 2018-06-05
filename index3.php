@@ -18,12 +18,8 @@ session_start();
 	<link rel="stylesheet" type="text/css" href="css/select2.css">
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
   <link rel="stylesheet" type="text/css" href="js/Trumbowyg-master/dist/ui/trumbowyg.min.css">
-  <script src="js/jquery.min.js"  type="text/javascript"></script>
-	
-
-  <link href="https://fonts.googleapis.com/css?family=Merriweather:700i" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Sniglet|Nanum+Myeongjo:800" rel="stylesheet">
-  
+ 
+ 
 </head>
 <body>
   <ul id="ajuste" class="dropdown-content">
@@ -31,7 +27,7 @@ session_start();
     <li><a href="access/cerrar_sesion.php" class="black-text">Salir</a></li>
   </ul>
 
-<nav class="black-text navbar-fixed grey lighten-4 right" style="width: 80%"> 
+<nav class="black-text grey lighten-4 right" style="width: 80%"> 
   <div class="nav-wrapper">
       <!-- <a href="#" class="brand-logo">Logo</a> -->
       <ul id="nav-mobile" class="right  ">
@@ -42,7 +38,7 @@ session_start();
     </div>
     </nav>
 
-<aside id="left-sidebar-nav" >
+<aside id="left-sidebar-nav" class="hide-on-med-and-down">
   <ul id="nav-mobile" class="side-nav fixed  grey lighten-4 " style="padding-top: 10px;width: 19%;">
     <li class="logo center"><img id="logo-container" src="img/logo1.png" class="brand-logo responsive-img " style="width: 150px">
             </img></li>
@@ -57,18 +53,15 @@ session_start();
 
 
 
-<nav class="white  hide-on-large-only">
+<nav class="grey lighten-4  hide-on-large-only">
  <div class=" " style="width: 100%">
     <a href="#" data-activates="mobile-demo" class="button-collapse center"><i class="material-icons black-text">menu</i></a>
     <a href="#" class="brand-logo center black-text"></a>
 
        <ul class="side-nav" id="mobile-demo">
-        <li><a href="index3.php?modulo=evaluacion/formato_inscripcion" class="collection-item active black-text">Formato de Inscripción</a></li>
-        <li><a href="index3.php?modulo=evaluacion/formato_informacion_as" class="collection-item  black-text">Formato de Información AS</a></li>
-        <li> <a href="index3.php?modulo=evaluacion/hoja_verificacion_1" class="collection-item  black-text">Hoja de Verificación 1</a></li>
-        <li> <a href="index3.php?modulo=evaluacion/hoja_verificacion_2" class="collection-item black-text">Hoja de Verificación 2</a></li>
-        <li> <a href="index3.php?modulo=evaluacion/registro_fotografico" class="collection-item black-text">Registro Fotografico</a></li>
-        <li><a href="index3.php?modulo=evaluacion/plan_mejora" class="collection-item black-text">Plan de Mejora</a></li>
+        <li><a href="index3.php?modulo=content_admin/inicio" class="collection-item black-text">Contenidos</a></li>
+        <li> <a href="index3.php?modulo=content_admin/usuarios" class="collection-item black-text">Usuarios</a></li>
+        
       </ul>
      </div>   
 </nav>
@@ -90,24 +83,22 @@ session_start();
 
 
 
-
+  <script src="js/jquery.min.js"  type="text/javascript"></script>
   <script src="js/materialize.min.js"  type="text/javascript"></script>
-  <script type="text/javascript" src="js/select2.js"></script>
+  <!-- <script type="text/javascript" src="js/select2.js"></script> -->
   <script type="text/javascript" src="js/admin_content_crud.js"></script>
   <script type="text/javascript" src="js/sweetalert.js"></script>
    <script type="text/javascript" src="js/Trumbowyg-master/dist/trumbowyg.min.js"></script>
    <script type="text/javascript">
+      $(".button-collapse").sideNav();
       $('#descripcion').trumbowyg();
       $('#descripcion_nt').trumbowyg();
    </script>
-
-
    <script src="js/Trumbowyg-master/plugins/upload/trumbowyg.upload.js"></script>
   <script>
     $(document).ready(function(){
 
       $('.collapsible').collapsible();
-      $('.modal').modal();
       $('select').material_select();
 
     });
