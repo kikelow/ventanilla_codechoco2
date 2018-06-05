@@ -71,8 +71,8 @@
    </div>
     <div class="col s12 m8 l8">
       <p>
-        <h1 style="font-family: arial;padding-top:100px;">
-          Esta sección de la pagina se encuentra en mantenimiento. En breve estara disponible.
+        <h1 style="font-family: arial;padding-top:100px; text-align: justify;">
+          Esta sección de la pagina se encuentra en mantenimiento. En breve estará disponible.
         </h1>
       </p>
    </div>

@@ -10,8 +10,6 @@
 
   </div>
 
-
-
    <?php 
             if(mysqli_num_rows($res)>0){
               while($rw=mysqli_fetch_array($res)){
