@@ -1212,7 +1212,7 @@
 		}
 
 		$objPHPExcel->getActiveSheet()->SetCellValue('BT'.$fila, '=AVERAGE(V'.$fila.':Z'.$fila.')');
-		$objPHPExcel->getActiveSheet()->getStyle('BT'.$fila.':CH'.$fila)
+		$objPHPExcel->getActiveSheet()->getStyle('BT'.$fila.':CK'.$fila)
     ->getNumberFormat()->applyFromArray( 
         array( 
             'code' => PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE
@@ -1234,7 +1234,9 @@
 
 		$objPHPExcel->getActiveSheet()->SetCellValue('CH'.$fila, '=AVERAGE(CF'.$fila.':CG'.$fila.')');
 		// $objPHPExcel->getActiveSheet()->SetCellValue('CH'.$fila, '=IF(AVERAGE(CF'.$fila.':CG'.$fila.')<=10%;"Inicial";IF(AND(AVERAGE(CF'.$fila.':CG'.$fila.')>10%;AVERAGE(CF'.$fila.':CG'.$fila.')<=30%);"Basico";IF(AND(AVERAGE(CF'.$fila.':CG'.$fila.')>30%;AVERAGE(CF'.$fila.':CG'.$fila.')<=50%);"Intermedio";IF(AND(AVERAGE(CF'.$fila.':CG'.$fila.')>50%;AVERAGE(CF'.$fila.':CG'.$fila.')<=80%);"Satisfactorio";IF(AND(AVERAGE(CF'.$fila.':CG'.$fila.')>80%;AVERAGE(CF'.$fila.':CG'.$fila.')<=100%);"Ideal")))))');
-		//Falta de la CH a CK
+		$objPHPExcel->getActiveSheet()->SetCellValue('CI'.$fila, '=AVERAGE(V'.$fila.':Z'.$fila.')');
+		$objPHPExcel->getActiveSheet()->SetCellValue('CJ'.$fila, '=AVERAGE(AA'.$fila.':BA'.$fila.')');
+		$objPHPExcel->getActiveSheet()->SetCellValue('CK'.$fila, '=AVERAGE(BB'.$fila.':BO'.$fila.')');
 
 		$objPHPExcel->getActiveSheet()->SetCellValue('CL'.$fila,$rw['plan_mejora']);
 		// ventas y costos 
@@ -1521,7 +1523,7 @@
 	 	$fila++;
 	 }
 $objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "A7:BS".$fila);
-$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "CI7:DU".$fila);
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "CL7:DU".$fila);
 
 
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
