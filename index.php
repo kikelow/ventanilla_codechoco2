@@ -55,8 +55,8 @@
 
 <!--  -->
 
-<div class="fixed-action-btn">
-  <a class="btn-floating btn-large red">
+<div class="fixed-action-btn  hide-on-large-only">
+  <a class="btn-floating btn-large" style="background-color:#00853bb3">
     <i class="large material-icons">menu</i>
   </a>
   <ul>
@@ -68,7 +68,7 @@
 </div>
 
 <!--  -->
-<nav class="white  hide-on-large-only">
+<!-- <nav class="white  hide-on-large-only">
  <div style="width: 100%">
     <a href="#" data-activates="mobile-demo" class="button-collapse center"><i class="material-icons black-text">menu</i></a>
     <a href="#" class="brand-logo center black-text"></a>
@@ -84,7 +84,7 @@
       </ul>
      </div>   
 </nav>
-
+ -->
 
    
         
