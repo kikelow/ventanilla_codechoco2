@@ -40,7 +40,7 @@
       <a  class="brand-logo" href="#"><img class="logo center" id="logo" src="img/logo1.png" style="width:118px;height:118px;padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;padding-top: 5px;"></a> 
     </div>
       
-      <ul class="hide-on-med-and-down" >
+      <ul class="hide-on-med-and-down">
         <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/inicio">Inicio</a></li>
             <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/q_somos">¿Quienes Somos?</a></li>
             <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/servicios">Servicios</a></li>
@@ -53,17 +53,26 @@
       </ul>
   </div>
 
-<!--  -->
 
-<div class="fixed-action-btn  hide-on-large-only">
+
+<div class="fixed-action-btn  hide-on-large-only click-to-toggle">
   <a class="btn-floating btn-large" style="background-color:#00853bb3">
     <i class="large material-icons">menu</i>
   </a>
   <ul>
+    <li><a href="index.php?modulo=emprendimiento/inicio" class="btn-floating yellow "><i class="material-icons md-light">
+home</i></a></li>
     <li><a href="index.php?modulo=emprendimiento/q_somos" class="btn-floating yellow black-text">¿Quienes Somos?</a></li>
-    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+    <li><a href="index.php?modulo=emprendimiento/servicios" class="btn-floating yellow black-text">Servicios</a></li>
+    <li><a href="index.php?modulo=emprendimiento/m_verdes" class="btn-floating yellow black-text">Mercados verdes</a></li>
+    <li><a href="index.php?modulo=emprendimiento/registro" class="btn-floating yellow black-text">Registro</a></li>
+    <li><a href="index.php?modulo=emprendimiento/noticias" class="btn-floating yellow black-text">Noticias</a></li>
+    <li><a href="index.php?modulo=emprendimiento/m_evaluados" class="btn-floating yellow black-text">Negocios Evaluados</a></li>
+    <li><a href="access/" class="active btn-floating yellow">Iniciar Sesión</a></li>
+
+   <!--  <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
     <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li> -->
   </ul>
 </div>
 
@@ -150,7 +159,6 @@
 <script src='slick/slick.min.js'></script>
 <script src='js/slider_1.js'></script>
 <script src="js/style.js"  type="text/javascript"></script>
-<script src="js/cargar_noticia.js"  type="text/javascript"></script>
 <script type="text/javascript">
    $(document).ready(function(){
     $('.carousel.carousel-slider').carousel({fullWidth: true});
@@ -160,7 +168,7 @@
       $('select').material_select();
       $('.parallax').parallax();
       $('.slider').slider({height:700});
-      $('.fixed-action-btn').floatingActionButton();
+     
 
    
       }); 
@@ -168,6 +176,8 @@
 
 <?php 
 }
+
+echo "__DIR__";
 ?>
 
 

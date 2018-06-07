@@ -21,7 +21,7 @@
       <form class="login-form" id="login">
         <div class="row">
           <div class="input-field col s12 center">
-            <!-- <img src="../img/logo1.png" alt="" class="circle responsive-img valign profile-image-login" width="50" height="40">  -->
+            <img src="../img/logo1.png" alt="" class="circle responsive-img valign profile-image-login" width="50" height="40"> 
            <!--  <p class="center login-form-text " style="font-family: 'Alegreya Sans', sans-serif;font-size: 18px;">Ventanilla de Emprendimientos Verdes</p> -->
             <p class="center login-form-text " style="font-family: 'Alegreya Sans', sans-serif;font-size: 18px;">(Administrativos)</p>
           </div>
