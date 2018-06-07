@@ -14,7 +14,11 @@
 	$evidencia = "";
     $opciones_id = "";
     $i = 0;
-    echo " <hr style='border: 1px solid green'><h5>Nivel 1. Criterios de Cumplimiento de Negocios Verdes</h5><ul class='collapsible' data-collapsible='accordion'>";  
+    echo "<div class='input-field col s12 m12 l12 green lighten-5 ' id='div_empresa' style='border: 1px solid green'>
+      <h6>NOTA: Si desea caragar algún archivo, su tamaño debe ser inferior a 300kb</h6>
+    </div>  "; 
+    echo " <hr style='border: 1px solid green'><h5>Nivel 1. Criterios de Cumplimiento de Negocios Verdes</h5><ul class='collapsible' data-collapsible='accordion'>"; 
+
 
 
         $s="SELECT id,nombre from opciones where codigo LIKE '%VIABILIDAD_ECONOMICA%'  order by id ";
@@ -66,19 +70,36 @@
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
           <label for='' class='activar'>Observaciones</label>
-        </div>
-         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+        </div>"
+         ;
+        if ($evidencia == '') {
+          echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
         <span>Archivo</span>
-        <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."' value='$evidencia'>
+        <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' value='$evidencia' name='name_veidencia[]' >
       </div>
             
           </div>
-        </div>
-      <div class='divider'></div>";
+        </div>";
+        }else{
+         echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' value='$evidencia' name='name_veidencia[]' >
+      </div>
+            
+          </div>
+          <a href='evaluacion/hoja_verificacion_2/modificar/descargar_archivo.php?archivo=$evidencia' target='_blank' style='margin-left: 150px'>Descargar</a>
+        </div>";
+            
+
+              }
 
               }
           }
@@ -134,8 +155,9 @@
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
           <label for='' class='activar'>Observaciones</label>
-        </div>
-         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+        </div>";
+        if ($evidencia == '') {
+          echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
         <span>Archivo</span>
         <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
@@ -145,8 +167,24 @@
       </div>
             
           </div>
-        </div>
-      <div class='divider'></div>";
+        </div>";
+        }else{
+         echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' value='$evidencia' name='name_veidencia[]' >
+      </div>
+            
+          </div>
+          <a href='evaluacion/hoja_verificacion_2/modificar/descargar_archivo.php?archivo=$evidencia' target='_blank' style='margin-left: 150px'>Descargar</a>
+        </div>";
+            
+
+              }
+         
 
               }
           }
@@ -202,8 +240,9 @@
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
           <label for='' class='activar'>Observaciones</label>
-        </div>
-         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+        </div>";
+        if ($evidencia == '') {
+          echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
         <span>Archivo</span>
         <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
@@ -213,8 +252,24 @@
       </div>
             
           </div>
-        </div>
-      <div class='divider'></div>";
+        </div>";
+        }else{
+         echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' value='$evidencia' name='name_veidencia[]' >
+      </div>
+            
+          </div>
+          <a href='evaluacion/hoja_verificacion_2/modificar/descargar_archivo.php?archivo=$evidencia' target='_blank' style='margin-left: 150px'>Descargar</a>
+        </div>";
+            
+
+              }
+         
 
               }
           }
@@ -270,8 +325,9 @@
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
           <label for='' class='activar'>Observaciones</label>
-        </div>
-         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+        </div>";
+        if ($evidencia == '') {
+          echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
         <span>Archivo</span>
         <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
@@ -281,8 +337,24 @@
       </div>
             
           </div>
-        </div>
-      <div class='divider'></div>";
+        </div>";
+        }else{
+         echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' value='$evidencia' name='name_veidencia[]' >
+      </div>
+            
+          </div>
+          <a href='evaluacion/hoja_verificacion_2/modificar/descargar_archivo.php?archivo=$evidencia' target='_blank' style='margin-left: 150px'>Descargar</a>
+        </div>";
+            
+
+              }
+         
 
               }
           }
@@ -337,8 +409,9 @@
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
           <label for='' class='activar'>Observaciones</label>
-        </div>
-         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+        </div>";
+        if ($evidencia == '') {
+          echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
         <span>Archivo</span>
         <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
@@ -348,8 +421,24 @@
       </div>
             
           </div>
-        </div>
-      ";
+        </div>";
+        }else{
+         echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' value='$evidencia' name='name_veidencia[]' >
+      </div>
+            
+          </div>
+          <a href='evaluacion/hoja_verificacion_2/modificar/descargar_archivo.php?archivo=$evidencia' target='_blank' style='margin-left: 150px'>Descargar</a>
+        </div>";
+            
+
+              }
+         
 
               }
           }
@@ -405,8 +494,9 @@
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
           <label for='' class='activar'>Observaciones</label>
-        </div>
-         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+        </div>";
+        if ($evidencia == '') {
+          echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
         <span>Archivo</span>
         <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
@@ -416,8 +506,24 @@
       </div>
             
           </div>
-        </div>
-      ";
+        </div>";
+        }else{
+         echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' value='$evidencia' name='name_veidencia[]' >
+      </div>
+            
+          </div>
+          <a href='evaluacion/hoja_verificacion_2/modificar/descargar_archivo.php?archivo=$evidencia' target='_blank' style='margin-left: 150px'>Descargar</a>
+        </div>";
+            
+
+              }
+        
 
               }
           }
@@ -473,8 +579,9 @@
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
           <label for='' class='activar'>Observaciones</label>
-        </div>
-         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+        </div>";
+        if ($evidencia == '') {
+          echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
         <span>Archivo</span>
         <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
@@ -484,8 +591,24 @@
       </div>
             
           </div>
-        </div>
-      ";
+        </div>";
+        }else{
+         echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' value='$evidencia' name='name_veidencia[]' >
+      </div>
+            
+          </div>
+          <a href='evaluacion/hoja_verificacion_2/modificar/descargar_archivo.php?archivo=$evidencia' target='_blank' style='margin-left: 150px'>Descargar</a>
+        </div>";
+            
+
+              }
+         
 
               }
           }
@@ -541,8 +664,9 @@
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
           <label for='' class='activar'>Observaciones</label>
-        </div>
-         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+        </div>";
+        if ($evidencia == '') {
+          echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
         <span>Archivo</span>
         <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
@@ -552,8 +676,24 @@
       </div>
             
           </div>
-        </div>
-      ";
+        </div>";
+        }else{
+         echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' value='$evidencia' name='name_veidencia[]' >
+      </div>
+            
+          </div>
+          <a href='evaluacion/hoja_verificacion_2/modificar/descargar_archivo.php?archivo=$evidencia' target='_blank' style='margin-left: 150px'>Descargar</a>
+        </div>";
+            
+
+              }
+        
 
               }
           }
@@ -609,8 +749,9 @@
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
           <label for='' class='activar'>Observaciones</label>
-        </div>
-         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+        </div>";
+        if ($evidencia == '') {
+          echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
         <span>Archivo</span>
         <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
@@ -620,8 +761,24 @@
       </div>
             
           </div>
-        </div>
-      ";
+        </div>";
+        }else{
+         echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' value='$evidencia' name='name_veidencia[]' >
+      </div>
+            
+          </div>
+          <a href='evaluacion/hoja_verificacion_2/modificar/descargar_archivo.php?archivo=$evidencia' target='_blank' style='margin-left: 150px'>Descargar</a>
+        </div>";
+            
+
+              }
+         
 
               }
           }
@@ -677,8 +834,9 @@
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
           <label for='' class='activar'>Observaciones</label>
-        </div>
-         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+        </div>";
+        if ($evidencia == '') {
+          echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
         <span>Archivo</span>
         <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
@@ -688,8 +846,24 @@
       </div>
             
           </div>
-        </div>
-      ";
+        </div>";
+        }else{
+         echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' value='$evidencia' name='name_veidencia[]' >
+      </div>
+            
+          </div>
+          <a href='evaluacion/hoja_verificacion_2/modificar/descargar_archivo.php?archivo=$evidencia' target='_blank' style='margin-left: 150px'>Descargar</a>
+        </div>";
+            
+
+              }
+         
 
               }
           }
@@ -745,8 +919,9 @@
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
           <label for='' class='activar'>Observaciones</label>
-        </div>
-         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+        </div>";
+        if ($evidencia == '') {
+          echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
         <span>Archivo</span>
         <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
@@ -756,8 +931,24 @@
       </div>
             
           </div>
-        </div>
-      ";
+        </div>";
+        }else{
+         echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' value='$evidencia' name='name_veidencia[]' >
+      </div>
+            
+          </div>
+          <a href='evaluacion/hoja_verificacion_2/modificar/descargar_archivo.php?archivo=$evidencia' target='_blank' style='margin-left: 150px'>Descargar</a>
+        </div>";
+            
+
+              }
+        
 
               }
           }
@@ -817,8 +1008,9 @@ sociales implementados o recibidos.</div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
           <label for='' class='activar'>Observaciones</label>
-        </div>
-         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+        </div>";
+        if ($evidencia == '') {
+          echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
         <span>Archivo</span>
         <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
@@ -828,8 +1020,24 @@ sociales implementados o recibidos.</div>
       </div>
             
           </div>
-        </div>
-      ";
+        </div>";
+        }else{
+         echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' value='$evidencia' name='name_veidencia[]' >
+      </div>
+            
+          </div>
+          <a href='evaluacion/hoja_verificacion_2/modificar/descargar_archivo.php?archivo=$evidencia' target='_blank' style='margin-left: 150px'>Descargar</a>
+        </div>";
+            
+
+              }
+        
 
               }
           }
@@ -885,8 +1093,9 @@ sociales implementados o recibidos.</div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
           <label for='' class='activar'>Observaciones</label>
-        </div>
-         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+        </div>";
+        if ($evidencia == '') {
+          echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
         <span>Archivo</span>
         <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
@@ -896,10 +1105,24 @@ sociales implementados o recibidos.</div>
       </div>
             
           </div>
-        </div>
-      ";
+        </div>";
+        }else{
+         echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
+         <div class='btn'>
+        <span>Archivo</span>
+        <input type='file' name='verificacion2_evidencia_m[]' id='verificacion2_evidencia_m".$i."'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' value='$evidencia' name='name_veidencia[]' >
+      </div>
+            
+          </div>
+          <a href='evaluacion/hoja_verificacion_2/modificar/descargar_archivo.php?archivo=$evidencia' target='_blank' style='margin-left: 150px'>Descargar</a>
+        </div>";
+            
 
               }
+        }
           }
           echo "</div></li></ul>";
 
