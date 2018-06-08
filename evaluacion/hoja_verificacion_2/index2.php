@@ -40,7 +40,7 @@ require_once('conexion.php');
 </div>
  <div class="row">
   <div class='input-field col s12 m12 l12 green lighten-5 ' id='div_empresa' style='border: 1px solid green'>
-      <h6>NOTA: Si desea caragar algún archivo, su tamaño debe ser inferior a 300kb</h6>
+      <h6>NOTA: Si desea caragar algún archivo, su tamaño debe ser inferior a 1Mb</h6>
     </div>
   <hr style="border: 1px solid green">
   <h5>Nivel 1. Criterios de Cumplimiento de Negocios Verdes</h5>

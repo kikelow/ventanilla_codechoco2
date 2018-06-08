@@ -54,7 +54,7 @@ if (is_file('conexion.php')){
       <div class="indeterminate"></div>
   </div>
   
-<form id="form_modificar" >
+<form id="form_modificar"  >
     <div id="cargar_info"></div>
 </form>
 

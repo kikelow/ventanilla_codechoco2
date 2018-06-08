@@ -87,7 +87,33 @@ include "../../conexion.php";
 	$s="INSERT INTO `bienes_servicios`(`empresa_id`, `nombre`, `lider`) VALUES ('$empresa_id','$_POST[b1]',''),  ('$empresa_id','$_POST[b2]',''),  ('$empresa_id','$_POST[b3]',''),  ('$empresa_id','$_POST[b4]',''),  ('$empresa_id','$_POST[b5]',''),  ('$empresa_id','','$_POST[b_lider]')";
 	mysqli_query($conn,$s);
 
-	//
+	//insertar la imagen de cada emprendimiento img_emprendimiento
+
+	$limite_kb = 5000;
+	if ($_FILES["img_emprendimiento"]["size"] > 0) {
+          if ($_FILES["img_emprendimiento"]["size"] <= $limite_kb * 1024) {
+          	 if (($_FILES["img_emprendimiento"]["type"] == "image/gif")
+		   		|| ($_FILES["img_emprendimiento"]["type"] == "image/jpeg")
+		   		|| ($_FILES["img_emprendimiento"]["type"] == "image/jpg")
+		   		|| ($_FILES["img_emprendimiento"]["type"] == "image/png")){
+		   
+            
+             $tmp_name = $_FILES["img_emprendimiento"]["tmp_name"];
+
+        $name = basename($_FILES["img_emprendimiento"]["name"]);
+        $ruta = "../../evaluacion/formato_inscripcion/imagenes/$empresa_id"."_$name";
+        $nombre = "$empresa_id"."_$name";
+
+        move_uploaded_file($tmp_name, $ruta);
+
+        $s="INSERT INTO `img_empresa`(`empresa_id`, `imagen`) VALUES ('$empresa_id','$nombre')";
+        mysqli_query($conn,$s) or die(mysqli_error($conn));
+    }
+        }
+    }elseif (!$_FILES["img_emprendimiento"]["size"]) {
+    	$s="INSERT INTO `img_empresa`(`empresa_id`, `imagen`) VALUES ('$empresa_id','')";
+        mysqli_query($conn,$s) or die(mysqli_error($conn));
+    }
 
 
 

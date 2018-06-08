@@ -1352,7 +1352,46 @@ $otro_m = "";
 </div>
 </li>
 </ul>
-<button  class='waves-effect yellow darken-4 btn right' style='margin-bottom: 8px' id='modificar_emp'><i class='material-icons right'>create</i>Modificar</button>
+<div class='input-field col s12 m12 l12 green lighten-5 ' id='div_empresa' style='border: 1px solid green'>
+      <h6>NOTA: Esta imagen será utilizada en caso de que el emprendimiento cumpla con mas del 50% luego de haber aplicado todos los criterios de evaliación para ser visualizada en la pagina principal</h6>
+    </div>";
+$s = "SELECT * FROM img_empresa WHERE empresa_id='$_POST[empresa_id]'";
+$r= mysqli_query($conn,$s);
+$imagen ="";
+while ($rw = mysqli_fetch_assoc($r)) {
+  $imagen = $rw['imagen'];
+}
+if ($imagen == "") {
+  $datos.= "<div class='row'>
+  <div class='file-field input-field col s12 m12 l12' style=''>
+         <div class='btn'>
+        <span>Seleccionar imagen</span>
+        <input type='file' name='img_emprendimiento_m' id='img_emprendimiento_m' accept='image/*'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text'  >
+  </div>
+</div>
+</div>";
+}else{
+  $datos.= "<div class='row'>
+  <div class='file-field input-field col s12 m11 l11' style=''>
+         <div class='btn'>
+        <span>Seleccionar imagen</span>
+        <input type='file' name='img_emprendimiento_m' id='img_emprendimiento_m' accept='image/*'>
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text' value='$imagen' id='nombre_imagen' >
+  </div>
+</div>
+<div class='file-field input-field col s12 m1 l1 ' style='margin-top:40px'>
+      <a href='evaluacion/formato_inscripcion/modificar/descargar_archivo.php?imagen=$imagen' target='_blank' class='right'>Descargar</a>
+</div>
+</div>";
+}
+
+
+$datos.= "<button type='submit'  class='waves-effect yellow darken-4 btn right' style='margin-bottom: 8px' id='modificar_emp'><i class='material-icons right'>create</i>Modificar</button>
 <script type='text/javascript' src='js/accion_registro.js'></script>
 
 

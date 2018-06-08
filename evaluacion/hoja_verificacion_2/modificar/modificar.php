@@ -9,7 +9,7 @@ $name_veidencia = $_POST['name_veidencia'];
 // var_dump($name_veidencia);
 
 
-$limite_kb = 300;
+$limite_kb = 1000;
 for ($key=0; $key <sizeof($opcion); $key++) {
     if ($_FILES["verificacion2_evidencia_m"]["name"][$key] == "" ) {
     	$s= "UPDATE `verificacion_2` SET `calificador_id`='$calificador[$key]',`observacion`='$observacion[$key]',`evidencia`='$name_veidencia[$key]' WHERE empresa_id = '$empresa' AND opciones_id='$opcion[$key]'";
