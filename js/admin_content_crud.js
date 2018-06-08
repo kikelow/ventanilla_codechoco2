@@ -2,6 +2,7 @@ $('#btn_new_content2').attr('disabled','disabled');
 $('#btn_cerrar_slide').attr('disabled','disabled');
 $('#btn_new_image2').attr('disabled','disabled');
 $('#btn_cerrar_archivo').attr('disabled','disabled');
+$('#btn_cerrar_colaborador').attr('disabled','disabled');
 $('#btn_modificar_not').attr('disabled','disabled');
 $('#btn_limpiar_not').attr('disabled','disabled');
 // $('#btn_modificar_image').attr('disabled','disabled');
@@ -122,23 +123,30 @@ $('#btn_cerrar_slide').click(function() {
 	}
 });
 
-///////////////////////////////////////////////////////////
+////////////////////// colaboradores /////////////////////////////////////
 
-
-
-$('#cargar_datos_nt').click(function() {
+$('#btn_new_colaborador').click(function() {
 	
-	// $('#btn_new_content').attr('disabled','disabled');
-	$('#btn_modificar_not').removeAttr('disabled','disabled');
-	$('#btn_limpiar_not').removeAttr('disabled','disabled');
-	$('#btn_guardar_not').attr('disabled','disabled');
-	//desailitar guardar y new content,,habilitar cerrar.
+	if ($('.oculto6').show('slow')) {
 
-
+		$('#nombre_partner').focus();	
+		$('#btn_guardar_partner').removeAttr('disabled','disabled');
+		$('#btn_modificar_partner').attr('disabled','disabled');
+		$('#btn_new_colaborador').attr('disabled','disabled');
+		$('#btn_cerrar_colaborador').removeAttr('disabled','disabled');
+	}	
 });
 
 
+$('#btn_cerrar_colaborador').click(function() {
+	
+	if ($('.oculto6').hide('slow')) {
+		$('#btn_new_colaborador').removeAttr('disabled','disabled');
+		$('#btn_cerrar_colaborador').attr('disabled','disabled');
+	}
+});
 
+////////////////////////////////////////////////////
 
 
 function limpiar_nt() {
@@ -186,6 +194,16 @@ function limpiar_slide() {
 
 }
 
+function limpiar_partner() {
+	
+//$("form select").each(function() { this.selectedIndex = 0 });
+    $("form input[type=text] , form textarea").each(function() { this.value = '' });
+    //$('#descripcion_nt').trumbowyg('html', this.value = '');
+
+   	$('#btn_guardar_partner').removeAttr('disabled','disabled');
+	$('#btn_modificar_partner').attr('disabled','disabled');
+
+}
 
 /////////////////////////////////////////////////////////////////
 
@@ -210,9 +228,7 @@ $('#btn_guardar_content').click(function(event) {
            text: "Datos Guardados Exitosamente!",
            button: {
             visible: false
-          },
-      });
-      window.setTimeout('location.reload()', 1000);
+          }window.setTimeout('location.reload()', 1000);
     }
   })
 });
@@ -297,9 +313,7 @@ function borrar_datos_qs(id){
 		cache: false,
 			success: function(result){
 				swal("¡El registro ha sido eliminado!", {
-			      icon: "success",
-			    });
-				window.setTimeout('location.reload()',900); 
+			      icon: "successwindow.setTimeout('location.reload()',900); 
 			}
 		});
 	  } else {
@@ -332,8 +346,7 @@ $('#btn_guardar_not').click(function(event) {
           button: {
            visible: false
           },
-      });
-      // window.setTimeout('location.reload()', 1000);
+ window.setTimeout('location.reload()', 1000);
     }
   })
 });
@@ -351,6 +364,10 @@ function cargar_datos_nt(id){
 
 			console.log(result);
 			var content = $.parseJSON(result);
+
+					$('#btn_modificar_not').removeAttr('disabled','disabled');
+					$('#btn_limpiar_not').removeAttr('disabled','disabled');
+					$('#btn_guardar_not').attr('disabled','disabled');
 
 					// $('.oculto').show('slow')
  					$('#id_nt').val(content["id"]);
@@ -386,10 +403,7 @@ function editar_nt(){
 			  title: "Muy Bien!",
 			  text: "Registro actualizado satisfactoriamente!",
 			  icon: "success",
-			  button: false
-			});
-			
-			window.setTimeout('location.reload()', 1000);
+			  button: falsewindow.setTimeout('location.reload()', 1000);
 		}
 	});
 }
@@ -412,8 +426,7 @@ function borrar_datos_nt(id){
 			success: function(result){
 				swal("¡El registro ha sido eliminado!", {
 			      icon: "success",
-			    });
-				//window.setTimeout('location.reload()',900); 
+		window.setTimeout('location.reload()',900); 
 			}
 		});
 	  } else {
@@ -453,8 +466,7 @@ $('#btn_guardar_archivo').click(function() {
           button: {
            visible: false
           },
-      });
-      window.setTimeout('location.reload()', 1000);
+   window.setTimeout('location.reload()', 1000);
     }
 	   
 	 });
@@ -512,9 +524,7 @@ function editar_file(){
 			  text: "Registro actualizado satisfactoriamente!",
 			  icon: "success",
 			  button: false
-			});
-			
-			//window.setTimeout('location.reload()', 1000);
+			window.setTimeout('location.reload()', 1000);
 		}
 	});
 }
@@ -537,8 +547,7 @@ function borrar_datos_file(id){
 			success: function(result){
 				swal("¡El registro ha sido eliminado!", {
 			      icon: "success",
-			    });
-				window.setTimeout('location.reload()',900); 
+			 window.setTimeout('location.reload()',900); 
 			}
 		});
 	  } else {
@@ -575,9 +584,7 @@ $('#btn_guardar_image').click(function() {
           button: {
            visible: false
           },
-      });
-
-       window.setTimeout('location.reload()', 1000);
+      }window.setTimeout('location.reload()', 1000);
     }
 	 });
 });
@@ -648,9 +655,7 @@ var id_img = $('#id_img').val();
 			  text: "Registro actualizado satisfactoriamente!",
 			  icon: "success",
 			  button: false
-			});
-			
-			//window.setTimeout('location.reload()', 1000);
+			})window.setTimeout('location.reload()', 1000);
 		}
 	});
 }
@@ -673,8 +678,7 @@ function borrar_datos_img(id){
 			success: function(result){
 				swal("¡El registro ha sido eliminado!", {
 			      icon: "success",
-			    });
-				window.setTimeout('location.reload()',900); 
+			   window.setTimeout('location.reload()',900); 
 			}
 		});
 	  } else {
@@ -734,9 +738,7 @@ function editar_usuario(){
 			  text: "Registro actualizado satisfactoriamente!",
 			  icon: "success",
 			  button: false
-			});
-			
-			window.setTimeout('location.reload()', 1000);
+			})window.setTimeout('location.reload()', 1000);
 		}
 	});
 }
@@ -759,8 +761,7 @@ function borrar_datos_usuario(id){
 			success: function(result){
 				swal("¡El registro ha sido eliminado!", {
 			      icon: "success",
-			    });
-				window.setTimeout('location.reload()',900); 
+			   window.setTimeout('location.reload()',900); 
 			}
 		});
 	  } else {
@@ -793,8 +794,7 @@ $('#btn_guardar_slide').click(function(event) {
            button: {
             visible: false
           },
-      });
-      //window.setTimeout('location.reload()', 1000);
+      });window.setTimeout('location.reload()', 1000);
     }
   })
 });
@@ -858,8 +858,7 @@ function editar_slide(){
 			  icon: "success",
 			  button: false
 			});
-			
-			//window.setTimeout('location.reload()', 1000);
+		window.setTimeout('location.reload()', 1000);
 		}
 	});
 }
@@ -883,7 +882,7 @@ function borrar_datos_slide(id){
 				swal("¡El registro ha sido eliminado!", {
 			      icon: "success",
 			    });
-				// window.setTimeout('location.reload()',900); 
+		window.setTimeout('location.reload()',900); 
 			}
 		});
 	  } else {
@@ -892,5 +891,137 @@ function borrar_datos_slide(id){
 	});
 }
 
+////////////////////////////////////////////////////////7777
+///////////////////7 para partner /////////////////////////
+/////////////////////////////////////////////////////////////
+
+$('#btn_guardar_partner').click(function() {
+
+	var formData = new FormData($("#partner_form")[0]);
+	    var ruta = "content_admin/content_save/guardar_parters.php";
+	    $.ajax({
+	        url: ruta,
+	        type: "POST",
+	        data: formData,
+	        contentType: false,
+	        processData: false,
+	   		    beforeSend: function() {
+    swal ({
+          // icon: "success",
+           text: "Procesando información!",
+           button: {
+            visible: false
+          },
+      });
+    },success: function(respuesta) {
+      swal ({
+          icon: "success",
+          text: "Archivo Guardados Exitosamente!",
+          button: {
+           visible: false
+          },
+      });
+
+       window.setTimeout('location.reload()', 1000);
+    }
+	 });
+});
 
 
+
+function cargar_datos_partner(id){
+
+	$.ajax({
+	type: "POST",
+	url: "content_admin/content_load/cargar_partner.php",
+	data: {id:id},
+	cache: false,
+		success: function(result){
+
+			if (result != false) {
+
+			console.log(result);
+			var content = $.parseJSON(result);
+
+					$('.oculto6').show('slow');
+
+
+					$('#btn_guardar_partner').attr('disabled','disabled');
+					$('#btn_modificar_partner').removeAttr('disabled','disabled');
+
+					$('#btn_new_colaborador').attr('disabled','disabled');
+					$('#btn_cerrar_colaborador').removeAttr('disabled','disabled');
+					// if ($('.oculto2').show('slow')) {
+					// 	$('#btn_guardar_image').attr('disabled','disabled');
+					// 	$('#btn_modifcar_image').removeAttr('disabled','disabled');
+					// }
+
+					$('#partner_form').focus();
+ 					$('#id_partner').val(content["id"]);
+   					$('#nombre_partner').val(content["nombre"]);
+	   				//$('#file').val(content["ruta"]);
+					//$('#nombre_img').val(content["ruta"]);
+
+					
+					
+				
+			} 
+		}			
+	});
+}
+
+
+function editar_partner(){
+
+var id_partner = $('#id_partner').val();
+
+	// "nombre_imagen":$('#nombre_imagen').val()
+	var formData = new FormData($("#partner_form")[0]);
+
+	// }
+	
+	$.ajax({
+	type: "POST",
+	url: "content_admin/content_edit/editar_partner.php?id_partner="+id_partner,
+    data: formData,
+	cache: false,
+    contentType: false,
+	processData: false,
+		success: function(result){
+			swal({
+			  title: "Muy Bien!",
+			  text: "Registro actualizado satisfactoriamente!",
+			  icon: "success",
+			  button: false
+			});
+			
+			//window.setTimeout('location.reload()', 1000);
+		}
+	});
+}
+
+function borrar_datos_partner(id){
+	swal({
+	  title: "Estás seguro?",
+	  text: "Una vez eliminado, no podrá recuperar este registro!",
+	  icon: "warning",
+	  buttons: true,
+	  dangerMode: true,
+	})
+	.then((willDelete) => {
+	  if (willDelete) {
+	    $.ajax({
+		type: "POST",
+		url: "content_admin/content_delete/borrar_partner.php",
+		data: {id:id},
+		cache: false,
+			success: function(result){
+				swal("¡El registro ha sido eliminado!", {
+			      icon: "successwindow.setTimeout('location.reload()',900); 
+			}
+		});
+	  } else {
+	    swal("¡Tu registro está seguro!");
+	  }
+	});
+}

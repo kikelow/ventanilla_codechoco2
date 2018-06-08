@@ -432,20 +432,35 @@ $descripcion_c = substr($rw['descripcion'], 0, 270);
         </div>
 
        
-        
-        
+    <div class="col s12 m6 l6">
+      <div id="logo_container">
+        <!-- <div id="logo_codechoco" > -->
+          
+          <?php 
+            $s = "SELECT nombre,ruta from partner_page" ;
+            $res = mysqli_query($conn,$s) or die(mysqli_error($conn));
 
-      <div class="col s12 m6 l6">
-        <div id="logo_container">
-          <!-- <div id="logo_codechoco" > -->
-            <img class="responsive-img" src="img/logo_code.png" alt="" width="163px" height="163px" >
-          </div>
-       
-        </div>     
-      </div>
+               if(mysqli_num_rows($res)>0){
+                  while($rw=mysqli_fetch_array($res)){
+                      echo "<img class='responsive-img' src='content_admin/content_save/img_content/$rw[ruta]' alt='$rw[nombre]' width='163px' height='163px' >";
+                  }
+                }
+          ?>
+
+
+      </div>   
+      </div>     
     </div>
   </div>
 </div>
+</div>
+
+
+
+
+
+
+
 
 <div class="divider"></div>
 
@@ -458,13 +473,6 @@ $descripcion_c = substr($rw['descripcion'], 0, 270);
   <div class="row">
     <div class="responsive" id="slider">
         <div style="margin-left: 5px;margin-right: 5px;"><img src="img/logo_code.png" alt="" height="" ></div>
-        <div style="margin-left: 5px;margin-right: 5px;"><img src="img/p1.jpg" alt="" height="" ></div>
-        <div style="margin-left: 5px;margin-right: 5px;"><img src="img/p3.jpg" alt="" height="" ></div>
-        <div style="margin-left: 5px;margin-right: 5px;"><img src="img/p2.jpg" alt="" height="" ></div>
-        <div style="margin-left: 5px;margin-right: 5px;"><img src="img/p5.jpg" alt="" height="" ></div>
-        <div style="margin-left: 5px;margin-right: 5px;"><img src="img/p6.jpg" alt="" height="" ></div>
-        <div style="margin-left: 5px;margin-right: 5px;"><img src="img/p7.jpg" alt="" height="" ></div>
-        <div style="margin-left: 5px;margin-right: 5px;"><img src="img/p8.jpg" alt="" height="" ></div>
       </div>
       </div>
     </div>

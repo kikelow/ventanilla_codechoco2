@@ -60,7 +60,7 @@
     <i class="large material-icons">menu</i>
   </a>
   <ul>
-    <li><a href="index.php?modulo=emprendimiento/inicio" class="btn-floating yellow "><i class="material-icons md-light">
+    <li><a href="index.php?modulo=emprendimiento/inicio" class="btn-floating yellow "><i class="material-icons md-light ">
 home</i></a></li>
     <li><a href="index.php?modulo=emprendimiento/q_somos" class="btn-floating yellow black-text">¿Quienes Somos?</a></li>
     <li><a href="index.php?modulo=emprendimiento/servicios" class="btn-floating yellow black-text">Servicios</a></li>
@@ -177,7 +177,7 @@ home</i></a></li>
 <?php 
 }
 
-echo "__DIR__";
+//echo "__DIR__";
 ?>
 
 

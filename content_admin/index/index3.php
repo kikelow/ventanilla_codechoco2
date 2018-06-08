@@ -617,4 +617,87 @@
 
 </div>
 
-<!-- modales -->
+<!-- para partner -->
+<div class="row">
+	<div class="col s12"><h4 class="diagonal" style="text-align: center;">Colaboradores</h4> <div class="divider" style=" background-color:  #00853b;"></div></div>
+</div>
+
+
+<div class="row">
+	<div class="col s12">
+		<a class="waves-effect waves-light btn right " style=" background-color:  #00853b;" id="btn_cerrar_colaborador">Cerrar</a>
+		<a class="waves-effect waves-light btn right " style=" background-color:  #00853b;margin-right: 10px;" id="btn_new_colaborador">Nueva Colaborador</a>
+	</div>
+
+	<div class="col s12">
+		<div class="oculto6 s12">
+		<form action="" id="partner_form" enctype="multipart/form-data" method="post">
+				
+				<div class="input-field col s12">
+			         <input placeholder="" id="id_partner" type="hidden" class="validate" name="id_partner">
+			    </div>
+
+	      		<div class="input-field col s12">
+	             <input placeholder="" id="nombre_partner" type="text" class="validate" name="nombre_partner">
+	             <label for="nombre_imagen">Nombre</label>
+    	        </div>					
+
+				 <div class='file-field input-field col s12'>
+     				<div class='btn'>
+    					<span>Archivo</span>
+    					<input type='file' name='file_partner' id='file_partner'>
+  					</div>
+  					<div class='file-path-wrapper'>
+    					<input class='file-path validate' type='text' id="nombre_partner">
+  					</div>  
+    			</div>   			
+	      </form>
+			<div class="col s12">
+				<a href="#!" id="btn_guardar_partner" class="modal-action modal-close waves-effect waves-white btn-flat white-text right" style=" background-color:  #00853b;">Guardar</a>
+				<a href="#!" id="btn_modificar_partner" class="waves-effect waves-white btn-flat white-text right" style="background-color:#00853b;margin-right: 10px;" onclick="editar_partner()">Modificar</a> 
+				<a href="#!" id="btn_limpiar_partner" class="waves-effect waves-white btn-flat white-text right" style="background-color:#00853b;margin-right: 10px;" onclick="limpiar_partner()">Limpiar</a>  
+			</div>
+		
+			
+
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col s12">
+		<table class="responsive-table highlight" id="tabla_partner">
+			        <thead>
+			          <tr>
+			          	  <th>ID</th>
+			              <th>Nombre</th>
+			              <th>Ruta Imagen</th>
+			             
+			          </tr>
+			        </thead>
+					<?php 
+						$s = "SELECT id,nombre,ruta FROM partner_page";
+
+					$r = mysqli_query($conn,$s) or die (mysqli_error($conn));
+					if (mysqli_num_rows($r)>0) {
+						while ($data=mysqli_fetch_assoc($r)) {
+					?>
+			      	   <tbody>
+				          <tr>
+					
+				          		<td><?php echo "$data[id]"; ?></td>
+				            	<td><?php echo "$data[nombre]"; ?></td>
+				            	<td><?php echo "$data[ruta]"; ?></td>
+				            	<td><a href="#partner_form" id="cargar_datos_partner" class="waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_partner('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
+				            	<td><a href="#!" id="eliminar_datos_partner" class=" waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_partner('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
+				          		</tr>
+							
+							
+		      <?php } ?>	          			      	
+			<?php } ?>
+	        </tbody>
+	      </table>
+	</div>
+</div>
+	
+
+</div>

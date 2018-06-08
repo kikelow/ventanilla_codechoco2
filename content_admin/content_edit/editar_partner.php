@@ -1,22 +1,22 @@
 <?php 
 require_once("../../conexion.php");
 
-$id_img = $_GET['id_img'];
+$id_partner = $_GET['id_partner'];
 
-if ($_FILES['file_img']['name']=="") {
-	mysqli_query($conn,"UPDATE img_page set nombre ='".$_POST['nombre_imagen']."' where id=".$id_img.";") or die (mysqli_error($conn));
+if ($_FILES['file_partner']['name']=="") {
+	mysqli_query($conn,"UPDATE partner_page set nombre ='".$_POST['nombre_partner']."' where id=".$id_partner.";") or die (mysqli_error($conn));
 	}
 	else{
-		$re = mysqli_query($conn,"SELECT ruta from img_page where id =".$id_img.";");
+		$re = mysqli_query($conn,"SELECT ruta from partner_page where id =".$id_partner.";");
 		while ($f=mysqli_fetch_array($re)) {
 			unlink("../content_save/img_content/".$f['ruta']);
 		}
 		$ruta = "../content_save/img_content/";
 		opendir($ruta);
-		$destino = $ruta.$_FILES['file_img']['name'];
-		move_uploaded_file($_FILES['file_img']['tmp_name'],$destino);
-		$nombre=$_FILES['file_img']['name'];
-		mysqli_query($conn," UPDATE img_page set nombre ='".$_POST['nombre_imagen']."', ruta ='".$nombre."' where id =".$id_img.";");
+		$destino = $ruta.$_FILES['file_partner']['name'];
+		move_uploaded_file($_FILES['file_partner']['tmp_name'],$destino);
+		$nombre=$_FILES['file_partner']['name'];
+		mysqli_query($conn," UPDATE partner_page set nombre ='".$_POST['nombre_partner']."', ruta ='".$nombre."' where id =".$id_partner.";");
 	}
 
 // $limite_kb = 5120;
