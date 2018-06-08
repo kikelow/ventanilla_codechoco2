@@ -6,7 +6,7 @@
  ?>
 
 <div class="row">
-	<div class="col s12"><h4 class="diagonal" style="text-align: center;">asignar Verificador</h4> <div class="divider" style=" background-color:  #00853b;"></div></div>
+	<div class="col s12"><h4 class="diagonal" style="text-align: center; font-size: 1.9rem;">asignar Verificador</h4> <div class="divider" style=" background-color:  #00853b;"></div></div>
 </div>
 
 <div class="row" style="">

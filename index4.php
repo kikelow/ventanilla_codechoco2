@@ -98,6 +98,7 @@ if(!isset($_SESSION["vev_admin_verificador"])){
       <li><a href="index2.php?modulo=evaluacion/reporte" class="collection-item black-text">Reportes</a></li> -->
      <li class="bold"><a class="collapsible-header  waves-green " href="index4.php?modulo=asignar_verificador/persona/">Crear Verificador</a>
       <li class="bold"><a class="collapsible-header  waves-green " href="index4.php?modulo=asignar_verificador/inicio/">Asignar Verificador</a>
+        <li class="bold"><a class="collapsible-header  waves-green " href="index4.php?modulo=asignar_verificador/reporte/">Reportes</a>
 
     </ul>
 
