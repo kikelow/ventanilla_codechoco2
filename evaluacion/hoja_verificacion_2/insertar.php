@@ -6,7 +6,7 @@ $opcion = $_POST['verificacion2_opcion'];
 $calificador = $_POST['verifica2_calificador'];
 $observacion = $_POST['verificacion2_obs'];
 
-$limite_kb = 300;
+$limite_kb = 1000;
 for ($key=0; $key <sizeof($opcion); $key++) {
     if ($_FILES["verificacion2_evidencia"]["size"][$key] > 0) {
           if ($_FILES["verificacion2_evidencia"]["size"][$key] <= $limite_kb * 1024) {

@@ -31,7 +31,7 @@
                 <!-- <div class="col s12 m12 l12"> -->
   <!-- <div class="card grey lighten-4 "  style=""> -->
 <span class="card-title"><center><h5> Formato de inscripción</h5></center></span>
-<form id="form_registro"  >
+<form id="form_registro" >
  <ul class="collapsible" data-collapsible="accordion">
     <li id="s">
       <div class="collapsible-header" style="font-weight: bold;"> <i class="material-icons"></i>1. Información General</div>
@@ -820,7 +820,21 @@
 </div>
 </li>
 </ul>
- <button type="button" class="waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="registrar_emp"><i class="material-icons right">add</i>Registrar</button>
+<div class='input-field col s12 m12 l12 green lighten-5 ' id='div_empresa' style='border: 1px solid green'>
+      <h6>NOTA: Esta imagen será utilizada en caso de que el emprendimiento cumpla con mas del 50% luego de haber aplicado todos los criterios de evaliación para ser visualizada en la pagina principal</h6>
+    </div>
+<div class="row">
+  <div class='file-field input-field col s12 m12 l12' style=''>
+         <div class='btn'>
+        <span>Seleccionar imagen</span>
+        <input type='file' name='img_emprendimiento' id='img_emprendimiento' accept="image/*">
+      </div>
+      <div class='file-path-wrapper'>
+        <input class='file-path validate' type='text'  >
+  </div>
+</div>
+</div>
+ <button type="submit" class="waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="registrar_emp"><i class="material-icons right">add</i>Registrar</button>
 </form>
 </div>
 </div>

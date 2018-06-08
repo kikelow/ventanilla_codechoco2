@@ -113,7 +113,7 @@ $('#sector').change(function(event) {
 
 
 //acciones para validar y luego registrar
-$("#registrar_emp").click(function(event) {
+$("#form_registro").submit(function(event) {
 	event.preventDefault(); 
 
 //total de los valores de edad de los empleados
@@ -321,10 +321,14 @@ else if ($('#observacion_general').val() == "") {
 }
 
 else {
+	var formData = new FormData(document.getElementById("form_registro"));
 	$.ajax({
 		url: 'emprendimiento/registro/insertar.php',
 		type: 'POST',
-		data: $("#form_registro").serialize(),
+		data: formData,
+		cache: false,
+        contentType: false,
+	    processData: false,
 		beforeSend: function() {
 	  	$('#registrar_emp').attr('disabled', 'disabled');
    	// console.log('cargando')
@@ -491,7 +495,7 @@ $('#femenino_3_m, #masculino_3_m').keyup(function(event) {
 
 
 //_____________________ cuando de click en el botton modificar_____________________________________________
-$('#modificar_emp').click(function(event) {
+$('#form_modificar').submit(function(event) {
 	 var entre_18_30 = $('#entre_18_30_m').val()
 	 var entre_30_50 = $('#entre_30_50_m').val()
 	 var mayor_50 = $('#mayor_50_m').val()
@@ -682,11 +686,16 @@ else if ($('#observacion_general_m').val() == "") {
 }
 else {
 	$('#mensaje_educativo2').html(" ")
+
+	var formData = new FormData(document.getElementById("form_modificar"));
 	var empresa = $('#empresa').val()
 	$.ajax({
 		url: 'evaluacion/formato_inscripcion/modificar/modificar.php?empresa='+empresa,
 		type: 'POST',
-		data: $('#form_modificar').serialize(),
+		data:formData,
+		cache: false,
+        contentType: false,
+	    processData: false,
 		beforeSend: function() {
 	  	$('#modificar_emp').attr('disabled', 'disabled');
    	// console.log('cargando')
@@ -698,6 +707,7 @@ else {
   				},
 			});
     },success: function(respuesta) {
+    	// console.log(respuesta)
     	swal ({
   				icon: "success",
   				 text: "Datos MODIFICADOS exitosamente!",

@@ -807,7 +807,7 @@
 </div>
 </li>
 </ul>
- <button type="button" class="waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="registrar_emp"><i class="material-icons right">add</i>Registrar emprendimiento</button>
+ <button type="submit" class="waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="registrar_emp"><i class="material-icons right">add</i>Registrar emprendimiento</button>
 </form>
 </div>
 </div>

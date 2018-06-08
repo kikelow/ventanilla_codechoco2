@@ -98,7 +98,7 @@ $s = "UPDATE `empresario` SET `identificacion`='$_POST[identificacion_entrevista
 	$s="UPDATE `nivel_educativo` SET `cantiad`='$_POST[otro_m]' WHERE empresa_id='$empresa' AND nivel_id='5'	";
 	mysqli_query($conn,$s);
 
-//insertar datos en la tabla demografia
+//modificar datos en la tabla demografia
 	$s="UPDATE `demografia` SET `si_no_id`='$_POST[cmb_indigena_m]',`cantidad`='$_POST[indigena_m]' WHERE empresa_id='$empresa' AND desc_demografia_id='1'";
 	mysqli_query($conn,$s);
 	$s="UPDATE `demografia` SET `si_no_id`='$_POST[cmb_discapacitado_m]',`cantidad`='$_POST[discapacitado_m]' WHERE empresa_id='$empresa' AND desc_demografia_id='2'";
@@ -150,6 +150,39 @@ $s = "UPDATE `empresario` SET `identificacion`='$_POST[identificacion_entrevista
 	}
 	$s="UPDATE `bienes_servicios` SET `lider`='$_POST[b_lider_m]' WHERE empresa_id = '$empresa' AND lider != '' ";
 	mysqli_query($conn,$s);
-	echo "bien";
+	// echo "bien";
+
+	// modificar archivo
+	$limite_kb = 5000;
+	// if ($_FILES["img_emprendimiento_m"]["name"] == "") {
+	// 	// $s = "UPDATE `img_empresa` SET imagen = '$_POST[nombre_imagen]' WHERE empresa_id = '$empresa'";
+	// 	// mysqli_query($conn,$s);
+ //    }else
+    	if ($_FILES["img_emprendimiento_m"]["size"] <= $limite_kb * 1024) {
+    		if (($_FILES["img_emprendimiento_m"]["type"] == "image/gif")
+		   		|| ($_FILES["img_emprendimiento_m"]["type"] == "image/jpeg")
+		   		|| ($_FILES["img_emprendimiento_m"]["type"] == "image/jpg")
+		   		|| ($_FILES["img_emprendimiento_m"]["type"] == "image/png")){
+    			$s="SELECT imagen FROM img_empresa WHERE empresa_id = '$empresa'";
+          	$r = mysqli_query($conn,$s);
+          	while ($rw=mysqli_fetch_assoc($r)) {
+          		unlink("../imagenes/".$rw['imagen']);
+          	}
+
+        $tmp_name = $_FILES["img_emprendimiento_m"]["tmp_name"];
+        $name = basename($_FILES["img_emprendimiento_m"]["name"]);
+        $ruta = "../imagenes/$empresa"."_$name";
+        $nombre = "$empresa"."_$name";
+
+         move_uploaded_file($tmp_name, $ruta);
+
+         $s = "UPDATE `img_empresa` SET imagen = '$nombre' WHERE empresa_id = '$empresa'";
+		mysqli_query($conn,$s) or die(mysqli_error($conn));;
+		echo "$s";
+    		}
+    	}
+    
+
+
 
  ?>

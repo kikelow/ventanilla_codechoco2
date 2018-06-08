@@ -22,8 +22,8 @@
           <span class="black-text">
           	<div class="row">
     <form class="col s12" id="form_personales">
-     <div class="row">
-  <div class="col s12 m10 l10"><h4 class="diagonal" style="text-align: center;">Datos personales</h4> <div class="divider" style=" background-color:  #00853b;"></div></div>
+<div class="row">
+  <div class="col s12"><h4 class="diagonal" style="text-align: center;"> personales</h4> <div class="divider" style=" background-color:  #00853b;"></div></div>
 </div>
       <div class="row">
       	<input type="hidden" name="id" value='<?php echo $persona_id ?>''>
@@ -76,7 +76,7 @@
     </form>
   </div>
  <div class="row">
-  <div class="col s12"><h4 class="diagonal" style="text-align: center;">Cambiar contraseña</h4> <div class="divider" style=" background-color:  #00853b;"></div></div>
+  <div class="col s12"><h4 class="diagonal" style="text-align: center;">contraseña</h4> <div class="divider" style=" background-color:  #00853b;"></div></div>
 </div>
    <div class="row">
 			<h5 class="center">Modificar contraseña</h5>

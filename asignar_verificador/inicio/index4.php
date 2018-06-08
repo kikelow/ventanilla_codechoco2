@@ -6,7 +6,7 @@
  ?>
 
 <div class="row">
-	<div class="col s12"><h4 class="diagonal" style="text-align: center;">asignar Verificador</h4> <div class="divider" style=" background-color:  #00853b;"></div></div>
+	<div class="col s12"><h4 class="diagonal" style="text-align: center; font-size: 1.9rem;">asignar Verificador</h4> <div class="divider" style=" background-color:  #00853b;"></div></div>
 </div>
 
 <div class="row" style="">
@@ -76,9 +76,9 @@
 		        </thead>
 				<?php require 'conexion.php';
 
-				$s = "SELECT verificadorxempresa.id, empresa.razon_social, concat(persona.nombre1,' ',ifnull(persona.nombre2,' '),' ',persona.apellido1,'',persona.paellido2) as verificador, verificadorxempresa.fecha_asignacion from verificadorxempresa 
+				$s = "SELECT verificadorxempresa.id, empresa.razon_social, concat(persona.nombre1,' ',ifnull(persona.nombre2,' '),' ',persona.apellido1,' ',persona.paellido2) as verificador, verificadorxempresa.fecha_asignacion from verificadorxempresa 
 					INNER JOIN empresa ON empresa.id = verificadorxempresa.empresa_id
-					INNER JOIN persona ON persona.id = verificadorxempresa.persona_id";
+					INNER JOIN persona ON persona.id = verificadorxempresa.persona_id order by verificador";
 
 				$r = mysqli_query($conn,$s) or die (mysqli_error($conn));
 
