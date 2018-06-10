@@ -69,7 +69,7 @@ require_once('conexion.php');
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
           ";
-            $s1="select id,nombre from calificador ";
+            $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
@@ -126,7 +126,7 @@ require_once('conexion.php');
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
           ";
-            $s1="select id,nombre from calificador ";
+            $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
@@ -184,7 +184,7 @@ require_once('conexion.php');
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
           ";
-            $s1="select id,nombre from calificador ";
+            $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
@@ -243,7 +243,7 @@ require_once('conexion.php');
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
           ";
-            $s1="select id,nombre from calificador ";
+            $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
@@ -301,7 +301,7 @@ require_once('conexion.php');
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
           ";
-            $s1="select id,nombre from calificador ";
+            $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
@@ -358,7 +358,7 @@ require_once('conexion.php');
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
           ";
-            $s1="select id,nombre from calificador ";
+            $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
@@ -416,7 +416,7 @@ require_once('conexion.php');
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
           ";
-            $s1="select id,nombre from calificador ";
+            $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
@@ -474,7 +474,7 @@ require_once('conexion.php');
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
           ";
-            $s1="select id,nombre from calificador ";
+            $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
@@ -533,7 +533,7 @@ require_once('conexion.php');
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
           ";
-            $s1="select id,nombre from calificador ";
+            $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
@@ -591,7 +591,7 @@ require_once('conexion.php');
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
           ";
-            $s1="select id,nombre from calificador ";
+            $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
@@ -649,7 +649,7 @@ require_once('conexion.php');
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
           ";
-            $s1="select id,nombre from calificador ";
+            $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
@@ -713,7 +713,7 @@ sociales implementados o recibidos.</div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
           ";
-            $s1="select id,nombre from calificador ";
+            $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
@@ -771,7 +771,7 @@ sociales implementados o recibidos.</div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
           <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
           ";
-            $s1="select id,nombre from calificador ";
+            $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){

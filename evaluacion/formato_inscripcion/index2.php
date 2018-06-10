@@ -785,6 +785,25 @@
 <div class="collapsible-body">
 <span>     
 <div class="row" style="text-align: center;background-color: #bdbdbd;margin-bottom: 0px;">5. Información del verificador y empresario</div>
+<div class="row" style="text-align: center;background-color: #e0e0e0;">Verificador</div>
+<div class="row">
+  <div class="input-field col s12 m4 l3">
+    <input type="text" name="verificador" id="verificador">
+    <label for="verificador">Nombre del verificador</label>
+  </div>
+  <div class="input-field col s12 m4 l3">
+    <input type="text" name="entidad_verificador" id="entidad_verificador">
+    <label for="entidad_verificador">Entidad</label>
+  </div>
+  <div class="input-field col s12 m4 l3">
+    <input type="text" name="area_verificador" id="area_verificador">
+    <label for="area_verificador">Area</label>
+  </div>
+  <div class="input-field col s12 m4 l3">
+    <input type="text" name="cargo_verificador" id="cargo_verificador">
+    <label for="cargo_verificador">Cargo</label>
+  </div>
+</div>
 
 <div class="row" style="text-align: center;background-color: #e0e0e0;">Empresario</div>
 <div class="row">

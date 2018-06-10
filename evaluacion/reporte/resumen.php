@@ -37,6 +37,7 @@ if(isset($_GET["empresa"])){
    $categoria = $rw['categoria'];
    $fecha_registro = $rw['fecha_registro'];
    }
+   $fecha_registro = date("Y-m-d");
    $lider = '';
    $s = "SELECT lider FROM bienes_servicios WHERE empresa_id = '$empresa' AND lider != '' ";
    $r = mysqli_query($conn,$s);
@@ -45,12 +46,11 @@ if(isset($_GET["empresa"])){
    }
 
 $verificador='';
-   $s = "SELECT concat(persona.nombre1,' ',ifnull(persona.nombre2,' '),' ',persona.apellido1,' ',persona.paellido2) as verificador FROM verificadorxempresa
-   INNER JOIN persona ON persona.id = verificadorxempresa.persona_id
-   WHERE verificadorxempresa.empresa_id = '$empresa'";
+   $s = "SELECT nombre FROM verificador
+   WHERE empresa_id = '$empresa'";
    $r = mysqli_query($conn,$s);
    while ($rw=mysqli_fetch_assoc($r)) {
-    $verificador = $rw['verificador'];
+    $verificador = $rw['nombre'];
    }
 // Cabezera del pdf
    $cabezera='

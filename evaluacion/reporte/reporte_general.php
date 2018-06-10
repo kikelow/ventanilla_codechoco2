@@ -558,6 +558,7 @@
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('Q'.$fila,$rw['direccion']);
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('R'.$fila,$rw['municipio']);
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('S'.$fila,$rw['departamento']);
+	 	$rw['fecha_registro']= date("Y");
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('T'.$fila,$rw['fecha_registro']);
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('U'.$fila,'11');
 
