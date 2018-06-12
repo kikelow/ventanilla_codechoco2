@@ -227,8 +227,10 @@ $('#btn_guardar_content').click(function(event) {
           icon: "success",
            text: "Datos Guardados Exitosamente!",
            button: {
-            visible: false
-          }window.setTimeout('location.reload()', 1000);
+            visible: false   
+          }
+      });
+          window.setTimeout('location.reload()', 1000);
     }
   })
 });
@@ -313,7 +315,10 @@ function borrar_datos_qs(id){
 		cache: false,
 			success: function(result){
 				swal("¡El registro ha sido eliminado!", {
-			      icon: "successwindow.setTimeout('location.reload()',900); 
+			      icon: "success"
+			       },
+			    );
+			      window.setTimeout('location.reload()',900); 
 			}
 		});
 	  } else {
@@ -346,7 +351,8 @@ $('#btn_guardar_not').click(function(event) {
           button: {
            visible: false
           },
- window.setTimeout('location.reload()', 1000);
+          });
+ 		window.setTimeout('location.reload()', 1000);
     }
   })
 });
@@ -403,7 +409,8 @@ function editar_nt(){
 			  title: "Muy Bien!",
 			  text: "Registro actualizado satisfactoriamente!",
 			  icon: "success",
-			  button: falsewindow.setTimeout('location.reload()', 1000);
+			  button: false });
+			window.setTimeout('location.reload()', 1000);
 		}
 	});
 }
@@ -425,8 +432,10 @@ function borrar_datos_nt(id){
 		cache: false,
 			success: function(result){
 				swal("¡El registro ha sido eliminado!", {
-			      icon: "success",
-		window.setTimeout('location.reload()',900); 
+			      icon: "success"
+			       },
+			      );
+				window.setTimeout('location.reload()',900); 
 			}
 		});
 	  } else {
@@ -466,6 +475,7 @@ $('#btn_guardar_archivo').click(function() {
           button: {
            visible: false
           },
+         });
    window.setTimeout('location.reload()', 1000);
     }
 	   
@@ -524,6 +534,7 @@ function editar_file(){
 			  text: "Registro actualizado satisfactoriamente!",
 			  icon: "success",
 			  button: false
+			   });
 			window.setTimeout('location.reload()', 1000);
 		}
 	});
@@ -547,6 +558,7 @@ function borrar_datos_file(id){
 			success: function(result){
 				swal("¡El registro ha sido eliminado!", {
 			      icon: "success",
+			       });
 			 window.setTimeout('location.reload()',900); 
 			}
 		});
@@ -584,7 +596,7 @@ $('#btn_guardar_image').click(function() {
           button: {
            visible: false
           },
-      }window.setTimeout('location.reload()', 1000);
+      }); window.setTimeout('location.reload()', 1000);
     }
 	 });
 });
@@ -622,11 +634,7 @@ function cargar_datos_img(id){
  					$('#id_img').val(content["id"]);
    					$('#nombre_imagen').val(content["nombre"]);
 	   				//$('#file').val(content["ruta"]);
-					//$('#nombre_img').val(content["ruta"]);
-
-					
-					
-				
+					//$('#nombre_img').val(content["ruta"]);	
 			} 
 		}			
 	});
@@ -655,7 +663,7 @@ var id_img = $('#id_img').val();
 			  text: "Registro actualizado satisfactoriamente!",
 			  icon: "success",
 			  button: false
-			})window.setTimeout('location.reload()', 1000);
+			});window.setTimeout('location.reload()', 1000);
 		}
 	});
 }
@@ -678,6 +686,7 @@ function borrar_datos_img(id){
 			success: function(result){
 				swal("¡El registro ha sido eliminado!", {
 			      icon: "success",
+			       });
 			   window.setTimeout('location.reload()',900); 
 			}
 		});
@@ -738,7 +747,7 @@ function editar_usuario(){
 			  text: "Registro actualizado satisfactoriamente!",
 			  icon: "success",
 			  button: false
-			})window.setTimeout('location.reload()', 1000);
+			});window.setTimeout('location.reload()', 1000);
 		}
 	});
 }
@@ -761,6 +770,7 @@ function borrar_datos_usuario(id){
 			success: function(result){
 				swal("¡El registro ha sido eliminado!", {
 			      icon: "success",
+			       });
 			   window.setTimeout('location.reload()',900); 
 			}
 		});
@@ -995,7 +1005,7 @@ var id_partner = $('#id_partner').val();
 			  button: false
 			});
 			
-			//window.setTimeout('location.reload()', 1000);
+			window.setTimeout('location.reload()', 1000);
 		}
 	});
 }
@@ -1017,7 +1027,9 @@ function borrar_datos_partner(id){
 		cache: false,
 			success: function(result){
 				swal("¡El registro ha sido eliminado!", {
-			      icon: "successwindow.setTimeout('location.reload()',900); 
+			      icon: "success"
+			  });
+			      window.setTimeout('location.reload()',900); 
 			}
 		});
 	  } else {
