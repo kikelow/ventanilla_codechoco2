@@ -63,7 +63,7 @@
                        </div>
                        <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
                        <select name='verifica1_si_no[]' id='verifica1_si_no".$i."'>";
-                       $s1="select id,nombre from si_no_noaplica ";
+                       $s1="SELECT id,nombre from si_no_noaplica order by id desc ";
                        $r1= mysqli_query($conn,$s1) or die('Error');
                        if(mysqli_num_rows($r1)>0){
                         while($result1=mysqli_fetch_assoc($r1)){
@@ -111,7 +111,7 @@
                      </div>
                      <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
                      <select name='verifica1_si_no[]' id='verifica1_si_no".$i."'>";
-                     $s1="select id,nombre from si_no_noaplica";
+                     $s1="select id,nombre from si_no_noaplica order by id desc";
                      $r1= mysqli_query($conn,$s1) or die('Error');
                      if(mysqli_num_rows($r1)>0){
                       while($result1=mysqli_fetch_assoc($r1)){
@@ -158,7 +158,7 @@
                    </div>
                    <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
                    <select name='verifica1_si_no[]' id='verifica1_si_no".$i."'>";
-                   $s1="select id,nombre from si_no_noaplica ";
+                   $s1="select id,nombre from si_no_noaplica order by id desc";
                    $r1= mysqli_query($conn,$s1) or die('Error');
                    if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
@@ -205,7 +205,7 @@
                  </div>
                  <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
                  <select name='verifica1_si_no[]' id='verifica1_si_no".$i."'>";
-                 $s1="select id,nombre from si_no_noaplica ";
+                 $s1="select id,nombre from si_no_noaplica order by id desc";
                  $r1= mysqli_query($conn,$s1) or die('Error');
                  if(mysqli_num_rows($r1)>0){
                   while($result1=mysqli_fetch_assoc($r1)){
@@ -252,7 +252,7 @@
                </div>
                <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
                <select name='verifica1_si_no[]' id='verifica1_si_no".$i."'>";
-               $s1="select id,nombre from si_no_noaplica ";
+               $s1="select id,nombre from si_no_noaplica order by id desc";
                $r1= mysqli_query($conn,$s1) or die('Error');
                if(mysqli_num_rows($r1)>0){
                 while($result1=mysqli_fetch_assoc($r1)){

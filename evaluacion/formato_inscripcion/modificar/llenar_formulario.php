@@ -1317,6 +1317,38 @@ $otro_m = "";
 <div class='collapsible-body'>
 <span>     
 <div class='row' style='text-align: center;background-color: #bdbdbd;margin-bottom: 0px;'>5. Información del verificador y empresario</div>
+<div class='row' style='text-align: center;background-color: #e0e0e0;'>Verificador</div>";
+  $s="SELECT * FROM verificador WHERE empresa_id='$_POST[empresa_id]'";
+  $r= mysqli_query($conn,$s);
+$nombre ="";
+$entidad ="";
+$area ="";
+$cargo ="";
+while ($rw = mysqli_fetch_assoc($r)) {
+  $nombre = $rw['nombre'];
+  $entidad = $rw['entidad'];
+  $area = $rw['area'];
+  $cargo = $rw['cargo'];
+}
+
+$datos.="<div class='row'>
+  <div class='input-field col s12 m4 l3'>
+    <input type='text' name='verificador_m' id='verificador_m' value='$nombre'>
+    <label for='verificador_m' class='activar'>Nombre del verificador</label>
+  </div>
+  <div class='input-field col s12 m4 l3'>
+    <input type='text' name='entidad_verificador_m' id='entidad_verificador_m' value='$entidad'>
+    <label for='entidad_verificador_m' class='activar'>Entidad</label>
+  </div>
+  <div class='input-field col s12 m4 l3'>
+    <input type='text' name='area_verificador_m' id='area_verificador_m' value='$area'>
+    <label for='area_verificador_m' class='activar'>Area</label>
+  </div>
+  <div class='input-field col s12 m4 l3'>
+    <input type='text' name='cargo_verificador_m' id='cargo_verificador_m' value='$cargo'>
+    <label for='cargo_verificador_m' class='activar'>Cargo</label>
+  </div>
+</div>
 
 <div class='row' style='text-align: center;background-color: #e0e0e0;'>Empresario</div>
 <div class='row'>

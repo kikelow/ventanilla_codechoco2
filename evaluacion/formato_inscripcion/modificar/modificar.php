@@ -150,7 +150,15 @@ $s = "UPDATE `empresario` SET `identificacion`='$_POST[identificacion_entrevista
 	}
 	$s="UPDATE `bienes_servicios` SET `lider`='$_POST[b_lider_m]' WHERE empresa_id = '$empresa' AND lider != '' ";
 	mysqli_query($conn,$s);
-	// echo "bien";
+	
+	// modificar la tabla de verificador
+
+	$s="UPDATE `verificador` SET 
+	`nombre`='$_POST[verificador_m]',
+	`entidad`='$_POST[entidad_verificador_m]',
+	`area`='$_POST[area_verificador_m]',
+	`cargo`='$_POST[cargo_verificador_m]' WHERE `empresa_id`='$empresa'";
+	mysqli_query($conn,$s);
 
 	// modificar archivo
 	$limite_kb = 5000;

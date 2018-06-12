@@ -99,7 +99,7 @@ $i = 0;
                       <h6>NOTA:  Este documento contiene el resumen de los emprendimientos a los cuales se le han aplicado todas las fases de evaluación</h6>
                     </div>  
                     <div class="col s12 m12 l3">
-                     <button class="waves-effect green darken-2 btn"  href="evaluacion/reporte/reporte_general.php"  style="margin-top: 20px" id="reporte1" target="_blank"><i class="material-icons right"></i>Generar Excel</button>
+                     <a class="waves-effect green darken-2 btn"  href="evaluacion/reporte/reporte_general.php"  style="margin-top: 20px" target="_blank"><i class="material-icons right"></i>Generar Excel</a>
                    </div>      
                  </div>
 

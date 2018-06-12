@@ -16,6 +16,7 @@ include "../../conexion.php";
 		date_default_timezone_set('America/Bogota');
 		$fecha_registro = date("Y-m-d H:i:s");
 
+
 // Inserto los datos del empresario
 	 $s="INSERT INTO `empresario`(`identificacion`, `nombre`, `cargo`) VALUES ('$_POST[identificacion_entrevistado]','$_POST[entrevistado]','$_POST[cargo_entrevistado]')";
 	mysqli_query($conn,$s);
@@ -86,6 +87,11 @@ include "../../conexion.php";
 	// Insertar datos en la tabla de bienes o servicios
 	$s="INSERT INTO `bienes_servicios`(`empresa_id`, `nombre`, `lider`) VALUES ('$empresa_id','$_POST[b1]',''),  ('$empresa_id','$_POST[b2]',''),  ('$empresa_id','$_POST[b3]',''),  ('$empresa_id','$_POST[b4]',''),  ('$empresa_id','$_POST[b5]',''),  ('$empresa_id','','$_POST[b_lider]')";
 	mysqli_query($conn,$s);
+
+	// Inserto los datos del verificador
+	 $s="INSERT INTO `verificador`(`empresa_id`, `nombre`, `entidad`, `area`, `cargo`) VALUES ('$empresa_id','$_POST[verificador]','$_POST[entidad_verificador]','$_POST[area_verificador]','$_POST[cargo_verificador]')";
+	mysqli_query($conn,$s);
+
 
 	//insertar la imagen de cada emprendimiento img_emprendimiento
 
