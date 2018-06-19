@@ -1,37 +1,78 @@
 <?php include "conexion.php"; 
-  $s = "SELECT c.titulo,c.descripcion, i.ruta as ubicacion from contenido c, img_page i where c.id_img_page = i.id and c.id = 4" ;
+  $s = "SELECT c.titulo,c.descripcion, i.ruta as ubicacion from contenido c, img_page i where c.id_img_page = i.id and c.alias_id = 3 order by c.id" ;
   $res = mysqli_query($conn,$s) or die(mysqli_error($conn));
 ?>
- <div class="row" style="background-color: #00853b14;padding-top: 150px;">
+ <div class="row" style="background-color:#00853b14;padding-top: 150px;margin-bottom: 0px;;">
    <div class="row">
      <div class="col s12">
-        <div style="width: 300px;height: 300px;margin:auto;">
+        
           
   <?php 
             if(mysqli_num_rows($res)>0){
               while($rw=mysqli_fetch_array($res)){
-    ?>
+    
 
-          <img src="content_admin/content_save/img_content/<?php echo $rw['ubicacion'] ?>" alt="" width="300" height="300">
-        </div> 
-     </div>
-   </div>
-   <div class="divider"></div>
+if ($rw['ubicacion'] == 'NO APLICA') {
 
- 
+echo "
 
-   <div class="row">
-    <h3 class="diagonal" style="text-align: center;"><?php echo"$rw[titulo]"?></h3> <div class="divider" style=" background-color:  #00853b;"></div>
-      <div class="col s12">
-         <?php echo "$rw[descripcion]"; }} ?>
-      </div>
-    </div>
+<div class='row'>
+<div class='col s12'>
+<p class='diagonal' style='text-align: center;'>$rw[titulo]</p> <div class='divider' style=' background-color:  #00853b;'>
+</div>
+</div>
+<div class='col s12'>$rw[descripcion]</div></div> ";
+
+}else{
+
+echo "
+<div style='width: 300px;height: 300px;margin:auto;'>
+<img src='content_admin/content_save/img_content/$rw[ubicacion]' alt='' width='300' height='300'>
+</div> 
+
+
+
+<div class='divider'></div>
+
+<div class='row'>
+<div class='col s12'>
+<p class='diagonal' style='text-align: center;'>$rw[titulo]</p><div class='divider' style=' background-color:  #00853b;'>
+</div>
  </div>
+<div class='col s12'>$rw[descripcion]</div>
+</div> ";
+
+    }
+  }
+} 
+?>
+
+<?php
+
+  $sql = "SELECT nombre,ruta from archivo_page WHERE alias_id = 3" ;
+  $res1 = mysqli_query($conn,$sql) or die(mysqli_error($conn));
+
+?>
 
   <div class="row" style="">
-  <h3 class="diagonal" style="text-align: center;">Documentos de interes</h3> <div class="divider" style=" background-color:  #00853b;"></div>
+  <p class="diagonal" style="text-align: center;">Documentos de interes</p> <div class="divider" style=" background-color:  #00853b;"></div>
   <div class="divider"></div>
-  <div class="row" style="background-color: #fff;margin-bottom: 1px"><div class="col s12"><a style="color:#00695c;" href="">Documento 1</a></div></div>
-  <div class="row" style="background-color: #fff;margin-bottom: 1px"><div class="col s12"><a style="color:#00695c;" href="">Documento 2</a></div></div>
- </div>
- </div>
+ <?php 
+            if(mysqli_num_rows($res)>0){
+              while($rw=mysqli_fetch_array($res1)){
+    ?>
+
+
+  <div class="row" style="margin-bottom: 1px"><div class="col s12"><a id="desca" target="_blank" href="content_admin/content_save/file_content/<?php echo $rw['ruta'] ?>"><?php echo $rw['nombre'] ?></a></div>
+  <?php 
+    }
+  }
+  ?>
+</div>
+</div>
+
+
+</div>
+</div>
+</div>
+

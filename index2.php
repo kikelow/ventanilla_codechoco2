@@ -14,7 +14,7 @@ if(!isset($_SESSION["vev_verificador"])){
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="icon" href="img/favicon2.ico" type="image/x-icon">
    <link rel="stylesheet" type="text/css" href="css/materialize.min.css" media="screen,projection">
-   <link rel="stylesheet" type="text/css" href="css/iconos.css">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
    <link rel="stylesheet" type="text/css" href="css/select2.css">
    <link rel="stylesheet" type="text/css" href="css/estilo.css">
    <script src="js/jquery.min.js"  type="text/javascript"></script>
@@ -50,7 +50,7 @@ if(!isset($_SESSION["vev_verificador"])){
           <li class="bold"><a class="collapsible-header  waves-effect waves-green men  ">Formato de Inscripción</a>
             <div class="collapsible-body">
               <ul>
-                <li class=""><a href="index2.php?modulo=evaluacion/formato_inscripcion">Nuevo</a></li>
+                <li><a href="index2.php?modulo=evaluacion/formato_inscripcion">Nuevo</a></li>
                 <li><a href="index2.php?modulo=evaluacion/formato_inscripcion/modificar">Modificar</a></li>
               </ul>
             </div>
