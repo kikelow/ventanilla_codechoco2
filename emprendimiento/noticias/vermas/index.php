@@ -31,53 +31,24 @@
   <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Sniglet|Nanum+Myeongjo:800" rel="stylesheet">
   <script src="../../../js/jquery.min.js"  type="text/javascript"></script>
 </head>
-<!-- <script src="js/jquery.min.js"  type="text/javascript"></script> -->
 
- <!--    <div class="nav animatedParent">
-    <div id="div_logo" class="animated growIn slow">
-      <a  class="brand-logo" href="#"><img class="logo center" id="logo" src="../../../img/logo1.png" style="width:118px;height:118px;padding-bottom: 5px;padding-left: 5px;border-right-width: 5px;border-top-width: 5px;padding-right: 5px;padding-top: 5px;"></a> 
-    </div>
-      
-      <ul class="hide-on-med-and-down">
-        <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/inicio">Inicio</a></li>
-            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/q_somos">¿Quienes Somos?</a></li>
-            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/servicios">Servicios</a></li>
-            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/m_verdes">Negocios Verdes</a></li>
-            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/registro">Registro</a></li>
-            <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/noticias">Noticias</a></li>  
-            <li><a class="sub_line" style="margin-right:10px;font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/m_evaluados">Negocios Evaluados</a></li>
-            
-        <li><a style="font-family: 'Sniglet', cursive" href="access/" class="active hoverable">Iniciar Sesión</a></li>
-      </ul>
-  </div>
-
-
-
-<div class="fixed-action-btn  hide-on-large-only click-to-toggle">
-  <a class="btn-floating btn-large" style="background-color:#00853bb3">
-    <i class="large material-icons">menu</i>
-  </a>
-  <ul>
-    <li><a href="index.php?modulo=emprendimiento/inicio" class="btn-floating yellow "><i class="material-icons md-light ">
-home</i></a></li>
-    <li><a href="index.php?modulo=emprendimiento/q_somos" class="btn-floating yellow black-text">¿Quienes Somos?</a></li>
-    <li><a href="index.php?modulo=emprendimiento/servicios" class="btn-floating yellow black-text">Servicios</a></li>
-    <li><a href="index.php?modulo=emprendimiento/m_verdes" class="btn-floating yellow black-text">Mercados verdes</a></li>
-    <li><a href="index.php?modulo=emprendimiento/registro" class="btn-floating yellow black-text">Registro</a></li>
-    <li><a href="index.php?modulo=emprendimiento/noticias" class="btn-floating yellow black-text">Noticias</a></li>
-    <li><a href="index.php?modulo=emprendimiento/m_evaluados" class="btn-floating yellow black-text">Negocios Evaluados</a></li>
-    <li><a href="access/" class="active btn-floating yellow">Iniciar Sesión</a></li>
-
-  </ul>
-</div> -->
-
+<!-- <script>
+  window.historyback();
+</script> -->
 
 
 <body >
 
+
+
 <div style="height: auto;min-height: 500px;">
    
-
+<div class="row">
+  <div class="col s12">
+    <a class="waves-effect waves-light btn" onclick='window.history.back();' style="background: #00853bb3;margin-top: 10px; "><i class="material-icons left">arrow_back_ios</i>Volver a sección de noticas</a>
+    <!-- <a href="#" onclick='window.history.back();'></a> -->
+  </div>
+</div>
 
 
 <?php include "../../../conexion.php"; 
@@ -94,12 +65,12 @@ $res = mysqli_query($conn,$s) or die(mysqli_error($conn));
                 echo "
 
           <div class='row' style='margin-top: 150px;'>
-            <div class='col s12 m5 l5'>
+            <div class='col s12 m12 l5'>
               <div class='img-container'>
-                <img class='materialboxed' src='../../../content_admin/content_save/img_content/$rw[ubicacion]' alt='' width='400px'>
+                <img class='materialboxed' src='../../../content_admin/content_save/img_content/$rw[ubicacion]' alt='' width='300px' height='300px'>
               </div>
             </div>
-            <div class='col s12 m7 l7'>
+            <div class='col s12 m12 l7'>
       <div class='notice-container'>
         <h5 style='background-color: #00853b;color:#fff;padding-left: 5px;'>$rw[titulo]</h5>
         
@@ -147,7 +118,7 @@ $res = mysqli_query($conn,$s) or die(mysqli_error($conn));
 </div>
 <div class="footer-copyright" style="background-color: #00853b">
   <div class="container">
-  © <?php echo date('Y'); ?> Copyright Text
+  © <?php echo date('Y'); ?> Copyright
  <a class="grey-text text-lighten-4 right" href="#!"> Desarrollo: <i class="fa fa-code"></i> Harinson Palacios | David Raga
   </div>
 </div>

@@ -23,7 +23,7 @@
                       </div>
                       <div class='col s12 m10 l10'>
                         <p style='font-style: italic;' >Fecha y hora de publicación: $rw[fecha_publicacion]</p>
-                        <h3 style='font-weight: bold;'><a target='_blank' id='pl' href='emprendimiento/noticias/vermas/index.php?id=$rw[id]'>
+                        <h3 style='font-weight: bold;'><a id='pl' href='emprendimiento/noticias/vermas/index.php?id=$rw[id]'>
                         $rw[titulo]</a></h3> 
                         <h6 style='font-family:helvetica' >$desc1</h6>
                         <h6 style='font-style: italic;'>Fuente/Autor: $rw[fuente_autor]</h6>
