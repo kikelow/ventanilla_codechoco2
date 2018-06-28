@@ -151,6 +151,21 @@ $descripcion_c = substr($rw['descripcion'], 0, 270);
 </footer></div>
     </div>";
               }
+            }else{
+
+                 echo" 
+                    <div class='col s12 m4 l4'>
+                      <div>
+                      <img class='responsive-img' src='img/img_m.png' alt='' width='400' height='400'>
+                  </div>
+                </div>
+                  <div class='col s12 m8 l8'>
+                <p>
+                  <h1 style='font-family: arial;padding-top:100px;'>
+                    Esta sección de la pagina se encuentra en mantenimiento. En breve estará disponible.
+                    </h1>
+                </p>
+                </div>";
             }
         ?>
         
@@ -241,48 +256,100 @@ $descripcion_c = substr($rw['descripcion'], 0, 270);
 
 <div class="divider"></div>
 
-<div class="parallax-container">
-  
+
+<div class="parallax-container">  
 <div id="info_mv" style="height: auto;min-height: 500px;" > 
   <div class="row"> 
-    <div class="row" >
+        <?php 
+            $s = "SELECT c.id,c.titulo,c.descripcion, i.ruta as ubicacion from contenido c, img_page i where c.id_img_page = i.id and c.alias_id = 3 order by c.id";
+
+            $res = mysqli_query($conn,$s) or die(mysqli_error($conn));
+
+           if(mysqli_num_rows($res)>0){
+              while($rw=mysqli_fetch_array($res)){
+
+              if ($rw['id'] == 8) {
+                
+              
+
+?>
+
+                
       <div class="col s12 animatedParent">
         <h4 style="text-align: center;margin-top: 50px;color: #00853b;font-weight: bold;" class="flow-text animated fadeInDown">
-          Negocios Verdes<span><hr class="hr_title"></span></h4>
+          <?php echo ($rw['titulo']) ?><span><hr class="hr_title"></span></h4>
 
-        <p style="text-align: center" class="animated fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis fuga molestias asperiores, laudantium pariatur magni doloremque, quos adipisci, saepe eius nam consequuntur minus. Suscipit ducimus eligendi architecto nulla labore atque!</p>
+        <p style="text-align: center" class="animated fadeInDown"> <?php echo ($rw['descripcion']) ?></p>
       </div>
-    </div>
+    
     <div class="row" >
-      <div class="col s12 m6 l6" >
+      <div class="col s12 m3 l3" >
         <div id="div_mv_img" class="animatedParent">
-          <img class="animated growIn responsive-img" src="img/logo_nv.png" height="493" width="302" style="margin-left: 170px;margin-top: 50px">
+          <img class="animated growIn responsive-img" src="content_admin/content_save/img_content/<?php echo $rw['ubicacion'] ?>" height="403" width="212" style="margin-left: 90px;margin-top: 50px">
         </div>
       </div>
-      <div class="col s12 m6 l6">
+
+<div class="col s12 m9 l9">
+
+<?php
+
+    }
+    if ($rw['id'] == 9) {
+?>
+
         <div class="row" >
           <div class="col s12 animatedParent">
-            <h5 style="text-align: center;color: #00853b;font-weight: bold;"  class="flow-text animated fadeInDown">info 1<span><hr class="hr_title"></span></h5>
-            <p class="animated fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi natus ea, repellat quo tenetur. Culpa laudantium eaque nulla ea quam dolorum modi qui dolorem dignissimos velit voluptates, illum dicta nobis.</p>
+            <h5 style="text-align: center;color: #00853b;font-weight: bold;"  class="flow-text animated fadeInDown"> <?php echo $rw['titulo'];?><span><hr class="hr_title"></span></h5>
+            <p class="animated fadeInDown"><?php echo $rw['descripcion'];?></p>
           </div>
         </div>
+
+<?php
+
+    }
+
+    if ($rw['id'] == 10) {
+
+?>
+
        <div class="row">
           <div class="col s12 animatedParent" >
-            <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text animated fadeInDown" >info 2<span><hr class="hr_title"></span></h5>
-            <p class="animated fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, nam ad natus minus, inventore illum minima quia commodi iste officiis eos autem voluptates architecto doloribus vero animi provident rerum quisquam?</p>
+            <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text animated fadeInDown" ><span><?php echo $rw['titulo'];?><hr class="hr_title"></span></h5>
+            <p class="animated fadeInDown"><?php echo $rw['descripcion'];?></p>
           </div>
         </div>
-        <div class="row">
-          <div class="col s12 animatedParent" >
-            <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text animated fadeInDown" >info 3<span><hr class="hr_title"></span></h5>
-            <p class="animated fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus mollitia atque ipsum ut deleniti architecto assumenda minus molestias quibusdam possimus similique neque delectus praesentium, ipsam tenetur deserunt aperiam, corrupti ipsa!</p>
-          </div>
-        </div>
-      </div>
-    </div>
+            </div>
   </div>  
 </div> 
 </div>
+</div>
+
+<?php
+
+    }
+
+?>           
+
+<?php      
+              }
+            }else{
+
+                 echo" 
+                    <div class='col s12 m4 l4'>
+                      <div>
+                      <img class='responsive-img' src='img/img_m.png' alt='' width='400' height='400'>
+                  </div>
+                </div>
+                  <div class='col s12 m8 l8'>
+                <p>
+                  <h1 style='font-family: arial;padding-top:100px;'>
+                    Esta sección de la pagina se encuentra en mantenimiento. En breve estará disponible.
+                    </h1>
+                </p>
+                </div>";
+            }
+        ?>
+
 
 
 <div class="divider"></div>
@@ -398,58 +465,8 @@ $descripcion_c = substr($rw['descripcion'], 0, 270);
 
 <div class="divider"></div>
 
-<div class="section">
-  <div class="row-container">
-    <div class="row">
-       <h5 class="flow-text" style="text-align: center;color: #00853b;font-weight: bold;">Contáctenos<span><hr class="hr_title"></span></h5> 
-      <div class="col s12 m6 l6">
-
-        <div class="card-panel white">
-          <span class="white-text">
-              <div class="input-field col s12">
-                <input id="first_name" type="text" class="validate">
-                <label for="first_name">Nombre Completo *</label>
-              </div>
-
-              <div class="input-field col s12">
-                <input id="first_name" type="text" class="validate">
-                <label for="first_name">Asunto *</label>
-              </div>
-
-              <div class="input-field col s12">
-                <input id="first_name" type="text" class="validate">
-                <label for="first_name">Correo *</label>
-              </div>
-
-              <div class="input-field col s12">
-                <textarea id="textarea1" class="materialize-textarea"></textarea>
-                <label for="textarea1">Descripción *</label>
-              </div>
-
-        <a class="waves-effect waves-light btn" id="btn_contact" style="margin-left: 250px;" >Enviar</a>
-      </div>
           </span>
         </div>
-
-       
-    <div class="col s12 m6 l6">
-      <div id="logo_container">
-        <!-- <div id="logo_codechoco" > -->
-          
-          <?php 
-            $s = "SELECT nombre,ruta from partner_page" ;
-            $res = mysqli_query($conn,$s) or die(mysqli_error($conn));
-
-               if(mysqli_num_rows($res)>0){
-                  while($rw=mysqli_fetch_array($res)){
-                      echo "<img class='responsive-img' src='content_admin/content_save/img_content/$rw[ruta]' alt='$rw[nombre]' width='163px' height='163px' >";
-                  }
-                }
-          ?>
-
-
-      </div>   
-      </div>     
     </div>
   </div>
 </div>
@@ -471,8 +488,37 @@ $descripcion_c = substr($rw['descripcion'], 0, 270);
 
 
   <div class="row">
-    <div class="responsive" id="slider">
-        <div style="margin-left: 5px;margin-right: 5px;"><img src="img/logo_code.png" alt="" height="" ></div>
+    <div class="responsive " id="slider">
+
+          <?php 
+            $s = "SELECT nombre,ruta from partner_page" ;
+            $res = mysqli_query($conn,$s) or die(mysqli_error($conn));
+
+               if(mysqli_num_rows($res)>0){
+                  while($rw=mysqli_fetch_array($res)){
+                      echo "<div style='margin-left: 5px;margin-right: 5px;'><img src='content_admin/content_save/img_content/$rw[ruta]' alt='$rw[nombre]' height=' ></div>'";
+                  
+                }
+
+              }else{
+
+
+                         echo " 
+
+                      <div class='col s12 m4 l4'>
+                        <div>
+                        <img class='responsive-img' src='img/img_m.png' alt='' width='400' height='400'>
+                    </div>
+                  </div>
+                    <div class='col s12 m8 l8'>
+                  <p>
+                    <h1 style='font-family: arial;padding-top:100px; text-align: justify;'>
+                      Sección en mantenimiento.
+                      </h1>
+                  </p>
+                  </div>";
+              }
+          ?>
       </div>
       </div>
     </div>

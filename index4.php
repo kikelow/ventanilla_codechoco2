@@ -14,7 +14,7 @@ if(!isset($_SESSION["vev_admin_verificador"])){
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="icon" href="img/favicon2.ico" type="image/x-icon">
    <link rel="stylesheet" type="text/css" href="css/materialize.min.css" media="screen,projection">
-   <link rel="stylesheet" type="text/css" href="css/iconos.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
    <link rel="stylesheet" type="text/css" href="css/select2.css">
    <link rel="stylesheet" type="text/css" href="css/estilo.css">
    <script src="js/jquery.min.js"  type="text/javascript"></script>

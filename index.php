@@ -48,7 +48,6 @@
             <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/registro">Registro</a></li>
             <li><a class="sub_line" style="font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/noticias">Noticias</a></li>  
             <li><a class="sub_line" style="margin-right:10px;font-family: 'Sniglet', cursive" href="index.php?modulo=emprendimiento/m_evaluados">Negocios Evaluados</a></li>
-            
         <li><a style="font-family: 'Sniglet', cursive" href="access/" class="active hoverable">Iniciar Sesión</a></li>
       </ul>
   </div>
@@ -59,50 +58,26 @@
   <a class="btn-floating btn-large" style="background-color:#00853bb3">
     <i class="large material-icons">menu</i>
   </a>
-  <ul>
-    <li><a href="index.php?modulo=emprendimiento/inicio" class="btn-floating yellow "><i class="material-icons md-light ">
-home</i></a></li>
-    <li><a href="index.php?modulo=emprendimiento/q_somos" class="btn-floating yellow black-text">¿Quienes Somos?</a></li>
-    <li><a href="index.php?modulo=emprendimiento/servicios" class="btn-floating yellow black-text">Servicios</a></li>
-    <li><a href="index.php?modulo=emprendimiento/m_verdes" class="btn-floating yellow black-text">Mercados verdes</a></li>
-    <li><a href="index.php?modulo=emprendimiento/registro" class="btn-floating yellow black-text">Registro</a></li>
-    <li><a href="index.php?modulo=emprendimiento/noticias" class="btn-floating yellow black-text">Noticias</a></li>
-    <li><a href="index.php?modulo=emprendimiento/m_evaluados" class="btn-floating yellow black-text">Negocios Evaluados</a></li>
-    <li><a href="access/" class="active btn-floating yellow">Iniciar Sesión</a></li>
-
-   <!--  <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li> -->
-  </ul>
+<ul>
+<li><a href="index.php?modulo=emprendimiento/inicio" class="btn-floating tooltipped" data-position="left" data-tooltip="inicio" style="background:#00853bb3;"><i class="material-icons">home</i></a></li> 
+<li><a href="index.php?modulo=emprendimiento/q_somos" class="btn-floating black-text tooltipped" data-position="left" data-tooltip="¿Quienes somos?" style="background:#00853bb3;"><i class="material-icons">
+help</i></a></li>
+<li><a href="index.php?modulo=emprendimiento/servicios" class="btn-floating black-text tooltipped" data-position="left" data-tooltip="Servicios" style="background:#00853bb3;"><i class="material-icons">
+settings</i>Servicios</a></li>
+<li><a href="index.php?modulo=emprendimiento/m_verdes" class="btn-floating black-text tooltipped" data-position="left" data-tooltip="Mercados Verdes" style="background:#00853bb3;"><i class="material-icons">
+store</i>Mercados verdes</a></li>
+<li><a href="index.php?modulo=emprendimiento/registro" class="btn-floating black-text tooltipped" data-position="left" data-tooltip="Registro" style="background:#00853bb3;"><i class="material-icons">
+create</i>Registro</a></li>
+<li><a href="index.php?modulo=emprendimiento/noticias" class="btn-floating black-text tooltipped" data-position="left" data-tooltip="Noticias" style="background:#00853bb3;"><i class="material-icons">
+chrome_reader_mode</i>Noticias</a></li>
+<li><a href="index.php?modulo=emprendimiento/m_evaluados" class="btn-floating black-text tooltipped" data-position="left" data-tooltip="Evaluados" style="background:#00853bb3;"><i class="material-icons">
+assignment_turned_in  </i>Negocios Evaluados</a></li>
+<li><a href="access/" class="active btn-floating tooltipped" data-position="left" data-tooltip="Iniciar Sesión" style="background:#00853bb3;"><i class="material-icons">
+lock_open</i>Iniciar Sesión</a></li>
+</ul>
 </div>
 
-<!--  -->
-<!-- <nav class="white  hide-on-large-only">
- <div style="width: 100%">
-    <a href="#" data-activates="mobile-demo" class="button-collapse center"><i class="material-icons black-text">menu</i></a>
-    <a href="#" class="brand-logo center black-text"></a>
-  
-       <ul class="side-nav" id="mobile-demo">
-        <li><a href="index.php?modulo=emprendimiento/inicio" class=" black-text">Inicio</a></li>
-        <li><a href="index.php?modulo=emprendimiento/q_somos" class=" black-text">¿Quienes Somos?</a></li>
-        <li><a href="index.php?modulo=emprendimiento/servicios" class=" black-text">Servicios</a></li>
-        <li> <a href="index.php?modulo=emprendimiento/m_verdes" class=" black-text">Hoja de Verificación 1</a></li>
-        <li> <a href="index.php?modulo=emprendimiento/registro" class="black-text">Hoja de Verificación 2</a></li>
-        <li> <a href="index.php?modulo=emprendimiento/noticias" class="black-text">Registro Fotografico</a></li>
-        <li><a href="index.php?modulo=emprendimiento/m_evaluados" class="black-text">Plan de Mejora</a></li>
-      </ul>
-     </div>   
-</nav>
- -->
 
-   
-        
-      
-
-
-<!-- <div id="contenedor" style="min-height: 701px;">
-
-<section id="base" style="min-height: 700px;background-color: white"> -->
 <div style="height: auto;min-height: 500px;">
    <?php 
                    $mod = @$_GET['modulo'];
@@ -118,8 +93,6 @@ home</i></a></li>
 
 </div>
 
-<!-- </section>  
-</div> -->
 
 </body>
 </html>
@@ -149,15 +122,17 @@ home</i></a></li>
 </div>
 <div class="footer-copyright" style="background-color: #00853b">
   <div class="container">
-  © <?php echo date('Y'); ?> Copyright Text
+  © <?php echo date('Y'); ?> Copyright
  <a class="grey-text text-lighten-4 right" href="#!"> Desarrollo: <i class="fa fa-code"></i> Harinson Palacios | David Raga
   </div>
 </div>
 </footer>
+
 <script src="js/materialize.min.js"  type="text/javascript"></script>
 <script src='js/css3-animate-it.js'></script>
 <script src='slick/slick.min.js'></script>
 <script src='js/slider_1.js'></script>
+<!-- <script src='js/index.js'></script> -->
 <script src="js/style.js"  type="text/javascript"></script>
 <script type="text/javascript">
    $(document).ready(function(){
@@ -173,11 +148,6 @@ home</i></a></li>
    
       }); 
 </script>
-
 <?php 
 }
-
-//echo "__DIR__";
 ?>
-
-

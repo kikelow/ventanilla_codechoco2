@@ -507,8 +507,8 @@ function cargar_datos_archivo(id){
  					$('#id_file').val(content["id"]);
    					$('#nombre_archivo').val(content["nombre"]);
 	   				$('#nombre_file').val(content["ruta"]);
-					$('#contenido_archivo').val(content["contenido_id"]);
-					$('#contenido_archivo').material_select();
+					$('#alias_archivo').val(content["alias_id"]);
+					$('#alias_archivo').material_select();
 				
 			} 
 		}			

@@ -132,7 +132,7 @@ section#base{
   }
 
   #div_mv_img img{
-    margin-left: 0px !important;
+    margin-left: 60px !important;
     margin-top: 0px !important;
   
   }
@@ -572,7 +572,8 @@ div.nav ul li a.active{
 
 .img-container{
   width: 400px;
-  height: 300px;
+  height: 400px;
+  margin: auto;
 
 }
 
@@ -634,14 +635,16 @@ div.nav ul li a.active{
   width:25%;
   margin-top: 50px;
 }
+#desca{
 
-/*@media only screen and (min-width: 100px) and (max-width: 600px){
-  #div_mv_img{
-    
-  }
-  div#contenedor{
-    width: 100% !important;
-  }
-  aside{
-    /*width: 0% !important;*/
-     /*height: 0% !important*/
+  color:#00853b;
+  text-transform: uppercase;
+}
+#desca:hover{
+  color:#00853b;
+  font-weight: bold; 
+}
+
+#desca:hover {
+    text-decoration: underline;
+}

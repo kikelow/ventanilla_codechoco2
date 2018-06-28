@@ -451,20 +451,20 @@
     			</div> 
 
     			<div class="input-field col s12">
-				  		    <select name="contenido_archivo" id="contenido_archivo">
+				  		    <select name="alias_archivo" id="alias_archivo">
 				  		      <option value="" disabled selected>Seleccione...</option>
 				  
 				  				<?php 
-				  				$s = "SELECT * from contenido order by id asc";
+				  				$s = "SELECT * from alias order by id asc";
 				  				$r = mysqli_query($conn,$s) or die (mysqli_error($conn));
 				  				if (mysqli_num_rows($r)>0) {
 				  					while ($data=mysqli_fetch_assoc($r)) {
 				  				?>
-				  		      <option value="<?php echo $data['id'] ?>"><?php echo $data['titulo'] ?></option>			   
+				  		      <option value="<?php echo $data['id'] ?>"><?php echo $data['nombre'] ?></option>			   
 				  				<?php }
 				  				} ?>
 				  			 </select>
-				  		    <label>Contenido</label>
+				  		    <label>Alias</label>
 				  	</div>
 
 
@@ -485,11 +485,11 @@
 			          	  <th>ID</th>
 			              <th>Nombre</th>
 			              <th>Ruta Archivo</th>
-			              <th>Contenido</th>
+			              <th>Alias</th>
 			          </tr>
 			        </thead>
 					<?php 
-					$s = "SELECT a.id,a.nombre,a.ruta,c.titulo as contenido from archivo_page a,contenido c where a.contenido_id = c.id ";
+					$s = "SELECT a.id,a.nombre,a.ruta,c.nombre as alias from archivo_page a,alias c where a.alias_id = c.id ";
 					$r = mysqli_query($conn,$s) or die (mysqli_error($conn));
 					if (mysqli_num_rows($r)>0) {
 						while ($data=mysqli_fetch_assoc($r)) {
@@ -499,7 +499,7 @@
 				          	<td><?php echo "$data[id]"; ?></td>
 				            <td><?php echo "$data[nombre]"; ?></td>	
 				            <td><?php echo "$data[ruta]"; ?></td>
-				            <td><?php echo "$data[contenido]"; ?></td>
+				            <td><?php echo "$data[alias]"; ?></td>
 				            <td><a href="#archivo_form" id="cargar_datos_archivo" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="cargar_datos_archivo('<?php echo "$data[id]"; ?>')"><i class="material-icons">mode_edit</i></a></td>
 				            <td><a href="#!" id="" class="modal-action modal-close waves-effect waves-white btn-flat white-text" style="background-color:#00853b;" onclick="borrar_datos_file('<?php echo "$data[id]"; ?>')"><i class="material-icons">delete</i></a></td>
 				          </tr>

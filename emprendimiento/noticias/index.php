@@ -6,9 +6,9 @@
 <div class="" style="margin: 0px;padding: 0px;width: 100%;height: auto;background-color: #00853b14">
 <div class="row"  style="padding-top: 150px;width: 90%">
   <div class="col s12 m12 l12">
-    <div class="row" ><h3 class="diagonal" style="text-align: center;">Ultimas noticias</h3> <div class="divider" style=" background-color:  #00853b;"></div></div> 
-
-  </div>
+    <div class="row">
+      <h3 class="diagonal" style="text-align: center;">Ultimas noticias</h3>
+       <div class="divider" style=" background-color:#00853b;"></div>
 
    <?php 
             if(mysqli_num_rows($res)>0){
@@ -17,15 +17,15 @@
                 $desc1 = substr($rw['descripcion'], 0,300);
 
                 echo "<div class='row'>
-                      <input type='hidden' name='' id='id' value='$rw[id]'>
-                      <div class='col s12 m2 l2 '>
+                      <input type='hidden' name='id_noticia' id='id_noticia' value='$rw[id]'>
+                      <div class='col s12 m2 l2'>
                         <img class='c_img' src='content_admin/content_save/img_content/$rw[ubicacion]' alt='' style='margin-top: 20px;'>
                       </div>
                       <div class='col s12 m10 l10'>
                         <p style='font-style: italic;' >Fecha y hora de publicación: $rw[fecha_publicacion]</p>
-                        <h3 style='font-weight: bold;'><a id='pl' href='#'>
+                        <h3 style='font-weight: bold;'><a id='pl' href='emprendimiento/noticias/vermas/index.php?id=$rw[id]'>
                         $rw[titulo]</a></h3> 
-                        <h6>$desc1</h6>
+                        <h6 style='font-family:helvetica' >$desc1</h6>
                         <h6 style='font-style: italic;'>Fuente/Autor: $rw[fuente_autor]</h6>
                       </div>
                   </div>
@@ -38,4 +38,5 @@
 
 </div>
 </div>
-
+</div>
+</div>
