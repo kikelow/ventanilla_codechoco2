@@ -22,6 +22,7 @@ echo " <ul class='collapsible' data-collapsible='accordion'>";
       <div class='collapsible-body'><span>
         <table class='responsive-table striped bordered'>
   <thead>
+    <th style='width: 1%'><label for=''>Nº</label></th>
     <th style='width: 20%'><label for=''>Indicadores</label></th>
     <th style='width: 15%'><label for=''>Acciones correctivos por indicador</label></th>
     <th style='width: 15%'><label for=''>Actor que podría participar en la actividad</label></th>
@@ -45,13 +46,16 @@ echo " <ul class='collapsible' data-collapsible='accordion'>";
         while($result2=mysqli_fetch_assoc($r2)){
           $opciones_id = $result2['opciones_id'];
 
-          $s1="SELECT id,nombre from opciones where id = '$opciones_id'";
+          $s1="SELECT id,nombre,No from opciones where id = '$opciones_id'";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
                   
       
 echo " <tr>
+      <td>
+     <label for=''>$result1[No]</label>
+      </td>
       <td>
       <input type='hidden' name='mejora_opcion[]' value='$result1[id]' />
      <label for=''>$result1[nombre]</label>
@@ -140,6 +144,7 @@ echo " <tr>
       <div class='collapsible-body'><span>
         <table class='responsive-table striped bordered'>
   <thead>
+  <th style='width: 20%'><label for=''>Nº</label></th>
     <th style='width: 20%'><label for=''>Indicadores</label></th>
     <th style='width: 15%'><label for=''>Acciones correctivos por indicador</label></th>
     <th style='width: 15%'><label for=''>Actor que podría participar en la actividad</label></th>
@@ -163,13 +168,16 @@ echo " <tr>
         while($result2=mysqli_fetch_assoc($r2)){
           $opciones_id = $result2['opciones_id'];
 
-          $s1="SELECT id,nombre from opciones where id = '$opciones_id'";
+          $s1="SELECT id,nombre,No from opciones where id = '$opciones_id'";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
                   
       
 echo " <tr>
+      <td>
+     <label for=''>$result1[No]</label>
+      </td>
       <td>
       <input type='hidden' name='mejora_opcion[]' value='$result1[id]' />
      <label for=''>$result1[nombre]</label>

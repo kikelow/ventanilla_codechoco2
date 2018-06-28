@@ -1,4 +1,19 @@
 $(document).ready(function() {
+// añadir input type text de tenencia tierra
+var i = 1
+$('#añadir_input_tierra').click(function(event) {
+  i++
+  $('#tabla_tierra').append('<tr id="row'+i+'"><td><div class="input-field col s12 m12 l12"><p><input type="text" id="otro_tierra_nom"  name="otro_tierra_nom[]"/><label for="">Otro. ¿Cual?</label></p></div></td><td><div class="input-field col s12 m12 l12"><input type="text" name="otro_tierra_desc[]" id="otro_tierra_desc" /><label for="">Descripcion</label></div></td><td><a class="btn-floating btn-large waves-effect waves-light red btn_remove_tierra" name="remove" id="'+i+'"><i class="material-icons">remove</i></a></td></tr>')
+$('.btn_remove_tierra').click(function(event) {
+    var boton_id = $(this).attr('id')
+    $('#row'+boton_id+'').remove()
+  });
+});
+
+// añadir input type text de tenencia tierra
+var i = 1
+
+
 $('#empresa').select2();
 $('#empresa_m').select2();
 
@@ -635,6 +650,7 @@ var empresa = $('#empresa').val()
           },
       });
     },success: function(respuesta) {
+      // console.log(respuesta)
       swal ({
           icon: "success",
            text: "Datos INSERTADOS exitosamente!",

@@ -37,4 +37,8 @@ for ($key=0; $key <sizeof($opcion); $key++) {
 $s="UPDATE `empresa` SET `puntaje` = '$resultado'  WHERE id = '$empresa'";
 mysqli_query($conn,$s);
 
+
+
+
+
 ?>

@@ -73,23 +73,26 @@
               	$otro = $rw['nombre'];
               	$descripcion = $rw['descripcion'];
 
-              }
-          }
 
-    echo "<div class='row'>
+                 echo "<div class='row'>
               <div class='input-field col s12 m6 l6'>
                 <p>
-                <input type='text' id='otro_tierra_nom_m'  name='otro_tierra_nom_m' value='$otro'/>
+                <input type='hidden' value='$rw[id]' name='id_tenencia[]'>
+                <input type='text' id='otro_tierra_nom_m'  name='otro_tierra_nom_m[]' value='$otro'/>
                 <label for='otro_tierra_nom_m' class='activar'>Otro. ¿Cual?</label>
               </p>
               </div>
               <div class='input-field col s12 m6 l6'>
-                <input type='text' name='otro_tierra_desc_m' id='otro_tierra_desc_m' value='$descripcion'/>
+                <input type='text' name='otro_tierra_desc_m[]' id='otro_tierra_desc_m' value='$descripcion'/>
                 <label for='otro_tierra_desc_m' class='activar'>Descripcion</label>
               </div>
-          </div>
+          </div>";
+              }
+          }
+
+   
           
-                  </span></div>
+        echo"    </span></div>
   </li>
 
    <li>
@@ -358,13 +361,14 @@
                 $observacion = $rw['observacion'];
                 echo "
                 <div class='input-field col s12 m5 l5'>
-               <input id='otro_legislacion_m' name='otro_legislacion_m' type='text' class='validate' value='$nombre'>
+                <input type='hidden' value='$rw[id]' name='id_legislacion[]'>
+               <input id='otro_legislacion_m' name='otro_legislacion_m[]' type='text' class='validate' value='$nombre'>
                 <label for='otro_legislacion_m' class='activar'>Otro. ¿Cual?</label>
               </div>";
 
                           echo "
                     <div class='input-field col s12 m2 l2'>
-                     <select id='otro_legislacion_c_nc_m' name='otro_legislacion_c_nc_m'>";
+                     <select id='otro_legislacion_c_nc_m' name='otro_legislacion_c_nc_m[]'>";
                      $s2="select id,nombre from cumple_nocumple order by id desc ";
                           $r2= mysqli_query($conn,$s2) or die(mysqli_error($conn));
                           if(mysqli_num_rows($r2)>0){
@@ -378,7 +382,7 @@
                           }
                           echo "</select> </div>
                 <div class='input-field col s12 m4 l4'>
-                <input id='otros_legislacion_obs_m' name='otros_legislacion_obs_m' type='text' class='validate' value='$observacion'>
+                <input id='otros_legislacion_obs_m' name='otros_legislacion_obs_m[]' type='text' class='validate' value='$observacion'>
                 <label for='otros_legislacion_obs_m' class='activar'>Observacion</label>
               </div>
               ";
@@ -519,16 +523,15 @@
                               $etapa_id=$rw1['etapa_id'];
                                $vigencia=$rw1['vigencia'];
                               $observacion=$rw1['observacion'];
-                      }         
-                    }
 
             echo "<div class='row' id=''>
                   <div class='input-field col s12 m4 l3'>
-                    <input type='text' name='otro_certificacion_m' id='otro_certificacion_m' value='$nombre'/>
+                  <input type='hidden' value='$rw1[id]' name='id_certificacion[]'>
+                    <input type='text' name='otro_certificacion_m[]' id='otro_certificacion_m' value='$nombre'/>
                       <label for='otro_certificacion_m' class='activar'>Otro. ¿Cual?</label>
                   </div>
                   <div class='input-field col s12 m3 l2'>
-                    <select  name='otro_cert_etapa_m' id='otro_cert_etapa_m'>";
+                    <select  name='otro_cert_etapa_m[]' id='otro_cert_etapa_m'>";
                   
                     $s="SELECT id,nombre from etapa ";
                     $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
@@ -546,15 +549,18 @@
                     <label>Etapa</label>
                   </div>
                   <div class='input-field col s12 m2 l2'>
-                    <input  type='text' name='otro_cert_vigencia_m' id='otro_cert_vigencia_m' value='$vigencia' />
+                    <input  type='text' name='otro_cert_vigencia_m[]' id='otro_cert_vigencia_m' value='$vigencia' />
                       <label for='otro_cert_vigencia_m' class='activar'>Vigencia</label>
                   </div>
                   <div class='input-field col s12 m3 l5'>
-                   <input  type='text' name='otro_cert_obs_m' id='otro_cert_obs_m' value='$observacion' />
+                   <input  type='text' name='otro_cert_obs_m[]' id='otro_cert_obs_m' value='$observacion' />
                       <label for='otro_cert_obs_m' class='activar'>Observación</label>
                   </div> </div> 
-                  </span></div></li> ";
-              echo "<li>
+                  ";
+                      }         
+                    }
+
+              echo "</span></div></li> <li>
       <div class='collapsible-header' style='font-weight: bold;'><i class='material-icons'></i>3. información sostenibilidad Ambiental</div>
       <div class='collapsible-body'><span>
         
@@ -644,28 +650,29 @@
                 $nombre = $rw2['nombre'];
                 $area = $rw2['area'];
                 $descripcion = $rw2['descripcion'];
-              }
-            }
-
-            echo "<div class='row'>
+                echo "<div class='row'>
             <div class='input-field col s12 m4 l5'>
-                      <input type='text' name='otro_conservacion_nom_m' id='otro_conservacion_nom_m'  value='$nombre' />
+                      <input type='hidden' value='$rw2[id]' name='id_conservacion[]'>
+                      <input type='text' name='otro_conservacion_nom_m[]' id='otro_conservacion_nom_m'  value='$nombre' />
                       <label for='otro_conservacion_nom_m'  class='activar'>Otro. ¿Cual?</label>
                     </div>
                         
                     <div class='input-field col s12 m4 l2 '>
-                       <input type='text' name='otro_conservacion_area_m' id='otro_conservacion_area_m'  value='$area'/>
+                       <input type='text' name='otro_conservacion_area_m[]' id='otro_conservacion_area_m'  value='$area'/>
                       <label for='otro_conservacion_area_m'  class='activar'>Area</label>
                     </div>
 
                      <div class='input-field col s12 m4 l5'>
-                        <input type='text' name='otro_conservacion_desc_m' id='otro_conservacion_desc_m' value='$descripcion' />
+                        <input type='text' name='otro_conservacion_desc_m[]' id='otro_conservacion_desc_m' value='$descripcion' />
                       <label for='otro_conservacion_desc_m'  class='activar'>Descripción</label>
-                    </div>
-          </div>
-            </div>";
+                    </div></div>
+          ";
+              }
+            }
 
-            echo "<div class='row' style='border: 1px solid'>
+            
+
+            echo " </div><div class='row' style='border: 1px solid'>
     <p>Área de los ecosistemas</p>
     <div class='divider'></div>";
       
@@ -733,22 +740,23 @@
               while($rw2=mysqli_fetch_assoc($r2)){
                 $nombre = $rw2['nombre'];
                 $area = $rw2['area'];
-                
-              }
-            }
-          echo "<div class='row'>
+                echo "<div class='row'>
           <div class='input-field col s12 m6 l6'>
-                <input type='text' name='otro_ecosistema_nom_m' id='otro_ecosistema_nom_m' value='$nombre'/>
+                <input type='hidden' value='$rw2[id]' name='id_ecosistema[]'>
+                <input type='text' name='otro_ecosistema_nom_m[]' id='otro_ecosistema_nom_m' value='$nombre'/>
                 <label for='otro_ecosistema_nom_m' class='activar'>Otro. ¿Cual?</label>
               </div>
               <div class='input-field col s12 m6 l6'>
-                <input type='text' name='otro_ecosistema_area_m' id='otro_ecosistema_area_m' value='$area'/>
+                <input type='text' name='otro_ecosistema_area_m[]' id='otro_ecosistema_area_m' value='$area'/>
                 <label for='otro_ecosistema_area_m' class='activar'>Área</label>
               </div>
         </div>
-  </div>";
+  ";
+              }
+            }
 
-  echo "<div class='row' style='border: 1px solid'>
+
+  echo "</div><div class='row' style='border: 1px solid'>
                   <p>Plan de manejo o Plan de uso</p> 
                   <div class='divider'></div>";
 
@@ -915,7 +923,7 @@ echo "<li>
                  $i++;
                  if ($rw4['confirmacion']=='si') {
                    echo"
-              <div class=' col s12 m3 l3'>
+              <div class=' col s12 m4 l4'>
                          <input type='checkbox' checked='checked'  id='involucra_m".$i."'  name='involucra_m[]' value='$rw[id]' />
                 <label for='involucra_m".$i."'>$rw[nombre]</label>
                 <input type='hidden' name='involucra_m_hidden[]' value='$rw[id]' />
@@ -924,7 +932,7 @@ echo "<li>
               ";
                  }else{
                   echo"
-              <div class=' col s12 m3 l3'>
+              <div class=' col s12 m4 l4'>
                          <input type='checkbox'  id='involucra_m".$i."'  name='involucra_m[]' value='$rw[id]' />
                 <label for='involucra_m".$i."'>$rw[nombre]</label>
                 <input type='hidden' name='involucra_m_hidden[]' value='$rw[id]' />
@@ -946,18 +954,20 @@ echo "<li>
             if(mysqli_num_rows($r)>0){
               while($rw=mysqli_fetch_assoc($r)){
                 $nombre = $rw['nombre'];
-              }
-            }
-
-            echo "<div class='input-field col s12 m4 l3'>
-                  <input type='text' id='otro_involucra_nom_m' name='otro_involucra_nom_m' value='$nombre
+                echo "<div class='input-field col s12 412 l12'>
+                <input type='hidden' name='id_involucra[]' value='$rw[id]'>
+                  <input type='text' id='otro_involucra_nom_m' name='otro_involucra_nom_m[]' value='$nombre
                   ' />
                   <label for='otro_involucra_nom_m' class='activar'>Otro. ¿Cual?</label>
                 </div>
-            </div>
-        </div>";
+           ";
 
-        echo "<div class='row'>
+              }
+            }
+
+            
+        echo " </div>
+        </div><div class='row'>
           <div class='input-field col s12 m8 l8'>
                <select id='valida_actividades_m'>
                  <option disabled selected>Seleccione una opcion</option>
@@ -1074,30 +1084,29 @@ echo "<li>
                        $nombre = $result['nombre'];
                        $descripcion = $result['descripcion'];
                        $recurso_id = $result['recurso_id'];
-                    }
-                  }
 
-            echo "<div class='row' id='otro_act'>
+                         echo "<div class='row' id='otro_act'>
            <div class='input-field col s12 m4 l3'>
-                  <input type='text' id='otro_activi_nom_m' name='otro_activi_nom_m' value='$nombre'/>
+                  <input type='hidden' value='$result[id]' name='id_actividad[]'>
+                  <input type='text' id='otro_activi_nom_m' name='otro_activi_nom_m[]' value='$nombre'/>
                       <label for='otro_activi_nom_m' class='activar'>Otro. ¿Cual?</label>
                 </div>
 
                 <div class='input-field col s12 m4 l4'>
-                 <input  type='text' name='otro_activi_desc_m' id='otro_activi_desc_m' value='$descripcion' />
+                 <input  type='text' name='otro_activi_desc_m[]' id='otro_activi_desc_m' value='$descripcion' />
                       <label for='otro_activi_desc_m' class='activar'>Descripción</label>
                 </div>
 
                 <div class='input-field col s12 m4 l5'>
-                <select name='otro_activi_recurso_m' id='otro_activi_recurso_m'>"; 
-                     $s="SELECT id,nombre from recurso ";
-                  $r= mysqli_query($conn,$s) or die('Error');
+                <select name='otro_activi_recurso_m[]' id='otro_activi_recurso_m'>"; 
+                     $s1="SELECT id,nombre from recurso ";
+                  $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r)>0){
-                    while($result=mysqli_fetch_assoc($r)){
-                      if ($result['id']==$recurso_id) {
-                        echo"<option selected='selected' value=".$result['id'].">".$result['nombre' ]."</option>";
+                    while($result1=mysqli_fetch_assoc($r1)){
+                      if ($result1['id']==$recurso_id) {
+                        echo"<option selected='selected' value=".$result1['id'].">".$result1['nombre' ]."</option>";
                       }else{
-                        echo"<option value=".$result['id'].">".$result['nombre' ]."</option>";
+                        echo"<option value=".$result1['id'].">".$result1['nombre' ]."</option>";
                     }
                       }
                   }
@@ -1106,10 +1115,14 @@ echo "<li>
                 <label>Fuente de Recursos</label>
                 </div>
         </div>
-      </div>
-    </div>";
+      ";
+                    }
+                  }
 
-    echo "<div class='row'>
+          
+
+    echo "</div>
+    </div><div class='row'>
       <div class='input-field col s12 m8 l8'>
                <select id='valida_trabajadores_m'>
                  <option disabled selected>Seleccione una opcion</option>
@@ -1182,26 +1195,28 @@ echo "<li>
               while($rw=mysqli_fetch_assoc($r1)){
                 $nombre= $rw['nombre'];
                 $descripcion= $rw['descripcion'];
-              }
-            }
-
-            echo "<div class='row' id=''>
+                         echo "<div class='row' id=''>
           <div class='input-field col s12 m4 l4'>
-            <input type='text' id='otro_programa_nom_m' name='otro_programa_nom_m' value='$nombre'/>
+            <input type='hidden' value='$rw[id]' name='id_programa[]'>
+            <input type='text' id='otro_programa_nom_m' name='otro_programa_nom_m[]' value='$nombre'/>
                 <label for='otro_programa_nom_m' class='activar'>Otro. ¿Cual?</label>
           </div>
 
           <div class='input-field col s12 m4 l8'>
-           <input  type='text' name='otro_programa_desc_m' id='otro_programa_desc_m' value='$descripcion' />
+           <input  type='text' name='otro_programa_desc_m[]' id='otro_programa_desc_m' value='$descripcion' />
                 <label for='otro_programa_desc_m' class='activar'>Descripción</label>
           </div>
         </div>
         
-      </div>
-    </div>";
+    ";
+              }
+            }
+
+   
 
 
-    echo " <div class='row'>
+    echo "   </div>
+    </div><div class='row'>
           <div class='input-field col s12 m8 l8'>
                <select id='valida_institucion_m'>
                  <option disabled selected>Seleccione una opcion</option>

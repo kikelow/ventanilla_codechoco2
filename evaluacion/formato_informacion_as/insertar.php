@@ -26,9 +26,11 @@ $resultadom_nochequeado = array_values(array_diff($t_tierra_confirmacion,$t_tier
 		}	
 	}
 //registrar datos de otros tenencia de tierra
-$s="INSERT INTO `otro_tenencia_tierra`(`empresa_id`, `nombre`, `descripcion`) VALUES('$empresa','$_POST[otro_tierra_nom]','$_POST[otro_tierra_desc]')";
+for ($i=0; $i <count($_POST['otro_tierra_nom']) ; $i++) { 
+$s="INSERT INTO `otro_tenencia_tierra`(`empresa_id`, `nombre`, `descripcion`) VALUES('$empresa','".$_POST['otro_tierra_nom'][$i]."','".$_POST['otro_tierra_desc'][$i]."')";
 mysqli_query($conn,$s);
-	
+}
+
 //---------------------------------------------------------------------------------------------------------
 
 
@@ -57,9 +59,11 @@ mysqli_query($conn,$s);
 	mysqli_query($conn,$s);
 //--------------------------------------------------------------------------------------------------------- 
 
-//Registrar datos en la tabla otros legislacion 
-	$s= "INSERT INTO `otros_legislacion`(`empresa_id`, `nombre`, `cumple_nocumple_id`, `observacion`) VALUES ('$empresa','$_POST[otro_legislacion]','$_POST[otro_legislacion_c_nc]','$_POST[otros_legislacion_obs]')";
+//Registrar datos en la tabla otros legislacion
+for ($i=0; $i < count($_POST['otro_legislacion']) ; $i++) { 
+	$s= "INSERT INTO `otros_legislacion`(`empresa_id`, `nombre`, `cumple_nocumple_id`, `observacion`) VALUES ('$empresa','".$_POST['otro_legislacion'][$i]."','".$_POST['otro_legislacion_c_nc'][$i]."','".$_POST['otros_legislacion_obs'][$i]."')";
 	mysqli_query($conn,$s);
+ } 
 //---------------------------------------------------------------------------------------------------------
 
 //registrar datos en la tabla de certificacion
@@ -88,8 +92,10 @@ for ($i=0; $i <sizeof($resultadom_nochequeado); $i++) {
 		}	
 	}
 //registrar datos de otros certificacion
-$s="INSERT INTO `otros_certificacion`(`empresa_id`, `nombre`, `etapa_id`, `vigencia`, `observacion`) VALUES('$empresa','$_POST[otro_certificacion]','$_POST[otro_cert_etapa]','$_POST[otro_cert_vigencia]','$_POST[otro_cert_obs]')";
+	for ($i=0; $i <count($_POST['otro_certificacion']) ; $i++) { 
+$s="INSERT INTO `otros_certificacion`(`empresa_id`, `nombre`, `etapa_id`, `vigencia`, `observacion`) VALUES('$empresa','".$_POST['otro_certificacion'][$i]."','".$_POST['otro_cert_etapa'][$i]."','".$_POST['otro_cert_vigencia'][$i]."','".$_POST['otro_cert_obs'][$i]."')";
 mysqli_query($conn,$s);
+	}
 //---------------------------------------------------------------------------------------------------------
 
 //resgistrar datos en la tabla conservacion
@@ -115,8 +121,10 @@ for ($i=0; $i <sizeof($resultadom_nochequeado); $i++) {
 }
 
 //registrar datos de otros conservacion
-$s="INSERT INTO `otros_conservacion`(`empresa_id`, `nombre`, `area`, `descripcion`) VALUES('$empresa','$_POST[otro_conservacion_nom]','$_POST[otro_conservacion_area]','$_POST[otro_conservacion_desc]')";
+for ($i=0; $i <count($_POST['otro_conservacion_nom']) ; $i++) { 
+$s="INSERT INTO `otros_conservacion`(`empresa_id`, `nombre`, `area`, `descripcion`) VALUES('$empresa','".$_POST['otro_conservacion_nom'][$i]."','".$_POST['otro_conservacion_area'][$i]."','".$_POST['otro_conservacion_desc'][$i]."')";
 mysqli_query($conn,$s);
+}
 //---------------------------------------------------------------------------------------------------------
 //registrar datos en la tabla ecosistemas 
 $ecosistemas = $_POST['ecosistemas'];
@@ -140,8 +148,10 @@ for ($i=0; $i <sizeof($ecosistemas_hidden); $i++) {
 	}
 }
 //registrar datos de otros ecosistemas
-$s="INSERT INTO `otros_ecosistema`(`empresa_id`, `nombre`, `area`) VALUES('$empresa','$_POST[otro_ecosistema_nom]','$_POST[otro_ecosistema_area]')";
+for ($i=0; $i < count($_POST['otro_ecosistema_nom']) ; $i++) { 
+$s="INSERT INTO `otros_ecosistema`(`empresa_id`, `nombre`, `area`) VALUES('$empresa','".$_POST['otro_ecosistema_nom'][$i]."','".$_POST['otro_ecosistema_area'][$i]."')";
 mysqli_query($conn,$s);
+}
 //---------------------------------------------------------------------------------------------------------
 //registrar datos en la tabla plan_manejo
 $plan = $_POST['plan'];
@@ -186,8 +196,10 @@ mysqli_query($conn,$s);
 	}
 }
 //registrar datos de otros involucra
-$s="INSERT INTO `otro_involucra`(`empresa_id`, `nombre`) VALUES('$empresa','$_POST[otro_involucra_nom]')";
+for ($i=0; $i <count($_POST['otro_involucra_nom']); $i++) { 
+$s="INSERT INTO `otro_involucra`(`empresa_id`, `nombre`) VALUES('$empresa','".$_POST['otro_involucra_nom'][$i]."')";
 mysqli_query($conn,$s);
+}
 //---------------------------------------------------------------------------------------------------------
 
 //registrar datos en la tabla actividades 
@@ -213,8 +225,10 @@ mysqli_query($conn,$s);
 	}
 }
 //registrar datos de otros actividades
-$s="INSERT INTO `otro_actividades`(`empresa_id`, `nombre`, `descripcion`, `recurso_id`) VALUES('$empresa','$_POST[otro_activi_nom]','$_POST[otro_activi_desc]','$_POST[otro_activi_recurso]')";
+for ($i=0; $i <count($_POST['otro_activi_nom']) ; $i++) { 
+$s="INSERT INTO `otro_actividades`(`empresa_id`, `nombre`, `descripcion`, `recurso_id`) VALUES('$empresa','".$_POST['otro_activi_nom'][$i]."','".$_POST['otro_activi_desc'][$i]."','".$_POST['otro_activi_recurso'][$i]."')";
 mysqli_query($conn,$s);
+}
 //---------------------------------------------------------------------------------------------------------
 //registrar datos en la tabla programa 
 $programa = $_POST['programa'];
@@ -235,8 +249,10 @@ for ($i=0; $i <sizeof($programa_nochequeado); $i++) {
 mysqli_query($conn,$s);
 }
 //registrar datos de otros programa
-$s="INSERT INTO `otro_programa`(`empresa_id`, `nombre`, `descripcion`) VALUES('$empresa','$_POST[otro_programa_nom]','$_POST[otro_programa_desc]')";
+for ($i=0; $i <count($_POST['otro_programa_nom']); $i++) { 
+$s="INSERT INTO `otro_programa`(`empresa_id`, `nombre`, `descripcion`) VALUES('$empresa','".$_POST['otro_programa_nom'][$i]."','".$_POST['otro_programa_desc'][$i]."')";
 mysqli_query($conn,$s);
+}
 //---------------------------------------------------------------------------------------------------------
 
 //registrar datos en la tabla institucion 
