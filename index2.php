@@ -79,12 +79,12 @@ if(!isset($_SESSION["vev_verificador"])){
               </ul>
             </div>
           </li>
-          <li class="bold"><a class="collapsible-header  waves-effect waves-green men " href="index2.php?modulo=evaluacion/plan_mejora">Plan de mejora</a>
+          <li class="bold"><a class="collapsible-header  waves-effect waves-green men ">Plan de mejora</a>
             <div class="collapsible-body">
-              <!-- <ul>
+              <ul>
                 <li class="s"><a href="index2.php?modulo=evaluacion/plan_mejora">Nuevo</a></li>
-                <li><a href="index2.php?modulo=evaluacion/hoja_verificacion_2/modificar">Modificar</a></li>
-              </ul> -->
+                <li><a href="index2.php?modulo=evaluacion/plan_mejora/modificar">Modificar</a></li>
+              </ul>
             </div>
           </li>
           <li class="bold"><a class="collapsible-header  waves-green " href="index2.php?modulo=evaluacion/reporte">Reportes</a>

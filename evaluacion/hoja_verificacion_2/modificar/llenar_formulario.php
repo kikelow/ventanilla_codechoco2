@@ -69,7 +69,7 @@
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
-          <label for='' class='activar'>Observaciones</label>
+          <label for='' class='activar'>Observaciones y Evidencias</label>
         </div>"
          ;
         if ($evidencia == '') {
@@ -154,7 +154,7 @@
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
-          <label for='' class='activar'>Observaciones</label>
+          <label for='' class='activar'>Observaciones y Evidencias</label>
         </div>";
         if ($evidencia == '') {
           echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
@@ -239,7 +239,7 @@
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
-          <label for='' class='activar'>Observaciones</label>
+          <label for='' class='activar'>Observaciones y Evidencias</label>
         </div>";
         if ($evidencia == '') {
           echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
@@ -324,7 +324,7 @@
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
-          <label for='' class='activar'>Observaciones</label>
+          <label for='' class='activar'>Observaciones y Evidencias</label>
         </div>";
         if ($evidencia == '') {
           echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
@@ -408,7 +408,7 @@
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
-          <label for='' class='activar'>Observaciones</label>
+          <label for='' class='activar'>Observaciones y Evidencias</label>
         </div>";
         if ($evidencia == '') {
           echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
@@ -493,7 +493,7 @@
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
-          <label for='' class='activar'>Observaciones</label>
+          <label for='' class='activar'>Observaciones y Evidencias</label>
         </div>";
         if ($evidencia == '') {
           echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
@@ -578,7 +578,7 @@
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
-          <label for='' class='activar'>Observaciones</label>
+          <label for='' class='activar'>Observaciones y Evidencias</label>
         </div>";
         if ($evidencia == '') {
           echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
@@ -663,7 +663,7 @@
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
-          <label for='' class='activar'>Observaciones</label>
+          <label for='' class='activar'>Observaciones y Evidencias</label>
         </div>";
         if ($evidencia == '') {
           echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
@@ -748,7 +748,7 @@
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
-          <label for='' class='activar'>Observaciones</label>
+          <label for='' class='activar'>Observaciones y Evidencias</label>
         </div>";
         if ($evidencia == '') {
           echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
@@ -833,7 +833,7 @@
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
-          <label for='' class='activar'>Observaciones</label>
+          <label for='' class='activar'>Observaciones y Evidencias</label>
         </div>";
         if ($evidencia == '') {
           echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
@@ -918,7 +918,7 @@
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
-          <label for='' class='activar'>Observaciones</label>
+          <label for='' class='activar'>Observaciones y Evidencias</label>
         </div>";
         if ($evidencia == '') {
           echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
@@ -1007,7 +1007,7 @@ sociales implementados o recibidos.</div>
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
-          <label for='' class='activar'>Observaciones</label>
+          <label for='' class='activar'>Observaciones y Evidencias</label>
         </div>";
         if ($evidencia == '') {
           echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
@@ -1092,7 +1092,7 @@ sociales implementados o recibidos.</div>
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs_m".$i."' name='verificacion2_obs_m[]' class='materialize-textarea'>$observacion</textarea>
-          <label for='' class='activar'>Observaciones</label>
+          <label for='' class='activar'>Observaciones y Evidencias</label>
         </div>";
         if ($evidencia == '') {
           echo "<div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
@@ -1321,62 +1321,75 @@ $s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.
   $suma_total2 = $prom12+$prom13;
   $prom_total2= round($suma_total2/2, 2);
 
-          echo'<table class="" style="margin-top:20px">
+          echo'<table class="bordered" style="margin-top:20px">
           <thead>
             <tr>
-              <th style="width: 100%;" class="green center" colspan="2">Resultado Nivel 1. Criterios de Cumplimiento de Negocios Verdes</th>
+              <th style="width: 100%;" class="green center" colspan="3">Resultado Nivel 1. Criterios de Cumplimiento de Negocios Verdes</th>
             </tr>
             <tr>
+            <th style="width: 8%;" class="grey darken-1">Item</th>
               <th style="width: 90%;" class="grey darken-1">Criterio</th>
               <th style="" class="grey darken-1">Promedio</th>
             </tr>
           </thead>
           <tbody>
             <tr>
+              <td>Item 1</td>
               <td>Viabilidad económica del Negocio</td>
               <td id="prom1m">'.$prom1.'% <input type="hidden" id="td1" value="'.$prom1.'" /> </td>
             </tr>
             <tr>
+              <td>Item 2</td>
               <td>Impacto Ambiental Positivo  y contribución a la conservación y preservación de los recursos ecosistemicos</td>
               <td id="prom2m">'.$prom2.'% <input type="hidden" id="td2" value="'.$prom2.'" /></td>
             </tr>
             <tr>
+              <td>Item 3</td>
               <td>Enfoque ciclo de vida del bien o servicio</td>
               <td id="prom3m">'.$prom3.'% <input type="hidden" id="td3" value="'.$prom3.'" /></td>
             </tr>
             <tr>
+            <td>Item 4</td>
               <td>Vida útil</td>
               <td id="prom4m">'.$prom4.'% <input type="hidden" id="td4" value="'.$prom4.'" /></td>
             </tr>
             <tr>
+            <td>Item 5</td>
               <td>Sustitución de sustancias o materiales peligrosos</td>
               <td id="prom5m">'.$prom5.'% <input type="hidden" id="td5" value="'.$prom5.'" /></td>
             </tr>
             <tr>
+            <td>Item 6</td>
               <td>Reciclabilidad y/o uso de materiales reciclados</td>
               <td id="prom6m">'.$prom6.'% <input type="hidden" id="td6" value="'.$prom6.'" /></td>
             </tr>
             <tr>
+            <td>Item 7</td>
               <td>Uso eficiente y sostenible de recursos para la producción de bienes o servicios</td>
               <td id="prom7m">'.$prom7.'% <input type="hidden" id="td7" value="'.$prom7.'" /></td>
             </tr>
             <tr>
+            <td>Item 8</td>
               <td>Responsabilidad social al interior de la empresa</td>
               <td id="prom8m">'.$prom8.'% <input type="hidden" id="td8" value="'.$prom8.'" /></td>
             </tr>
             <tr>
+            <td>Item 9</td>
               <td>Responsabilidad social en la cadena de valor de la empresa</td>
               <td id="prom9m">'.$prom9.'% <input type="hidden" id="td9" value="'.$prom9.'" /></td>
             </tr>
             <tr>
+            <td>Item 10</td>
               <td>Responsabilidad social al exterior de la empresa</td>
               <td id="prom10m">'.$prom10.'% <input type="hidden" id="td10" value="'.$prom10.'" /></td>
             </tr>
             <tr>
+            <td>Item 11</td>
               <td>Comunicación de atributos del bien y servicio</td>
               <td id="prom11m">'.$prom11.'% <input type="hidden" id="td11" value="'.$prom11.'" /></td>
             </tr>
             <tr>
+            <td class=" grey lighten-1"></td>
               <th class=" grey lighten-1">Puntaje total </th>
               <th class="grey lighten-1" id="totalm">'.$prom_total1.'% </th>
             </tr>
@@ -1384,8 +1397,8 @@ $s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.
           </tbody>
 
         </table>
-
-        <table style="margin-top:20px">
+          <canvas id="grafica_m"></canvas>
+        <table style="margin-top:20px" class="bordered">
           <thead>
             <tr>
               <th style="width: 100%;" class="green center" colspan="2">Resultado Nivel 2. Criterios Adicionales (ideales) Negocios Verdes</th>
@@ -1412,7 +1425,7 @@ $s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.
           </tbody>
         </table>
 ';
-echo '<table style="margin-top:20px;width:100%">
+echo '<table style="margin-top:20px;width:100%" class="bordered">
           <thead>
             <tr>
               <th style="width: 100%; background-color:#a5d6a7" class="green center" colspan="2">Resultado Nivel 1 + Nivel 2</th>
@@ -1433,23 +1446,115 @@ echo '<table style="margin-top:20px;width:100%">
             <tr>';
               $suma_total3 = $prom_total1+$prom_total2;
               $resultado= round($suma_total3/2, 2);
+
+              $resultado_letra = '';
+              if ($prom_total1 >= 0 && $prom_total1 <= 10) {
+               $resultado_letra = 'Inicial';
+              }else if ($prom_total1 > 10 && $prom_total1 <= 30) {
+                $resultado_letra = 'Básico';
+              }else if ($prom_total1 > 30 && $prom_total1 <= 50) {
+                $resultado_letra = 'Intermedio';
+              }else if ($prom_total1 > 50 && $prom_total1 <= 80) {
+                $resultado_letra = 'Satisfactorio';
+              }else if ($prom_total1 > 80 && $prom_total1 <= 100 && $prom_total2 < 50) {
+               $resultado_letra = 'Avanzado';
+              }else if ($prom_total1 > 80 && $prom_total1 <= 100 && $prom_total2 >= 50 ) {
+               $resultado_letra = 'Ideal';
+              }
            echo '
               <th class=" grey lighten-1">Resultado</th>
-              <th class="grey lighten-1" id="resultado">'.$resultado.'% </th>
-               <input type="hidden" name="prom_form_m" value="'.$resultado.'" id="prom_form_m" />
+              <th class="grey lighten-1" id="resultado_m">'.$resultado_letra.' </th>
+               <input type="hidden" name="prom_form_m" value="'.$prom_total1.'" id="prom_form_m" />
             </tr>
             
           </tbody>
-        </table>';
+        </table>'
+        ;
 
           echo"<hr>  <button  class=' yellow darken-4 btn right' style='margin-bottom: 8px' id='modificar_verificacion2'><i class='material-icons right'>create</i>Modificar</button>
 
-<script type='text/javascript' src='js/accion_verificacion2.js'></script>
+<script type='text/javascript' src='js/chart.js'></script>
+<script type='text/javascript' src='js/verificacion2_modificar.js'></script>
 	<script type='text/javascript'>
 $(document).ready(function(){
     $('select').material_select();
  $('.collapsible').collapsible();
  $('.activar').addClass('active')
+ var ctx = document.getElementById('grafica_m');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6', 'Item 7', 'Item 8', 'Item 9', 'Item 10', 'Item 11'],
+        datasets: [{
+            label: 'Resultanos Nivel 1',
+            data: [promedio1, promedio2, promedio3, promedio4, promedio5,promedio6,promedio7,promedio8,promedio9,promedio10,promedio11],
+            backgroundColor: [
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+$('select').change(function(event) {
+  var ctx = document.getElementById('grafica_m');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6', 'Item 7', 'Item 8', 'Item 9', 'Item 10', 'Item 11'],
+        datasets: [{
+            label: 'Resultanos Nivel 1',
+            data: [promedio1, promedio2, promedio3, promedio4, promedio5,promedio6,promedio7,promedio8,promedio9,promedio10,promedio11],
+            backgroundColor: [
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                 'rgba(76, 175, 80, 0.5)',
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+});
 
 
   })

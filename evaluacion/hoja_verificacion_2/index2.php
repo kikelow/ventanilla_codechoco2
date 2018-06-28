@@ -82,7 +82,7 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for='verificacion2_obs".$i."'>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones y Evidencias</label>
         </div>
          <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
@@ -139,7 +139,7 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for='verificacion2_obs".$i."'>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones y Evidencias</label>
         </div>
          <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
@@ -197,7 +197,7 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for='verificacion2_obs".$i."'>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones y Evidencias</label>
         </div>
          <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
@@ -256,7 +256,7 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for='verificacion2_obs".$i."'>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones y Evidencias</label>
         </div>
          <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
@@ -314,7 +314,7 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for='verificacion2_obs".$i."'>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones y Evidencias</label>
         </div>
          <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
@@ -371,7 +371,7 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for='verificacion2_obs".$i."'>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones y Evidencias</label>
         </div>
         <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
@@ -429,7 +429,7 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for='verificacion2_obs".$i."'>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones y Evidencias</label>
         </div>
          <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
@@ -487,7 +487,7 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for='verificacion2_obs".$i."'>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones y Evidencias</label>
         </div>
          <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
@@ -546,7 +546,7 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for='verificacion2_obs".$i."'>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones y Evidencias</label>
         </div>
          <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
@@ -604,7 +604,7 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for='verificacion2_obs".$i."'>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones y Evidencias</label>
         </div>
          <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
@@ -662,7 +662,7 @@ require_once('conexion.php');
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for='verificacion2_obs".$i."'>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones y Evidencias</label>
         </div>
          <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
@@ -726,7 +726,7 @@ sociales implementados o recibidos.</div>
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for='verificacion2_obs".$i."'>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones y Evidencias</label>
         </div>
          <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
@@ -784,7 +784,7 @@ sociales implementados o recibidos.</div>
         </div>
          <div class='input-field col s12 m2 l2'>
           <textarea id='verificacion2_obs".$i."' name='verificacion2_obs[]' class='materialize-textarea'></textarea>
-          <label for='verificacion2_obs".$i."'>Observaciones</label>
+          <label for='verificacion2_obs".$i."'>Observaciones y Evidencias</label>
         </div>
          <div class='file-field input-field col s12 m4 l4' style='margin-top: 52px'>
          <div class='btn'>
@@ -808,63 +808,76 @@ sociales implementados o recibidos.</div>
    </ul>
         
       <div class="row">
-      <div class="col s12 m6 l12">
+      <div class="col s12 m12 l12">
         <table class="bordered">
           <thead>
             <tr>
-              <th style="width: 100%;" class="green center" colspan="2">Resultado Nivel 1. Criterios de Cumplimiento de Negocios Verdes</th>
+              <th style="width: 100%;" class="green center" colspan="3">Resultado Nivel 1. Criterios de Cumplimiento de Negocios Verdes</th>
             </tr>
             <tr>
+              <th style="width: 8%" class="grey darken-1">Item</th>
               <th style="width: 90%;" class="grey darken-1">Criterio</th>
               <th style="" class="grey darken-1">Promedio</th>
             </tr>
           </thead>
           <tbody>
             <tr>
+              <td>Item 1</td>
               <td>Viabilidad económica del Negocio</td>
               <td id="prom1">0.00%</td>
             </tr>
             <tr>
+              <td>Item 2</td>
               <td>Impacto Ambiental Positivo  y contribución a la conservación y preservación de los recursos ecosistemicos</td>
               <td id="prom2">0.00%</td>
             </tr>
             <tr>
+               <td>Item 3</td>
               <td>Enfoque ciclo de vida del bien o servicio</td>
               <td id="prom3">0.00%</td>
             </tr>
             <tr>
+              <td>Item 4</td>
               <td>Vida útil</td>
               <td id="prom4">0.00%</td>
             </tr>
             <tr>
+              <td>Item 5</td>
               <td>Sustitución de sustancias o materiales peligrosos</td>
               <td id="prom5">0.00%</td>
             </tr>
             <tr>
+              <td>Item 6</td>
               <td>Reciclabilidad y/o uso de materiales reciclados</td>
               <td id="prom6">0.00%</td>
             </tr>
             <tr>
+              <td>Item 7</td>
               <td>Uso eficiente y sostenible de recursos para la producción de bienes o servicios</td>
               <td id="prom7">0.00%</td>
             </tr>
             <tr>
+              <td>Item 8</td>
               <td>Responsabilidad social al interior de la empresa</td>
               <td id="prom8">0.00%</td>
             </tr>
             <tr>
+              <td>Item 9</td>
               <td>Responsabilidad social en la cadena de valor de la empresa</td>
               <td id="prom9">0.00%</td>
             </tr>
             <tr>
+              <td>Item 10</td>
               <td>Responsabilidad social al exterior de la empresa</td>
               <td id="prom10">0.00%</td>
             </tr>
             <tr>
+              <td>Item 11</td>
               <td>Comunicación de atributos del bien y servicio</td>
               <td id="prom11">0.00%</td>
             </tr>
             <tr>
+              <th class=" grey lighten-1"></th>
               <th class=" grey lighten-1">Puntaje total </th>
               <th class="grey lighten-1" id="total">0.00% </th>
             </tr>
@@ -872,8 +885,11 @@ sociales implementados o recibidos.</div>
           </tbody>
 
         </table>
+        <div id="div_grafica">
+          <canvas id="grafica"></canvas> 
+      </div>
 
-        <table style="margin-top:20px">
+        <table style="margin-top:20px" class="bordered">
           <thead>
             <tr>
               <th style="width: 100%;" class="green center" colspan="2">Resultado Nivel 2. Criterios Adicionales (ideales) Negocios Verdes</th>
@@ -900,7 +916,7 @@ sociales implementados o recibidos.</div>
           </tbody>
         </table>
 
-        <table style="margin-top:20px">
+        <table style="margin-top:20px" class="bordered">
           <thead>
             <tr>
               <th style="width: 100%;" class="green center" colspan="2">Resultado Nivel 1 + Nivel 2</th>
@@ -917,14 +933,15 @@ sociales implementados o recibidos.</div>
               <td id="puntaje2">0.00%</td>
             </tr>
             <tr>
-              <th class=" grey lighten-1">Puntaje total </th>
-              <th class="grey lighten-1" id="resultado">0.00% </th>
+              <th class=" grey lighten-1">Resultado </th>
+              <th class="grey lighten-1" id="resultado"></th>
                <input type='hidden' name='prom_form' value='' id="prom_form" />
             </tr>
             
           </tbody>
         </table>
       </div>
+     
     </div>
      <hr> 
       <button type="submit" class="waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="btn_verificacion2"><i class="material-icons right">add</i>Registrar</button>
@@ -944,3 +961,5 @@ sociales implementados o recibidos.</div>
 
   <script type="text/javascript" src="js/select2.js"></script>
 <script type="text/javascript" src="js/accion_verificacion2.js"></script>
+ <script type="text/javascript" src="js/chart.js"></script>
+   

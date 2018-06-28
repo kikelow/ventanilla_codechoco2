@@ -10,7 +10,7 @@ require_once('conexion.php');
         $i = 0;  
  ?>
 <div  class="col s12" style="padding-right: 0px; padding-left: 0px">
-          <center><h4 style="margin-top: 0px">Sección para Registrar</h4></center>
+          <center><h4 style="margin-top: 0px">Sección para Modificar</h4></center>
   <div  class="col s12 " style="margin-left: -15px; width: 100%">
     <section id="" style="">
       <div class="row">
@@ -23,12 +23,12 @@ require_once('conexion.php');
 <div class="row">
  
     <div class="input-field col s12 m12 l12  " id="div_empresa">
-        <select id="empresa" style="width: 100%; left: -20px;" name="empresa" required="required">
-          <option disabled selected="">Seleccione un emprendimiento al cual quiere aplicarle el "Plan de mejora"</option>
+        <select id="empresa_m" style="width: 100%; left: -20px;" name="empresa_m" required="required">
+          <option disabled selected="">Seleccione un emprendimiento al cual desea realizarle MODIFICACIONES</option>
           <?php 
                     $s="SELECT empresa.id,empresa.razon_social,empresa.identificacion FROM verificadorxempresa
                         INNER JOIN empresa ON empresa.id = verificadorxempresa.empresa_id
-                        WHERE verificadorxempresa.persona_id = '$_SESSION[vev_verificador]' AND verificacion2 = 'si' AND plan_mejora = 'no'";
+                        WHERE verificadorxempresa.persona_id = '$_SESSION[vev_verificador]' AND plan_mejora = 'si'";
                     $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
                     if(mysqli_num_rows($r)>0){
                       while($rw=mysqli_fetch_assoc($r)){
@@ -39,12 +39,12 @@ require_once('conexion.php');
         </select>
       </div>        
 </div>
-<div id="preload" class="">
+<div id="preload_m" class="">
       <div class="indeterminate"></div>
   </div>
 
-<form id="form_plan_mejora">
-    <div id="cargar_infos"></div>
+<form id="form_plan_mejora_m">
+    <div id="cargar_infos_m"></div>
 </form>
 </div>
 </div>

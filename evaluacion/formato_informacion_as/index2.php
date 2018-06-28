@@ -7,7 +7,9 @@
  ?>
 <?php 
 require_once('conexion.php');
+
  ?>
+
 <div id="test2" class="col s12" style="padding-right: 0px; padding-left: 0px">
           <center><h4 style="margin-top: 0px">Sección para Registrar</h4></center>
   <div id="test-swipe-2" class="col s12 " style="margin-left: -15px; width: 100%">
@@ -72,18 +74,28 @@ require_once('conexion.php');
             }
         ?>
          <div class='row'>
-              <div class='input-field col s12 m6 l6'>
+          <table  id="tabla_tierra">
+            <tr>
+              <td>
+              <div class="input-field col s12 m12 l12">
                 <p>
-                <input type='text' id='otro_tierra_nom'  name='otro_tierra_nom'/>
-                <label for='otro_tierra_nom'>Otro. ¿Cual?</label>
+                <input type="text" id="otro_tierra_nom"  name="otro_tierra_nom[]"/>
+                <label for="">Otro. ¿Cual?</label>
               </p>
               </div>
-              <div class='input-field col s12 m6 l6'>
-                <input type='text' name='otro_tierra_desc' id='otro_tierra_desc' />
-                <label for='otro_tierra_desc'>Descripcion</label>
+              </td>
+              <td>
+              <div class="input-field col s12 m12 l12">
+                <input type="text" name="otro_tierra_desc[]" id="otro_tierra_desc" />
+                <label for="">Descripcion</label>
               </div>
+              </td>
+              <td>
+                 <a class="btn-floating btn-large waves-effect waves-light green" id="añadir_input_tierra"><i class="material-icons">add</i></a>
+              </td>
+              </tr>
+            </table>
           </div>
-          
                   </span></div>
   </li>
   <li>
@@ -559,60 +571,18 @@ require_once('conexion.php');
      <div class="row">
             <div class="col s12 m12 l12" style="border: 1px solid">
             <p>Otros</p> 
-           <!--  <div class="divider"></div>
-      
-              <div class="input-field col s12 m3 l2">
-               <label>Plan de Manejo Ambiental</label>
-              </div>
-
-              <div class="input-field col s12 m2 l2">
-               <select id="otros_a_na" name="otros_a_na">
-                <?php 
-                    // $s="select id,nombre from aplica_noaplica order by id desc ";
-                    // $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
-                    // if(mysqli_num_rows($r)>0){
-                    //   while($rw=mysqli_fetch_assoc($r)){
-                    //   echo"<option value='$rw[id]'>$rw[nombre]</option>";          
-                    //   }         
-                    // }
-                  ?>
-              </select>
-              </div>
-
-              <div class="input-field col s12 m2 l2">
-               <select id="otros_c_nc" name="otros_c_nc">
-                <?php 
-                    // $s="select id,nombre from cumple_nocumple order by id desc ";
-                    // $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
-                    // if(mysqli_num_rows($r)>0){
-                    //   while($rw=mysqli_fetch_assoc($r)){
-                    //   echo"<option value='$rw[id]'>$rw[nombre]</option>";          
-                    //   }         
-                    // }
-                  ?>
-              </select>
-              </div>
-
-              <div class="input-field col s12 m2 l2">
-                <input id="otros_vigencia" name="otros_vigencia" type="text" class="validate">
-                <label for="otros_vigencia">Vigencia</label>
-              </div>
-
-              <div class="input-field col s12 m3 l4">
-                <input id="otros_obs" name="otros_obs" type="text" class="validate">
-                <label for="otros_obs">Observacion</label>
-              </div> -->
-
-
-
-              <div class="input-field col s12 m5 l5">
-               <input id="otro_legislacion" name="otro_legislacion" type="text" class="validate">
-                <label for="otro_legislacion">Otro. ¿Cual?</label>
-              </div>
-
-
-              <div class="input-field col s12 m3 l3">
-               <select id="otro_legislacion_c_nc" name="otro_legislacion_c_nc">
+            <table id="tabla_legislacion">
+              <tr>
+                <td>
+                <div class="input-field col s12 m12 l12">
+                 <input id="otro_legislacion" name="otro_legislacion[]" type="text" class="validate">
+                  <label for="">Otro. ¿Cual?</label>
+                </div>
+              </td>
+            
+            <td>
+              <div class="input-field col s12 m12 l12">
+               <select id="otro_legislacion_c_nc" class="leg" name="otro_legislacion_c_nc[]">
                 <?php 
                     $s="select id,nombre from cumple_nocumple order by id desc ";
                     $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
@@ -624,11 +594,19 @@ require_once('conexion.php');
                   ?>
               </select>
               </div>
-
-              <div class="input-field col s12 m4 l4">
-                <input id="otros_legislacion_obs" name="otros_legislacion_obs" type="text" class="validate">
-                <label for="otros_legislacion_obs">Observacion</label>
+            </td>
+            
+            <td>
+              <div class="input-field col s12 m12 l12">
+                <input id="otros_legislacion_obs" name="otros_legislacion_obs[]" type="text" class="validate">
+                <label for="">Observacion</label>
               </div>
+            </td>
+            <td>
+               <a class="btn-floating btn-large waves-effect waves-light green" id="añadir_input_legislacion"><i class="material-icons">add</i></a>
+            </td>
+              </tr>
+          </table>
       </div>
     </div>
         
@@ -696,12 +674,16 @@ require_once('conexion.php');
 
         ?>
         <div class='row' id="otr_cert">
-                  <div class='input-field col s12 m4 l3'>
-                    <input type='text' name='otro_certificacion' id='otro_certificacion' />
-                      <label for='otro_certificacion'>Otro. ¿Cual?</label>
+          <table id="tabla_certificacion"><tr>
+            <td>
+                  <div class='input-field col s12 m12 l12'>
+                    <input type='text' name='otro_certificacion[]' id='' />
+                      <label for=''>Otro. ¿Cual?</label>
                   </div>
-                  <div class='input-field col s12 m3 l2'>
-                    <select  name='otro_cert_etapa' id='otro_cert_etapa'>
+            </td>
+            <td>
+                  <div class='input-field col s12 m12 l12'>
+                    <select  name='otro_cert_etapa[]' id='otro_cert_etapa'>
                     <?php 
                     $s="select id,nombre from etapa ";
                     $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
@@ -714,14 +696,24 @@ require_once('conexion.php');
                  </select >
                     <label>Etapa</label>
                   </div>
-                  <div class='input-field col s12 m2 l2'>
-                    <input  type='text' name='otro_cert_vigencia' id='otro_cert_vigencia' />
-                      <label for='otro_cert_vigencia'>Vigencia</label>
+            </td>
+            <td>
+                  <div class='input-field col s12 m12 l12'>
+                    <input  type='text' name='otro_cert_vigencia[]' id='otro_cert_vigencia' />
+                      <label for=''>Vigencia</label>
                   </div>
-                  <div class='input-field col s12 m3 l5'>
-                   <input  type='text' name='otro_cert_obs' id='otro_cert_obs' />
-                      <label for='otro_cert_obs'>Observación</label>
-                  </div> </div>
+            </td>
+            <td>
+                  <div class='input-field col s12 m12 l12'>
+                   <input  type='text' name='otro_cert_obs[]' id='otro_cert_obs' />
+                      <label for=''>Observación</label>
+                  </div>
+              </td>
+              <td>
+                  <a class="btn-floating btn-large waves-effect waves-light green" id="añadir_input_certificacion"><i class="material-icons">add</i></a>
+              </td></tr>
+</table>
+                   </div>
 
         </div>
       
@@ -773,20 +765,29 @@ require_once('conexion.php');
 
         ?>
           <div class="row">
-            <div class='input-field col s12 m4 l5'>
-                      <input type='text' name='otro_conservacion_nom' id='otro_conservacion_nom' />
-                      <label for='otro_conservacion_nom'>Otro. ¿Cual?</label>
-                    </div>
-                        
-                    <div class='input-field col s12 m4 l2 '>
-                       <input type='text' name='otro_conservacion_area' id='otro_conservacion_area' />
-                      <label for='otro_conservacion_area'>Area</label>
-                    </div>
-
-                     <div class='input-field col s12 m4 l5'>
-                        <input type='text' name='otro_conservacion_desc' id='otro_conservacion_desc' />
-                      <label for='otro_conservacion_desc'>Descripción</label>
-                    </div>
+            <table id="tabla_conservacion"><tr>
+              <td>
+            <div class="input-field col s12 m12 l12">
+                <input type="text" name="otro_conservacion_nom[]" id="otro_conservacion_nom" />
+                <label for="">Otro. ¿Cual?</label>
+              </div>
+            </td>   
+            <td>
+              <div class="input-field col s12 m12 l12 ">
+                 <input type="text" name="otro_conservacion_area[]" id="otro_conservacion_area" />
+                <label for="">Area</label>
+              </div>
+            </td> 
+            <td>
+               <div class="input-field col s12 m12 l12">
+                  <input type="text" name="otro_conservacion_desc[]" id="otro_conservacion_desc" />
+                <label for="">Descripción</label>
+              </div>
+            </td>
+            <td>
+                <a class="btn-floating btn-large waves-effect waves-light green" id="añadir_input_conservacion"><i class="material-icons">add</i></a>
+            </td>
+            </tr></table>
           </div>
             </div>
   <div class="row" style="border: 1px solid">
@@ -818,14 +819,23 @@ require_once('conexion.php');
             }
         ?>
         <div class="row">
-          <div class='input-field col s12 m6 l6'>
-                <input type='text' name='otro_ecosistema_nom' id='otro_ecosistema_nom' />
-                <label for='otro_ecosistema_nom'>Otro. ¿Cual?</label>
+          <table id="tabla_ecosistema"><tr>
+            <td>
+          <div class="input-field col s12 m12 l12">
+                <input type="text" name="otro_ecosistema_nom[]" id="otro_ecosistema_nom" />
+                <label for="">Otro. ¿Cual?</label>
               </div>
-              <div class='input-field col s12 m6 l6'>
-                <input type='text' name='otro_ecosistema_area' id='otro_ecosistema_area' />
-                <label for='otro_ecosistema_area'>Área</label>
+          </td>
+          <td>
+              <div class="input-field col s12 m12 l12">
+                <input type="text" name="otro_ecosistema_area[]" id="otro_ecosistema_area" />
+                <label for="">Área</label>
               </div>
+          </td>
+          <td>
+              <a class="btn-floating btn-large waves-effect waves-light green" id="añadir_input_ecosistema"><i class="material-icons">add</i></a>
+          </td>
+          </tr></table>
         </div>
   </div>
 
@@ -929,11 +939,17 @@ require_once('conexion.php');
               }         
             }
         ?>
-
-                <div class='input-field col s12 m4 l3'>
-                  <input type='text' id='otro_involucra_nom' name='otro_involucra_nom' />
-                  <label for='otro_involucra_nom'>Otro. ¿Cual?</label>
+            <table id="tabla_involucra"><tr>
+                <td>
+                <div class="input-field col s12 m12 l12">
+                  <input type="text" id="otro_involucra_nom" name="otro_involucra_nom[]" />
+                  <label for="">Otro. ¿Cual?</label>
                 </div>
+                </td>
+                <td>
+                    <a class="btn-floating btn-large waves-effect waves-light green" id="añadir_input_involucra"><i class="material-icons">add</i></a>
+                </td>
+            </tr></table>
             </div>
         </div>
         
@@ -989,18 +1005,22 @@ require_once('conexion.php');
 
         ?>
         <div class="row" id="otro_act">
-           <div class='input-field col s12 m4 l3'>
-                  <input type='text' id='otro_activi_nom' name='otro_activi_nom'/>
-                      <label for='otro_activi_nom'>Otro. ¿Cual?</label>
+          <table id="tabla_actividad"><tr>
+            <td>
+           <div class="input-field col s12 m12 l12">
+                  <input type="text" id="otro_activi_nom" name="otro_activi_nom[]"/>
+                      <label for="otro_activi_nom">Otro. ¿Cual?</label>
                 </div>
-
-                <div class='input-field col s12 m4 l4'>
-                 <input  type='text' name='otro_activi_desc' id='otro_activi_desc' />
-                      <label for='otro_activi_desc'>Descripción</label>
+            </td>
+            <td>
+                <div class="input-field col s12 m12 l12">
+                 <input  type="text" name="otro_activi_desc[]" id="otro_activi_desc" />
+                      <label for="otro_activi_desc">Descripción</label>
                 </div>
-
-                <div class='input-field col s12 m4 l5'>
-                <select name='otro_activi_recurso' id='otro_activi_recurso'>
+            </td>
+            <td>
+                <div class="input-field col s12 m12 l12">
+                <select name="otro_activi_recurso[]" id="otro_activi_recurso">
                   <?php  
                      $s="select id,nombre from recurso ";
                   $r= mysqli_query($conn,$s) or die('Error');
@@ -1013,6 +1033,11 @@ require_once('conexion.php');
                 </select>
                 <label>Fuente de Recursos</label>
                 </div>
+            </td>
+            <td>
+                <a class="btn-floating btn-large waves-effect waves-light green" id="añadir_input_actividad"><i class="material-icons">add</i></a>
+            </td>
+          </tr></table>
         </div>
       </div>
     </div>
@@ -1056,15 +1081,23 @@ require_once('conexion.php');
 
         ?>
         <div class='row' id="otro_pro">
-          <div class='input-field col s12 m4 l4'>
-            <input type='text' id='otro_programa_nom' name='otro_programa_nom'/>
-                <label for='otro_programa_nom'>Otro. ¿Cual?</label>
-          </div>
-
-          <div class='input-field col s12 m4 l8'>
-           <input  type='text' name='otro_programa_desc' id='otro_programa_desc' />
-                <label for='otro_programa_desc'>Descripción</label>
-          </div>
+          <table id="tabla_progama"><tr>
+            <td>
+              <div class="input-field col s12 m12 l12">
+                <input type="text" id="otro_programa_nom" name="otro_programa_nom[]"/>
+                    <label for="">Otro. ¿Cual?</label>
+              </div>
+            </td>
+            <td>
+              <div class="input-field col s12 m12 l12">
+               <input  type="text" name="otro_programa_desc[]" id="otro_programa_desc" />
+                    <label for="">Descripción</label>
+              </div>
+          </td>
+          <td>
+              <a class="btn-floating btn-large waves-effect waves-light green" id="añadir_input_programa"><i class="material-icons">add</i></a>
+          </td>
+          </tr></table>
         </div>
         
       </div>
@@ -1203,3 +1236,85 @@ require_once('conexion.php');
 
 <script type="text/javascript" src="js/select2.js"></script>
 <script type="text/javascript" src="js/accion_formato_informacion.js"></script>
+
+<script type="text/javascript">
+  //otros de tenencia de tierra
+  $('#añadir_input_legislacion').on('click', function(event) {
+   $('#tabla_legislacion').append('<tr><td><div class="input-field col s12 m12 l12"><input id="otro_legislacion" name="otro_legislacion[]" type="text" class="validate"><label for="">Otro. ¿Cual?</label></div></td><td><div class="input-field col s12 m12 l12"><select id="otro_legislacion_c_nc" class="leg" name="otro_legislacion_c_nc[]"> <?php $s="select id,nombre from cumple_nocumple order by id desc ";$r= mysqli_query($conn,$s)or die(mysqli_error($conn));if(mysqli_num_rows($r)>0){while($rw=mysqli_fetch_assoc($r)){echo"<option value=".$rw["id"].">$rw[nombre]</option>";}} ?> </select> </div></td><td><div class="input-field col s12 m12 l12"><input id="otros_legislacion_obs" name="otros_legislacion_obs[]" type="text" class="validate"><label for="">Observacion</label></div></td><td><a class="btn-floating btn-large waves-effect waves-light red remove_input_legislacion " id=""><i class="material-icons">remove</i></a></td> <tr>')        
+     
+      $('select').material_select(); 
+
+
+        $('.remove_input_legislacion').click(function(event) {
+          $(this).closest('tr').remove();
+        });             
+   
+});
+
+//otros de certificaciones
+$('#añadir_input_certificacion').click(function(event) {
+  $('#tabla_certificacion').append('<tr><td><div class="input-field col s12 m12 l12"><input type="text" name="otro_certificacion[]" id=""/><label for="">Otro. ¿Cual?</label></div></td> <td><div class="input-field col s12 m12 l12"><select  name="otro_cert_etapa[]" id="otro_cert_etapa"> <?php $s="select id,nombre from etapa";$r= mysqli_query($conn,$s)or die(mysqli_error($conn));if(mysqli_num_rows($r)>0){while($rw=mysqli_fetch_assoc($r)){echo"<option value=".$rw["id"].">$rw[nombre]</option>";}} ?> </select ><label>Etapa</label></div></td><td><div class="input-field col s12 m12 l12"><input  type="text" name="otro_cert_vigencia[]" id="otro_cert_vigencia" /><label for="">Vigencia</label></div></td><td><div class="input-field col s12 m12 l12"><input  type="text" name="otro_cert_obs[]" id="otro_cert_obs" /><label for="">Observación</label></div></td><td><a class="btn-floating btn-large waves-effect waves-light red remove_input_certificacion" id=""><i class="material-icons">remove</i></a></td></tr>')
+$('select').material_select(); 
+$('.remove_input_certificacion').click(function(event) {
+  $(this).closest('tr').remove();
+});
+});
+
+// añadir input de conservacion
+$('#añadir_input_conservacion').click(function(event) {
+  $('#tabla_conservacion').append('<tr><td><div class="input-field col s12 m12 l12"><input type="text" name="otro_conservacion_nom[]" id="otro_conservacion_nom" /><label for="">Otro. ¿Cual?</label></div></td>   <td><div class="input-field col s12 m12 l12 "><input type="text" name="otro_conservacion_area[]" id="otro_conservacion_area" /><label for="">Area</label></div></td> <td><div class="input-field col s12 m12 l12"><input type="text" name="otro_conservacion_desc[]" id="otro_conservacion_desc" /><label for="">Descripción</label></div></td><td><a class="btn-floating btn-large waves-effect waves-light red remove_input_conservacion" id=""><i class="material-icons">remove</i></a></td></tr>')
+
+  $('.remove_input_conservacion').click(function(event) {
+   $(this).closest('tr').remove()
+  });
+
+
+});
+
+// añadir input de ecosistemas
+$('#añadir_input_ecosistema').click(function(event) {
+  $('#tabla_ecosistema').append('<tr><td><div class="input-field col s12 m12 l12"><input type="text" name="otro_ecosistema_nom[]" id="otro_ecosistema_nom" /><label for="">Otro. ¿Cual?</label></div></td><td><div class="input-field col s12 m12 l12"><input type="text" name="otro_ecosistema_area[]" id="otro_ecosistema_area" /><label for="">Área</label></div></td><td><a class="btn-floating btn-large waves-effect waves-light red remove_input_ecosistema" id=""><i class="material-icons">remove</i></a></td></tr>')
+
+$('.remove_input_ecosistema').click(function(event) {
+$(this).closest('tr').remove()
+  });
+
+});
+
+// añadir input de involucra
+$('#añadir_input_involucra').click(function(event) {
+  $('#tabla_involucra').append('<tr><td><div class="input-field col s12 m12 l12"><input type="text" id="otro_involucra_nom" name="otro_involucra_nom[]" /><label for="">Otro. ¿Cual?</label></div></td><td><a class="btn-floating btn-large waves-effect waves-light red remove_input_involucra" id=""><i class="material-icons">remove</i></a></td></tr>')
+
+$('.remove_input_involucra').click(function(event) {
+$(this).closest('tr').remove()
+  });
+
+});
+
+// añadir input de actividad
+$('#añadir_input_actividad').click(function(event) {
+  $('#tabla_actividad').append('<tr><td><div class="input-field col s12 m12 l12"><input type="text" id="otro_activi_nom" name="otro_activi_nom[]"/><label for="">Otro. ¿Cual?</label></div></td><td><div class="input-field col s12 m12 l12"><input  type="text" name="otro_activi_desc[]" id="otro_activi_desc" /><label for="">Descripción</label></div></td><td><div class="input-field col s12 m12 l12"><select name="otro_activi_recurso[]" id="otro_activi_recurso"><?php $s="select id,nombre from recurso";$r= mysqli_query($conn,$s)or die(mysqli_error($conn));if(mysqli_num_rows($r)>0){while($rw=mysqli_fetch_assoc($r)){echo"<option value=".$rw["id"].">$rw[nombre]</option>";}} ?>  </select><label>Fuente de Recursos</label></div></td><td><a class="btn-floating btn-large waves-effect waves-light red remove_input_actividad" id=""><i class="material-icons">remove</i></a></td></tr>')
+
+ $('select').material_select(); 
+
+$('.remove_input_actividad').click(function(event) {
+$(this).closest('tr').remove()
+  });
+
+});
+
+// añadir input de programa
+$('#añadir_input_programa').click(function(event) {
+  $('#tabla_progama').append('<tr><td><div class="input-field col s12 m12 l12"><input type="text" id="otro_programa_nom" name="otro_programa_nom[]"/><label for="">Otro. ¿Cual?</label></div></td><td><div class="input-field col s12 m12 l12"><input  type="text" name="otro_programa_desc[]" id="otro_programa_desc" /><label for="">Descripción</label></div></td><td><a class="btn-floating btn-large waves-effect waves-light red remove_input_programa" id=""><i class="material-icons">remove</i></a></td></tr>')
+
+$('.remove_input_programa').click(function(event) {
+$(this).closest('tr').remove()
+  });
+
+});
+
+
+</script>
+
+
+<table id="tabla_progama"></table>
