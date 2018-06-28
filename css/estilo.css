@@ -150,6 +150,9 @@ section#base{
     /*width: 0% !important;*/
     /*height: 0% !important*/
   }
+  #div_mv_img{
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 100px) and (max-width: 600px){

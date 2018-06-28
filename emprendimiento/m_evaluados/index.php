@@ -4,15 +4,11 @@
 
 <?php include "conexion.php"; 
 
-  $s = "SELECT id,razon_social,descripcion,puntaje from empresa" ;
+  $s = "SELECT id,razon_social,descripcion,puntaje from empresa where puntaje > " . 50;
   $res = mysqli_query($conn,$s) or die(mysqli_error($conn));
 
      if(mysqli_num_rows($res)>0){
-        while($rw=mysqli_fetch_array($res)){
-
-        	if ($rw['puntaje'] > 50) {
-        	
-        	
+        while($rw=mysqli_fetch_array($res)){        	
 
         $desc1 = substr($rw['descripcion'], 0,50);
 ?>
@@ -30,11 +26,19 @@
 			</div>
 		</div>
 
-<?php 
-}	
+<?php 	
 }
+}else{
+	echo " <div class='row' style='margin-top: 200px;'>
+    <div class=' col s12  green lighten-5 ' id='' style='border: 1px solid green;margin-left:10%;margin-right: 10%;width: 80%;'>
+      <h3>No hay información para mostrar</h3>
+    </div>
+ </div>
+";
 }
+
  ?>
+
 
 </div>
 </div>

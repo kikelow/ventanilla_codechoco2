@@ -33,6 +33,10 @@
 
 
               }
+            }else{
+
+              echo "<div class='input-field col s12 m12 l12 green lighten-5 ' id='div_empresa' style='border: 1px solid green'><h6>No hay información para mostrar</h6></div>" ;
+
             }
     ?>
 

@@ -32,7 +32,7 @@
 		
 	</div>
 </div> -->
- <div class="row" style="margin-top: 200px;">
+<!--  <div class="row" style="margin-top: 200px;">
    <div class="col s12 m4 l4">
     <div >
       <img class="responsive-img" src="img/img_m.png" alt="" width="400" height="400">
@@ -45,4 +45,9 @@
         </h1>
       </p>
    </div>
+ </div> -->
+  <div class="row" style="margin-top: 200px;">
+    <div class=' col s12  green lighten-5 ' id='' style='border: 1px solid green;margin-left:10%;margin-right: 10%;width: 80%;'>
+      <h3>No hay información para mostrar</h3>
+    </div>
  </div>

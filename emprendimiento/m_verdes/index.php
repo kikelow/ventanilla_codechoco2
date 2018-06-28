@@ -44,7 +44,13 @@ echo "
 
     }
   }
-} 
+}else{
+  echo "<div class='row' style='margin-top: 200px;'>
+    <div class=' col s12  green lighten-5 ' id='' style='border: 1px solid green;margin-left:10%;margin-right: 10%;width: 80%;'>
+      <h3>No hay información para mostrar</h3>
+    </div>
+ </div>";
+}
 ?>
 
 <?php
@@ -66,6 +72,13 @@ echo "
   <div class="row" style="margin-bottom: 1px"><div class="col s12"><a id="desca" target="_blank" href="content_admin/content_save/file_content/<?php echo $rw['ruta'] ?>"><?php echo $rw['nombre'] ?></a></div>
   <?php 
     }
+  }else
+  {
+    echo "<div class='row' style='margin-top: 200px;'>
+    <div class=' col s12  green lighten-5 ' id='' style='border: 1px solid green;margin-left:10%;margin-right: 10%;width: 80%;'>
+      <h3>No hay información para mostrar</h3>
+    </div>
+ </div>";
   }
   ?>
 </div>
