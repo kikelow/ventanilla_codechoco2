@@ -3,13 +3,9 @@
 	 require_once('../../conexion.php');
 
 	 $empresa = $_GET['empresa'] ;
-	 $razon_social = "";
+	 $razon_social = "NO APLICA";
 
-	  $objPHPExcel = new PHPExcel();
-	 $objPHPExcel->getActiveSheet()->setTitle('Plan de mejora');
-	 $objPHPExcel->getProperties()
-	 ->setCreator('Ventanilla de emprendimientos verdes')
-	 ->setDescription('pla de mejora');
+	  
 	 		$fila = 4;
 	 // Estilos para los titulos de las columnas
 	 $estiloTituloColumnas = array(
@@ -35,6 +31,11 @@
 	'vertical'  => PHPExcel_Style_Alignment::VERTICAL_CENTER
     )
 	);
+	 $objPHPExcel = new PHPExcel();
+	 $objPHPExcel->getActiveSheet()->setTitle('Plan de mejora');
+	 $objPHPExcel->getProperties()
+	 ->setCreator('Ventanilla de emprendimientos verdes')
+	 ->setDescription('pla de mejora');
 	 $objPHPExcel->setActiveSheetIndex(0);
 
 	 $s = "SELECT empresa.razon_social,verificacion_1.opciones_id,plan_mejora.acciones,plan_mejora.actor,plan_mejora.resultado,plan_mejora.observacion,plan_mejora.1,plan_mejora.2,plan_mejora.3,plan_mejora.4,plan_mejora.5,plan_mejora.6,plan_mejora.7,plan_mejora.8,plan_mejora.9,plan_mejora.10,plan_mejora.11,plan_mejora.12,opciones.nombre,opciones.No FROM verificacion_1	
@@ -44,7 +45,7 @@
 			WHERE verificacion_1.si_no_noaplica_id = '1' AND verificacion_1.empresa_id = '$empresa' AND plan_mejora.empresa_id = '$empresa'";
 		$r = mysqli_query($conn,$s);
 		if (mysqli_num_rows($r)>0) {
-			 $objPHPExcel->getActiveSheet()->getStyle('A1:AC3')->getAlignment()->setWrapText(true);
+				 $objPHPExcel->getActiveSheet()->getStyle('A1:AC3')->getAlignment()->setWrapText(true);
 	 $objPHPExcel->getActiveSheet()->getStyle('A1:AC3')->applyFromArray($estiloTituloColumnas);
 
 	 // $objPHPExcel->getActiveSheet()->getStyle('A1','AC1')->getAlignment()->setWrapText(true);
@@ -158,7 +159,7 @@
 
 	 	$fila++;
 	 }
-		}
+}
 
 //---------------------------------------- Nivel 1 ------------------------------------------------
 $s = "SELECT empresa.razon_social,verificacion_2.opciones_id,plan_mejora.acciones,plan_mejora.actor,plan_mejora.resultado,plan_mejora.observacion,plan_mejora.1,plan_mejora.2,plan_mejora.3,plan_mejora.4,plan_mejora.5,plan_mejora.6,plan_mejora.7,plan_mejora.8,plan_mejora.9,plan_mejora.10,plan_mejora.11,plan_mejora.12,opciones.nombre,opciones.No FROM verificacion_2	
@@ -173,15 +174,21 @@ $fila_titulo = $fila+1;
 $fila_item = $fila+3;
 $objPHPExcel->getActiveSheet()->getStyle('A'.$fila.':AC'.$fila_cabeza)->getAlignment()->setWrapText(true);
 $objPHPExcel->getActiveSheet()->getStyle('A'.$fila.':AC'.$fila_cabeza)->applyFromArray($estiloTituloColumnas);
+date_default_timezone_set('America/Bogota');
+		$fecha_descarga = date("Y-m-d H:i:s");
 
-$objPHPExcel->getActiveSheet()->setCellValue('A'.$fila, 'NIVEL 1');
-$objPHPExcel->getActiveSheet()->mergeCells('A'.$fila.':AC'.$fila);
+	$objPHPExcel->getActiveSheet()->setCellValue('A'.$fila, 'Fecha: '.$fecha_descarga);
+	 $objPHPExcel->getActiveSheet()->mergeCells('A'.$fila.':B'.$fila);
+
+$objPHPExcel->getActiveSheet()->setCellValue('C'.$fila, 'NIVEL 1');
+$objPHPExcel->getActiveSheet()->mergeCells('C'.$fila.':AC'.$fila);
 $objPHPExcel->getActiveSheet()->getRowDimension($fila)->setRowHeight(30);
 $objPHPExcel->getActiveSheet()->getRowDimension($fila_titulo)->setRowHeight(50);
 
  $objPHPExcel->getActiveSheet()->setCellValue('A'.$fila_titulo, 'Nº');
 	$objPHPExcel->getActiveSheet()->mergeCells('A'.$fila_titulo.':A'.$fila_cabeza);
 
+	$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(40);
 	$objPHPExcel->getActiveSheet()->setCellValue('B'.$fila_titulo, 'Aspectos');
 	$objPHPExcel->getActiveSheet()->mergeCells('B'.$fila_titulo.':B'.$fila_cabeza);
 
@@ -227,7 +234,7 @@ $objPHPExcel->getActiveSheet()->getRowDimension($fila_titulo)->setRowHeight(50);
 	$objPHPExcel->getActiveSheet()->mergeCells('AA'.$fila_titulo.':AC'.$fila_cabeza);
 
 	 while ($rw = mysqli_fetch_assoc($r)) {
-	 	
+	 	$razon_social = $rw['razon_social'];
 	 	$objPHPExcel->getActiveSheet()->getStyle('A'.$fila_item.':AC'.$fila_item)->getAlignment()->setWrapText(true);
 	 	$objPHPExcel->getActiveSheet()->getRowDimension($fila_item)->setRowHeight(70);
 	 	$objPHPExcel->getActiveSheet()->mergeCells('C'.$fila_item.':J'.$fila_item);
