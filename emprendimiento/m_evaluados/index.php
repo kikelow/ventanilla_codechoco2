@@ -4,7 +4,7 @@
 
 <?php include "conexion.php"; 
 
-  $s = "SELECT id,razon_social,descripcion,puntaje from empresa where puntaje > " . 50;
+  $s = "SELECT e.id,e.razon_social,e.descripcion,e.puntaje,i.imagen from empresa e,img_empresa i where e.id = i.empresa_id AND puntaje >" . 50;
   $res = mysqli_query($conn,$s) or die(mysqli_error($conn));
 
      if(mysqli_num_rows($res)>0){
@@ -16,7 +16,7 @@
 		<div class="col s12 m4 l4" style="padding-right: 0px;">
 			<div class="row" style="margin-bottom:10px;">
 				<div class="col s12 col2 producto prod-first" style="height: 200px">
-					<img class="c_img" src="img/p0.jpg" alt="">
+					<img class="c_img" src="evaluacion/formato_inscripcion/imagenes/<?php 	echo $rw['imagen'] ?> " alt="">
 					<div class="mask">  
 				        <h2><?php echo $rw['razon_social'] ?> </h2>  
 				        <p><?php echo $desc1 ?> </p>

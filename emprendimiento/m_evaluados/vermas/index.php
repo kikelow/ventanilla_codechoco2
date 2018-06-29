@@ -34,7 +34,7 @@ $id = $_GET['id'];
    
 <?php 
 
-$s = "SELECT id,razon_social,descripcion,puntaje from empresa where id = '$id'" ;
+$s = "SELECT e.id,e.razon_social,e.descripcion,i.imagen from empresa e,img_empresa i where e.id = i.empresa_id and e.id = '$id'" ;
   $res = mysqli_query($conn,$s) or die(mysqli_error($conn));
 
      if(mysqli_num_rows($res)>0){
@@ -46,7 +46,7 @@ $s = "SELECT id,razon_social,descripcion,puntaje from empresa where id = '$id'" 
    <div class="row">
      <div class="col s12">
         <div style="width: 300px;height: 300px;margin:auto;">
-          <img src="../../../img/p6.jpg" alt="" width="300" height="300">
+          <img src="../../../evaluacion/formato_inscripcion/imagenes/<?php echo $rw['imagen'] ?>" alt="" width="300" height="300">
         </div> 
      </div>
    </div>
