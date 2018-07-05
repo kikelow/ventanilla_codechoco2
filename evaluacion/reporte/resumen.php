@@ -543,8 +543,8 @@ $html.='<table class="" style="margin-top:20px">
           </thead>
           <tbody>
             <tr>
-              <td style="width: 90%">Puntaje Total. Criterios de Cumplimiento de Negocios Verdes</td>
-              <td id="prom12" style="width: 10%">'.$prom_total1.'%</td>
+              <td style="width: 70%">Puntaje Total. Criterios de Cumplimiento de Negocios Verdes</td>
+              <td id="prom12" style="width: 30%">'.$prom_total1.'%</td>
             </tr>
             <tr>
               <td>Puntaje Total.  Criterios Adicionales (ideales) Negocios Verdes</td>
@@ -553,9 +553,24 @@ $html.='<table class="" style="margin-top:20px">
             <tr>';
               $suma_total3 = $prom_total1+$prom_total2;
               $resultado= round($suma_total3/2, 2);
+
+              $resultado_letra = '';
+              if ($prom_total1 >= 0 && $prom_total1 <= 10) {
+               $resultado_letra = 'Inicial';
+              }else if ($prom_total1 > 10 && $prom_total1 <= 30) {
+                $resultado_letra = 'Básico';
+              }else if ($prom_total1 > 30 && $prom_total1 <= 50) {
+                $resultado_letra = 'Intermedio';
+              }else if ($prom_total1 > 50 && $prom_total1 <= 80) {
+                $resultado_letra = 'Satisfactorio';
+              }else if ($prom_total1 > 80 && $prom_total1 <= 100 && $prom_total2 < 50) {
+               $resultado_letra = 'Avanzado';
+              }else if ($prom_total1 > 80 && $prom_total1 <= 100 && $prom_total2 >= 50 ) {
+               $resultado_letra = 'Ideal';
+              }
             $html.='
               <th class=" grey lighten-1">Resultado</th>
-              <th class="grey lighten-1" id="total2">'.$resultado.'% </th>
+              <th class="grey lighten-1" id="total2">'.$resultado_letra.' </th>
             </tr>
             
           </tbody>

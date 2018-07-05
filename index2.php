@@ -117,6 +117,11 @@ if(!isset($_SESSION["vev_verificador"])){
     <li><a href="index2.php?modulo=evaluacion/hoja_verificacion_2" class="black-text">Nuevo</a></li>
     <li><a href="index2.php?modulo=evaluacion/hoja_verificacion_2/modificar" class="black-text">Modificar</a></li>
   </ul>
+
+  <ul id="plan" class="dropdown-content">
+    <li><a href="index2.php?modulo=evaluacion/plan_mejora" class="black-text">Nuevo</a></li>
+    <li><a href="index2.php?modulo=evaluacion/plan_mejora/modificar" class="black-text">Modificar</a></li>
+  </ul>
   
   <!-- <ul id="p_mejora" class="dropdown-content">
     <li><a href="index2.php?modulo=evaluacion/plan_mejora" class="black-text">Nuevo</a></li>
@@ -132,7 +137,7 @@ if(!isset($_SESSION["vev_verificador"])){
       <li><a class="dropdown-button black-text" href="#!" data-activates="f_as">Formato de Información AS<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a class="dropdown-button black-text" href="#!" data-activates="hoja_1">Hoja de Verificación 1<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a class="dropdown-button black-text" href="#!" data-activates="hoja_2">Hoja de Verificación 2<i class="material-icons right">arrow_drop_down</i></a></li>
-      <li> <a href="index2.php?modulo=evaluacion/plan_mejora" class="collection-item black-text">Plan de Mejora</a></li>
+      <li><a class="dropdown-button black-text" href="#!" data-activates="plan">Plan de mejora<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="index2.php?modulo=evaluacion/reporte" class="collection-item black-text">Reportes</a></li>
     </ul>
   </div>   
