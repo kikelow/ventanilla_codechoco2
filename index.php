@@ -109,7 +109,7 @@ lock_open</i>Iniciar Sesión</a></li>
           contacto@codechoco.gov.co
       </p>
     </div>
-    <div class="col l4 offset-l2 s12">
+    <!-- <div class="col l4 offset-l2 s12">
       <h5 class="white-text"><i class="fa fa-volume-control-phone" aria-hidden="true"></i> Lineas de Atención</h5>
       <ul>
         <li><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-phone"></i> Domicilio: 6714 658 - 6712 347</a></li>
@@ -117,7 +117,7 @@ lock_open</i>Iniciar Sesión</a></li>
         <li><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-mobile" aria-hidden="true"></i> Linea de Emergencias: 312 711 9708 </a></li>
         
       </ul>
-    </div>
+    </div> -->
   </div>
 </div>
 <div class="footer-copyright" style="background-color: #00853b">

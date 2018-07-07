@@ -2,7 +2,7 @@
   $s = "SELECT c.titulo,c.descripcion, i.ruta as ubicacion from contenido c, img_page i where c.id_img_page = i.id and c.alias_id = 3 order by c.id" ;
   $res = mysqli_query($conn,$s) or die(mysqli_error($conn));
 ?>
- <div class="row" style="background-color:#00853b14;padding-top: 150px;margin-bottom: 0px;;">
+ <div class="row" style=";padding-top: 150px;margin-bottom: 0px;;">
    <div class="row">
      <div class="col s12">
         

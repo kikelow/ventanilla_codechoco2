@@ -249,7 +249,7 @@ $descripcion_c = substr($rw['descripcion'], 0, 270);
         </footer>
         </div>
     </div> -->
-  <!-- </span> -->
+ <!-- </span> -->
 </div>    
 </div>
 </div>
@@ -260,6 +260,7 @@ $descripcion_c = substr($rw['descripcion'], 0, 270);
 <div class="parallax-container">  
 <div id="info_mv" style="height: auto;min-height: 500px;" > 
   <div class="row"> 
+
         <?php 
             $s = "SELECT c.id,c.titulo,c.descripcion, i.ruta as ubicacion from contenido c, img_page i where c.id_img_page = i.id and c.alias_id = 3 order by c.id";
 
@@ -269,88 +270,71 @@ $descripcion_c = substr($rw['descripcion'], 0, 270);
               while($rw=mysqli_fetch_array($res)){
 
               if ($rw['id'] == 8) {
-                
-              
+                           
+      echo "
 
-?>
-
-                
-      <div class="col s12 animatedParent">
-        <h4 style="text-align: center;margin-top: 50px;color: #00853b;font-weight: bold;" class="flow-text animated fadeInDown">
-          <?php echo ($rw['titulo']) ?><span><hr class="hr_title"></span></h4>
-
-        <p style="text-align: center" class="animated fadeInDown"> <?php echo ($rw['descripcion']) ?></p>
+      <div class='col s12 animatedParent'>
+          <h4 style='text-align: center;margin-top: 50px;color: #00853b;font-weight: bold;' class='flow-text animated fadeInDown'>$rw[titulo]<span><hr class='hr_title'></span></h4>
+          <p style='text-align: center' class='animated fadeInDown'>$rw[descripcion]</p>
       </div>
     
-    <div class="row" >
-      <div class="col s12 m3 l3" >
-        <div id="div_mv_img" class="animatedParent">
-          <img class="animated growIn responsive-img" src="content_admin/content_save/img_content/<?php echo $rw['ubicacion'] ?>" height="403" width="212" style="margin-left: 90px;margin-top: 50px">
+    <div class='row' >
+      <div class='col s12 m3 l3' >
+        <div id='div_mv_img' class='animatedParent'>
+          <img class='animated growIn responsive-img' src='content_admin/content_save/img_content/$rw[ubicacion]' height='403' width='212' style='margin-left: 90px;margin-top: 50px'>
         </div>
       </div>
+  ";
 
-<div class="col s12 m9 l9">
-
-<?php
 
     }
     if ($rw['id'] == 9) {
-?>
 
-        <div class="row" >
-          <div class="col s12 animatedParent">
-            <h5 style="text-align: center;color: #00853b;font-weight: bold;"  class="flow-text animated fadeInDown"> <?php echo $rw['titulo'];?><span><hr class="hr_title"></span></h5>
-            <p class="animated fadeInDown"><?php echo $rw['descripcion'];?></p>
-          </div>
-        </div>
-
-<?php
+       echo "<div class='col s12 m9 l9'>
+              <div class='row' >
+               <div class='col s12 animatedParent'>
+                <h5 style='text-align: center;color: #00853b;font-weight: bold;'  class='flow-text animated fadeInDown'>$rw[titulo]<span><hr class='hr_title'></span></h5>
+                <p class='animated fadeInDown'>$rw[descripcion]</p>
+              </div>
+            </div>";
 
     }
 
     if ($rw['id'] == 10) {
 
-?>
-
-       <div class="row">
-          <div class="col s12 animatedParent" >
-            <h5 style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text animated fadeInDown" ><span><?php echo $rw['titulo'];?><hr class="hr_title"></span></h5>
-            <p class="animated fadeInDown"><?php echo $rw['descripcion'];?></p>
-          </div>
-        </div>
-            </div>
-  </div>  
-</div> 
-</div>
-</div>
-
-<?php
+     echo "<div class='row'>
+              <div class='col s12 animatedParent' >
+                <h5 style='text-align: center;color: #00853b;font-weight: bold;' class='flow-text animated fadeInDown' ><span>$rw[titulo]<hr class='hr_title'></span></h5>
+                <p class='animated fadeInDown'>$rw[descripcion]</p>
+              </div>
+           </div>
+           </div>
+           </div>";
 
     }
-
-?>           
-
-<?php      
-              }
+ }
             }else{
 
                  echo" 
                     <div class='col s12 m4 l4'>
                       <div>
-                      <img class='responsive-img' src='img/img_m.png' alt='' width='400' height='400'>
-                  </div>
-                </div>
+                        <img class='responsive-img' src='img/img_m.png' alt='' width='400' height='400'>
+                      </div>
+                    </div>
                   <div class='col s12 m8 l8'>
-                <p>
-                  <h1 style='font-family: arial;padding-top:100px;'>
-                    Esta sección de la pagina se encuentra en mantenimiento. En breve estará disponible.
+                  <p>
+                    <h1 style='font-family: arial;padding-top:100px;'>
+                      Esta sección de la pagina se encuentra en mantenimiento. En breve estará disponible.
                     </h1>
-                </p>
+                  </p>
                 </div>";
             }
-        ?>
+?>
 
 
+</div>
+</div>
+</div>
 
 <div class="divider"></div>
 
@@ -358,121 +342,59 @@ $descripcion_c = substr($rw['descripcion'], 0, 270);
   <div class="row">      
     <h5 class="flow-text" style="text-align: center;color: #00853b;font-weight: bold;">Negocios Evaluados<span><hr class="hr_title"></span></h5>       
       <div class="row mercados" style="margin:20px">
+  
+        
+<?php 
 
-       <div class="col s12 m3 l3">
+ $s = "SELECT e.id,e.razon_social,e.descripcion,e.puntaje,i.imagen from empresa e,img_empresa i where e.id = i.empresa_id AND puntaje >" . 50;
+  $res = mysqli_query($conn,$s) or die(mysqli_error($conn));
+
+     if(mysqli_num_rows($res)>0){
+        while($rw=mysqli_fetch_array($res)){          
+
+        $desc1 = substr($rw['descripcion'], 0,50);
+
+?>
+
+
+
+ <div class="col s12 m4 l4">
             <div class="card sticky-action">
               <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="img/p3.jpg">
+                <img class="activator" src="evaluacion/formato_inscripcion/imagenes/<?php echo$rw['imagen']?>">
               </div>
               <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                <p><a href="#">This is a link</a></p>
+                <span class="card-title activator grey-text text-darken-4"> <?php echo$rw['razon_social']?><i class="material-icons right">more_vert</i></span>
+                <p><a href="emprendimiento/m_evaluados/vermas/index.php?id=<?php echo $rw['id'] ?>">Ver mas...</a></p>
               </div>
               <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, dolorem iusto asperiores laudantium? Dolores, accusantium soluta repellat delectus, blanditiis mollitia quis, doloremque rem neque tenetur aperiam minima facere nihil sequi.</p>
+                <span class="card-title grey-text text-darken-4"><?php echo$rw['razon_social']?><i class="material-icons right">close</i></span>
+                <p><?php echo$rw['descripcion']?></p>
               </div>
-            </div>
-        </div>
-    
-        
-        <div class="col s12 m3 l3">
-            <div class="card">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="img/p2.jpg">
-              </div>
-              <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                <p><a href="#">This is a link</a></p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae cupiditate reiciendis ex vitae. Provident nostrum optio consectetur nulla, possimus quos eum repudiandae, totam aperiam aspernatur illum, nisi beatae eos nam.</p>
-              </div>
-            </div>
-        </div>
+          </div>
+  </div>
 
-        
-        <div class="col s12 m3 l3">
-            <div class="card">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="img/p1.jpg">
-              </div>
-              <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                <p><a href="#">This is a link</a></p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>Here is some more information about this product that is only revealed once clicked on.</p>
-              </div>
-            </div>
-        </div>
 
-         <div class="col s12 m4 l4">
-            <div class="card sticky-action">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="img/p3.jpg">
-              </div>
-              <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                <p><a href="#">This is a link</a></p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, dolorem iusto asperiores laudantium? Dolores, accusantium soluta repellat delectus, blanditiis mollitia quis, doloremque rem neque tenetur aperiam minima facere nihil sequi.</p>
-              </div>
-            </div>
-        </div>
-    
-        
-        <div class="col s12 m4 l4">
-            <div class="card">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="img/p2.jpg">
-              </div>
-              <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                <p><a href="#">This is a link</a></p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae cupiditate reiciendis ex vitae. Provident nostrum optio consectetur nulla, possimus quos eum repudiandae, totam aperiam aspernatur illum, nisi beatae eos nam.</p>
-              </div>
-            </div>
-        </div>
 
-        
-        <div class="col s12 m4 l4">
-            <div class="card">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="img/p1.jpg">
-              </div>
-              <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                <p><a href="#">This is a link</a></p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>Here is some more information about this product that is only revealed once clicked on.</p>
-              </div>
-            </div>
-        </div>
+<?php 
+ }
+
+    }else{
+
+echo " <div class='row' style='margin-top: 200px;'>
+<div class=' col s12  green lighten-5 ' id='' style='border: 1px solid green;margin-left:10%;margin-right: 10%;width: 80%;'>
+  <h3>No hay información para mostrar</h3>
+</div>
+</div>
+";
+
+    }
+?>
+
+
       </div>
     </div>
 </div>
-
-
-<div class="divider"></div>
-
-          </span>
-        </div>
-    </div>
-  </div>
-</div>
-</div>
-
-
 
 
 
