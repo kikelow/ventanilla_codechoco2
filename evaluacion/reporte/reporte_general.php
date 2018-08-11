@@ -539,7 +539,8 @@
 
 
 	 while ($rw=mysqli_fetch_assoc($r)) {
-	 	$objPHPExcel->getActiveSheet()->SetCellValue('A'.'2018');
+	 	$rw['fecha_registro']= date("Y");
+	 	$objPHPExcel->getActiveSheet()->SetCellValue('A'.$fila,$rw['fecha_registro']);
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('B'.$fila,'');
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('C'.$fila,'');
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('D'.$fila,'');
@@ -558,7 +559,6 @@
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('Q'.$fila,$rw['direccion']);
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('R'.$fila,$rw['municipio']);
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('S'.$fila,$rw['departamento']);
-	 	$rw['fecha_registro']= date("Y");
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('T'.$fila,$rw['fecha_registro']);
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('U'.$fila,'11');
 
@@ -1233,8 +1233,8 @@
 		$objPHPExcel->getActiveSheet()->SetCellValue('CF'.$fila, '=AVERAGE(BT'.$fila.':CD'.$fila.')');
 		$objPHPExcel->getActiveSheet()->SetCellValue('CG'.$fila, '=CE'.$fila);
 
-		$objPHPExcel->getActiveSheet()->SetCellValue('CH'.$fila, '=AVERAGE(CF'.$fila.':CG'.$fila.')');
-		// $objPHPExcel->getActiveSheet()->SetCellValue('CH'.$fila, '=IF(AVERAGE(CF'.$fila.':CG'.$fila.')<=10%;"Inicial";IF(AND(AVERAGE(CF'.$fila.':CG'.$fila.')>10%;AVERAGE(CF'.$fila.':CG'.$fila.')<=30%);"Basico";IF(AND(AVERAGE(CF'.$fila.':CG'.$fila.')>30%;AVERAGE(CF'.$fila.':CG'.$fila.')<=50%);"Intermedio";IF(AND(AVERAGE(CF'.$fila.':CG'.$fila.')>50%;AVERAGE(CF'.$fila.':CG'.$fila.')<=80%);"Satisfactorio";IF(AND(AVERAGE(CF'.$fila.':CG'.$fila.')>80%;AVERAGE(CF'.$fila.':CG'.$fila.')<=100%);"Ideal")))))');
+		$objPHPExcel->getActiveSheet()->SetCellValue('CH'.$fila, '=IF(CF'.$fila.'<=10%,"Inicial",IF(AND(CF'.$fila.'>10%,CF'.$fila.'<=30%),"Básico",IF(AND(CF'.$fila.'>30%,CF'.$fila.'<=50%),"Intermedio",IF(AND(CF'.$fila.'>50%,CF'.$fila.'<=80%),"Satisfactorio",IF(AND(CF'.$fila.'>80%,CF'.$fila.'<=100%,CG'.$fila.'<30%),"Avanzado",IF(AND(CF'.$fila.'>80%,CF'.$fila.'<=100%,CG'.$fila.'>=50%),"Ideal"))))))');
+
 		$objPHPExcel->getActiveSheet()->SetCellValue('CI'.$fila, '=AVERAGE(V'.$fila.':Z'.$fila.')');
 		$objPHPExcel->getActiveSheet()->SetCellValue('CJ'.$fila, '=AVERAGE(AA'.$fila.':BA'.$fila.')');
 		$objPHPExcel->getActiveSheet()->SetCellValue('CK'.$fila, '=AVERAGE(BB'.$fila.':BO'.$fila.')');
