@@ -10,13 +10,18 @@
      if(mysqli_num_rows($res)>0){
         while($rw=mysqli_fetch_array($res)){        	
 
+
         $desc1 = substr($rw['descripcion'], 0,50);
 ?>
 
 		<div class="col s12 m4 l4" style="padding-right: 0px;">
 			<div class="row" style="margin-bottom:10px;">
 				<div class="col s12 col2 producto prod-first" style="height: 200px">
-					<img class="c_img" src="evaluacion/formato_inscripcion/imagenes/<?php 	echo $rw['imagen'] ?> " alt="">
+					<?php 	if ($rw['imagen'] == "") { ?> 
+					<img class="c_img" src="img/img_nd.png" alt="">
+					<?php } else { ?>	
+					<img class="c_img" src="evaluacion/formato_inscripcion/imagenes/<?php echo $rw['imagen'] ?> " alt="">
+					<?php } ?>					
 					<div class="mask">  
 				        <h2><?php echo $rw['razon_social'] ?> </h2>  
 				        <p><?php echo $desc1 ?> </p>

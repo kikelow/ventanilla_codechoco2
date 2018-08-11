@@ -63,7 +63,7 @@ if(!isset($_SESSION["vev_verificador"])){
               </ul>
             </div>
           </li>
-          <li class="bold"><a class="collapsible-header  waves-effect waves-green men ">Hoja de verificacón 1</a>
+          <li class="bold"><a class="collapsible-header  waves-effect waves-green men ">Hoja de verificación 1</a>
             <div class="collapsible-body">
               <ul>
                 <li class="s"><a href="index2.php?modulo=evaluacion/hoja_verificacion_1">Nuevo</a></li>
@@ -71,7 +71,7 @@ if(!isset($_SESSION["vev_verificador"])){
               </ul>
             </div>
           </li>
-          <li class="bold"><a class="collapsible-header  waves-effect waves-green men ">Hoja de verificacón 2</a>
+          <li class="bold"><a class="collapsible-header  waves-effect waves-green men ">Hoja de verificación 2</a>
             <div class="collapsible-body">
               <ul>
                 <li class="s"><a href="index2.php?modulo=evaluacion/hoja_verificacion_2">Nuevo</a></li>

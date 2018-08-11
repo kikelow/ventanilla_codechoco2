@@ -25,45 +25,64 @@
 
 <div class="parallax-container">
 <div class="section white" style="background-color: #f5f5f5">
-    <div class="row container" >
+   
+    <div class="row container">
+     
+      <h5 style='text-align: center;color: #00853b;font-weight: bold;'><span>Nuestros Servicios<hr class='hr_title'></span></h5>
+    <div class="row servicios">
+        
+        <div class="">
+            <div class="">
+              <h2 class="" style="text-align: center;"> <i class="material-icons icons_grandes">record_voice_over</i></h2>
+               <h5 class="" style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">Asesorias</h5>
+               <p class="" style="text-align: center;">En creación, fortalecimiento y desarrollo de empresas de negocios verdes.</p>
+               
+            </div>  
+        </div>
+         <div class="">
+            <div class="">
+              <h2 class="" style="text-align: center;"> <i class="material-icons icons_grandes">group_add</i></h2>
+               <h5 class="" style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">Apoyo</h5>
+               <p class="" style="text-align: center;">En trámites ambientales y demás relacionados con los negocios verdes.</p>
+               
+            </div>  
+        </div>
+         <div class="">
+            <div class="">
+              <h2 class="" style="text-align: center;"> <i class="material-icons icons_grandes">supervisor_account</i></h2>
+               <h5 class="" style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">Capacitaciones</h5>
+               <p class="" style="text-align: center;">En desarrollo de competencias empresariales y humanas.</p>
+               
+            </div>  
+        </div>
+        <div class="">
+            <div class="">
+              <h2 class="" style="text-align: center;"> <i class="material-icons icons_grandes">wifi_tethering</i></h2>
+               <h5 class="" style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">Promoción</h5>
+               <p class="" style="text-align: center;">Comercial de las empresas y sus productos en platarformas y ferias locales, nacionales e internacionales.</p>
+               
+            </div>  
+        </div>
+        <div class="">
+            <div class="">
+              <h2 class="" style="text-align: center;"> <i class="material-icons icons_grandes">description</i></h2>
+               <h5 class="" style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">Otorgar</h5>
+               <p class="" style="text-align: center;">Certificaciones del cumplimiento de los criterios de negocios verdes.</p>
+               
+            </div>  
+        </div>
+       
+        <div class="">
+            <div class="">
+              <h2 class="" style="text-align: center;"> <i class="material-icons icons_grandes">done_all</i></h2>
+               <h5 class="" style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">Valoración</h5>
+               <p class="" style="text-align: center;">Del cumplimiento de los criterios e indicadores de los negocios verdes.</p>
+               
+            </div>  
+        </div>
 
- <!--    <div class="row" >
-
-        <div class="col s12 m3 l3">
-            <div class="animatedParent">
-              <h2 class="animated growIn" style="text-align: center;"> <i class="material-icons icons_grandes">account_balance</i></h2>
-               <h5 class="animated growIn" style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">servicio 1</h5>
-               <p class="animated growIn" style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio</p>
-               <p class="animated growIn" style="text-align: center;"><a class=" waves-effect waves-light btn  hoverable btn-flat  white-text" style="background-color: #00853bed;border-radius: 20px;" href="#">Más información </a></p>
-            </div>  
-        </div>
-         <div class="col s12 m3 l3">
-            <div class="animatedParent">
-              <h2 class="animated growIn" style="text-align: center;"> <i class="material-icons icons_grandes">shopping_basket</i></h2>
-               <h5 class="animated growIn" style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">servicio 2</h5>
-               <p class="animated growIn" style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio</p>
-               <p class="animated growIn" style="text-align: center;"><a class=" waves-effect waves-light btn  hoverable btn-flat  white-text hoverable" style="background-color: #00853bed;border-radius: 20px;" href="#">Más información </a></p>
-            </div>  
-        </div>
-         <div class="col s12 m3 l3">
-            <div class="animatedParent">
-              <h2 class="animated growIn" style="text-align: center;"> <i class="material-icons icons_grandes">supervisor_account</i></h2>
-               <h5 class="animated growIn" style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">servicio 3</h5>
-               <p class="animated growIn" style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio</p>
-               <p class="animated growIn" style="text-align: center;"><a class=" waves-effect waves-light btn  hoverable btn-flat  white-text" style="background-color: #00853bed;border-radius: 20px;" href="#">Más información </a></p>
-            </div>  
-        </div>
-        <div class="col s12 m3 l3">
-            <div class="animatedParent">
-              <h2 class="animated growIn" style="text-align: center;"> <i class="material-icons icons_grandes">forum</i></h2>
-               <h5 class="animated growIn" style="text-align: center;color: #00853b;font-weight: bold;" class="flow-text">servicio 4</h5>
-               <p class="animated growIn" style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio</p>
-               <p class="animated growIn" style="text-align: center;"><a class=" waves-effect waves-light btn  hoverable btn-flat  white-text" style="background-color: #00853bed;border-radius: 20px;" href="#">Más información </a></p>
-            </div>  
-        </div>
-
-    </div> -->
-     <div class="row">
+    </div>
+   <!--   <div class="row">
    <div class="col s12 m4 l4">
     <div >
       <img class="responsive-img" src="img/img_m.png" alt="" width="400" height="400">
@@ -76,7 +95,7 @@
         </h1>
       </p>
    </div>
- </div>
+ </div> -->
 
     </div>
   </div>
@@ -92,9 +111,7 @@
             <div class="row animatedParent">
               <div class="col s12 animated fadeInDown"><H5><p class="center" style="color: white;font-family: 'Sniglet', cursive;font-weight: bold">¿TIENES UN EMPRENDIMIENTO A BASE DE RECURSOS NATURALES?</p></H5></div>
           </div>
-           <div class="row animatedParent">
-              <div class="col s12 animated fadeInDown"><H2 style="margin-top: 0px;margin-bottom: 0px;margin-top: 0px;padding: 0px;"><p class="center" style="font-family: 'Sniglet', cursive;color:orange;font-weight: bold;margin-top: 0px;margin-bottom: 0px;margin-top: 0px;padding: 0px;">AUMENTA TU LA PRODUCTIVIDAD DE TU NEGOCIO</p></H2></div>
-          </div>
+        
           <div class="row animatedParent">
               <div class="col s12 animated fadeInDown"><H3 style="margin-bottom: 0px;margin-top: 0px;padding: 0px;"><p class="center" style="color: white;margin-bottom: 0px;margin-top: 0px;padding: 0px;font-family: 'Sniglet', cursive"> REGISTRATE EN LA VENTANILLA DE EMPRENDIMIENTOS VERDES</p></H3></div>
           </div>
@@ -120,12 +137,13 @@
 
 <div class="section" style="background-color:#c7ebd4;">
   <div class="row container ">
+    <h5 style='text-align: center;color: #00853b;font-weight: bold;'><span>Noticias<hr class='hr_title'></span></h5>
   <div class="row noticias" style="margin-top: 80px;">
     <!-- <span class="black-text">  -->
 
         
         <?php 
-            $s = "SELECT titulo,descripcion,fuente_autor from noticia";
+            $s = "SELECT id,titulo,descripcion,fuente_autor from noticia";
 
             $res = mysqli_query($conn,$s) or die(mysqli_error($conn));
 
@@ -139,7 +157,8 @@ $descripcion_c = substr($rw['descripcion'], 0, 270);
 <div class='col s12 m4 l4'>
 <div class='w3-card-4'>        
 <header class='w3-container ' style='background-color:  #00853b'>
-<h4 class='white-text'>$titulo_c...</h4>
+<h4 class='white-text'> <a href='emprendimiento/noticias/vermas/index.php?id=$rw[id]'>$titulo_c...</a></h4>
+
 </header>
 
 <div class='w3-container' style='background-color:  #fff;min-height:210px;max-height:210px;'>
@@ -147,7 +166,7 @@ $descripcion_c = substr($rw['descripcion'], 0, 270);
 </div>
 
 <footer class='w3-container' style='background-color:  #00853b'>
-<h5 class='white-text'>$rw[fuente_autor]</h5>
+<h5 class='white-text'>Autor: $rw[fuente_autor]</h5>
 </footer></div>
     </div>";
               }
@@ -170,86 +189,7 @@ $descripcion_c = substr($rw['descripcion'], 0, 270);
         ?>
         
 
-<!--      <div class="col s12 m4 l4">
-        <div class="w3-card-4">
-            <header class="w3-container " style="background-color:  #00853b">
-              <h1 class="white-text">Titulo noticia</h1>
-            </header>
 
-        <div class="w3-container" style="background-color:  #fff">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-
-        <footer class="w3-container " style="background-color:  #00853b">
-          <h5 class="white-text">Fuente o responsbale de la noticia</h5>
-        </footer>
-        </div>
-    </div> -->
-
-    <!--  <div class="col s12 m4 l4">
-        <div class="w3-card-4">
-            <header class="w3-container " style="background-color:  #00853b">
-              <h1 class="white-text">Titulo noticia</h1>
-            </header>
-
-        <div class="w3-container" style="background-color:  #fff;">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-
-        <footer class="w3-container " style="background-color:  #00853b">
-          <h5 class="white-text">Fuente o responsbale de la noticia</h5>
-        </footer>
-        </div>
-    </div> -->
-
-    <!--  <div class="col s12 m4 l4">
-        <div class="w3-card-4">
-            <header class="w3-container " style="background-color:  #00853b">
-              <h1 class="white-text">Titulo noticia</h1>
-            </header>
-
-        <div class="w3-container" style="background-color:  #fff">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-
-        <footer class="w3-container " style="background-color:  #00853b">
-          <h5 class="white-text">Fuente o responsbale de la noticia</h5>
-        </footer>
-        </div>
-    </div> -->
-
-  <!--    <div class="col s12 m4 l4">
-        <div class="w3-card-4">
-            <header class="w3-container " style="background-color:  #00853b">
-              <h1 class="white-text">Titulo noticia</h1>
-            </header>
-
-        <div class="w3-container" style="background-color:  #fff">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-
-        <footer class="w3-container " style="background-color:  #00853b">
-          <h5 class="white-text">Fuente o responsbale de la noticia</h5>
-        </footer>
-        </div>
-    </div> -->
-
-    <!--  <div class="col s12 m4 l4">
-        <div class="w3-card-4">
-            <header class="w3-container " style="background-color:  #00853b">
-              <h1 class="white-text">Titulo noticia</h1>
-            </header>
-
-        <div class="w3-container" style="background-color:  #fff">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-
-        <footer class="w3-container " style="background-color:  #00853b">
-          <h5 class="white-text">Fuente o responsbale de la noticia</h5>
-        </footer>
-        </div>
-    </div> -->
- <!-- </span> -->
 </div>    
 </div>
 </div>
@@ -361,7 +301,12 @@ $descripcion_c = substr($rw['descripcion'], 0, 270);
  <div class="col s12 m4 l4">
             <div class="card sticky-action">
               <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="evaluacion/formato_inscripcion/imagenes/<?php echo$rw['imagen']?>">
+                
+                <?php   if ($rw['imagen'] == "") { ?> 
+                <img class="activator" src="img/img_nd.png" alt="">
+                <?php } else { ?> 
+                <img class="activator" src="evaluacion/formato_inscripcion/imagenes/<?php echo $rw['imagen'] ?> " alt="">
+                <?php } ?>  
               </div>
               <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4"> <?php echo$rw['razon_social']?><i class="material-icons right">more_vert</i></span>
@@ -410,7 +355,7 @@ echo " <div class='row' style='margin-top: 200px;'>
 
 
   <div class="row">
-    <div class="responsive " id="slider">
+    <div class="responsive" id="slider">
 
           <?php 
             $s = "SELECT nombre,ruta from partner_page" ;
@@ -418,13 +363,10 @@ echo " <div class='row' style='margin-top: 200px;'>
 
                if(mysqli_num_rows($res)>0){
                   while($rw=mysqli_fetch_array($res)){
-                      echo "<div style='margin-left: 5px;margin-right: 5px;'><img src='content_admin/content_save/img_content/$rw[ruta]' alt='$rw[nombre]' height=' ></div>'";
-                  
+                      echo "<div style='margin-left: 5px;margin-right: 5px;'><img src='content_admin/content_save/img_content/$rw[ruta]' alt='$rw[nombre]' height=''> </div>";             
                 }
 
               }else{
-
-
                          echo " 
 
                       <div class='col s12 m4 l4'>
@@ -452,7 +394,7 @@ echo " <div class='row' style='margin-top: 200px;'>
       <div class="col s12 m4 l4">
         <h4 style="text-transform: uppercase;font-weight: bold;color: #00853b;">Facebook</h4>
         <div class="divider" style="background-color:#00853b59;margin-bottom: 10px;"></div>
-
+            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FCodechoco-Prensa-1318923414813039%2F&tabs=timeline&width=340&height=450&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="100%" height="450" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
       </div>
       <div class="col s12 m4 l4" >
         <div style="">

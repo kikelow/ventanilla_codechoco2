@@ -7,10 +7,10 @@ $(document).ready(function() {
 		//Validación de datos antes de ser enviados por ajax
 		//alert(usuario);
 		if (usuario.val()==""){
-			 Materialize.toast('Diligenciar capo usuario !!', 3000);
+			 Materialize.toast('Diligenciar campo usuario !!', 3000);
 
 		}else if(contrasena.val()==""){
-			 Materialize.toast('Diligenciar capo contraseña !!', 3000);
+			 Materialize.toast('Diligenciar campo contraseña !!', 3000);
 		}else{
 			//JSON con los datos a enviar por ajax
 			var datos = {

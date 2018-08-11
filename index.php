@@ -99,14 +99,23 @@ lock_open</i>Iniciar Sesión</a></li>
 <footer class="page-footer" style="background-color: #00853bed;">
 <div class="container">
   <div class="row">
-    <div class="col l6 s12">
+    <div class="col l8 s12">
       <h5 class="white-text"><i class="fa fa-globe" aria-hidden="true"></i> Información de Contacto</h5>
       <p class="grey-text text-lighten-4">
-          <i class="fa fa-map-marker"></i> Quibdó - Chocó <br>
-          <i class="fa fa-building" aria-hidden="true"></i> Cra. 1 N° 22 - 96
+          <i class="fa fa-map-marker"></i>Corporación Autónoma Regional para el Desarrollo Sostenible del Chocó-Codechocó<br>
+          <i class="fa fa-map-marker"></i>
+          Subdirección de Planeación - Oficina Ventanilla de Emprendimientos Verdes<br> 
+          Coordinación general de la Ventanilla: <br>
+          <b>YOVANNY RODRÍGUEZ CÓRDOBA</b> <br>
+          Correo: yrodriguez@codechoco.gov.co <br> <br>
+
           
-          <br><i class="fa fa-envelope-o"></i> Correos:<br>
-          contacto@codechoco.gov.co
+          <i class="fa fa-map-marker"></i> Quibdó - Chocó <br>
+          <i class="fa fa-building" aria-hidden="true"></i> Cra 4 No. 22-96. Quibdó – Chocó – Colombia
+          
+          <br> <i class="fa fa-envelope-o"></i> Correos:
+          negociosverdes@codechoco.gov.co <br>
+          
       </p>
     </div>
     <!-- <div class="col l4 offset-l2 s12">
