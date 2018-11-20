@@ -365,7 +365,7 @@ else {
                     <div class="input-field col s12 m3 l3">
                       <select id="tipo_personeria" name="tipo_personeria">
                         <?php 
-                        $s="select id,nombre from etapa_empresa order by id ";
+                        $s="select id,nombre from tipo_personeria order by id ";
                         $r= mysqli_query($conn,$s) or die("Error");
                         if(mysqli_num_rows($r)>0){
                           while($rw=mysqli_fetch_assoc($r)){
@@ -582,7 +582,7 @@ else {
                     <select id="tipo_bien" name="tipo_bien">
                       <!-- <option disabled selected>Seleccione...</option> -->
                       <?php 
-                      $s="select id,nombre from si_no order by id";
+                      $s="select id,nombre from bien_serv_op order by id";
                       $r= mysqli_query($conn,$s) or die("Error");
                       if(mysqli_num_rows($r)>0){
                         while($rw=mysqli_fetch_assoc($r)){
@@ -665,7 +665,7 @@ else {
                   <label for='direccion_actividad'>Dirección</label>
                   </div> 
 
-                  <div class='input-field col s12 m3 l3'  >
+                  <div class='input-field col s12 m3 l3' >
                   <select id=' name='actividad_empresa_si_no[]'>
                   <option disabled selected>Seleccione...</option>";
 
@@ -678,7 +678,7 @@ else {
                   }
 
                   echo" </select>
-                  <label>Municipio</label>
+                  <label>Departamento</label>
                   </div> 
 
                   <div class='input-field col s12 m3 l3'  >
@@ -694,13 +694,12 @@ else {
                   }
 
                   echo "</select>
-                  <label>Departamento</label>
+                  <label>Municipio</label>
                   </div> 
                   <div class='input-field col s12 m3 l3'  >
-                  <select id='' name='actividad_empresa_si_no[]'>
-                  <option disabled selected>Seleccione...</option>";
+                  <select id='' name='actividad_empresa_si_no[]'>";
 
-                  $s5="select id,nombre from municipio order by id";
+                  $s5="select id,nombre from tcip_op order by id";
                   $r5= mysqli_query($conn,$s5) or die("Error");
                   if(mysqli_num_rows($r5)>0){
                     while($rw5=mysqli_fetch_assoc($r5)){
