@@ -69,6 +69,9 @@
 	 ->setCreator('Ventanilla de emprendimientos verdes')
 	 ->setDescription('Solo Para Los MADS'); //algunas propiedades para el archivo excel
 
+
+	
+
 	 $objPHPExcel->setActiveSheetIndex(0);//Desdde que hoja vamos a inicair a trabajar
 	 $objPHPExcel->getActiveSheet()->setTitle('SOLO MADS'); // el nombre de la hoja
 	 $objPHPExcel->getActiveSheet()->getStyle('CX3:DO3')->applyFromArray($estiloTituloColumnas);

@@ -43,42 +43,61 @@ $('#femenino_3, #masculino_3').keyup(function(event) {
 	$('#total_3').val(total_3)
 });
 //llenar combo dpartamento
-$('#region').change(function(event) {
-	var region = $('#region').val()
+$('#departamento').change(function(event) {
+	var departamento = $('#departamento').val()
 	var id = ""
 	var nombre = ""
 	$.ajax({
-		url: 'emprendimiento/registro/combo_departamento.php',
-		type: 'POST',
-		 // dataType: "json",
-		data: {region: region},
-	})
-	.done(function(respuesta) {
-		 
-        $('#departamento').html('<option disabled selected>Seleccione...</option>')  
-        $('#departamento').append(respuesta)
-		$('#departamento').material_select();
-
-	})
-		$('#municipio').html('<option disabled selected>Seleccione...</option>')
-		$('#municipio').material_select();
-});
-
-//llenar combo municipio
-$('#departamento').change(function(event) {
-	var departamento = $('#departamento').val()
-	// console.log(departamento)
-	$.ajax({
 		url: 'emprendimiento/registro/combo_municipio.php',
 		type: 'POST',
+		 // dataType: "json",
 		data: {departamento: departamento},
 	})
 	.done(function(respuesta) {
-		$('#municipio').html('<option disabled selected>Seleccione...</option>')
+		 
+        $('#municipio').html('<option disabled selected>Seleccione...</option>')  
         $('#municipio').append(respuesta)
 		$('#municipio').material_select();
+
 	})
+
+
+
+	$.ajax({
+		url: 'emprendimiento/registro/combo_region.php',
+		type: 'POST',
+		 // dataType: "json",
+		data: {departamento: departamento},
+	})
+	.done(function(respuesta) {
+		 
+		var aut = $.parseJSON(respuesta);
+		
+		$('#region').html('<option value='+aut['id']+'>'+aut['nombre']+'</option>')  
+		$('#region').material_select();
+		$('#autoridad_ambiental').val(aut['autoridad'])
+		$('#autoridad_ambiental').focus();
+
+	})
+		// $('#municipio').html('<option disabled selected>Seleccione...</option>')
+		// $('#municipio').material_select();
 });
+
+//llenar combo municipio
+// $('#departamento').change(function(event) {
+// 	var departamento = $('#departamento').val()
+// 	// console.log(departamento)
+// 	$.ajax({
+// 		url: 'emprendimiento/registro/combo_municipio.php',
+// 		type: 'POST',
+// 		data: {departamento: departamento},
+// 	})
+// 	.done(function(respuesta) {
+// 		$('#municipio').html('<option disabled selected>Seleccione...</option>')
+//         $('#municipio').append(respuesta)
+// 		$('#municipio').material_select();
+// 	})
+// });
 //llenar combo sector
 $('#categoria').change(function(event) {
 	var categoria = $('#categoria').val()
@@ -720,4 +739,59 @@ else {
 	})
 }
 	
+});
+
+	$('#ano_view').hide()
+$('#cmb_verificacion').change(function(event) {
+
+	if ($('#cmb_verificacion').val() == 1) {
+		$('#ano_view').show()
+	}else{
+		$('#ano_view').hide()
+	}
+});
+
+$('#nombre_consejo').attr('readonly','readonly');
+$('#consejo_com').change(function(event) {
+	if ($('#consejo_com').val() == 2) {
+		$('#nombre_consejo').attr('readonly','readonly');
+	}else{
+		$('#nombre_consejo').removeAttr('readonly')
+	}
+});
+
+$('#nombre_junta').attr('readonly', 'readonly');
+$('#junta').change(function(event) {
+	if ($('#junta').val() == 2) {
+		$('#nombre_junta').attr('readonly', 'readonly');
+	}else{
+		$('#nombre_junta').removeAttr('readonly')
+	}
+});
+
+$('#nombre_cabildo').attr('readonly', 'readonly');
+$('#cabildo').change(function(event) {
+	if ($('#cabildo').val() == 2) {
+		$('#nombre_cabildo').attr('readonly', 'readonly');
+	}else{
+		$('#nombre_cabildo').removeAttr('readonly')
+	}
+});
+
+$('#nombre_territorio').attr('readonly', 'readonly');
+$('#tcpi').change(function(event) {
+	if ($('#tcpi').val() == 2) {
+		$('#nombre_territorio').attr('readonly', 'readonly');
+	}else{
+		$('#nombre_territorio').removeAttr('readonly')
+	}
+});
+
+$('#nombre_etnico').attr('readonly', 'readonly');
+$('#grupo_etnico').change(function(event) {
+	if ($('#grupo_etnico').val() == 2) {
+		$('#nombre_etnico').attr('readonly', 'readonly');
+	}else{
+		$('#nombre_etnico').removeAttr('readonly')
+	}
 });

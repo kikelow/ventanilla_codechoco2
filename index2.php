@@ -184,7 +184,10 @@ if(!isset($_SESSION["vev_verificador"])){
    $('.carousel.carousel-slider').carousel('next');
    $(".button-collapse").sideNav();
    $('select').material_select();
-
+   $('.datepicker').pickadate({
+    selectMonths: false,
+    selectYears: 15,
+   })
    $( document ).ready(function() {
 //   $( document ).ready(function() {
   $("").on("click", function(){
