@@ -73,7 +73,7 @@ $i = 0;
                       </select>
                     </div>  
                     <div class="col s12 m12 l3">
-                     <button class="waves-effect green darken-2 btn" style="margin-top: 8px" id="plan"><i class="material-icons right"></i>Generar Excel</button>
+                     <button class="waves-effect green darken-2 btn plan" style="margin-top: 8px" id=""><i class="material-icons right"></i>Generar Excel</button>
                    </div>      
                  </div>
 
@@ -99,7 +99,7 @@ $i = 0;
                       <h6>NOTA:  Este documento contiene el resumen de los emprendimientos a los cuales se le han aplicado todas las fases de evaluación</h6>
                     </div>  
                     <div class="col s12 m12 l3">
-                     <a class="waves-effect green darken-2 btn"  href="evaluacion/reporte/reporte_general.php"  style="margin-top: 20px" target="_blank"><i class="material-icons right"></i>Generar Excel</a>
+                     <a class="waves-effect green darken-2 btn"  href="evaluacion/reporte/reporte_general.php"  style="margin-top: 20px" id="" target="_blank"><i class="material-icons right"></i>Generar Excel</a>
                    </div>      
                  </div>
 

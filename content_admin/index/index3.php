@@ -300,10 +300,6 @@
 
 			  <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 		    </li>
-		    <li>
-		      <div class="collapsible-header"><i class="material-icons">chrome_reader_mode</i>Mercados Evaluados</div>
-		      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-		    </li>
 	  	</ul>
         
 	</div>

@@ -17,7 +17,7 @@ $('#reporte1').click(function(event) {
 
 //------------------------- Reporte 2 Plan de mejora --------------------------------
 
-$('#plan').click(function(event) {
+$('.plan').click(function(event) {
 	event.preventDefault();
 	var empresa_plan = $('#empresa_plan').val()
 	if (!empresa_plan) {
