@@ -58,7 +58,7 @@ else {
 
                             <div id="ano_view">
                               <div class="input-field col s12 m3 l3" style="margin-top: 30px" >
-                                <select id="" name="año_veri[]">
+                                <select id="año_veri1" name="año_veri[]">
                                   <option disabled selected>Seleccione...</option>
                                   <?php
 
@@ -74,7 +74,7 @@ else {
                               </div>
 
                               <div class="input-field col s12 m3 l3" style="margin-top: 30px" >
-                                <select id="" name="año_veri[]">
+                                <select id="año_veri2" name="año_veri[]">
                                   <option disabled selected>Seleccione...</option>
                                   <?php
 
@@ -90,7 +90,7 @@ else {
                               </div>
 
                               <div class="input-field col s12 m3 l3" style="margin-top: 30px" id="">
-                                <select id="" name="año_veri[]">
+                                <select id="año_veri3" name="año_veri[]">
                                   <option disabled selected>Seleccione...</option>
                                   <?php
 
@@ -268,7 +268,7 @@ else {
                       </div>
 
                       <div class="input-field col s12 m4 l4">
-                        <input id="Latitud" name="Latitud" type="text" class="validate">
+                        <input id="latitud" name="latitud" type="text" class="validate">
                         <label for="Latitud">Latitud</label>
                       </div>
 
@@ -422,7 +422,7 @@ else {
                         }
                         ?>
                       </select>
-                      <label>Consejo comunitario</label>
+                      <label>Junta de Acción comunal</label>
                     </div>
 
                     <div class="input-field col s12 m3 l3 ">
@@ -438,7 +438,7 @@ else {
                       <select id="grupo_etnico" name="grupo_etnico">
                         <option>Seleccione...</option>
                         <?php 
-                        $s="select id,nombre from si_no order by id ";
+                        $s="select id,nombre from grupo_etnico_op order by id ";
                         $r= mysqli_query($conn,$s) or die("Error");
                         if(mysqli_num_rows($r)>0){
                           while($rw=mysqli_fetch_assoc($r)){
@@ -484,7 +484,7 @@ else {
                       <select id="tcpi" name="tcpi">
                         <option>Seleccione...</option>
                         <?php 
-                        $s="select id,nombre from si_no order by id ";
+                        $s="select id,nombre from tcip_op order by id ";
                         $r= mysqli_query($conn,$s) or die("Error");
                         if(mysqli_num_rows($r)>0){
                           while($rw=mysqli_fetch_assoc($r)){
@@ -510,15 +510,7 @@ else {
             <li>
 
 
-
-
-
-
-
-
-
-
-              <div class="collapsible-header" style="font-weight: bold;"><i class="material-icons"></i>2. Descripción del Negocio Verde</div>
+              <div class="collapsible-header" style="font-weight: bold;"><i class="material-icons"></i>3. Descripción del Negocio Verde</div>
               <div class="collapsible-body"><span>
 
                 <div class="row" style="text-align: center;background-color: #bdbdbd; margin-bottom: 0px">3. Descripción del Negocio Verde</div>
@@ -666,10 +658,10 @@ else {
                   </div> 
 
                   <div class='input-field col s12 m3 l3' >
-                  <select id=' name='actividad_empresa_si_no[]'>
+                  <select id='departamento_actividad' name='departamento_actividad[]'>
                   <option disabled selected>Seleccione...</option>";
 
-                  $s2="select id,nombre from municipio order by id";
+                  $s2="select id,nombre from departamento order by id";
                   $r2= mysqli_query($conn,$s2) or die("Error");
                   if(mysqli_num_rows($r2)>0){
                     while($rw2=mysqli_fetch_assoc($r2)){
@@ -682,7 +674,7 @@ else {
                   </div> 
 
                   <div class='input-field col s12 m3 l3'  >
-                  <select id='' name='actividad_empresa_si_no[]'>
+                  <select id='municipio_actividad' name='municipio_actividad[]'>
                   <option disabled selected>Seleccione...</option>";
 
                   $s4="select id,nombre from municipio order by id";
@@ -697,9 +689,9 @@ else {
                   <label>Municipio</label>
                   </div> 
                   <div class='input-field col s12 m3 l3'  >
-                  <select id='' name='actividad_empresa_si_no[]'>";
-
-                  $s5="select id,nombre from tcip_op order by id";
+                  <select id='tipo_tenencia_actividad' name='tipo_tenencia_actividad[]'>
+                  <option disabled selected>Seleccione...</option>";
+                  $s5="select id,nombre from tipo_tenencia order by id";
                   $r5= mysqli_query($conn,$s5) or die("Error");
                   if(mysqli_num_rows($r5)>0){
                     while($rw5=mysqli_fetch_assoc($r5)){
@@ -712,12 +704,12 @@ else {
                   </div> 
 
                   <div class='input-field col s12 m3 l3'>
-                  <input id='direccion_actividad' name='direccion_actividad[]' type='text' class='validate' >
-                  <label for='direccion_actividad'>Area del predio (m2)</label>
+                  <input id='area_predio_actividad' name='area_predio_actividad[]' type='text' class='validate' >
+                  <label for='area_predio_actividad'>Area del predio (m2)</label>
                   </div> 
 
                   <div class='input-field col s12 m3 l3'  >
-                  <select id='' name='actividad_empresa_si_no[]'>
+                  <select id='cumple_pot_actividad' name='cumple_pot_actividad[]'>
                   <option disabled selected>Seleccione...</option>";
 
                   $s6="select id,nombre from si_no order by id";
@@ -733,8 +725,8 @@ else {
                   </div> 
 
                   <div class='input-field col s12 m3 l3'>
-                  <input id='direccion_actividad' name='direccion_actividad[]' type='text' class='validate' >
-                  <label for='direccion_actividad'>Observación</label>
+                  <input id='observacion_actividad' name='observacion_actividad[]' type='text' class='validate' >
+                  <label for='observacion_actividad'>Observación</label>
                   </div>
 
                   </div>
@@ -809,7 +801,7 @@ else {
                     <label for="cargo_entrevistado">Cargo</label>
                   </div>
                   <div class="input-field col s12 m3 l3" >
-                    <select id="" name="">
+                    <select id="cmb_carta" name="cmb_carta">
                       
                       <?php 
                       $s="select id,nombre from si_no order by id";
