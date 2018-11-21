@@ -40,11 +40,11 @@ else {
                           <div class="row" style="text-align: center;background-color: #bdbdbd;">1. Información General</div>
                           <div class="row">
 
-                            <div class="input-field col s12 m3 l3" style="margin-top: 30px" >
+                            <div id="div_verificacion" class="input-field col s12 m3 l3" style="margin-top: 30px" >
                               <select id="cmb_verificacion" name="cmb_verificacion">
                                 <option disabled selected>Seleccione...</option>
                                 <?php 
-                                $s="select id,nombre from si_no order by id";
+                                $s="SELECT id,nombre from si_no where id != 4 order by id asc";
                                 $r= mysqli_query($conn,$s) or die("Error");
                                 if(mysqli_num_rows($r)>0){
                                   while($rw=mysqli_fetch_assoc($r)){
@@ -58,8 +58,9 @@ else {
 
                             <div id="ano_view">
                               <div class="input-field col s12 m3 l3" style="margin-top: 30px" >
-                                <select id="" name="año_veri[]">
-                                  <option disabled selected>Seleccione...</option>
+                                <select id="año_veri1" name="año_veri[]">
+                                  
+                                  <option > </option>
                                   <?php
 
                                   for ($i=1995; $i <= 2030; $i++) { 
@@ -74,8 +75,9 @@ else {
                               </div>
 
                               <div class="input-field col s12 m3 l3" style="margin-top: 30px" >
-                                <select id="" name="año_veri[]">
-                                  <option disabled selected>Seleccione...</option>
+                                <select id="año_veri2" name="año_veri[]">
+                                  
+                                  <option> </option>
                                   <?php
 
                                   for ($i=1995; $i <= 2030; $i++) { 
@@ -90,8 +92,9 @@ else {
                               </div>
 
                               <div class="input-field col s12 m3 l3" style="margin-top: 30px" id="">
-                                <select id="" name="año_veri[]">
-                                  <option disabled selected>Seleccione...</option>
+                                <select id="año_veri3" name="año_veri[]">
+                                  
+                                  <option> </option>
                                   <?php
 
                                   for ($i=1995; $i <= 2030; $i++) { 
@@ -106,11 +109,12 @@ else {
                               </div> 
                             </div>
                           </div>
-
+                          <div class='divider teal darken-4' style='margin-bottom:10px'></div>
                           <div class="row">
 
-                            <div class="input-field col s12 m3 l3" id="depto_valida">
+                            <div id="depto_valida" class="input-field col s12 m3 l3" id="depto_valida">
                               <select id="departamento" name="departamento" class="dep">
+                                <option disabled selected>Seleccione...</option>
                                <?php 
 
                                $s="select id,nombre from departamento";
@@ -157,7 +161,8 @@ else {
                       <span>
                         <div class="row" style="text-align: center;background-color: #bdbdbd;">2. Datos del negocio</div>
 
-                        <div class="row">  <div class="input-field col s12 m4 l4" id="person">
+                        <div class="row">
+                          <div class="input-field col s12 m4 l4" id="ti_person">
 
                           <select name="t_persona" id="t_persona" class="validate">
                             <option disabled selected>Seleccione...</option>
@@ -175,7 +180,7 @@ else {
 
                         </div>
 
-                        <div class="input-field col s12 m4 l4" id="identifica">
+                        <div class="input-field col s12 m4 l4" id="t_identifica">
                           <select name="t_identificacion" id="t_identificacion" class="validate">
                             <option disabled selected>Seleccione...</option>
                             <?php 
@@ -268,7 +273,7 @@ else {
                       </div>
 
                       <div class="input-field col s12 m4 l4">
-                        <input id="Latitud" name="Latitud" type="text" class="validate">
+                        <input id="latitud" name="latitud" type="text" class="validate">
                         <label for="Latitud">Latitud</label>
                       </div>
 
@@ -286,7 +291,7 @@ else {
 
                        <select id="organizacion" name="organizacion">
                         <?php 
-                        $s="select id,nombre from si_no order by id desc";
+                        $s="SELECT id,nombre from si_no where id != 4 order by id asc ";
                         $r= mysqli_query($conn,$s) or die("Error");
                         if(mysqli_num_rows($r)>0){
                           while($rw=mysqli_fetch_assoc($r)){
@@ -308,7 +313,7 @@ else {
                       <select id="famiempresa" name="famiempresa">
                         <!-- <option disabled selected>Seleccione...</option> -->
                         <?php 
-                        $s="select id,nombre from si_no order by id desc";
+                        $s="SELECT id,nombre from si_no where id != 4 order by id asc ";
                         $r= mysqli_query($conn,$s) or die("Error");
                         if(mysqli_num_rows($r)>0){
                           while($rw=mysqli_fetch_assoc($r)){
@@ -392,7 +397,7 @@ else {
                       <select id="consejo_com" name="consejo_com">
                         <option>Seleccione...</option>
                         <?php 
-                        $s="select id,nombre from si_no order by id ";
+                        $s="SELECT id,nombre from si_no where id != 4 order by id asc  ";
                         $r= mysqli_query($conn,$s) or die("Error");
                         if(mysqli_num_rows($r)>0){
                           while($rw=mysqli_fetch_assoc($r)){
@@ -413,7 +418,7 @@ else {
                       <select id="junta" name="junta">
                         <option>Seleccione...</option>
                         <?php 
-                        $s="select id,nombre from si_no order by id ";
+                        $s="SELECT id,nombre from si_no where id != 4 order by id asc  ";
                         $r= mysqli_query($conn,$s) or die("Error");
                         if(mysqli_num_rows($r)>0){
                           while($rw=mysqli_fetch_assoc($r)){
@@ -422,7 +427,7 @@ else {
                         }
                         ?>
                       </select>
-                      <label>Consejo comunitario</label>
+                      <label>Junta de Acción comunal</label>
                     </div>
 
                     <div class="input-field col s12 m3 l3 ">
@@ -438,7 +443,7 @@ else {
                       <select id="grupo_etnico" name="grupo_etnico">
                         <option>Seleccione...</option>
                         <?php 
-                        $s="select id,nombre from si_no order by id ";
+                        $s="select id,nombre from grupo_etnico_op order by id ";
                         $r= mysqli_query($conn,$s) or die("Error");
                         if(mysqli_num_rows($r)>0){
                           while($rw=mysqli_fetch_assoc($r)){
@@ -463,7 +468,7 @@ else {
                       <select id="cabildo" name="cabildo">
                         <option>Seleccione...</option>
                         <?php 
-                        $s="select id,nombre from si_no order by id ";
+                        $s="SELECT id,nombre from si_no where id != 4 order by id asc ";
                         $r= mysqli_query($conn,$s) or die("Error");
                         if(mysqli_num_rows($r)>0){
                           while($rw=mysqli_fetch_assoc($r)){
@@ -484,7 +489,7 @@ else {
                       <select id="tcpi" name="tcpi">
                         <option>Seleccione...</option>
                         <?php 
-                        $s="select id,nombre from si_no order by id ";
+                        $s="select id,nombre from tcip_op order by id ";
                         $r= mysqli_query($conn,$s) or die("Error");
                         if(mysqli_num_rows($r)>0){
                           while($rw=mysqli_fetch_assoc($r)){
@@ -510,15 +515,7 @@ else {
             <li>
 
 
-
-
-
-
-
-
-
-
-              <div class="collapsible-header" style="font-weight: bold;"><i class="material-icons"></i>2. Descripción del Negocio Verde</div>
+              <div class="collapsible-header" style="font-weight: bold;"><i class="material-icons"></i>3. Descripción del Negocio Verde</div>
               <div class="collapsible-body"><span>
 
                 <div class="row" style="text-align: center;background-color: #bdbdbd; margin-bottom: 0px">3. Descripción del Negocio Verde</div>
@@ -578,9 +575,9 @@ else {
                 <div class="row" style="text-align: justify;background-color: #e0e0e0; padding: 5px">1. Bienes y servicios. Escoja alguna de las opciones o ambas. Describa el bien o servicio lider, y los otros servicios y bienes</div>
 
                 <div class="row">
-                  <div class="input-field col s12 m6 l6">
+                  <div class="input-field col s12 m6 l6" id="tipo_b">
                     <select id="tipo_bien" name="tipo_bien">
-                      <!-- <option disabled selected>Seleccione...</option> -->
+                      <option disabled selected>Seleccione...</option>
                       <?php 
                       $s="select id,nombre from bien_serv_op order by id";
                       $r= mysqli_query($conn,$s) or die("Error");
@@ -598,7 +595,9 @@ else {
                     <input id="bien_lider" name="bien_lider" type="text" class="validate">
                     <label for="bien_lider">Bien o servicio lider</label>
                   </div>
-
+                  <div class="col s12 m12 l12">
+                     <div class="row" style="text-align: justify;background-color: #e0e0e0; padding: 5px">Enliste otros bienes y/o servicios, tenga en cuenta que deberán ser diferentes al bien y/o servicio lider.</div>
+                  </div>
                   <div class="input-field col s12 m12 l12" id="bien_servi"  >
                     <input id="b1" name="b1" type="text" class="validate" >
                     <label for="b1">Bien y/o servicio 1</label>
@@ -666,10 +665,10 @@ else {
                   </div> 
 
                   <div class='input-field col s12 m3 l3' >
-                  <select id=' name='actividad_empresa_si_no[]'>
+                  <select id='actividad_empresa_depto".$i."' name='departamento_actividad[]'>
                   <option disabled selected>Seleccione...</option>";
 
-                  $s2="select id,nombre from municipio order by id";
+                  $s2="select id,nombre from departamento order by id";
                   $r2= mysqli_query($conn,$s2) or die("Error");
                   if(mysqli_num_rows($r2)>0){
                     while($rw2=mysqli_fetch_assoc($r2)){
@@ -682,7 +681,7 @@ else {
                   </div> 
 
                   <div class='input-field col s12 m3 l3'  >
-                  <select id='' name='actividad_empresa_si_no[]'>
+                  <select id='actividad_empresa_municipio".$i."' name='municipio_actividad[]'>
                   <option disabled selected>Seleccione...</option>";
 
                   $s4="select id,nombre from municipio order by id";
@@ -697,9 +696,9 @@ else {
                   <label>Municipio</label>
                   </div> 
                   <div class='input-field col s12 m3 l3'  >
-                  <select id='' name='actividad_empresa_si_no[]'>";
-
-                  $s5="select id,nombre from tcip_op order by id";
+                  <select id='tipo_tenencia_actividad' name='tipo_tenencia_actividad[]'>
+                  <option disabled selected>Seleccione...</option>";
+                  $s5="select id,nombre from tipo_tenencia order by id";
                   $r5= mysqli_query($conn,$s5) or die("Error");
                   if(mysqli_num_rows($r5)>0){
                     while($rw5=mysqli_fetch_assoc($r5)){
@@ -712,15 +711,15 @@ else {
                   </div> 
 
                   <div class='input-field col s12 m3 l3'>
-                  <input id='direccion_actividad' name='direccion_actividad[]' type='text' class='validate' >
-                  <label for='direccion_actividad'>Area del predio (m2)</label>
+                  <input id='area_predio_actividad' name='area_predio_actividad[]' type='text' class='validate' >
+                  <label for='area_predio_actividad'>Area del predio (m2)</label>
                   </div> 
 
                   <div class='input-field col s12 m3 l3'  >
-                  <select id='' name='actividad_empresa_si_no[]'>
+                  <select id='cumple_pot_actividad' name='cumple_pot_actividad[]'>
                   <option disabled selected>Seleccione...</option>";
 
-                  $s6="select id,nombre from si_no order by id";
+                  $s6="SELECT id,nombre from si_no where id != 4 order by id asc";
                   $r6= mysqli_query($conn,$s6) or die("Error");
                   if(mysqli_num_rows($r6)>0){
                     while($rw6=mysqli_fetch_assoc($r6)){
@@ -733,8 +732,8 @@ else {
                   </div> 
 
                   <div class='input-field col s12 m3 l3'>
-                  <input id='direccion_actividad' name='direccion_actividad[]' type='text' class='validate' >
-                  <label for='direccion_actividad'>Observación</label>
+                  <input id='observacion_actividad' name='observacion_actividad[]' type='text' class='validate' >
+                  <label for='observacion_actividad'>Observación</label>
                   </div>
 
                   </div>
@@ -809,10 +808,10 @@ else {
                     <label for="cargo_entrevistado">Cargo</label>
                   </div>
                   <div class="input-field col s12 m3 l3" >
-                    <select id="" name="">
+                    <select id="cmb_carta" name="cmb_carta">
                       
                       <?php 
-                      $s="select id,nombre from si_no order by id";
+                      $s="SELECT id,nombre from si_no where id != 4 order by id asc ";
                       $r= mysqli_query($conn,$s) or die("Error");
                       if(mysqli_num_rows($r)>0){
                         while($rw=mysqli_fetch_assoc($r)){
