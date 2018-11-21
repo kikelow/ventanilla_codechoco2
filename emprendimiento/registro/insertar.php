@@ -14,11 +14,11 @@ include "../../conexion.php";
 	}
 	//sacar la fecha
 		date_default_timezone_set('America/Bogota');
-		$fecha_registro = date("Y-m-d H:i:s");
+		$fecha_registro = date("Y-m-d");
 
 
 // Inserto los datos del empresario
-	 $s="INSERT INTO `empresario`('empresa_id',`identificacion`, `nombre`, `cargo`,carta_si_no) VALUES (null,'$_POST[identificacion_entrevistado]','$_POST[entrevistado]','$_POST[cargo_entrevistado]','$_POST[cmb_carta]')";
+	 $s="INSERT INTO `empresario`(`identificacion`, `nombre`, `cargo`,carta_si_no) VALUES ('$_POST[identificacion_entrevistado]','$_POST[entrevistado]','$_POST[cargo_entrevistado]','$_POST[cmb_carta]')";
 	mysqli_query($conn,$s);
 
 //selecciono el id del ultimo empresario insertado
@@ -30,7 +30,7 @@ include "../../conexion.php";
 	}
 
 //inserto los datos de la empresa
-	$s="INSERT INTO `empresa`(`tipo_persona_id`, `tipo_identificacion_id`, `identificacion`, `razon_social`, `persona_id`, `empresario_id`, `municipio_id`, `vereda`, `aut_ambiental`, `latitud`, `longitud`, `altitud`, `fami_empresa_si_no`, `tamaño_empresa_id`, `fecha_registro`, `descripcion`, `num_socios`, `asociacion_si_no`, `subsector_id`, `etapa_empresa_id`, `año_funcionamiento`, `año_func_desp_reg_camara`, `obs_general`, `informacion_as`, `verificacion1`, `verificacion2`, `plan_mejora`,`puntaje`,'id_personeria','bien_serv_op','pagina_web') VALUES ('$_POST[t_persona]','$_POST[t_identificacion]','$_POST[identificacion]','$_POST[razon_social]','$persona_id','$empresario_id','$_POST[municipio]','$_POST[vereda]','$_POST[autoridad_ambiental]','$_POST[latitud]','$_POST[longitud]','$_POST[altitud]','$_POST[num_asociados]','$_POST[organizacion]','$_POST[subsector]','$_POST[etapa_empresa]','$_POST[ano_func]','$_POST[ano_func_des_camara]','$_POST[observacion_general]','no','no','no','no','','$_POST[tipo_personeria]','$_POST[tipo_bien]','$_POST[pw_rd]')";
+	$s="INSERT INTO `empresa`(`id`, `tipo_persona_id`, `tipo_identificacion_id`, `identificacion`, `razon_social`, `persona_id`, `empresario_id`, `municipio_id`, `vereda`, `aut_ambiental`, `latitud`, `longitud`, `altitud`, `fami_empresa_si_no`, `tamaño_empresa_id`,`fecha_registro`, `descripcion`, `num_socios`, `organizacion`, `subsector_id`, `etapa_empresa_id`, `años_funcionamiento`, `año_func_desp_reg_camara`, `obs_general`, `informacion_as`, `verificacion1`, `verificacion2`, `plan_mejora`, `puntaje`, `id_personeria`, `bien_serv_op`, `pagina_web`) VALUES (null,'$_POST[t_persona]','$_POST[t_identificacion]','$_POST[identificacion]','$_POST[razon_social]','$persona_id','$empresario_id','$_POST[municipio]','$_POST[vereda]','$_POST[autoridad_ambiental]','$_POST[latitud]','$_POST[longitud]','$_POST[altitud]','$_POST[famiempresa]','$_POST[tamaño_empresa]','$fecha_registro','$_POST[desc_negocio]','$_POST[num_asociados]','$_POST[organizacion]','$_POST[subsector]','$_POST[etapa_empresa]','$_POST[ano_func]','$_POST[ano_func_des_camara]','$_POST[obs_generales]','no','no','no','no','','$_POST[tipo_personeria]','$_POST[tipo_bien]','$_POST[pw_rd]')";
 	mysqli_query($conn,$s) or die(mysqli_error($conn));
 	echo $s;
 //selecciono el id de la ultima empresa insertada
@@ -40,10 +40,6 @@ include "../../conexion.php";
 	while($resul=mysqli_fetch_array($cs)){
 		$empresa_id=$resul[0];
 	}
-
-	//actualizar empresario
-	$s = "UPDATE `empresario` SET `empresa_id`= ".$empresa_id." WHERE id = '$empresario_id'";
-	mysqli_query($conn,$s);	
 
 	//insertar cabildo
 	$s = "INSERT into cabildo values (null,'$empresa_id','$_POST[cabildo]','$_POST[nombre_cabildo]')";
@@ -77,16 +73,21 @@ include "../../conexion.php";
 
 	$año_veri = $_POST['año_veri'];
 
+	print_r($año_veri);
 
 	for ($i=0; $i < sizeof($año_veri); $i++) { 
-		if ($_POST['cmb_verificacion']) == 1) {
+		if ($_POST['cmb_verificacion'] == 1) {
 
-		$s = "INSERT Into veri_empresa values (null,'empresa_id','$_POST[cmb_verificacion]',".$año_veri[$i].")";
+		$s = "INSERT Into veri_empresa values (null,'$empresa_id','$_POST[cmb_verificacion]','".$año_veri[$i]."')";
+
+		echo $s;
 		mysqli_query($conn,$s);
-		else{
 
-			$s = "INSERT Into veri_empresa values (null,'empresa_id','$_POST[cmb_verificacion]',null)";
-			mysqli_query($conn,$s);
+		}else{
+
+			$s = "INSERT Into veri_empresa values (null,'$empresa_id','$_POST[cmb_verificacion]','')";
+			echo $s;
+			mysqli_query($conn,$s) or die (mysqli_error($conn));
 		}		
 
 	}
@@ -129,11 +130,15 @@ include "../../conexion.php";
 		if ($si_no_actividad[$i] == 1) {
 			
 			$s = "INSERT into actividad_empresa values (null,'".$empresa_id."','".$id_actividad_item[$i]."','".$si_no_actividad[$i]."','".$direccion[$i]."','".$municipio[$i]."','".$tipo_tenencia[$i]."','".$area[$i]."','".$pot_actividad[$i]."','".$observacion[$i]."')";
-			mysqli_query($conn,$s) 
+
+			echo $s;
+			mysqli_query($conn,$s) or die(mysqli_error($conn));
 		}else
 		{
 			$s = "INSERT into actividad_empresa values (null,'".$empresa_id."','".$id_actividad_item[$i]."','".$si_no_actividad[$i]."','','','','','','')";
-			mysqli_query($conn,$s)
+
+			echo $s;
+			mysqli_query($conn,$s) or die(mysqli_error($conn));
 		}
 	}
 

@@ -185,84 +185,89 @@ if (primaria == "") {
 var r = Number(primaria)+Number(bachillerato)+Number(tecnico)+Number(universitario)+Number(otro)
 var total_educativo = isNaN(r)  ? 0 : r;
 
-	 // alert (r)
-///aqui inician las validaciones
 	
-if (! $('#t_persona').val()) {
+///aqui inician las validaciones
+if (! $('#cmb_verificacion').val()) {
 	$('.collapsible').collapsible('close', 0);
 	$('.collapsible').collapsible('open', 0);
 	 // $('#person').attr('required');
-	$('#person').focus().addClass("red-text");
+	$('#div_verificacion').focus().addClass("red-text");
 	// alert("Debe seleccioar el tipo de persona");
-	$('html, body').animate({scrollTop: $( $( '#person' ) ).offset().top}, 1000);
-}
-else if ( ! $('#t_identificacion').val()) {
-	$('.collapsible').collapsible('close', 0);
-	$('.collapsible').collapsible('open', 0);
-	$('#person').focus().removeClass("red-text")
-	$('#identifica').addClass("red-text")
-	$('html, body').animate({scrollTop: $( $( '#identifica' ) ).offset().top}, 1000);
-}
-else if ($('#identificacion').val()=="") {
-	$('.collapsible').collapsible('close', 0);
-	$('.collapsible').collapsible('open', 0);
-	$('#identifica').removeClass("red-text")
-	$('#identificacion').focus().addClass("invalid")
-}else if ($('#razon_social').val()=="") {
-	 $('.collapsible').collapsible('close', 0);
-	 $('.collapsible').collapsible('open', 0);
-	 $('#razon_social').focus().addClass("invalid")
-}
-else if ($('#representante').val()=="") {
-	 $('.collapsible').collapsible('close', 0);
-	 $('.collapsible').collapsible('open', 0);
-	 $('#representante').focus().addClass("invalid")
-}
-else if ($('#documento').val()=="") {
-	 $('.collapsible').collapsible('close', 0);
-	 $('.collapsible').collapsible('open', 0);
-	 $('#documento').focus().addClass("invalid")
-}
-else if ( ! $('#region').val()) {
-	$('.collapsible').collapsible('close', 0);
-	$('.collapsible').collapsible('open', 0);
-	$('#region_valida').addClass("red-text")
-	$('html, body').animate({scrollTop: $( $( '#region_valida')).offset().top}, 1000);
+	$('html, body').animate({scrollTop: $( $( '#cmb_verificacion' ) ).offset().top}, 1000);
 }
 else if ( ! $('#departamento').val()) {
 	$('.collapsible').collapsible('close', 0);
 	$('.collapsible').collapsible('open', 0);
-	$('#region_valida').focus().removeClass("red-text")
+	$('#div_verificacion').focus().removeClass("red-text")
 	$('#depto_valida').addClass("red-text")
-	$('html, body').animate({scrollTop: $( $( '#depto_valida')).offset().top}, 1000);
+	$('html, body').animate({scrollTop: $( $( '#departamento')).offset().top}, 1000);
 }
 else if ( ! $('#municipio').val()) {
 	$('.collapsible').collapsible('close', 0);
 	$('.collapsible').collapsible('open', 0);
 	$('#depto_valida').focus().removeClass("red-text")
 	$('#municipio_valida').addClass("red-text")
-	$('html, body').animate({scrollTop: $( $( '#municipio_valida')).offset().top}, 1000);
+	$('html, body').animate({scrollTop: $( $( '#municipio')).offset().top}, 1000);
 }
+else if (! $('#t_persona').val()) {
+	$('.collapsible').collapsible('close', 0);
+	$('.collapsible').collapsible('open', 1);
+	$('#municipio_valida').focus().removeClass("red-text")
+	$('#ti_person').addClass("red-text");
+	$('#t_persona').focus();
+	$('html, body').animate({scrollTop: $( $( '#t_persona' ) ).offset().top}, 1000);
+}
+else if ( ! $('#t_identificacion').val()) {
+	$('.collapsible').collapsible('close', 1);
+	$('.collapsible').collapsible('open', 1);
+	$('#ti_person').removeClass("red-text")
+	$('#t_identifica').addClass("red-text")
+	$('#t_identificacion').focus()
+	$('html, body').animate({scrollTop: $( $( '#t_identificacion' ) ).offset().top}, 1000);
+}
+else if ($('#identificacion').val()=="") {
+	$('.collapsible').collapsible('close', 1);
+	$('.collapsible').collapsible('open', 1);
+	$('#t_identifica').removeClass("red-text")
+	$('#identificacion').focus().addClass("invalid")
+}else if ($('#razon_social').val()=="") {
+	 $('.collapsible').collapsible('close', 1);
+	 $('.collapsible').collapsible('open', 1);
+	 $('#razon_social').focus().addClass("invalid")
+}
+else if ($('#representante').val()=="") {
+	 $('.collapsible').collapsible('close', 1);
+	 $('.collapsible').collapsible('open', 1);
+	 $('#representante').focus().addClass("invalid")
+}
+else if ($('#documento').val()=="") {
+	 $('.collapsible').collapsible('close', 1);
+	 $('.collapsible').collapsible('open', 1);
+	 $('#documento').focus().addClass("invalid")
+}
+
 else if ( ! $('#categoria').val()) {
-	$('.collapsible').collapsible('close',2);
-	$('.collapsible').collapsible('open', 2);
+	$('.collapsible').collapsible('close',1);
+	$('.collapsible').collapsible('open', 3);
 	$('#municipio_valida').removeClass("red-text")
 	$('#categoria_valida').addClass("red-text")
-	$('html, body').animate({scrollTop: $( $( '#categoria_valida')).offset().top}, 1000);
+	$('#categoria').focus();
+	$('html, body').animate({scrollTop: $( $( '#categoria')).offset().top}, 1000);
 }
 else if ( ! $('#sector').val()) {
-	$('.collapsible').collapsible('close',2);
-	$('.collapsible').collapsible('open',2);
+	$('.collapsible').collapsible('close',3);
+	$('.collapsible').collapsible('open',3);
 	$('#categoria_valida').removeClass("red-text")
 	$('#sector_valida').addClass("red-text")
-	$('html, body').animate({scrollTop: $( $( '#sector_valida')).offset().top}, 1000);
+	$('html, body').animate({scrollTop: $( $('#sector')).offset().top}, 1000);
 }
 else if ( ! $('#subsector').val()) {
-	$('.collapsible').collapsible('close',2);
-	$('.collapsible').collapsible('open', 2);
+	$('.collapsible').collapsible('close',3);
+	$('.collapsible').collapsible('open', 3);
 	$('#sector_valida').removeClass("red-text")
 	$('#subsector_valida').addClass("red-text")
-	$('html, body').animate({scrollTop: $( $('#subsector_valida')).offset().top}, 1000);
+	$('#subsector').focus()
+	$('html, body').animate({scrollTop: $( $('#sector')).offset().top}, 1000);
 }
 // else if ($('#total_1').val()==0) {
 // 	$('#subsector_valida').removeClass("red-text")
@@ -270,56 +275,52 @@ else if ( ! $('#subsector').val()) {
 // 	 $('.collapsible').collapsible('open', 3);
 // 	 $('#total_1').focus().addClass("invalid")
 // }
-else if (Number($('#total_2').val())  > Number($('#total_1').val())) {
-	 $('.collapsible').collapsible('close', 3);
-	 $('.collapsible').collapsible('open', 3);
-	 $('#total_1').focus().removeClass("invalid")
-	 $('#total_2').focus().addClass("invalid")
-	 $('#mensaje1').html('<span class="red-text">El total no puede ser mayor al de la pregunta 1</span>')
-}
-else if ( (Number($('#femenino_2').val())  > Number($('#femenino_1').val())) || (Number($('#masculino_2').val())  > Number($('#masculino_1').val())) ) {
-	 $('.collapsible').collapsible('close', 3);
-	 $('.collapsible').collapsible('open', 3);
-	 $('#total_2').focus().removeClass("invalid")
-	 $('#mensaje1').focus()
-	 $('#mensaje1').html('<span class="red-text">El valor del sexo no puede ser mayor al de la pregunta 1</span>')
-}
-else if ( Number(total_edad) != Number(total_3)) {
-	 $('.collapsible').collapsible('close', 3);
-	 $('.collapsible').collapsible('open', 3);
-	 $('#mensaje1').html(" ")
-	 $('#mensaje_edad').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
-}
-else if ( Number(total_vinculacion) != Number(total_3)) {
-	 $('.collapsible').collapsible('close', 3);
-	 $('.collapsible').collapsible('open', 3);
-	 $('#mensaje_edad').html(" ")
-	 $('#mensaje_vinculacion').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
-}
-else if (Number(total_educativo) != Number(total_3)) {
-	 $('.collapsible').collapsible('close', 3);
-	 $('.collapsible').collapsible('open', 3);
-	 $('#mensaje_vinculacion').html(" ")
-	 $('#mensaje_educativo').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
-	// document.getElementById('mensaje_educativo').scrollIntoView();
-$('html, body').animate({scrollTop: $( $( '#mensaje_educativo' ) ).offset().top}, 1000);
+// else if (Number($('#total_2').val())  > Number($('#total_1').val())) {
+// 	 $('.collapsible').collapsible('close', 3);
+// 	 $('.collapsible').collapsible('open', 3);
+// 	 $('#total_1').focus().removeClass("invalid")
+// 	 $('#total_2').focus().addClass("invalid")
+// 	 $('#mensaje1').html('<span class="red-text">El total no puede ser mayor al de la pregunta 1</span>')
+// }
+// else if ( (Number($('#femenino_2').val())  > Number($('#femenino_1').val())) || (Number($('#masculino_2').val())  > Number($('#masculino_1').val())) ) {
+// 	 $('.collapsible').collapsible('close', 3);
+// 	 $('.collapsible').collapsible('open', 3);
+// 	 $('#total_2').focus().removeClass("invalid")
+// 	 $('#mensaje1').focus()
+// 	 $('#mensaje1').html('<span class="red-text">El valor del sexo no puede ser mayor al de la pregunta 1</span>')
+// }
+// else if ( Number(total_edad) != Number(total_3)) {
+// 	 $('.collapsible').collapsible('close', 3);
+// 	 $('.collapsible').collapsible('open', 3);
+// 	 $('#mensaje1').html(" ")
+// 	 $('#mensaje_edad').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
+// }
+// else if ( Number(total_vinculacion) != Number(total_3)) {
+// 	 $('.collapsible').collapsible('close', 3);
+// 	 $('.collapsible').collapsible('open', 3);
+// 	 $('#mensaje_edad').html(" ")
+// 	 $('#mensaje_vinculacion').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
+// }
+// else if (Number(total_educativo) != Number(total_3)) {
+// 	 $('.collapsible').collapsible('close', 3);
+// 	 $('.collapsible').collapsible('open', 3);
+// 	 $('#mensaje_vinculacion').html(" ")
+// 	 $('#mensaje_educativo').focus().html('<span class="red-text">La suma de los valores debe ser igual al total de la pregunta 3</span>')
+// 	// document.getElementById('mensaje_educativo').scrollIntoView();
+// $('html, body').animate({scrollTop: $( $( '#mensaje_educativo' ) ).offset().top}, 1000);
 
-}
-else if ($('#b_lider').val()=="") {
+// }
+else if (! $('#tipo_bien').val()) {
 	$('.collapsible').collapsible('close', 3);
 	 $('.collapsible').collapsible('open', 3);
-	$('#b_lider').focus().addClass("invalid")
-	$('html, body').animate({scrollTop: $( $( '#bien_servi' ) ).offset().top}, 1000);
+	$('#tipo_b').addClass("red-text")
+	$('#tipo_bien').focus()								
+	$('#subsector_valida').removeClass("red-text")
+	$('html, body').animate({scrollTop: $( $( '#bien_lider' ) ).offset().top}, 1000);
 }
-else if ($('#b_lider').val()== $('#b1').val() || $('#b_lider').val()== $('#b2').val()|| $('#b_lider').val()== $('#b3').val() || $('#b_lider').val()== $('#b4').val()|| $('#b_lider').val()== $('#b5').val()) {
-	$('.collapsible').collapsible('close', 3);
-	$('.collapsible').collapsible('open', 3);
-	$('#b_lider').focus().addClass("invalid")
-	$('html, body').animate({scrollTop: $( $( '#bien_servi' ) ).offset().top}, 1000);
-	Materialize.toast('No debe estar dentro de los bienes o servicios enlistados anteriormente!', 2000)
-}
+
 else if ($('#entrevistado').val() == "") {
-	$('.collapsible').collapsible('close', 4);
+	$('.collapsible').collapsible('close', 3);
 	 $('.collapsible').collapsible('open', 4);
 	 $('#entrevistado').focus().addClass("invalid")
 }
@@ -367,7 +368,7 @@ else {
     				visible: false
   				},
 			});
-    	setTimeout("document.location=document.location",1500);
+    	// setTimeout("document.location=document.location",1500);
     }
 	})
 	
