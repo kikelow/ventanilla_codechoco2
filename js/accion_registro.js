@@ -567,7 +567,6 @@ $('#actividad_empresa_depto2').change(function(event) {
         $('#actividad_empresa_municipio3').html('<option disabled selected>Seleccione...</option>')  
         $('#actividad_empresa_municipio3').append(respuesta)
 		$('#actividad_empresa_municipio3').material_select();
-
 	})
 });
 });
@@ -626,6 +625,7 @@ var total_educativo = isNaN(r)  ? 0 : r;
 //validaciones
 
 	event.preventDefault();
+	alert('message?: DOMString')
  if ($('#identificacion_m').val()=="") {
 	$('.collapsible').collapsible('close', 0);
 	$('.collapsible').collapsible('open', 0);

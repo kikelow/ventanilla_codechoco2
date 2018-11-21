@@ -40,7 +40,6 @@
       $empresario_id = $rw['empresario_id'];
       $municipio_id = $rw['municipio_id'];
       $vereda = $rw['vereda'];
-      $aut_ambiental= $rw['aut_ambiental'];
       $latitud= $rw['latitud'];
       $longitud= $rw['longitud'];
       $altitud= $rw['altitud'];
@@ -176,8 +175,9 @@
   $s="SELECT * from departamento WHERE id = '$departamento_id'";
   $r= mysqli_query($conn,$s) or die('Error');
   if(mysqli_num_rows($r)>0){
-    while($rw=mysqli_fetch_array($r)){
-      $region_id = $rw[1];
+    while($rw=mysqli_fetch_assoc($r)){
+      $region_id = $rw['region_id'];
+      $aut_ambiental = $rw['autoridad_amb'];
     } 
 
   }
@@ -463,7 +463,7 @@
 
   $datos ="";
   ?>
-  <form >
+ 
   <ul class="collapsible" data-collapsible="accordion">
     <li id="s">
       <div class="collapsible-header" style="font-weight: bold;"> <i class="material-icons"></i>1. Información General</div>
@@ -487,53 +487,34 @@
               </select>
               <label>"¿El negocio ha sido verificado anteriormente?</label>
             </div>
+
+
             <div id="ano_view">
-              <div class="input-field col s12 m3 l3" style="margin-top: 30px" >
-                <select id="" name="año_veri[]">
-                  <option disabled selected>Seleccione...</option>
-                  <?php       
+             <?php 
+                $s="SELECT * from veri_empresa WHERE id_empresa = '$_POST[empresa_id]'";
+                $r= mysqli_query($conn,$s) or die("Error");
+                if(mysqli_num_rows($r)>0){
+                  while($rw=mysqli_fetch_assoc($r)){
+                      echo "<div class='input-field col s12 m3 l3' style='margin-top: 30px' >
+                <select id='' name='año_veri[]'>
+                  <option ></option>";
+                 
                   for ($i=1995; $i <= 2030; $i++) { 
+                    if ($i == $rw['anio']) {
+                     echo"<option value='$i' selected='selected'>$i</option>"; 
+                    }else{
 
-                    echo"<option value='$i'>$i</option>";   
-
+                      echo"<option value='$i'>$i</option>"; 
                   }       
+                    }
 
-                  ?>
-                </select>
+        
+               echo "</select>
                 <label>Año</label>
-              </div>
-
-              <div class="input-field col s12 m3 l3" style="margin-top: 30px" >
-                <select id="" name="año_veri[]">
-                  <option disabled selected>Seleccione...</option>
-                  <?php
-
-                  for ($i=1995; $i <= 2030; $i++) { 
-
-                    echo"<option value='$i'>$i</option>";   
-
-                  }       
-
-                  ?>
-                </select>
-                <label>Año</label>
-              </div>
-
-              <div class="input-field col s12 m3 l3" style="margin-top: 30px" id="">
-                <select id="" name="año_veri[]">
-                  <option disabled selected>Seleccione...</option>
-                  <?php
-
-                  for ($i=1995; $i <= 2030; $i++) { 
-
-                    echo"<option value='$i'>$i</option>";   
-
-                  }       
-
-                  ?>
-                </select>
-                <label>Año</label>
-              </div> 
+              </div>";       
+                  }         
+                }
+                ?>
             </div>
           </div>
 
@@ -604,8 +585,8 @@
           </div>
 
           <div class="input-field col s12 m3 l3">
-            <input id="autoridad_ambiental_m" name="autoridad_ambiental_m" type="text" readonly>
-            <label for="autoridad-ambiental_m">Autoridad ambiental</label>
+            <input id="autoridad_ambiental_m" name="autoridad_ambiental_m" type="text" readonly value="<?php echo $aut_ambiental ?>">
+            <label for="autoridad-ambiental_m" class="active">Autoridad ambiental</label>
           </div>
 
         </div>
@@ -1182,14 +1163,16 @@
 
     <?php 
     $i = "";
-    $s="select id,nombre from actividad_item order by id ";
+    $s="SELECT actividad_empresa.id, actividad_item.id as act_item, actividad_item.nombre,actividad_empresa.si_no_actividad_id, actividad_empresa.direccion, actividad_empresa.municipio_id,actividad_empresa.tipo_tenencia_id, actividad_empresa.area, actividad_empresa.pot_si_no_id,actividad_empresa.observacion from actividad_empresa 
+    INNER JOIN actividad_item ON actividad_item.id = actividad_empresa.actividad_item_id
+    WHERE actividad_empresa.empresa_id = '$_POST[empresa_id]'";
     $r= mysqli_query($conn,$s) or die("Error");
     if(mysqli_num_rows($r)>0){
       while($rw=mysqli_fetch_assoc($r)){
        $i= $i+1;
        echo"
        <div class='row'>
-       <input type='hidden' id='t".$i."'  name='actividad_emp_hidden[]' value='$rw[id]' />
+       <input type='hidden' id='t".$i."'  name='actividad_emp_hidden[]' value='$rw[act_item]' />
 
 
        <div class='input-field col s12 m3 l3'  >
@@ -1200,7 +1183,12 @@
        $r1= mysqli_query($conn,$s1) or die("Error");
        if(mysqli_num_rows($r1)>0){
         while($rw1=mysqli_fetch_assoc($r1)){
-          echo"<option value='$rw1[id]'>$rw1[nombre]</option>";          
+          if ($rw1[id] == $rw['si_no_actividad_id']) {
+            echo"<option value='$rw1[id]' selected='selected'>$rw1[nombre]</option>"; 
+          }else{
+            echo"<option value='$rw1[id]'>$rw1[nombre]</option>"; 
+          }
+                   
         }         
       }
 
@@ -1209,19 +1197,34 @@
       </div> 
 
       <div class='input-field col s12 m3 l3'>
-      <input id='direccion_actividad' name='direccion_actividad[]' type='text' class='validate' >
-      <label for='direccion_actividad'>Dirección</label>
-      </div> 
+      <input id='direccion_actividad' name='direccion_actividad[]' type='text' class='validate' value='$rw[direccion]' >
+      <label for='direccion_actividad' class='active'>Dirección</label>
+      </div>";
+      
+      $departamento_id = "";
+      $s9="SELECT departamento_id from municipio WHERE id = '$rw[municipio_id]'  order by id";
+      $r9= mysqli_query($conn,$s9) or die("Error");
+      if(mysqli_num_rows($r9)>0){
+        while($rw9=mysqli_fetch_assoc($r9)){
+           $departamento_id = $rw9['departamento_id'];       
+        }         
+      }
 
-      <div class='input-field col s12 m3 l3' >
+
+     echo "<div class='input-field col s12 m3 l3' >
       <select id='actividad_empresa_depto".$i."' name='actividad_empresa_depto[]'>
       <option disabled selected>Seleccione...</option>";
 
-      $s2="select id,nombre from departamento order by id";
+      $s2="SELECT id,nombre from departamento order by id";
       $r2= mysqli_query($conn,$s2) or die("Error");
       if(mysqli_num_rows($r2)>0){
         while($rw2=mysqli_fetch_assoc($r2)){
-          echo"<option value='$rw2[id]'>$rw2[nombre]</option>";          
+          if ($rw2['id'] == $departamento_id) {
+            echo"<option value='$rw2[id]' selected='selected'>$rw2[nombre]</option>"; 
+          }else{
+            echo"<option value='$rw2[id]'>$rw2[nombre]</option>"; 
+          }
+                   
         }         
       }
 
@@ -1230,19 +1233,36 @@
       </div> 
 
       <div class='input-field col s12 m3 l3'  >
-      <select id='actividad_empresa_municipio".$i."' name='actividad_empresa_municipio[]'>
-      
-      </select>
+      <select id='actividad_empresa_municipio".$i."' name='actividad_empresa_municipio[]'>";
+
+       $s10="SELECT id,nombre from municipio order by id";
+      $r10= mysqli_query($conn,$s10) or die("Error");
+      if(mysqli_num_rows($r10)>0){
+        while($rw10=mysqli_fetch_assoc($r10)){
+          if ($rw10['id'] == $rw['municipio_id']) {
+            echo"<option value='$rw10[id]' selected='selected'>$rw10[nombre]</option>"; 
+          }else{
+            echo"<option value='$rw10[id]'>$rw10[nombre]</option>"; 
+          }
+                   
+        }         
+      }
+     echo "</select>
       <label>Municipio</label>
       </div> 
       <div class='input-field col s12 m3 l3'  >
-      <select id='' name='actividad_empresa_si_no[]'>";
+      <select id='' name='actividad_empresa_tenencia[]'>";
 
       $s5="select id,nombre from tipo_tenencia order by id";
       $r5= mysqli_query($conn,$s5) or die("Error");
       if(mysqli_num_rows($r5)>0){
         while($rw5=mysqli_fetch_assoc($r5)){
-          echo"<option value='$rw5[id]'>$rw5[nombre]</option>";          
+          if ($rw5['id'] == $rw['tipo_tenencia_id']) {
+             echo"<option value='$rw5[id]' selected='selected'>$rw5[nombre]</option>"; 
+          }else{
+             echo"<option value='$rw5[id]'>$rw5[nombre]</option>"; 
+          }
+                  
         }         
       }
 
@@ -1251,18 +1271,23 @@
       </div> 
 
       <div class='input-field col s12 m3 l3'>
-      <input id='direccion_actividad' name='direccion_actividad[]' type='text' class='validate' >
-      <label for='direccion_actividad'>Area del predio (m2)</label>
+      <input id='actividad_empresa_area' name='actividad_empresa_area[]' type='text' class='validate' value='$rw[area]'>
+      <label for='actividad_empresa_area' class='active'>Area del predio (m2)</label>
       </div> 
 
       <div class='input-field col s12 m3 l3'  >
-      <select id='' name='actividad_empresa_si_no[]'>";
+      <select id='' name='actividad_empresa_pot[]'>";
 
       $s6="SELECT id,nombre from si_no WHERE id != 4";
       $r6= mysqli_query($conn,$s6) or die("Error");
       if(mysqli_num_rows($r6)>0){
         while($rw6=mysqli_fetch_assoc($r6)){
-          echo"<option value='$rw6[id]'>$rw6[nombre]</option>";          
+          if ($rw6['id'] == $rw['pot_si_no_id']) {
+           echo"<option value='$rw6[id]' selected='selected'>$rw6[nombre]</option>";  
+          }else{
+            echo"<option value='$rw6[id]'>$rw6[nombre]</option>";  
+          }
+                  
         }         
       }
 
@@ -1271,8 +1296,8 @@
       </div> 
 
       <div class='input-field col s12 m3 l3'>
-      <input id='direccion_actividad' name='direccion_actividad[]' type='text' class='validate' >
-      <label for='direccion_actividad'>Observación</label>
+      <input id='actividad_empresa_obs' name='actividad_empresa_obs[]' type='text' class='validate' value='$rw[observacion]' >
+      <label for='actividad_empresa_obs' class='active'>Observación</label>
       </div>
 
       </div>
@@ -1431,7 +1456,7 @@ echo "<div class='row'>
  ?>
 
  <button type='submit'  class='waves-effect yellow darken-4 btn right' style='margin-bottom: 8px' id='modificar_emp'><i class='material-icons right'>create</i>Modificar</button>
-</form>
+
 <script type='text/javascript' src='js/accion_registro.js'></script>
 
 <script type='text/javascript'>
