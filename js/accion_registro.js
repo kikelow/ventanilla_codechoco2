@@ -400,38 +400,45 @@ $.ajax({
 
 });
 
-//comobox de region departamento y municipio
-$('#region_m').change(function(event) { 
-var region_m = $('#region_m').val()
+$('#departamento_m').change(function(event) {
+	var departamento = $('#departamento_m').val()
+	var id = ""
+	var nombre = ""
+	$.ajax({
+		url: 'emprendimiento/registro/combo_municipio.php',
+		type: 'POST',
+		 // dataType: "json",
+		data: {departamento: departamento},
+	})
+	.done(function(respuesta) {
+		 
+        $('#municipio_m').html('<option disabled selected>Seleccione...</option>')  
+        $('#municipio_m').append(respuesta)
+		$('#municipio_m').material_select();
 
-$.ajax({
-   url: 'evaluacion/formato_inscripcion/modificar/combo_departamento_modificar.php',
-   type: 'POST',
-   data: {region_m: region_m},
- })
- .done(function(respuesta) {
- 	$('#departamento_m').html(" <option disabled selected>Seleccione...</option>")
-    $('#departamento_m').append(respuesta)
-	$('#departamento_m').material_select();
- })
+	})
 
-$('#municipio_m').html(" <option disabled selected>Seleccione...</option>")
-$('#municipio_m').material_select();
+
+
+	$.ajax({
+		url: 'emprendimiento/registro/combo_region.php',
+		type: 'POST',
+		 // dataType: "json",
+		data: {departamento: departamento},
+	})
+	.done(function(respuesta) {
+		 
+		var aut = $.parseJSON(respuesta);
+
+		$('#region_m').html('<option value='+aut['id']+'>'+aut['nombre']+'</option>')  
+		$('#region_m').material_select();
+		$('#autoridad_ambiental_m').val(aut['autoridad'])
+		$('#autoridad_ambiental_m').focus();
+
+	})
+		// $('#municipio').html('<option disabled selected>Seleccione...</option>')
+		// $('#municipio').material_select();
 });
-$('#departamento_m').change(function(event) { 
-var departamento_m = $('#departamento_m').val()
-$.ajax({
-   url: 'evaluacion/formato_inscripcion/modificar/combo_municipio_modificar.php',
-   type: 'POST',
-   data: {departamento_m: departamento_m},
- })
- .done(function(respuesta) {
- 	$('#municipio_m').html(" <option disabled selected>Seleccione...</option>")
-    $('#municipio_m').append(respuesta)
-	$('#municipio_m').material_select();
- })
-});
-
 //comobos de categoria sector y sub_sector
 $('#categoria_m').change(function(event) { 
 var categoria_m = $('#categoria_m').val()
@@ -512,6 +519,58 @@ $('#femenino_3_m, #masculino_3_m').keyup(function(event) {
 	$('#total_3_m').val(total_3_m)
 });
 
+
+//depto y municipio activida
+$('#actividad_empresa_depto1').change(function(event) {
+	var departamento = $('#actividad_empresa_depto1').val()
+	$.ajax({
+		url: 'emprendimiento/registro/combo_municipio.php',
+		type: 'POST',
+		 // dataType: "json",
+		data: {departamento: departamento},
+	})
+	.done(function(respuesta) {
+		 
+        $('#actividad_empresa_municipio1').html('<option disabled selected>Seleccione...</option>')  
+        $('#actividad_empresa_municipio1').append(respuesta)
+		$('#actividad_empresa_municipio1').material_select();
+
+	})
+});
+
+$('#actividad_empresa_depto2').change(function(event) {
+	var departamento = $('#actividad_empresa_depto2').val()
+	$.ajax({
+		url: 'emprendimiento/registro/combo_municipio.php',
+		type: 'POST',
+		 // dataType: "json",
+		data: {departamento: departamento},
+	})
+	.done(function(respuesta) {
+		 
+        $('#actividad_empresa_municipio2').html('<option disabled selected>Seleccione...</option>')  
+        $('#actividad_empresa_municipio2').append(respuesta)
+		$('#actividad_empresa_municipio2').material_select();
+
+	})
+
+	$('#actividad_empresa_depto3').change(function(event) {
+	var departamento = $('#actividad_empresa_depto3').val()
+	$.ajax({
+		url: 'emprendimiento/registro/combo_municipio.php',
+		type: 'POST',
+		 // dataType: "json",
+		data: {departamento: departamento},
+	})
+	.done(function(respuesta) {
+		 
+        $('#actividad_empresa_municipio3').html('<option disabled selected>Seleccione...</option>')  
+        $('#actividad_empresa_municipio3').append(respuesta)
+		$('#actividad_empresa_municipio3').material_select();
+
+	})
+});
+});
 
 //_____________________ cuando de click en el botton modificar_____________________________________________
 $('#form_modificar').submit(function(event) {

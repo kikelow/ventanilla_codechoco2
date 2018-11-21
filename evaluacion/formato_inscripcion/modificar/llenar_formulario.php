@@ -487,13 +487,11 @@
               </select>
               <label>"¿El negocio ha sido verificado anteriormente?</label>
             </div>
-
             <div id="ano_view">
               <div class="input-field col s12 m3 l3" style="margin-top: 30px" >
                 <select id="" name="año_veri[]">
                   <option disabled selected>Seleccione...</option>
-                  <?php
-
+                  <?php       
                   for ($i=1995; $i <= 2030; $i++) { 
 
                     echo"<option value='$i'>$i</option>";   
@@ -542,14 +540,19 @@
           <div class="row">
 
             <div class="input-field col s12 m3 l3" id="depto_valida">
-              <select id="departamento" name="departamento" class="dep">
+              <select id="departamento_m" name="departamento_m" class="dep">
                <?php 
 
                $s="select id,nombre from departamento";
                $r= mysqli_query($conn,$s) or die("Error");
                if(mysqli_num_rows($r)>0){
                 while($rw=mysqli_fetch_assoc($r)){
-                  echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                  if ($rw['id'] == $departamento_id) {
+                  echo"<option value='$rw[id]' selected='selected'>$rw[nombre]</option>";    
+                  }else{
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";    
+                  }
+                        
                 }         
               }
               ?>
@@ -558,22 +561,51 @@
           </div>
 
           <div class="input-field col s12 m3 l3" id="municipio_valida">
-            <select id="municipio" name="municipio">
+            <select id="municipio_m" name="municipio_m">
+              <?php 
+
+               $s="select id,nombre from municipio";
+               $r= mysqli_query($conn,$s) or die("Error");
+               if(mysqli_num_rows($r)>0){
+                while($rw=mysqli_fetch_assoc($r)){
+                  if ($rw['id'] == $municipio_id) {
+                  echo"<option value='$rw[id]' selected='selected'>$rw[nombre]</option>";    
+                  }else{
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";    
+                  }
+                        
+                }         
+              }
+              ?>
             </select>
             <label>Municipio</label>
           </div>
 
           <div class="input-field col s12 m3 l3" id="region_valida">
-            <select name="region" id="region" readonly>
+            <select name="region_m" id="region_m" readonly>
 
+            <?php 
 
+               $s="select id,nombre from region";
+               $r= mysqli_query($conn,$s) or die("Error");
+               if(mysqli_num_rows($r)>0){
+                while($rw=mysqli_fetch_assoc($r)){
+                  if ($rw['id'] == $region_id) {
+                  echo"<option value='$rw[id]' selected='selected'>$rw[nombre]</option>";    
+                  }else{
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>";    
+                  }
+                        
+                }         
+              }
+              ?>
             </select>
             <label>Region</label>
           </div>
 
           <div class="input-field col s12 m3 l3">
-            <input id="autoridad_ambiental" name="autoridad_ambiental" type="text" readonly>
-            <label for="autoridad-ambiental">Autoridad ambiental</label>
+            <input id="autoridad_ambiental_m" name="autoridad_ambiental_m" type="text" readonly>
+            <label for="autoridad-ambiental_m">Autoridad ambiental</label>
           </div>
 
         </div>
@@ -1182,10 +1214,10 @@
       </div> 
 
       <div class='input-field col s12 m3 l3' >
-      <select id=' name='actividad_empresa_si_no[]'>
+      <select id='actividad_empresa_depto".$i."' name='actividad_empresa_depto[]'>
       <option disabled selected>Seleccione...</option>";
 
-      $s2="select id,nombre from municipio order by id";
+      $s2="select id,nombre from departamento order by id";
       $r2= mysqli_query($conn,$s2) or die("Error");
       if(mysqli_num_rows($r2)>0){
         while($rw2=mysqli_fetch_assoc($r2)){
@@ -1198,24 +1230,15 @@
       </div> 
 
       <div class='input-field col s12 m3 l3'  >
-      <select id='' name='actividad_empresa_si_no[]'>
-      <option disabled selected>Seleccione...</option>";
-
-      $s4="select id,nombre from municipio order by id";
-      $r4= mysqli_query($conn,$s4) or die("Error");
-      if(mysqli_num_rows($r4)>0){
-        while($rw4=mysqli_fetch_assoc($r4)){
-          echo"<option value='$rw4[id]'>$rw4[nombre]</option>";          
-        }         
-      }
-
-      echo "</select>
+      <select id='actividad_empresa_municipio".$i."' name='actividad_empresa_municipio[]'>
+      
+      </select>
       <label>Municipio</label>
       </div> 
       <div class='input-field col s12 m3 l3'  >
       <select id='' name='actividad_empresa_si_no[]'>";
 
-      $s5="select id,nombre from tcip_op order by id";
+      $s5="select id,nombre from tipo_tenencia order by id";
       $r5= mysqli_query($conn,$s5) or die("Error");
       if(mysqli_num_rows($r5)>0){
         while($rw5=mysqli_fetch_assoc($r5)){
@@ -1233,10 +1256,9 @@
       </div> 
 
       <div class='input-field col s12 m3 l3'  >
-      <select id='' name='actividad_empresa_si_no[]'>
-      <option disabled selected>Seleccione...</option>";
+      <select id='' name='actividad_empresa_si_no[]'>";
 
-      $s6="select id,nombre from si_no order by id";
+      $s6="SELECT id,nombre from si_no WHERE id != 4";
       $r6= mysqli_query($conn,$s6) or die("Error");
       if(mysqli_num_rows($r6)>0){
         while($rw6=mysqli_fetch_assoc($r6)){
