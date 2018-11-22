@@ -318,7 +318,6 @@ else if (! $('#tipo_bien').val()) {
 	$('#subsector_valida').removeClass("red-text")
 	$('html, body').animate({scrollTop: $( $( '#bien_lider' ) ).offset().top}, 1000);
 }
-
 else if ($('#entrevistado').val() == "") {
 	$('.collapsible').collapsible('close', 3);
 	 $('.collapsible').collapsible('open', 4);
@@ -334,11 +333,7 @@ else if ($('#cargo_entrevistado').val() == "") {
 	 $('.collapsible').collapsible('open', 4);
 	 $('#cargo_entrevistado').focus().addClass("invalid")
 }
-else if ($('#observacion_general').val() == "") {
-	$('.collapsible').collapsible('close', 5);
-	 $('.collapsible').collapsible('open', 5);
-	 $('#observacion_general').focus().addClass("invalid")
-}
+
 
 else {
 	var formData = new FormData(document.getElementById("form_registro"));
