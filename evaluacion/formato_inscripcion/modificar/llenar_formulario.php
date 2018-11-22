@@ -461,7 +461,15 @@
 
   }
 
-  $datos ="";
+$si_no_veri = "";
+   $s="SELECT si_no_id from veri_empresa WHERE id_empresa = '$_POST[empresa_id]'";
+      $r= mysqli_query($conn,$s) or die("Error");
+      if(mysqli_num_rows($r)>0){
+        while($rw=mysqli_fetch_assoc($r)){
+            $si_no_veri = $rw['si_no_id'];
+
+        }
+      }
   ?>
  
   <ul class="collapsible" data-collapsible="accordion">
@@ -472,15 +480,20 @@
           <div class="row" style="text-align: center;background-color: #bdbdbd;">1. Información General</div>
           <div class="row">
 
-            <div class="input-field col s12 m3 l3" style="margin-top: 30px" >
+            <div id="div_verificacion" class="input-field col s12 m3 l3" style="margin-top: 30px" >
               <select id="cmb_verificacion" name="cmb_verificacion">
                 <option disabled selected>Seleccione...</option>
                 <?php 
-                $s="SELECT id,nombre from si_no WHERE id != 4";
+                $s="SELECT id,nombre from si_no WHERE id != 4 order by id desc";
                 $r= mysqli_query($conn,$s) or die("Error");
                 if(mysqli_num_rows($r)>0){
                   while($rw=mysqli_fetch_assoc($r)){
-                    echo"<option value='$rw[id]'>$rw[nombre]</option>";          
+                    if ($rw['id'] == $si_no_veri) {
+                      echo"<option value='$rw[id]' selected='selected'>$rw[nombre]</option>"; 
+                    }else{
+                      echo"<option value='$rw[id]'>$rw[nombre]</option>"; 
+                    }
+                             
                   }         
                 }
                 ?>
@@ -489,13 +502,14 @@
             </div>
 
 
-            <div id="ano_view">
+            <div id="">
              <?php 
                 $s="SELECT * from veri_empresa WHERE id_empresa = '$_POST[empresa_id]'";
                 $r= mysqli_query($conn,$s) or die("Error");
                 if(mysqli_num_rows($r)>0){
                   while($rw=mysqli_fetch_assoc($r)){
                       echo "<div class='input-field col s12 m3 l3' style='margin-top: 30px' >
+                      <input type='hidden' value='$rw[id]' name='anio_hidden[]'>
                 <select id='' name='año_veri[]'>
                   <option ></option>";
                  
@@ -517,7 +531,7 @@
                 ?>
             </div>
           </div>
-
+        <div class='divider teal darken-4' style='margin-bottom:10px'></div>
           <div class="row">
 
             <div class="input-field col s12 m3 l3" id="depto_valida">
@@ -604,7 +618,7 @@
 
         <div class="row">  <div class="input-field col s12 m4 l4" id="person">
 
-          <select name="t_persona" id="t_persona" class="validate">
+          <select name="t_persona_m" id="t_persona" class="validate">
             <!-- <option disabled selected>Seleccione...</option> -->
             <?php 
             $s="select id,nombre from tipo_persona order by id";
@@ -627,7 +641,7 @@
        </div>
 
        <div class="input-field col s12 m4 l4" id="identifica">
-        <select name="t_identificacion" id="t_identificacion" class="validate">
+        <select name="t_identificacion_m" id="t_identificacion" class="validate">
           <!-- <option disabled selected>Seleccione...</option> -->
           <?php 
           $s="select id,nombre from tipo_identificacion order by id";
@@ -647,7 +661,7 @@
       </div>
 
       <div class="input-field col s12 m4 l4">
-        <input id="identificacion" name="identificacion" type="text" class="validate" value="<?php echo $identificacion ?>"> 
+        <input id="identificacion" name="identificacion_m" type="text" class="validate" value="<?php echo $identificacion ?>"> 
         <label for="identificacion" class="active">Identificación *</label>
 
       </div>
@@ -656,7 +670,7 @@
     <div class="row">
 
       <div class="input-field col s12 m12 l12">
-        <input id="razon_social" name="razon_social" type="text" class="validate" value="<?php echo $razon_social; ?>">
+        <input id="razon_social" name="razon_social_m" type="text" class="validate" value="<?php echo $razon_social; ?>">
         <label for="razon_social" class="active">Razón Social *  </label>
       </div>
 
@@ -666,17 +680,17 @@
     <div class="row">
 
       <div class="input-field col s12 m4 l4">
-        <input id="representante" name="representante" type="text" class="validate" value="<?php echo $nombre ?>">
+        <input id="representante" name="representante_m" type="text" class="validate" value="<?php echo $nombre ?>">
         <label for="representante" class="active">Nombre de representante Legal *</label>
       </div>
 
       <div class="input-field col s12 m4 l4">
-        <input id="documento" name="documento" type="number" class="validate" value="<?php echo $documento ?>" >
+        <input id="documento" name="documento_m" type="number" class="validate" value="<?php echo $documento ?>" >
         <label for="documento" class="active">Identificación *</label>
       </div>
 
       <div class="input-field col s12 m4 l4">
-        <input id="correo" name="correo" type="email" class="validate" value="<?php echo $correo ?>">
+        <input id="correo" name="correo_m" type="email" class="validate" value="<?php echo $correo ?>">
         <label for="correo" class="active">E-mail</label>
       </div>
 
@@ -685,17 +699,17 @@
     <div class="row">
 
       <div class="input-field col s12 m4 l4">
-        <input id="fijo" name="fijo" type="number" class="validate" value="<?php echo $fijo ?>">
+        <input id="fijo" name="fijo_m" type="number" class="validate" value="<?php echo $fijo ?>">
         <label for="fijo" class="active">Teléfono fijo</label>
       </div>
 
 
       <div class="input-field col s12 m4 l4">
-        <input id="celular" name="celular" type="number" class="validate" value="<?php echo $celular ?>">
+        <input id="celular" name="celular_m" type="number" class="validate" value="<?php echo $celular ?>">
         <label for="celular" class="active">Celular</label>
       </div>
       <div class="input-field col s12 m4 l4">
-        <input id="direccion_c" name="direccion_c" type="text" class="validate" value="<?php echo $direccion ?>">
+        <input id="direccion_c" name="direccion_c_m" type="text" class="validate" value="<?php echo $direccion ?>">
         <label for="direccion_c" class="active">Direccion de Correspondencia</label>
       </div>
 
@@ -703,12 +717,12 @@
 
     <div class="row">
       <div class="input-field col s12 m4 l4 disabled">
-        <input id="vereda" name="vereda" type="text" class="validate" value="<?php echo $vereda ?>">
+        <input id="vereda" name="vereda_m" type="text" class="validate" value="<?php echo $vereda ?>">
         <label for="vereda" class="active">Vereda</label>
       </div>
 
       <div class="input-field col s12 m8 l8">
-        <input id="pw_rd" name="pw_rd" type="text" class="validate" value="<?php echo $pagina_web ?>">
+        <input id="pw_rd" name="pw_rd_m" type="text" class="validate" value="<?php echo $pagina_web ?>">
         <label for="pw_rd" class="active">Pagina Web y/o Redes Sociales</label>
       </div>
 
@@ -718,17 +732,17 @@
     <div class="row">
 
      <div class="input-field col s12 m4 l4">
-      <input id="longitud" name="longitud" type="text" class="validate" value="<?php echo $longitud ?>">
+      <input id="longitud" name="longitud_m" type="text" class="validate" value="<?php echo $longitud ?>">
       <label for="longitud" class="active">Longitud</label>
     </div>
 
     <div class="input-field col s12 m4 l4">
-      <input id="Latitud" name="Latitud" type="text" class="validate" value="<?php echo $latitud ?>">
+      <input id="latitud" name="latitud_m" type="text" class="validate" value="<?php echo $latitud ?>">
       <label for="Latitud" class="active">Latitud</label>
     </div>
 
     <div class="input-field col s12 m4 l4">
-      <input id="altitud" name="altitud" type="text" class="validate" value="<?php echo $altitud ?>">
+      <input id="altitud" name="altitud_m" type="text" class="validate" value="<?php echo $altitud ?>">
       <label for="altitud" class="active">Altitud (m.s.n.m)</label>
     </div>
   </div>
@@ -739,7 +753,7 @@
 
     <div class="input-field col s12 m3 l3">
 
-     <select id="organizacion" name="organizacion">
+     <select id="organizacion" name="organizacion_m">
       <?php 
       $s="SELECT id,nombre from si_no WHERE id != 4 ";
       $r= mysqli_query($conn,$s) or die("Error");
@@ -759,12 +773,12 @@
   </div>
 
   <div class="input-field col s12 m3 l3">
-    <input id="num_asociados" name="num_asociados" type="number" class="validate" value="<?php echo $num_socios ?>">
+    <input id="num_asociados" name="num_asociados_m" type="number" class="validate" value="<?php echo $num_socios ?>">
     <label for="num_asociados" class="active">Número de socios</label>
   </div>
 
   <div class="input-field col s12 m3 l3">      
-    <select id="famiempresa" name="famiempresa">
+    <select id="famiempresa" name="famiempresa_m">
       <!-- <option disabled selected>Seleccione...</option> -->
       <?php 
       $s="SELECT id,nombre from si_no WHERE id != 4";
@@ -785,7 +799,7 @@
  </div>
 
  <div class="input-field col s12 m3 l3">      
-  <select id="tamaño_empresa" name="tamaño_empresa">
+  <select id="tamaño_empresa" name="tamaño_empresa_m">
     <!-- <option disabled selected>Seleccione...</option> -->
     <?php 
     $s="select id,nombre from tamaño_empresa order by id";
@@ -810,7 +824,7 @@
 
 <div class="row">
   <div class="input-field col s12 m2 l2">
-    <select id="etapa_empresa" name="etapa_empresa">
+    <select id="etapa_empresa" name="etapa_empresa_m">
       <?php 
       $s="select id,nombre from etapa_empresa order by id ";
       $r= mysqli_query($conn,$s) or die("Error");
@@ -832,12 +846,12 @@
 
 
 <div class="input-field col s12 m2 l2">
-  <input id="ano_func" name="ano_func" type="number" class="validate" value="<?php echo $año_funcionamiento ?>">
+  <input id="ano_func" name="ano_func_m" type="number" class="validate" value="<?php echo $año_funcionamiento ?>">
   <label for="ano_func" class="active">Años de funcionamiento</label>
 </div>
 
 <div class="input-field col s12 m3 l3">
-  <select id="tipo_personeria" name="tipo_personeria">
+  <select id="tipo_personeria" name="tipo_personeria_m">
     <?php 
     $s="select id,nombre from tipo_personeria order by id ";
     $r= mysqli_query($conn,$s) or die("Error");
@@ -857,7 +871,7 @@
 </div>
 
 <div class="input-field col s12 m5 l5 active">
-  <input id="ano_func_des_camara" name="ano_func_des_camara" type="number" class="validate" value="<?php echo $año_desp_registro ?>">
+  <input id="ano_func_des_camara" name="ano_func_des_camara_m" type="number" class="validate" value="<?php echo $año_desp_registro ?>">
   <label for="ano_func_des_camara" class="active">Años de funcionamiento después de registro ante cámara</label>
 </div>
 
@@ -868,7 +882,7 @@
 <div class="row">
 
   <div class="input-field col s12 m3 l3">
-    <select id="consejo_com" name="consejo_com">
+    <select id="consejo_com_m" name="consejo_com">
 
       <?php 
       $s="SELECT id,nombre from si_no WHERE id != 4 ";
@@ -889,12 +903,12 @@
 </div>
 
 <div class="input-field col s12 m3 l3 ">
-  <input id="nombre_consejo" name="nombre_consejo" type="text" class="validate" value="<?php echo $consejo_nombre; ?>">
+  <input id="nombre_consejo_m" name="nombre_consejo" type="text" class="validate" value="<?php echo $consejo_nombre; ?>">
   <label for="nombre_consejo" class="active">Nombre</label>
 </div>
 
 <div class="input-field col s12 m3 l3">
-  <select id="junta" name="junta">
+  <select id="junta_m" name="junta">
     <?php 
     $s="SELECT id,nombre from si_no WHERE id != 4 ";
     $r= mysqli_query($conn,$s) or die("Error");
@@ -914,7 +928,7 @@
 </div>
 
 <div class="input-field col s12 m3 l3 ">
-  <input id="nombre_junta" name="nombre_junta" type="text" class="validate" value="<?php echo $junta_nombre; ?>">
+  <input id="nombre_junta_m" name="nombre_junta" type="text" class="validate" value="<?php echo $junta_nombre; ?>">
   <label for="nombre_junta" class="active">Nombre</label>
 </div>
 
@@ -923,7 +937,7 @@
 <div class="row">
 
   <div class="input-field col s12 m5 l5">
-    <select id="grupo_etnico" name="grupo_etnico">
+    <select id="grupo_etnico_m" name="grupo_etnico">
 
       <?php 
       $s="select id,nombre from grupo_etnico_op order by id ";
@@ -945,7 +959,7 @@
   </div>
 
   <div class="input-field col s12 m7 l7 ">
-    <input id="nombre_etnico" name="nombre_etnico" type="text" class="validate" value="<?php echo $etnico_nombre; ?>">
+    <input id="nombre_etnico_m" name="nombre_etnico" type="text" class="validate" value="<?php echo $etnico_nombre; ?>">
     <label for="nombre_etnico" class="active">Nombre del grupo étnico</label>
   </div>
 
@@ -954,7 +968,7 @@
 <div class="row">
 
   <div class="input-field col s12 m3 l3">
-    <select id="cabildo" name="cabildo">
+    <select id="cabildo_m" name="cabildo">
 
       <?php 
       $s="SELECT id,nombre from si_no WHERE id != 4 ";
@@ -975,12 +989,12 @@
 </div>
 
 <div class="input-field col s12 m3 l3 ">
-  <input id="nombre_cabildo" name="nombre_cabildo" type="text" class="validate" value="<?php echo $cabildo_nombre; ?>" >
+  <input id="nombre_cabildo_m" name="nombre_cabildo" type="text" class="validate" value="<?php echo $cabildo_nombre; ?>" >
   <label for="nombre_cabildo" class="active">Nombre</label>
 </div>
 
 <div class="input-field col s12 m3 l3">
-  <select id="tcpi" name="tcpi">
+  <select id="tcpi_m" name="tcpi">
     <option>Seleccione...</option>
     <?php 
     $s="select id,nombre from tcip_op order by id ";
@@ -1001,7 +1015,7 @@
 </div>
 
 <div class="input-field col s12 m3 l3 ">
-  <input id="nombre_territorio" name="nombre_territorio" type="text" class="validate" value="<?php echo $tcpi_nombre; ?>">
+  <input id="nombre_territorio_m" name="nombre_territorio" type="text" class="validate" value="<?php echo $tcpi_nombre; ?>">
   <label for="nombre_territorio" class="active">Nombre</label>
 </div>
 
@@ -1029,7 +1043,7 @@
     <div class="row" style="text-align: justify;background-color: #e0e0e0; padding: 5px">Descripción del negocio (Bien o servicio). Por favor incluir el impacto ambiental positivo (requisito mínimo y esencial para ser negocio verde, ver dettale en información complementaria) y el impacto socio-cultural positvo generado.</div>
     <div class="row">
       <div class="input-field col s12">
-        <textarea id="desc_negocio" name="desc_negocio" class="materialize-textarea"><?php echo $desc_negocio; ?></textarea>
+        <textarea id="desc_negocio" name="desc_negocio_m" class="materialize-textarea"><?php echo $desc_negocio; ?></textarea>
         <label for="desc_negocio"></label>
       </div>
     </div>
@@ -1088,7 +1102,7 @@
    </div>
 
    <div class="input-field col s12 m4 l4" style="margin-top: 30px" id="subsector_valida">
-    <select id="subsector" name="subsector" >
+    <select id="subsector" name="subsector_m" >
       <?php 
       $s="select id,nombre from subsector order by id";
       $r= mysqli_query($conn,$s) or die("Error");
@@ -1114,7 +1128,7 @@
 
 <div class="row">
   <div class="input-field col s12 m6 l6">
-    <select id="tipo_bien" name="tipo_bien">
+    <select id="tipo_bien" name="tipo_bien_m">
       <!-- <option disabled selected>Seleccione...</option> -->
       <?php 
       $s="select id,nombre from bien_serv_op order by id";
@@ -1138,9 +1152,12 @@
     <input id="bien_lider" name="bien_lider" type="text" class="validate" value="<?php echo $b_lider ?>">
     <label for="bien_lider" class="active">Bien o servicio lider</label>
   </div>
+  <div class="col s12 m12 l12">
+     <div class="row" style="text-align: justify;background-color: #e0e0e0; padding: 5px">Enliste otros bienes y/o servicios, tenga en cuenta que deberán ser diferentes al bien y/o servicio lider.</div>
+  </div>  
   <?php 
   $i = 0;
-  $s="SELECT nombre from bienes_servicios WHERE empresa_id = '$_POST[empresa_id]' and lider =''";
+  $s="SELECT nombre from bienes_servicios WHERE empresa_id = '$_POST[empresa_id]' and lider = '' ";
   $r= mysqli_query($conn,$s) or die('Error');
   if(mysqli_num_rows($r)>0){
     while($rw=mysqli_fetch_assoc($r)){
@@ -1163,7 +1180,7 @@
 
     <?php 
     $i = "";
-    $s="SELECT actividad_empresa.id, actividad_item.id as act_item, actividad_item.nombre,actividad_empresa.si_no_actividad_id, actividad_empresa.direccion, actividad_empresa.municipio_id,actividad_empresa.tipo_tenencia_id, actividad_empresa.area, actividad_empresa.pot_si_no_id,actividad_empresa.observacion from actividad_empresa 
+    $s="SELECT actividad_empresa.id, actividad_empresa.id, actividad_item.id as act_item, actividad_item.nombre,actividad_empresa.si_no_actividad_id, actividad_empresa.direccion, actividad_empresa.municipio_id,actividad_empresa.tipo_tenencia_id, actividad_empresa.area, actividad_empresa.pot_si_no_id,actividad_empresa.observacion from actividad_empresa 
     INNER JOIN actividad_item ON actividad_item.id = actividad_empresa.actividad_item_id
     WHERE actividad_empresa.empresa_id = '$_POST[empresa_id]'";
     $r= mysqli_query($conn,$s) or die("Error");
@@ -1172,7 +1189,8 @@
        $i= $i+1;
        echo"
        <div class='row'>
-       <input type='hidden' id='t".$i."'  name='actividad_emp_hidden[]' value='$rw[act_item]' />
+       <input type='hidden'   name='actividad_item_hidden[]' value='$rw[act_item]' />
+       <input type='hidden'   name='actividad_empresa_hidden[]' value='$rw[id]' />
 
 
        <div class='input-field col s12 m3 l3'  >
@@ -1320,7 +1338,7 @@
 
   <div class="row">
     <div class="input-field col s12">
-      <textarea id="obs_generales" name="obs_generales" class="materialize-textarea">
+      <textarea id="obs_generales" name="obs_generales_m" class="materialize-textarea">
         <?php echo $observacion_general ?>
       </textarea>
       <label for="obs_generales"></label>
@@ -1357,19 +1375,19 @@ while ($rw = mysqli_fetch_assoc($r)) {
        ?>
       <div class="row">
         <div class="input-field col s12 m4 l3">
-          <input type="text" name="verificador" id="verificador" value="<?php echo $nombre ?>">
+          <input type="text" name="verificador_m" id="verificador" value="<?php echo $nombre ?>">
           <label for="verificador" class="active">Nombre del verificador</label>
         </div>
         <div class="input-field col s12 m4 l3">
-          <input type="text" name="entidad_verificador" id="entidad_verificador" value="<?php echo $entidad ?>">
+          <input type="text" name="entidad_verificador_m" id="entidad_verificador" value="<?php echo $entidad ?>">
           <label for="entidad_verificador" class="active">Entidad</label>
         </div>
         <div class="input-field col s12 m4 l3">
-          <input type="text" name="area_verificador" id="area_verificador" value="<?php echo $area ?>">
+          <input type="text" name="area_verificador_m" id="area_verificador" value="<?php echo $area ?>">
           <label for="area_verificador" class="active">Area</label>
         </div>
         <div class="input-field col s12 m4 l3">
-          <input type="text" name="cargo_verificador" id="cargo_verificador" value="<?php echo $cargo ?>">
+          <input type="text" name="cargo_verificador_m" id="cargo_verificador" value="<?php echo $cargo ?>">
           <label for="cargo_verificador" class="active">Cargo</label>
         </div>
       </div>
@@ -1389,7 +1407,7 @@ while ($rw = mysqli_fetch_assoc($r)) {
           <label for="cargo_entrevistado" class="active">Cargo</label>
         </div>
         <div class="input-field col s12 m3 l3" >
-          <select id="" name="">
+          <select id="" name="carta_m">
 
             <?php 
             $s="SELECT id,nombre from si_no WHERE id != 4";
