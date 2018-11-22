@@ -59,8 +59,8 @@
                        echo"
                        <div class='row'>
                        <div class='col s12 m6 l6'>
-                       <input type='hidden' name='pregutas[]' value='$rw[id]' />
-                        <p>$rw[descripcion]</p>
+                       <input type='hidden' name='preguntas[]' value='$rw[id]' />
+                        <p style='text-align:justify'>$rw[descripcion]</p>
                        </div>
                        
                 
@@ -68,7 +68,7 @@
                        <div class='input-field col s12 m3 l3'>
                        <select name='verifica1_si_no[]' id='verifica1_si_no".$i."'>";
 
-                       $s1="SELECT id,nombre from si_no order by id asc ";
+                       $s1="SELECT id,nombre from si_no order by id desc ";
                        $r1= mysqli_query($conn,$s1) or die('Error');
                        if(mysqli_num_rows($r1)>0){
                         while($result1=mysqli_fetch_assoc($r1)){
@@ -114,19 +114,30 @@
                       </div>
 
                       <div class='input-field col s12 m4 l4'>
+
                         <select multiple name="medio_verificacion[]" id="medio_verificacion">
                           <option disabled>Seleccione...</option>
-                          <?php 
+                          <?php
+                           $medio = array();
                           $s1="SELECT id,nombre from medio order by id asc ";
                           $r1= mysqli_query($conn,$s1) or die('Error');
                           if(mysqli_num_rows($r1)>0){
                             while($result1=mysqli_fetch_assoc($r1)){
                               echo"<option value=".$result1['id'].">".$result1['nombre' ]."</option>";
+                              array_push($medio,$result1['id']);
                             }
                           }
+
                           ?>
 
                         </select>
+                        <?php   
+                            for ($i  =0; $i   < sizeof($medio); $i ++) { 
+                              echo "<input type='hidden' name='medio_confirmacion[]' value='$medio[$i]'>";
+                            }
+
+                        ?>
+                        
                       </div>
 
                   </div>
@@ -134,16 +145,19 @@
                 </div>
               </li>
 
+
+
+
+
               <li>
-                <div class="collapsible-header" style="font-weight: bold;"> <i class="material-icons"></i>Requisitos exclutentes</div>
+                <div class="collapsible-header" style="font-weight: bold;"> <i class="material-icons"></i>Requisitos excluyentes</div>
                 <div class="collapsible-body">
                  <div class="row" style="text-align: center;background-color: #bdbdbd;">Requisitos exclutentes</div>
-                 <div class="row" style="border: 1px solid;height: auto;display:inline-block; width: 100% ">
-                   
+                    
                   <div class="divider"></div>
                   <?php
 
-                  $s="SELECT id,nombre from opciones where codigo LIKE '%CONDICION_LABORAL%'  order by id ";
+                  $s="SELECT id,descripcion from pregunta_indicativa where aspecto_id = 2";
                   $r= mysqli_query($conn,$s) or die("Error");
                   if(mysqli_num_rows($r)>0){
                     while($rw=mysqli_fetch_assoc($r)){
@@ -151,13 +165,13 @@
                      $i++;
                      echo"
                      <div class='row'>
-                     <div class='input-field col s12 m6 l6'>
-                     <input type='hidden' name='opcion[]' value='$rw[id]' />
-                     <label for=''>$rw[nombre]</label>
+                     <div class='input-field col s12 m6 l6' style='margin-top: 0px'>
+                     <input type='hidden' name='preguntas2[]' value='$rw[id]' />
+                     <p style='text-align:justify'>$rw[descripcion]</p>
                      </div>
-                     <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
-                     <select name='verifica1_si_no[]' id='verifica1_si_no".$i."'>";
-                     $s1="select id,nombre from si_no_noaplica order by id desc";
+                     <div class='input-field col s12 m6 l6' style='margin-top: 52px'>
+                     <select name='verifica1_si_no2[]' id='verifica1_si_no".$i."'>";
+                     $s1="select id,nombre from si_no order by id desc";
                      $r1= mysqli_query($conn,$s1) or die('Error');
                      if(mysqli_num_rows($r1)>0){
                       while($result1=mysqli_fetch_assoc($r1)){
@@ -168,10 +182,40 @@
                     </select>
                     <label for=''>Si/ No/ No Aplica</label>
                     </div>
-                    <div class='input-field col s12 m4 l4'>
-                    <textarea id='verificacion1_obs".$i."' name='verificacion1_obs[]' class='materialize-textarea'></textarea>
-                    <label for=''>Observaciones</label>
+
+
+                    <div class='input-field col s12 m6 l6'>
+                    <textarea id='descripcion".$i."' name='descripcion2[]' class='materialize-textarea'></textarea>
+                    <label for=''>Descripción</label>
                     </div>
+              
+                    <div class='input-field col s12 m6 l6'  style='margin-top: 52px'>
+
+                    <select multiple name='medio_verificacion2[]' id='medio_verificacion'>
+                    <option disabled>Seleccione...</option>";
+
+                    $medio1 = array();
+                    $s1="SELECT id,nombre from medio order by id asc ";
+                    $r1= mysqli_query($conn,$s1) or die('Error');
+                    if(mysqli_num_rows($r1)>0){
+                      while($result1=mysqli_fetch_assoc($r1)){
+                        echo"<option value=".$result1['nombre'].">".$result1['nombre' ]."</option>";
+                        // array_push($medio1,$result1['id']);
+                      }
+                    }
+
+                   
+                    echo "
+                    </select>";
+                       
+                    // for ($i  =0; $i   < sizeof($medio1); $i ++) { 
+                    //   echo "<input type='hidden' name='medio_confirmacion2[]' value='$medio1[$i]'>";
+                    // }
+
+                    echo "
+
+                    </div>
+                    
                     </div>
                     <div class='divider'></div>";
 

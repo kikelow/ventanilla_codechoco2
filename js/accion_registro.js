@@ -317,6 +317,11 @@ else if (! $('#tipo_bien').val()) {
 	$('#tipo_bien').focus()								
 	$('#subsector_valida').removeClass("red-text")
 	$('html, body').animate({scrollTop: $( $( '#bien_lider' ) ).offset().top}, 1000);
+}else if ($('#bien_lider').val()=="") {
+	 $('.collapsible').collapsible('close', 3);
+	 $('.collapsible').collapsible('open', 3);
+	 $('#subsector_valida').removeClass("red-text")
+	 $('#bien_lider').focus().addClass("invalid")
 }
 else if ($('#entrevistado').val() == "") {
 	$('.collapsible').collapsible('close', 3);

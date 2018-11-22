@@ -7,16 +7,16 @@ $(document).ready(function() {
 /// Insertar
 $('#btn_verificacion1').click(function(event) {
 	event.preventDefault();
-	if (! $('#empresa').val()) {
-		Materialize.toast('Debe seleccionar un emprendimiento de la lista desplegable!', 2000)
-	}else {
+	// if (! $('#empresa').val()) {
+		// Materialize.toast('Debe seleccionar un emprendimiento de la lista desplegable!', 2000)
+	// }else {
 		var empresa = $('#empresa').val()
 		$.ajax({
 			url: 'evaluacion/hoja_verificacion_1/insertar.php?empresa='+empresa,
 			type: 'POST',
 			data: $('#form_verificacion1').serialize(),
 			beforeSend: function() {
-				$('#btn_verificacion1').attr('disabled', 'disabled');
+				// $('#btn_verificacion1').attr('disabled', 'disabled');
 				
 				swal ({
   				// icon: "success",
@@ -33,13 +33,14 @@ $('#btn_verificacion1').click(function(event) {
 						visible: false
 					},
 				});
-				setTimeout("document.location=document.location",1500);
+				// setTimeout("document.location=document.location",1500);
 			}
 		})
 		
-	}
+	// }
 	
-});
+}
+);
 
 //cargar formulario
 $('#empresa_m').change(function(event) {
