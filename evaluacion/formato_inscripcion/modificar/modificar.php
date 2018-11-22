@@ -22,9 +22,11 @@ $s = "UPDATE `persona` SET `identificacion`='$_POST[documento_m]',
 	mysqli_query($conn,$s);	
 
 // modificar los datos del empresario entrevistado
-$s = "UPDATE `empresario` SET `identificacion`='$_POST[identificacion_entrevistado_m]',
-	`nombre`='$_POST[entrevistado_m]',
-	`cargo`='$_POST[cargo_entrevistado_m]' WHERE id = '$empresario_id'";
+$s = "UPDATE `empresario` SET `identificacion`='$_POST[identificacion_entrevistado]',
+	`nombre`='$_POST[entrevistado]',
+	`cargo`='$_POST[cargo_entrevistado]',
+	`carta_si_no`='$_POST[carta_m]'
+	 WHERE id = '$empresario_id'";
 	mysqli_query($conn,$s);	
 
 //modificar datos de la tabla persona
@@ -35,124 +37,150 @@ $s = "UPDATE `empresario` SET `identificacion`='$_POST[identificacion_entrevista
 	`razon_social`='$_POST[razon_social_m]',
 	`municipio_id`=$_POST[municipio_m],
 	`vereda`='$_POST[vereda_m]',
-	`direccion`='$_POST[direccion_p_m]',
-	`coodenadas_n`='$_POST[coordenada_n_m]',
-	`coordenadas_w`='$_POST[coordenada_w_m]',
+	`latitud`='$_POST[latitud_m]',
+	`longitud`='$_POST[longitud_m]',
 	`altitud`='$_POST[altitud_m]',
-	`area`='$_POST[area_m]',
-	`si_no_pot_id`=$_POST[pot_m],
 	`fami_empresa_si_no`='$_POST[famiempresa_m]',
 	`tamaño_empresa_id`='$_POST[tamaño_empresa_m]',
 	`descripcion`='$_POST[desc_negocio_m]',
-	`desc_impacto_amb`='$_POST[desc_imp_ambiental_m]',
 	`num_socios`='$_POST[num_asociados_m]',
-	`asociacion_si_no`='$_POST[asociacion_m]',
+	`organizacion`='$_POST[organizacion_m]',
 	`subsector_id`='$_POST[subsector_m]',
 	`etapa_empresa_id`='$_POST[etapa_empresa_m]',
-	`const_legalmente_sino`='$_POST[cmb_legal_m]',
-	`año_funcionamiento`='$_POST[legal_m]',
-	`opera_actualmente_sino`='$_POST[cmb_ope_actualidad_m]',
-	`año_func_desp_reg_camara`='$_POST[año_desp_registro_m]',
-	`obs_general`='$_POST[observacion_general_m]' WHERE id = '$empresa'";
-	mysqli_query($conn,$s) ;
+	`años_funcionamiento`='$_POST[ano_func_m]',
+	`año_func_desp_reg_camara`='$_POST[ano_func_des_camara_m]',
+	`id_personeria`='$_POST[tipo_personeria_m]',
+	`bien_serv_op`='$_POST[tipo_bien_m]',
+	`pagina_web`='$_POST[pw_rd_m]',
+	`obs_general`='$_POST[obs_generales_m]' WHERE id = '$empresa'";
+	mysqli_query($conn,$s);
 
 // modificar datos en la tabla empleado sexo
-	$s="UPDATE `empleado_sexo` SET  `cantidad`='$_POST[masculino_1_m]' WHERE empresa_id = '$empresa' AND socio_empleado_id = '1' AND sexo_id = '1'";
-	 mysqli_query($conn,$s);
-	 $s="UPDATE `empleado_sexo` SET  `cantidad`='$_POST[femenino_1_m]' WHERE empresa_id = '$empresa' AND socio_empleado_id = '1' AND sexo_id = '2'";
-	 mysqli_query($conn,$s);
-	 $s="UPDATE `empleado_sexo` SET  `cantidad`='$_POST[masculino_2_m]' WHERE empresa_id = '$empresa' AND socio_empleado_id = '2' AND sexo_id = '1'";
-	 mysqli_query($conn,$s);
-	 $s="UPDATE `empleado_sexo` SET  `cantidad`='$_POST[femenino_2_m]' WHERE empresa_id = '$empresa' AND socio_empleado_id = '2' AND sexo_id = '2'";
-	 mysqli_query($conn,$s);
-	 $s="UPDATE `empleado_sexo` SET  `cantidad`='$_POST[masculino_3_m]' WHERE empresa_id = '$empresa' AND socio_empleado_id = '3' AND sexo_id = '1'";
-	 mysqli_query($conn,$s);
-	  $s="UPDATE `empleado_sexo` SET  `cantidad`='$_POST[femenino_3_m]' WHERE empresa_id = '$empresa' AND socio_empleado_id = '3' AND sexo_id = '2'";
-	 mysqli_query($conn,$s);
+	// $s="UPDATE `empleado_sexo` SET  `cantidad`='$_POST[masculino_1_m]' WHERE empresa_id = '$empresa' AND socio_empleado_id = '1' AND sexo_id = '1'";
+	//  mysqli_query($conn,$s);
+	//  $s="UPDATE `empleado_sexo` SET  `cantidad`='$_POST[femenino_1_m]' WHERE empresa_id = '$empresa' AND socio_empleado_id = '1' AND sexo_id = '2'";
+	//  mysqli_query($conn,$s);
+	//  $s="UPDATE `empleado_sexo` SET  `cantidad`='$_POST[masculino_2_m]' WHERE empresa_id = '$empresa' AND socio_empleado_id = '2' AND sexo_id = '1'";
+	//  mysqli_query($conn,$s);
+	//  $s="UPDATE `empleado_sexo` SET  `cantidad`='$_POST[femenino_2_m]' WHERE empresa_id = '$empresa' AND socio_empleado_id = '2' AND sexo_id = '2'";
+	//  mysqli_query($conn,$s);
+	//  $s="UPDATE `empleado_sexo` SET  `cantidad`='$_POST[masculino_3_m]' WHERE empresa_id = '$empresa' AND socio_empleado_id = '3' AND sexo_id = '1'";
+	//  mysqli_query($conn,$s);
+	//   $s="UPDATE `empleado_sexo` SET  `cantidad`='$_POST[femenino_3_m]' WHERE empresa_id = '$empresa' AND socio_empleado_id = '3' AND sexo_id = '2'";
+	//  mysqli_query($conn,$s);
 
 //modificar datos en la tabla empleado_edad
-	$s="UPDATE `empleado_edad` SET `cantidad`='$_POST[entre_18_30_m]' WHERE empresa_id='$empresa' AND edad_id='1'";
-	mysqli_query($conn,$s);
-	$s="UPDATE `empleado_edad` SET `cantidad`='$_POST[entre_30_50_m]' WHERE empresa_id='$empresa' AND edad_id='2'";
-	mysqli_query($conn,$s);
-	$s="UPDATE `empleado_edad` SET `cantidad`='$_POST[mayor_50_m]' WHERE empresa_id='$empresa' AND edad_id='3'";
-	mysqli_query($conn,$s);
+	// $s="UPDATE `empleado_edad` SET `cantidad`='$_POST[entre_18_30_m]' WHERE empresa_id='$empresa' AND edad_id='1'";
+	// mysqli_query($conn,$s);
+	// $s="UPDATE `empleado_edad` SET `cantidad`='$_POST[entre_30_50_m]' WHERE empresa_id='$empresa' AND edad_id='2'";
+	// mysqli_query($conn,$s);
+	// $s="UPDATE `empleado_edad` SET `cantidad`='$_POST[mayor_50_m]' WHERE empresa_id='$empresa' AND edad_id='3'";
+	// mysqli_query($conn,$s);
 
 //Modificar datos en la tabla tipo_vinculacion
-	$s="UPDATE `tipo_vinculacion` SET `cantidad`='$_POST[indefinido_m]' WHERE empresa_id='$empresa' AND vinculacion_id='1'";
-	mysqli_query($conn,$s);
-	$s="UPDATE `tipo_vinculacion` SET `cantidad`='$_POST[definido_m]' WHERE empresa_id='$empresa' AND vinculacion_id='2'";
-	mysqli_query($conn,$s);
-	$s="UPDATE `tipo_vinculacion` SET `cantidad`='$_POST[por_dias_m]' WHERE empresa_id='$empresa' AND vinculacion_id='3'";
-	mysqli_query($conn,$s);
+	// $s="UPDATE `tipo_vinculacion` SET `cantidad`='$_POST[indefinido_m]' WHERE empresa_id='$empresa' AND vinculacion_id='1'";
+	// mysqli_query($conn,$s);
+	// $s="UPDATE `tipo_vinculacion` SET `cantidad`='$_POST[definido_m]' WHERE empresa_id='$empresa' AND vinculacion_id='2'";
+	// mysqli_query($conn,$s);
+	// $s="UPDATE `tipo_vinculacion` SET `cantidad`='$_POST[por_dias_m]' WHERE empresa_id='$empresa' AND vinculacion_id='3'";
+	// mysqli_query($conn,$s);
 
 //Modificar datos en la tabla nivel_educativo
-	$s="UPDATE `nivel_educativo` SET `cantiad`='$_POST[primaria_m]' WHERE empresa_id='$empresa' AND nivel_id='1'	";
-	mysqli_query($conn,$s);
-	$s="UPDATE `nivel_educativo` SET `cantiad`='$_POST[bachillerato_m]' WHERE empresa_id='$empresa' AND nivel_id='2'	";
-	mysqli_query($conn,$s);
-	$s="UPDATE `nivel_educativo` SET `cantiad`='$_POST[tecnico_m]' WHERE empresa_id='$empresa' AND nivel_id='3'	";
-	mysqli_query($conn,$s);
-	$s="UPDATE `nivel_educativo` SET `cantiad`='$_POST[universitario_m]' WHERE empresa_id='$empresa' AND nivel_id='4'	";
-	mysqli_query($conn,$s);
-	$s="UPDATE `nivel_educativo` SET `cantiad`='$_POST[otro_m]' WHERE empresa_id='$empresa' AND nivel_id='5'	";
-	mysqli_query($conn,$s);
+	// $s="UPDATE `nivel_educativo` SET `cantiad`='$_POST[primaria_m]' WHERE empresa_id='$empresa' AND nivel_id='1'	";
+	// mysqli_query($conn,$s);
+	// $s="UPDATE `nivel_educativo` SET `cantiad`='$_POST[bachillerato_m]' WHERE empresa_id='$empresa' AND nivel_id='2'	";
+	// mysqli_query($conn,$s);
+	// $s="UPDATE `nivel_educativo` SET `cantiad`='$_POST[tecnico_m]' WHERE empresa_id='$empresa' AND nivel_id='3'	";
+	// mysqli_query($conn,$s);
+	// $s="UPDATE `nivel_educativo` SET `cantiad`='$_POST[universitario_m]' WHERE empresa_id='$empresa' AND nivel_id='4'	";
+	// mysqli_query($conn,$s);
+	// $s="UPDATE `nivel_educativo` SET `cantiad`='$_POST[otro_m]' WHERE empresa_id='$empresa' AND nivel_id='5'	";
+	// mysqli_query($conn,$s);
 
 //modificar datos en la tabla demografia
-	$s="UPDATE `demografia` SET `si_no_id`='$_POST[cmb_indigena_m]',`cantidad`='$_POST[indigena_m]' WHERE empresa_id='$empresa' AND desc_demografia_id='1'";
-	mysqli_query($conn,$s);
-	$s="UPDATE `demografia` SET `si_no_id`='$_POST[cmb_discapacitado_m]',`cantidad`='$_POST[discapacitado_m]' WHERE empresa_id='$empresa' AND desc_demografia_id='2'";
-	mysqli_query($conn,$s);
-	$s="UPDATE `demografia` SET `si_no_id`='$_POST[cmb_adulto_m]',`cantidad`='$_POST[adulto_m]' WHERE empresa_id='$empresa' AND desc_demografia_id='3'";
-	mysqli_query($conn,$s);
-	$s="UPDATE `demografia` SET `si_no_id`='$_POST[cmb_madre_familia_m]',`cantidad`='$_POST[madre_familia_m]' WHERE empresa_id='$empresa' AND desc_demografia_id='4'";
-	mysqli_query($conn,$s);
-	$s="UPDATE `demografia` SET `si_no_id`='$_POST[cmb_reinsertados_m]',`cantidad`='$_POST[reinsertados_m]' WHERE empresa_id='$empresa' AND desc_demografia_id='5'";
-	mysqli_query($conn,$s);
-	$s="UPDATE `demografia` SET `si_no_id`='$_POST[cmb_desplazado_m]',`cantidad`='$_POST[desplazado_m]' WHERE empresa_id='$empresa' AND desc_demografia_id='6'";
-	mysqli_query($conn,$s);
-	$s="UPDATE `demografia` SET `si_no_id`='$_POST[cmb_demografia_otro_m]',`cantidad`='$_POST[demografia_otro_m]' WHERE empresa_id='$empresa' AND desc_demografia_id='7'";
-	mysqli_query($conn,$s);
+	// $s="UPDATE `demografia` SET `si_no_id`='$_POST[cmb_indigena_m]',`cantidad`='$_POST[indigena_m]' WHERE empresa_id='$empresa' AND desc_demografia_id='1'";
+	// mysqli_query($conn,$s);
+	// $s="UPDATE `demografia` SET `si_no_id`='$_POST[cmb_discapacitado_m]',`cantidad`='$_POST[discapacitado_m]' WHERE empresa_id='$empresa' AND desc_demografia_id='2'";
+	// mysqli_query($conn,$s);
+	// $s="UPDATE `demografia` SET `si_no_id`='$_POST[cmb_adulto_m]',`cantidad`='$_POST[adulto_m]' WHERE empresa_id='$empresa' AND desc_demografia_id='3'";
+	// mysqli_query($conn,$s);
+	// $s="UPDATE `demografia` SET `si_no_id`='$_POST[cmb_madre_familia_m]',`cantidad`='$_POST[madre_familia_m]' WHERE empresa_id='$empresa' AND desc_demografia_id='4'";
+	// mysqli_query($conn,$s);
+	// $s="UPDATE `demografia` SET `si_no_id`='$_POST[cmb_reinsertados_m]',`cantidad`='$_POST[reinsertados_m]' WHERE empresa_id='$empresa' AND desc_demografia_id='5'";
+	// mysqli_query($conn,$s);
+	// $s="UPDATE `demografia` SET `si_no_id`='$_POST[cmb_desplazado_m]',`cantidad`='$_POST[desplazado_m]' WHERE empresa_id='$empresa' AND desc_demografia_id='6'";
+	// mysqli_query($conn,$s);
+	// $s="UPDATE `demografia` SET `si_no_id`='$_POST[cmb_demografia_otro_m]',`cantidad`='$_POST[demografia_otro_m]' WHERE empresa_id='$empresa' AND desc_demografia_id='7'";
+	// mysqli_query($conn,$s);
+// Modificar año verificacion
+	$año_veri = $_POST['año_veri'];
+	$anio_hidden = $_POST['anio_hidden'];
+	// print_r($año_veri);
+
+	for ($i=0; $i < sizeof($año_veri); $i++) { 
+		if ($año_veri[$i] != "") {
+
+		$s = " UPDATE veri_empresa SET 
+		`si_no_id`='$_POST[cmb_verificacion]',
+		`anio`= '$año_veri[$i]' WHERE id_empresa = '$empresa' and id = '$anio_hidden[$i]' ";
+
+		// echo $s;
+		mysqli_query($conn,$s) or die (mysqli_error($conn));
+
+		}else{
+$s = " UPDATE veri_empresa SET 
+		`si_no_id`='$_POST[cmb_verificacion]',
+		`anio`= '0000' WHERE id_empresa = '$empresa' and id = '$anio_hidden[$i]' ";
+
+		// echo $s;
+		mysqli_query($conn,$s) or die (mysqli_error($conn));
+	}
+
+	}
 
 // Modificar de actividad empresa checkbox
-	$check = $_POST['actividad_emp_m'];
-	$confirmacion = $_POST['actividad_emp_hidden_m'];
-	$resultado_chequeado = array_intersect($confirmacion,$check);
-	$resultado_nochequeado = array_diff($confirmacion,$check);
-	for ($i=0; $i <sizeof($confirmacion); $i++) {
+	$id_actividad_item = $_POST['actividad_item_hidden'];
+	$si_no_actividad = $_POST['actividad_empresa_si_no'];
+	$direccion = $_POST['direccion_actividad'];
+	$municipio = $_POST['actividad_empresa_municipio'];
+	$tipo_tenencia = $_POST['actividad_empresa_tenencia'];
+	$area = $_POST['actividad_empresa_area'];
+	$pot_actividad = $_POST['actividad_empresa_pot'];
+	$observacion = $_POST['actividad_empresa_obs'];
+
+	// $resultado_chequeado = array_intersect($confirmacion,$check);
+	// $resultadom_nochequeado = array_diff($confirmacion,$check);
 	
-		if ($resultado_nochequeado[$i]) {
-		$s="UPDATE `actividad_empresa` SET 
-	`confirmacion`='no' WHERE empresa_id ='$empresa' and `actividad_item_id` = '".$resultado_nochequeado[$i]."'";
-		mysqli_query($conn,$s);	
-		}else if ($resultado_chequeado[$i]) {
-			$s="UPDATE `actividad_empresa` SET 
-		`confirmacion`='si' WHERE empresa_id ='$empresa' and `actividad_item_id` = '".$resultado_chequeado[$i]."' ";
-			mysqli_query($conn,$s);
-		}else if (!$check) {
-			$s="UPDATE `actividad_empresa` SET 
-		`confirmacion`='no' WHERE empresa_id ='$empresa' and `actividad_item_id` = '".$confirmacion[$i]."' ";
-			mysqli_query($conn,$s);
-		}
+	for ($i=0; $i <sizeof($id_actividad_item); $i++) {
+			
+			$s ="UPDATE `actividad_empresa` SET 
+			`si_no_actividad_id`='$si_no_actividad[$i]',
+			`direccion`='$direccion[$i]',
+			`municipio_id`='$municipio[$i]',
+			`tipo_tenencia_id`='$tipo_tenencia[$i]',
+			`area`='$area[$i]',
+			`pot_si_no_id`='$pot_actividad[$i]',
+			`observacion`='$observacion[$i]' WHERE empresa_id = '$empresa' and actividad_item_id = '$id_actividad_item[$i]' ";
+			// echo $s;
+			mysqli_query($conn,$s) or die(mysqli_error($conn));
 	}
 
 	// Modificar datos en la tabla de bienes o servicios
 	$id_bien_servicio = array();
 	$s="SELECT id FROM bienes_servicios WHERE empresa_id = '$empresa' AND lider = '' ";
 	$cs=mysqli_query($conn,$s);
-	while($resul=mysqli_fetch_array($cs)){
-		array_push($id_bien_servicio, $resul[0]);
+	while($resul=mysqli_fetch_assoc($cs)){
+		array_push($id_bien_servicio, $resul['id']);
 	}
 	$bienes = $_POST['bienes_m'];
 	for ($i=0; $i <sizeof($bienes); $i++) {
 	$s="UPDATE `bienes_servicios` SET `nombre`='$bienes[$i]' WHERE id ='$id_bien_servicio[$i]' AND lider = '' ";
 	mysqli_query($conn,$s);
 	}
-	$s="UPDATE `bienes_servicios` SET `lider`='$_POST[b_lider_m]' WHERE empresa_id = '$empresa' AND lider != '' ";
+	$s="UPDATE `bienes_servicios` SET `lider`='$_POST[bien_lider]' WHERE empresa_id = '$empresa' AND lider != '' ";
 	mysqli_query($conn,$s);
 	
 	// modificar la tabla de verificador
-
 	$s="UPDATE `verificador` SET 
 	`nombre`='$_POST[verificador_m]',
 	`entidad`='$_POST[entidad_verificador_m]',
@@ -186,7 +214,7 @@ $s = "UPDATE `empresario` SET `identificacion`='$_POST[identificacion_entrevista
 
          $s = "UPDATE `img_empresa` SET imagen = '$nombre' WHERE empresa_id = '$empresa'";
 		mysqli_query($conn,$s) or die(mysqli_error($conn));;
-		echo "$s";
+		// echo "$s";
     		}
     	}
     
