@@ -16,35 +16,7 @@ if (isset($empresa)) {
 		// mysqli_query($conn,$s) or die(mysqli_error($conn));
 	}
 
-
-
-	$id_hoja_verificacion = '';
-	$s = "SELECT max(id) as id from hoja_verificacion_1";
-	$r1= mysqli_query($conn,$s) or die(mysqli_error($conn));
-	if(mysqli_num_rows($r1)>0){
-		while($result1=mysqli_fetch_assoc($r1)){
-			$id_hoja_verificacion = $result1['id'];
-		}
-	}
-
-	$medio_dont_select = array_values(array_diff($medio_confirmacion,$medio_verificacion));
-
-	for ($i=0; $i <sizeof($medio_confirmacion); $i++) {
-		if ($medio_verificacion[$i]) {
-	$s="INSERT INTO `medio_verificacion`(`id`, `medio_id`, `id_verificacion`, `confirmacion`) VALUES (null,'$medio_verificacion[$i]','$id_hoja_verificacion','si')";
-			mysqli_query($conn,$s) or die(mysqli_error($conn));
-		}
-		else if (!$medio_verificacion) {
-			$s="INSERT INTO `medio_verificacion`(`id`, `medio_id`, `id_verificacion`, `confirmacion`) VALUES (null,'$medio_confirmacion[$i]','$id_hoja_verificacion','no')";
-			mysqli_query($conn,$s) or die(mysqli_error($conn));
-		}		
-	}
-	for ($i=0; $i <sizeof($medio_dont_select); $i++) {
-		if ($medio_dont_select[$i]) {
-		$s="INSERT INTO `medio_verificacion`(id,`medio_id`, `id_verificacion`,`confirmacion`) VALUES(null,'$medio_dont_select[$i]','$id_hoja_verificacion','no')";
-			mysqli_query($conn,$s);
-		}	
-	}
+//_____________________________________________________________________
 
 $preguntas2 = $_POST['preguntas2'];
 $verifica1_si_no2 = $_POST['verifica1_si_no2'];
@@ -81,9 +53,7 @@ $medio4 = $_POST['medio4'];
 	for ($i=0; $i <sizeof($preguntas4); $i++) {
 		
 	$s="INSERT INTO `hoja_verificacion_1` VALUES(null,'$empresa','$preguntas4[$i]','$verifica1_si_no4[$i]','$verifica1_cumple4[$i]','','','$descripcion4[$i]','$medio4[$i]')";
-	// echo $s;
 		// mysqli_query($conn,$s) or die(mysqli_error($conn));
-
 	}
 	// $s="UPDATE `empresa` SET `verificacion1`='si' WHERE id = '$empresa'";
 	// mysqli_query($conn,$s);
