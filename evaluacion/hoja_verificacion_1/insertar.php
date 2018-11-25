@@ -8,7 +8,7 @@ $vigencia = $_POST['vigencia'];
 $nombre_certificacion = $_POST['nombre_certificacion'];
 $medio = $_POST['medio1'];
 
-if (isset($empresa)) {
+if (isset($_GET['empresa'])) {
 //registrar datos en la tabla Verificacion1
 	for ($i=0; $i <sizeof($preguntas); $i++) {
 		

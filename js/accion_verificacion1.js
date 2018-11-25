@@ -56,7 +56,7 @@ $(document).ready(function() {
 		$('#medio41').val($(this).val())
 	});
 	$('#medio_verificacion42').change(function(event) {
-		$('#medio32').val($(this).val())
+		$('#medio42').val($(this).val())
 	});
 	$('#medio_verificacion43').change(function(event) {
 		$('#medio43').val($(this).val())

@@ -54,6 +54,7 @@ require_once('conexion.php');
         <!-- <div class="divider" ></div> -->
         <?php
 
+          $i = 0;
             $s="SELECT id,descripcion from pregunta_indicativa where aspecto_id = 8";
             $r= mysqli_query($conn,$s) or die("Error");
             if(mysqli_num_rows($r)>0){
@@ -63,11 +64,12 @@ require_once('conexion.php');
        echo"
        <div class='row'>
                 <div class='input-field col s12 m5 l5'>
-                <input type='hidden' name='verificacion2_opcion[]' value='$rw[id]' />
+                <input type='hidden' name='pregunta[]' value='$rw[id]' id='pregunta'/>
                 <p style='text-align:justify'>$rw[descripcion]</p>
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
-          <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
+          <select name='calificador[]' id='calificador1".$i."'>
+          <option selected disabled>Seleccione...</option>
           ";
             $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
@@ -88,16 +90,16 @@ require_once('conexion.php');
         
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion2[]' id='medio_verificacion'>
+        <select multiple name='medio_verificacion[]' id='medio_verificacion".$i."'>
         <option disabled>Seleccione...</option>";
 
-        $medio1 = array();
+        
         $s1="SELECT id,nombre from medio order by id asc ";
         $r1= mysqli_query($conn,$s1) or die('Error');
         if(mysqli_num_rows($r1)>0){
           while($result1=mysqli_fetch_assoc($r1)){
             echo"<option value=".$result1['nombre'].">".$result1['nombre' ]."</option>";
-            array_push($medio1,$result1['id']);
+            
           }
         }
 
@@ -105,10 +107,10 @@ require_once('conexion.php');
         echo "
         </select>";
 
-        for ($i  =0; $i   < sizeof($medio1); $i ++) { 
-          echo "<input type='hidden' name='medio_confirmacion2[]' value='$medio1[$i]'>";
-        }
-
+        
+          echo "<input type='hidden' name='medio[]' value='' id='medio".$i."' >";
+        
+ 
         echo "
 
         </div>
@@ -116,7 +118,7 @@ require_once('conexion.php');
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+        <input type='file' name='evidencia[]' id='evidencia".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -144,7 +146,7 @@ require_once('conexion.php');
         <div class="divider" ></div>
         
                 <?php
-
+                $i = 0;
             $s="SELECT id,descripcion from pregunta_indicativa where aspecto_id = 9";
             $r= mysqli_query($conn,$s) or die("Error");
             if(mysqli_num_rows($r)>0){
@@ -154,11 +156,12 @@ require_once('conexion.php');
        echo"
        <div class='row'>
                 <div class='input-field col s12 m5 l5'>
-                <input type='hidden' name='verificacion2_opcion[]' value='$rw[id]' />
+                <input type='hidden' name='pregunta2[]' value='$rw[id]' />
                 <p style='text-align:justify'>$rw[descripcion]</p>
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
-          <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
+          <select name='calificador2[]' id='calificador2".$i."'>
+          <option selected disabled>Seleccione...</option>
           ";
             $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
@@ -172,23 +175,23 @@ require_once('conexion.php');
          <label for=''>(0, 0.5, 1, N/A)</label>
         </div>
          <div class='input-field col s12 m5 l5'>
-          <textarea id='descripcion".$i."' name='descripcion[]' class='materialize-textarea'></textarea>
+          <textarea id='descripcion".$i."' name='descripcion2[]' class='materialize-textarea'></textarea>
           <label for='verificacion2_obs".$i."'>Descripción</label>
         </div>
 
         
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion2[]' id='medio_verificacion'>
+        <select multiple name='medio_verificacion2[]' id='medio_verificacion2".$i."'>
         <option disabled>Seleccione...</option>";
 
-        $medio1 = array();
+        
         $s1="SELECT id,nombre from medio order by id asc ";
         $r1= mysqli_query($conn,$s1) or die('Error');
         if(mysqli_num_rows($r1)>0){
           while($result1=mysqli_fetch_assoc($r1)){
             echo"<option value=".$result1['nombre'].">".$result1['nombre' ]."</option>";
-            array_push($medio1,$result1['id']);
+            
           }
         }
 
@@ -196,9 +199,9 @@ require_once('conexion.php');
         echo "
         </select>";
 
-        for ($i  =0; $i   < sizeof($medio1); $i ++) { 
-          echo "<input type='hidden' name='medio_confirmacion2[]' value='$medio1[$i]'>";
-        }
+        
+          echo "<input type='hidden' name='medio2[]' value='' id='medio2".$i."' >";
+        
 
         echo "
 
@@ -207,7 +210,7 @@ require_once('conexion.php');
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+        <input type='file' name='evidencia2[]' id='evidencia".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -233,7 +236,7 @@ require_once('conexion.php');
       <!-- <div class="row" style="border: 1px solid;height: auto;display:inline-block; width: 100% "> -->
         <div class="divider" ></div>
                <?php
-
+                $i = 0;
             $s="SELECT id,descripcion from pregunta_indicativa where aspecto_id = 10";
             $r= mysqli_query($conn,$s) or die("Error");
             if(mysqli_num_rows($r)>0){
@@ -243,11 +246,12 @@ require_once('conexion.php');
        echo"
        <div class='row'>
                 <div class='input-field col s12 m5 l5'>
-                <input type='hidden' name='verificacion2_opcion[]' value='$rw[id]' />
+                <input type='hidden' name='pregunta3[]' value='$rw[id]' />
                 <p style='text-align:justify'>$rw[descripcion]</p>
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
-          <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
+          <select name='calificador3[]' id='calificador3".$i."'>
+          <option selected disabled>Seleccione...</option>
           ";
             $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
@@ -261,23 +265,23 @@ require_once('conexion.php');
          <label for=''>(0, 0.5, 1, N/A)</label>
         </div>
          <div class='input-field col s12 m5 l5'>
-          <textarea id='descripcion".$i."' name='descripcion[]' class='materialize-textarea'></textarea>
+          <textarea id='descripcion".$i."' name='descripcion3[]' class='materialize-textarea'></textarea>
           <label for='verificacion2_obs".$i."'>Descripción</label>
         </div>
 
         
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion2[]' id='medio_verificacion'>
+        <select multiple name='medio_verificacion3[]' id='medio_verificacion3".$i."'>
         <option disabled>Seleccione...</option>";
 
-        $medio1 = array();
+        
         $s1="SELECT id,nombre from medio order by id asc ";
         $r1= mysqli_query($conn,$s1) or die('Error');
         if(mysqli_num_rows($r1)>0){
           while($result1=mysqli_fetch_assoc($r1)){
             echo"<option value=".$result1['nombre'].">".$result1['nombre' ]."</option>";
-            array_push($medio1,$result1['id']);
+            
           }
         }
 
@@ -285,9 +289,9 @@ require_once('conexion.php');
         echo "
         </select>";
 
-        for ($i  =0; $i   < sizeof($medio1); $i ++) { 
-          echo "<input type='hidden' name='medio_confirmacion2[]' value='$medio1[$i]'>";
-        }
+        
+          echo "<input type='hidden' name='medio3[]' value='' id='medio3".$i."'>";
+        
 
         echo "
 
@@ -296,7 +300,7 @@ require_once('conexion.php');
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+        <input type='file' name='evidencia3[]' id='evidencia".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -322,7 +326,7 @@ require_once('conexion.php');
         <div class="divider" ></div>
         
                 <?php
-
+$i = 0;
             $s="SELECT id,descripcion from pregunta_indicativa where aspecto_id = 11";
             $r= mysqli_query($conn,$s) or die("Error");
             if(mysqli_num_rows($r)>0){
@@ -332,11 +336,12 @@ require_once('conexion.php');
        echo"
        <div class='row'>
                 <div class='input-field col s12 m5 l5'>
-                <input type='hidden' name='verificacion2_opcion[]' value='$rw[id]' />
+                <input type='hidden' name='pregunta4[]' value='$rw[id]' />
                 <p style='text-align:justify'>$rw[descripcion]</p>
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
-          <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
+          <select name='calificador4[]' id='calificador4".$i."'>
+          <option selected disabled>Seleccione...</option>
           ";
             $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
@@ -350,23 +355,23 @@ require_once('conexion.php');
          <label for=''>(0, 0.5, 1, N/A)</label>
         </div>
          <div class='input-field col s12 m5 l5'>
-          <textarea id='descripcion".$i."' name='descripcion[]' class='materialize-textarea'></textarea>
+          <textarea id='descripcion".$i."' name='descripcion4[]' class='materialize-textarea'></textarea>
           <label for='verificacion2_obs".$i."'>Descripción</label>
         </div>
 
         
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion2[]' id='medio_verificacion'>
+        <select multiple name='medio_verificacion4[]' id='medio_verificacion4".$i."'>
         <option disabled>Seleccione...</option>";
 
-        $medio1 = array();
+        
         $s1="SELECT id,nombre from medio order by id asc ";
         $r1= mysqli_query($conn,$s1) or die('Error');
         if(mysqli_num_rows($r1)>0){
           while($result1=mysqli_fetch_assoc($r1)){
             echo"<option value=".$result1['nombre'].">".$result1['nombre' ]."</option>";
-            array_push($medio1,$result1['id']);
+            
           }
         }
 
@@ -374,9 +379,9 @@ require_once('conexion.php');
         echo "
         </select>";
 
-        for ($i  =0; $i   < sizeof($medio1); $i ++) { 
-          echo "<input type='hidden' name='medio_confirmacion2[]' value='$medio1[$i]'>";
-        }
+        
+          echo "<input type='hidden' name='medio4[]' value='' id='medio4".$i."'>";
+        
 
         echo "
 
@@ -385,7 +390,7 @@ require_once('conexion.php');
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+        <input type='file' name='evidencia4[]' id='evidencia".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -410,10 +415,10 @@ require_once('conexion.php');
         <div class="collapsible-body">
          <div class="row" style="text-align: center;background-color: #bdbdbd;">Sustitución de sustancias o materiales peligrosos</div>
          <!-- <div class="row" style="border: 1px solid;height: 170px;display:inline-block; width: 100% "> -->
-          
-          
-          <?php
 
+
+          <?php
+$i = 0;
           $s="SELECT id,descripcion from pregunta_indicativa where aspecto_id = 12";
           $r= mysqli_query($conn,$s) or die("Error");
           if(mysqli_num_rows($r)>0){
@@ -423,11 +428,12 @@ require_once('conexion.php');
              echo"
              <div class='row'>
              <div class='input-field col s12 m5 l5' style='margin-top: 0px'>
-             <input type='hidden' name='verificacion2_opcion[]' value='$rw[id]' />
+             <input type='hidden' name='pregunta5[]' value='$rw[id]' />
              <p style='text-align:justify'>$rw[descripcion]</p>
              </div>
              <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
-             <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
+             <select name='calificador5[]' id='calificador5".$i."'>
+             <option selected disabled>Seleccione...</option>
              ";
              $s1="select id,nombre from calificador ORDER by nombre=1 desc";
              $r1= mysqli_query($conn,$s1) or die('Error');
@@ -441,23 +447,23 @@ require_once('conexion.php');
             <label for=''>(0, 0.5, 1, N/A)</label>
             </div>
             <div class='input-field col s12 m5 l5'>
-            <textarea id='descripcion".$i."' name='descripcion[]' class='materialize-textarea'></textarea>
+            <textarea id='descripcion".$i."' name='descripcion5[]' class='materialize-textarea'></textarea>
             <label for='verificacion2_obs".$i."'>Descripción</label>
             </div>
 
-            
+
             <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-            <select multiple name='medio_verificacion2[]' id='medio_verificacion'>
+            <select multiple name='medio_verificacion5[]' id='medio_verificacion5".$i."'>
             <option disabled>Seleccione...</option>";
 
-            $medio1 = array();
+            
             $s1="SELECT id,nombre from medio order by id asc ";
             $r1= mysqli_query($conn,$s1) or die('Error');
             if(mysqli_num_rows($r1)>0){
               while($result1=mysqli_fetch_assoc($r1)){
                 echo"<option value=".$result1['nombre'].">".$result1['nombre' ]."</option>";
-                array_push($medio1,$result1['id']);
+                
               }
             }
 
@@ -465,9 +471,9 @@ require_once('conexion.php');
             echo "
             </select>";
 
-            for ($i  =0; $i   < sizeof($medio1); $i ++) { 
-              echo "<input type='hidden' name='medio_confirmacion2[]' value='$medio1[$i]'>";
-            }
+            
+              echo "<input type='hidden' name='medio5[]' value='' id='medio5".$i."'>";
+            
 
             echo "
 
@@ -476,7 +482,7 @@ require_once('conexion.php');
             <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
             <div class='btn'>
             <span>Evidencia</span>
-            <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+            <input type='file' name='evidencia5[]' id='evidencia".$i."'>
             </div>
             <div class='file-path-wrapper'>
             <input class='file-path validate' type='text'>
@@ -504,7 +510,7 @@ require_once('conexion.php');
         <div class="divider" ></div>
         
                  <?php
-
+            $i = 0;
             $s="SELECT id,descripcion from pregunta_indicativa where aspecto_id = 13";
             $r= mysqli_query($conn,$s) or die("Error");
             if(mysqli_num_rows($r)>0){
@@ -513,12 +519,13 @@ require_once('conexion.php');
                  $i++;
        echo"
        <div class='row'>
-                <div class='input-field col s12 m5 l5'>
-                <input type='hidden' name='verificacion2_opcion[]' value='$rw[id]' />
+                <div class='input-field col s12 m5 l5' style='margin-top: 0px;'>
+                <input type='hidden' name='pregunta6[]' value='$rw[id]' />
                 <p style='text-align:justify'>$rw[descripcion]</p>
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
-          <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
+          <select name='calificador6[]' id='calificador6".$i."'>
+          <option selected disabled>Seleccione...</option>
           ";
             $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
@@ -532,23 +539,23 @@ require_once('conexion.php');
          <label for=''>(0, 0.5, 1, N/A)</label>
         </div>
          <div class='input-field col s12 m5 l5'>
-          <textarea id='descripcion".$i."' name='descripcion[]' class='materialize-textarea'></textarea>
+          <textarea id='descripcion".$i."' name='descripcion6[]' class='materialize-textarea'></textarea>
           <label for='verificacion2_obs".$i."'>Descripción</label>
         </div>
 
         
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion2[]' id='medio_verificacion'>
+        <select multiple name='medio_verificacion6[]' id='medio_verificacion6".$i."'>
         <option disabled>Seleccione...</option>";
 
-        $medio1 = array();
+        
         $s1="SELECT id,nombre from medio order by id asc ";
         $r1= mysqli_query($conn,$s1) or die('Error');
         if(mysqli_num_rows($r1)>0){
           while($result1=mysqli_fetch_assoc($r1)){
             echo"<option value=".$result1['nombre'].">".$result1['nombre' ]."</option>";
-            array_push($medio1,$result1['id']);
+            
           }
         }
 
@@ -556,9 +563,9 @@ require_once('conexion.php');
         echo "
         </select>";
 
-        for ($i  =0; $i   < sizeof($medio1); $i ++) { 
-          echo "<input type='hidden' name='medio_confirmacion2[]' value='$medio1[$i]'>";
-        }
+        
+          echo "<input type='hidden' name='medio6[]' value='' id='medio6".$i."'>";
+        
 
         echo "
 
@@ -567,7 +574,7 @@ require_once('conexion.php');
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+        <input type='file' name='evidencia6[]' id='evidencia".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -594,7 +601,7 @@ require_once('conexion.php');
         <div class="divider" ></div>
         
                 <?php
-
+              $i = 0;
             $s="SELECT id,descripcion from pregunta_indicativa where aspecto_id = 14";
             $r= mysqli_query($conn,$s) or die("Error");
             if(mysqli_num_rows($r)>0){
@@ -604,11 +611,12 @@ require_once('conexion.php');
        echo"
        <div class='row'>
                 <div class='input-field col s12 m5 l5'>
-                <input type='hidden' name='verificacion2_opcion[]' value='$rw[id]' />
+                <input type='hidden' name='pregunta7[]' value='$rw[id]' />
                 <p style='text-align:justify'>$rw[descripcion]</p>
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
-          <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
+          <select name='calificador7[]' id='calificador7".$i."'>
+          <option selected disabled>Seleccione...</option>
           ";
             $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
@@ -622,23 +630,23 @@ require_once('conexion.php');
          <label for=''>(0, 0.5, 1, N/A)</label>
         </div>
          <div class='input-field col s12 m5 l5'>
-          <textarea id='descripcion".$i."' name='descripcion[]' class='materialize-textarea'></textarea>
+          <textarea id='descripcion".$i."' name='descripcion7[]' class='materialize-textarea'></textarea>
           <label for='verificacion2_obs".$i."'>Descripción</label>
         </div>
 
         
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion2[]' id='medio_verificacion'>
+        <select multiple name='medio_verificacion7[]' id='medio_verificacion7".$i."'>
         <option disabled>Seleccione...</option>";
 
-        $medio1 = array();
+        
         $s1="SELECT id,nombre from medio order by id asc ";
         $r1= mysqli_query($conn,$s1) or die('Error');
         if(mysqli_num_rows($r1)>0){
           while($result1=mysqli_fetch_assoc($r1)){
             echo"<option value=".$result1['nombre'].">".$result1['nombre' ]."</option>";
-            array_push($medio1,$result1['id']);
+            
           }
         }
 
@@ -646,9 +654,9 @@ require_once('conexion.php');
         echo "
         </select>";
 
-        for ($i  =0; $i   < sizeof($medio1); $i ++) { 
-          echo "<input type='hidden' name='medio_confirmacion2[]' value='$medio1[$i]'>";
-        }
+        
+          echo "<input type='hidden' name='medio7[]' value='' id='medio7".$i."'>";
+        
 
         echo "
 
@@ -657,7 +665,7 @@ require_once('conexion.php');
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+        <input type='file' name='evidencia7[]' id='evidencia".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -685,7 +693,7 @@ require_once('conexion.php');
         <div class="divider" ></div>
         
                 <?php
-
+                $i = 0;
             $s="SELECT id,descripcion from pregunta_indicativa where aspecto_id = 15";
             $r= mysqli_query($conn,$s) or die("Error");
             if(mysqli_num_rows($r)>0){
@@ -695,11 +703,12 @@ require_once('conexion.php');
        echo"
        <div class='row'>
                 <div class='input-field col s12 m5 l5'>
-                <input type='hidden' name='verificacion2_opcion[]' value='$rw[id]' />
+                <input type='hidden' name='pregunta8[]' value='$rw[id]' />
                 <p style='text-align:justify'>$rw[descripcion]</p>
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
-          <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
+          <select name='calificador8[]' id='calificador8".$i."'>
+          <option selected disabled>Seleccione...</option>
           ";
             $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
@@ -713,23 +722,23 @@ require_once('conexion.php');
          <label for=''>(0, 0.5, 1, N/A)</label>
         </div>
          <div class='input-field col s12 m5 l5'>
-          <textarea id='descripcion".$i."' name='descripcion[]' class='materialize-textarea'></textarea>
+          <textarea id='descripcion".$i."' name='descripcion8[]' class='materialize-textarea'></textarea>
           <label for='verificacion2_obs".$i."'>Descripción</label>
         </div>
 
         
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion2[]' id='medio_verificacion'>
+        <select multiple name='medio_verificacion8[]' id='medio_verificacion8".$i."'>
         <option disabled>Seleccione...</option>";
 
-        $medio1 = array();
+        
         $s1="SELECT id,nombre from medio order by id asc ";
         $r1= mysqli_query($conn,$s1) or die('Error');
         if(mysqli_num_rows($r1)>0){
           while($result1=mysqli_fetch_assoc($r1)){
             echo"<option value=".$result1['nombre'].">".$result1['nombre' ]."</option>";
-            array_push($medio1,$result1['id']);
+            
           }
         }
 
@@ -737,9 +746,9 @@ require_once('conexion.php');
         echo "
         </select>";
 
-        for ($i  =0; $i   < sizeof($medio1); $i ++) { 
-          echo "<input type='hidden' name='medio_confirmacion2[]' value='$medio1[$i]'>";
-        }
+        
+          echo "<input type='hidden' name='medio8[]' value='' id='medio8".$i."'>";
+        
 
         echo "
 
@@ -748,7 +757,7 @@ require_once('conexion.php');
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+        <input type='file' name='evidencia8[]' id='evidencia".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -776,7 +785,7 @@ require_once('conexion.php');
         <div class="divider" ></div>
         
                 <?php
-
+                $i = 0;
             $s="SELECT id,descripcion from pregunta_indicativa where aspecto_id = 16";
             $r= mysqli_query($conn,$s) or die("Error");
             if(mysqli_num_rows($r)>0){
@@ -786,11 +795,12 @@ require_once('conexion.php');
        echo"
        <div class='row'>
                 <div class='input-field col s12 m5 l5'>
-                <input type='hidden' name='verificacion2_opcion[]' value='$rw[id]' />
+                <input type='hidden' name='pregunta9[]' value='$rw[id]' />
                 <p style='text-align:justify'>$rw[descripcion]</p>
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
-          <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
+          <select name='calificador9[]' id='calificador9".$i."'>
+          <option selected disabled>Seleccione...</option>
           ";
             $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
@@ -804,23 +814,23 @@ require_once('conexion.php');
          <label for=''>(0, 0.5, 1, N/A)</label>
         </div>
          <div class='input-field col s12 m5 l5'>
-          <textarea id='descripcion".$i."' name='descripcion[]' class='materialize-textarea'></textarea>
+          <textarea id='descripcion".$i."' name='descripcion9[]' class='materialize-textarea'></textarea>
           <label for='verificacion2_obs".$i."'>Descripción</label>
         </div>
 
         
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion2[]' id='medio_verificacion'>
+        <select multiple name='medio_verificacion9[]' id='medio_verificacion9".$i."'>
         <option disabled>Seleccione...</option>";
 
-        $medio1 = array();
+        
         $s1="SELECT id,nombre from medio order by id asc ";
         $r1= mysqli_query($conn,$s1) or die('Error');
         if(mysqli_num_rows($r1)>0){
           while($result1=mysqli_fetch_assoc($r1)){
             echo"<option value=".$result1['nombre'].">".$result1['nombre' ]."</option>";
-            array_push($medio1,$result1['id']);
+            
           }
         }
 
@@ -828,9 +838,9 @@ require_once('conexion.php');
         echo "
         </select>";
 
-        for ($i  =0; $i   < sizeof($medio1); $i ++) { 
-          echo "<input type='hidden' name='medio_confirmacion2[]' value='$medio1[$i]'>";
-        }
+        
+          echo "<input type='hidden' name='medio9[]' value='' id='medio9".$i."'>";
+        
 
         echo "
 
@@ -839,7 +849,7 @@ require_once('conexion.php');
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+        <input type='file' name='evidencia9[]' id='evidencia".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -867,7 +877,7 @@ require_once('conexion.php');
         <div class="divider" ></div>
         
                 <?php
-
+                $i = 0;
             $s="SELECT id,descripcion from pregunta_indicativa where aspecto_id = 17";
             $r= mysqli_query($conn,$s) or die("Error");
             if(mysqli_num_rows($r)>0){
@@ -877,11 +887,12 @@ require_once('conexion.php');
        echo"
        <div class='row'>
                 <div class='input-field col s12 m5 l5'>
-                <input type='hidden' name='verificacion2_opcion[]' value='$rw[id]' />
+                <input type='hidden' name='pregunta10[]' value='$rw[id]' />
                 <p style='text-align:justify'>$rw[descripcion]</p>
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
-          <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
+          <select name='calificador10[]' id='calificador10".$i."'>
+          <option selected disabled>Seleccione...</option>
           ";
             $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
@@ -895,23 +906,23 @@ require_once('conexion.php');
          <label for=''>(0, 0.5, 1, N/A)</label>
         </div>
          <div class='input-field col s12 m5 l5'>
-          <textarea id='descripcion".$i."' name='descripcion[]' class='materialize-textarea'></textarea>
+          <textarea id='descripcion".$i."' name='descripcion10[]' class='materialize-textarea'></textarea>
           <label for='verificacion2_obs".$i."'>Descripción</label>
         </div>
 
         
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion2[]' id='medio_verificacion'>
+        <select multiple name='medio_verificacion10[]' id='medio_verificacion10".$i."'>
         <option disabled>Seleccione...</option>";
 
-        $medio1 = array();
+        
         $s1="SELECT id,nombre from medio order by id asc ";
         $r1= mysqli_query($conn,$s1) or die('Error');
         if(mysqli_num_rows($r1)>0){
           while($result1=mysqli_fetch_assoc($r1)){
             echo"<option value=".$result1['nombre'].">".$result1['nombre' ]."</option>";
-            array_push($medio1,$result1['id']);
+            
           }
         }
 
@@ -919,9 +930,9 @@ require_once('conexion.php');
         echo "
         </select>";
 
-        for ($i  =0; $i   < sizeof($medio1); $i ++) { 
-          echo "<input type='hidden' name='medio_confirmacion2[]' value='$medio1[$i]'>";
-        }
+        
+          echo "<input type='hidden' name='medio10[]' value='' id='medio10".$i."'>";
+        
 
         echo "
 
@@ -930,7 +941,7 @@ require_once('conexion.php');
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+        <input type='file' name='evidencia10[]' id='evidencia".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -958,7 +969,7 @@ require_once('conexion.php');
         <div class="divider" ></div>
        
                         <?php
-
+$i = 0;
             $s="SELECT id,descripcion from pregunta_indicativa where aspecto_id = 18";
             $r= mysqli_query($conn,$s) or die("Error");
             if(mysqli_num_rows($r)>0){
@@ -968,11 +979,12 @@ require_once('conexion.php');
        echo"
        <div class='row'>
                 <div class='input-field col s12 m5 l5'>
-                <input type='hidden' name='verificacion2_opcion[]' value='$rw[id]' />
+                <input type='hidden' name='pregunta11[]' value='$rw[id]' />
                 <p style='text-align:justify'>$rw[descripcion]</p>
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
-          <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
+          <select name='calificador11[]' id='calificador11".$i."'>
+          <option selected disabled>Seleccione...</option>
           ";
             $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
@@ -986,23 +998,23 @@ require_once('conexion.php');
          <label for=''>(0, 0.5, 1, N/A)</label>
         </div>
          <div class='input-field col s12 m5 l5'>
-          <textarea id='descripcion".$i."' name='descripcion[]' class='materialize-textarea'></textarea>
+          <textarea id='descripcion".$i."' name='descripcion11[]' class='materialize-textarea'></textarea>
           <label for='verificacion2_obs".$i."'>Descripción</label>
         </div>
 
         
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion2[]' id='medio_verificacion'>
+        <select multiple name='medio_verificacion11[]' id='medio_verificacion11".$i."'>
         <option disabled>Seleccione...</option>";
 
-        $medio1 = array();
+        
         $s1="SELECT id,nombre from medio order by id asc ";
         $r1= mysqli_query($conn,$s1) or die('Error');
         if(mysqli_num_rows($r1)>0){
           while($result1=mysqli_fetch_assoc($r1)){
             echo"<option value=".$result1['nombre'].">".$result1['nombre' ]."</option>";
-            array_push($medio1,$result1['id']);
+            
           }
         }
 
@@ -1010,9 +1022,9 @@ require_once('conexion.php');
         echo "
         </select>";
 
-        for ($i  =0; $i   < sizeof($medio1); $i ++) { 
-          echo "<input type='hidden' name='medio_confirmacion2[]' value='$medio1[$i]'>";
-        }
+        
+          echo "<input type='hidden' name='medio11[]' value='' id='medio11".$i."'>";
+        
 
         echo "
 
@@ -1021,7 +1033,7 @@ require_once('conexion.php');
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+        <input type='file' name='evidencia11[]' id='evidencia".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -1052,7 +1064,7 @@ require_once('conexion.php');
         <div class="divider" ></div>
         
                                 <?php
-
+$i = 0;
             $s="SELECT id,descripcion from pregunta_indicativa where aspecto_id = 19";
             $r= mysqli_query($conn,$s) or die("Error");
             if(mysqli_num_rows($r)>0){
@@ -1062,11 +1074,12 @@ require_once('conexion.php');
        echo"
        <div class='row'>
                 <div class='input-field col s12 m5 l5'>
-                <input type='hidden' name='verificacion2_opcion[]' value='$rw[id]' />
+                <input type='hidden' name='pregunta12[]' value='$rw[id]' />
                 <p style='text-align:justify'>$rw[descripcion]</p>
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
-          <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
+          <select name='calificador12[]' id='calificador12".$i."'>
+          <option selected disabled>Seleccione...</option>
           ";
             $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
@@ -1080,23 +1093,23 @@ require_once('conexion.php');
          <label for=''>(0, 0.5, 1, N/A)</label>
         </div>
          <div class='input-field col s12 m5 l5'>
-          <textarea id='descripcion".$i."' name='descripcion[]' class='materialize-textarea'></textarea>
+          <textarea id='descripcion".$i."' name='descripcion12[]' class='materialize-textarea'></textarea>
           <label for='verificacion2_obs".$i."'>Descripción</label>
         </div>
 
         
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion2[]' id='medio_verificacion'>
+        <select multiple name='medio_verificacion12[]' id='medio_verificacion12".$i."'>
         <option disabled>Seleccione...</option>";
 
-        $medio1 = array();
+        
         $s1="SELECT id,nombre from medio order by id asc ";
         $r1= mysqli_query($conn,$s1) or die('Error');
         if(mysqli_num_rows($r1)>0){
           while($result1=mysqli_fetch_assoc($r1)){
             echo"<option value=".$result1['nombre'].">".$result1['nombre' ]."</option>";
-            array_push($medio1,$result1['id']);
+            
           }
         }
 
@@ -1104,9 +1117,9 @@ require_once('conexion.php');
         echo "
         </select>";
 
-        for ($i  =0; $i   < sizeof($medio1); $i ++) { 
-          echo "<input type='hidden' name='medio_confirmacion2[]' value='$medio1[$i]'>";
-        }
+        
+          echo "<input type='hidden' name='medio12[]' value='' id='medio12".$i."'>";
+        
 
         echo "
 
@@ -1115,7 +1128,7 @@ require_once('conexion.php');
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+        <input type='file' name='evidencia12[]' id='evidencia".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -1144,7 +1157,7 @@ require_once('conexion.php');
           <div class="divider" ></div>
           
                                   <?php
-
+$i = 0;
             $s="SELECT id,descripcion from pregunta_indicativa where aspecto_id = 20";
             $r= mysqli_query($conn,$s) or die("Error");
             if(mysqli_num_rows($r)>0){
@@ -1154,11 +1167,12 @@ require_once('conexion.php');
        echo"
        <div class='row'>
                 <div class='input-field col s12 m5 l5'>
-                <input type='hidden' name='verificacion2_opcion[]' value='$rw[id]' />
+                <input type='hidden' name='pregunta13[]' value='$rw[id]' />
                 <p style='text-align:justify'>$rw[descripcion]</p>
         </div>
         <div class='input-field col s12 m2 l2' style='margin-top: 52px'>
-          <select name='verifica2_calificador[]' id='verifica2_calificador".$i."'>
+          <select name='calificador13[]' id='calificador13".$i."'>
+          <option selected disabled>Seleccione...</option>
           ";
             $s1="select id,nombre from calificador ORDER by nombre=1 desc";
                   $r1= mysqli_query($conn,$s1) or die('Error');
@@ -1172,23 +1186,23 @@ require_once('conexion.php');
          <label for=''>(0, 0.5, 1, N/A)</label>
         </div>
          <div class='input-field col s12 m5 l5'>
-          <textarea id='descripcion".$i."' name='descripcion[]' class='materialize-textarea'></textarea>
+          <textarea id='descripcion".$i."' name='descripcion13[]' class='materialize-textarea'></textarea>
           <label for='verificacion2_obs".$i."'>Descripción</label>
         </div>
 
         
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion2[]' id='medio_verificacion'>
+        <select multiple name='medio_verificacion13[]' id='medio_verificacion13".$i."'>
         <option disabled>Seleccione...</option>";
 
-        $medio1 = array();
+        
         $s1="SELECT id,nombre from medio order by id asc ";
         $r1= mysqli_query($conn,$s1) or die('Error');
         if(mysqli_num_rows($r1)>0){
           while($result1=mysqli_fetch_assoc($r1)){
             echo"<option value=".$result1['nombre'].">".$result1['nombre' ]."</option>";
-            array_push($medio1,$result1['id']);
+            
           }
         }
 
@@ -1196,9 +1210,9 @@ require_once('conexion.php');
         echo "
         </select>";
 
-        for ($i  =0; $i   < sizeof($medio1); $i ++) { 
-          echo "<input type='hidden' name='medio_confirmacion2[]' value='$medio1[$i]'>";
-        }
+        
+          echo "<input type='hidden' name='medio13[]' value='' id='medio13".$i."'>";
+        
 
         echo "
 
@@ -1207,7 +1221,7 @@ require_once('conexion.php');
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='verificacion2_evidencia[]' id='verificacion2_evidencia".$i."'>
+        <input type='file' name='evidencia13[]' id='evidencia".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -1226,6 +1240,9 @@ require_once('conexion.php');
 
 
 </ul>
+
+
+
 
 <div class="row">
   <div class="col s12 m12 l12">
