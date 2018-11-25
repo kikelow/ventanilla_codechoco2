@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	$('#empresa').select2();
+	$('#empresa_v1').select2();
 	$('#empresa_m').select2();
 });
 //------certificaciones
@@ -86,6 +86,32 @@ $(document).ready(function() {
 		$('#medio411').val($(this).val())
 	});
 
+//------Social
+	$('#medio_verificacion51').change(function(event) {
+		$('#medio51').val($(this).val())
+	});
+	$('#medio_verificacion52').change(function(event) {
+		$('#medio52').val($(this).val())
+	});
+	$('#medio_verificacion53').change(function(event) {
+		$('#medio53').val($(this).val())
+	});
+	$('#medio_verificacion54').change(function(event) {
+		$('#medio54').val($(this).val())
+	});
+	$('#medio_verificacion55').change(function(event) {
+		$('#medio55').val($(this).val())
+	});
+//------Proveedores
+	$('#medio_verificacion61').change(function(event) {
+		$('#medio61').val($(this).val())
+	});
+
+//------Otros
+	$('#medio_verificacion71').change(function(event) {
+		$('#medio71').val($(this).val())
+	});
+	
 
 
 
@@ -93,16 +119,16 @@ $(document).ready(function() {
 /// Insertar
 $('#btn_verificacion1').click(function(event) {
 	event.preventDefault();
-	// if (! $('#empresa').val()) {
-		// Materialize.toast('Debe seleccionar un emprendimiento de la lista desplegable!', 2000)
-	// }else {
-		var empresa = $('#empresa').val()
+	if (! $('#empresa_v1').val()) {
+		Materialize.toast('Debe seleccionar un emprendimiento de la lista desplegable!', 4000)
+	}else {
+		var empresa = $('#empresa_v1').val()
 		$.ajax({
 			url: 'evaluacion/hoja_verificacion_1/insertar.php?empresa='+empresa,
 			type: 'POST',
 			data: $('#form_verificacion1').serialize(),
 			beforeSend: function() {
-				// $('#btn_verificacion1').attr('disabled', 'disabled');
+				$('#btn_verificacion1').attr('disabled', 'disabled');
 				
 				swal ({
   				// icon: "success",
@@ -119,11 +145,11 @@ $('#btn_verificacion1').click(function(event) {
 						visible: false
 					},
 				});
-				// setTimeout("document.location=document.location",1500);
+				setTimeout("document.location=document.location",1500);
 			}
 		})
 		
-	// }
+	}
 	
 }
 );
@@ -161,7 +187,7 @@ $('#modificar_verificacion1').click(function(event) {
 			type: 'POST',
 			data: $('#form_modificar_verificacion1').serialize(),
 			beforeSend: function() {
-				$('#modificar_verificacion1').attr('disabled', 'disabled');
+				// $('#modificar_verificacion1').attr('disabled', 'disabled');
    	// console.log('cargando')
    	swal ({
   				// icon: "success",

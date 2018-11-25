@@ -61,3 +61,5 @@ else {
                 </div>
               </div>
             </div>
+            <script type="text/javascript" src="js/select2.js"></script>
+            <script type="text/javascript" src="js/accion_registro.js"></script>

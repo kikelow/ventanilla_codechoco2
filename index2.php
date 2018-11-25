@@ -55,14 +55,6 @@ if(!isset($_SESSION["vev_verificador"])){
               </ul>
             </div>
           </li>
-          <li class="bold"><a class="collapsible-header  waves-effect waves-green men ">Formato de informacion AS</a>
-            <div class="collapsible-body">
-              <ul>
-                <li><a href="index2.php?modulo=evaluacion/formato_informacion_as">Nuevo</a></li>
-                <li><a href="index2.php?modulo=evaluacion/formato_informacion_as/modificar">Modificar</a></li>
-              </ul>
-            </div>
-          </li>
           <li class="bold"><a class="collapsible-header  waves-effect waves-green men ">Hoja de verificación 1</a>
             <div class="collapsible-body">
               <ul>
@@ -76,6 +68,14 @@ if(!isset($_SESSION["vev_verificador"])){
               <ul>
                 <li class="s"><a href="index2.php?modulo=evaluacion/hoja_verificacion_2">Nuevo</a></li>
                 <li><a href="index2.php?modulo=evaluacion/hoja_verificacion_2/modificar">Modificar</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="bold"><a class="collapsible-header  waves-effect waves-green men ">Formato de informacion AS</a>
+            <div class="collapsible-body">
+              <ul>
+                <li><a href="index2.php?modulo=evaluacion/formato_informacion_as">Nuevo</a></li>
+                <li><a href="index2.php?modulo=evaluacion/formato_informacion_as/modificar">Modificar</a></li>
               </ul>
             </div>
           </li>
@@ -134,9 +134,9 @@ if(!isset($_SESSION["vev_verificador"])){
 
     <ul class="side-nav" id="mobile-demo">
       <li><a class="dropdown-button black-text" href="#!" data-activates="f_inscripcion">Formato de Inscripción<i class="material-icons right">arrow_drop_down</i></a></li>
-      <li><a class="dropdown-button black-text" href="#!" data-activates="f_as">Formato de Información AS<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a class="dropdown-button black-text" href="#!" data-activates="hoja_1">Hoja de Verificación 1<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a class="dropdown-button black-text" href="#!" data-activates="hoja_2">Hoja de Verificación 2<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a class="dropdown-button black-text" href="#!" data-activates="f_as">Formato de Información AS<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a class="dropdown-button black-text" href="#!" data-activates="plan">Plan de mejora<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="index2.php?modulo=evaluacion/reporte" class="collection-item black-text">Reportes</a></li>
     </ul>
@@ -173,7 +173,7 @@ if(!isset($_SESSION["vev_verificador"])){
 </footer> -->
 <script src="js/materialize.min.js"  type="text/javascript"></script>
 <script type="text/javascript" src="js/select2.js"></script>
-<script type="text/javascript" src="js/accion_registro.js"></script>
+<!-- <script type="text/javascript" src="js/accion_registro.js"></script> -->
 <script type="text/javascript" src="js/sweetalert.js"></script>
 
 
