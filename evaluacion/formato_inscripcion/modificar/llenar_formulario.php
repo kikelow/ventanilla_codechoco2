@@ -1447,7 +1447,7 @@ if ($imagen == "") {
 echo "<div class='row'>
   <div class='file-field input-field col s12 m12 l12' style=''>
          <div class='btn'>
-        <span>Seleccionar imagen</span>
+        <span><i class='material-icons '>file_upload</i></span>
         <input type='file' name='img_emprendimiento_m' id='img_emprendimiento_m' accept='image/*'>
       </div>
       <div class='file-path-wrapper'>
@@ -1457,16 +1457,16 @@ echo "<div class='row'>
 </div>"; 
 }else{
   echo "<div class='row'>
-  <div class='file-field input-field col s12 m11 l11' style=''>
+  <div class='file-field input-field col s9 m10 l11' style=''>
          <div class='btn'>
-        <span>Seleccionar imagen</span>
+        <span><i class='material-icons '>file_upload</i></span>
         <input type='file' name='img_emprendimiento_m' id='img_emprendimiento_m' accept='image/*'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' value='$imagen' id='nombre_imagen' >
   </div>
 </div>
-<div class='file-field input-field col s12 m1 l1 ' style='margin-top:40px'>
+<div class='file-field input-field col s3 m2 l1 ' style='margin-top:40px'>
       <a href='evaluacion/formato_inscripcion/modificar/descargar_archivo.php?imagen=$imagen' target='_blank' class='right'>Descargar</a>
 </div>
 </div>";

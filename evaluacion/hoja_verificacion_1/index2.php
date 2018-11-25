@@ -7,7 +7,7 @@
  ?>
  <?php 
  require_once('conexion.php');
- $i = 0;  
+ 
  ?>
  <div id="test1" class="col s12" style="padding-right: 0px; padding-left: 0px">
           <center><h4>Sección para Registrar</h4></center>
@@ -22,7 +22,7 @@
              <div class="row">
                
               <div class="input-field col s12 m12 l12  " id="div_empresa">
-                <select id="empresa" style="width: 100%; left: -20px;" name="empresa" required="required">
+                <select id="empresa_v1" style="width: 100%; left: -20px;" name="empresa" required="required">
                   <option disabled selected="">Seleccione un emprendimiento al cual quiere aplicarle la "Hoja de verificacion 1"</option>
                   <?php 
                   $s="SELECT empresa.id,empresa.razon_social,empresa.identificacion FROM verificadorxempresa
@@ -49,7 +49,7 @@
                    <!-- <div class="row" style="border: 1px solid;height: auto;display:inline-block; width: 100% "> -->
                     
                     <?php
-
+                     $i = 0; 
                     $s="SELECT id,descripcion from pregunta_indicativa where aspecto_id = 1";
                     $r= mysqli_query($conn,$s) or die("Error");
                     if(mysqli_num_rows($r)>0){
@@ -105,7 +105,7 @@
 
                       <div class='input-field col s12 m4 l4'>
                         <input type='date' id='vigencia' name='vigencia[]'>
-                        <label for='vigencia'>Ultima fecha de expedición</label>
+                        <label for='vigencia' class="active">Ultima fecha de expedición</label>
                       </div>
 
                       <div class='input-field col s12 m4 l4'>
@@ -444,11 +444,11 @@
                      echo"
                      <div class='row'>
                      <div class='input-field col s12 m6 l6' style='margin-top: 0px'>
-                     <input type='hidden' name='preguntas3[]' value='$rw[id]' />
+                     <input type='hidden' name='preguntas5[]' value='$rw[id]' />
                      <p style='text-align:justify'>$rw[descripcion]</p>
                      </div>
                      <div class='input-field col s12 m6 l6' style='margin-top: 52px'>
-                     <select name='verifica1_si_no3[]' id='verifica1_si_no3".$i."'>";
+                     <select name='verifica1_si_no5[]' id='verifica1_si_no5".$i."'>";
                      $s1="select id,nombre from si_no order by id desc";
                      $r1= mysqli_query($conn,$s1) or die('Error');
                      if(mysqli_num_rows($r1)>0){
@@ -463,13 +463,13 @@
 
 
                     <div class='input-field col s12 m6 l6'>
-                    <textarea id='descripcion3".$i."' name='descripcion3[]' class='materialize-textarea'></textarea>
+                    <textarea id='descripcion5".$i."' name='descripcion5[]' class='materialize-textarea'></textarea>
                     <label for=''>Descripción</label>
                     </div>
               
                     <div class='input-field col s12 m6 l6'  style='margin-top: 52px'>
 
-                    <select multiple name='medio_verificacion3[]' id='medio_verificacion3".$i."'>
+                    <select multiple name='medio_verificacion5[]' id='medio_verificacion5".$i."'>
                     <option disabled>Seleccione...</option>";
 
                     $medio1 = array();
@@ -485,7 +485,153 @@
                    
                     echo "
                     </select>
-                    <input type='hidden' name='medio3[]' id='medio3".$i."' value=''>
+                    <input type='hidden' name='medio5[]' id='medio5".$i."' value=''>
+                    </div>
+                    
+                    </div>
+                    <div class='divider'></div>";
+
+                  }         
+                }
+                ?>
+      
+      </li>
+
+
+
+
+      <li>
+          <div class="collapsible-header" style="font-weight: bold;"> <i class="material-icons"></i>Proveedores</div>
+          <div class="collapsible-body">
+           <div class="row" style="text-align: center;background-color: #bdbdbd;">Proveedores</div>
+          
+            <div class="divider"></div>
+            <?php
+                  $i = 0;
+                  $s="SELECT id,descripcion from pregunta_indicativa where aspecto_id = 6";
+                  $r= mysqli_query($conn,$s) or die("Error");
+                  if(mysqli_num_rows($r)>0){
+                    while($rw=mysqli_fetch_assoc($r)){
+
+                     $i++;
+                     echo"
+                     <div class='row'>
+                     <div class='input-field col s12 m6 l6' style=''>
+                     <input type='hidden' name='preguntas6[]' value='$rw[id]' />
+                     <p style='text-align:justify'>$rw[descripcion]</p>
+                     </div>
+                     <div class='input-field col s12 m6 l6' style='margin-top: 52px'>
+                     <select name='verifica1_si_no6[]' id='verifica1_si_no6".$i."'>";
+                     $s1="select id,nombre from si_no order by id desc";
+                     $r1= mysqli_query($conn,$s1) or die('Error');
+                     if(mysqli_num_rows($r1)>0){
+                      while($result1=mysqli_fetch_assoc($r1)){
+                        echo"<option value=".$result1['id'].">".$result1['nombre' ]."</option>";
+                      }
+                    }
+                    echo"
+                    </select>
+                    <label for=''>Si/ No/ No Aplica</label>
+                    </div>
+
+
+                    <div class='input-field col s12 m6 l6'>
+                    <textarea id='descripcion6".$i."' name='descripcion6[]' class='materialize-textarea'></textarea>
+                    <label for=''>Descripción</label>
+                    </div>
+              
+                    <div class='input-field col s12 m6 l6'  style='margin-top: 52px'>
+
+                    <select multiple name='medio_verificacion6[]' id='medio_verificacion6".$i."'>
+                    <option disabled>Seleccione...</option>";
+
+                    $medio1 = array();
+                    $s1="SELECT id,nombre from medio order by id asc ";
+                    $r1= mysqli_query($conn,$s1) or die('Error');
+                    if(mysqli_num_rows($r1)>0){
+                      while($result1=mysqli_fetch_assoc($r1)){
+                        echo"<option value=".$result1['nombre'].">".$result1['nombre' ]."</option>";
+                        // array_push($medio1,$result1['id']);
+                      }
+                    }
+
+                   
+                    echo "
+                    </select>
+                    <input type='hidden' name='medio6[]' id='medio6".$i."' value=''>
+                    </div>
+                    
+                    </div>
+                    <div class='divider'></div>";
+
+                  }         
+                }
+                ?>
+      
+      </li>
+
+
+
+
+      <li>
+          <div class="collapsible-header" style="font-weight: bold;"> <i class="material-icons"></i>Otros</div>
+          <div class="collapsible-body">
+           <div class="row" style="text-align: center;background-color: #bdbdbd;">Otros</div>
+          
+            <div class="divider"></div>
+            <?php
+                  $i = 0;
+                  $s="SELECT id,descripcion from pregunta_indicativa where aspecto_id = 7";
+                  $r= mysqli_query($conn,$s) or die("Error");
+                  if(mysqli_num_rows($r)>0){
+                    while($rw=mysqli_fetch_assoc($r)){
+
+                     $i++;
+                     echo"
+                     <div class='row'>
+                     <div class='input-field col s12 m6 l6' style=''>
+                     <input type='hidden' name='preguntas7[]' value='$rw[id]' />
+                     <p style='text-align:justify'>$rw[descripcion]</p>
+                     </div>
+                     <div class='input-field col s12 m6 l6' style='margin-top: 52px'>
+                     <select name='verifica1_si_no7[]' id='verifica1_si_no7".$i."'>";
+                     $s1="select id,nombre from si_no order by id desc";
+                     $r1= mysqli_query($conn,$s1) or die('Error');
+                     if(mysqli_num_rows($r1)>0){
+                      while($result1=mysqli_fetch_assoc($r1)){
+                        echo"<option value=".$result1['id'].">".$result1['nombre' ]."</option>";
+                      }
+                    }
+                    echo"
+                    </select>
+                    <label for=''>Si/ No/ No Aplica</label>
+                    </div>
+
+
+                    <div class='input-field col s12 m6 l6'>
+                    <textarea id='descripcion7".$i."' name='descripcion7[]' class='materialize-textarea'></textarea>
+                    <label for=''>Descripción</label>
+                    </div>
+              
+                    <div class='input-field col s12 m6 l6'  style='margin-top: 52px'>
+
+                    <select multiple name='medio_verificacion7[]' id='medio_verificacion7".$i."'>
+                    <option disabled>Seleccione...</option>";
+
+                    $medio1 = array();
+                    $s1="SELECT id,nombre from medio order by id asc ";
+                    $r1= mysqli_query($conn,$s1) or die('Error');
+                    if(mysqli_num_rows($r1)>0){
+                      while($result1=mysqli_fetch_assoc($r1)){
+                        echo"<option value=".$result1['nombre'].">".$result1['nombre' ]."</option>";
+                        // array_push($medio1,$result1['id']);
+                      }
+                    }
+
+                   
+                    echo "
+                    </select>
+                    <input type='hidden' name='medio7[]' id='medio7".$i."' value=''>
                     </div>
                     
                     </div>
@@ -497,7 +643,15 @@
       
       </li>
     </ul>
-    
+    <div class="row">
+    <div class='input-field col s12 m12 l12 green lighten-5 ' id='div_empresa' style='border: 1px solid green'>
+          <p>NOTA ACLARATORIA</p>
+          <p> 1. Se presume la buena fe del empresario en la información consignada y que cumple con los requerimientos mínimos legales en el momento de la inscripción en la Ventanilla de Negocios Verdes. </p>
+          <p> 2. En caso de incumplimiento de alguno de los requisitos acá consignados como el nivel "0" debe realizarse el acompañamiento de manera inmediata, y si después del acompañamiento no logra dar cumplimiento a estos requisitos, no podrá continuar en el proceso de ser Negocio Verde. </p>
+          <p> 3. Una vez se tenga la evidencia y se corrobore el cumplimiento al 100% del nivel "0" puede realizarse la verificación del nivel 1 y 2 he inscribirse oficialmente como Negocio Verde.</p>
+          <p> 4. En caso que el negocio sea de un grupo étnico aplica lo referente en la Constitución Política de Colombia artículos  9, 10, 323, 68, 63, 72, 330, 329 que define el enfoque diferencial étnico.</p>
+        </div>
+    </div>
     <button type="submit" class="waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="btn_verificacion1"><i class="material-icons right">add</i>Registrar</button>
   </form>
 </div>
