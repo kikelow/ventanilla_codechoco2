@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 if (is_file('conexion.php')){
   require_once('conexion.php');
 }
