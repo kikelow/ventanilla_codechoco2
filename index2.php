@@ -71,7 +71,7 @@ if(!isset($_SESSION["vev_verificador"])){
               </ul>
             </div>
           </li>
-          <li class="bold"><a class="collapsible-header  waves-effect waves-green men ">Formato de informacion AS</a>
+          <li class="bold"><a class="collapsible-header  waves-effect waves-green men ">Información complementaria</a>
             <div class="collapsible-body">
               <ul>
                 <li><a href="index2.php?modulo=evaluacion/formato_informacion_as">Nuevo</a></li>
