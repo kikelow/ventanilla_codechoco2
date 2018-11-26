@@ -656,7 +656,7 @@ $('#calificador131,#calificador132,#calificador133').change(function(event) {
 	var selected131 = combo131.options[combo131.selectedIndex].text;
 	var combo132 = document.getElementById("calificador132");
 	var selected132 = combo132.options[combo132.selectedIndex].text;
-	var combo133 = document.getElementById("calificador132");
+	var combo133 = document.getElementById("calificador133");
 	var selected133 = combo133.options[combo133.selectedIndex].text;
 
 	var division = 0

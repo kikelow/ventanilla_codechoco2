@@ -38,9 +38,11 @@ require_once('conexion.php');
         </select>
       </div>        
 </div>
+
+
  <div class="row">
   <div class='input-field col s12 m12 l12 green lighten-5 ' id='div_empresa' style='border: 1px solid green'>
-      <h6>NOTA: Si desea caragar algún archivo, su tamaño debe ser inferior a 1Mb</h6>
+      <h6>NOTA: Si desea cargar algún archivo, su tamaño debe ser inferior a 1Mb</h6>
     </div>
   <hr style="border: 1px solid green">
   <h5>Nivel 1.  Indicadores de los criterios de cumplimiento de Negocios Verdes</h5>
@@ -155,7 +157,7 @@ require_once('conexion.php');
                  $i++;
        echo"
        <div class='row'>
-                <div class='input-field col s12 m5 l5'>
+                <div class='input-field col s12 m5 l5' style='margin-top:0px;'>
                 <input type='hidden' name='pregunta2[]' value='$rw[id]' />
                 <p style='text-align:justify'>$rw[descripcion]</p>
         </div>
@@ -174,7 +176,7 @@ require_once('conexion.php');
           </select>
          <label for=''>(0, 0.5, 1, N/A)</label>
         </div>
-         <div class='input-field col s12 m5 l5'>
+         <div class='input-field col s12 m5 l5' >
           <textarea id='descripcion".$i."' name='descripcion2[]' class='materialize-textarea'></textarea>
           <label for='verificacion2_obs".$i."'>Descripción</label>
         </div>
@@ -210,7 +212,7 @@ require_once('conexion.php');
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='evidencia2[]' id='evidencia".$i."'>
+        <input type='file' name='evidencia2[]' id='evidencia2".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -300,7 +302,7 @@ require_once('conexion.php');
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='evidencia3[]' id='evidencia".$i."'>
+        <input type='file' name='evidencia3[]' id='evidencia3".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -390,7 +392,7 @@ $i = 0;
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='evidencia4[]' id='evidencia".$i."'>
+        <input type='file' name='evidencia4[]' id='evidencia4".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -482,7 +484,7 @@ $i = 0;
             <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
             <div class='btn'>
             <span>Evidencia</span>
-            <input type='file' name='evidencia5[]' id='evidencia".$i."'>
+            <input type='file' name='evidencia5[]' id='evidencia5".$i."'>
             </div>
             <div class='file-path-wrapper'>
             <input class='file-path validate' type='text'>
@@ -574,7 +576,7 @@ $i = 0;
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='evidencia6[]' id='evidencia".$i."'>
+        <input type='file' name='evidencia6[]' id='evidencia6".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -665,7 +667,7 @@ $i = 0;
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='evidencia7[]' id='evidencia".$i."'>
+        <input type='file' name='evidencia7[]' id='evidencia7".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -757,7 +759,7 @@ $i = 0;
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='evidencia8[]' id='evidencia".$i."'>
+        <input type='file' name='evidencia8[]' id='evidencia8".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -849,7 +851,7 @@ $i = 0;
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='evidencia9[]' id='evidencia".$i."'>
+        <input type='file' name='evidencia9[]' id='evidencia9".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -941,7 +943,7 @@ $i = 0;
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='evidencia10[]' id='evidencia".$i."'>
+        <input type='file' name='evidencia10[]' id='evidencia10".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -1033,7 +1035,7 @@ $i = 0;
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='evidencia11[]' id='evidencia".$i."'>
+        <input type='file' name='evidencia11[]' id='evidencia11".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -1128,7 +1130,7 @@ $i = 0;
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='evidencia12[]' id='evidencia".$i."'>
+        <input type='file' name='evidencia12[]' id='evidencia12".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -1221,7 +1223,7 @@ $i = 0;
          <div class='file-field input-field col s12 m6 l6' style='margin-top: 52px'>
          <div class='btn'>
         <span>Evidencia</span>
-        <input type='file' name='evidencia13[]' id='evidencia".$i."'>
+        <input type='file' name='evidencia13[]' id='evidencia13".$i."'>
       </div>
       <div class='file-path-wrapper'>
         <input class='file-path validate' type='text' >
@@ -1265,7 +1267,7 @@ $i = 0;
         </tr>
         <tr>
           <td>Item 2</td>
-          <td>Impacto Ambiental Positivo  y contribución a la conservación y preservación de los recursos ecosistemicos</td>
+          <td>Impacto Ambiental Positivo del Bien o Servicio</td>
           <td id="prom2">0.00%</td>
         </tr>
         <tr>
@@ -1285,12 +1287,12 @@ $i = 0;
       </tr>
       <tr>
         <td>Item 6</td>
-        <td>Reciclabilidad y/o uso de materiales reciclados</td>
+        <td> Reciclabilidad de los Materiales y/o Uso de Materiales Reciclados</td>
         <td id="prom6">0.00%</td>
       </tr>
       <tr>
         <td>Item 7</td>
-        <td>Uso eficiente y sostenible de recursos para la producción de bienes o servicios</td>
+        <td>Uso Eficiente y Sostenible de Recursos para la Producción del Bien o Servicio</td>
         <td id="prom7">0.00%</td>
       </tr>
       <tr>
@@ -1300,17 +1302,17 @@ $i = 0;
       </tr>
       <tr>
         <td>Item 9</td>
-        <td>Responsabilidad social en la cadena de valor de la empresa</td>
+        <td>Responsabilidad Social y Ambiental en la Cadena de Valor de la Empresa</td>
         <td id="prom9">0.00%</td>
       </tr>
       <tr>
         <td>Item 10</td>
-        <td>Responsabilidad social al exterior de la empresa</td>
+        <td>Responsabilidad Social y Ambiental al Exterior de la Empresa</td>
         <td id="prom10">0.00%</td>
       </tr>
       <tr>
         <td>Item 11</td>
-        <td>Comunicación de atributos del bien y servicio</td>
+        <td>Comunicación de Atributos Sociales o Ambientales Asociados al Bien o Servicio</td>
         <td id="prom11">0.00%</td>
       </tr>
       <tr>
@@ -1338,11 +1340,11 @@ $i = 0;
     </thead>
     <tbody>
       <tr>
-        <td>Esquemas, programas o reconocimientos implementados o recibidos</td>
+        <td>Responsabilidad Social al Interior de la Empresa</td>
         <td id="prom12">0.00%</td>
       </tr>
       <tr>
-        <td>Responsabilidad social al interior de la empresa adicional</td>
+        <td> Esquemas, Programas o Reconocimientos Ambientales o Sociales Implementados o Recibidos</td>
         <td id="prom13">0.00%</td>
       </tr>
       <tr>
