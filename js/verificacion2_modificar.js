@@ -1,5 +1,194 @@
 //------------------------------------ESTADISTICAS MODIFICAR
 $('#empresa_m').select2();
+
+//-------------------------------------------------------------------
+
+//------viabilidad economica del negocio
+	$('#medio_verificacion1').change(function(event) {
+		$('#medio1').val($(this).val())
+	});
+
+	$('#medio_verificacion2').change(function(event) {
+		$('#medio2').val($(this).val())
+	});
+
+	$('#medio_verificacion3').change(function(event) {
+		$('#medio3').val($(this).val())
+	});
+
+	$('#medio_verificacion4').change(function(event) {
+		$('#medio4').val($(this).val())
+	});
+
+	$('#medio_verificacion5').change(function(event) {
+		$('#medio5').val($(this).val())
+	});
+
+	$('#medio_verificacion6').change(function(event) {
+		$('#medio6').val($(this).val())
+	});
+
+	$('#medio_verificacion7').change(function(event) {
+		$('#medio7').val($(this).val())
+	});
+
+	$('#medio_verificacion8').change(function(event) {
+		$('#medio8').val($(this).val())
+	});
+
+	$('#medio_verificacion9').change(function(event) {
+		$('#medio9').val($(this).val())
+	});
+
+
+//------impacto ambiental positivo
+	$('#medio_verificacion21').change(function(event) {
+		$('#medio21').val($(this).val())
+	});
+	$('#medio_verificacion22').change(function(event) {
+		$('#medio22').val($(this).val())
+	});
+	$('#medio_verificacion23').change(function(event) {
+		$('#medio23').val($(this).val())
+	});
+	$('#medio_verificacion24').change(function(event) {
+		$('#medio24').val($(this).val())
+	});
+	
+//------enfoque ciclo de vida
+
+	$('#medio_verificacion31').change(function(event) {
+		$('#medio31').val($(this).val())
+	});
+	$('#medio_verificacion32').change(function(event) {
+		$('#medio32').val($(this).val())
+	});
+	$('#medio_verificacion33').change(function(event) {
+		$('#medio33').val($(this).val())
+	});
+//------vida util
+	$('#medio_verificacion41').change(function(event) {
+		$('#medio41').val($(this).val())
+	});
+	$('#medio_verificacion42').change(function(event) {
+		$('#medio42').val($(this).val())
+	});
+
+//------------------ sustitucion de sustancias
+
+$('#medio_verificacion51').change(function(event) {
+		$('#medio51').val($(this).val())
+	});
+	$('#medio_verificacion52').change(function(event) {
+		$('#medio52').val($(this).val())
+	});
+
+//------------------ reciclabilidad 
+
+$('#medio_verificacion61').change(function(event) {
+		$('#medio61').val($(this).val())
+	});
+	$('#medio_verificacion62').change(function(event) {
+		$('#medio62').val($(this).val())
+	});
+	$('#medio_verificacion63').change(function(event) {
+		$('#medio63').val($(this).val())
+	});
+
+//------------------ uso eficiente de recursos
+
+$('#medio_verificacion71').change(function(event) {
+		$('#medio71').val($(this).val())
+	});
+	$('#medio_verificacion72').change(function(event) {
+		$('#medio72').val($(this).val())
+	});
+	$('#medio_verificacion73').change(function(event) {
+		$('#medio73').val($(this).val())
+	});
+
+//------------------ responsabilidad social al interior
+
+$('#medio_verificacion81').change(function(event) {
+		$('#medio81').val($(this).val())
+	});
+	$('#medio_verificacion82').change(function(event) {
+		$('#medio82').val($(this).val())
+	});
+	$('#medio_verificacion83').change(function(event) {
+		$('#medio83').val($(this).val())
+	});
+	$('#medio_verificacion84').change(function(event) {
+		$('#medio84').val($(this).val())
+	});
+
+//------------------ respnsabilidad social y ambiental en la cadena
+
+$('#medio_verificacion91').change(function(event) {
+		$('#medio91').val($(this).val())
+	});
+	$('#medio_verificacion92').change(function(event) {
+		$('#medio92').val($(this).val())
+	});
+	$('#medio_verificacion93').change(function(event) {
+		$('#medio93').val($(this).val())
+	});
+
+//------------------ responsabilidad social y ambiental al exterior
+
+$('#medio_verificacion101').change(function(event) {
+	$('#medio101').val($(this).val())
+	});
+	$('#medio_verificacion102').change(function(event) {
+		$('#medio102').val($(this).val())
+	});
+	$('#medio_verificacion103').change(function(event) {
+		$('#medio103').val($(this).val())
+	});
+	$('#medio_verificacion104').change(function(event) {
+		$('#medio104').val($(this).val())
+	});
+	$('#medio_verificacion105').change(function(event) {
+		$('#medio105').val($(this).val())
+	});
+	$('#medio_verificacion106').change(function(event) {
+		$('#medio106').val($(this).val())
+	});
+
+//------------------ comunicacion de atributos sociales
+
+$('#medio_verificacion111').change(function(event) {
+		$('#medio111').val($(this).val())
+	});
+	$('#medio_verificacion112').change(function(event) {
+		$('#medio112').val($(this).val())
+	});
+	$('#medio_verificacion113').change(function(event) {
+		$('#medio113').val($(this).val())
+	});
+
+//------------------ responsbilidad social al interior 2
+
+$('#medio_verificacion121').change(function(event) {
+		$('#medio121').val($(this).val())
+	});
+	$('#medio_verificacion122').change(function(event) {
+		$('#medio122').val($(this).val())
+	});
+
+
+//------------------ esquemas porgrama o reconociminetos 
+
+$('#medio_verificacion131').change(function(event) {
+		$('#medio131').val($(this).val())
+	});
+	$('#medio_verificacion132').change(function(event) {
+		$('#medio132').val($(this).val())
+	});
+	$('#medio_verificacion133').change(function(event) {
+		$('#medio133').val($(this).val())
+	});
+
 //-----------------------------------Cargar formulario----------------------------------
 $('#empresa_m').change(function(event) {
 	event.preventDefault();

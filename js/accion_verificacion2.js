@@ -121,6 +121,9 @@ $('#medio_verificacion81').change(function(event) {
 	$('#medio_verificacion83').change(function(event) {
 		$('#medio83').val($(this).val())
 	});
+	$('#medio_verificacion84').change(function(event) {
+		$('#medio84').val($(this).val())
+	});
 
 //------------------ respnsabilidad social y ambiental en la cadena
 
@@ -185,9 +188,6 @@ $('#medio_verificacion131').change(function(event) {
 	$('#medio_verificacion132').change(function(event) {
 		$('#medio132').val($(this).val())
 	});
-
-
-
 });
 
 

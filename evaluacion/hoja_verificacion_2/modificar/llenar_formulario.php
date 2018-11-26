@@ -211,7 +211,7 @@
          
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion2[]' id='medio_verificacion".$i."'>
+        <select multiple name='medio_verificacion2[]' id='medio_verificacion2".$i."'>
         <option disabled>Seleccione...</option>";
 
         
@@ -241,7 +241,7 @@
         </select>";
 
         
-          echo "<input type='hidden' name='medio2[]' value='$rw[medio_verificacion]' id='medio".$i."' >";
+          echo "<input type='hidden' name='medio2[]' value='$rw[medio_verificacion]' id='medio2".$i."' >";
         
  
         echo "
@@ -342,7 +342,7 @@
          
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion3[]' id='medio_verificacion".$i."'>
+        <select multiple name='medio_verificacion3[]' id='medio_verificacion3".$i."'>
         <option disabled>Seleccione...</option>";
 
         
@@ -372,7 +372,7 @@
         </select>";
 
         
-          echo "<input type='hidden' name='medio3[]' value='$rw[medio_verificacion]' id='medio".$i."' >";
+          echo "<input type='hidden' name='medio3[]' value='$rw[medio_verificacion]' id='medio3".$i."' >";
         
  
         echo "
@@ -473,7 +473,7 @@
          
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion4[]' id='medio_verificacion".$i."'>
+        <select multiple name='medio_verificacion4[]' id='medio_verificacion4".$i."'>
         <option disabled>Seleccione...</option>";
 
         
@@ -503,7 +503,7 @@
         </select>";
 
         
-          echo "<input type='hidden' name='medio4[]' value='$rw[medio_verificacion]' id='medio".$i."' >";
+          echo "<input type='hidden' name='medio4[]' value='$rw[medio_verificacion]' id='medio4".$i."' >";
         
  
         echo "
@@ -604,7 +604,7 @@
          
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion5[]' id='medio_verificacion".$i."'>
+        <select multiple name='medio_verificacion5[]' id='medio_verificacion5".$i."'>
         <option disabled>Seleccione...</option>";
 
         
@@ -634,7 +634,7 @@
         </select>";
 
         
-          echo "<input type='hidden' name='medio5[]' value='$rw[medio_verificacion]' id='medio".$i."' >";
+          echo "<input type='hidden' name='medio5[]' value='$rw[medio_verificacion]' id='medio5".$i."' >";
         
  
         echo "
@@ -736,7 +736,7 @@
          
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion6[]' id='medio_verificacion".$i."'>
+        <select multiple name='medio_verificacion6[]' id='medio_verificacion6".$i."'>
         <option disabled>Seleccione...</option>";
 
         
@@ -766,7 +766,7 @@
         </select>";
 
         
-          echo "<input type='hidden' name='medio6[]' value='$rw[medio_verificacion]' id='medio".$i."' >";
+          echo "<input type='hidden' name='medio6[]' value='$rw[medio_verificacion]' id='medio6".$i."' >";
         
  
         echo "
@@ -866,7 +866,7 @@
          
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion7[]' id='medio_verificacion".$i."'>
+        <select multiple name='medio_verificacion7[]' id='medio_verificacion7".$i."'>
         <option disabled>Seleccione...</option>";
 
         
@@ -896,7 +896,7 @@
         </select>";
 
         
-          echo "<input type='hidden' name='medio7[]' value='$rw[medio_verificacion]' id='medio".$i."' >";
+          echo "<input type='hidden' name='medio7[]' value='$rw[medio_verificacion]' id='medio7".$i."' >";
         
  
         echo "
@@ -995,7 +995,7 @@
          
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion8[]' id='medio_verificacion".$i."'>
+        <select multiple name='medio_verificacion8[]' id='medio_verificacion8".$i."'>
         <option disabled>Seleccione...</option>";
 
         
@@ -1025,7 +1025,7 @@
         </select>";
 
         
-          echo "<input type='hidden' name='medio8[]' value='$rw[medio_verificacion]' id='medio".$i."' >";
+          echo "<input type='hidden' name='medio8[]' value='$rw[medio_verificacion]' id='medio8".$i."' >";
         
  
         echo "
@@ -1126,7 +1126,7 @@
          
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion9[]' id='medio_verificacion".$i."'>
+        <select multiple name='medio_verificacion9[]' id='medio_verificacion9".$i."'>
         <option disabled>Seleccione...</option>";
 
         
@@ -1156,7 +1156,7 @@
         </select>";
 
         
-          echo "<input type='hidden' name='medio9[]' value='$rw[medio_verificacion]' id='medio".$i."' >";
+          echo "<input type='hidden' name='medio9[]' value='$rw[medio_verificacion]' id='medio9".$i."' >";
         
  
         echo "
@@ -1257,7 +1257,7 @@
          
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion10[]' id='medio_verificacion".$i."'>
+        <select multiple name='medio_verificacion10[]' id='medio_verificacion10".$i."'>
         <option disabled>Seleccione...</option>";
 
         
@@ -1287,7 +1287,7 @@
         </select>";
 
         
-          echo "<input type='hidden' name='medio10[]' value='$rw[medio_verificacion]' id='medio".$i."' >";
+          echo "<input type='hidden' name='medio10[]' value='$rw[medio_verificacion]' id='medio10".$i."' >";
         
  
         echo "
@@ -1388,7 +1388,7 @@
          
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion11[]' id='medio_verificacion".$i."'>
+        <select multiple name='medio_verificacion11[]' id='medio_verificacion11".$i."'>
         <option disabled>Seleccione...</option>";
 
         
@@ -1418,7 +1418,7 @@
         </select>";
 
         
-          echo "<input type='hidden' name='medio11[]' value='$rw[medio_verificacion]' id='medio".$i."' >";
+          echo "<input type='hidden' name='medio11[]' value='$rw[medio_verificacion]' id='medio11".$i."' >";
         
  
         echo "
@@ -1523,7 +1523,7 @@
          
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion12[]' id='medio_verificacion".$i."'>
+        <select multiple name='medio_verificacion12[]' id='medio_verificacion12".$i."'>
         <option disabled>Seleccione...</option>";
 
         
@@ -1553,7 +1553,7 @@
         </select>";
 
         
-          echo "<input type='hidden' name='medio12[]' value='$rw[medio_verificacion]' id='medio".$i."' >";
+          echo "<input type='hidden' name='medio12[]' value='$rw[medio_verificacion]' id='medio12".$i."' >";
         
  
         echo "
@@ -1653,7 +1653,7 @@
          
         <div class='input-field col s12 m6 l6'  style='margin-top:52px;'>
 
-        <select multiple name='medio_verificacion13[]' id='medio_verificacion".$i."'>
+        <select multiple name='medio_verificacion13[]' id='medio_verificacion13".$i."'>
         <option disabled>Seleccione...</option>";
 
         
@@ -1683,7 +1683,7 @@
         </select>";
 
         
-          echo "<input type='hidden' name='medio13[]' value='$rw[medio_verificacion]' id='medio".$i."' >";
+          echo "<input type='hidden' name='medio13[]' value='$rw[medio_verificacion]' id='medio13".$i."' >";
         
  
         echo "
