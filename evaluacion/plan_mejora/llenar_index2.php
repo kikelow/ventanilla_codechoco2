@@ -13,7 +13,7 @@
 echo " <ul class='collapsible' data-collapsible='accordion'>";
   
     $opciones_id = '';
-    $s2="SELECT opciones_id FROM verificacion_1 WHERE si_no_noaplica_id = '1' AND empresa_id = '$empresa'";
+    $s2="SELECT pregunta_id FROM hoja_verificacion_1 WHERE respuesta_id = '1' AND empresa_id = '$empresa'";
         $r2= mysqli_query($conn,$s2) or die(mysqli_error($conn));
         if(mysqli_num_rows($r2)>0){
  

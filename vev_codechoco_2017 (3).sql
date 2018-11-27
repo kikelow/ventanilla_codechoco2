@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2018 a las 23:25:32
--- Versión del servidor: 10.1.13-MariaDB
--- Versión de PHP: 5.6.23
+-- Tiempo de generación: 27-11-2018 a las 16:09:13
+-- Versión del servidor: 10.1.30-MariaDB
+-- Versión de PHP: 7.0.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,8 +30,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `actividades` (
   `id` int(11) NOT NULL,
-  `empresa_id` int(11) NOT NULL,
-  `opciones_id` int(11) NOT NULL,
+  `info_com_id` int(11) NOT NULL,
+  `pregunta_id` int(11) NOT NULL,
   `recurso_id` int(11) NOT NULL,
   `descripcion` varchar(50) COLLATE utf8_bin NOT NULL,
   `confirmacion` varchar(10) COLLATE utf8_bin NOT NULL
@@ -39,7 +41,7 @@ CREATE TABLE `actividades` (
 -- Volcado de datos para la tabla `actividades`
 --
 
-INSERT INTO `actividades` (`id`, `empresa_id`, `opciones_id`, `recurso_id`, `descripcion`, `confirmacion`) VALUES
+INSERT INTO `actividades` (`id`, `info_com_id`, `pregunta_id`, `recurso_id`, `descripcion`, `confirmacion`) VALUES
 (15, 11, 58, 1, '22', 'si'),
 (16, 11, 60, 2, '44', 'si'),
 (17, 11, 57, 1, '', 'no'),
@@ -75,14 +77,26 @@ CREATE TABLE `actividad_empresa` (
   `id` int(11) NOT NULL,
   `empresa_id` int(11) NOT NULL,
   `actividad_item_id` int(11) NOT NULL,
+  `si_no_actividad_id` int(11) NOT NULL,
   `direccion` text COLLATE utf8_bin NOT NULL,
   `municipio_id` int(11) NOT NULL,
   `tipo_tenencia_id` int(11) NOT NULL,
   `area` varchar(20) COLLATE utf8_bin NOT NULL,
   `pot_si_no_id` int(11) NOT NULL,
-  `observacion` text COLLATE utf8_bin NOT NULL,
-  `confirmacion` varchar(3) COLLATE utf8_bin NOT NULL
+  `observacion` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `actividad_empresa`
+--
+
+INSERT INTO `actividad_empresa` (`id`, `empresa_id`, `actividad_item_id`, `si_no_actividad_id`, `direccion`, `municipio_id`, `tipo_tenencia_id`, `area`, `pot_si_no_id`, `observacion`) VALUES
+(1, 16, 1, 1, 'cl575', 8, 1, '23', 1, 'adasd'),
+(2, 16, 2, 1, 'adxda', 6, 3, '43', 1, 'adadas'),
+(3, 16, 3, 1, 'cll 68', 21, 4, '34', 1, 'fgfg'),
+(6, 19, 1, 2, '', 0, 0, '', 0, ''),
+(7, 19, 2, 2, '', 0, 0, '', 0, ''),
+(8, 19, 3, 2, '', 0, 0, '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -148,6 +162,57 @@ INSERT INTO `aplica_noaplica` (`id`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `apoyo`
+--
+
+CREATE TABLE `apoyo` (
+  `id` int(11) NOT NULL,
+  `info_com_id` int(11) NOT NULL,
+  `descripcion` varchar(200) COLLATE utf8_bin NOT NULL,
+  `nombre_entidad` varchar(100) COLLATE utf8_bin NOT NULL,
+  `tipo_entidad_id` int(11) NOT NULL,
+  `año` year(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `apoyo`
+--
+
+INSERT INTO `apoyo` (`id`, `info_com_id`, `descripcion`, `nombre_entidad`, `tipo_entidad_id`, `año`) VALUES
+(21, 11, 'mercancia', 'No recuerdo el nombre', 3, 2001),
+(22, 11, '', '', 2, 0000),
+(23, 11, 'alambres', 'doblamos', 2, 2003),
+(24, 11, '', '', 2, 0000),
+(25, 11, 'computadores', 'Soft', 1, 2005),
+(26, 16, '', '', 1, 0000),
+(27, 16, '', '', 1, 0000),
+(28, 16, 'sdfgsd', 'ajjjjjjjjjj', 3, 2015),
+(29, 16, '', '', 1, 0000),
+(30, 16, '', '', 1, 0000),
+(31, 17, '', '', 1, 0000),
+(32, 17, '', '', 1, 0000),
+(33, 17, 'alguno', 'sdgsdfgsdfgs', 2, 0000),
+(34, 17, '', '', 1, 0000),
+(35, 17, '', '', 1, 0000),
+(36, 15, '', '', 1, 0000),
+(37, 15, '', '', 1, 0000),
+(38, 15, '', '', 1, 0000),
+(39, 15, '', '', 1, 0000),
+(40, 15, '', '', 1, 0000),
+(41, 28, '', '', 1, 0000),
+(42, 28, '', '', 1, 0000),
+(43, 28, '', '', 1, 0000),
+(44, 28, '', '', 1, 0000),
+(45, 28, '', '', 1, 0000),
+(46, 20, '', '', 1, 0000),
+(47, 20, '', '', 1, 0000),
+(48, 20, '', '', 1, 0000),
+(49, 20, '', '', 1, 0000),
+(50, 20, '', '', 1, 0000);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `archivo_page`
 --
 
@@ -183,6 +248,43 @@ CREATE TABLE `area` (
 
 INSERT INTO `area` (`id`, `nombre`) VALUES
 (1, 'No aplica');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `aspecto`
+--
+
+CREATE TABLE `aspecto` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `aspecto`
+--
+
+INSERT INTO `aspecto` (`id`, `nombre`) VALUES
+(1, 'Certificaciones vigentes'),
+(2, 'Requisitos excluyentes'),
+(3, 'Administrativo'),
+(4, 'Ambiental'),
+(5, 'Social'),
+(6, 'Proveedores'),
+(7, 'Otros'),
+(8, 'Viabilidad económica del negocio'),
+(9, 'Impacto ambiental positivo del bien o servicio'),
+(10, 'Enfoque de ciclo de vida del bien o servicio'),
+(11, 'Vida útil'),
+(12, 'Sustitución de sustancias o materiales peligrosos'),
+(13, 'Reciclabilidad de los materiales y/o uso de materiales reciclados'),
+(14, 'Uso eficiente y sostenible de recursos para la producción del bien o servicio'),
+(15, 'Responsabilidad social al interior de la empresa'),
+(16, 'Responsabilidad social y ambiental en la cadena de valor de la empresa'),
+(17, 'Responsabilidad social y ambiental al exterior de la empresa'),
+(18, 'Comunicación de atributos sociales o ambientales asociados al bien o servicio'),
+(19, 'Responsabilidad social al interior de la empresa'),
+(20, 'Esquemas, programas o reconocimientos ambientales o sociales implementados o recibidos');
 
 -- --------------------------------------------------------
 
@@ -309,7 +411,87 @@ INSERT INTO `bienes_servicios` (`id`, `empresa_id`, `nombre`, `lider`) VALUES
 (129, 28, '', ''),
 (130, 28, '', ''),
 (131, 28, '', ''),
-(132, 28, '', 'jhgfjhgfjhgfjhg');
+(132, 28, '', 'jhgfjhgfjhgfjhg'),
+(133, 4, 'lulo', ''),
+(134, 4, 'papaya', ''),
+(135, 4, 'coco', ''),
+(136, 4, 'yuca', ''),
+(137, 4, 'ñame', ''),
+(138, 4, '', 'mermelada'),
+(139, 5, 'lulo', ''),
+(140, 5, 'papaya', ''),
+(141, 5, 'coco', ''),
+(142, 5, 'yuca', ''),
+(143, 5, 'ñame', ''),
+(144, 5, '', 'mermelada'),
+(145, 6, 'lulo', ''),
+(146, 6, 'papaya', ''),
+(147, 6, 'coco', ''),
+(148, 6, 'yuca', ''),
+(149, 6, 'ñame', ''),
+(150, 6, '', 'mermelada'),
+(151, 7, 'lulo', ''),
+(152, 7, 'papaya', ''),
+(153, 7, 'coco', ''),
+(154, 7, 'yuca', ''),
+(155, 7, 'ñame', ''),
+(156, 7, '', 'mermelada'),
+(157, 8, 'lulo', ''),
+(158, 8, 'papaya', ''),
+(159, 8, 'coco', ''),
+(160, 8, 'yuca', ''),
+(161, 8, 'ñame', ''),
+(162, 8, '', 'mermelada'),
+(163, 9, 'lulo', ''),
+(164, 9, 'papaya', ''),
+(165, 9, 'coco', ''),
+(166, 9, 'yuca', ''),
+(167, 9, 'ñame', ''),
+(168, 9, '', 'mermelada'),
+(169, 10, 'lulo', ''),
+(170, 10, 'papaya', ''),
+(171, 10, 'coco', ''),
+(172, 10, 'yuca', ''),
+(173, 10, 'ñame', ''),
+(174, 10, '', 'mermelada'),
+(175, 11, 'lulo', ''),
+(176, 11, 'papaya', ''),
+(177, 11, 'coco', ''),
+(178, 11, 'yuca', ''),
+(179, 11, 'ñame', ''),
+(180, 11, '', 'mermelada'),
+(181, 13, 'lulo', ''),
+(182, 13, 'papaya', ''),
+(183, 13, 'coco', ''),
+(184, 13, 'yuca', ''),
+(185, 13, 'ñame', ''),
+(186, 13, '', 'mermelada'),
+(187, 16, 'sads', ''),
+(188, 16, 'wewq', ''),
+(189, 16, 'asd', ''),
+(190, 16, 'ad', ''),
+(191, 16, 'asd', ''),
+(192, 16, '', 'qqqqqq'),
+(193, 19, 'sads', ''),
+(194, 19, 'wewq', ''),
+(195, 19, 'asd', ''),
+(196, 19, 'ad', ''),
+(197, 19, 'asd', ''),
+(198, 19, '', 'qqqqqq');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `bienes_servicios_adicionales`
+--
+
+CREATE TABLE `bienes_servicios_adicionales` (
+  `id` int(11) NOT NULL,
+  `info_com_id` int(11) NOT NULL,
+  `costo_total_produccion` double NOT NULL,
+  `venta_total_anual` double NOT NULL,
+  `ingresos_superior` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -342,6 +524,41 @@ CREATE TABLE `cabildo` (
   `id_empresa` int(11) NOT NULL,
   `si_no_id` int(11) NOT NULL,
   `nombre` varchar(100) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `cabildo`
+--
+
+INSERT INTO `cabildo` (`id`, `id_empresa`, `si_no_id`, `nombre`) VALUES
+(1, 4, 1, 'cabildo'),
+(2, 5, 1, 'cabildo'),
+(3, 6, 1, 'cabildo'),
+(4, 7, 1, 'cabildo'),
+(5, 8, 1, 'cabildo'),
+(6, 9, 1, 'cabildo'),
+(7, 10, 1, 'cabildo'),
+(8, 11, 1, 'cabildo'),
+(9, 12, 1, 'cabildo'),
+(10, 13, 1, 'cabildo'),
+(11, 14, 1, 'adsads'),
+(12, 15, 1, 'adsads'),
+(13, 16, 1, 'adsads'),
+(14, 17, 1, 'adsads'),
+(15, 18, 1, 'adsads'),
+(16, 19, 1, 'adsads');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cadena_valor`
+--
+
+CREATE TABLE `cadena_valor` (
+  `id` int(11) NOT NULL,
+  `info_com_id` int(11) NOT NULL,
+  `pregunta_id` int(11) NOT NULL,
+  `respuesta_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -393,10 +610,11 @@ INSERT INTO `categoria` (`id`, `nombre`) VALUES
 
 CREATE TABLE `certificacion` (
   `id` int(11) NOT NULL,
-  `empresa_id` int(11) NOT NULL,
-  `opciones_id` int(11) NOT NULL,
+  `info_com_id` int(11) NOT NULL,
+  `pregunta_id` int(11) NOT NULL,
   `etapa_id` int(11) NOT NULL,
   `vigencia` varchar(30) COLLATE utf8_bin NOT NULL,
+  `otro_nombre` varchar(200) COLLATE utf8_bin NOT NULL,
   `observacion` varchar(50) COLLATE utf8_bin NOT NULL,
   `confirmacion` varchar(10) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -405,49 +623,71 @@ CREATE TABLE `certificacion` (
 -- Volcado de datos para la tabla `certificacion`
 --
 
-INSERT INTO `certificacion` (`id`, `empresa_id`, `opciones_id`, `etapa_id`, `vigencia`, `observacion`, `confirmacion`) VALUES
-(39, 11, 66, 2, '1', '11', 'si'),
-(40, 11, 68, 1, '3', '33', 'si'),
-(41, 11, 70, 1, '5', '55', 'si'),
-(42, 11, 72, 1, '7', '77', 'si'),
-(43, 11, 67, 1, '', '', 'no'),
-(44, 11, 69, 1, '', '', 'no'),
-(45, 11, 71, 1, '', '', 'no'),
-(46, 16, 69, 1, '', '', 'si'),
-(47, 16, 71, 1, '', '', 'si'),
-(48, 16, 66, 1, '', '', 'no'),
-(49, 16, 67, 1, '', '', 'no'),
-(50, 16, 68, 1, '', '', 'no'),
-(51, 16, 70, 1, '', '', 'no'),
-(52, 16, 72, 1, '', '', 'no'),
-(53, 17, 68, 1, '10', 'sdfgsdfg', 'si'),
-(54, 17, 66, 1, '', '', 'no'),
-(55, 17, 67, 1, '', '', 'no'),
-(56, 17, 69, 1, '', '', 'no'),
-(57, 17, 70, 1, '', '', 'no'),
-(58, 17, 71, 1, '', '', 'no'),
-(59, 17, 72, 1, '', '', 'no'),
-(60, 15, 66, 1, '', '', 'no'),
-(61, 15, 67, 1, '', '', 'no'),
-(62, 15, 68, 1, '', '', 'no'),
-(63, 15, 69, 1, '', '', 'no'),
-(64, 15, 70, 1, '', '', 'no'),
-(65, 15, 71, 1, '', '', 'no'),
-(66, 15, 72, 1, '', '', 'no'),
-(67, 28, 66, 1, '', '', 'no'),
-(68, 28, 67, 1, '', '', 'no'),
-(69, 28, 68, 1, '', '', 'no'),
-(70, 28, 69, 1, '', '', 'no'),
-(71, 28, 70, 1, '', '', 'no'),
-(72, 28, 71, 1, '', '', 'no'),
-(73, 28, 72, 1, '', '', 'no'),
-(74, 20, 66, 1, '', '', 'no'),
-(75, 20, 67, 1, '', '', 'no'),
-(76, 20, 68, 1, '', '', 'no'),
-(77, 20, 69, 1, '', '', 'no'),
-(78, 20, 70, 1, '', '', 'no'),
-(79, 20, 71, 1, '', '', 'no'),
-(80, 20, 72, 1, '', '', 'no');
+INSERT INTO `certificacion` (`id`, `info_com_id`, `pregunta_id`, `etapa_id`, `vigencia`, `otro_nombre`, `observacion`, `confirmacion`) VALUES
+(39, 11, 66, 2, '1', '', '11', 'si'),
+(40, 11, 68, 1, '3', '', '33', 'si'),
+(41, 11, 70, 1, '5', '', '55', 'si'),
+(42, 11, 72, 1, '7', '', '77', 'si'),
+(43, 11, 67, 1, '', '', '', 'no'),
+(44, 11, 69, 1, '', '', '', 'no'),
+(45, 11, 71, 1, '', '', '', 'no'),
+(46, 16, 69, 1, '', '', '', 'si'),
+(47, 16, 71, 1, '', '', '', 'si'),
+(48, 16, 66, 1, '', '', '', 'no'),
+(49, 16, 67, 1, '', '', '', 'no'),
+(50, 16, 68, 1, '', '', '', 'no'),
+(51, 16, 70, 1, '', '', '', 'no'),
+(52, 16, 72, 1, '', '', '', 'no'),
+(53, 17, 68, 1, '10', '', 'sdfgsdfg', 'si'),
+(54, 17, 66, 1, '', '', '', 'no'),
+(55, 17, 67, 1, '', '', '', 'no'),
+(56, 17, 69, 1, '', '', '', 'no'),
+(57, 17, 70, 1, '', '', '', 'no'),
+(58, 17, 71, 1, '', '', '', 'no'),
+(59, 17, 72, 1, '', '', '', 'no'),
+(60, 15, 66, 1, '', '', '', 'no'),
+(61, 15, 67, 1, '', '', '', 'no'),
+(62, 15, 68, 1, '', '', '', 'no'),
+(63, 15, 69, 1, '', '', '', 'no'),
+(64, 15, 70, 1, '', '', '', 'no'),
+(65, 15, 71, 1, '', '', '', 'no'),
+(66, 15, 72, 1, '', '', '', 'no'),
+(67, 28, 66, 1, '', '', '', 'no'),
+(68, 28, 67, 1, '', '', '', 'no'),
+(69, 28, 68, 1, '', '', '', 'no'),
+(70, 28, 69, 1, '', '', '', 'no'),
+(71, 28, 70, 1, '', '', '', 'no'),
+(72, 28, 71, 1, '', '', '', 'no'),
+(73, 28, 72, 1, '', '', '', 'no'),
+(74, 20, 66, 1, '', '', '', 'no'),
+(75, 20, 67, 1, '', '', '', 'no'),
+(76, 20, 68, 1, '', '', '', 'no'),
+(77, 20, 69, 1, '', '', '', 'no'),
+(78, 20, 70, 1, '', '', '', 'no'),
+(79, 20, 71, 1, '', '', '', 'no'),
+(80, 20, 72, 1, '', '', '', 'no');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `condicion_vulnerabilidad_es`
+--
+
+CREATE TABLE `condicion_vulnerabilidad_es` (
+  `id` int(11) NOT NULL,
+  `info_com_id` int(11) NOT NULL,
+  `sexo_id` int(11) NOT NULL,
+  `total_rotulo_id` int(11) NOT NULL,
+  `discapacidad` int(11) NOT NULL,
+  `cabeza_familia` int(11) NOT NULL,
+  `adulto_mayor` int(11) NOT NULL,
+  `indigena` int(11) NOT NULL,
+  `com_negras` int(11) NOT NULL,
+  `campesino` int(11) NOT NULL,
+  `reinsertado` int(11) NOT NULL,
+  `victimas_armado` int(11) NOT NULL,
+  `vulnerabilidad_econo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -462,6 +702,28 @@ CREATE TABLE `consejo_comunitario` (
   `nombre` varchar(100) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `consejo_comunitario`
+--
+
+INSERT INTO `consejo_comunitario` (`id`, `id_empresa`, `si_no_id`, `nombre`) VALUES
+(1, 4, 1, 'conseejo'),
+(2, 5, 1, 'conseejo'),
+(3, 6, 1, 'conseejo'),
+(4, 7, 1, 'conseejo'),
+(5, 8, 1, 'conseejo'),
+(6, 9, 1, 'conseejo'),
+(7, 10, 1, 'conseejo'),
+(8, 11, 1, 'conseejo'),
+(9, 12, 1, 'conseejo'),
+(10, 13, 1, 'conseejo'),
+(11, 14, 1, 'asdasd'),
+(12, 15, 1, 'asdasd'),
+(13, 16, 1, 'asdasd'),
+(14, 17, 1, 'asdasd'),
+(15, 18, 1, 'asdasd'),
+(16, 19, 1, 'asdasd');
+
 -- --------------------------------------------------------
 
 --
@@ -470,10 +732,10 @@ CREATE TABLE `consejo_comunitario` (
 
 CREATE TABLE `conservacion` (
   `id` int(11) NOT NULL,
-  `empresa_id` int(11) NOT NULL,
-  `opciones_id` int(11) NOT NULL,
+  `info_com_id` int(11) NOT NULL,
+  `pregunta_id` int(11) NOT NULL,
   `area` varchar(15) COLLATE utf8_bin NOT NULL,
-  `descripcion` text COLLATE utf8_bin NOT NULL,
+  `otro_nombre` varchar(200) COLLATE utf8_bin NOT NULL,
   `confirmacion` varchar(10) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -481,12 +743,12 @@ CREATE TABLE `conservacion` (
 -- Volcado de datos para la tabla `conservacion`
 --
 
-INSERT INTO `conservacion` (`id`, `empresa_id`, `opciones_id`, `area`, `descripcion`, `confirmacion`) VALUES
-(43, 11, 29, '1', '11', 'si'),
-(44, 11, 31, '3', '33', 'si'),
-(45, 11, 33, '5', '55', 'si'),
-(46, 11, 35, '7', '77', 'si'),
-(47, 11, 37, '9', '99', 'si'),
+INSERT INTO `conservacion` (`id`, `info_com_id`, `pregunta_id`, `area`, `otro_nombre`, `confirmacion`) VALUES
+(43, 11, 29, '1', '', 'si'),
+(44, 11, 31, '3', '', 'si'),
+(45, 11, 33, '5', '', 'si'),
+(46, 11, 35, '7', '', 'si'),
+(47, 11, 37, '9', '', 'si'),
 (48, 11, 30, '', '', 'no'),
 (49, 11, 32, '', '', 'no'),
 (50, 11, 34, '', '', 'no'),
@@ -495,8 +757,8 @@ INSERT INTO `conservacion` (`id`, `empresa_id`, `opciones_id`, `area`, `descripc
 (53, 11, 39, '', '', 'no'),
 (54, 11, 40, '', '', 'no'),
 (55, 11, 41, '', '', 'no'),
-(56, 16, 35, '78', '78', 'si'),
-(57, 16, 38, '4', '4', 'si'),
+(56, 16, 35, '78', '', 'si'),
+(57, 16, 38, '4', '', 'si'),
 (58, 16, 29, '', '', 'no'),
 (59, 16, 30, '', '', 'no'),
 (60, 16, 31, '', '', 'no'),
@@ -508,7 +770,7 @@ INSERT INTO `conservacion` (`id`, `empresa_id`, `opciones_id`, `area`, `descripc
 (66, 16, 39, '', '', 'no'),
 (67, 16, 40, '', '', 'no'),
 (68, 16, 41, '', '', 'no'),
-(69, 17, 37, '20km', 'hgjkh', 'si'),
+(69, 17, 37, '20km', '', 'si'),
 (70, 17, 29, '', '', 'no'),
 (71, 17, 30, '', '', 'no'),
 (72, 17, 31, '', '', 'no'),
@@ -580,61 +842,9 @@ CREATE TABLE `contenido` (
 --
 
 INSERT INTO `contenido` (`id`, `titulo`, `alias_id`, `descripcion`, `id_img_page`) VALUES
-(8, 'Negocios Verdes', 3, '<h5 style="text-align: center;"><strong>¿Qué son los Negocios Verdes?</strong></h5><p style="text-align: justify; ">Contempla las actividades económicas en las que se ofertan bienes o servicios, que generan impactos ambientales positivos y además incorporan buenas prácticas ambientales, sociales y económicas con enfoque de ciclo de vida, contribuyendo a la conservación del ambiente como capital natural que soporta el desarrollo del territorio.</p>', 7),
+(8, 'Negocios Verdes', 3, '<h5 style=\"text-align: center;\"><strong>¿Qué son los Negocios Verdes?</strong></h5><p style=\"text-align: justify; \">Contempla las actividades económicas en las que se ofertan bienes o servicios, que generan impactos ambientales positivos y además incorporan buenas prácticas ambientales, sociales y económicas con enfoque de ciclo de vida, contribuyendo a la conservación del ambiente como capital natural que soporta el desarrollo del territorio.</p>', 7),
 (9, 'Identificación de los bienes y servicios de negocios verdes ', 3, '<p>Es relevante porque:</p><p><ol><li>Promueve patrones de producción y consumo sostenibles de bienes y servicios de los negocios verdes y sostenibles.<br></li><li>Propicia la creación de una cultura alineada con principios ambientales, sociales y éticos.<br></li><li>Facilita la toma de decisiones a los consumidores (públicos o privados) al momento de elegir un bien y servicio.<br></li><li>Visibiliza una oferta de bienes y servicios de cara al mercado nacional e internacional.<br></li></ol></p>', 8),
 (10, 'Criterios para identificar los Negocios Verdes', 3, '<ol><li>Viabilidad económica del negocio<br></li><li>Impacto ambiental positivo del bien o servicio<br></li><li>Enfoque de ciclo de vida del bien o servicio<br></li><li>Vida Útil<br></li><li>No uso de sustancias o materiales peligrosos<br></li><li>Reciclabilidad de los materiales y uso de materiales reciclados<br></li><li>Uso eficiente y sostenible de recursos para la producción del bien o servicio<br></li><li>Responsabilidad social al interior de la empresa<br></li><li>Responsabilidad social y ambiental en la cadena de valor de la empresa<br></li><li>Responsabilidad social y ambiental al exterior de la empresa<br></li><li>Comunicación de atributos sociales o ambientales asociados al bien o servicio<br></li><li>Esquemas, programas o reconocimientos ambientales o sociales implementados o recibidos<br></li></ol>', 9);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `costo_insumos`
---
-
-CREATE TABLE `costo_insumos` (
-  `id` int(11) NOT NULL,
-  `empresa_id` int(11) NOT NULL,
-  `semanal` double NOT NULL,
-  `mensual` double NOT NULL,
-  `anual` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Volcado de datos para la tabla `costo_insumos`
---
-
-INSERT INTO `costo_insumos` (`id`, `empresa_id`, `semanal`, `mensual`, `anual`) VALUES
-(5, 11, 200000, 300000, 5000000),
-(6, 16, 4, 45, 68),
-(7, 17, 0, 0, 0),
-(8, 15, 0, 0, 0),
-(9, 28, 0, 0, 0),
-(10, 20, 0, 0, 0);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `costo_mano_obra`
---
-
-CREATE TABLE `costo_mano_obra` (
-  `id` int(11) NOT NULL,
-  `empresa_id` int(11) NOT NULL,
-  `semanal` double NOT NULL,
-  `mensual` double NOT NULL,
-  `anual` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Volcado de datos para la tabla `costo_mano_obra`
---
-
-INSERT INTO `costo_mano_obra` (`id`, `empresa_id`, `semanal`, `mensual`, `anual`) VALUES
-(5, 11, 2323, 55, 3256),
-(6, 16, 87, 112, 12),
-(7, 17, 0, 0, 0),
-(8, 15, 0, 0, 0),
-(9, 28, 0, 0, 0),
-(10, 20, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -805,7 +1015,23 @@ CREATE TABLE `departamento` (
 --
 
 INSERT INTO `departamento` (`id`, `region_id`, `nombre`, `autoridad_amb`) VALUES
-(14, 3, 'CHOCÓ', '');
+(14, 3, 'CHOCÓ', 'CODECHOCÒ'),
+(15, 4, 'Cundinamarca', 'CAR');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `descripcion_etaria`
+--
+
+CREATE TABLE `descripcion_etaria` (
+  `id` int(11) NOT NULL,
+  `info_com_id` int(11) NOT NULL,
+  `sexo_id` int(11) NOT NULL,
+  `18_30` int(11) NOT NULL,
+  `30_50` int(11) NOT NULL,
+  `mayor_50` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -916,199 +1142,6 @@ INSERT INTO `edad` (`id`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `empleado_edad`
---
-
-CREATE TABLE `empleado_edad` (
-  `id` int(11) NOT NULL,
-  `empresa_id` int(11) NOT NULL,
-  `edad_id` int(11) NOT NULL,
-  `cantidad` varchar(10) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Volcado de datos para la tabla `empleado_edad`
---
-
-INSERT INTO `empleado_edad` (`id`, `empresa_id`, `edad_id`, `cantidad`) VALUES
-(1, 1, 1, '5'),
-(2, 1, 2, ''),
-(3, 1, 3, '15'),
-(16, 8, 1, ''),
-(17, 8, 2, ''),
-(18, 8, 3, ''),
-(19, 15, 1, ''),
-(20, 15, 2, ''),
-(21, 15, 3, ''),
-(22, 16, 1, ''),
-(23, 16, 2, ''),
-(24, 16, 3, ''),
-(25, 17, 1, '2'),
-(26, 17, 2, '5'),
-(27, 17, 3, '6'),
-(28, 18, 1, ''),
-(29, 18, 2, ''),
-(30, 18, 3, ''),
-(31, 11, 1, '4'),
-(32, 11, 2, '3'),
-(33, 11, 3, '5'),
-(34, 13, 1, '8'),
-(35, 13, 2, '4'),
-(36, 13, 3, '5'),
-(37, 19, 1, ''),
-(38, 19, 2, ''),
-(39, 19, 3, ''),
-(40, 20, 1, ''),
-(41, 20, 2, ''),
-(42, 20, 3, ''),
-(43, 21, 1, ''),
-(44, 21, 2, ''),
-(45, 21, 3, ''),
-(46, 22, 1, ''),
-(47, 22, 2, ''),
-(48, 22, 3, ''),
-(49, 23, 1, ''),
-(50, 23, 2, ''),
-(51, 23, 3, ''),
-(52, 24, 1, ''),
-(53, 24, 2, ''),
-(54, 24, 3, ''),
-(55, 25, 1, ''),
-(56, 25, 2, ''),
-(57, 25, 3, ''),
-(58, 26, 1, ''),
-(59, 26, 2, ''),
-(60, 26, 3, ''),
-(61, 27, 1, ''),
-(62, 27, 2, ''),
-(63, 27, 3, ''),
-(64, 28, 1, ''),
-(65, 28, 2, ''),
-(66, 28, 3, '');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `empleado_sexo`
---
-
-CREATE TABLE `empleado_sexo` (
-  `id` int(11) NOT NULL,
-  `empresa_id` int(11) NOT NULL,
-  `socio_empleado_id` int(11) NOT NULL,
-  `sexo_id` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Volcado de datos para la tabla `empleado_sexo`
---
-
-INSERT INTO `empleado_sexo` (`id`, `empresa_id`, `socio_empleado_id`, `sexo_id`, `cantidad`) VALUES
-(1, 1, 1, 1, 10),
-(2, 1, 1, 2, 11),
-(3, 1, 2, 1, 7),
-(4, 1, 2, 2, 9),
-(5, 1, 3, 1, 11),
-(6, 1, 3, 2, 9),
-(31, 8, 1, 1, 0),
-(32, 8, 1, 2, 7),
-(33, 8, 2, 1, 0),
-(34, 8, 2, 2, 0),
-(35, 8, 3, 1, 5),
-(36, 8, 3, 2, 10),
-(37, 15, 1, 1, 4),
-(38, 15, 1, 2, 5),
-(39, 15, 2, 1, 2),
-(40, 15, 2, 2, 5),
-(41, 15, 3, 1, 0),
-(42, 15, 3, 2, 0),
-(43, 16, 1, 1, 0),
-(44, 16, 1, 2, 5),
-(45, 16, 2, 1, 0),
-(46, 16, 2, 2, 0),
-(47, 16, 3, 1, 0),
-(48, 16, 3, 2, 0),
-(49, 17, 1, 1, 0),
-(50, 17, 1, 2, 7),
-(51, 17, 2, 1, 0),
-(52, 17, 2, 2, 0),
-(53, 17, 3, 1, 0),
-(54, 17, 3, 2, 0),
-(55, 18, 1, 1, 0),
-(56, 18, 1, 2, 4),
-(57, 18, 2, 1, 0),
-(58, 18, 2, 2, 0),
-(59, 18, 3, 1, 0),
-(60, 18, 3, 2, 0),
-(61, 13, 3, 1, 5),
-(62, 13, 3, 2, 4),
-(63, 11, 3, 1, 10),
-(64, 11, 3, 2, 5),
-(65, 19, 1, 1, 0),
-(66, 19, 1, 2, 0),
-(67, 19, 2, 1, 0),
-(68, 19, 2, 2, 0),
-(69, 19, 3, 1, 0),
-(70, 19, 3, 2, 0),
-(71, 20, 1, 1, 0),
-(72, 20, 1, 2, 0),
-(73, 20, 2, 1, 0),
-(74, 20, 2, 2, 0),
-(75, 20, 3, 1, 0),
-(76, 20, 3, 2, 0),
-(77, 21, 1, 1, 0),
-(78, 21, 1, 2, 0),
-(79, 21, 2, 1, 0),
-(80, 21, 2, 2, 0),
-(81, 21, 3, 1, 0),
-(82, 21, 3, 2, 0),
-(83, 22, 1, 1, 0),
-(84, 22, 1, 2, 0),
-(85, 22, 2, 1, 0),
-(86, 22, 2, 2, 0),
-(87, 22, 3, 1, 0),
-(88, 22, 3, 2, 0),
-(89, 23, 1, 1, 0),
-(90, 23, 1, 2, 0),
-(91, 23, 2, 1, 0),
-(92, 23, 2, 2, 0),
-(93, 23, 3, 1, 0),
-(94, 23, 3, 2, 0),
-(95, 24, 1, 1, 0),
-(96, 24, 1, 2, 0),
-(97, 24, 2, 1, 0),
-(98, 24, 2, 2, 0),
-(99, 24, 3, 1, 0),
-(100, 24, 3, 2, 0),
-(101, 25, 1, 1, 0),
-(102, 25, 1, 2, 0),
-(103, 25, 2, 1, 0),
-(104, 25, 2, 2, 0),
-(105, 25, 3, 1, 0),
-(106, 25, 3, 2, 0),
-(107, 26, 1, 1, 0),
-(108, 26, 1, 2, 0),
-(109, 26, 2, 1, 0),
-(110, 26, 2, 2, 0),
-(111, 26, 3, 1, 0),
-(112, 26, 3, 2, 0),
-(113, 27, 1, 1, 0),
-(114, 27, 1, 2, 0),
-(115, 27, 2, 1, 0),
-(116, 27, 2, 2, 0),
-(117, 27, 3, 1, 0),
-(118, 27, 3, 2, 0),
-(119, 28, 1, 1, 0),
-(120, 28, 1, 2, 0),
-(121, 28, 2, 1, 0),
-(122, 28, 2, 2, 0),
-(123, 28, 3, 1, 0),
-(124, 28, 3, 2, 0);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `empresa`
 --
 
@@ -1122,7 +1155,6 @@ CREATE TABLE `empresa` (
   `empresario_id` int(11) NOT NULL,
   `municipio_id` int(11) NOT NULL,
   `vereda` varchar(100) COLLATE utf8_bin NOT NULL,
-  `aut_ambiental` varchar(40) COLLATE utf8_bin NOT NULL,
   `latitud` varchar(10) COLLATE utf8_bin NOT NULL,
   `longitud` varchar(10) COLLATE utf8_bin NOT NULL,
   `altitud` varchar(10) COLLATE utf8_bin NOT NULL,
@@ -1147,6 +1179,28 @@ CREATE TABLE `empresa` (
   `pagina_web` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `empresa`
+--
+
+INSERT INTO `empresa` (`id`, `tipo_persona_id`, `tipo_identificacion_id`, `identificacion`, `razon_social`, `persona_id`, `empresario_id`, `municipio_id`, `vereda`, `latitud`, `longitud`, `altitud`, `fami_empresa_si_no`, `tamaño_empresa_id`, `fecha_registro`, `descripcion`, `num_socios`, `organizacion`, `subsector_id`, `etapa_empresa_id`, `años_funcionamiento`, `año_func_desp_reg_camara`, `obs_general`, `informacion_as`, `verificacion1`, `verificacion2`, `plan_mejora`, `puntaje`, `id_personeria`, `bien_serv_op`, `pagina_web`) VALUES
+(4, 1, 1, '1077434234', 'prueba de segundo grado', 46, 1, 6, 'mi barrio', '23', '12', '34', 1, 3, '2018-11-21', 'negocio de venta de fruta', 9, 1, 9, 2, '5', 2, 'venta sdsdlsadalj ', 'no', 'no', 'no', 'no', 0, 3, 2, 'www.notiene.com'),
+(5, 1, 1, '1077434234', 'prueba de segundo grado', 47, 2, 6, 'mi barrio', '23', '12', '34', 1, 3, '2018-11-21', 'negocio de venta de fruta', 9, 1, 9, 2, '5', 2, 'venta sdsdlsadalj ', 'no', 'no', 'no', 'no', 0, 3, 2, 'www.notiene.com'),
+(6, 1, 1, '1077434234', 'prueba de segundo grado', 48, 3, 6, 'mi barrio', '23', '12', '34', 1, 3, '2018-11-21', 'negocio de venta de fruta', 9, 1, 9, 2, '5', 2, 'venta sdsdlsadalj ', 'no', 'no', 'no', 'no', 0, 3, 2, 'www.notiene.com'),
+(7, 1, 1, '1077434234', 'prueba de segundo grado', 49, 4, 6, 'mi barrio', '23', '12', '34', 1, 3, '2018-11-21', 'negocio de venta de fruta', 9, 1, 9, 2, '5', 2, 'venta sdsdlsadalj ', 'no', 'no', 'no', 'no', 0, 3, 2, 'www.notiene.com'),
+(8, 1, 1, '1077434234', 'prueba de segundo grado', 50, 5, 6, 'mi barrio', '23', '12', '34', 1, 3, '2018-11-21', 'negocio de venta de fruta', 9, 1, 9, 2, '5', 2, 'venta sdsdlsadalj ', 'no', 'no', 'no', 'no', 0, 3, 2, 'www.notiene.com'),
+(9, 1, 1, '1077434234', 'grado', 51, 6, 6, 'mi barrio', '23', '12', '34', 1, 3, '2018-11-21', 'negocio de venta de fruta', 9, 1, 9, 2, '5', 2, 'venta sdsdlsadalj ', 'si', 'si', 'si', 'no', 33.90692640692641, 3, 2, 'www.notiene.com'),
+(10, 1, 1, '1077434234', 'segundo grado', 52, 7, 6, 'mi barrio', '23', '12', '34', 1, 3, '2018-11-21', 'negocio de venta de fruta', 9, 1, 9, 2, '5', 2, 'venta sdsdlsadalj ', 'si', 'si', 'no', 'no', 0, 3, 2, 'www.notiene.com'),
+(11, 1, 1, '1077434234', 'prueba de segundo grado', 53, 8, 6, 'mi barrio', '23', '12', '34', 1, 3, '2018-11-21', 'negocio de venta de fruta', 9, 1, 9, 2, '5', 2, 'venta sdsdlsadalj ', 'no', 'no', 'no', 'no', 0, 3, 2, 'www.notiene.com'),
+(12, 1, 1, '1077434234', 'prueba de segundo grado', 54, 9, 6, 'mi barrio', '23', '12', '34', 1, 3, '2018-11-21', 'negocio de venta de fruta', 9, 1, 9, 2, '5', 2, 'venta sdsdlsadalj ', 'no', 'no', 'no', 'no', 0, 3, 2, 'www.notiene.com'),
+(13, 1, 1, '1077434234', 'prueba de segundo grado', 55, 10, 6, 'mi barrio', '23', '12', '34', 1, 3, '2018-11-21', 'negocio de venta de fruta', 9, 1, 9, 2, '5', 2, 'venta sdsdlsadalj ', 'no', 'no', 'no', 'no', 0, 3, 2, 'www.notiene.com'),
+(14, 1, 1, '141232', 'aasdas', 56, 11, 6, 'DFDSD', '12', '23', '21', 1, 3, '2018-11-21', 'asdsadghgfhf', 12, 1, 2, 2, '1', 2, 'gkfgkdfkgfdldgdfglgld', 'no', 'no', 'no', 'no', 0, 2, 3, 'www.sdfd.com'),
+(15, 1, 1, '141232', 'aasdas', 57, 12, 6, 'DFDSD', '12', '23', '21', 1, 3, '2018-11-21', 'asdsadghgfhf', 12, 1, 2, 2, '1', 2, 'gkfgkdfkgfdldgdfglgld', 'no', 'no', 'no', 'no', 0, 2, 3, 'www.sdfd.com'),
+(16, 1, 1, '141232', 'aasdas', 58, 13, 6, 'DFDSD', '12', '23', '21', 1, 3, '2018-11-21', 'asdsadghgfhf', 12, 1, 2, 2, '1', 2, 'gkfgkdfkgfdldgdfglgld', 'no', 'no', 'no', 'no', 0, 2, 3, 'www.sdfd.com'),
+(17, 1, 1, '141232', 'aasdas', 59, 14, 6, 'DFDSD', '12', '23', '21', 1, 3, '2018-11-21', 'asdsadghgfhf', 12, 1, 2, 2, '1', 2, 'gkfgkdfkgfdldgdfglgld', 'no', 'no', 'no', 'no', 0, 2, 3, 'www.sdfd.com'),
+(18, 1, 1, '141232', 'aasdas', 60, 15, 6, 'DFDSD', '12', '23', '21', 1, 3, '2018-11-21', 'asdsadghgfhf', 12, 1, 2, 2, '1', 2, 'gkfgkdfkgfdldgdfglgld', 'no', 'no', 'no', 'no', 0, 2, 3, 'www.sdfd.com'),
+(19, 1, 1, '141232', 'aasdas', 61, 16, 6, 'DFDSD', '12', '23', '21', 1, 3, '2018-11-21', 'asdsadghgfhf', 12, 1, 2, 2, '1', 2, 'gkfgkdfkgfdldgdfglgld', 'no', 'no', 'no', 'no', 0, 2, 3, 'www.sdfd.com');
+
 -- --------------------------------------------------------
 
 --
@@ -1158,7 +1212,7 @@ CREATE TABLE `empresario` (
   `identificacion` varchar(15) COLLATE utf8_bin NOT NULL,
   `nombre` varchar(100) COLLATE utf8_bin NOT NULL,
   `cargo` varchar(100) COLLATE utf8_bin NOT NULL,
-  `carta_si_no` int(11) NOT NULL
+  `carta_si_no` varchar(2) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -1166,19 +1220,22 @@ CREATE TABLE `empresario` (
 --
 
 INSERT INTO `empresario` (`id`, `identificacion`, `nombre`, `cargo`, `carta_si_no`) VALUES
-(1, '165465', 'perea', 'chismoso', 0),
-(4, '10756468', 'david raga', 'gerente', 0),
-(5, 'pppppppp', 'ppppp', 'ppppppppp', 0),
-(6, '4565', 'fernando', 'chsimoso', 0),
-(7, '10756468', 'david raga', 'gerente', 0),
-(8, 'hgdfjhgf', 'hgfjhg', 'jhgfjkhgfh', 0),
-(9, 'oipoipoi', 'opipoipo', 'poipoiopip', 0),
-(10, 'tyrytry', 'trytrytr', 'tyrytry', 0),
-(11, 'jhgkj', 'jhgjkh', 'iuoi', 0),
-(12, 'ewqw', 'ewqw', 'ewqw', 0),
-(13, 'jkjk', 'jhj', 'lkk', 0),
-(14, 'yty', 'ty', 'yty', 0),
-(15, 'ghfjhg', 'dasdasd', 'jhfvkjghfjh', 0);
+(1, '122323', 'dueño', 'gerente', '1'),
+(2, '122323', 'dueño', 'gerente', '1'),
+(3, '122323', 'dueño', 'gerente', '1'),
+(4, '122323', 'dueño', 'gerente', '1'),
+(5, '122323', 'dueño', 'gerente', '1'),
+(6, '122323', 'dueño', 'gerente', '1'),
+(7, '122323', 'dueño', 'gerente', '1'),
+(8, '122323', 'dueño', 'gerente', '1'),
+(9, '122323', 'dueño', 'gerente', '1'),
+(10, '122323', 'dueño', 'gerente', '1'),
+(11, '122323', 'dueño', 'genrete', '1'),
+(12, '122323', 'dueño', 'genrete', '1'),
+(13, '122323', 'dueño', 'genrete', '1'),
+(14, '122323', 'dueño', 'genrete', '1'),
+(15, '122323', 'dueño', 'genrete', '1'),
+(16, '122323', 'dueño', 'genrete', '1');
 
 -- --------------------------------------------------------
 
@@ -1235,6 +1292,28 @@ CREATE TABLE `grupo_etnico` (
   `nombre` varchar(100) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `grupo_etnico`
+--
+
+INSERT INTO `grupo_etnico` (`id`, `id_empresa`, `grupo_op_id`, `nombre`) VALUES
+(1, 4, 1, 'indigena'),
+(2, 5, 1, 'indigena'),
+(3, 6, 1, 'indigena'),
+(4, 7, 1, 'indigena'),
+(5, 8, 1, 'indigena'),
+(6, 9, 1, 'indigena'),
+(7, 10, 1, 'indigena'),
+(8, 11, 1, 'indigena'),
+(9, 12, 1, 'indigena'),
+(10, 13, 1, 'indigena'),
+(11, 14, 3, 'qeqw'),
+(12, 15, 3, 'qeqw'),
+(13, 16, 3, 'qeqw'),
+(14, 17, 3, 'qeqw'),
+(15, 18, 3, 'qeqw'),
+(16, 19, 3, 'qeqw');
+
 -- --------------------------------------------------------
 
 --
@@ -1244,6 +1323,88 @@ CREATE TABLE `grupo_etnico` (
 CREATE TABLE `grupo_etnico_op` (
   `id` int(11) NOT NULL,
   `nombre` varchar(100) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `grupo_etnico_op`
+--
+
+INSERT INTO `grupo_etnico_op` (`id`, `nombre`) VALUES
+(1, 'Pueblos indígenas'),
+(2, 'Pueblos rrom (gitanos)'),
+(3, 'Comunidades negras (afrodescendientes, raizales, palenqueros)');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hoja_verificacion_1`
+--
+
+CREATE TABLE `hoja_verificacion_1` (
+  `id` int(11) NOT NULL,
+  `empresa_id` int(11) NOT NULL,
+  `pregunta_id` int(11) NOT NULL,
+  `respuesta_id` int(11) NOT NULL,
+  `cumplimiento_id` int(11) NOT NULL,
+  `vigencia` varchar(11) COLLATE utf8_bin NOT NULL,
+  `nombre_certificacion` varchar(200) COLLATE utf8_bin NOT NULL,
+  `descripcion` text COLLATE utf8_bin NOT NULL,
+  `medio_verificacion` varchar(200) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `hoja_verificacion_1`
+--
+
+INSERT INTO `hoja_verificacion_1` (`id`, `empresa_id`, `pregunta_id`, `respuesta_id`, `cumplimiento_id`, `vigencia`, `nombre_certificacion`, `descripcion`, `medio_verificacion`) VALUES
+(1, 9, 1, 4, 1, '2018-11-15', 'sfsfsdf', '', 'Entrevista,Documentación'),
+(2, 9, 2, 2, 0, '', '', 'vfxvdsv', 'Entrevista,Observación'),
+(3, 9, 3, 4, 0, '', '', 'dffd', 'Entrevista'),
+(4, 9, 4, 4, 0, '', '', '', ''),
+(5, 9, 5, 4, 0, '', '', '', ''),
+(6, 9, 34, 4, 0, '', '', '', ''),
+(7, 9, 6, 4, 0, '', '', '', ''),
+(8, 9, 7, 4, 0, '', '', '', ''),
+(9, 9, 8, 4, 0, '', '', '', ''),
+(10, 9, 9, 4, 0, '', '', '', ''),
+(11, 9, 10, 4, 0, '', '', '', ''),
+(12, 9, 11, 4, 0, '', '', '', ''),
+(13, 9, 12, 4, 0, '', '', '', ''),
+(14, 9, 13, 4, 0, '', '', '', ''),
+(15, 9, 14, 4, 0, '', '', '', ''),
+(16, 9, 16, 4, 4, '', '', '', ''),
+(17, 9, 17, 4, 4, '', '', '', ''),
+(18, 9, 18, 4, 4, '', '', '', ''),
+(19, 9, 19, 4, 4, '', '', '', ''),
+(20, 9, 20, 4, 4, '', '', '', ''),
+(21, 9, 21, 4, 4, '', '', '', ''),
+(22, 9, 22, 4, 4, '', '', '', ''),
+(23, 9, 23, 4, 4, '', '', '', ''),
+(24, 9, 24, 4, 4, '', '', '', ''),
+(25, 9, 25, 4, 4, '', '', '', ''),
+(26, 9, 26, 4, 0, '', '', '', ''),
+(27, 9, 27, 4, 0, '', '', '', ''),
+(28, 9, 28, 4, 0, '', '', '', ''),
+(29, 9, 29, 4, 0, '', '', '', ''),
+(30, 9, 30, 4, 0, '', '', '', ''),
+(31, 9, 31, 4, 0, '', '', '', ''),
+(32, 9, 32, 4, 0, '', '', '', ''),
+(33, 9, 33, 4, 0, '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hoja_verificacion_2`
+--
+
+CREATE TABLE `hoja_verificacion_2` (
+  `id` int(11) NOT NULL,
+  `empresa_id` int(11) NOT NULL,
+  `pregunta_id` int(11) NOT NULL,
+  `calificador_id` int(11) NOT NULL,
+  `descripcion` text COLLATE utf8_bin NOT NULL,
+  `medio_verificacion` varchar(200) COLLATE utf8_bin NOT NULL,
+  `evidencia` varchar(200) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -1270,7 +1431,18 @@ INSERT INTO `img_empresa` (`id`, `empresa_id`, `imagen`) VALUES
 (6, 25, '25_messi.jpg'),
 (7, 26, ''),
 (8, 27, ''),
-(9, 28, '28_12208467_1483285018668988_6527247117495603979_n.jpg');
+(9, 28, '28_12208467_1483285018668988_6527247117495603979_n.jpg'),
+(10, 4, ''),
+(11, 5, ''),
+(12, 6, ''),
+(13, 7, ''),
+(14, 8, ''),
+(15, 9, ''),
+(16, 10, ''),
+(17, 11, ''),
+(18, 13, ''),
+(19, 16, ''),
+(20, 19, '');
 
 -- --------------------------------------------------------
 
@@ -1298,53 +1470,29 @@ INSERT INTO `img_page` (`id`, `nombre`, `ruta`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `institucion`
+-- Estructura de tabla para la tabla `impacto_practicas`
 --
 
-CREATE TABLE `institucion` (
+CREATE TABLE `impacto_practicas` (
   `id` int(11) NOT NULL,
-  `empresa_id` int(11) NOT NULL,
-  `apoyo` varchar(100) COLLATE utf8_bin NOT NULL,
-  `entidad` varchar(100) COLLATE utf8_bin NOT NULL,
-  `orientacion_id` int(11) NOT NULL,
-  `año` varchar(20) COLLATE utf8_bin NOT NULL
+  `info_com_id` int(11) NOT NULL,
+  `pregunta_id` int(11) NOT NULL,
+  `otro_nombre` varchar(200) COLLATE utf8_bin NOT NULL,
+  `respuesta_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `institucion`
+-- Estructura de tabla para la tabla `informacion_complementaria`
 --
 
-INSERT INTO `institucion` (`id`, `empresa_id`, `apoyo`, `entidad`, `orientacion_id`, `año`) VALUES
-(21, 11, 'mercancia', 'No recuerdo el nombre', 3, '2001'),
-(22, 11, '', '', 2, ''),
-(23, 11, 'alambres', 'doblamos', 2, '2003'),
-(24, 11, '', '', 2, ''),
-(25, 11, 'computadores', 'Soft', 1, '2005'),
-(26, 16, '', '', 1, ''),
-(27, 16, '', '', 1, ''),
-(28, 16, 'sdfgsd', 'ajjjjjjjjjj', 3, '2015'),
-(29, 16, '', '', 1, ''),
-(30, 16, '', '', 1, ''),
-(31, 17, '', '', 1, ''),
-(32, 17, '', '', 1, ''),
-(33, 17, 'alguno', 'sdgsdfgsdfgs', 2, '1018'),
-(34, 17, '', '', 1, ''),
-(35, 17, '', '', 1, ''),
-(36, 15, '', '', 1, ''),
-(37, 15, '', '', 1, ''),
-(38, 15, '', '', 1, ''),
-(39, 15, '', '', 1, ''),
-(40, 15, '', '', 1, ''),
-(41, 28, '', '', 1, ''),
-(42, 28, '', '', 1, ''),
-(43, 28, '', '', 1, ''),
-(44, 28, '', '', 1, ''),
-(45, 28, '', '', 1, ''),
-(46, 20, '', '', 1, ''),
-(47, 20, '', '', 1, ''),
-(48, 20, '', '', 1, ''),
-(49, 20, '', '', 1, ''),
-(50, 20, '', '', 1, '');
+CREATE TABLE `informacion_complementaria` (
+  `id` int(11) NOT NULL,
+  `empresa_id` int(11) NOT NULL,
+  `fecha_registro` varchar(11) COLLATE utf8_bin NOT NULL,
+  `num_familias` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -1395,6 +1543,28 @@ CREATE TABLE `junta_comunal` (
   `si_no_id` int(11) NOT NULL,
   `nombre` varchar(100) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `junta_comunal`
+--
+
+INSERT INTO `junta_comunal` (`id`, `id_empresa`, `si_no_id`, `nombre`) VALUES
+(1, 4, 1, 'junta'),
+(2, 5, 1, 'junta'),
+(3, 6, 1, 'junta'),
+(4, 7, 1, 'junta'),
+(5, 8, 1, 'junta'),
+(6, 9, 1, 'junta'),
+(7, 10, 1, 'junta'),
+(8, 11, 1, 'junta'),
+(9, 12, 1, 'junta'),
+(10, 13, 1, 'junta'),
+(11, 14, 1, '23434'),
+(12, 15, 1, '23434'),
+(13, 16, 1, '23434'),
+(14, 17, 1, '23434'),
+(15, 18, 1, '23434'),
+(16, 19, 1, '23434');
 
 -- --------------------------------------------------------
 
@@ -1453,6 +1623,26 @@ INSERT INTO `login` (`id`, `usuario`, `clave`, `persona_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `medio`
+--
+
+CREATE TABLE `medio` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(20) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `medio`
+--
+
+INSERT INTO `medio` (`id`, `nombre`) VALUES
+(1, 'Entrevista'),
+(2, 'Observación'),
+(3, 'Documentación');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `municipio`
 --
 
@@ -1495,7 +1685,24 @@ INSERT INTO `municipio` (`id`, `departamento_id`, `nombre`) VALUES
 (31, 14, 'SIPÍ'),
 (32, 14, 'TADÓ'),
 (33, 14, 'UNGUÍA'),
-(34, 14, 'UNIÓN PANAMERICANA');
+(34, 14, 'UNIÓN PANAMERICANA'),
+(35, 15, 'Boyaca');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `negocio_comunidad`
+--
+
+CREATE TABLE `negocio_comunidad` (
+  `id` int(11) NOT NULL,
+  `info_com_id` int(11) NOT NULL,
+  `sexo_id` int(11) NOT NULL,
+  `socios` int(11) NOT NULL,
+  `empleados_directos` int(11) NOT NULL,
+  `empleados_indirectos` int(11) NOT NULL,
+  `empleados_temporales` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -1527,96 +1734,100 @@ INSERT INTO `nivel` (`id`, `nombre`) VALUES
 
 CREATE TABLE `nivel_educativo` (
   `id` int(11) NOT NULL,
-  `empresa_id` int(11) NOT NULL,
-  `nivel_id` int(11) NOT NULL,
-  `cantiad` int(11) NOT NULL
+  `info_com_id` int(11) NOT NULL,
+  `sexo_id` int(11) NOT NULL,
+  `primaria` int(11) NOT NULL,
+  `bachillerato` int(11) NOT NULL,
+  `tecnico` int(11) NOT NULL,
+  `tecnologo` int(11) NOT NULL,
+  `universitario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `nivel_educativo`
 --
 
-INSERT INTO `nivel_educativo` (`id`, `empresa_id`, `nivel_id`, `cantiad`) VALUES
-(1, 1, 1, 5),
-(2, 1, 2, 5),
-(3, 1, 3, 5),
-(4, 1, 4, 5),
-(5, 1, 5, 0),
-(26, 8, 1, 0),
-(27, 8, 2, 0),
-(28, 8, 3, 0),
-(29, 8, 4, 0),
-(30, 8, 5, 0),
-(31, 15, 1, 0),
-(32, 15, 2, 0),
-(33, 15, 3, 0),
-(34, 15, 4, 0),
-(35, 15, 5, 0),
-(36, 16, 1, 0),
-(37, 16, 2, 0),
-(38, 16, 3, 0),
-(39, 16, 4, 0),
-(40, 16, 5, 0),
-(41, 17, 1, 0),
-(42, 17, 2, 0),
-(43, 17, 3, 0),
-(44, 17, 4, 0),
-(45, 17, 5, 0),
-(46, 18, 1, 0),
-(47, 18, 2, 0),
-(48, 18, 3, 0),
-(49, 18, 4, 0),
-(50, 18, 5, 0),
-(51, 19, 1, 0),
-(52, 19, 2, 0),
-(53, 19, 3, 0),
-(54, 19, 4, 0),
-(55, 19, 5, 0),
-(56, 20, 1, 0),
-(57, 20, 2, 0),
-(58, 20, 3, 0),
-(59, 20, 4, 0),
-(60, 20, 5, 0),
-(61, 21, 1, 0),
-(62, 21, 2, 0),
-(63, 21, 3, 0),
-(64, 21, 4, 0),
-(65, 21, 5, 0),
-(66, 22, 1, 0),
-(67, 22, 2, 0),
-(68, 22, 3, 0),
-(69, 22, 4, 0),
-(70, 22, 5, 0),
-(71, 23, 1, 0),
-(72, 23, 2, 0),
-(73, 23, 3, 0),
-(74, 23, 4, 0),
-(75, 23, 5, 0),
-(76, 24, 1, 0),
-(77, 24, 2, 0),
-(78, 24, 3, 0),
-(79, 24, 4, 0),
-(80, 24, 5, 0),
-(81, 25, 1, 0),
-(82, 25, 2, 0),
-(83, 25, 3, 0),
-(84, 25, 4, 0),
-(85, 25, 5, 0),
-(86, 26, 1, 0),
-(87, 26, 2, 0),
-(88, 26, 3, 0),
-(89, 26, 4, 0),
-(90, 26, 5, 0),
-(91, 27, 1, 0),
-(92, 27, 2, 0),
-(93, 27, 3, 0),
-(94, 27, 4, 0),
-(95, 27, 5, 0),
-(96, 28, 1, 0),
-(97, 28, 2, 0),
-(98, 28, 3, 0),
-(99, 28, 4, 0),
-(100, 28, 5, 0);
+INSERT INTO `nivel_educativo` (`id`, `info_com_id`, `sexo_id`, `primaria`, `bachillerato`, `tecnico`, `tecnologo`, `universitario`) VALUES
+(1, 1, 1, 5, 0, 0, 0, 0),
+(2, 1, 2, 5, 0, 0, 0, 0),
+(3, 1, 3, 5, 0, 0, 0, 0),
+(4, 1, 4, 5, 0, 0, 0, 0),
+(5, 1, 5, 0, 0, 0, 0, 0),
+(26, 8, 1, 0, 0, 0, 0, 0),
+(27, 8, 2, 0, 0, 0, 0, 0),
+(28, 8, 3, 0, 0, 0, 0, 0),
+(29, 8, 4, 0, 0, 0, 0, 0),
+(30, 8, 5, 0, 0, 0, 0, 0),
+(31, 15, 1, 0, 0, 0, 0, 0),
+(32, 15, 2, 0, 0, 0, 0, 0),
+(33, 15, 3, 0, 0, 0, 0, 0),
+(34, 15, 4, 0, 0, 0, 0, 0),
+(35, 15, 5, 0, 0, 0, 0, 0),
+(36, 16, 1, 0, 0, 0, 0, 0),
+(37, 16, 2, 0, 0, 0, 0, 0),
+(38, 16, 3, 0, 0, 0, 0, 0),
+(39, 16, 4, 0, 0, 0, 0, 0),
+(40, 16, 5, 0, 0, 0, 0, 0),
+(41, 17, 1, 0, 0, 0, 0, 0),
+(42, 17, 2, 0, 0, 0, 0, 0),
+(43, 17, 3, 0, 0, 0, 0, 0),
+(44, 17, 4, 0, 0, 0, 0, 0),
+(45, 17, 5, 0, 0, 0, 0, 0),
+(46, 18, 1, 0, 0, 0, 0, 0),
+(47, 18, 2, 0, 0, 0, 0, 0),
+(48, 18, 3, 0, 0, 0, 0, 0),
+(49, 18, 4, 0, 0, 0, 0, 0),
+(50, 18, 5, 0, 0, 0, 0, 0),
+(51, 19, 1, 0, 0, 0, 0, 0),
+(52, 19, 2, 0, 0, 0, 0, 0),
+(53, 19, 3, 0, 0, 0, 0, 0),
+(54, 19, 4, 0, 0, 0, 0, 0),
+(55, 19, 5, 0, 0, 0, 0, 0),
+(56, 20, 1, 0, 0, 0, 0, 0),
+(57, 20, 2, 0, 0, 0, 0, 0),
+(58, 20, 3, 0, 0, 0, 0, 0),
+(59, 20, 4, 0, 0, 0, 0, 0),
+(60, 20, 5, 0, 0, 0, 0, 0),
+(61, 21, 1, 0, 0, 0, 0, 0),
+(62, 21, 2, 0, 0, 0, 0, 0),
+(63, 21, 3, 0, 0, 0, 0, 0),
+(64, 21, 4, 0, 0, 0, 0, 0),
+(65, 21, 5, 0, 0, 0, 0, 0),
+(66, 22, 1, 0, 0, 0, 0, 0),
+(67, 22, 2, 0, 0, 0, 0, 0),
+(68, 22, 3, 0, 0, 0, 0, 0),
+(69, 22, 4, 0, 0, 0, 0, 0),
+(70, 22, 5, 0, 0, 0, 0, 0),
+(71, 23, 1, 0, 0, 0, 0, 0),
+(72, 23, 2, 0, 0, 0, 0, 0),
+(73, 23, 3, 0, 0, 0, 0, 0),
+(74, 23, 4, 0, 0, 0, 0, 0),
+(75, 23, 5, 0, 0, 0, 0, 0),
+(76, 24, 1, 0, 0, 0, 0, 0),
+(77, 24, 2, 0, 0, 0, 0, 0),
+(78, 24, 3, 0, 0, 0, 0, 0),
+(79, 24, 4, 0, 0, 0, 0, 0),
+(80, 24, 5, 0, 0, 0, 0, 0),
+(81, 25, 1, 0, 0, 0, 0, 0),
+(82, 25, 2, 0, 0, 0, 0, 0),
+(83, 25, 3, 0, 0, 0, 0, 0),
+(84, 25, 4, 0, 0, 0, 0, 0),
+(85, 25, 5, 0, 0, 0, 0, 0),
+(86, 26, 1, 0, 0, 0, 0, 0),
+(87, 26, 2, 0, 0, 0, 0, 0),
+(88, 26, 3, 0, 0, 0, 0, 0),
+(89, 26, 4, 0, 0, 0, 0, 0),
+(90, 26, 5, 0, 0, 0, 0, 0),
+(91, 27, 1, 0, 0, 0, 0, 0),
+(92, 27, 2, 0, 0, 0, 0, 0),
+(93, 27, 3, 0, 0, 0, 0, 0),
+(94, 27, 4, 0, 0, 0, 0, 0),
+(95, 27, 5, 0, 0, 0, 0, 0),
+(96, 28, 1, 0, 0, 0, 0, 0),
+(97, 28, 2, 0, 0, 0, 0, 0),
+(98, 28, 3, 0, 0, 0, 0, 0),
+(99, 28, 4, 0, 0, 0, 0, 0),
+(100, 28, 5, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1639,172 +1850,9 @@ CREATE TABLE `noticia` (
 
 INSERT INTO `noticia` (`id`, `titulo`, `descripcion`, `fecha_publicacion`, `fuente_autor`, `id_img_page`) VALUES
 (2, 'seguda - 2', 'sdfafdas - 2', '2018-04-20 21:53:49', 'dasdsds - 2', 7),
-(3, 'otra wera', '<p style="text-align: justify;">la&nbsp; otra de la calle tal que paso por mi casa me dijp que eras listoadssdadasdsa dasdasd asdasdas dasdsa dsa dasdasdsadasd sdffdfddddfdffdsfdsfdf dsfdsfd sfds fdsfdfdf dsf dsfdsfds fdsfdsfdsfds fdsfdsfdsf dsfdfdfdds fdsf dsf dsfdf dfdf df dsf df df df ds fdfd fdfdfdf dfd fd fdfdf df df d fdfdfdfdfs dfdfdfdfdf dfdfdfdf dfdfdfdd fddfds fdsfdf dsf</p>', '2018-04-20 22:18:58', 'yo mismo', 9),
-(5, 'Colombia y 5 países más dejarán de participar en Unasur', '<p>Un total de seis países de la Unión de Naciones Suramericanas () comunicaron a Bolivia, que ostenta la presidencia temporal del bloque, su decisión de "no participar en las distintas instancias", hasta que no se garantice "el funcionamiento adecuado de la organización".&nbsp;</p><br style=""><p>El documento, al que este viernes tuvo acceso Efe, está dirigido al ministro de Relaciones Exteriores boliviano, Fernando Huanacuni,&nbsp;está firmado por los cancilleres de Argentina, <strong>Colombia, Chile, Brasil, Paraguay y Perú.</strong></p>', '2018-05-21 18:03:22', 'ElTiempo.com', 10),
+(3, 'otra wera', '<p style=\"text-align: justify;\">la&nbsp; otra de la calle tal que paso por mi casa me dijp que eras listoadssdadasdsa dasdasd asdasdas dasdsa dsa dasdasdsadasd sdffdfddddfdffdsfdsfdf dsfdsfd sfds fdsfdfdf dsf dsfdsfds fdsfdsfdsfds fdsfdsfdsf dsfdfdfdds fdsf dsf dsfdf dfdf df dsf df df df ds fdfd fdfdfdf dfd fd fdfdf df df d fdfdfdfdfs dfdfdfdfdf dfdfdfdf dfdfdfdd fddfds fdsfdf dsf</p>', '2018-04-20 22:18:58', 'yo mismo', 9),
+(5, 'Colombia y 5 países más dejarán de participar en Unasur', '<p>Un total de seis países de la Unión de Naciones Suramericanas () comunicaron a Bolivia, que ostenta la presidencia temporal del bloque, su decisión de \"no participar en las distintas instancias\", hasta que no se garantice \"el funcionamiento adecuado de la organización\".&nbsp;</p><br style=\"\"><p>El documento, al que este viernes tuvo acceso Efe, está dirigido al ministro de Relaciones Exteriores boliviano, Fernando Huanacuni,&nbsp;está firmado por los cancilleres de Argentina, <strong>Colombia, Chile, Brasil, Paraguay y Perú.</strong></p>', '2018-05-21 18:03:22', 'ElTiempo.com', 10),
 (6, 'Una persona muerta y dos heridas deja avalancha en Girardot', '<p>La intensa lluvia que se prolongó durante varias horas, arrastró el material que se había extraído para instalar una tubería, en la parte alta de la montaña. Sobre las 2 de la mañana el lodo sorprendió a los habitantes del barrio Puerto Cabrera. Decenas de personas tuvieron que abandonar sus viviendas por los techos.</p><p>Diez viviendas fueron las más afectadas, los enseres de sus habitantes quedaron bajo el lodo. Con palas, los habitantes intentan remover el lodo para recuperar algunas de sus cosas. Las familias damnificadas esperan la ayuda de la Alcaldía para recuperar sus viviendas.</p>', '2018-05-17 23:28:21', 'Noticias RCN', 7);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `opciones`
---
-
-CREATE TABLE `opciones` (
-  `id` int(11) NOT NULL,
-  `codigo` varchar(30) COLLATE utf8_bin NOT NULL,
-  `nombre` text COLLATE utf8_bin NOT NULL,
-  `No` varchar(6) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Volcado de datos para la tabla `opciones`
---
-
-INSERT INTO `opciones` (`id`, `codigo`, `nombre`, `No`) VALUES
-(12, 'TT1', 'Propietario con escritura', ''),
-(13, 'TT2', 'Arrendatario', ''),
-(14, 'TT3', 'Posesión tradicional y/o ancestral de tierras y territorios ', ''),
-(15, 'TT4', 'Estatal', ''),
-(16, 'TT5', 'Concesión', ''),
-(17, 'TT6', 'Autorización del propietario o administrador del área', ''),
-(18, 'R1', 'Registro invima', ''),
-(19, 'R2', 'Registro ICA', ''),
-(20, 'R3', 'Registro nacional de turismo', ''),
-(21, 'R4', 'Registro de plantación forestal', ''),
-(22, 'P1', 'Permiso de aprovechamiento', ''),
-(23, 'P2', 'Concesión de aguas (Subterráneas o superficiales)', ''),
-(24, 'P3', 'Permiso de vertimientos o emisiones', ''),
-(25, 'P4', 'Permiso tala de árboles', ''),
-(26, 'P5', 'Permiso de movilizacion', ''),
-(27, 'L1', 'Licencia ambiental', ''),
-(28, 'O1', 'Plan de manejo ambiental', ''),
-(29, 'PC1', 'Sistemas silvopastoriales', ''),
-(30, 'PC2', 'Sistemas silvicultura', ''),
-(31, 'PC3', 'Agroforestería', ''),
-(32, 'PC4', 'Cultivos mixtos', ''),
-(33, 'PC5', 'Cercas vivas/ barreras rompevientos/ corredores de conectividad de bosques', ''),
-(34, 'PC6', 'Bosques para protección de nacimientos de agua, quebradas, ríos y lagunas', ''),
-(35, 'PC7', 'Cercas o aislamiento para protección de nacimientos de agua, quebradas, ríos y lagunas', ''),
-(36, 'PC8', 'Buen uso de recursos hídricos', ''),
-(37, 'PC9', 'Control Biológico de plagas', ''),
-(38, 'PC10', 'Fertilización orgánica', ''),
-(39, 'PC11', 'Labranza mínima ', ''),
-(40, 'PC12', 'Uso de fuentes alternativas de energía', ''),
-(41, 'PC13', 'Uso de practicas y/o tecnologías bajas en carbono', ''),
-(42, 'AREA_ECO1', 'Bosque andino o niebla', ''),
-(43, 'AREA_ECO2', 'Bosque húmedo', ''),
-(44, 'AREA_ECO3', 'Bosque seco', ''),
-(45, 'AREA_ECO4', 'Páramo', ''),
-(46, 'AREA_ECO5', 'Marinos', ''),
-(47, 'AREA_ECO6', 'Sabana', ''),
-(48, 'AREA_ECO7', 'Manglar', ''),
-(49, 'PM1', 'Protocolo o plan de aprovechamiento para productos silvestres maderables y no maderables', ''),
-(50, 'PM2', 'Estudio de capacidad de carga para ecoturismo', ''),
-(51, 'PM3', 'Plan de manejo ambiental', ''),
-(52, 'PM4', 'Otro documento', ''),
-(53, 'INVOLUCRA1', 'Como socios', ''),
-(54, 'INVOLUCRA2', 'Como empleados directos', ''),
-(55, 'INVOLUCRA3', 'Como empleados indirectos', ''),
-(57, 'ACTIVIDAD_COMU1', 'Capacitación', ''),
-(58, 'ACTIVIDAD_COMU2', 'Asistencia técnica', ''),
-(59, 'ACTIVIDAD_COMU3', 'Recreación', ''),
-(60, 'ACTIVIDAD_COMU4', 'Salud', ''),
-(61, 'PR1', 'Capacitación', ''),
-(62, 'PR2', 'Asistencia técnica', ''),
-(63, 'PR3', 'Recreación', ''),
-(64, 'PR4', 'Proyectos productivos', ''),
-(65, 'PR5', 'Salud', ''),
-(66, 'CE1', 'Certificación orgánica', ''),
-(67, 'CE2', 'Comercio justo', ''),
-(68, 'CE3', 'Análisis de y puntos Críticos de control (APPCC)', ''),
-(69, 'CE4', 'Buenas practicas de manufactura (BPM)', ''),
-(70, 'CE5', 'Buenas practicas agricolas (BPA)', ''),
-(71, 'CE6', 'Buenas practicas pecuarias', ''),
-(72, 'CE7', 'Rainforest Alliance', ''),
-(73, 'CUMPLIMIENTO_LEGAL1', '¿La organización incumple con la legislación ambiental nacional aplicable?\r\nVer los resultados obtenidos en el formato de información AS en el numeral 2 de legislación ambiental colombiana.', '0.0'),
-(74, 'CONDICION_LABORAL1', '¿La organización contrata menores de edad? Si es así,  ¿Sus actividades involucran las peores formas de trabajo infantil y las actividades peligrosas y condiciones de trabajo nocivas para la salud e integridad física o psicológica?', '0.1'),
-(75, 'CONDICION_LABORAL2', '¿La organización genera algún tipo de trabajo forzado o bajo régimen de prisión?', '0.2'),
-(76, 'CONDICION_LABORAL3', '¿La organización promueve o implementa prácticas o políticas restrictivas o discriminatorias?', '0.3'),
-(77, 'CONDICION_LABORAL4', '¿El bien o servicio vulnera los derechos humanos?', '0.4'),
-(78, 'IMPACTO_AMBIENTAL1', '¿La organización ha introducido o utiliza especies exóticas invasoras? Si es así,  ¿Cuenta con un adecuado plan de manejo ambiental? Ejm especies exóticas de zoocria', '0.5'),
-(79, 'IMPACTO_AMBIENTAL2', '¿La organización utiliza especies listadas bajo CITES? Si es así, ¿Contada con autorización de la Autoridad Ambiental?', '0.6'),
-(80, 'IMPACTO_AMBIENTAL3', '¿La organización vulnera la conservación y preservación de los servicios ecosistemicos en el área de influencia directa?, ¿Cómo Contribuye?', '0.7'),
-(81, 'IMPACTO_AMBIENTAL4', '¿La organización fomenta y desarrolla su actividad productiva bajo la destrucción directa e indirecta de ecosistemas naturales, y/o genera detrimento sobre cualquier recurso natural?', '0.8'),
-(82, 'IMPACTO_AMBIENTAL5', '¿La organización promueve el uso de organismos genéticamente modificados o transgénicos?', '0.9'),
-(83, 'IMPACTO_SOCIAL1', '¿La organización vulnera los derechos de las comunidades indígenas, afrocolombianas u otras comunidades tradicionales al desarrollar sus actividades productivas en el territorios?', '0.10'),
-(84, 'IMPACTO_SOCIAL2', '¿La organización tiene conflictos sobre la tenencia de la tierra y fomenta el desplazamiento forzado?', '0.11'),
-(85, 'MATERIAL_PELIGROSO1', '¿La producción del bien o servicio utiliza materiales o sustancias de alta toxicidad para el ambiente o/y salud humana? Ej.. Mercurio, Arsénico, Agroquímicos (etiqueta roja y amarilla), entre otros.', '0.12'),
-(86, 'VIABILIDAD_ECONOMICA1', '¿La organización cuenta con estados financiaros, contabilidad o registro de ingreso y egresos?', '1.1'),
-(87, 'VIABILIDAD_ECONOMICA2', '¿El bien o servicio tiene potencial comercial y cuenta con estrategias de mercadeo que garanticen su sostenibilidad en el mercado (demanda del producto)?', '1.2'),
-(88, 'VIABILIDAD_ECONOMICA3', '¿El bien o servicio cuenta con un plan estratégico que incluya; misión, visión metas y estrategias, equipo de trabajo, plan de negocios, información, alianzas estratégicas y publicidad? ', '1.3'),
-(89, 'VIABILIDAD_ECONOMICA5', '¿El precio del producto considera costos de transporte y logística, y la mano de obra familiar asociada al desarrollo del bien o servicio?', '1.5'),
-(90, 'CONTRIBUCION_CONSERVACION1', '¿El bien o servicio evita el uso de monocultivos?', '1.6'),
-(91, 'CONTRIBUCION_CONSERVACION2', '¿La organización implementa acciones de conservación de los ecosistemas naturales existentes?', '1.7'),
-(92, 'CONTRIBUCION_CONSERVACION3', '¿El bien o servicio mantiene la biodiversidad nativa y mejora las condiciones de los recursos naturales existentes?', '1.8'),
-(93, 'CONTRIBUCION_CONSERVACION4', '¿La organización  tiene acciones para la disminución de la contaminación? ¿Cuáles?', '1.9'),
-(94, 'CONTRIBUCION_CONSERVACION5', '¿El bien o servicio contribuye a la disminución  de la presión de los recursos naturales? ¿Cómo?', '1.10'),
-(95, 'CONTRIBUCION_CONSERVACION6', '¿El bien o servicio mejora las condiciones de los recursos naturales? ¿Cómo?', '1.11'),
-(96, 'CONTRIBUCION_CONSERVACION7', '¿El bien o servicio implementa acciones que permiten la reducción de emisiones de gases de efecto invernadero-GEI? ¿Cómo?', '1.12'),
-(97, 'CONTRIBUCION_CONSERVACION8', '¿El bien o servicio involucra fuentes de energía alternativa o tecnologías más limpias? ¿Cuáles?', '1.13'),
-(98, 'CICLO_VIDA1', '¿Los impactos de sus actividades sobre el medio ambiente, la comunidad y los trabajadores en las principales etapas del sistema productivo están edificados?', '1.14'),
-(99, 'CICLO_VIDA2', '¿La organización implementa acciones de prevención ó mitigación de los  impactos generados en su sistema productivo o ciclo de vida del producto? ¿Cuáles?', '1.15'),
-(100, 'CICLO_VIDA3', '¿El bien o servicio considera criterios ambientales en la compra productos o insumos necesarios para su proceso de producción o incluye autoabastecimiento con criterios ambientales?', '1.16'),
-(101, 'CICLO_VIDA4', '¿La organización realiza entrenamiento y capacitaciones a sus empleados con énfasis en el desarrollo sostenible en su sistema productivo  o ciclo de vida del bien o servicio', '1.17'),
-(102, 'CICLO_VIDA5', '¿El bien o servicio promueve acciones para la innovación, la investigación y el desarrollo de valor agregado al bien o servicio? ¿Cuáles?', '1.18'),
-(103, 'VIDA_UTIL1', '¿Se involucran procesos que extiendan la vida útil y/o mejoren la calidad del bien o servicio?', '1.19'),
-(104, 'VIDA_UTIL2', '¿Se realizan acciones que permitan que la vida útil del producto sea superior al promedio de los bienes o servicios similares?', '1.20'),
-(105, 'VIDA_UTIL3', '¿El bien o servicio cuenta con buenas prácticas de higiene y sanidad?', '1.21'),
-(106, 'SUSTITUCION_MATERIALES1', '¿En el producción de bien o servicio se  previene o mitiga el uso de sustancias que afectan el ambiente y/o la salud humana y se cuenta con un registro de sustitución de sustancias, hojas de seguridad de productos utilizados o análisis de laboratorio?', '1.22'),
-(107, 'MATERIALES_RECICLADOS1', '¿La organización cuenta con un manejo integral de residuos? Por favor describir.', '1.23'),
-(108, 'MATERIALES_RECICLADOS2', '¿Se utilizan materiales reciclados en la fabricación del bien o servicio? ¿Cuales?', '1.24'),
-(109, 'MATERIALES_RECICLADOS3', '¿Los empaques, envases o empaques del bien incluye materiales recuperables, reciclables, reutilizables o que se puedan incorporar en un proceso productivo? ¿Cuales?', '1.25'),
-(110, 'MATERIALES_RECICLADOS4', '¿El bien o servicio cuenta con un plan de acción que permita el cambio de materiales no renovables por renovables o reciclados?', '1.26'),
-(111, 'SOSTENIBLE_RECURSO1', '¿La organización lleva un registro de consumo mensual de energía y realiza acciones para su ahorro y uso eficiente? ¿Cuales?', '1.27'),
-(112, 'SOSTENIBLE_RECURSO2', '¿La organización lleva un registro de consumo mensual de agua y realiza acciones para su ahorro y uso eficiente? ¿Cuales?', '1.28'),
-(113, 'SOSTENIBLE_RECURSO3', '¿Las principales fuentes de contaminación atmosférica, auditiva, olores y visual están identificadas en la zona directa de la organización? ¿Cuáles? ', '1.29'),
-(114, 'SOSTENIBLE_RECURSO4', '¿Las principales fuentes de contaminación atmosférica, auditiva, olores y visual están identificadas en la zona indirecta de la organización? ¿Cuáles? ', '1.30'),
-(115, 'SOSTENIBLE_RECURSO5', '¿La organización disminuye el consumo de recursos renovables y no renovales? ¿Cómo?', '1.31'),
-(116, 'SOSTENIBLE_RECURSO6', '¿El bien o servicio implica acciones extractivas sobre los recursos naturales? Si es así ¿Se cuenta con un programa de manejo ambiental?', '1.32'),
-(117, 'RESPO_SOCIAL_EMPRESA1', '¿La organización cuenta con programas de gestión social, de salud y seguridad industrial corporativos? ¿Cuales?', '1.33'),
-(118, 'RESPO_SOCIAL_EMPRESA2', '¿La organización implementa prácticas al interior de la empresa para disminuir riesgos asociados a desastres naturales?', '1.34'),
-(119, 'RESPO_SOCIAL_EMPRESA3', '¿La organización mejora la calidad de vida de sus empleados (vivienda, educación, cultura, recreación y deporte)? ¿Cómo?', '1.35'),
-(120, 'RESPO_SOCIAL_VALOR1', '¿La organización informa sobre las particularidades de lo(s) proceso(s) de producción y/o comercialización, y resalta su aporte en la creación de valor y buenas prácticas sostenibles?', '1.36'),
-(121, 'RESPO_SOCIAL_VALOR2', '¿La organización tiene contratos, alianzas o convenios con empresas de economía social, MIPYMES y/o promueve estrategias de encadenamiento? ¿Cuáles?', '1.37'),
-(122, 'RESPO_SOCIAL_VALOR3', '¿La organización promueve la devolución de empaques, envases y embalajes? ', '1.38'),
-(123, 'RESPO_SOCIAL_EXTERIOR1', '¿La organización apoya la generación de empleo local?', '1.39'),
-(124, 'RESPO_SOCIAL_EXTERIOR2', '¿La organización tiene programas y/o apoya fundaciones u organizaciones de inversión social y desarrollo comunitario?', '1.40'),
-(125, 'RESPO_SOCIAL_EXTERIOR3', '¿La organización sensibiliza a sus consumidores en ser responsable y  sostenibles a la hora de adquirir sus productos? ', '1.41'),
-(126, 'RESPO_SOCIAL_EXTERIOR4', '¿La organización respeta las áreas y actividades de importancia social, cultural, biológica, ambiental y religiosa para la comunidad? ', '1.42'),
-(127, 'RESPO_SOCIAL_EXTERIOR5', '¿La organización tiene mecanismo de consulta a las comunidades aledañas y clientes, y da respuesta a las quejas o reclamos de las mismas?', '1.43'),
-(128, 'RESPO_SOCIAL_EXTERIOR6', '¿La organización protege el conocimiento Ancestral o tradicional y lo salvaguarda?', '1.44'),
-(129, 'COMUNICACION_ATRIBUTOS1', '¿Se comunican los atributos ambientales y sociales del bien o servicio a los clientes y el público en general?', '1.45'),
-(130, 'COMUNICACION_ATRIBUTOS2', '¿La organización involucra actividades de educación y cultura ambiental?', '1.46'),
-(133, 'ESQUEMAS_RECONOCIMIENTOS1', '¿ El bien o servicio tiene ecoetiquetas, cartas de reconocimiento, registros de auditorias, sellos etc.? ¿Cuáles?', '2.1'),
-(134, 'ESQUEMAS_RECONOCIMIENTOS2', '¿ La organización mide su huella de carbono, regulación hídrica o servicios ecosistemicos? ¿Cuál(es)?', '2.2'),
-(135, 'RESPON_SOCIAL_ADICCIONAL1', '¿La organización otorga condiciones sociales y pago de salarios mejores a las exigidas por la legislación nacional vigente?', '2.3'),
-(136, 'RESPON_SOCIAL_ADICCIONAL2', '¿La organización contrata personal en estado de vulnerabilidad?', '2.4'),
-(137, 'VIABILIDAD_ECONOMICA4', '¿Las ventas del bien o servicio son suficientes para hacerle frente a las necesidades financieras (gastos, remuneración de sus empleados, otros)?', '1.4');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `orientacion`
---
-
-CREATE TABLE `orientacion` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(30) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Volcado de datos para la tabla `orientacion`
---
-
-INSERT INTO `orientacion` (`id`, `nombre`) VALUES
-(1, 'Privada'),
-(2, 'Pública'),
-(3, 'ONG'),
-(4, 'Otra');
 
 -- --------------------------------------------------------
 
@@ -1947,6 +1995,21 @@ INSERT INTO `otro_actividades` (`id`, `empresa_id`, `nombre`, `descripcion`, `re
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `otro_condicion_vulneravibilidad`
+--
+
+CREATE TABLE `otro_condicion_vulneravibilidad` (
+  `id` int(11) NOT NULL,
+  `info_com_id` int(11) NOT NULL,
+  `otro_rotulo_id` int(11) NOT NULL,
+  `sexo_id` int(11) NOT NULL,
+  `nombre` varchar(100) COLLATE utf8_bin NOT NULL,
+  `cantidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `otro_involucra`
 --
 
@@ -1972,12 +2035,41 @@ INSERT INTO `otro_involucra` (`id`, `empresa_id`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `otro_negocio_comunidad`
+--
+
+CREATE TABLE `otro_negocio_comunidad` (
+  `id` int(11) NOT NULL,
+  `info_com_id` int(11) NOT NULL,
+  `sexo_id` int(11) NOT NULL,
+  `nombre` varchar(50) COLLATE utf8_bin NOT NULL,
+  `cantidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `otro_nivel_educativo`
+--
+
+CREATE TABLE `otro_nivel_educativo` (
+  `id` int(11) NOT NULL,
+  `info_com_id` int(11) NOT NULL,
+  `sexo_id` int(11) NOT NULL,
+  `nombre` varchar(100) COLLATE utf8_bin NOT NULL,
+  `cantidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `otro_programa`
 --
 
 CREATE TABLE `otro_programa` (
   `id` int(11) NOT NULL,
-  `empresa_id` int(11) NOT NULL,
+  `info_com_id` int(11) NOT NULL,
+  `recurso_id` int(11) NOT NULL,
   `nombre` varchar(100) COLLATE utf8_bin NOT NULL,
   `descripcion` varchar(100) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -1986,14 +2078,14 @@ CREATE TABLE `otro_programa` (
 -- Volcado de datos para la tabla `otro_programa`
 --
 
-INSERT INTO `otro_programa` (`id`, `empresa_id`, `nombre`, `descripcion`) VALUES
-(2, 11, 'Pencion', 'Pencionsita'),
-(3, 16, '', 'klp'),
-(4, 17, '', ''),
-(5, 15, '', ''),
-(6, 28, '', ''),
-(7, 20, '111111', 'fasfas111111111'),
-(8, 20, '222222', 'jkl22222222222');
+INSERT INTO `otro_programa` (`id`, `info_com_id`, `recurso_id`, `nombre`, `descripcion`) VALUES
+(2, 11, 0, 'Pencion', 'Pencionsita'),
+(3, 16, 0, '', 'klp'),
+(4, 17, 0, '', ''),
+(5, 15, 0, '', ''),
+(6, 28, 0, '', ''),
+(7, 20, 0, '111111', 'fasfas111111111'),
+(8, 20, 0, '222222', 'jkl22222222222');
 
 -- --------------------------------------------------------
 
@@ -2148,7 +2240,30 @@ INSERT INTO `persona` (`id`, `identificacion`, `nombre1`, `nombre2`, `apellido1`
 (35, '1546', 'jklhkjl', '', '', '', '', '', '', '', 4, '', 1, ''),
 (36, '142457', 'mm', '', '', '', '', '', '', '', 4, '', 1, ''),
 (37, '56547879', 'qq', '', '', '', '', '', '', '', 4, '', 1, ''),
-(38, '13564', 'oioi', '', '', '', '', '', '', '', 4, '', 1, '');
+(38, '13564', 'oioi', '', '', '', '', '', '', '', 4, '', 1, ''),
+(39, '5234234', 'tu mismo', '', '', '', 'das@sfd.com', '3211111111', '23432', 'cll 4534', 4, '', 1, ''),
+(40, '5234234', 'tu mismo', '', '', '', 'das@sfd.com', '3211111111', '23432', 'cll 4534', 4, '', 1, ''),
+(41, '5234234', 'tu mismo', '', '', '', 'das@sfd.com', '3211111111', '23432', 'cll 4534', 4, '', 1, ''),
+(42, '5234234', 'tu mismo', '', '', '', 'das@sfd.com', '3211111111', '23432', 'cll 4534', 4, '', 1, ''),
+(43, '5234234', 'tu mismo', '', '', '', 'das@sfd.com', '3211111111', '23432', 'cll 4534', 4, '', 1, ''),
+(44, '5234234', 'tu mismo', '', '', '', 'das@sfd.com', '3211111111', '23432', 'cll 4534', 4, '', 1, ''),
+(45, '5234234', 'tu mismo', '', '', '', 'das@sfd.com', '3211111111', '23432', 'cll 4534', 4, '', 1, ''),
+(46, '5234234', 'tu mismo', '', '', '', 'das@sfd.com', '3211111111', '23432', 'cll 4534', 4, '', 1, ''),
+(47, '5234234', 'tu mismo', '', '', '', 'das@sfd.com', '3211111111', '23432', 'cll 4534', 4, '', 1, ''),
+(48, '5234234', 'tu mismo', '', '', '', 'das@sfd.com', '3211111111', '23432', 'cll 4534', 4, '', 1, ''),
+(49, '5234234', 'tu mismo', '', '', '', 'das@sfd.com', '3211111111', '23432', 'cll 4534', 4, '', 1, ''),
+(50, '5234234', 'tu mismo', '', '', '', 'das@sfd.com', '3211111111', '23432', 'cll 4534', 4, '', 1, ''),
+(51, '5234234', 'tu mismo', '', '', '', 'das@sfd.com', '3211111111', '23432', 'cll 4534', 4, '', 1, ''),
+(52, '5234234', 'tu mismo', '', '', '', 'das@sfd.com', '3211111111', '23432', 'cll 4534', 4, '', 1, ''),
+(53, '5234234', 'tu mismo', '', '', '', 'das@sfd.com', '3211111111', '23432', 'cll 4534', 4, '', 1, ''),
+(54, '5234234', 'tu mismo', '', '', '', 'das@sfd.com', '3211111111', '23432', 'cll 4534', 4, '', 1, ''),
+(55, '5234234', 'tu mismo', '', '', '', 'das@sfd.com', '3211111111', '23432', 'cll 4534', 4, '', 1, ''),
+(56, '343432', 'zczxcx', '', '', '', 'asds@dasd.com', '32123232121', '131231', 'CLL 3434', 4, '', 1, ''),
+(57, '343432', 'zczxcx', '', '', '', 'asds@dasd.com', '32123232121', '131231', 'CLL 3434', 4, '', 1, ''),
+(58, '343432', 'zczxcx', '', '', '', 'asds@dasd.com', '32123232121', '131231', 'CLL 3434', 4, '', 1, ''),
+(59, '343432', 'zczxcx', '', '', '', 'asds@dasd.com', '32123232121', '131231', 'CLL 3434', 4, '', 1, ''),
+(60, '343432', 'zczxcx', '', '', '', 'asds@dasd.com', '32123232121', '131231', 'CLL 3434', 4, '', 1, ''),
+(61, '343432', 'zczxcx', '', '', '', 'asds@dasd.com', '32123232121', '131231', 'CLL 3434', 4, '', 1, '');
 
 -- --------------------------------------------------------
 
@@ -2309,13 +2424,112 @@ INSERT INTO `plan_mejora` (`id`, `empresa_id`, `opciones_id`, `acciones`, `actor
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pregunta_indicativa`
+--
+
+CREATE TABLE `pregunta_indicativa` (
+  `id` int(11) NOT NULL,
+  `descripcion` text COLLATE utf8_bin NOT NULL,
+  `aspecto_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `pregunta_indicativa`
+--
+
+INSERT INTO `pregunta_indicativa` (`id`, `descripcion`, `aspecto_id`) VALUES
+(1, '¿Se cuenta con una certificación Socio - Ambiental vigente?.  Si la respuesta es positiva, debe adjuntar los soportes que evidencien el cumplimiento e implementación de dicha certificación para realizar una verificación de escritorio.', 1),
+(2, '¿Se prohíbe la utilización de sustancias y/o materiales que aunque se encuentren legalmente registrados, son altamente tóxicos para el ambiente y/o salud humana? \r\nEjemplo: Mercurio, Arsénico, Plomo, Cobre; agroquímicos de alta toxicidad (etiqueta roja y amarilla), entre otros.', 2),
+(3, '¿Se prohíbe las acciones que pueden alterar los ecosistemas, bien sea por que el negocio desarrolla  actividades en los mismos o en su área de influencia y se prohíbe la afectación a la vida silvestre (fauna y flora) evitando la cacería, tala y pesca en los casos que están prohibidos por ley?', 2),
+(4, '¿Se prohíbe el uso de sustancias y/o materiales prohibidos para el país, o que no están legalmente registrados?', 2),
+(5, '¿Se promueve e implementa prácticas inclusivas y no discriminatorias; se respeta, protege y promueve los derechos humanos, los derechos de las comunidades indígenas, afrocolombianas u otras comunidades tradicionales al desarrollar sus actividades en el territorio?', 2),
+(6, '¿Cuenta con RUT?', 3),
+(7, '¿Cuenta con NIT?', 3),
+(8, '¿Cuenta con cámara de comercio vigente?', 3),
+(9, '¿En caso de aplicar, cuenta con registro Invima?', 3),
+(10, '¿En caso de aplicar, cuenta con registro ICA?', 3),
+(11, '¿En caso de aplicar, cuenta con Registro Nacional de Turismo?', 3),
+(12, '¿Se cuenta con evidencia de tenencia de la tierra? (Ver formato de inscripción, IV.  Características del Negocio Verde, numeral 2.)', 3),
+(13, '¿la actividad del negocio va de acuerdo con los requerimientos de uso legal del suelo?', 3),
+(14, '¿En caso de aplicar, cuenta con la certificación del curso de manipulación de alimentos?', 3),
+(16, '¿En caso de aplicar, cuenta con la certificación del curso de manipulación de alimentos?', 4),
+(17, '¿En caso de aplicar, cuenta con Registro de Plantación Forestal y cumple con los requerimientos exigidos por la Autoridad Ambiental que aplica a los productos silvestres maderables y no maderables?', 4),
+(18, '¿En caso de aplicar, cuenta con Registro de Sistema Agroforestal?', 4),
+(19, '¿En caso de aplicar, cuenta con Permiso de Movilización y/o Salvoconductos de Movilización ?', 4),
+(20, '¿En caso de aplicar, cuenta con Licencia Ambiental para el uso y extracción de especies nativas?', 4),
+(21, '¿ Si el negocio compra y comercializa productos fuente de la biodiversidad, se cuenta con permiso de comercialización?', 4),
+(22, '¿En caso de aplicar, cuenta con concesión de aguas (subterráneas o superficiales) ?', 4),
+(23, '¿En caso de aplicar, cumple con los requerimientos legales de manejo de aguas residuales y vertimientos?', 4),
+(24, '¿En caso de aplicar, cuenta con Permiso de Emisiones?', 4),
+(25, '¿En caso de generarse residuos o desechos peligrosos (mayor o igual a 10 kg/mes), se cuenta con registro como generador de residuos (RESPEL)? ', 4),
+(26, '¿Todos los desperdicios y basuras se recolectan y se evita la acumulación de desperdicios susceptibles de descomposición, que puedan ser nocivos para la salud de los trabajadores y se cumple con los requerimientos de limpieza y recolección de escombros?', 4),
+(27, '¿Se prohíbe la contratación de menores de 18 años?\r\nEn caso de contratar menores de 18 años, ¿cumple con los requerimientos legales en cuanto a la autorización de trabajo para adolescentes por parte de un inspector de trabajo?', 5),
+(28, '¿Se prohíbe todo tipo de trabajo forzado o actividades realizadas bajo régimen de prisión? ', 5),
+(29, '¿La actividad del negocio conoce y respeta los intereses colectivos de las comunidades?', 5),
+(30, '¿La remuneración a los trabajadores se realiza de acuerdo o basado en el Salario Mínimo Legal Vigente, y lo especificado en el Código Sustantivo de Trabajo. \r\n(Ejemplo: se pagan horas extras, primas, liquidaciones de contrato, y otros requerimientos laborales de acuerdo al tipo de contrato).', 5),
+(31, '¿Se cuenta con un Sistema de Gestión de Seguridad y Salud en el Trabajo (SG - SST), que incluya  prácticas para disminuir riesgos asociados a desastres naturales, cuenta con un plan de contingencias y emergencias?', 5),
+(32, '¿Se evita la contratación o compra de insumos o productos, a proveedores, empresas y/o negocios que incumplen con alguna de las anteriores preguntas formuladas, o cualquier otro requisito legal ?', 6),
+(33, 'Otros requerimientos exigidos por la autoridad ambiental, municipio, gobernación etc.\r\nEjemplo: vedas, restricción de otras actividades y permisos.', 7),
+(34, '¿Los propietarios, representante legal, junta directiva y/o representantes del negocio no están involucrados en actividades ilegales, afectación a la comunidad, denuncias o se encuentran bajo investigación y no cuentan con procesos sancionatorios ambientales?', 2),
+(35, '¿Cuenta con estados financieros, contabilidad o registro de ingreso y egresos?', 8),
+(36, '¿Cuenta con un plan financiero a corto, mediano y largo plazo que acompañe las acciones del negocio?', 8),
+(37, '¿El bien o servicio tiene potencial comercial y cuenta con estrategias de mercadeo que garanticen su sostenibilidad en el mercado (demanda del producto)?', 8),
+(38, '¿El bien o servicio cuenta con un plan estratégico que incluya; misión, visión, metas y estrategias, equipo de trabajo, plan de negocios, información, alianzas estratégicas y publicidad? ', 8),
+(39, '¿Las ventas del bien o servicio son suficientes para cubrir las necesidades financieras (gastos, remuneración de sus empleados, otros, ver apartado IV. Sostenibilidad Económica)?', 8),
+(40, '¿Su negocio tiene ingresos adicionales a la venta directa del producto o servicio líder (ver apartado IV Sotenibilidad Económica)?', 8),
+(41, '¿El precio del producto considera costos de transporte y logística, y la mano de obra familiar asociada al desarrollo del bien o servicio?', 8),
+(42, '¿Cuenta con estrategias de análisis de las prácticas comerciales de sus competidores, aliados estratégicos y líder de su mercado?', 8),
+(43, '¿Ha identificado los canales de distribución por la que circulan sus productos y la de sus competidores directos actualmente?', 8),
+(44, '¿Se diseñan e implementan acciones que promueva la conservación y preservación de los ecosistemas y de la vida silvestre?', 9),
+(45, '¿Se implementan acciones de prevención o mitigación de los impactos negativos generados en cada una de las etapas del bien o servicio?', 9),
+(46, '¿Se implementan acciones que permiten la reducción o mitigación de emisiones de gases de efecto invernadero-GEI? (ver hoja de información complementaria: apartado I Sostenibilidad Ambiental )', 9),
+(47, '¿En caso de desarrollarse la actividad turística en un Área Protegida, cuenta con Estudio de Capacidad de Carga?', 9),
+(48, '¿Se identifica los impactos sobre el ambiente, la comunidad y los trabajadores en las principales etapas del sistema productivo o ciclo de vida del producto? ', 10),
+(49, '¿Se consideran criterios ambientales en la compra de productos o insumos necesarios para el proceso de producción, o incluye autoabastecimiento con criterios ambientales?', 10),
+(50, '¿Se realizan acciones para mantener, asegurar o mejorar los impactos ambientales positivos generados en el ciclo de vida del bien o servicio?', 10),
+(51, '¿Se realizan acciones y procedimientos para extender su vida útil del bien o servicio?', 11),
+(52, '¿Se desarrollan actividades de innovación, investigación o ambas, que aporte a extender la vida útil del bien o servicio?', 11),
+(53, '¿Cuenta con hojas o fichas de seguridad de los productos utilizados y se utilizan de acuerdo a lo indicado en la hoja de seguridad: tipo de cultivo establecido y cantidades indicadas?', 12),
+(54, '¿Se previene o mitiga el uso de sustancias que afectan el ambiente, la salud humana o ambas, y en caso de usarlas se cuenta con un plan de sustitución?\r\n(Ejemplo: agroquímicos categoría azul y verde, sustancias tóxicas utilizadas en limpieza y desinfección, y otras).', 12),
+(55, '¿Cuenta con un programa de manejo integral de residuos, se promueve e implementan acciones para reducir, reciclar y reutilizar los residuos generados?', 13),
+(56, '¿Se utilizan materiales recuperables, reciclables, reutilizables y/o biodegradables en la fabricación del producto, su empaque y embalaje, y se cuenta con un plan de acción que permita el cambio de materiales no renovables por renovables o reciclados?', 13),
+(57, '¿Se toman acciones para disminuir o eliminar el uso de empaques y embalajes?  ', 13),
+(58, '¿Cuenta con un programa de ahorro y uso eficiente de agua y energía ?', 14),
+(59, '¿Cuenta con un programa de uso eficiente de materias primas?', 14),
+(60, '¿Se cuenta con un plan de reducción o sustitución de fuentes de energía no renovales y se involucra fuentes de energía alternativa o tecnologías más limpias?', 14),
+(61, '¿Cuenta con un programa de bienestar social para sus empleados y colaboradores, que incluya equidad en puestos de trabajo, equidad salarial y beneficios adicionales? ', 15),
+(62, '¿Se toman medidas para que los empleados, colaboradores y sus familias tengan acceso a servicios de salud y recreación?', 15),
+(63, '¿Se facilita y promueve que sus empleados y colaboradores se capaciten mediante educación formal y no formal?', 15),
+(64, '¿El código de ética del negocio es socializado y los empleados y colaboradores hacen uso de los mecanismos de participación para escuchar y responder las sugerencias, ideas, peticiones y reclamaciones', 15),
+(65, '¿Promueve, promociona o ambas, que sus proveedores, intermediadores y clientes realicen actividades de responsabilidad social y ambiental? ', 16),
+(66, '¿Cuenta con contratos, alianzas o convenios con empresas de economía social, MIPYMES y promueve estrategias de encadenamiento?', 16),
+(67, '¿Se promueve la responsabilidad extendida del producto con proveedores, clientes y usuarios? ', 16),
+(68, '¿Promueve y prioriza la generación de empleo local?', 17),
+(69, '¿Apoya la  inversión social, ambiental y desarrollo comunitario?', 17),
+(70, '¿Se realizan acciones de sensibilización a los consumidores, en temas de responsabilidad y sostenibilidad?', 17),
+(71, '¿Se respetan las áreas y actividades de importancia social, cultural, biológica, ambiental y religiosa para la comunidad? ', 17),
+(72, '¿Cuenta con un procedimiento de peticiones, quejas, reclamos y sugerencias para recibir, documentar y responder a los clientes?', 17),
+(73, '¿Se cuenta con un mecanismo de consulta a las comunidades aledañas y protege (salvaguarda) el conocimiento ancestral o tradicional?', 17),
+(74, '¿Se comunican los atributos ambientales y socio-culturales del bien o servicio a los clientes y el público en general?', 18),
+(75, '¿Se comunica a los clientes y público en general sobre su sistema de producción, comercialización y su aporte en la cadena de valor del bien o servicio?', 18),
+(76, '¿Cuenta con un programa de capacitación y promoción de prácticas de responsabilidad social y ambiental con empleados, colaboradores, proveedores, clientes y comunidad en general?', 18),
+(77, '¿Se otorga condiciones sociales y pago de salarios mejores a las exigidas por la Legislación Nacional Vigente?', 19),
+(78, '¿Se cuenta con un programa para la inclusión y contratación de población vulnerable (Ver información complementaria: II. Información de Sostenibilidad Social)?', 19),
+(79, '¿Se cuenta con premios y reconocimientos enfocados a Buenas Prácticas Ambientales y Sociales?', 20),
+(80, '¿Se cuenta con evidencias de auditorias, verificaciones, certificaciones, sellos, ecoetiquetas o hizo parte de un Sistemas Participativo de Garantías?', 20),
+(81, '¿Se cuenta con un programa de educación ambiental enfocado en desarrollo sostenible aplicado a su sistema productivo?', 20);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `programa`
 --
 
 CREATE TABLE `programa` (
   `id` int(11) NOT NULL,
-  `empresa_id` int(11) NOT NULL,
-  `opciones_id` int(11) NOT NULL,
+  `info_com_id` int(11) NOT NULL,
+  `pregunta_id` int(11) NOT NULL,
+  `recurso_id` int(11) NOT NULL,
   `descripcion` varchar(50) COLLATE utf8_bin NOT NULL,
   `confirmacion` varchar(10) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -2324,31 +2538,31 @@ CREATE TABLE `programa` (
 -- Volcado de datos para la tabla `programa`
 --
 
-INSERT INTO `programa` (`id`, `empresa_id`, `opciones_id`, `descripcion`, `confirmacion`) VALUES
-(17, 11, 57, '1111', 'si'),
-(18, 11, 59, '33333', 'si'),
-(19, 11, 58, '', 'no'),
-(20, 11, 60, '', 'no'),
-(21, 16, 59, 'kjhgjk', 'si'),
-(22, 16, 57, '', 'no'),
-(23, 16, 58, '', 'no'),
-(24, 16, 60, '', 'no'),
-(25, 17, 58, 'asiasdfsdf', 'si'),
-(26, 17, 57, '', 'no'),
-(27, 17, 59, '', 'no'),
-(28, 17, 60, '', 'no'),
-(29, 15, 57, '', 'no'),
-(30, 15, 58, '', 'no'),
-(31, 15, 59, '', 'no'),
-(32, 15, 60, '', 'no'),
-(33, 28, 57, '', 'no'),
-(34, 28, 58, '', 'no'),
-(35, 28, 59, '', 'no'),
-(36, 28, 60, '', 'no'),
-(37, 20, 57, '', 'no'),
-(38, 20, 58, '', 'no'),
-(39, 20, 59, '', 'no'),
-(40, 20, 60, '', 'no');
+INSERT INTO `programa` (`id`, `info_com_id`, `pregunta_id`, `recurso_id`, `descripcion`, `confirmacion`) VALUES
+(17, 11, 57, 0, '1111', 'si'),
+(18, 11, 59, 0, '33333', 'si'),
+(19, 11, 58, 0, '', 'no'),
+(20, 11, 60, 0, '', 'no'),
+(21, 16, 59, 0, 'kjhgjk', 'si'),
+(22, 16, 57, 0, '', 'no'),
+(23, 16, 58, 0, '', 'no'),
+(24, 16, 60, 0, '', 'no'),
+(25, 17, 58, 0, 'asiasdfsdf', 'si'),
+(26, 17, 57, 0, '', 'no'),
+(27, 17, 59, 0, '', 'no'),
+(28, 17, 60, 0, '', 'no'),
+(29, 15, 57, 0, '', 'no'),
+(30, 15, 58, 0, '', 'no'),
+(31, 15, 59, 0, '', 'no'),
+(32, 15, 60, 0, '', 'no'),
+(33, 28, 57, 0, '', 'no'),
+(34, 28, 58, 0, '', 'no'),
+(35, 28, 59, 0, '', 'no'),
+(36, 28, 60, 0, '', 'no'),
+(37, 20, 57, 0, '', 'no'),
+(38, 20, 58, 0, '', 'no'),
+(39, 20, 59, 0, '', 'no'),
+(40, 20, 60, 0, '', 'no');
 
 -- --------------------------------------------------------
 
@@ -2386,7 +2600,8 @@ CREATE TABLE `region` (
 --
 
 INSERT INTO `region` (`id`, `pais_id`, `nombre`) VALUES
-(3, 1, 'Pacifica');
+(3, 1, 'Pacifica'),
+(4, 1, 'Andina');
 
 -- --------------------------------------------------------
 
@@ -2568,62 +2783,43 @@ INSERT INTO `slide` (`id`, `titulo`, `descripcion`, `id_img_page`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `socio_empleado_item`
---
-
-CREATE TABLE `socio_empleado_item` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(100) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Volcado de datos para la tabla `socio_empleado_item`
---
-
-INSERT INTO `socio_empleado_item` (`id`, `nombre`) VALUES
-(1, 'Número de socios'),
-(2, 'Socios vinculados laboralmente con la empresa'),
-(3, 'Número de empleados');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `sost_economica`
 --
 
 CREATE TABLE `sost_economica` (
   `id` int(11) NOT NULL,
-  `empresa_id` int(11) NOT NULL,
-  `bien_servicio` varchar(100) COLLATE utf8_bin NOT NULL,
-  `vendida_anual` double NOT NULL,
+  `info_com_id` int(11) NOT NULL,
+  `bien_servicio_id` varchar(100) COLLATE utf8_bin NOT NULL,
+  `u_vendidadas_anuales` int(11) NOT NULL,
   `unidad_medida_id` int(11) NOT NULL,
-  `costo_produccion` double NOT NULL,
+  `cantidad_unidad` double NOT NULL,
+  `costo_produccion_unidad` double NOT NULL,
   `precio_v_unitario` double NOT NULL,
   `ganancia_unidad` double NOT NULL,
   `ventas_anual` double NOT NULL,
-  `si_no_id` int(11) NOT NULL COMMENT 'ingresos superior al costo? '
+  `ingreso_superior` int(11) NOT NULL COMMENT 'ingresos superior al costo? '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `sost_economica`
 --
 
-INSERT INTO `sost_economica` (`id`, `empresa_id`, `bien_servicio`, `vendida_anual`, `unidad_medida_id`, `costo_produccion`, `precio_v_unitario`, `ganancia_unidad`, `ventas_anual`, `si_no_id`) VALUES
-(6, 8, 'alguno', 50, 1, 2500, 100, 50, 800000, 1),
-(7, 11, 'pera', 1, 2, 15, 35, 20, 35, 1),
-(8, 11, 'yuca', 1, 2, 2, 50, 48, 50, 2),
-(9, 11, 'papa', 2, 2, 2, 231, 229, 462, 2),
-(10, 16, 'ese mismo', 10, 1, 5, 23, 56, 87, 1),
-(11, 17, 'blusa', 0, 1, 0, 0, 0, 0, 1),
-(12, 17, 'pantalon', 0, 1, 0, 0, 0, 0, 1),
-(13, 17, 'falda', 0, 1, 0, 0, 0, 0, 1),
-(14, 17, 'vestidos', 0, 1, 0, 0, 0, 0, 1),
-(15, 13, 'pera', 5, 1, 26, 5, -21, 25, 1),
-(16, 15, 'pescadito', 5, 1, 0, 0, 0, 0, 1),
-(17, 15, 'remolacha', 0, 1, 0, 0, 0, 0, 1),
-(18, 15, 'algunito', 0, 1, 0, 0, 0, 0, 1),
-(19, 28, 'jhgfjhgfjhgfjhg', 40, 1, 20, 50, 30, 2000, 1),
-(20, 20, 'kjkjjkjjkkj', 0, 1, 0, 0, 0, 0, 1);
+INSERT INTO `sost_economica` (`id`, `info_com_id`, `bien_servicio_id`, `u_vendidadas_anuales`, `unidad_medida_id`, `cantidad_unidad`, `costo_produccion_unidad`, `precio_v_unitario`, `ganancia_unidad`, `ventas_anual`, `ingreso_superior`) VALUES
+(6, 8, 'alguno', 50, 1, 0, 2500, 100, 50, 800000, 1),
+(7, 11, 'pera', 1, 2, 0, 15, 35, 20, 35, 1),
+(8, 11, 'yuca', 1, 2, 0, 2, 50, 48, 50, 2),
+(9, 11, 'papa', 2, 2, 0, 2, 231, 229, 462, 2),
+(10, 16, 'ese mismo', 10, 1, 0, 5, 23, 56, 87, 1),
+(11, 17, 'blusa', 0, 1, 0, 0, 0, 0, 0, 1),
+(12, 17, 'pantalon', 0, 1, 0, 0, 0, 0, 0, 1),
+(13, 17, 'falda', 0, 1, 0, 0, 0, 0, 0, 1),
+(14, 17, 'vestidos', 0, 1, 0, 0, 0, 0, 0, 1),
+(15, 13, 'pera', 5, 1, 0, 26, 5, -21, 25, 1),
+(16, 15, 'pescadito', 5, 1, 0, 0, 0, 0, 0, 1),
+(17, 15, 'remolacha', 0, 1, 0, 0, 0, 0, 0, 1),
+(18, 15, 'algunito', 0, 1, 0, 0, 0, 0, 0, 1),
+(19, 28, 'jhgfjhgfjhgfjhg', 40, 1, 0, 20, 50, 30, 2000, 1),
+(20, 20, 'kjkjjkjjkkj', 0, 1, 0, 0, 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -2693,6 +2889,28 @@ CREATE TABLE `tcip` (
   `nombre` varchar(100) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `tcip`
+--
+
+INSERT INTO `tcip` (`id`, `id_empresa`, `tcip_op_od`, `nombre`) VALUES
+(1, 4, 1, 'reverva'),
+(2, 5, 1, 'reverva'),
+(3, 6, 1, 'reverva'),
+(4, 7, 1, 'reverva'),
+(5, 8, 1, 'reverva'),
+(6, 9, 1, 'reverva'),
+(7, 10, 1, 'reverva'),
+(8, 11, 1, 'reverva'),
+(9, 12, 1, 'reverva'),
+(10, 13, 1, 'reverva'),
+(11, 14, 1, 'assdasd'),
+(12, 15, 1, 'assdasd'),
+(13, 16, 1, 'assdasd'),
+(14, 17, 1, 'assdasd'),
+(15, 18, 1, 'assdasd'),
+(16, 19, 1, 'assdasd');
+
 -- --------------------------------------------------------
 
 --
@@ -2709,13 +2927,10 @@ CREATE TABLE `tcip_op` (
 --
 
 INSERT INTO `tcip_op` (`id`, `nombre`) VALUES
-(1, 'Propietario con registro'),
-(2, 'Arrendatario'),
-(3, 'Posesión tradicional y/o ancestral de tierras y territorios de los pueblos indígenas'),
-(4, 'Estatal'),
-(5, 'Concesión'),
-(6, 'Autorización del propietario o administrador del area'),
-(7, 'Otra, Cual?');
+(1, 'Reserva indígena'),
+(2, 'Tierra de uso comunal'),
+(3, 'Resguardo'),
+(4, 'No aplica');
 
 -- --------------------------------------------------------
 
@@ -2772,6 +2987,42 @@ INSERT INTO `tenencia_tierra` (`id`, `empresa_id`, `opciones_id`, `descripcion`,
 (102, 20, 15, '', 'no'),
 (103, 20, 16, '', 'no'),
 (104, 20, 17, '', 'no');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_contrato`
+--
+
+CREATE TABLE `tipo_contrato` (
+  `id` int(11) NOT NULL,
+  `info_com_id` int(11) NOT NULL,
+  `sexo_id` int(11) NOT NULL,
+  `directo` int(11) NOT NULL,
+  `indirecto` int(11) NOT NULL,
+  `temporal` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_entidad`
+--
+
+CREATE TABLE `tipo_entidad` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(30) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `tipo_entidad`
+--
+
+INSERT INTO `tipo_entidad` (`id`, `nombre`) VALUES
+(1, 'Privada'),
+(2, 'Pública'),
+(3, 'ONG'),
+(4, 'Otra');
 
 -- --------------------------------------------------------
 
@@ -2843,6 +3094,19 @@ CREATE TABLE `tipo_tenencia` (
   `id` int(11) NOT NULL,
   `nombre` varchar(100) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `tipo_tenencia`
+--
+
+INSERT INTO `tipo_tenencia` (`id`, `nombre`) VALUES
+(1, 'Propietario con registro'),
+(2, 'Arrendatario'),
+(3, 'Posesión tradicional y/o ancestral de tierras y territorios de los pueblos indígenas'),
+(4, 'Estatal'),
+(5, 'Concesión'),
+(6, 'Autorización del propietario o administrador del area'),
+(7, 'Otra, Cual?');
 
 -- --------------------------------------------------------
 
@@ -2920,27 +3184,65 @@ INSERT INTO `tipo_vinculacion` (`id`, `empresa_id`, `vinculacion_id`, `cantidad`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `total_empleados`
+--
+
+CREATE TABLE `total_empleados` (
+  `id` int(11) NOT NULL,
+  `info_com_id` int(11) NOT NULL,
+  `total_rotulo_id` int(11) NOT NULL,
+  `sexo_id` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `total_rotulo`
+--
+
+CREATE TABLE `total_rotulo` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `total_rotulo`
+--
+
+INSERT INTO `total_rotulo` (`id`, `nombre`) VALUES
+(1, 'Total de empleados'),
+(2, 'Temporada alta'),
+(3, 'Temporada baja'),
+(4, 'Condicion de vulnerabilidad'),
+(5, 'Socios / colaboradores');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `total_ventas`
 --
 
 CREATE TABLE `total_ventas` (
   `id` int(11) NOT NULL,
-  `empresa_id` int(11) NOT NULL,
-  `valor` double NOT NULL,
-  `anio` int(11) NOT NULL
+  `info_com_id` int(11) NOT NULL,
+  `costo_pro_insumos_totales` double NOT NULL,
+  `costo_pro_mano_obra` double NOT NULL,
+  `total_ventas_realizadas_ant` double NOT NULL,
+  `fecha` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `total_ventas`
 --
 
-INSERT INTO `total_ventas` (`id`, `empresa_id`, `valor`, `anio`) VALUES
-(5, 11, 547, 2019),
-(6, 16, 5446, 2200),
-(7, 17, 0, 0),
-(8, 15, 0, 0),
-(9, 28, 2000, 2018),
-(10, 20, 0, 0);
+INSERT INTO `total_ventas` (`id`, `info_com_id`, `costo_pro_insumos_totales`, `costo_pro_mano_obra`, `total_ventas_realizadas_ant`, `fecha`) VALUES
+(5, 11, 547, 0, 0, 2019),
+(6, 16, 5446, 0, 0, 0000),
+(7, 17, 0, 0, 0, 0000),
+(8, 15, 0, 0, 0, 0000),
+(9, 28, 2000, 0, 0, 2018),
+(10, 20, 0, 0, 0, 0000);
 
 -- --------------------------------------------------------
 
@@ -2964,362 +3266,6 @@ INSERT INTO `unidad_medida` (`id`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `verificacion_1`
---
-
-CREATE TABLE `verificacion_1` (
-  `id` int(11) NOT NULL,
-  `empresa_id` int(11) NOT NULL,
-  `opciones_id` int(11) NOT NULL,
-  `si_no_noaplica_id` int(11) NOT NULL,
-  `observacion` text COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Volcado de datos para la tabla `verificacion_1`
---
-
-INSERT INTO `verificacion_1` (`id`, `empresa_id`, `opciones_id`, `si_no_noaplica_id`, `observacion`) VALUES
-(1, 13, 73, 1, 'kkkk'),
-(2, 13, 74, 2, 'H'),
-(3, 13, 75, 2, 'H'),
-(4, 13, 76, 2, 'H'),
-(5, 13, 77, 2, 'H'),
-(6, 13, 78, 2, 'H'),
-(7, 13, 79, 2, 'H'),
-(8, 13, 80, 2, 'H'),
-(9, 13, 81, 2, 'H'),
-(10, 13, 82, 2, 'H'),
-(11, 13, 83, 2, 'Hj'),
-(12, 13, 84, 2, 'kjh'),
-(13, 13, 85, 1, 'oiji'),
-(14, 11, 73, 2, 'Esta bienmmmmmmmmmmm'),
-(15, 11, 74, 1, 'Bien'),
-(16, 11, 75, 2, 'Ninguno'),
-(17, 11, 76, 1, 'Tiene que mejorar'),
-(18, 11, 77, 2, 'No los vulnera'),
-(19, 11, 78, 2, 'Algunas veces y no tiene plan de manejo'),
-(20, 11, 79, 1, 'algunas'),
-(21, 11, 80, 2, 'no vulnera'),
-(22, 11, 81, 2, 'no '),
-(23, 11, 82, 2, 'no'),
-(24, 11, 83, 1, 'no'),
-(25, 11, 84, 1, 'tiene conflicto con algunos vecinos'),
-(26, 11, 85, 2, 'Ninguna'),
-(27, 17, 73, 2, 'asdas'),
-(28, 17, 74, 1, 'asd'),
-(29, 17, 75, 1, 'asdgf'),
-(30, 17, 76, 1, 'sdfgsdf'),
-(31, 17, 77, 2, 'sdfgsdf'),
-(32, 17, 78, 2, 'sdfgsd'),
-(33, 17, 79, 1, 'sdfg'),
-(34, 17, 80, 1, 'sdfg'),
-(35, 17, 81, 1, 'sdfg'),
-(36, 17, 82, 1, 'sdfg'),
-(37, 17, 83, 1, 'sdfg'),
-(38, 17, 84, 2, 'sdfg'),
-(39, 17, 85, 1, 'sdfgsdfgs'),
-(40, 28, 73, 1, 'sadfasd'),
-(41, 28, 74, 3, ''),
-(42, 28, 75, 3, ''),
-(43, 28, 76, 3, ''),
-(44, 28, 77, 3, ''),
-(45, 28, 78, 3, ''),
-(46, 28, 79, 3, ''),
-(47, 28, 80, 3, ''),
-(48, 28, 81, 3, ''),
-(49, 28, 82, 3, ''),
-(50, 28, 83, 3, ''),
-(51, 28, 84, 3, ''),
-(52, 28, 85, 1, 'asdfasdfa'),
-(53, 20, 73, 3, ''),
-(54, 20, 74, 3, ''),
-(55, 20, 75, 3, ''),
-(56, 20, 76, 3, ''),
-(57, 20, 77, 3, ''),
-(58, 20, 78, 3, ''),
-(59, 20, 79, 3, ''),
-(60, 20, 80, 3, ''),
-(61, 20, 81, 3, ''),
-(62, 20, 82, 3, ''),
-(63, 20, 83, 3, ''),
-(64, 20, 84, 3, ''),
-(65, 20, 85, 3, '');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `verificacion_2`
---
-
-CREATE TABLE `verificacion_2` (
-  `id` int(11) NOT NULL,
-  `empresa_id` int(11) NOT NULL,
-  `opciones_id` int(11) NOT NULL,
-  `calificador_id` int(11) NOT NULL,
-  `observacion` text COLLATE utf8_bin NOT NULL,
-  `evidencia` text COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Volcado de datos para la tabla `verificacion_2`
---
-
-INSERT INTO `verificacion_2` (`id`, `empresa_id`, `opciones_id`, `calificador_id`, `observacion`, `evidencia`) VALUES
-(556, 13, 86, 3, 'sdaf', '86_13_Rut_1.pdf'),
-(557, 13, 87, 3, 'sdf', ''),
-(558, 13, 88, 3, 'sdf', ''),
-(559, 13, 89, 4, 'sdf', ''),
-(560, 13, 137, 4, 'sdf', '137_13_logo_code.png'),
-(561, 13, 90, 3, 'sdf', ''),
-(562, 13, 91, 3, 'sdf', ''),
-(563, 13, 92, 3, 'sdf', '92_13_opciones.sql'),
-(564, 13, 93, 4, 'asdf', ''),
-(565, 13, 94, 3, 'sadf', ''),
-(566, 13, 95, 3, 'sdf', ''),
-(567, 13, 96, 3, 'sdfa', ''),
-(568, 13, 97, 3, 'asdf', ''),
-(569, 13, 98, 3, 'asdf', ''),
-(570, 13, 99, 3, 'asdf', ''),
-(571, 13, 100, 4, 'asdf', '100_13_opciones.sql'),
-(572, 13, 101, 3, 'asfd', ''),
-(573, 13, 102, 3, 'asdf', ''),
-(574, 13, 103, 3, 'asdf', ''),
-(575, 13, 104, 3, 'asdf', '104_13_opciones.sql'),
-(576, 13, 105, 3, 'asdf', ''),
-(577, 13, 106, 3, 'asdf', '106_13_opciones.sql'),
-(578, 13, 107, 3, 'asdf', ''),
-(579, 13, 108, 3, 'asdf', '108_13_opciones.sql'),
-(580, 13, 109, 3, 'asdf', ''),
-(581, 13, 110, 3, 'asdf', ''),
-(582, 13, 111, 3, 'asdf', ''),
-(583, 13, 112, 3, 'asdf', ''),
-(584, 13, 113, 3, 'asdfa', '113_13_opciones.sql'),
-(585, 13, 114, 3, 'asdf', ''),
-(586, 13, 115, 3, 'asdf', ''),
-(587, 13, 116, 3, 'asdf', ''),
-(588, 13, 117, 3, 'asdf', '117_13_opciones.sql'),
-(589, 13, 118, 3, 'asdf', ''),
-(590, 13, 119, 3, 'asdf', ''),
-(591, 13, 120, 3, 'asdf', '120_13_opciones.sql'),
-(592, 13, 121, 3, 'asdf', ''),
-(593, 13, 122, 3, 'asdf', ''),
-(594, 13, 123, 3, 'asdf', ''),
-(595, 13, 124, 3, 'asdf', '124_13_opciones.sql'),
-(596, 13, 125, 3, 'asdf', ''),
-(597, 13, 126, 3, 'asdf', ''),
-(598, 13, 127, 3, 'sdf', ''),
-(599, 13, 128, 3, 'asdf', ''),
-(600, 13, 129, 3, 'asdf', '129_13_opciones.sql'),
-(601, 13, 130, 3, 'asdf', ''),
-(602, 13, 133, 3, 'asdf', '133_13_opciones.sql'),
-(603, 13, 134, 3, 'asdf', ''),
-(604, 13, 135, 3, 'asdf', '135_13_opciones.sql'),
-(605, 13, 136, 3, 'asdf', '136_13_logo_code.png'),
-(607, 11, 86, 3, 'mas o menos', ''),
-(608, 11, 87, 2, 'asdj', ''),
-(609, 11, 88, 4, 'asda', ''),
-(610, 11, 89, 2, 'sdfs', ''),
-(611, 11, 137, 1, 'sdfsd', ''),
-(612, 11, 90, 1, 'sadfas', ''),
-(613, 11, 91, 1, 'asdf', ''),
-(614, 11, 92, 1, 'asdf', ''),
-(615, 11, 93, 3, 'asdf', ''),
-(616, 11, 94, 1, 'asdf', ''),
-(617, 11, 95, 1, 'asdf', ''),
-(618, 11, 96, 1, 'asdf', ''),
-(619, 11, 97, 1, 'asdf', ''),
-(620, 11, 98, 3, 'asdf', ''),
-(621, 11, 99, 1, 'asdf', ''),
-(622, 11, 100, 4, 'asdfasdf', ''),
-(623, 11, 101, 1, 'sadf', ''),
-(624, 11, 102, 1, 'asdfas', ''),
-(625, 11, 103, 1, 'asdf', ''),
-(626, 11, 104, 3, 'asdf', ''),
-(627, 11, 105, 1, 'asdf', ''),
-(628, 11, 106, 2, 'asfdad', ''),
-(629, 11, 107, 3, 'asdfasd', ''),
-(630, 11, 108, 4, 'asdfasd', ''),
-(631, 11, 109, 4, 'asdfas', ''),
-(632, 11, 110, 4, 'asdfasdf', ''),
-(633, 11, 111, 1, 'asdf', ''),
-(634, 11, 112, 1, 'asdf', ''),
-(635, 11, 113, 1, 'asdf', ''),
-(636, 11, 114, 1, 'asfd', ''),
-(637, 11, 115, 3, 'asdf', ''),
-(638, 11, 116, 1, 'asdfgsd', ''),
-(639, 11, 117, 2, 'asdf', ''),
-(640, 11, 118, 2, 'asdf', ''),
-(641, 11, 119, 1, 'asdf', ''),
-(642, 11, 120, 2, 'asdf', ''),
-(643, 11, 121, 2, 'asdf', ''),
-(644, 11, 122, 2, 'asdfasdf', ''),
-(645, 11, 123, 2, 'asdfasd', ''),
-(646, 11, 124, 1, 'asdf', ''),
-(647, 11, 125, 1, 'asdf', ''),
-(648, 11, 126, 1, 'asdf', ''),
-(649, 11, 127, 1, 'asdfa', ''),
-(650, 11, 128, 1, 'sdfgsdfg', ''),
-(651, 11, 129, 2, 'sdfg', ''),
-(652, 11, 130, 1, 'sdfg', ''),
-(653, 11, 133, 4, 'sdfg', ''),
-(654, 11, 134, 3, 'sdfg', ''),
-(655, 11, 135, 3, 'Bien', ''),
-(656, 11, 136, 3, 'Bien', '136_11_1.PNG'),
-(757, 28, 86, 3, 'jhgfjk', ''),
-(758, 28, 87, 3, 'asdasdasda', ''),
-(759, 28, 88, 1, '', ''),
-(760, 28, 89, 2, '', ''),
-(761, 28, 137, 3, '', ''),
-(762, 28, 90, 3, '', ''),
-(763, 28, 91, 3, '', ''),
-(764, 28, 92, 3, '', ''),
-(765, 28, 93, 3, '', ''),
-(766, 28, 94, 3, '', ''),
-(767, 28, 95, 3, '', ''),
-(768, 28, 96, 3, '', ''),
-(769, 28, 97, 3, '', ''),
-(770, 28, 98, 3, '', ''),
-(771, 28, 99, 3, '', ''),
-(772, 28, 100, 3, '', ''),
-(773, 28, 101, 3, '', ''),
-(774, 28, 102, 3, '', ''),
-(775, 28, 103, 3, '', ''),
-(776, 28, 104, 3, '', ''),
-(777, 28, 105, 3, '', ''),
-(778, 28, 106, 3, '', ''),
-(779, 28, 107, 3, '', ''),
-(780, 28, 108, 3, '', ''),
-(781, 28, 109, 3, '', ''),
-(782, 28, 110, 3, '', ''),
-(783, 28, 111, 3, '', ''),
-(784, 28, 112, 3, '', ''),
-(785, 28, 113, 3, '', ''),
-(786, 28, 114, 3, '', ''),
-(787, 28, 115, 3, '', ''),
-(788, 28, 116, 3, '', ''),
-(789, 28, 117, 3, '', ''),
-(790, 28, 118, 3, '', ''),
-(791, 28, 119, 3, '', ''),
-(792, 28, 120, 3, '', ''),
-(793, 28, 121, 3, '', ''),
-(794, 28, 122, 3, '', ''),
-(795, 28, 123, 3, '', ''),
-(796, 28, 124, 3, '', ''),
-(797, 28, 125, 3, '', ''),
-(798, 28, 126, 3, '', ''),
-(799, 28, 127, 3, '', ''),
-(800, 28, 128, 3, '', ''),
-(801, 28, 129, 3, '', ''),
-(802, 28, 130, 3, '', ''),
-(803, 28, 133, 3, '', ''),
-(804, 28, 134, 3, '', ''),
-(805, 28, 135, 3, '', ''),
-(806, 28, 136, 3, '', ''),
-(807, 17, 86, 3, '', ''),
-(808, 17, 87, 3, '', ''),
-(809, 17, 88, 3, '', ''),
-(810, 17, 89, 3, '', ''),
-(811, 17, 137, 3, '', ''),
-(812, 17, 90, 3, '', ''),
-(813, 17, 91, 3, '', ''),
-(814, 17, 92, 3, '', ''),
-(815, 17, 93, 3, '', ''),
-(816, 17, 94, 3, '', ''),
-(817, 17, 95, 3, '', ''),
-(818, 17, 96, 3, '', ''),
-(819, 17, 97, 3, '', ''),
-(820, 17, 98, 3, '', ''),
-(821, 17, 99, 3, '', ''),
-(822, 17, 100, 3, '', ''),
-(823, 17, 101, 3, '', ''),
-(824, 17, 102, 3, '', ''),
-(825, 17, 103, 3, '', ''),
-(826, 17, 104, 3, '', ''),
-(827, 17, 105, 3, '', ''),
-(828, 17, 106, 3, '', ''),
-(829, 17, 107, 3, '', ''),
-(830, 17, 108, 3, '', ''),
-(831, 17, 109, 3, '', ''),
-(832, 17, 110, 3, '', ''),
-(833, 17, 111, 3, '', ''),
-(834, 17, 112, 3, '', ''),
-(835, 17, 113, 3, '', ''),
-(836, 17, 114, 3, '', ''),
-(837, 17, 115, 3, '', ''),
-(838, 17, 116, 3, '', ''),
-(839, 17, 117, 3, '', ''),
-(840, 17, 118, 3, '', ''),
-(841, 17, 119, 3, '', ''),
-(842, 17, 120, 3, '', ''),
-(843, 17, 121, 3, '', ''),
-(844, 17, 122, 3, '', ''),
-(845, 17, 123, 1, '', ''),
-(846, 17, 124, 1, '', ''),
-(847, 17, 125, 3, '', ''),
-(848, 17, 126, 3, '', ''),
-(849, 17, 127, 3, '', ''),
-(850, 17, 128, 3, '', ''),
-(851, 17, 129, 2, '', ''),
-(852, 17, 130, 3, '', ''),
-(853, 17, 133, 3, '', ''),
-(854, 17, 134, 3, '', ''),
-(855, 17, 135, 3, '', ''),
-(856, 17, 136, 3, '', ''),
-(1007, 20, 86, 3, '', ''),
-(1008, 20, 87, 3, '', ''),
-(1009, 20, 88, 3, '', ''),
-(1010, 20, 89, 3, '', ''),
-(1011, 20, 137, 3, '', ''),
-(1012, 20, 90, 1, '', ''),
-(1013, 20, 91, 1, '', ''),
-(1014, 20, 92, 1, '', ''),
-(1015, 20, 93, 3, '', ''),
-(1016, 20, 94, 1, '', ''),
-(1017, 20, 95, 3, '', ''),
-(1018, 20, 96, 3, '', ''),
-(1019, 20, 97, 3, '', ''),
-(1020, 20, 98, 3, '', ''),
-(1021, 20, 99, 3, '', ''),
-(1022, 20, 100, 2, '', ''),
-(1023, 20, 101, 2, '', ''),
-(1024, 20, 102, 3, '', ''),
-(1025, 20, 103, 3, '', ''),
-(1026, 20, 104, 3, '', ''),
-(1027, 20, 105, 1, '', ''),
-(1028, 20, 106, 3, '', ''),
-(1029, 20, 107, 4, '', ''),
-(1030, 20, 108, 3, '', ''),
-(1031, 20, 109, 2, '', ''),
-(1032, 20, 110, 3, '', ''),
-(1033, 20, 111, 3, '', ''),
-(1034, 20, 112, 3, '', ''),
-(1035, 20, 113, 3, '', ''),
-(1036, 20, 114, 3, '', ''),
-(1037, 20, 115, 3, '', ''),
-(1038, 20, 116, 1, '', ''),
-(1039, 20, 117, 3, '', ''),
-(1040, 20, 118, 2, '', ''),
-(1041, 20, 119, 3, '', ''),
-(1042, 20, 120, 3, '', ''),
-(1043, 20, 121, 2, '', ''),
-(1044, 20, 122, 3, '', ''),
-(1045, 20, 123, 4, '', ''),
-(1046, 20, 124, 3, '', ''),
-(1047, 20, 125, 1, '', ''),
-(1048, 20, 126, 3, '', ''),
-(1049, 20, 127, 3, '', ''),
-(1050, 20, 128, 3, '', ''),
-(1051, 20, 129, 2, '', ''),
-(1052, 20, 130, 3, '', ''),
-(1053, 20, 133, 2, '', ''),
-(1054, 20, 134, 3, '', ''),
-(1055, 20, 135, 1, '', ''),
-(1056, 20, 136, 1, '', '');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `verificador`
 --
 
@@ -3338,7 +3284,18 @@ CREATE TABLE `verificador` (
 
 INSERT INTO `verificador` (`id`, `empresa_id`, `nombre`, `entidad`, `area`, `cargo`) VALUES
 (1, 27, 'Lesty', 'codechoco', 'principal', 'verifacdor'),
-(2, 28, 'juan camilo perea', 'codechoco', 'financiera', 'verificador');
+(2, 28, 'juan camilo perea', 'codechoco', 'financiera', 'verificador'),
+(3, 4, 'kike', 'ninguna', 'administrativa', 'genrente'),
+(4, 5, 'kike', 'ninguna', 'administrativa', 'genrente'),
+(5, 6, 'kike', 'ninguna', 'administrativa', 'genrente'),
+(6, 7, 'kike', 'ninguna', 'administrativa', 'genrente'),
+(7, 8, 'kike', 'ninguna', 'administrativa', 'genrente'),
+(8, 9, 'kike', 'ninguna', 'administrativa', 'genrente'),
+(9, 10, 'kike', 'ninguna', 'administrativa', 'genrente'),
+(10, 11, 'kike', 'ninguna', 'administrativa', 'genrente'),
+(11, 13, 'kike', 'ninguna', 'administrativa', 'genrente'),
+(12, 16, 'kike', 'ninguna', 'administrativa', 'genrente'),
+(13, 19, 'kike', 'ninguna', 'administrativa', 'genrente');
 
 -- --------------------------------------------------------
 
@@ -3372,7 +3329,9 @@ INSERT INTO `verificadorxempresa` (`id`, `empresa_id`, `persona_id`, `fecha_asig
 (15, 24, 11, '2018-06-08 04:19:12', ''),
 (16, 25, 11, '2018-06-08 04:32:36', ''),
 (18, 27, 11, '2018-06-09 17:32:02', ''),
-(19, 28, 11, '2018-06-09 17:56:09', '');
+(19, 28, 11, '2018-06-09 17:56:09', ''),
+(20, 9, 11, '2018-11-22 11:33:28', ''),
+(21, 10, 11, '2018-11-26 10:47:20', '');
 
 -- --------------------------------------------------------
 
@@ -3386,6 +3345,33 @@ CREATE TABLE `veri_empresa` (
   `si_no_id` int(11) NOT NULL,
   `anio` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `veri_empresa`
+--
+
+INSERT INTO `veri_empresa` (`id`, `id_empresa`, `si_no_id`, `anio`) VALUES
+(10, 10, 1, 1995),
+(11, 10, 1, 1995),
+(12, 13, 2, 0000),
+(13, 13, 2, 0000),
+(14, 14, 1, 1996),
+(15, 14, 1, 1996),
+(16, 15, 1, 1996),
+(17, 15, 1, 1996),
+(18, 15, 1, 0000),
+(19, 16, 1, 1996),
+(20, 16, 1, 1996),
+(21, 16, 1, 0000),
+(22, 17, 1, 1996),
+(23, 17, 1, 1996),
+(24, 17, 1, 0000),
+(25, 18, 1, 1996),
+(26, 18, 1, 1996),
+(27, 18, 1, 0000),
+(28, 19, 1, 1996),
+(29, 19, 1, 1996),
+(30, 19, 1, 0000);
 
 -- --------------------------------------------------------
 
@@ -3417,8 +3403,8 @@ INSERT INTO `vinculacion` (`id`, `nombre`) VALUES
 ALTER TABLE `actividades`
   ADD PRIMARY KEY (`id`),
   ADD KEY `recurso_id` (`recurso_id`),
-  ADD KEY `opciones_id` (`opciones_id`),
-  ADD KEY `empresa_id` (`empresa_id`);
+  ADD KEY `opciones_id` (`pregunta_id`),
+  ADD KEY `empresa_id` (`info_com_id`);
 
 --
 -- Indices de la tabla `actividad_empresa`
@@ -3429,7 +3415,8 @@ ALTER TABLE `actividad_empresa`
   ADD KEY `actividad_item_id` (`actividad_item_id`),
   ADD KEY `municipio_id` (`municipio_id`),
   ADD KEY `tipo_tenencia_id` (`tipo_tenencia_id`),
-  ADD KEY `pot_si_no_id` (`pot_si_no_id`);
+  ADD KEY `pot_si_no_id` (`pot_si_no_id`),
+  ADD KEY `si_no_actividad_id` (`si_no_actividad_id`);
 
 --
 -- Indices de la tabla `actividad_item`
@@ -3450,6 +3437,14 @@ ALTER TABLE `aplica_noaplica`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `apoyo`
+--
+ALTER TABLE `apoyo`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `empresa_id` (`info_com_id`),
+  ADD KEY `orientacion_id` (`tipo_entidad_id`);
+
+--
 -- Indices de la tabla `archivo_page`
 --
 ALTER TABLE `archivo_page`
@@ -3463,11 +3458,25 @@ ALTER TABLE `area`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `aspecto`
+--
+ALTER TABLE `aspecto`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `bienes_servicios`
 --
 ALTER TABLE `bienes_servicios`
   ADD PRIMARY KEY (`id`),
   ADD KEY `empresa_id` (`empresa_id`);
+
+--
+-- Indices de la tabla `bienes_servicios_adicionales`
+--
+ALTER TABLE `bienes_servicios_adicionales`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `info_com_id` (`info_com_id`),
+  ADD KEY `ingresos_superior` (`ingresos_superior`);
 
 --
 -- Indices de la tabla `bien_serv_op`
@@ -3482,6 +3491,15 @@ ALTER TABLE `cabildo`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_empresa` (`id_empresa`),
   ADD KEY `si_no_id` (`si_no_id`);
+
+--
+-- Indices de la tabla `cadena_valor`
+--
+ALTER TABLE `cadena_valor`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `info_com_id` (`info_com_id`),
+  ADD KEY `pregunta_id` (`pregunta_id`),
+  ADD KEY `respuesta_id` (`respuesta_id`);
 
 --
 -- Indices de la tabla `calificador`
@@ -3500,9 +3518,18 @@ ALTER TABLE `categoria`
 --
 ALTER TABLE `certificacion`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `empresa_id` (`empresa_id`),
-  ADD KEY `opciones_id` (`opciones_id`),
+  ADD KEY `empresa_id` (`info_com_id`),
+  ADD KEY `opciones_id` (`pregunta_id`),
   ADD KEY `etapa_id` (`etapa_id`);
+
+--
+-- Indices de la tabla `condicion_vulnerabilidad_es`
+--
+ALTER TABLE `condicion_vulnerabilidad_es`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `info_com_id` (`info_com_id`),
+  ADD KEY `sexo_id` (`sexo_id`),
+  ADD KEY `total_rotulo_id` (`total_rotulo_id`);
 
 --
 -- Indices de la tabla `consejo_comunitario`
@@ -3517,8 +3544,9 @@ ALTER TABLE `consejo_comunitario`
 --
 ALTER TABLE `conservacion`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `empresa_id` (`empresa_id`),
-  ADD KEY `opciones_id` (`opciones_id`);
+  ADD KEY `empresa_id` (`info_com_id`),
+  ADD KEY `opciones_id` (`pregunta_id`),
+  ADD KEY `info_com_id` (`info_com_id`);
 
 --
 -- Indices de la tabla `contenido`
@@ -3527,20 +3555,6 @@ ALTER TABLE `contenido`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_img_page` (`id_img_page`),
   ADD KEY `alias` (`alias_id`);
-
---
--- Indices de la tabla `costo_insumos`
---
-ALTER TABLE `costo_insumos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `empresa_id` (`empresa_id`);
-
---
--- Indices de la tabla `costo_mano_obra`
---
-ALTER TABLE `costo_mano_obra`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `empresa_id` (`empresa_id`);
 
 --
 -- Indices de la tabla `cumple_nocumple`
@@ -3565,6 +3579,14 @@ ALTER TABLE `departamento`
   ADD KEY `region_id` (`region_id`);
 
 --
+-- Indices de la tabla `descripcion_etaria`
+--
+ALTER TABLE `descripcion_etaria`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `info_com_id` (`info_com_id`),
+  ADD KEY `sexo_id` (`sexo_id`);
+
+--
 -- Indices de la tabla `desc_demografia`
 --
 ALTER TABLE `desc_demografia`
@@ -3583,23 +3605,6 @@ ALTER TABLE `ecosistema`
 --
 ALTER TABLE `edad`
   ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `empleado_edad`
---
-ALTER TABLE `empleado_edad`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `empresa_id` (`empresa_id`),
-  ADD KEY `edad_id` (`edad_id`);
-
---
--- Indices de la tabla `empleado_sexo`
---
-ALTER TABLE `empleado_sexo`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `empresa_id` (`empresa_id`),
-  ADD KEY `empleado_sexo_id` (`socio_empleado_id`),
-  ADD KEY `sexo_id` (`sexo_id`);
 
 --
 -- Indices de la tabla `empresa`
@@ -3652,6 +3657,25 @@ ALTER TABLE `grupo_etnico_op`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `hoja_verificacion_1`
+--
+ALTER TABLE `hoja_verificacion_1`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `empresa_id` (`empresa_id`),
+  ADD KEY `pregunta_id` (`pregunta_id`),
+  ADD KEY `respuesta_id` (`respuesta_id`),
+  ADD KEY `cumplimiento_id` (`cumplimiento_id`);
+
+--
+-- Indices de la tabla `hoja_verificacion_2`
+--
+ALTER TABLE `hoja_verificacion_2`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `empresa_id` (`empresa_id`),
+  ADD KEY `pregunta_id` (`pregunta_id`),
+  ADD KEY `calificador_id` (`calificador_id`);
+
+--
 -- Indices de la tabla `img_empresa`
 --
 ALTER TABLE `img_empresa`
@@ -3665,12 +3689,20 @@ ALTER TABLE `img_page`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `institucion`
+-- Indices de la tabla `impacto_practicas`
 --
-ALTER TABLE `institucion`
+ALTER TABLE `impacto_practicas`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `empresa_id` (`empresa_id`),
-  ADD KEY `orientacion_id` (`orientacion_id`);
+  ADD KEY `info_com_id` (`info_com_id`),
+  ADD KEY `pregunta_id` (`pregunta_id`),
+  ADD KEY `respuesta_id` (`respuesta_id`);
+
+--
+-- Indices de la tabla `informacion_complementaria`
+--
+ALTER TABLE `informacion_complementaria`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `empresa_id` (`empresa_id`);
 
 --
 -- Indices de la tabla `involucra`
@@ -3706,11 +3738,25 @@ ALTER TABLE `login`
   ADD KEY `persona_id` (`persona_id`);
 
 --
+-- Indices de la tabla `medio`
+--
+ALTER TABLE `medio`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `municipio`
 --
 ALTER TABLE `municipio`
   ADD PRIMARY KEY (`id`),
   ADD KEY `departamento_id` (`departamento_id`);
+
+--
+-- Indices de la tabla `negocio_comunidad`
+--
+ALTER TABLE `negocio_comunidad`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `info_com_id` (`info_com_id`),
+  ADD KEY `sexo_id` (`sexo_id`);
 
 --
 -- Indices de la tabla `nivel`
@@ -3723,8 +3769,8 @@ ALTER TABLE `nivel`
 --
 ALTER TABLE `nivel_educativo`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `empresa_id` (`empresa_id`),
-  ADD KEY `nivel_id` (`nivel_id`);
+  ADD KEY `empresa_id` (`info_com_id`),
+  ADD KEY `nivel_id` (`sexo_id`);
 
 --
 -- Indices de la tabla `noticia`
@@ -3732,20 +3778,6 @@ ALTER TABLE `nivel_educativo`
 ALTER TABLE `noticia`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_img_page` (`id_img_page`);
-
---
--- Indices de la tabla `opciones`
---
-ALTER TABLE `opciones`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `codigo` (`codigo`),
-  ADD UNIQUE KEY `codigo_2` (`codigo`);
-
---
--- Indices de la tabla `orientacion`
---
-ALTER TABLE `orientacion`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `otros_certificacion`
@@ -3786,6 +3818,15 @@ ALTER TABLE `otro_actividades`
   ADD KEY `recurso_id` (`recurso_id`);
 
 --
+-- Indices de la tabla `otro_condicion_vulneravibilidad`
+--
+ALTER TABLE `otro_condicion_vulneravibilidad`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `info_com_id` (`info_com_id`),
+  ADD KEY `sexo_id` (`sexo_id`),
+  ADD KEY `otro_rotulo_id` (`otro_rotulo_id`);
+
+--
 -- Indices de la tabla `otro_involucra`
 --
 ALTER TABLE `otro_involucra`
@@ -3793,11 +3834,28 @@ ALTER TABLE `otro_involucra`
   ADD KEY `empresa_id` (`empresa_id`);
 
 --
+-- Indices de la tabla `otro_negocio_comunidad`
+--
+ALTER TABLE `otro_negocio_comunidad`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `info_com_id` (`info_com_id`),
+  ADD KEY `sexo_id` (`sexo_id`);
+
+--
+-- Indices de la tabla `otro_nivel_educativo`
+--
+ALTER TABLE `otro_nivel_educativo`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `info_com_id` (`info_com_id`),
+  ADD KEY `sexo_id` (`sexo_id`);
+
+--
 -- Indices de la tabla `otro_programa`
 --
 ALTER TABLE `otro_programa`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `empresa_id` (`empresa_id`);
+  ADD KEY `empresa_id` (`info_com_id`),
+  ADD KEY `recurso_id` (`recurso_id`);
 
 --
 -- Indices de la tabla `otro_tenencia_tierra`
@@ -3849,12 +3907,20 @@ ALTER TABLE `plan_mejora`
   ADD KEY `empresa_id` (`empresa_id`);
 
 --
+-- Indices de la tabla `pregunta_indicativa`
+--
+ALTER TABLE `pregunta_indicativa`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `aspecto_id` (`aspecto_id`);
+
+--
 -- Indices de la tabla `programa`
 --
 ALTER TABLE `programa`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `empresa_id` (`empresa_id`),
-  ADD KEY `opciones_id` (`opciones_id`);
+  ADD KEY `empresa_id` (`info_com_id`),
+  ADD KEY `opciones_id` (`pregunta_id`),
+  ADD KEY `recurso_id` (`recurso_id`);
 
 --
 -- Indices de la tabla `recurso`
@@ -3918,19 +3984,13 @@ ALTER TABLE `slide`
   ADD KEY `id_img_page` (`id_img_page`);
 
 --
--- Indices de la tabla `socio_empleado_item`
---
-ALTER TABLE `socio_empleado_item`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `sost_economica`
 --
 ALTER TABLE `sost_economica`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `si_no_id` (`si_no_id`),
+  ADD KEY `si_no_id` (`ingreso_superior`),
   ADD KEY `unidad_medida_id` (`unidad_medida_id`),
-  ADD KEY `empresa_id` (`empresa_id`);
+  ADD KEY `empresa_id` (`info_com_id`);
 
 --
 -- Indices de la tabla `subsector`
@@ -3968,6 +4028,20 @@ ALTER TABLE `tenencia_tierra`
   ADD KEY `opciones_id` (`opciones_id`);
 
 --
+-- Indices de la tabla `tipo_contrato`
+--
+ALTER TABLE `tipo_contrato`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `info_com_id` (`info_com_id`),
+  ADD KEY `sexo_id` (`sexo_id`);
+
+--
+-- Indices de la tabla `tipo_entidad`
+--
+ALTER TABLE `tipo_entidad`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `tipo_identificacion`
 --
 ALTER TABLE `tipo_identificacion`
@@ -4000,35 +4074,32 @@ ALTER TABLE `tipo_vinculacion`
   ADD KEY `vinculacion_id` (`vinculacion_id`);
 
 --
+-- Indices de la tabla `total_empleados`
+--
+ALTER TABLE `total_empleados`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `info_com_id` (`info_com_id`),
+  ADD KEY `sexo_id` (`sexo_id`),
+  ADD KEY `total_rotulo_id` (`total_rotulo_id`);
+
+--
+-- Indices de la tabla `total_rotulo`
+--
+ALTER TABLE `total_rotulo`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `total_ventas`
 --
 ALTER TABLE `total_ventas`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `empresa_id` (`empresa_id`);
+  ADD KEY `empresa_id` (`info_com_id`);
 
 --
 -- Indices de la tabla `unidad_medida`
 --
 ALTER TABLE `unidad_medida`
   ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `verificacion_1`
---
-ALTER TABLE `verificacion_1`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `empresa_id` (`empresa_id`),
-  ADD KEY `aplica_noaplica_id` (`si_no_noaplica_id`),
-  ADD KEY `opciones_id` (`opciones_id`);
-
---
--- Indices de la tabla `verificacion_2`
---
-ALTER TABLE `verificacion_2`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `empresa_id` (`empresa_id`),
-  ADD KEY `calificador_id` (`calificador_id`),
-  ADD KEY `opciones_id` (`opciones_id`);
 
 --
 -- Indices de la tabla `verificador`
@@ -4068,441 +4139,583 @@ ALTER TABLE `vinculacion`
 --
 ALTER TABLE `actividades`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
 --
 -- AUTO_INCREMENT de la tabla `actividad_empresa`
 --
 ALTER TABLE `actividad_empresa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT de la tabla `actividad_item`
 --
 ALTER TABLE `actividad_item`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `alias`
 --
 ALTER TABLE `alias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT de la tabla `aplica_noaplica`
 --
 ALTER TABLE `aplica_noaplica`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `apoyo`
+--
+ALTER TABLE `apoyo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
 --
 -- AUTO_INCREMENT de la tabla `archivo_page`
 --
 ALTER TABLE `archivo_page`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `area`
 --
 ALTER TABLE `area`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `aspecto`
+--
+ALTER TABLE `aspecto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
 --
 -- AUTO_INCREMENT de la tabla `bienes_servicios`
 --
 ALTER TABLE `bienes_servicios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
+
+--
+-- AUTO_INCREMENT de la tabla `bienes_servicios_adicionales`
+--
+ALTER TABLE `bienes_servicios_adicionales`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `bien_serv_op`
 --
 ALTER TABLE `bien_serv_op`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `cabildo`
 --
 ALTER TABLE `cabildo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT de la tabla `cadena_valor`
+--
+ALTER TABLE `cadena_valor`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `calificador`
 --
 ALTER TABLE `calificador`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `certificacion`
 --
 ALTER TABLE `certificacion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+
+--
+-- AUTO_INCREMENT de la tabla `condicion_vulnerabilidad_es`
+--
+ALTER TABLE `condicion_vulnerabilidad_es`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `consejo_comunitario`
 --
 ALTER TABLE `consejo_comunitario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT de la tabla `conservacion`
 --
 ALTER TABLE `conservacion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+
 --
 -- AUTO_INCREMENT de la tabla `contenido`
 --
 ALTER TABLE `contenido`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT de la tabla `costo_insumos`
---
-ALTER TABLE `costo_insumos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT de la tabla `costo_mano_obra`
---
-ALTER TABLE `costo_mano_obra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT de la tabla `cumple_nocumple`
 --
 ALTER TABLE `cumple_nocumple`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `demografia`
 --
 ALTER TABLE `demografia`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+
 --
 -- AUTO_INCREMENT de la tabla `departamento`
 --
 ALTER TABLE `departamento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de la tabla `descripcion_etaria`
+--
+ALTER TABLE `descripcion_etaria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `desc_demografia`
 --
 ALTER TABLE `desc_demografia`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT de la tabla `ecosistema`
 --
 ALTER TABLE `ecosistema`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
 --
 -- AUTO_INCREMENT de la tabla `edad`
 --
 ALTER TABLE `edad`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT de la tabla `empleado_edad`
---
-ALTER TABLE `empleado_edad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
---
--- AUTO_INCREMENT de la tabla `empleado_sexo`
---
-ALTER TABLE `empleado_sexo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+
 --
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
 --
 -- AUTO_INCREMENT de la tabla `empresario`
 --
 ALTER TABLE `empresario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT de la tabla `etapa`
 --
 ALTER TABLE `etapa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `etapa_empresa`
 --
 ALTER TABLE `etapa_empresa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT de la tabla `grupo_etnico`
 --
 ALTER TABLE `grupo_etnico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT de la tabla `grupo_etnico_op`
 --
 ALTER TABLE `grupo_etnico_op`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `hoja_verificacion_1`
+--
+ALTER TABLE `hoja_verificacion_1`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT de la tabla `hoja_verificacion_2`
+--
+ALTER TABLE `hoja_verificacion_2`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=328;
+
 --
 -- AUTO_INCREMENT de la tabla `img_empresa`
 --
 ALTER TABLE `img_empresa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
 --
 -- AUTO_INCREMENT de la tabla `img_page`
 --
 ALTER TABLE `img_page`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
--- AUTO_INCREMENT de la tabla `institucion`
+-- AUTO_INCREMENT de la tabla `informacion_complementaria`
 --
-ALTER TABLE `institucion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+ALTER TABLE `informacion_complementaria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `involucra`
 --
 ALTER TABLE `involucra`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
 --
 -- AUTO_INCREMENT de la tabla `junta_comunal`
 --
 ALTER TABLE `junta_comunal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT de la tabla `licencia`
 --
 ALTER TABLE `licencia`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
 --
 -- AUTO_INCREMENT de la tabla `login`
 --
 ALTER TABLE `login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `medio`
+--
+ALTER TABLE `medio`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `municipio`
 --
 ALTER TABLE `municipio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT de la tabla `negocio_comunidad`
+--
+ALTER TABLE `negocio_comunidad`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `nivel`
 --
 ALTER TABLE `nivel`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT de la tabla `nivel_educativo`
 --
 ALTER TABLE `nivel_educativo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
 --
 -- AUTO_INCREMENT de la tabla `noticia`
 --
 ALTER TABLE `noticia`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT de la tabla `opciones`
---
-ALTER TABLE `opciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
---
--- AUTO_INCREMENT de la tabla `orientacion`
---
-ALTER TABLE `orientacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT de la tabla `otros_certificacion`
 --
 ALTER TABLE `otros_certificacion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT de la tabla `otros_conservacion`
 --
 ALTER TABLE `otros_conservacion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT de la tabla `otros_ecosistema`
 --
 ALTER TABLE `otros_ecosistema`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT de la tabla `otros_legislacion`
 --
 ALTER TABLE `otros_legislacion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT de la tabla `otro_actividades`
 --
 ALTER TABLE `otro_actividades`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `otro_condicion_vulneravibilidad`
+--
+ALTER TABLE `otro_condicion_vulneravibilidad`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `otro_involucra`
 --
 ALTER TABLE `otro_involucra`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `otro_negocio_comunidad`
+--
+ALTER TABLE `otro_negocio_comunidad`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `otro_nivel_educativo`
+--
+ALTER TABLE `otro_nivel_educativo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `otro_programa`
 --
 ALTER TABLE `otro_programa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT de la tabla `otro_tenencia_tierra`
 --
 ALTER TABLE `otro_tenencia_tierra`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
 --
 -- AUTO_INCREMENT de la tabla `pais`
 --
 ALTER TABLE `pais`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
 --
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+
 --
 -- AUTO_INCREMENT de la tabla `plan_manejo`
 --
 ALTER TABLE `plan_manejo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
 --
 -- AUTO_INCREMENT de la tabla `plan_mejora`
 --
 ALTER TABLE `plan_mejora`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+
+--
+-- AUTO_INCREMENT de la tabla `pregunta_indicativa`
+--
+ALTER TABLE `pregunta_indicativa`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+
 --
 -- AUTO_INCREMENT de la tabla `programa`
 --
 ALTER TABLE `programa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
 --
 -- AUTO_INCREMENT de la tabla `recurso`
 --
 ALTER TABLE `recurso`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `region`
 --
 ALTER TABLE `region`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT de la tabla `registro`
 --
 ALTER TABLE `registro`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT de la tabla `sector`
 --
 ALTER TABLE `sector`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT de la tabla `sexo`
 --
 ALTER TABLE `sexo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `si_no`
 --
 ALTER TABLE `si_no`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT de la tabla `si_no_noaplica`
 --
 ALTER TABLE `si_no_noaplica`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `slide`
 --
 ALTER TABLE `slide`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT de la tabla `socio_empleado_item`
---
-ALTER TABLE `socio_empleado_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `sost_economica`
 --
 ALTER TABLE `sost_economica`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
 --
 -- AUTO_INCREMENT de la tabla `subsector`
 --
 ALTER TABLE `subsector`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
 --
 -- AUTO_INCREMENT de la tabla `tamaño_empresa`
 --
 ALTER TABLE `tamaño_empresa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT de la tabla `tcip`
 --
 ALTER TABLE `tcip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT de la tabla `tcip_op`
 --
 ALTER TABLE `tcip_op`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT de la tabla `tenencia_tierra`
 --
 ALTER TABLE `tenencia_tierra`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_contrato`
+--
+ALTER TABLE `tipo_contrato`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_entidad`
+--
+ALTER TABLE `tipo_entidad`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT de la tabla `tipo_identificacion`
 --
 ALTER TABLE `tipo_identificacion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT de la tabla `tipo_persona`
 --
 ALTER TABLE `tipo_persona`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `tipo_personeria`
 --
 ALTER TABLE `tipo_personeria`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `tipo_tenencia`
 --
 ALTER TABLE `tipo_tenencia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT de la tabla `tipo_vinculacion`
 --
 ALTER TABLE `tipo_vinculacion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
+--
+-- AUTO_INCREMENT de la tabla `total_empleados`
+--
+ALTER TABLE `total_empleados`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `total_rotulo`
+--
+ALTER TABLE `total_rotulo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT de la tabla `total_ventas`
 --
 ALTER TABLE `total_ventas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT de la tabla `unidad_medida`
 --
 ALTER TABLE `unidad_medida`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `verificacion_1`
---
-ALTER TABLE `verificacion_1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
---
--- AUTO_INCREMENT de la tabla `verificacion_2`
---
-ALTER TABLE `verificacion_2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1057;
+
 --
 -- AUTO_INCREMENT de la tabla `verificador`
 --
 ALTER TABLE `verificador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
 -- AUTO_INCREMENT de la tabla `verificadorxempresa`
 --
 ALTER TABLE `verificadorxempresa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
 --
 -- AUTO_INCREMENT de la tabla `veri_empresa`
 --
 ALTER TABLE `veri_empresa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
 --
 -- AUTO_INCREMENT de la tabla `vinculacion`
 --
 ALTER TABLE `vinculacion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -4511,18 +4724,22 @@ ALTER TABLE `vinculacion`
 -- Filtros para la tabla `actividades`
 --
 ALTER TABLE `actividades`
-  ADD CONSTRAINT `actividades_ibfk_1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`),
-  ADD CONSTRAINT `actividades_ibfk_2` FOREIGN KEY (`opciones_id`) REFERENCES `opciones` (`id`),
+  ADD CONSTRAINT `actividades_ibfk_1` FOREIGN KEY (`info_com_id`) REFERENCES `empresa` (`id`),
+  ADD CONSTRAINT `actividades_ibfk_2` FOREIGN KEY (`pregunta_id`) REFERENCES `opciones` (`id`),
   ADD CONSTRAINT `actividades_ibfk_3` FOREIGN KEY (`recurso_id`) REFERENCES `recurso` (`id`);
 
 --
 -- Filtros para la tabla `actividad_empresa`
 --
 ALTER TABLE `actividad_empresa`
-  ADD CONSTRAINT `actividad_empresa_ibfk_2` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`),
-  ADD CONSTRAINT `actividad_empresa_ibfk_3` FOREIGN KEY (`municipio_id`) REFERENCES `municipio` (`id`),
-  ADD CONSTRAINT `actividad_empresa_ibfk_4` FOREIGN KEY (`tipo_tenencia_id`) REFERENCES `tipo_tenencia` (`id`),
-  ADD CONSTRAINT `actividad_empresa_ibfk_5` FOREIGN KEY (`pot_si_no_id`) REFERENCES `si_no` (`id`);
+  ADD CONSTRAINT `actividad_empresa_ibfk_2` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`);
+
+--
+-- Filtros para la tabla `apoyo`
+--
+ALTER TABLE `apoyo`
+  ADD CONSTRAINT `apoyo_ibfk_1` FOREIGN KEY (`info_com_id`) REFERENCES `empresa` (`id`),
+  ADD CONSTRAINT `apoyo_ibfk_2` FOREIGN KEY (`tipo_entidad_id`) REFERENCES `tipo_entidad` (`id`);
 
 --
 -- Filtros para la tabla `archivo_page`
@@ -4546,9 +4763,9 @@ ALTER TABLE `cabildo`
 -- Filtros para la tabla `certificacion`
 --
 ALTER TABLE `certificacion`
-  ADD CONSTRAINT `certificacion_empresa_id_restrink1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`),
+  ADD CONSTRAINT `certificacion_empresa_id_restrink1` FOREIGN KEY (`info_com_id`) REFERENCES `empresa` (`id`),
   ADD CONSTRAINT `certificacion_etapa_id_restrink1` FOREIGN KEY (`etapa_id`) REFERENCES `etapa` (`id`),
-  ADD CONSTRAINT `certificacion_opciones_id_restrink1` FOREIGN KEY (`opciones_id`) REFERENCES `opciones` (`id`);
+  ADD CONSTRAINT `certificacion_opciones_id_restrink1` FOREIGN KEY (`pregunta_id`) REFERENCES `opciones` (`id`);
 
 --
 -- Filtros para la tabla `consejo_comunitario`
@@ -4560,8 +4777,8 @@ ALTER TABLE `consejo_comunitario`
 -- Filtros para la tabla `conservacion`
 --
 ALTER TABLE `conservacion`
-  ADD CONSTRAINT `conservacion_ibfk_1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`),
-  ADD CONSTRAINT `conservacion_ibfk_2` FOREIGN KEY (`opciones_id`) REFERENCES `opciones` (`id`);
+  ADD CONSTRAINT `conservacion_ibfk_1` FOREIGN KEY (`info_com_id`) REFERENCES `empresa` (`id`),
+  ADD CONSTRAINT `conservacion_ibfk_2` FOREIGN KEY (`pregunta_id`) REFERENCES `opciones` (`id`);
 
 --
 -- Filtros para la tabla `contenido`
@@ -4569,18 +4786,6 @@ ALTER TABLE `conservacion`
 ALTER TABLE `contenido`
   ADD CONSTRAINT `fk_alias` FOREIGN KEY (`alias_id`) REFERENCES `alias` (`id`),
   ADD CONSTRAINT `fk_img` FOREIGN KEY (`id_img_page`) REFERENCES `img_page` (`id`);
-
---
--- Filtros para la tabla `costo_insumos`
---
-ALTER TABLE `costo_insumos`
-  ADD CONSTRAINT `costo_insumo_restrink1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`);
-
---
--- Filtros para la tabla `costo_mano_obra`
---
-ALTER TABLE `costo_mano_obra`
-  ADD CONSTRAINT `costo_mano_obra_restrink1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`);
 
 --
 -- Filtros para la tabla `demografia`
@@ -4602,19 +4807,6 @@ ALTER TABLE `departamento`
 ALTER TABLE `ecosistema`
   ADD CONSTRAINT `ecosistema_ibfk_1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`),
   ADD CONSTRAINT `ecosistema_ibfk_2` FOREIGN KEY (`opciones_id`) REFERENCES `opciones` (`id`);
-
---
--- Filtros para la tabla `empleado_edad`
---
-ALTER TABLE `empleado_edad`
-  ADD CONSTRAINT `empleado_edad_ibfk_1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`),
-  ADD CONSTRAINT `empleado_edad_ibfk_2` FOREIGN KEY (`edad_id`) REFERENCES `edad` (`id`);
-
---
--- Filtros para la tabla `empleado_sexo`
---
-ALTER TABLE `empleado_sexo`
-  ADD CONSTRAINT `empleado_sexo_ibfk_1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`);
 
 --
 -- Filtros para la tabla `empresa`
@@ -4642,13 +4834,6 @@ ALTER TABLE `grupo_etnico`
 --
 ALTER TABLE `img_empresa`
   ADD CONSTRAINT `img_emprea1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`);
-
---
--- Filtros para la tabla `institucion`
---
-ALTER TABLE `institucion`
-  ADD CONSTRAINT `institucion_ibfk_1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`),
-  ADD CONSTRAINT `institucion_ibfk_2` FOREIGN KEY (`orientacion_id`) REFERENCES `orientacion` (`id`);
 
 --
 -- Filtros para la tabla `involucra`
@@ -4688,8 +4873,8 @@ ALTER TABLE `municipio`
 -- Filtros para la tabla `nivel_educativo`
 --
 ALTER TABLE `nivel_educativo`
-  ADD CONSTRAINT `nivel_educativo_ibfk_1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`),
-  ADD CONSTRAINT `nivel_educativo_ibfk_2` FOREIGN KEY (`nivel_id`) REFERENCES `nivel` (`id`);
+  ADD CONSTRAINT `nivel_educativo_ibfk_1` FOREIGN KEY (`info_com_id`) REFERENCES `empresa` (`id`),
+  ADD CONSTRAINT `nivel_educativo_ibfk_2` FOREIGN KEY (`sexo_id`) REFERENCES `nivel` (`id`);
 
 --
 -- Filtros para la tabla `noticia`
@@ -4740,7 +4925,7 @@ ALTER TABLE `otro_involucra`
 -- Filtros para la tabla `otro_programa`
 --
 ALTER TABLE `otro_programa`
-  ADD CONSTRAINT `otro_programa_restrink1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`);
+  ADD CONSTRAINT `otro_programa_restrink1` FOREIGN KEY (`info_com_id`) REFERENCES `empresa` (`id`);
 
 --
 -- Filtros para la tabla `otro_tenencia_tierra`
@@ -4781,11 +4966,17 @@ ALTER TABLE `plan_mejora`
   ADD CONSTRAINT `plan_mejora_restrink2` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`);
 
 --
+-- Filtros para la tabla `pregunta_indicativa`
+--
+ALTER TABLE `pregunta_indicativa`
+  ADD CONSTRAINT `fk_aspecto` FOREIGN KEY (`aspecto_id`) REFERENCES `aspecto` (`id`);
+
+--
 -- Filtros para la tabla `programa`
 --
 ALTER TABLE `programa`
-  ADD CONSTRAINT `programa_ibfk_1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`),
-  ADD CONSTRAINT `programa_ibfk_2` FOREIGN KEY (`opciones_id`) REFERENCES `opciones` (`id`);
+  ADD CONSTRAINT `programa_ibfk_1` FOREIGN KEY (`info_com_id`) REFERENCES `empresa` (`id`),
+  ADD CONSTRAINT `programa_ibfk_2` FOREIGN KEY (`pregunta_id`) REFERENCES `opciones` (`id`);
 
 --
 -- Filtros para la tabla `region`
@@ -4818,9 +5009,9 @@ ALTER TABLE `slide`
 -- Filtros para la tabla `sost_economica`
 --
 ALTER TABLE `sost_economica`
-  ADD CONSTRAINT `sost_eco_restrink1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`),
+  ADD CONSTRAINT `sost_eco_restrink1` FOREIGN KEY (`info_com_id`) REFERENCES `empresa` (`id`),
   ADD CONSTRAINT `sost_eco_restrink2` FOREIGN KEY (`unidad_medida_id`) REFERENCES `unidad_medida` (`id`),
-  ADD CONSTRAINT `sost_eco_restrink3` FOREIGN KEY (`si_no_id`) REFERENCES `si_no` (`id`);
+  ADD CONSTRAINT `sost_eco_restrink3` FOREIGN KEY (`ingreso_superior`) REFERENCES `si_no` (`id`);
 
 --
 -- Filtros para la tabla `tcip`
@@ -4847,23 +5038,7 @@ ALTER TABLE `tipo_vinculacion`
 -- Filtros para la tabla `total_ventas`
 --
 ALTER TABLE `total_ventas`
-  ADD CONSTRAINT `total_ventas_restrink` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`);
-
---
--- Filtros para la tabla `verificacion_1`
---
-ALTER TABLE `verificacion_1`
-  ADD CONSTRAINT `verificacion_1_restrink1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`),
-  ADD CONSTRAINT `verificacion_1_restrink2` FOREIGN KEY (`opciones_id`) REFERENCES `opciones` (`id`),
-  ADD CONSTRAINT `verificacion_1_restrink3` FOREIGN KEY (`si_no_noaplica_id`) REFERENCES `si_no_noaplica` (`id`);
-
---
--- Filtros para la tabla `verificacion_2`
---
-ALTER TABLE `verificacion_2`
-  ADD CONSTRAINT `verificacion_2_restrink1` FOREIGN KEY (`empresa_id`) REFERENCES `empresa` (`id`),
-  ADD CONSTRAINT `verificacion_2_restrink2` FOREIGN KEY (`opciones_id`) REFERENCES `opciones` (`id`),
-  ADD CONSTRAINT `verificacion_2_restrink3` FOREIGN KEY (`calificador_id`) REFERENCES `calificador` (`id`);
+  ADD CONSTRAINT `total_ventas_restrink` FOREIGN KEY (`info_com_id`) REFERENCES `empresa` (`id`);
 
 --
 -- Filtros para la tabla `verificador`
@@ -4884,6 +5059,7 @@ ALTER TABLE `verificadorxempresa`
 ALTER TABLE `veri_empresa`
   ADD CONSTRAINT `fk-empresa-veri` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id`),
   ADD CONSTRAINT `fk_si_no_veri` FOREIGN KEY (`si_no_id`) REFERENCES `si_no` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
