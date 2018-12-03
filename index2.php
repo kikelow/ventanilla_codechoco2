@@ -177,6 +177,7 @@ if(!isset($_SESSION["vev_verificador"])){
 <script type="text/javascript" src="js/sweetalert.js"></script>
 
 
+
 <script type="text/javascript">
   $(document).ready(function(){
    $('.carousel.carousel-slider').carousel({fullWidth: true});

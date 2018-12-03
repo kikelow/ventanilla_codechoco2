@@ -21,7 +21,7 @@ for ($key=0; $key <sizeof($pregunta_m); $key++) {
           `evidencia`='$name_evidencia[$key]',
           medio_verificacion = '$medio_m[$key]'
       WHERE empresa_id = $empresa AND pregunta_id = $pregunta_m[$key]";
-        echo("1 update " . $s);
+      
         mysqli_query($conn,$s) or die(mysqli_error($conn));
     }else{
           if ($_FILES["evidencia_m"]["size"][$key] <= $limite_kb * 1024) {
@@ -36,7 +36,7 @@ for ($key=0; $key <sizeof($pregunta_m); $key++) {
         $ruta = "../subidas/".$_POST['pregunta_m2'][$key]."_$_GET[empresa]_$name";
         $nombre = "".$_POST['pregunta_m22'][$key]."_$_GET[empresa]_$name";
 
- 2       move_uploaded_file($tmp_name, $ruta);
+       move_uploaded_file($tmp_name, $ruta);
 
   $s= "UPDATE `hoja_verificacion_2` 
        SET `calificador_id`='$calificador_m[$key]',
@@ -683,8 +683,79 @@ $s="UPDATE `empresa` SET `puntaje` = '$resultado'  WHERE id = '$empresa'";
 mysqli_query($conn,$s);
 
 
+/////_----------------------------------------------------------------------------
+
+  $preguntas2 = array();
+  $preguntas_mejora = array();
+       
 
 
+        $s = "SELECT pregunta_id FROM `hoja_verificacion_2` where calificador_id != 3 AND calificador_id != 4 AND empresa_id = '$empresa'";
+        $r = mysqli_query($conn,$s) or die(mysqli_error($conn));
+        if(mysqli_num_rows($r)>0){
+          while($rw=mysqli_fetch_assoc($r)){
+
+            array_push($preguntas2, $rw['pregunta_id']);
+
+          }         print_r($preguntas2);
+        }
+
+
+        $s = "SELECT id from plan_mejora where empresa_id = '$empresa'";
+        $r = mysqli_query($conn,$s) or die(mysqli_error($conn));
+        if(mysqli_num_rows($r)>0){
+        
+
+          $s = "SELECT pregunta_id from plan_mejora
+          INNER JOIN pregunta_indicativa 
+          ON plan_mejora.pregunta_id = pregunta_indicativa.id
+          where empresa_id = '$empresa' AND pregunta_indicativa.aspecto_id BETWEEN 8 AND 20 ";
+
+          $r = mysqli_query($conn,$s) or die(mysqli_error($conn));
+          if(mysqli_num_rows($r)>0){
+            while($rw=mysqli_fetch_assoc($r)){
+
+              array_push($preguntas_mejora, $rw['pregunta_id']);
+              
+
+            }         print_r($preguntas_mejora);
+
+          }
+
+
+
+    // opciones que estan en el plan de mejora(aplicativo) y no estan el plan de mejora(BD)
+          $opcion_insert =  array_values(array_diff($preguntas2, $preguntas_mejora));
+          echo "Insertar\n";
+          var_dump($opcion_insert);
+
+        // var_dump($opcion_insert);
+
+      //   Insertar las opciones nuevas en caso de haber
+          if ($opcion_insert>0) {
+            for ($i=0; $i <sizeof($opcion_insert); $i++) {
+
+              $s="INSERT INTO `plan_mejora`(`empresa_id`, `pregunta_id`, `acciones`, `actor`, `resultado`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `observacion`) 
+              VALUES('$empresa',
+              '$opcion_insert[$i]','','','','','','','','','','','','','','','','')";
+              mysqli_query($conn,$s);
+              echo($s);
+            }
+          }
+
+    // opciones que no estan en el plan de mejora(aplicativo) y si estan el plan de mejora(BD)
+          $opcion_eliminar =  array_values(array_diff($preguntas_mejora,$preguntas2));
+            echo "Eliminar\n";
+            var_dump($opcion_eliminar);
+    // Eliminar las opciones que ya no estan estan en el plan de mejora(Aplicativo) y estan en el plan de mejora(BD)
+            if ($opcion_eliminar>0) {
+              for ($i=0; $i <count($opcion_eliminar) ; $i++) { 
+                $s="DELETE FROM plan_mejora WHERE empresa_id='$empresa' AND pregunta_id='$opcion_eliminar[$i]'";
+                mysqli_query($conn,$s);
+              }
+            }
+
+        }
 
 
 ?>

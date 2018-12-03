@@ -13,11 +13,11 @@
 echo " <ul class='collapsible' data-collapsible='accordion'>";
   
     $opciones_id = '';
-    $s2="SELECT pregunta_id FROM hoja_verificacion_1 WHERE respuesta_id = '1' AND empresa_id = '$empresa'";
+    $s2="SELECT pregunta_id FROM hoja_verificacion_1 WHERE respuesta_id = '2' AND empresa_id = '$empresa'";
         $r2= mysqli_query($conn,$s2) or die(mysqli_error($conn));
         if(mysqli_num_rows($r2)>0){
  
-   echo "  <li >
+   echo "  <li>
       <div class='collapsible-header' style='font-weight: bold;'> <i class='material-icons'></i>Nivel 0</div>
       <div class='collapsible-body'><span>
         <table class='responsive-table striped bordered'>
@@ -44,9 +44,9 @@ echo " <ul class='collapsible' data-collapsible='accordion'>";
   <tbody>";
       
         while($result2=mysqli_fetch_assoc($r2)){
-          $opciones_id = $result2['opciones_id'];
+          $opciones_id = $result2['pregunta_id'];
 
-          $s1="SELECT id,nombre,No from opciones where id = '$opciones_id'";
+          $s1="SELECT id,descripcion,No from pregunta_indicativa where id = '$opciones_id'";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
@@ -54,11 +54,11 @@ echo " <ul class='collapsible' data-collapsible='accordion'>";
       
 echo " <tr>
       <td>
-     <label for=''>$result1[No]</label>
+     <p style='text-align:justify'>$result1[No]</p>
       </td>
       <td>
       <input type='hidden' name='mejora_opcion[]' value='$result1[id]' />
-     <label for=''>$result1[nombre]</label>
+     <p style='text-align:justify'>$result1[descripcion]</p>
       </td>
       <td> <div class='input-field col '>
                    <textarea id='' name='accion[]' class='materialize-textarea'></textarea>
@@ -135,7 +135,7 @@ echo " <tr>
 //Segundo Li
 
  $opciones_id = '';
-    $s2="SELECT opciones_id FROM verificacion_2 WHERE calificador_id != '3' and calificador_id != '4' AND empresa_id = '$empresa'";
+    $s2="SELECT hoja_verificacion_2.pregunta_id from hoja_verificacion_2 INNER JOIN pregunta_indicativa ON hoja_verificacion_2.pregunta_id = pregunta_indicativa.id WHERE calificador_id != '3' and calificador_id != '4' AND pregunta_indicativa.aspecto_id != 19 AND pregunta_indicativa.aspecto_id != 20 AND hoja_verificacion_2.empresa_id = '$empresa'";
         $r2= mysqli_query($conn,$s2) or die(mysqli_error($conn));
         if(mysqli_num_rows($r2)>0){
  
@@ -166,9 +166,9 @@ echo " <tr>
   <tbody>";
       
         while($result2=mysqli_fetch_assoc($r2)){
-          $opciones_id = $result2['opciones_id'];
+          $opciones_id = $result2['pregunta_id'];
 
-          $s1="SELECT id,nombre,No from opciones where id = '$opciones_id'";
+          $s1="SELECT id,descripcion,No from pregunta_indicativa where id = '$opciones_id'";
                   $r1= mysqli_query($conn,$s1) or die('Error');
                   if(mysqli_num_rows($r1)>0){
                     while($result1=mysqli_fetch_assoc($r1)){
@@ -176,11 +176,11 @@ echo " <tr>
       
 echo " <tr>
       <td>
-     <label for=''>$result1[No]</label>
+     <p style='text-align:justify'>$result1[No]</p>
       </td>
       <td>
       <input type='hidden' name='mejora_opcion[]' value='$result1[id]' />
-     <label for=''>$result1[nombre]</label>
+     <p style='text-align:justify'>$result1[descripcion]</p>
       </td>
       <td> <div class='input-field col '>
                    <textarea id='' name='accion[]' class='materialize-textarea'></textarea>

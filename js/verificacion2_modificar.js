@@ -228,7 +228,7 @@ if (! $('#empresa_m').val()) {
         contentType: false,
 	     processData: false,
 	  beforeSend: function() {
-	  	//$('#modificar_verificacion2').attr('disabled', 'disabled');
+	  	$('#modificar_verificacion2').attr('disabled', 'disabled');
    	// console.log('cargando')
    	swal ({
   				// icon: "success",
@@ -245,7 +245,7 @@ if (! $('#empresa_m').val()) {
     				visible: false
   				},
 			});
-    	//setTimeout("document.location=document.location",1500);
+    	setTimeout("document.location=document.location",1500);
     }
 	 })
 	 // .done(function(respuesta) {
@@ -313,7 +313,7 @@ $('#calificador_m19,#calificador_m18,#calificador_m17,#calificador_m16,#califica
 	
 });
 
-$('#calificador_m21,#calificador_m22,#vcalificador_m23,#calificador_m24').change(function(event) {
+$('#calificador_m21,#calificador_m22,#calificador_m23,#calificador_m24').change(function(event) {
 	var combo10 = document.getElementById("calificador_m21");
 	var selected10 = combo10.options[combo10.selectedIndex].text;
 	var combo11 = document.getElementById("calificador_m22");
@@ -726,12 +726,15 @@ promedio1,promedio2,promedio3,promedio4,promedio5,promedio6,promedio7,promedio8,
 	}else {
 		$('#totalm').addClass('green')
 	}
+
+	
 // Promedio total del nivel 2
 var division = 0
 var suma_total = 0
 var arreglo_total = [promedio12,promedio13]
 	for(var i =0;i<arreglo_total.length;i++){
 		if (isNaN(arreglo_total[i])) {
+			console.log(arreglo_total[i]);
 		arreglo_total[i] = 0
 		division = division
 	}else {
