@@ -269,7 +269,7 @@ $verificacion = "";
      if(mysqli_num_rows($r1)>0){
       while($result1=mysqli_fetch_assoc($r1)){
         if ($result1['id'] == $rw['respuesta_id']) {
-          # code...
+         echo"<option value=".$result1['id']." selected='selected'>".$result1['nombre' ]."</option>";
         }
         echo"<option value=".$result1['id'].">".$result1['nombre' ]."</option>";
       }

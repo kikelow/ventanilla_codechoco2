@@ -27,7 +27,7 @@
                   <?php 
                   $s="SELECT empresa.id,empresa.razon_social,empresa.identificacion FROM verificadorxempresa
                         INNER JOIN empresa ON empresa.id = verificadorxempresa.empresa_id
-                        WHERE verificadorxempresa.persona_id = '$_SESSION[vev_verificador]' AND informacion_as = 'si' AND verificacion1 ='no'";
+                        WHERE verificadorxempresa.persona_id = '$_SESSION[vev_verificador]' AND verificacion1 ='no'";
                   $r= mysqli_query($conn,$s) or die(mysqli_error($conn));
                   if(mysqli_num_rows($r)>0){
                     while($rw=mysqli_fetch_assoc($r)){

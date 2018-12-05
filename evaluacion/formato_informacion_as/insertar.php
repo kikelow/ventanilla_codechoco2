@@ -2,275 +2,348 @@
 include "../../conexion.php";
 $empresa = $_GET['empresa'];
 
-if (isset($empresa)) {
-//registrar datos en la tabla tenencia_tierra
-$t_tierra_check = $_POST['tierra'];
-$t_tierra_confirmacion = $_POST['tierra_hidden'];
-$desc_tierra = $_POST['desc_t'];
-$resultadom_nochequeado = array_values(array_diff($t_tierra_confirmacion,$t_tierra_check));
+if (isset($_GET['empresa'])) {
 
-	for ($i=0; $i <sizeof($t_tierra_confirmacion); $i++) {
-		if ($t_tierra_check[$i]) {
-			$s="INSERT INTO `tenencia_tierra`( `empresa_id`, `opciones_id`, `descripcion`, `confirmacion`) VALUES('$empresa','".$t_tierra_check[$i]."','".$desc_tierra[$i]."','si')";
-				mysqli_query($conn,$s);
-		}
-		else if (!$t_tierra_check) {
-			$s="INSERT INTO `tenencia_tierra`( `empresa_id`, `opciones_id`, `descripcion`, `confirmacion`) VALUES('$empresa','".$t_tierra_confirmacion[$i]."','','no')";
-				mysqli_query($conn,$s);
-		}		
+	date_default_timezone_set('America/Bogota');
+		$fecha_registro = date("Y-m-d");
+
+	//insertar en informacion complementaria
+	$s="INSERT INTO informacion_complementaria VALUES(NULL,'$empresa','$fecha_registro','$_POST[num_familias]')";
+	mysqli_query($conn,$s);
+
+	//seleccionar el ultimo id de informacion complementaria
+	$info_com_id = '';
+	$s="SELECT MAX(id) as id FROM informacion_complementaria";
+	$cs=mysqli_query($conn,$s);
+	$info_com_id="";
+	while($resul=mysqli_fetch_assoc($cs)){
+		$info_com_id=$resul['id'];
 	}
-	for ($i=0; $i <sizeof($resultadom_nochequeado); $i++) {
-		if ($resultadom_nochequeado[$i]) {
-			$s="INSERT INTO `tenencia_tierra`( `empresa_id`, `opciones_id`, `descripcion`, `confirmacion`) VALUES('$empresa','".$resultadom_nochequeado[$i]."','','no')";
-				mysqli_query($conn,$s);
-		}	
+
+//___________________________________________________________________________________________________
+//registrar datos de impactos ambientales
+
+$impacto_amb_check = $_POST['impacto_amb'];
+$impacto_amb_confirmacion = $_POST['impacto_amb_hidden'];
+$impacto_amb_si_no = $_POST['impacto_amb_si_no'];
+$resultado_nocheck = array_values(array_diff($impacto_amb_confirmacion, $impacto_amb_check));
+
+for ($i=0; $i < sizeof($impacto_amb_confirmacion) ; $i++) { 
+	if ($impacto_amb_check[$i]) {
+		$s = "INSERT INTO impacto_practicas
+		VALUES (null,'$info_com_id','$impacto_amb_check[$i]','','$impacto_amb_si_no[$i]','si')";
+		mysqli_query($conn,$s) or die(mysqli_error($conn));
+	}else if (!$impacto_amb_check) {
+		$s = "INSERT INTO impacto_practicas
+		VALUES (null,'$info_com_id','$impacto_amb_confirmacion[$i]','','4','no')";
+		mysqli_query($conn,$s);
 	}
-//registrar datos de otros tenencia de tierra
-for ($i=0; $i <count($_POST['otro_tierra_nom']) ; $i++) { 
-$s="INSERT INTO `otro_tenencia_tierra`(`empresa_id`, `nombre`, `descripcion`) VALUES('$empresa','".$_POST['otro_tierra_nom'][$i]."','".$_POST['otro_tierra_desc'][$i]."')";
+}
+for ($i=0; $i <sizeof($resultado_nocheck) ; $i++) { 
+	if ($resultado_nocheck[$i]) {
+		$s = "INSERT INTO impacto_practicas
+		VALUES (null,'$info_com_id','$resultado_nocheck[$i]','','4','no')";
+		mysqli_query($conn,$s);
+	}
+}
+
+//insertar otro de impacto ambiental
+for ($i=0; $i <count($_POST['otro_impacto_nom']) ; $i++) { 
+$s="INSERT INTO `impacto_practicas` VALUES(null,'$info_com_id','94','".$_POST['otro_impacto_nom'][$i]."','".$_POST['otro_impacto_amb_si_no'][$i]."','')";
 mysqli_query($conn,$s);
 }
 
-//---------------------------------------------------------------------------------------------------------
+//_______________________________________________________________________________________________________
+//registrar datos de buenas practicas
 
-
-// registar datos en la tabla registro
-	$s = "INSERT INTO `registro`(`empresa_id`, `opciones_id`, `aplica_noaplica_id`, `cumple_nocumple_id`, `vigencia`, `observacion`) VALUES 
-	('$empresa','18','$_POST[invima_a_na]','$_POST[invima_c_nc]','$_POST[invima_vigencia]','$_POST[invima_obs]'),
-	('$empresa','19','$_POST[ica_a_na]','$_POST[ica_c_nc]','$_POST[ica_vigencia]','$_POST[ica_obs]'),
-	('$empresa','20','$_POST[turismo_a_na]','$_POST[turismo_c_nc]','$_POST[turismo_vigencia]','$_POST[turismo_obs]' ),
-	('$empresa','21','$_POST[forestal_a_na]','$_POST[forestal_c_nc]','$_POST[forestal_vigencia]','$_POST[forestal_obs]')";
-	mysqli_query($conn,$s);
-//---------------------------------------------------------------------------------------------------------
-
-//registrar datos en la tabla permiso
-	$s = "INSERT INTO `permiso`(`empresa_id`, `opciones_id`, `aplica_noaplica_id`, `cumple_nocumple_id`, `vigencia`, `observacion`) VALUES 
-	('$empresa','22','$_POST[aprovechamiento_a_na]','$_POST[aprovechamiento_c_nc]','$_POST[aprovechamiento_vigencia]','$_POST[aprovechamiento_obs]'),
-	('$empresa','23','$_POST[aguas_a_na]','$_POST[aguas_c_nc]','$_POST[aguas_vigencia]','$_POST[aguas_obs]'),
-	('$empresa','24','$_POST[emiciones_a_na]','$_POST[emiciones_c_nc]','$_POST[emiciones_vigencia]','$_POST[emiciones_obs]'),
-	('$empresa','25','$_POST[arboles_a_na]','$_POST[arboles_c_nc]','$_POST[arboles_vigencia]','$_POST[arboles_obs]'),
-	('$empresa','26','$_POST[movilizacion_a_na]','$_POST[movilizacion_c_nc]','$_POST[movilizacion_vigencia]','$_POST[movilizacion_obs]')";
-	mysqli_query($conn,$s);
-//---------------------------------------------------------------------------------------------------------
-
-//Registrar datos en la tabla licencia
-	$s = "INSERT INTO `licencia`(`empresa_id`, `opciones_id`, `aplica_noaplica_id`, `cumple_nocumple_id`, `vigencia`, `observacion`) VALUES 
-	('$empresa','27','$_POST[ambiental_a_na]','$_POST[ambiental_c_nc]','$_POST[ambiental_vigencia]','$_POST[ambiental_obs]')";
-	mysqli_query($conn,$s);
-//--------------------------------------------------------------------------------------------------------- 
-
-//Registrar datos en la tabla otros legislacion
-for ($i=0; $i < count($_POST['otro_legislacion']) ; $i++) { 
-	$s= "INSERT INTO `otros_legislacion`(`empresa_id`, `nombre`, `cumple_nocumple_id`, `observacion`) VALUES ('$empresa','".$_POST['otro_legislacion'][$i]."','".$_POST['otro_legislacion_c_nc'][$i]."','".$_POST['otros_legislacion_obs'][$i]."')";
-	mysqli_query($conn,$s);
- } 
-//---------------------------------------------------------------------------------------------------------
-
-//registrar datos en la tabla de certificacion
-$certificacion= $_POST['certificacion'];
-$certificacion_hidden= $_POST['certificacion_hidden'];
-$cert_etapa = $_POST['cert_etapa'];
-$cert_vigencia = $_POST['cert_vigencia'];
-$cert_obs = $_POST['cert_obs'];
-$resultadom_nochequeado = array_values(array_diff($certificacion_hidden,$certificacion));
-
-for ($i=0; $i <sizeof($certificacion_hidden); $i++) {
-	if ($certificacion[$i]) {
-$s="INSERT INTO `certificacion`(`empresa_id`, `opciones_id`, `etapa_id`, `vigencia`, `observacion`,`confirmacion`) VALUES('$empresa','".$certificacion[$i]."','".$cert_etapa[$i]."','".$cert_vigencia[$i]."','".$cert_obs[$i]."','si')";
-	mysqli_query($conn,$s) ;
-	}else if (!$certificacion) {
-		$s="INSERT INTO `certificacion`(`empresa_id`, `opciones_id`, `etapa_id`, `vigencia`, `observacion`,`confirmacion`) VALUES('$empresa','".$certificacion_hidden[$i]."','1','','','no')";
-	mysqli_query($conn,$s);
-
+$b_practicas_check = $_POST['b_practicas'];
+$b_practicas_confirmacion = $_POST['b_practicas_hidden'];
+$b_practicas_si_no = $_POST['b_practicas_si_no'];
+$resultado_nocheck = array_values(array_diff($b_practicas_confirmacion, $b_practicas_check));
+for ($i=0; $i < sizeof($b_practicas_confirmacion) ; $i++) { 
+	if ($b_practicas_check[$i]) {
+		$s = "INSERT INTO impacto_practicas
+		VALUES (null,'$info_com_id','$b_practicas_check[$i]','','$b_practicas_si_no[$i]','si')";
+		mysqli_query($conn,$s) or die(mysqli_error($conn));
+	}else if (!$b_practicas_check) {
+		$s = "INSERT INTO impacto_practicas
+		VALUES (null,'$info_com_id','$b_practicas_confirmacion[$i]','','4','no')";
+		mysqli_query($conn,$s);
 	}
 }
-for ($i=0; $i <sizeof($resultadom_nochequeado); $i++) {
-		if ($resultadom_nochequeado[$i]) {
-			$s="INSERT INTO `certificacion`(`empresa_id`, `opciones_id`, `etapa_id`, `vigencia`, `observacion`,`confirmacion`) VALUES('$empresa','".$resultadom_nochequeado[$i]."','1','','','no')";
-	mysqli_query($conn,$s);
-
-		}	
+for ($i=0; $i <sizeof($resultado_nocheck) ; $i++) { 
+	if ($resultado_nocheck[$i]) {
+		$s = "INSERT INTO impacto_practicas
+		VALUES (null,'$info_com_id','$resultado_nocheck[$i]','','4','no')";
+		mysqli_query($conn,$s);
 	}
-//registrar datos de otros certificacion
-	for ($i=0; $i <count($_POST['otro_certificacion']) ; $i++) { 
-$s="INSERT INTO `otros_certificacion`(`empresa_id`, `nombre`, `etapa_id`, `vigencia`, `observacion`) VALUES('$empresa','".$_POST['otro_certificacion'][$i]."','".$_POST['otro_cert_etapa'][$i]."','".$_POST['otro_cert_vigencia'][$i]."','".$_POST['otro_cert_obs'][$i]."')";
+}
+
+//insertar otro de impacto ambiental
+for ($i=0; $i <count($_POST['otro_practicas_nom']) ; $i++) { 
+$s="INSERT INTO `impacto_practicas` VALUES(null,'$info_com_id','108','".$_POST['otro_practicas_nom'][$i]."','".$_POST['otro_practicas_amb_si_no'][$i]."','')";
 mysqli_query($conn,$s);
-	}
-//---------------------------------------------------------------------------------------------------------
-
-//resgistrar datos en la tabla conservacion
-$conservacion = $_POST['conservacion'];
-$conservacion_hidden = $_POST['conservacion_hidden'];
-$conser_area = $_POST['conser_area'];
-$conser_desc = $_POST['conser_desc'];
-$resultadom_nochequeado = array_values(array_diff($conservacion_hidden,$conservacion));
-for ($i=0; $i <sizeof($conservacion_hidden); $i++) {
-	if ($conservacion[$i]) {
-	$s="INSERT INTO `conservacion`(`empresa_id`, `opciones_id`, `area`, `descripcion`,`confirmacion`) VALUES ('$empresa','".$conservacion[$i]."','".$conser_area[$i]."','".$conser_desc[$i]."','si')";
-	mysqli_query($conn,$s);
-	}else if (!$conservacion) {
-		$s="INSERT INTO `conservacion`(`empresa_id`, `opciones_id`, `area`, `descripcion`,`confirmacion`) VALUES ('$empresa','".$conservacion_hidden[$i]."','','','no')";
-	mysqli_query($conn,$s);
-	}
-}
-for ($i=0; $i <sizeof($resultadom_nochequeado); $i++) {
-	if ($resultadom_nochequeado[$i]) {
-	$s="INSERT INTO `conservacion`(`empresa_id`, `opciones_id`, `area`, `descripcion`,`confirmacion`) VALUES ('$empresa','".$resultadom_nochequeado[$i]."','','','no')";
-	mysqli_query($conn,$s);
-	}
 }
 
-//registrar datos de otros conservacion
+//______________________________________________________________________________________________________
+
+//registrar datos de areas de conservacion
+$conservacion_check = $_POST['conservacion'];
+$conservacion_confirmacion = $_POST['conservacion_hidden'];
+$conservacion_area = $_POST['conservacion_area'];
+$resultado_nocheck = array_values(array_diff($conservacion_confirmacion, $conservacion_check));
+for ($i=0; $i < sizeof($conservacion_confirmacion) ; $i++) { 
+	if ($conservacion_check[$i]) {
+		$s = "INSERT INTO conservacion
+		VALUES (null,'$info_com_id','$conservacion_check[$i]','$conservacion_area[$i]','','si')";
+		mysqli_query($conn,$s) or die(mysqli_error($conn));
+	}else if (!$conservacion_check) {
+		$s = "INSERT INTO conservacion
+		VALUES (null,'$info_com_id','$conservacion_confirmacion[$i]','','','no')";
+		mysqli_query($conn,$s);
+	}
+}
+for ($i=0; $i <sizeof($resultado_nocheck) ; $i++) { 
+	if ($resultado_nocheck[$i]) {
+		$s = "INSERT INTO conservacion
+		VALUES (null,'$info_com_id','$resultado_nocheck[$i]','','','no')";
+		mysqli_query($conn,$s);
+	}
+}
+
+//insertar otro de conservacion
 for ($i=0; $i <count($_POST['otro_conservacion_nom']) ; $i++) { 
-$s="INSERT INTO `otros_conservacion`(`empresa_id`, `nombre`, `area`, `descripcion`) VALUES('$empresa','".$_POST['otro_conservacion_nom'][$i]."','".$_POST['otro_conservacion_area'][$i]."','".$_POST['otro_conservacion_desc'][$i]."')";
+$s="INSERT INTO `conservacion` VALUES(null,'$info_com_id','119','".$_POST['otro_conservacion_area'][$i]."','".$_POST['otro_conservacion_nom'][$i]."','')";
 mysqli_query($conn,$s);
 }
-//---------------------------------------------------------------------------------------------------------
-//registrar datos en la tabla ecosistemas 
-$ecosistemas = $_POST['ecosistemas'];
-$ecosistemas_hidden = $_POST['ecosistemas_hidden'];
-$ecosistemas_area = $_POST['ecosistemas_area'];
+//______________________________________________________________________________________________________
 
-$ecosistema_nochequeado = array_values(array_diff($ecosistemas_hidden, $ecosistemas));
-for ($i=0; $i <sizeof($ecosistemas_hidden); $i++) {
-	if ($ecosistemas[$i]) {
-		$s="INSERT INTO `ecosistema`(`empresa_id`, `opciones_id`, `area`,`confirmacion`) VALUES ('$empresa','".$ecosistemas[$i]."','".$ecosistemas_area[$i]."','si')";
-		mysqli_query($conn,$s);
-	}else if (!$ecosistemas) {
-		$s="INSERT INTO `ecosistema`(`empresa_id`, `opciones_id`, `area`,`confirmacion`) VALUES ('$empresa','".$ecosistemas_hidden[$i]."','','no')";
-		mysqli_query($conn,$s);
-	}
-}
-for ($i=0; $i <sizeof($ecosistemas_hidden); $i++) {
-	if ($ecosistema_nochequeado[$i]) {
-		$s="INSERT INTO `ecosistema`(`empresa_id`, `opciones_id`, `area`,`confirmacion`) VALUES ('$empresa','".$ecosistema_nochequeado[$i]."','','no')";
+//registrar datos de certificacion
+$certificacion_check = $_POST['certificacion'];
+$certificacion_confirmacion = $_POST['certificacion_hidden'];
+$certificacion_etapa = $_POST['certificacion_etapa'];
+$certificacion_vigencia = $_POST['certificacion_vigencia'];
+$certificacion_observacion = $_POST['certificacion_observacion'];
+$resultado_nocheck = array_values(array_diff($certificacion_confirmacion, $certificacion_check));
+for ($i=0; $i < sizeof($certificacion_confirmacion) ; $i++) { 
+	if ($certificacion_check[$i]) {
+		$s = "INSERT INTO certificacion
+		VALUES (null,'$info_com_id','$certificacion_check[$i]','$certificacion_etapa[$i]','$certificacion_vigencia[$i]','','$certificacion_observacion[$i]','si')";
+		mysqli_query($conn,$s) or die(mysqli_error($conn));
+	}else if (!$certificacion_check) {
+		$s = "INSERT INTO certificacion
+		VALUES (null,'$info_com_id','$certificacion_confirmacion[$i]','3','','','','no')";
 		mysqli_query($conn,$s);
 	}
 }
-//registrar datos de otros ecosistemas
-for ($i=0; $i < count($_POST['otro_ecosistema_nom']) ; $i++) { 
-$s="INSERT INTO `otros_ecosistema`(`empresa_id`, `nombre`, `area`) VALUES('$empresa','".$_POST['otro_ecosistema_nom'][$i]."','".$_POST['otro_ecosistema_area'][$i]."')";
-mysqli_query($conn,$s);
-}
-//---------------------------------------------------------------------------------------------------------
-//registrar datos en la tabla plan_manejo
-$plan = $_POST['plan'];
-$plan_hidden = $_POST['plan_hidden'];
-$plan_a_na = $_POST['plan_a_na'];
-$plan_c_nc = $_POST['plan_c_nc'];
-$plan_vigencia = $_POST['plan_vigencia'];
-$plan_desc = $_POST['plan_desc'];
-$plan_nochequeado = array_values(array_diff($plan_hidden, $plan));
-for ($i=0; $i <sizeof($plan_hidden); $i++) {
-	if ($plan[$i]) {
-		$s="INSERT INTO `plan_manejo`(`empresa_id`, `opciones_id`, `aplica_noaplica_id`, `cumple_nocumple_id`, `vigencia`, `observacion`,`confirmacion`) VALUES ('$empresa','".$plan[$i]."','".$plan_a_na[$i]."','".$plan_c_nc[$i]."','".$plan_vigencia[$i]."','".$plan_desc[$i]."','si')";
-mysqli_query($conn,$s);
-	}else if (!$plan) {
-	$s="INSERT INTO `plan_manejo`(`empresa_id`, `opciones_id`, `aplica_noaplica_id`, `cumple_nocumple_id`, `vigencia`, `observacion`,`confirmacion`) VALUES ('$empresa','".$plan_hidden[$i]."','2','2','','','no')";
-mysqli_query($conn,$s);
+for ($i=0; $i <sizeof($resultado_nocheck) ; $i++) { 
+	if ($resultado_nocheck[$i]) {
+		$s = "INSERT INTO certificacion
+		VALUES (null,'$info_com_id','$resultado_nocheck[$i]','3','','','','no')";
+		mysqli_query($conn,$s);
 	}
 }
-for ($i=0; $i <sizeof($plan_nochequeado); $i++) {
-	if ($plan_nochequeado[$i]) {
-		$s="INSERT INTO `plan_manejo`(`empresa_id`, `opciones_id`, `aplica_noaplica_id`, `cumple_nocumple_id`, `vigencia`, `observacion`,`confirmacion`) VALUES ('$empresa','".$plan_nochequeado[$i]."','2','2','','','no')";
-mysqli_query($conn,$s);
-	}
-}
-//---------------------------------------------------------------------------------------------------------
-//registrar datos en la tabla involucra 
-$involucra = $_POST['involucra'];
-$involucra_hidden = $_POST['involucra_hidden'];
 
-$involucra_chequeado = array_intersect($involucra_hidden, $involucra);
-$involucra_nochequeado = array_diff($involucra_hidden, $involucra);
-for ($i=0; $i <sizeof($involucra_hidden); $i++) {
-	if ($involucra_nochequeado[$i]) {
-		$s="INSERT INTO `involucra`(`empresa_id`, `opciones_id`,`confirmacion`) VALUES ('$empresa','".$involucra_nochequeado[$i]."','no')";
-mysqli_query($conn,$s);
-	}else if ($involucra_chequeado[$i]) {
-		$s="INSERT INTO `involucra`(`empresa_id`, `opciones_id`,`confirmacion`) VALUES ('$empresa','".$involucra_chequeado[$i]."','si')";
-mysqli_query($conn,$s);
-	}else if (!$involucra) {
-		$s="INSERT INTO `involucra`(`empresa_id`, `opciones_id`,`confirmacion`) VALUES ('$empresa','".$involucra_hidden[$i]."','no')";
-mysqli_query($conn,$s);
-	}
-}
-//registrar datos de otros involucra
-for ($i=0; $i <count($_POST['otro_involucra_nom']); $i++) { 
-$s="INSERT INTO `otro_involucra`(`empresa_id`, `nombre`) VALUES('$empresa','".$_POST['otro_involucra_nom'][$i]."')";
+//insertar otro de cerificacion
+for ($i=0; $i <count($_POST['otro_certificacion_nom']) ; $i++) { 
+$s="INSERT INTO `certificacion` VALUES(null,'$info_com_id','127','".$_POST['otro_certificacion_etapa'][$i]."','".$_POST['otro_certificacion_vigencia'][$i]."','".$_POST['otro_certificacion_nom'][$i]."','".$_POST['otro_observacion_vigencia'][$i]."','')";
 mysqli_query($conn,$s);
 }
-//---------------------------------------------------------------------------------------------------------
 
-//registrar datos en la tabla actividades 
-$actividad = $_POST['actividad'];
-$actividad_hidden = $_POST['actividad_hidden'];
-$actividad_desc = $_POST['actividad_desc'];
-$actividad_recurso = $_POST['actividad_recurso'];
+//___________________________________________________________________________________________________
+//insertar total de empleados
+//masculino
+$s = "INSERT INTO total_empleados VALUES(null,'$info_com_id','1','1','$_POST[t_masculino]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//femenino
+$s = "INSERT INTO total_empleados VALUES(null,'$info_com_id','1','2','$_POST[t_femenino]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//____________________________________________________________________________________________________
+//insertar total tipo de contrato
+//masculino
+$s = "INSERT INTO tipo_contrato 
+VALUES(null,'$info_com_id','1','$_POST[directo_m]','$_POST[indirecto_m]','$_POST[temporal_m]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//femenino
+$s = "INSERT INTO tipo_contrato 
+VALUES(null,'$info_com_id','2','$_POST[directo_f]','$_POST[indirecto_f]','$_POST[temporal_f]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
 
-$actividad_nochequeado = array_values(array_diff($actividad_hidden, $actividad));
-for ($i=0; $i <sizeof($actividad_hidden); $i++) {
-	if ($actividad[$i]) {
-		$s="INSERT INTO `actividades`(`empresa_id`, `opciones_id`, `recurso_id`, `descripcion`,`confirmacion`) VALUES ('$empresa','".$actividad[$i]."','".$actividad_recurso[$i]."','".$actividad_desc[$i]."','si')";
-mysqli_query($conn,$s);
-	}else if (!$actividad) {
-		$s="INSERT INTO `actividades`(`empresa_id`, `opciones_id`, `recurso_id`, `descripcion`,`confirmacion`) VALUES ('$empresa','".$actividad_hidden[$i]."','1','','no')";
-mysqli_query($conn,$s);
+//____________________________________________________________________________________________________
+// insertar descripcion etaria
+//masculino
+$s = "INSERT INTO `descripcion_etaria`
+VALUES (null,'$info_com_id','1','".$_POST['18-30_m']."','".$_POST['30-50_m']."','".$_POST['mayor50_m']."')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//femenino
+$s = "INSERT INTO `descripcion_etaria`
+VALUES (null,'$info_com_id','2','".$_POST['18-30_f']."','".$_POST['30-50_f']."','".$_POST['mayor50_f']."')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//____________________________________________________________________________________________________
+// Insertar condicion de vulnerabilidad
+//masculino
+$s = "INSERT INTO `condicion_vulnerabilidad_es`VALUES (null,'$info_com_id','1','4','$_POST[discapacitado_m]','$_POST[madre_m]','$_POST[adulto_m]','$_POST[indigena_m]','$_POST[negras_m]','$_POST[campesino_m]','$_POST[reinsertado_m]','$_POST[victima_m]','$_POST[vulnerable_m]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//femenino
+$s = "INSERT INTO `condicion_vulnerabilidad_es` VALUES (null,'$info_com_id','2','4','$_POST[discapacitado_f]','$_POST[madre_f]','$_POST[adulto_f]','$_POST[indigena_f]','$_POST[negras_f]','$_POST[campesino_f]','$_POST[reinsertado_f]','$_POST[victima_f]','$_POST[vulnerable_f]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//otro condicion de vulnerabilidad masculino
+$s = "INSERT INTO `otro_condicion_vulneravibilidad`(`id`, `info_com_id`, `otro_rotulo_id`, `sexo_id`, `nombre`, `cantidad`) VALUES (null,'$info_com_id','4','1','$_POST[otro_vulnerablidad_nom]','$_POST[otro_vulnerablidad_m]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//otro condicion de vulnerabilidad femenino
+$s = "INSERT INTO `otro_condicion_vulneravibilidad`(`id`, `info_com_id`, `otro_rotulo_id`, `sexo_id`, `nombre`, `cantidad`) VALUES (null,'$info_com_id','4','2','$_POST[otro_vulnerablidad_nom]','$_POST[otro_vulnerablidad_f]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+
+//_____________________________________________________________________________________________________
+//Insertar nivel educativo
+//masculino
+$s="INSERT INTO `nivel_educativo` VALUES (null,'$info_com_id','1','$_POST[primaria_m]','$_POST[bachillerato_m]','$_POST[tecnico_m]','$_POST[tecnologo_m]','$_POST[universitario_m]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//femenino
+$s="INSERT INTO `nivel_educativo` VALUES (null,'$info_com_id','2','$_POST[primaria_f]','$_POST[bachillerato_f]','$_POST[tecnico_f]','$_POST[tecnologo_f]','$_POST[universitario_f]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//otro nivel educativo masculino
+$s="INSERT INTO `otro_nivel_educativo` VALUES (null,'$info_com_id','1','$_POST[otro_nivel_nom]','$_POST[otro_nivel_m]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//otro nivel educativo Femenino
+$s="INSERT INTO `otro_nivel_educativo` VALUES (null,'$info_com_id','2','$_POST[otro_nivel_nom]','$_POST[otro_nivel_f]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//____________________________________________________________________________________________________
+//insertar temporada alta
+//masculino
+$s = "INSERT INTO total_empleados VALUES(null,'$info_com_id','2','1','$_POST[alta_m]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//femenino
+$s = "INSERT INTO total_empleados VALUES(null,'$info_com_id','2','2','$_POST[alta_f]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//____________________________________________________________________________________________________
+//insertar temporada baja
+//masculino
+$s = "INSERT INTO total_empleados VALUES(null,'$info_com_id','3','1','$_POST[baja_m]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//femenino
+$s = "INSERT INTO total_empleados VALUES(null,'$info_com_id','3','2','$_POST[baja_f]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//____________________________________________________________________________________________________
+//insertar socio/colaborador
+//masculino
+$s = "INSERT INTO `condicion_vulnerabilidad_es`VALUES (null,'$info_com_id','1','5','$_POST[s_discapacitado_m]','$_POST[s_madre_m]','$_POST[s_adulto_m]','$_POST[s_indigena_m]','$_POST[s_negra_m]','$_POST[s_campesino_m]','$_POST[s_reinsertado_m]','$_POST[s_victima_m]','$_POST[s_vulnerable_m]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//femenino
+$s = "INSERT INTO `condicion_vulnerabilidad_es`VALUES (null,'$info_com_id','2','5','$_POST[s_discapacitado_f]','$_POST[s_madre_f]','$_POST[s_adulto_f]','$_POST[s_indigena_f]','$_POST[s_negra_f]','$_POST[s_campesino_f]','$_POST[s_reinsertado_f]','$_POST[s_victima_f]','$_POST[s_vulnerable_f]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//otro condicion de vulnerabilidad masculino
+$s = "INSERT INTO `otro_condicion_vulneravibilidad`(`id`, `info_com_id`, `otro_rotulo_id`, `sexo_id`, `nombre`, `cantidad`) VALUES (null,'$info_com_id','5','1','$_POST[otro_vulne_nom_s]','$_POST[otro_vulne_m_s]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//otro condicion de vulnerabilidad femenino
+$s = "INSERT INTO `otro_condicion_vulneravibilidad`(`id`, `info_com_id`, `otro_rotulo_id`, `sexo_id`, `nombre`, `cantidad`) VALUES (null,'$info_com_id','5','2','$_POST[otro_vulne_nom_s]','$_POST[otro_vulne_f_s]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//___________________________________________________________________________________________________
+
+//insertar miembros de las comunidades locales
+//masculino
+$s = "INSERT INTO `negocio_comunidad` VALUES (null,'$info_com_id','1',$_POST[socio_m],'$_POST[directo_m_s]','$_POST[indirecto_m_s]','$_POST[temporal_m_s]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//femenino
+$s = "INSERT INTO `negocio_comunidad` VALUES (null,'$info_com_id','2',$_POST[socio_f],'$_POST[directo_f_s]','$_POST[indirecto_f_s]','$_POST[temporal_f_s]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//otro miembro de comunidades locales
+//masculino
+$s="INSERT INTO `otro_negocio_comunidad` VALUES (null,'$info_com_id','1','$_POST[otro_involucra_nom]','$_POST[otro_involucra_m]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//femenino
+$s="INSERT INTO `otro_negocio_comunidad` VALUES (null,'$info_com_id','2','$_POST[otro_involucra_nom]','$_POST[otro_involucra_f]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+
+//____________________________________________________________________________________________________
+
+//registrar datos de areas de conservacion
+$actividades_check = $_POST['actividades'];
+$actividades_confirmacion = $_POST['actividades_hidden'];
+$actividades_recurso = $_POST['actividades_recurso'];
+$actividades_desc = $_POST['actividades_desc'];
+$resultado_nocheck = array_values(array_diff($actividades_confirmacion, $actividades_check));
+for ($i=0; $i < sizeof($actividades_confirmacion) ; $i++) { 
+	if ($actividades_check[$i]) {
+		$s = "INSERT INTO actividades
+		VALUES (null,'$info_com_id','$actividades_check[$i]','$actividades_recurso[$i]','$actividades_desc[$i]','si')";
+		mysqli_query($conn,$s) or die(mysqli_error($conn));
+	}else if (!$actividades_check) {
+		$s = "INSERT INTO actividades
+		VALUES (null,'$info_com_id','$actividades_confirmacion[$i]','2','','no')";
+		mysqli_query($conn,$s);
 	}
 }
-for ($i=0; $i <sizeof($actividad_nochequeado); $i++) {
-	if ($actividad_nochequeado[$i]) {
-		$s="INSERT INTO `actividades`(`empresa_id`, `opciones_id`, `recurso_id`, `descripcion`,`confirmacion`) VALUES ('$empresa','".$actividad_nochequeado[$i]."','1','','no')";
-mysqli_query($conn,$s);
+for ($i=0; $i <sizeof($resultado_nocheck) ; $i++) { 
+	if ($resultado_nocheck[$i]) {
+		$s = "INSERT INTO actividades
+		VALUES (null,'$info_com_id','$resultado_nocheck[$i]','2','','no')";
+		mysqli_query($conn,$s);
 	}
 }
-//registrar datos de otros actividades
-for ($i=0; $i <count($_POST['otro_activi_nom']) ; $i++) { 
-$s="INSERT INTO `otro_actividades`(`empresa_id`, `nombre`, `descripcion`, `recurso_id`) VALUES('$empresa','".$_POST['otro_activi_nom'][$i]."','".$_POST['otro_activi_desc'][$i]."','".$_POST['otro_activi_recurso'][$i]."')";
-mysqli_query($conn,$s);
-}
-//---------------------------------------------------------------------------------------------------------
-//registrar datos en la tabla programa 
-$programa = $_POST['programa'];
-$programa_hidden = $_POST['programa_hidden'];
+//____________________________________________________________________________________________________
+//insertar datos de programas
+
+$programa_check = $_POST['programa'];
+$programa_confirmacion = $_POST['programa_hidden'];
+$programa_recurso = $_POST['programa_recurso'];
 $programa_desc = $_POST['programa_desc'];
-$programa_nochequeado = array_values(array_diff($programa_hidden, $programa));
-for ($i=0; $i <sizeof($programa_hidden); $i++) {
-	if ($programa[$i]) {
-		$s="INSERT INTO `programa`(`empresa_id`, `opciones_id`, `descripcion`,`confirmacion`) VALUES ('$empresa','".$programa[$i]."','".$programa_desc[$i]."','si')";
-mysqli_query($conn,$s);
-	}else if (!$programa) {
-		$s="INSERT INTO `programa`(`empresa_id`, `opciones_id`, `descripcion`,`confirmacion`) VALUES ('$empresa','".$programa_hidden[$i]."','','no')";
-mysqli_query($conn,$s);
+$resultado_nocheck = array_values(array_diff($programa_confirmacion, $programa_check));
+for ($i=0; $i < sizeof($programa_confirmacion) ; $i++) { 
+	if ($programa_check[$i]) {
+		$s = "INSERT INTO programa
+		VALUES (null,'$info_com_id','$programa_check[$i]','$programa_recurso[$i]','$programa_desc[$i]','si')";
+		mysqli_query($conn,$s) or die(mysqli_error($conn));
+	}else if (!$programa_check) {
+		$s = "INSERT INTO programa
+		VALUES (null,'$info_com_id','$programa_confirmacion[$i]','2','','no')";
+		mysqli_query($conn,$s);
 	}
 }
-for ($i=0; $i <sizeof($programa_nochequeado); $i++) {
-	$s="INSERT INTO `programa`(`empresa_id`, `opciones_id`, `descripcion`,`confirmacion`) VALUES ('$empresa','".$programa_nochequeado[$i]."','','no')";
-mysqli_query($conn,$s);
+for ($i=0; $i <sizeof($resultado_nocheck) ; $i++) { 
+	if ($resultado_nocheck[$i]) {
+		$s = "INSERT INTO programa
+		VALUES (null,'$info_com_id','$resultado_nocheck[$i]','2','','no')";
+		mysqli_query($conn,$s);
+	}
 }
-//registrar datos de otros programa
-for ($i=0; $i <count($_POST['otro_programa_nom']); $i++) { 
-$s="INSERT INTO `otro_programa`(`empresa_id`, `nombre`, `descripcion`) VALUES('$empresa','".$_POST['otro_programa_nom'][$i]."','".$_POST['otro_programa_desc'][$i]."')";
-mysqli_query($conn,$s);
-}
-//---------------------------------------------------------------------------------------------------------
 
-//registrar datos en la tabla institucion 
-$apoyo = $_POST['apoyo'];
+//otro programa
+for ($i=0; $i <count($_POST['otro_programa_nom']) ; $i++) { 
+$s="INSERT INTO `otro_programa` VALUES (null,'$info_com_id','".$_POST['otro_programa_recurso'][$i]."','".$_POST['otro_programa_nom'][$i]."','".$_POST['otro_programa_desc'][$i]."')";
+mysqli_query($conn,$s);
+}
+//____________________________________________________________________________________________________
+//insertar datos de apoyo
+$apoyo_descripcion = $_POST['apoyo_descripcion'];
 $apoyo_entidad = $_POST['apoyo_entidad'];
-$apoyo_tipo_entidad = $_POST['apoyo_tipo_entidad'];
-$año = $_POST['año'];
+$apoyo_tipo = $_POST['apoyo_tipo'];
+$apoyo_anio = $_POST['apoyo_anio'];
 
-for ($i=0; $i <sizeof($apoyo); $i++) {
-$s="INSERT INTO `institucion`(`empresa_id`, `apoyo`, `entidad`, `orientacion_id`, `año`) VALUES ('$empresa','".$apoyo[$i]."','".$apoyo_entidad[$i]."','".$apoyo_tipo_entidad[$i]."','".$año[$i]."')";
+for ($i=0; $i <sizeof($apoyo_descripcion); $i++) {
+$s="INSERT INTO `apoyo` VALUES (null,'$info_com_id','$apoyo_descripcion[$i]','$apoyo_entidad[$i]','$apoyo_tipo[$i]','$apoyo_anio[$i]')";
 mysqli_query($conn,$s);
 }
-//---------------------------------------------------------------------------------------------------------
-//registrar datos en la tabla sost_economica 
-$bien = $_POST['bien'];
+//____________________________________________________________________________________________________
+//insertar en cadena de valor
+$cadena=$_POST['cadena_hidden'];
+$cadena_si_no=$_POST['cadena_si_no'];
+for ($i=0; $i <sizeof($cadena) ; $i++) { 
+	$s="INSERT INTO `cadena_valor` VALUES (null,'$info_com_id','$cadena[$i]','','$cadena_si_no[$i]')";
+	mysqli_query($conn,$s) or die(mysqli_error($conn));
+}
+//otro cadena de valor
+$otro_cadena=$_POST['otro_cadena_nom'];
+for ($i=0; $i <sizeof($otro_cadena) ; $i++) { 
+	$s="INSERT INTO `cadena_valor` VALUES (null,'$info_com_id','136','$otro_cadena[$i]','')";
+	mysqli_query($conn,$s) or die(mysqli_error($conn));
+}
+//_____________________________________________________________________________________________________
+//insertar sostenibilidad economica
+$bien = $_POST['bien_hidden'];
 $unidad_v_anual = $_POST['unidad_v_anual'];
 $unidad_medida = $_POST['unidad_medida'];
-// $espe_unidad = $_POST['espe_unidad'];
+$cantidad_unidad = $_POST['cantidad'];
 $costo_pro_unidad = $_POST['costo_pro_unidad'];
 $precio_v_unitario = $_POST['precio_v_unitario'];
 $ganancia_unidad = $_POST['ganancia_unidad'];
@@ -278,25 +351,46 @@ $venta_anual = $_POST['venta_anual'];
 $ingresos_sup_costo = $_POST['ingresos_sup_costo'];
 
 for ($i=0; $i <sizeof($bien); $i++) {
-$s="INSERT INTO `sost_economica`(`empresa_id`, `bien_servicio`, `vendida_anual`, `unidad_medida_id`,`costo_produccion`, `precio_v_unitario`, `ganancia_unidad`, `ventas_anual`, `si_no_id`) VALUES ('$empresa','".$bien[$i]."','".$unidad_v_anual[$i]."','".$unidad_medida[$i]."','".$costo_pro_unidad[$i]."','".$precio_v_unitario[$i]."','".$ganancia_unidad[$i]."','".$venta_anual[$i]."','".$ingresos_sup_costo[$i]."')";
-mysqli_query($conn,$s);
+$s="INSERT INTO `sost_economica`(`id`, `info_com_id`, `bien_servicio_id`, `u_vendidadas_anuales`, `unidad_medida_id`, `cantidad_unidad`, `costo_produccion_unidad`, `precio_v_unitario`, `ganancia_unidad`, `ventas_anual`, `ingreso_superior`) VALUES (null,'$info_com_id','$bien[$i]','$unidad_v_anual[$i]',
+'$unidad_medida[$i]','$cantidad_unidad[$i]','$costo_pro_unidad[$i]','$precio_v_unitario[$i]','$ganancia_unidad[$i]','$venta_anual[$i]','$ingresos_sup_costo[$i]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
 }
-//---------------------------------------------------------------------------------------------------------
-//registrar datos de insumos totales
-$s="INSERT INTO `costo_insumos`(`empresa_id`, `semanal`, `mensual`, `anual`) VALUES('$empresa','$_POST[insumo_semanal]','$_POST[insumo_mensual]','$_POST[insumo_anual]')";
-mysqli_query($conn,$s);
-//registrar datos de mano de obra total
-$s="INSERT INTO `costo_mano_obra`(`empresa_id`, `semanal`, `mensual`, `anual`) VALUES('$empresa','$_POST[obra_semanal]','$_POST[obra_mensual]','$_POST[obra_anual]')";
-mysqli_query($conn,$s);
-//registrar datos de ventas realizadas
-$s="INSERT INTO `total_ventas`(`empresa_id`, `valor`, `anio`) VALUES('$empresa','$_POST[venta_valor]','$_POST[venta_anio]')";
-mysqli_query($conn,$s);
+// otro bien o servicio de sostenbulidad economica
+$s = "INSERT INTO `bienes_servicios_adicionales`(`id`, `info_com_id`, `bien`, `costo_total_produccion`, `venta_total_anual`, `ingresos_superior`) VALUES (null,'$info_com_id','$_POST[otro_bien_nom]','$_POST[otro_t_produccion]','$_POST[otro_venta_total]','$_POST[ingresos_sup_costo_otro]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+
+//insertar total de ventas
+$fecha_datos = date("Y");
+$s = "INSERT INTO `total_ventas`(`id`, `info_com_id`, `costo_pro_insumos_totales`, `costo_pro_mano_obra`, `total_ventas_realizadas_ant`, `fecha`) VALUES (null,'$info_com_id',$_POST[costo_p_insumos],'$_POST[costo_p_mano_obra]','$_POST[total_ventas_realizadas]','$fecha_datos')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+//________________________________________________________________________________________________________
+// insertar Comercializacion
+$comercializacion = $_POST['comercializacion_hidden'];
+$numero = $_POST['comer_numero'];
+$local = $_POST['comer_local'];
+$regional = $_POST['comer_regional'];
+$nacional = $_POST['comer_nacional'];
+$global = $_POST['comer_global'];
+$observacion = $_POST['comer_observacion'];
+
+for ($i=0; $i <sizeof($comercializacion); $i++) {
+$s="INSERT INTO `comercializacion` VALUES (null,'$info_com_id','$comercializacion[$i]','$numero[$i]','$local[$i]','$regional[$i]','$nacional[$i]','$global[$i]','$observacion[$i]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+}
+//_____________________________________________________________________________________________
+//Insertar turismo
+$turismo = $_POST['turismo_hidden'];
+$turismo_respuesta = $_POST['turismo_si_respuesta'];
+for ($i=0; $i <sizeof($turismo); $i++) {
+$s="INSERT INTO `turismo` VALUES (null,'$info_com_id','$turismo[$i]','$turismo_respuesta[$i]')";
+mysqli_query($conn,$s) or die(mysqli_error($conn));
+}
 
 $s="UPDATE `empresa` SET `informacion_as`='si' WHERE id = '$empresa'";
 mysqli_query($conn,$s);
 
+
+
+
 }
-
-
-
 ?>

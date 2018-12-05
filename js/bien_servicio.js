@@ -1,4 +1,5 @@
-// Del insertar
+
+// //validaciones de sostenibilidad economica 
 $('.aut').keyup(function(event) {
   var unidades_vendidas = []
   for (var i = 0; i <= $('[name="unidad_v_anual[]"]').length; i++) {
@@ -31,9 +32,8 @@ $('.aut').keyup(function(event) {
                 continue;
                  }
     total_ventas += Number(ventas[i]) 
-    console.log(ventas[i])
+    // console.log(ventas[i])
 
   }
-  console.log(total_ventas)
-  $('#venta_valor').val(total_ventas)
+  $('#total_ventas_realizadas').val(total_ventas+Number($('#otro_venta_total').val()))
 });
