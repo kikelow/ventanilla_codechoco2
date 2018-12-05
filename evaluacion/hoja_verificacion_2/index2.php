@@ -1325,7 +1325,9 @@ $i = 0;
 
   </table>
   <div id="div_grafica">
-    <canvas id="grafica"></canvas> 
+    <canvas id="grafica">
+      <img id="img_canvas" src="" alt="">
+    </canvas> 
   </div>
 
   <table style="margin-top:20px" class="bordered">
@@ -1383,8 +1385,9 @@ $i = 0;
 
 </div>
 <hr> 
-<button type="submit" class="waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="btn_verificacion2"><i class="material-icons right">add</i>Registrar</button>
+<button type="submit" class="btn-ver waves-effect green darken-2 btn right" style="margin-bottom: 8px" id="btn_verificacion2"><i class="material-icons right">add</i>Registrar</button>
 </form>
+
 <!-- <div class="divider"></div>   -->
 </div>
 
@@ -1401,3 +1404,4 @@ $i = 0;
 <script type="text/javascript" src="js/select2.js"></script>
 <script type="text/javascript" src="js/accion_verificacion2.js"></script>
 <script type="text/javascript" src="js/chart.js"></script>
+<script type="text/javascript" src="js/canvastoimage.js"></script>

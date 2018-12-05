@@ -38,11 +38,35 @@
 	 ->setDescription('pla de mejora');
 	 $objPHPExcel->setActiveSheetIndex(0);
 
-	 $s = "SELECT empresa.razon_social,verificacion_1.opciones_id,plan_mejora.acciones,plan_mejora.actor,plan_mejora.resultado,plan_mejora.observacion,plan_mejora.1,plan_mejora.2,plan_mejora.3,plan_mejora.4,plan_mejora.5,plan_mejora.6,plan_mejora.7,plan_mejora.8,plan_mejora.9,plan_mejora.10,plan_mejora.11,plan_mejora.12,opciones.nombre,opciones.No FROM verificacion_1	
-			INNER JOIN plan_mejora ON plan_mejora.opciones_id = verificacion_1.opciones_id
-            INNER JOIN empresa ON empresa.id = plan_mejora.empresa_id
-			INNER JOIN opciones ON opciones.id = verificacion_1.opciones_id
-			WHERE verificacion_1.si_no_noaplica_id = '1' AND verificacion_1.empresa_id = '$empresa' AND plan_mejora.empresa_id = '$empresa'";
+	 $s = "SELECT 
+empresa.razon_social,
+hoja_verificacion_1.pregunta_id,
+plan_mejora.acciones,
+plan_mejora.actor,
+plan_mejora.resultado,
+plan_mejora.observacion,
+plan_mejora.1,
+plan_mejora.2,
+plan_mejora.3,
+plan_mejora.4,
+plan_mejora.5,
+plan_mejora.6,
+plan_mejora.7,
+plan_mejora.8,
+plan_mejora.9,
+plan_mejora.10,
+plan_mejora.11,
+plan_mejora.12,
+pregunta_indicativa.descripcion,
+pregunta_indicativa.No,
+aspecto.nombre as aspecto
+FROM hoja_verificacion_1
+INNER JOIN plan_mejora ON plan_mejora.pregunta_id = hoja_verificacion_1.pregunta_id 
+INNER JOIN empresa ON empresa.id = plan_mejora.empresa_id
+INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_1.pregunta_id 
+INNER JOIN aspecto ON aspecto.id = pregunta_indicativa.aspecto_id 
+WHERE hoja_verificacion_1.respuesta_id != '1' AND hoja_verificacion_1.empresa_id = '$empresa' AND plan_mejora.empresa_id = '$empresa'";
+
 		$r = mysqli_query($conn,$s);
 		if (mysqli_num_rows($r)>0) {
 				 $objPHPExcel->getActiveSheet()->getStyle('A1:AC3')->getAlignment()->setWrapText(true);
@@ -139,7 +163,7 @@
 	 	$objPHPExcel->getActiveSheet()->mergeCells('AA'.$fila.':AC'.$fila);
 
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('A'.$fila,$rw['No']);
-	 	$objPHPExcel->getActiveSheet()->SetCellValue('B'.$fila,$rw['nombre']);
+	 	$objPHPExcel->getActiveSheet()->SetCellValue('B'.$fila,$rw['descripcion']);
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('C'.$fila,$rw['acciones']);
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('K'.$fila,$rw['actor']);
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('M'.$fila,$rw['resultado']);
@@ -162,11 +186,34 @@
 }
 
 //---------------------------------------- Nivel 1 ------------------------------------------------
-$s = "SELECT empresa.razon_social,verificacion_2.opciones_id,plan_mejora.acciones,plan_mejora.actor,plan_mejora.resultado,plan_mejora.observacion,plan_mejora.1,plan_mejora.2,plan_mejora.3,plan_mejora.4,plan_mejora.5,plan_mejora.6,plan_mejora.7,plan_mejora.8,plan_mejora.9,plan_mejora.10,plan_mejora.11,plan_mejora.12,opciones.nombre,opciones.No FROM verificacion_2	
-			INNER JOIN plan_mejora ON plan_mejora.opciones_id = verificacion_2.opciones_id
-            INNER JOIN empresa ON empresa.id = plan_mejora.empresa_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE verificacion_2.calificador_id != '3' AND verificacion_2.calificador_id != '4' AND verificacion_2.empresa_id = '$empresa' AND plan_mejora.empresa_id = '$empresa'";
+$s = "SELECT
+empresa.razon_social,
+hoja_verificacion_2.pregunta_id,
+plan_mejora.acciones,
+plan_mejora.actor,
+plan_mejora.resultado,
+plan_mejora.observacion,
+plan_mejora.1,
+plan_mejora.2,
+plan_mejora.3,
+plan_mejora.4,
+plan_mejora.5,
+plan_mejora.6,
+plan_mejora.7,
+plan_mejora.8,
+plan_mejora.9,
+plan_mejora.10,
+plan_mejora.11,
+plan_mejora.12,
+pregunta_indicativa.descripcion,
+pregunta_indicativa.No,
+aspecto.nombre as aspecto
+FROM hoja_verificacion_2	
+INNER JOIN plan_mejora ON plan_mejora.pregunta_id = hoja_verificacion_2.pregunta_id
+INNER JOIN empresa ON empresa.id = plan_mejora.empresa_id
+INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+INNER JOIN aspecto ON aspecto.id = pregunta_indicativa.aspecto_id 
+WHERE hoja_verificacion_2.calificador_id != '3' AND hoja_verificacion_2.calificador_id != '4' AND hoja_verificacion_2.empresa_id = '$empresa' AND plan_mejora.empresa_id = '$empresa'";
 		$r = mysqli_query($conn,$s);
 		if (mysqli_num_rows($r)>0) {
 			$fila_cabeza = $fila+2;
@@ -243,7 +290,7 @@ $objPHPExcel->getActiveSheet()->getRowDimension($fila_titulo)->setRowHeight(50);
 	 	$objPHPExcel->getActiveSheet()->mergeCells('AA'.$fila_item.':AC'.$fila_item);
 
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('A'.$fila_item,$rw['No']);
-	 	$objPHPExcel->getActiveSheet()->SetCellValue('B'.$fila_item,$rw['nombre']);
+	 	$objPHPExcel->getActiveSheet()->SetCellValue('B'.$fila_item,$rw['descripcion']);
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('C'.$fila_item,$rw['acciones']);
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('K'.$fila_item,$rw['actor']);
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('M'.$fila_item,$rw['resultado']);

@@ -9,10 +9,10 @@ $empresa = $_GET['empresa'];
 // var_dump($verifica1_si_no);
 if (isset($empresa)) {
 //registrar datos en la tabla Verificacion1
-	for ($i=0; $i <sizeof($_POST['mejora_opcion']); $i++) {
+	for ($i=0; $i <sizeof($_POST['mejora_opcion']); $i++) { //ver que trae mejora_opcio
 		
-		$s="INSERT INTO `plan_mejora`(`empresa_id`, `opciones_id`, `acciones`, `actor`, `resultado`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `observacion`) VALUES('$empresa','".$_POST['mejora_opcion'][$i]."','".$_POST['accion'][$i]."','".$_POST['actor'][$i]."','".$_POST['resultado'][$i]."','".$_POST['uno'][$i]."','".$_POST['dos'][$i]."','".$_POST['tres'][$i]."','".$_POST['cuatro'][$i]."','".$_POST['cinco'][$i]."','".$_POST['seis'][$i]."','".$_POST['siete'][$i]."','".$_POST['ocho'][$i]."','".$_POST['nueve'][$i]."','".$_POST['diez'][$i]."','".$_POST['once'][$i]."','".$_POST['doce'][$i]."','".$_POST['observacion'][$i]."')";
-		mysqli_query($conn,$s);
+		$s="INSERT INTO `plan_mejora`(`empresa_id`, `pregunta_id`, `acciones`, `actor`, `resultado`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `observacion`) VALUES('$empresa','".$_POST['mejora_opcion'][$i]."','".$_POST['accion'][$i]."','".$_POST['actor'][$i]."','".$_POST['resultado'][$i]."','".$_POST['uno'][$i]."','".$_POST['dos'][$i]."','".$_POST['tres'][$i]."','".$_POST['cuatro'][$i]."','".$_POST['cinco'][$i]."','".$_POST['seis'][$i]."','".$_POST['siete'][$i]."','".$_POST['ocho'][$i]."','".$_POST['nueve'][$i]."','".$_POST['diez'][$i]."','".$_POST['once'][$i]."','".$_POST['doce'][$i]."','".$_POST['observacion'][$i]."')";
+		mysqli_query($conn,$s) or die(mysqli_error($conn));
 		var_dump($s);
 	}
 	$s="UPDATE `empresa` SET `plan_mejora`='si' WHERE id = '$empresa'";

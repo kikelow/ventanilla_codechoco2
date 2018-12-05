@@ -70,5 +70,6 @@ else {
   </section>  
 </div>
 </div>
-<script type="text/javascript" src="js/select2.js"></script>
-<script type="text/javascript" src="js/verificacion2_modificar.js"></script>
+<script type='text/javascript' src='js/select2.js'></script>
+<script type='text/javascript' src='js/verificacion2_modificar.js'></script>
+

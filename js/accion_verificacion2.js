@@ -188,6 +188,9 @@ $('#medio_verificacion131').change(function(event) {
 	$('#medio_verificacion132').change(function(event) {
 		$('#medio132').val($(this).val())
 	});
+	$('#medio_verificacion133').change(function(event) {
+		$('#medio133').val($(this).val())
+	});
 });
 
 
@@ -228,7 +231,7 @@ else {
     				visible: false
   				},
 			});
-    	//setTimeout("document.location=document.location",1500);
+    	setTimeout("document.location=document.location",1500);
  // console.log('exitoso')
 
     }
@@ -302,7 +305,7 @@ $('#calificador19,#calificador18,#calificador17,#calificador16,#calificador15,#c
 	
 });
 
-$('#calificador21,#calificador22,#vcalificador23,#calificador24').change(function(event) {
+$('#calificador21,#calificador22,#calificador23,#calificador24').change(function(event) {
 	var combo10 = document.getElementById("calificador21");
 	var selected10 = combo10.options[combo10.selectedIndex].text;
 	var combo11 = document.getElementById("calificador22");

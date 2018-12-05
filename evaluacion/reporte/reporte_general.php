@@ -2,7 +2,7 @@
 	 require_once ('../../PHPExcel-1.8/Classes/PHPExcel.php');
 	 require_once('../../conexion.php');
 
-	 $s= "SELECT region.nombre as region,empresa.aut_ambiental,empresa.razon_social,empresa.identificacion,categoria.nombre as categoria ,sector.nombre as sector ,subsector.nombre as subsector,empresa.descripcion,concat(persona.nombre1,' ',ifnull(persona.nombre2,' '),' ',persona.apellido1,'',persona.paellido2) as nombre, persona.celular,persona.correo,empresa.direccion,municipio.nombre as municipio, departamento.nombre as departamento, empresa.fecha_registro, empresa.plan_mejora,etapa_empresa.nombre AS etapa_empresa,empresa.const_legalmente_sino,empresa.opera_actualmente_sino FROM empresa
+	 $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_social,empresa.identificacion,categoria.nombre as categoria ,sector.nombre as sector ,subsector.nombre as subsector,empresa.descripcion,concat(persona.nombre1,' ',ifnull(persona.nombre2,' '),' ',persona.apellido1,'',persona.paellido2) as nombre, persona.celular,persona.correo,persona.direccion,municipio.nombre as municipio, departamento.nombre as departamento,empresa.latitud,empresa.longitud,empresa.altitud, empresa.fecha_registro, empresa.plan_mejora,etapa_empresa.nombre AS etapa_empresa FROM empresa
 		INNER JOIN subsector ON subsector.id = empresa.subsector_id
 		INNER JOIN sector ON sector.id = subsector.sector_id
 		INNER JOIN categoria on categoria.id = sector.categoria_id
@@ -548,7 +548,7 @@
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('C'.$fila,'');
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('D'.$fila,'');
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('E'.$fila,$rw['region']);
-	 	$objPHPExcel->getActiveSheet()->SetCellValue('F'.$fila,$rw['aut_ambiental']);
+	 	$objPHPExcel->getActiveSheet()->SetCellValue('F'.$fila,$rw['autoridad_amb']);
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('G'.$fila,$rw['razon_social']);
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('H'.$fila,$rw['identificacion']);
 	 	$objPHPExcel->getActiveSheet()->SetCellValue('I'.$fila,$rw['categoria']);
@@ -567,10 +567,10 @@
 
 	 	// sacar el nivel 1.1 de la hoja de verificacion 2
 	 	$s1 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%VIABILIDAD_ECONOMICA1%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r1 = mysqli_query($conn,$s1);
 		$nivel11 = 7;
 		while ($rw1=mysqli_fetch_assoc($r1)) {
@@ -580,10 +580,10 @@
 
 		// sacar el nivel 1.2 de la hoja de verificacion 2
 		$s2 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%VIABILIDAD_ECONOMICA2%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r2 = mysqli_query($conn,$s2);
 		$nivel12 = 7;
 		while ($rw2=mysqli_fetch_assoc($r2)) {
@@ -593,10 +593,10 @@
 
 		// sacar el nivel 1.3 de la hoja de verificacion 2
 		$s3 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%VIABILIDAD_ECONOMICA3%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r3 = mysqli_query($conn,$s3);
 		$nivel13 = 7;
 		while ($rw3=mysqli_fetch_assoc($r3)) {
@@ -606,10 +606,10 @@
 
 		// sacar el nivel 1.4 de la hoja de verificacion 2
 		$s4 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%VIABILIDAD_ECONOMICA4%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.4 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r4 = mysqli_query($conn,$s4);
 		$nivel14 = 7;
 		while ($rw4=mysqli_fetch_assoc($r4)) {
@@ -619,10 +619,10 @@
 
 		// sacar el nivel 1.5 de la hoja de verificacion 2
 		$s5 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%VIABILIDAD_ECONOMICA5%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.5 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r5 = mysqli_query($conn,$s5);
 		$nivel15 = 7;
 		while ($rw5=mysqli_fetch_assoc($r5)) {
@@ -632,10 +632,10 @@
 
 		// sacar el nivel 1.6 de la hoja de verificacion 2
 		$s6 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%CONTRIBUCION_CONSERVACION1%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.6 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r6 = mysqli_query($conn,$s6);
 		$nivel16 = 7;
 		while ($rw6=mysqli_fetch_assoc($r6)) {
@@ -645,10 +645,10 @@
 
 		// sacar el nivel 1.7 de la hoja de verificacion 2
 		$s7 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%CONTRIBUCION_CONSERVACION2%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.7 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r7 = mysqli_query($conn,$s7);
 		$nivel17 = 7;
 		while ($rw7=mysqli_fetch_assoc($r7)) {
@@ -658,10 +658,10 @@
 
 		// sacar el nivel 1.8 de la hoja de verificacion 2
 		$s8 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%CONTRIBUCION_CONSERVACION3%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.8 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r8 = mysqli_query($conn,$s8);
 		$nivel18 = 7;
 		while ($rw8=mysqli_fetch_assoc($r8)) {
@@ -671,10 +671,10 @@
 
 		// sacar el nivel 1.9 de la hoja de verificacion 2
 		$s9 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%CONTRIBUCION_CONSERVACION4%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.9 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r9 = mysqli_query($conn,$s9);
 		$nivel19 = 7;
 		while ($rw9=mysqli_fetch_assoc($r9)) {
@@ -684,10 +684,10 @@
 
 		// sacar el nivel 1.10 de la hoja de verificacion 2
 		$s10 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%CONTRIBUCION_CONSERVACION5%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 9 AND pregunta_indicativa.No = 2.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r10 = mysqli_query($conn,$s10);
 		$nivel110 = 7;
 		while ($rw10=mysqli_fetch_assoc($r10)) {
@@ -697,10 +697,10 @@
 
 		// sacar el nivel 1.11 de la hoja de verificacion 2
 		$s11 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%CONTRIBUCION_CONSERVACION6%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 9 AND pregunta_indicativa.No = 2.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r11 = mysqli_query($conn,$s11);
 		$nivel111 = 7;
 		while ($rw11=mysqli_fetch_assoc($r11)) {
@@ -710,10 +710,10 @@
 
 		// sacar el nivel 1.12 de la hoja de verificacion 2
 		$s12 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%CONTRIBUCION_CONSERVACION7%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 9 AND pregunta_indicativa.No = 2.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r12 = mysqli_query($conn,$s12);
 		$nivel112 = 7;
 		while ($rw12=mysqli_fetch_assoc($r12)) {
@@ -723,10 +723,10 @@
 
 		// sacar el nivel 1.13 de la hoja de verificacion 2
 		$s13 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%CONTRIBUCION_CONSERVACION8%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 9 AND pregunta_indicativa.No = 2.4 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r13 = mysqli_query($conn,$s13);
 		$nivel113 = 7;
 		while ($rw13=mysqli_fetch_assoc($r13)) {
@@ -736,10 +736,10 @@
 
 		// sacar el nivel 1.14 de la hoja de verificacion 2
 		$s14 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%CICLO_VIDA1%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 10 AND pregunta_indicativa.No = 3.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r14 = mysqli_query($conn,$s14);
 		$nivel114 = 7;
 		while ($rw14=mysqli_fetch_assoc($r14)) {
@@ -749,10 +749,10 @@
 
 		// sacar el nivel 1.15 de la hoja de verificacion 2
 		$s15 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%CICLO_VIDA2%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 10 AND pregunta_indicativa.No = 3.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r15 = mysqli_query($conn,$s15);
 		$nivel115 = 7;
 		while ($rw15=mysqli_fetch_assoc($r15)) {
@@ -762,10 +762,10 @@
 
 		// sacar el nivel 1.16 de la hoja de verificacion 2
 		$s16 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%CICLO_VIDA3%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 10 AND pregunta_indicativa.No = 3.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r16 = mysqli_query($conn,$s16);
 		$nivel116 = 7;
 		while ($rw16=mysqli_fetch_assoc($r16)) {
@@ -775,10 +775,10 @@
 
 		// sacar el nivel 1.17 de la hoja de verificacion 2
 		$s17 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%CICLO_VIDA4%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 11 AND pregunta_indicativa.No = 4.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r17 = mysqli_query($conn,$s17);
 		$nivel117 = 7;
 		while ($rw17=mysqli_fetch_assoc($r17)) {
@@ -788,10 +788,10 @@
 
 		// sacar el nivel 1.18 de la hoja de verificacion 2
 		$s18 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%CICLO_VIDA5%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 11 AND pregunta_indicativa.No = 4.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r18 = mysqli_query($conn,$s18);
 		$nivel118 = 7;
 		while ($rw18=mysqli_fetch_assoc($r18)) {
@@ -801,10 +801,10 @@
 
 		// sacar el nivel 1.19 de la hoja de verificacion 2
 		$s19 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%VIDA_UTIL1%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 12 AND pregunta_indicativa.No = 5.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r19 = mysqli_query($conn,$s19);
 		$nivel119 = 7;
 		while ($rw19=mysqli_fetch_assoc($r19)) {
@@ -814,10 +814,10 @@
 
 		// sacar el nivel 1.20 de la hoja de verificacion 2
 		$s20 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%VIDA_UTIL2%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 12 AND pregunta_indicativa.No = 5.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r20 = mysqli_query($conn,$s20);
 		$nivel120 = 7;
 		while ($rw20=mysqli_fetch_assoc($r20)) {
@@ -827,10 +827,10 @@
 
 		// sacar el nivel 1.21 de la hoja de verificacion 2
 		$s21 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%VIDA_UTIL3%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 13 AND pregunta_indicativa.No = 6.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r21 = mysqli_query($conn,$s21);
 		$nivel121 = 7;
 		while ($rw21=mysqli_fetch_assoc($r21)) {
@@ -840,10 +840,10 @@
 
 		// sacar el nivel 1.22 de la hoja de verificacion 2
 		$s22 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%SUSTITUCION_MATERIALES1%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 13 AND pregunta_indicativa.No = 6.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r22 = mysqli_query($conn,$s22);
 		$nivel122 = 7;
 		while ($rw22=mysqli_fetch_assoc($r22)) {
@@ -853,10 +853,10 @@
 
 		// sacar el nivel 1.23 de la hoja de verificacion 2
 		$s23 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%MATERIALES_RECICLADOS1%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 13 AND pregunta_indicativa.No = 6.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r23 = mysqli_query($conn,$s23);
 		$nivel123 = 7;
 		while ($rw23=mysqli_fetch_assoc($r23)) {
@@ -866,10 +866,10 @@
 
 		// sacar el nivel 1.24 de la hoja de verificacion 2
 		$s24 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%MATERIALES_RECICLADOS2%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 14 AND pregunta_indicativa.No = 7.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r24 = mysqli_query($conn,$s24);
 		$nivel124 = 7;
 		while ($rw24=mysqli_fetch_assoc($r24)) {
@@ -879,10 +879,10 @@
 
 		// sacar el nivel 1.25 de la hoja de verificacion 2
 		$s25 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%MATERIALES_RECICLADOS3%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 14 AND pregunta_indicativa.No = 7.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r25 = mysqli_query($conn,$s25);
 		$nivel125 = 7;
 		while ($rw25=mysqli_fetch_assoc($r25)) {
@@ -892,10 +892,10 @@
 
 		// sacar el nivel 1.26 de la hoja de verificacion 2
 		$s26 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%MATERIALES_RECICLADOS4%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 14 AND pregunta_indicativa.No = 7.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r26 = mysqli_query($conn,$s26);
 		$nivel126 = 7;
 		while ($rw26=mysqli_fetch_assoc($r26)) {
@@ -905,10 +905,10 @@
 
 		// sacar el nivel 1.27 de la hoja de verificacion 2
 		$s27 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%SOSTENIBLE_RECURSO1%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 15 AND pregunta_indicativa.No = 8.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r27 = mysqli_query($conn,$s27);
 		$nivel127 = 7;
 		while ($rw27=mysqli_fetch_assoc($r27)) {
@@ -918,10 +918,10 @@
 
 		// sacar el nivel 1.28 de la hoja de verificacion 2
 		$s28 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%SOSTENIBLE_RECURSO2%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 15 AND pregunta_indicativa.No = 8.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r28 = mysqli_query($conn,$s28);
 		$nivel128 = 7;
 		while ($rw28=mysqli_fetch_assoc($r28)) {
@@ -931,10 +931,10 @@
 
 		// sacar el nivel 1.29 de la hoja de verificacion 2
 		$s29 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%SOSTENIBLE_RECURSO3%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 15 AND pregunta_indicativa.No = 8.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r29 = mysqli_query($conn,$s29);
 		$nivel129 = 7;
 		while ($rw29=mysqli_fetch_assoc($r29)) {
@@ -944,10 +944,10 @@
 
 		// sacar el nivel 1.30 de la hoja de verificacion 2
 		$s30 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%SOSTENIBLE_RECURSO4%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 15 AND pregunta_indicativa.No = 8.4 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r30 = mysqli_query($conn,$s30);
 		$nivel130 = 7;
 		while ($rw30=mysqli_fetch_assoc($r30)) {
@@ -957,10 +957,10 @@
 
 		// sacar el nivel 1.31 de la hoja de verificacion 2
 		$s31 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%SOSTENIBLE_RECURSO5%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 16 AND pregunta_indicativa.No = 9.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r31 = mysqli_query($conn,$s31);
 		$nivel131 = 7;
 		while ($rw31=mysqli_fetch_assoc($r31)) {
@@ -970,10 +970,10 @@
 
 		// sacar el nivel 1.32 de la hoja de verificacion 2
 		$s32 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%SOSTENIBLE_RECURSO6%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 16 AND pregunta_indicativa.No = 9.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r32 = mysqli_query($conn,$s32);
 		$nivel132 = 7;
 		while ($rw32=mysqli_fetch_assoc($r32)) {
@@ -983,10 +983,10 @@
 
 		// sacar el nivel 1.33 de la hoja de verificacion 2
 		$s33 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%RESPO_SOCIAL_EMPRESA1%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 16 AND pregunta_indicativa.No = 9.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r33 = mysqli_query($conn,$s33);
 		$nivel133 = 7;
 		while ($rw33=mysqli_fetch_assoc($r33)) {
@@ -996,10 +996,10 @@
 
 		// sacar el nivel 1.34 de la hoja de verificacion 2
 		$s34 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%RESPO_SOCIAL_EMPRESA2%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r34 = mysqli_query($conn,$s34);
 		$nivel134 = 7;
 		while ($rw34=mysqli_fetch_assoc($r34)) {
@@ -1009,10 +1009,10 @@
 
 		// sacar el nivel 1.35 de la hoja de verificacion 2
 		$s35 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%RESPO_SOCIAL_EMPRESA3%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r35 = mysqli_query($conn,$s35);
 		$nivel135 = 7;
 		while ($rw35=mysqli_fetch_assoc($r35)) {
@@ -1022,10 +1022,10 @@
 
 		// sacar el nivel 1.36 de la hoja de verificacion 2
 		$s36 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%RESPO_SOCIAL_VALOR1%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r36 = mysqli_query($conn,$s36);
 		$nivel136 = 7;
 		while ($rw36=mysqli_fetch_assoc($r36)) {
@@ -1035,10 +1035,10 @@
 
 		// sacar el nivel 1.37 de la hoja de verificacion 2
 		$s37 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%RESPO_SOCIAL_VALOR2%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.4 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r37 = mysqli_query($conn,$s37);
 		$nivel137 = 7;
 		while ($rw37=mysqli_fetch_assoc($r37)) {
@@ -1048,10 +1048,10 @@
 
 		// sacar el nivel 1.38 de la hoja de verificacion 2
 		$s38 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%RESPO_SOCIAL_VALOR3%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.5 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r38 = mysqli_query($conn,$s38);
 		$nivel138 = 7;
 		while ($rw38=mysqli_fetch_assoc($r38)) {
@@ -1061,10 +1061,10 @@
 
 		// sacar el nivel 1.39 de la hoja de verificacion 2
 		$s39 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%RESPO_SOCIAL_EXTERIOR1%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.6 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r39 = mysqli_query($conn,$s39);
 		$nivel139 = 7;
 		while ($rw39=mysqli_fetch_assoc($r39)) {
@@ -1074,10 +1074,10 @@
 
 		// sacar el nivel 1.40 de la hoja de verificacion 2
 		$s40 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%RESPO_SOCIAL_EXTERIOR2%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 18 AND pregunta_indicativa.No = 11.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r40 = mysqli_query($conn,$s40);
 		$nivel140 = 7;
 		while ($rw40=mysqli_fetch_assoc($r40)) {
@@ -1087,10 +1087,10 @@
 
 		// sacar el nivel 1.41 de la hoja de verificacion 2
 		$s41 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%RESPO_SOCIAL_EXTERIOR3%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 18 AND pregunta_indicativa.No = 11.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r41 = mysqli_query($conn,$s41);
 		$nivel141 = 7;
 		while ($rw41=mysqli_fetch_assoc($r41)) {
@@ -1100,10 +1100,10 @@
 
 		// sacar el nivel 1.42 de la hoja de verificacion 2
 		$s42 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%RESPO_SOCIAL_EXTERIOR4%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 18 AND pregunta_indicativa.No = 11.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r42 = mysqli_query($conn,$s42);
 		$nivel142 = 7;
 		while ($rw42=mysqli_fetch_assoc($r42)) {
@@ -1113,10 +1113,10 @@
 
 		// sacar el nivel 1.43 de la hoja de verificacion 2
 		$s43 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%RESPO_SOCIAL_EXTERIOR5%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 19 AND pregunta_indicativa.No = 8.5 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r43 = mysqli_query($conn,$s43);
 		$nivel143 = 7;
 		while ($rw43=mysqli_fetch_assoc($r43)) {
@@ -1126,10 +1126,10 @@
 
 		// sacar el nivel 1.44 de la hoja de verificacion 2
 		$s44 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%RESPO_SOCIAL_EXTERIOR6%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 19 AND pregunta_indicativa.No = 8.6 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r44 = mysqli_query($conn,$s44);
 		$nivel144 = 7;
 		while ($rw44=mysqli_fetch_assoc($r44)) {
@@ -1139,10 +1139,10 @@
 
 		// sacar el nivel 1.45 de la hoja de verificacion 2
 		$s45 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%COMUNICACION_ATRIBUTOS1%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 20 AND pregunta_indicativa.No = 12.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r45 = mysqli_query($conn,$s45);
 		$nivel145 = 7;
 		while ($rw45=mysqli_fetch_assoc($r45)) {
@@ -1152,10 +1152,10 @@
 
 		// sacar el nivel 1.46 de la hoja de verificacion 2
 		$s46 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%COMUNICACION_ATRIBUTOS2%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 20 AND pregunta_indicativa.No = 12.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r46 = mysqli_query($conn,$s46);
 		$nivel146 = 7;
 		while ($rw46=mysqli_fetch_assoc($r46)) {
@@ -1165,10 +1165,10 @@
 
 		// sacar el nivel 21 de la hoja de verificacion 2
 		$s21 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%ESQUEMAS_RECONOCIMIENTOS1%' AND empresa.verificacion2 = 'si' order by empresa.id";
+			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+			WHERE pregunta_indicativa.aspecto_id = 20 AND pregunta_indicativa.No = 12.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
 		$r21 = mysqli_query($conn,$s21);
 		$nivel121 = 7;
 		while ($rw21=mysqli_fetch_assoc($r21)) {
@@ -1177,43 +1177,43 @@
 		}
 
 		// sacar el nivel 22 de la hoja de verificacion 2
-		$s22 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%ESQUEMAS_RECONOCIMIENTOS2%' AND empresa.verificacion2 = 'si' order by empresa.id";
-		$r22 = mysqli_query($conn,$s22);
-		$nivel122 = 7;
-		while ($rw22=mysqli_fetch_assoc($r22)) {
-			$objPHPExcel->getActiveSheet()->SetCellValue('BQ'.$nivel122,$rw22['calificador']);
-			$nivel122++;
-		}
+		// $s22 = "SELECT calificador.nombre AS calificador FROM empresa
+		// 	INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
+		// 	INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
+		// 	INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
+		// 	WHERE opciones.codigo LIKE '%ESQUEMAS_RECONOCIMIENTOS2%' AND empresa.verificacion2 = 'si' order by empresa.id";
+		// $r22 = mysqli_query($conn,$s22);
+		// $nivel122 = 7;
+		// while ($rw22=mysqli_fetch_assoc($r22)) {
+		// 	$objPHPExcel->getActiveSheet()->SetCellValue('BQ'.$nivel122,$rw22['calificador']);
+		// 	$nivel122++;
+		// }
 
 		// sacar el nivel 23 de la hoja de verificacion 2
-		$s23 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%RESPON_SOCIAL_ADICCIONAL1%' AND empresa.verificacion2 = 'si' order by empresa.id";
-		$r23 = mysqli_query($conn,$s23);
-		$nivel123 = 7;
-		while ($rw23=mysqli_fetch_assoc($r23)) {
-			$objPHPExcel->getActiveSheet()->SetCellValue('BR'.$nivel123,$rw23['calificador']);
-			$nivel123++;
-		}
+		// $s23 = "SELECT calificador.nombre AS calificador FROM empresa
+		// 	INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
+		// 	INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
+		// 	INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
+		// 	WHERE opciones.codigo LIKE '%RESPON_SOCIAL_ADICCIONAL1%' AND empresa.verificacion2 = 'si' order by empresa.id";
+		// $r23 = mysqli_query($conn,$s23);
+		// $nivel123 = 7;
+		// while ($rw23=mysqli_fetch_assoc($r23)) {
+		// 	$objPHPExcel->getActiveSheet()->SetCellValue('BR'.$nivel123,$rw23['calificador']);
+		// 	$nivel123++;
+		// }
 
 		// sacar el nivel 24 de la hoja de verificacion 2
-		$s24 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
-			INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
-			WHERE opciones.codigo LIKE '%RESPON_SOCIAL_ADICCIONAL2%' AND empresa.verificacion2 = 'si' order by empresa.id";
-		$r24 = mysqli_query($conn,$s24);
-		$nivel124 = 7;
-		while ($rw24=mysqli_fetch_assoc($r24)) {
-			$objPHPExcel->getActiveSheet()->SetCellValue('BS'.$nivel124,$rw24['calificador']);
-			$nivel124++;
-		}
+		// $s24 = "SELECT calificador.nombre AS calificador FROM empresa
+		// 	INNER JOIN verificacion_2 ON verificacion_2.empresa_id = empresa.id
+		// 	INNER JOIN calificador ON  calificador.id = verificacion_2.calificador_id
+		// 	INNER JOIN opciones ON opciones.id = verificacion_2.opciones_id
+		// 	WHERE opciones.codigo LIKE '%RESPON_SOCIAL_ADICCIONAL2%' AND empresa.verificacion2 = 'si' order by empresa.id";
+		// $r24 = mysqli_query($conn,$s24);
+		// $nivel124 = 7;
+		// while ($rw24=mysqli_fetch_assoc($r24)) {
+		// 	$objPHPExcel->getActiveSheet()->SetCellValue('BS'.$nivel124,$rw24['calificador']);
+		// 	$nivel124++;
+		// }
 
 		$objPHPExcel->getActiveSheet()->SetCellValue('BT'.$fila, '=AVERAGE(V'.$fila.':Z'.$fila.')');
 		$objPHPExcel->getActiveSheet()->getStyle('BT'.$fila.':CK'.$fila)

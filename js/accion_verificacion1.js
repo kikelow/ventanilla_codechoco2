@@ -187,7 +187,7 @@ $('#modificar_verificacion1').click(function(event) {
 			type: 'POST',
 			data: $('#form_modificar_verificacion1').serialize(),
 			beforeSend: function() {
-				// $('#modificar_verificacion1').attr('disabled', 'disabled');
+				$('#modificar_verificacion1').attr('disabled', 'disabled');
    	// console.log('cargando')
    	swal ({
   				// icon: "success",
