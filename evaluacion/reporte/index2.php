@@ -122,3 +122,5 @@ $i = 0;
 
 <script type="text/javascript" src="js/select2.js"></script>
 <script type="text/javascript" src="js/reporte.js"></script>
+<script type='text/javascript' src='js/verificacion2_modificar.js'></script>
+<script type='text/javascript' src='js/chart.js'></script>

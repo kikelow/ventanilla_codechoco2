@@ -1,11 +1,16 @@
 
 <?php 
-	 require_once ('../../mpdf60/mpdf.php');
+	 require_once ('../../jpgraph/src/jpgraph.php');
+    require_once ('../../jpgraph/src/jpgraph_bar.php');
+   require_once ('../../mpdf60/mpdf.php');
+  
+
 if(isset($_GET["empresa"])){
    require_once('../../conexion.php');
    $empresa = $_GET["empresa"];
    $razon_social = '';
    $correo = '';
+   $nombre_depto = '';
    $aut_ambiental = '';
    $representante = '';
    $identificacion ='';
@@ -19,25 +24,26 @@ if(isset($_GET["empresa"])){
    $categoria = '';
    $fecha_registro ='';
    
-   $s="SELECT empresa.razon_social,empresa.aut_ambiental,persona.nombre1 AS representante,persona.identificacion,persona.celular,persona.correo,municipio.nombre AS municipio,persona.direccion,empresa.descripcion,empresa.desc_impacto_amb,subsector.nombre AS subsector,sector.nombre AS sector,categoria.nombre AS categoria,empresa.fecha_registro  FROM empresa INNER JOIN persona ON persona.id = empresa.persona_id INNER JOIN municipio ON municipio.id = empresa.municipio_id INNER JOIN subsector ON subsector.id = empresa.subsector_id INNER JOIN sector ON sector.id = subsector.sector_id INNER JOIN categoria ON categoria.id = sector.categoria_id WHERE empresa.id = '$empresa'";
+   $s="SELECT empresa.razon_social, departamento.nombre as nombre_depto, departamento.autoridad_amb as aut, persona.nombre1 AS representante, persona.identificacion, persona.celular, persona.correo, municipio.nombre AS municipio, persona.direccion, empresa.descripcion, subsector.nombre AS subsector, sector.nombre AS sector, categoria.nombre AS categoria, empresa.fecha_registro FROM empresa INNER JOIN municipio ON municipio.id = empresa.municipio_id INNER JOIN departamento ON departamento.id = municipio.departamento_id INNER JOIN persona ON persona.id = empresa.persona_id INNER JOIN subsector ON subsector.id = empresa.subsector_id INNER JOIN sector ON sector.id = subsector.sector_id INNER JOIN categoria ON categoria.id = sector.categoria_id WHERE empresa.id = '$empresa'";
+
    $r = mysqli_query($conn,$s);
    while ($rw=mysqli_fetch_assoc($r)) {
   $razon_social = $rw['razon_social'];
   $correo = $rw['correo'];
-   $aut_ambiental = $rw['aut_ambiental'];
+  $nombre_depto = $rw['nombre_depto'];
+   $aut_ambiental = $rw['aut'];
    $representante = $rw['representante'];
    $identificacion =$rw['identificacion'];
    $celular = $rw['celular'];
    $municipio = $rw['municipio'];
    $direccion = $rw['direccion'];
    $descripcion = $rw['descripcion'];
-   $desc_impacto_amb = $rw['desc_impacto_amb'];
    $subsector = $rw['subsector'];
    $sector = $rw['sector'];
    $categoria = $rw['categoria'];
    $fecha_registro = $rw['fecha_registro'];
    }
-   $fecha_registro = date("Y-m-d");
+  
    $lider = '';
    $s = "SELECT lider FROM bienes_servicios WHERE empresa_id = '$empresa' AND lider != '' ";
    $r = mysqli_query($conn,$s);
@@ -116,6 +122,15 @@ $verificador='';
         </th>
         <td  colspan="3">
          '.$correo.'
+        </td>
+      </tr>
+      <tr>
+        <th >
+          Departamento
+        </th>
+         </th>
+        <td  colspan="3">
+         '.$nombre_depto.'
         </td>
       </tr>
       <tr>
@@ -242,14 +257,16 @@ $verificador='';
     </tbody>
   </table>';
 
- $s="SELECT * from verificacion_2 WHERE empresa_id = '$empresa'";
+ $s="SELECT * from hoja_verificacion_2 WHERE empresa_id = '$empresa'";
             $r= mysqli_query($conn,$s) or die('Error');
             if(mysqli_num_rows($r)>0){
-$division = 0;
+
+          $division = 0;
 $suma = 0;
-$s="SELECT verificacion_2.empresa_id, calificador.nombre AS calificador,verificacion_2.opciones_id FROM verificacion_2
-INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id
-WHERE verificacion_2.empresa_id = '$empresa' AND verificacion_2.opciones_id IN(86,87,88,89,137) ORDER BY verificacion_2.opciones_id";
+$s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoja_verificacion_2.pregunta_id    FROM hoja_verificacion_2
+  INNER JOIN calificador ON calificador.id = hoja_verificacion_2.calificador_id
+  WHERE hoja_verificacion_2.pregunta_id >= 35 AND hoja_verificacion_2.pregunta_id <= 43 AND hoja_verificacion_2.empresa_id = '$empresa' 
+  ORDER BY hoja_verificacion_2.pregunta_id";
 $r = mysqli_query($conn,$s);
 while ($rw = mysqli_fetch_assoc($r)) {
   if ($rw['calificador'] == 'N/A') {
@@ -261,9 +278,13 @@ $suma = $suma + $rw['calificador'];
 }
 $prom1 = round($suma/$division*100, 2) ;
 
+
 $division = 0;
 $suma = 0;
-$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 90 AND verificacion_2.opciones_id <= 97 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+$s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoja_verificacion_2.pregunta_id    FROM hoja_verificacion_2
+  INNER JOIN calificador ON calificador.id = hoja_verificacion_2.calificador_id
+  WHERE hoja_verificacion_2.pregunta_id >= 44 AND hoja_verificacion_2.pregunta_id <= 47 AND hoja_verificacion_2.empresa_id = '$empresa' 
+  ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
     if ($rw['calificador'] == 'N/A') {
@@ -273,11 +294,14 @@ $s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.
     }
   $suma = $suma + $rw['calificador'];
   }
-  $prom2 =  round($suma/$division*100, 2) ;
+  $prom2 =  round($suma/$division*100, 0) ;
 
 $division = 0;
 $suma = 0;
-$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 98 AND verificacion_2.opciones_id <= 102 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+$s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoja_verificacion_2.pregunta_id    FROM hoja_verificacion_2
+  INNER JOIN calificador ON calificador.id = hoja_verificacion_2.calificador_id
+  WHERE hoja_verificacion_2.pregunta_id >= 48 AND hoja_verificacion_2.pregunta_id <= 50 AND hoja_verificacion_2.empresa_id = '$empresa' 
+  ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
     if ($rw['calificador'] == 'N/A') {
@@ -291,7 +315,10 @@ $s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.
 
 $division = 0;
 $suma = 0;
-$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 103 AND verificacion_2.opciones_id <= 105 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+$s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoja_verificacion_2.pregunta_id    FROM hoja_verificacion_2
+  INNER JOIN calificador ON calificador.id = hoja_verificacion_2.calificador_id
+  WHERE hoja_verificacion_2.pregunta_id >= 51 AND hoja_verificacion_2.pregunta_id <= 52 AND hoja_verificacion_2.empresa_id = '$empresa' 
+  ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
     if ($rw['calificador'] == 'N/A') {
@@ -306,7 +333,10 @@ $s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.
 
 $division = 0;
 $suma = 0;
-$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id = 106 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+$s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoja_verificacion_2.pregunta_id    FROM hoja_verificacion_2
+  INNER JOIN calificador ON calificador.id = hoja_verificacion_2.calificador_id
+  WHERE hoja_verificacion_2.pregunta_id >= 53 AND hoja_verificacion_2.pregunta_id <= 54 AND hoja_verificacion_2.empresa_id = '$empresa' 
+  ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
     if ($rw['calificador'] == 'N/A') {
@@ -321,7 +351,10 @@ $s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.
 
 $division = 0;
 $suma = 0;
-$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 107 AND verificacion_2.opciones_id <= 110 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+$s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoja_verificacion_2.pregunta_id    FROM hoja_verificacion_2
+  INNER JOIN calificador ON calificador.id = hoja_verificacion_2.calificador_id
+  WHERE hoja_verificacion_2.pregunta_id >= 55 AND hoja_verificacion_2.pregunta_id <= 57 AND hoja_verificacion_2.empresa_id = '$empresa' 
+  ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
     if ($rw['calificador'] == 'N/A') {
@@ -336,7 +369,10 @@ $s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.
 
 $division = 0;
 $suma = 0;
-$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 111 AND verificacion_2.opciones_id <= 116 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+$s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoja_verificacion_2.pregunta_id    FROM hoja_verificacion_2
+  INNER JOIN calificador ON calificador.id = hoja_verificacion_2.calificador_id
+  WHERE hoja_verificacion_2.pregunta_id >= 58 AND hoja_verificacion_2.pregunta_id <= 60 AND hoja_verificacion_2.empresa_id = '$empresa' 
+  ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
     if ($rw['calificador'] == 'N/A') {
@@ -351,7 +387,10 @@ $s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.
 
 $division = 0;
 $suma = 0;
-$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 117 AND verificacion_2.opciones_id <= 119 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+$s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoja_verificacion_2.pregunta_id    FROM hoja_verificacion_2
+  INNER JOIN calificador ON calificador.id = hoja_verificacion_2.calificador_id
+  WHERE hoja_verificacion_2.pregunta_id >= 61 AND hoja_verificacion_2.pregunta_id <= 64 AND hoja_verificacion_2.empresa_id = '$empresa' 
+  ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
     if ($rw['calificador'] == 'N/A') {
@@ -365,7 +404,10 @@ $s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.
 
   $division = 0;
 $suma = 0;
-$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 120 AND verificacion_2.opciones_id <= 122 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+$s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoja_verificacion_2.pregunta_id    FROM hoja_verificacion_2
+  INNER JOIN calificador ON calificador.id = hoja_verificacion_2.calificador_id
+  WHERE hoja_verificacion_2.pregunta_id >= 65 AND hoja_verificacion_2.pregunta_id <= 67 AND hoja_verificacion_2.empresa_id = '$empresa' 
+  ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
     if ($rw['calificador'] == 'N/A') {
@@ -380,7 +422,10 @@ $s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.
 
 $division = 0;
 $suma = 0;
-$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 123 AND verificacion_2.opciones_id <= 128 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+$s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoja_verificacion_2.pregunta_id    FROM hoja_verificacion_2
+  INNER JOIN calificador ON calificador.id = hoja_verificacion_2.calificador_id
+  WHERE hoja_verificacion_2.pregunta_id >= 68 AND hoja_verificacion_2.pregunta_id <= 73 AND hoja_verificacion_2.empresa_id = '$empresa' 
+  ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
     if ($rw['calificador'] == 'N/A') {
@@ -394,7 +439,10 @@ $s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.
 
 $division = 0;
 $suma = 0;
-$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 129 AND verificacion_2.opciones_id <= 130 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+$s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoja_verificacion_2.pregunta_id    FROM hoja_verificacion_2
+  INNER JOIN calificador ON calificador.id = hoja_verificacion_2.calificador_id
+  WHERE hoja_verificacion_2.pregunta_id >= 74 AND hoja_verificacion_2.pregunta_id <= 76 AND hoja_verificacion_2.empresa_id = '$empresa' 
+  ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
     if ($rw['calificador'] == 'N/A') {
@@ -411,7 +459,10 @@ $s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.
 
 $division = 0;
 $suma = 0;
-$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 133 AND verificacion_2.opciones_id <= 134 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+$s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoja_verificacion_2.pregunta_id    FROM hoja_verificacion_2
+  INNER JOIN calificador ON calificador.id = hoja_verificacion_2.calificador_id
+  WHERE hoja_verificacion_2.pregunta_id >= 77 AND hoja_verificacion_2.pregunta_id <= 78 AND hoja_verificacion_2.empresa_id = '$empresa' 
+  ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
     if ($rw['calificador'] == 'N/A') {
@@ -425,7 +476,10 @@ $s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.
 
 $division = 0;
 $suma = 0;
-$s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.opciones_id FROM verificacion_2 INNER JOIN calificador ON calificador.id = verificacion_2.calificador_id WHERE verificacion_2.opciones_id >= 135 AND verificacion_2.opciones_id <= 136 AND verificacion_2.empresa_id = '$empresa' ORDER BY verificacion_2.opciones_id";
+$s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoja_verificacion_2.pregunta_id    FROM hoja_verificacion_2
+  INNER JOIN calificador ON calificador.id = hoja_verificacion_2.calificador_id
+  WHERE hoja_verificacion_2.pregunta_id >= 79 AND hoja_verificacion_2.pregunta_id <= 81 AND hoja_verificacion_2.empresa_id = '$empresa' 
+  ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
     if ($rw['calificador'] == 'N/A') {
@@ -444,66 +498,97 @@ $s="SELECT verificacion_2.id, calificador.nombre AS calificador, verificacion_2.
 $html.='<table class="" style="margin-top:20px">
           <thead>
             <tr>
-              <th style="width: 100%;background-color:#a5d6a7" class="" colspan="2">Resultado Nivel 1. Criterios de Cumplimiento de Negocios Verdes</th>
+              <th style="width: 100%;background-color:#a5d6a7" class="" colspan="3">Resultado Nivel 1. Criterios de Cumplimiento de Negocios Verdes</th>
             </tr>
             <tr>
-              <th style="width: 90%;" class="grey darken-1">Criterio</th>
+            <th style="width:5%" class="grey darken-1">Item</th>
+              <th style="width:60%;" class="grey darken-1">Criterio</th>
               <th style="" class="grey darken-1">Promedio</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr >
+              <td>1</td>
               <td>Viabilidad económica del Negocio</td>
               <td id="prom1">'.$prom1.'%</td>
             </tr>
-            <tr>
+            <tr style="background-color:#eeeeee;">
+            <td>2</td>
               <td>Impacto Ambiental Positivo  y contribución a la conservación y preservación de los recursos ecosistemicos</td>
               <td id="prom2">'.$prom2.'%</td>
             </tr>
             <tr>
+            <td>3</td>
               <td>Enfoque ciclo de vida del bien o servicio</td>
               <td id="prom3">'.$prom3.'%</td>
             </tr>
-            <tr>
+            <tr style="background-color:#eeeeee;">
+            <td>4</td>
               <td>Vida útil</td>
               <td id="prom4">'.$prom4.'%</td>
             </tr>
             <tr>
+            <td>5</td>
               <td>Sustitución de sustancias o materiales peligrosos</td>
               <td id="prom5">'.$prom5.'%</td>
             </tr>
-            <tr>
+            <tr style="background-color:#eeeeee;">
+            <td >6</td>
               <td>Reciclabilidad y/o uso de materiales reciclados</td>
               <td id="prom6">'.$prom6.'%</td>
             </tr>
             <tr>
+            <td>7</td>
               <td>Uso eficiente y sostenible de recursos para la producción de bienes o servicios</td>
               <td id="prom7">'.$prom7.'%</td>
             </tr>
-            <tr>
+            <tr style="background-color:#eeeeee;">
+            <td >8</td>
               <td>Responsabilidad social al interior de la empresa</td>
               <td id="prom8">'.$prom8.'%</td>
             </tr>
             <tr>
+            <td>9</td>
               <td>Responsabilidad social en la cadena de valor de la empresa</td>
               <td id="prom9">'.$prom9.'%</td>
             </tr>
-            <tr>
+            <tr style="background-color:#eeeeee;">
+            <td >10</td>
               <td>Responsabilidad social al exterior de la empresa</td>
               <td id="prom10">'.$prom10.'%</td>
             </tr>
             <tr>
+              <td>11</td>
               <td>Comunicación de atributos del bien y servicio</td>
               <td id="prom11">'.$prom11.'%</td>
             </tr>
             <tr>
-              <th class=" grey lighten-1">Puntaje total </th>
+              <th class=" grey lighten-1"  colspan="2">Puntaje total </th>
               <th class="grey lighten-1" id="total">'.$prom_total1.'% </th>
             </tr>
-
           </tbody>
+          </table>
 
-        </table>
+
+
+          <table>
+          <thead>
+          <tr>
+          <th style="width: 100%;background-color:#a5d6a7;text-align:center" >
+          Grafica: Resultados de nivel 1
+          </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td>
+          <div><img src="../hoja_verificacion_2/img_grafica/grafica.jpg" width="100%"></div>
+          </td>
+          </tr>
+          </tbody>
+          </table>
+
+
 
         <table style="margin-top:20px">
           <thead>
@@ -576,21 +661,15 @@ $html.='<table class="" style="margin-top:20px">
           </tbody>
         </table>
 ';
+
+$html.='';
   }else{
     $html.='<div style="margin-top:20px; border:1px solid red; background-color:#ffcdd2">NOTA: No se han aplicado las hojas de verificación</div>';
   }
-  $html.= '
-     <div style="border: 1px solid green; background-color: #a5d6a7;margin-top: 20px">Recomendaciones Componente Económico</div>
-      <div style="border: 1px solid;height: 130px"></div>
-        
-       <div style="border: 1px solid green; background-color: #a5d6a7;margin-top: 10px">Recomendaciones Componente Ambiental</div>
-      <div style="border: 1px solid;height: 130px;"></div>
 
-        <div style="border: 1px solid green; background-color: #a5d6a7;margin-top: 10px">Recomendaciones Componente Social</div>
-      <div style="border: 1px solid;height: 130px;"></div>
-      </div>
-      ';
-      date_default_timezone_set('America/Bogota');
+  
+  
+    date_default_timezone_set('America/Bogota');
     $fecha_impresion = date("Y-m-d H:i:s");
 
       $footer = '<table width="100%">
@@ -624,4 +703,5 @@ $html.='<table class="" style="margin-top:20px">
   $mpdf->SetTitle($razon_social);//nombre del pdf
   $mpdf->Output($razon_social."."."pdf","I");//nombre con el que se guarda el pdf
    }
+
 ?>
