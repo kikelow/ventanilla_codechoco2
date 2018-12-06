@@ -242,10 +242,11 @@ mysqli_query($conn,$s) or die(mysqli_error($conn));
 
 //insertar miembros de las comunidades locales
 //masculino
-$s = "INSERT INTO `negocio_comunidad` VALUES (null,'$info_com_id','1',$_POST[socio_m],'$_POST[directo_m_s]','$_POST[indirecto_m_s]','$_POST[temporal_m_s]')";
+$s = "INSERT INTO `negocio_comunidad` VALUES (null,'$info_com_id','1','$_POST[socio_m]','$_POST[directo_m_s]','$_POST[indirecto_m_s]','$_POST[temporal_m_s]')";
+	echo $s;
 mysqli_query($conn,$s) or die(mysqli_error($conn));
 //femenino
-$s = "INSERT INTO `negocio_comunidad` VALUES (null,'$info_com_id','2',$_POST[socio_f],'$_POST[directo_f_s]','$_POST[indirecto_f_s]','$_POST[temporal_f_s]')";
+$s = "INSERT INTO `negocio_comunidad` VALUES (null,'$info_com_id','2','$_POST[socio_f]','$_POST[directo_f_s]','$_POST[indirecto_f_s]','$_POST[temporal_f_s]')";
 mysqli_query($conn,$s) or die(mysqli_error($conn));
 //otro miembro de comunidades locales
 //masculino
@@ -361,7 +362,7 @@ mysqli_query($conn,$s) or die(mysqli_error($conn));
 
 //insertar total de ventas
 $fecha_datos = date("Y");
-$s = "INSERT INTO `total_ventas`(`id`, `info_com_id`, `costo_pro_insumos_totales`, `costo_pro_mano_obra`, `total_ventas_realizadas_ant`, `fecha`) VALUES (null,'$info_com_id',$_POST[costo_p_insumos],'$_POST[costo_p_mano_obra]','$_POST[total_ventas_realizadas]','$fecha_datos')";
+$s = "INSERT INTO `total_ventas`(`id`, `info_com_id`, `costo_pro_insumos_totales`, `costo_pro_mano_obra`, `total_ventas_realizadas_ant`, `fecha`) VALUES (null,'$info_com_id','$_POST[costo_p_insumos]','$_POST[costo_p_mano_obra]','$_POST[total_ventas_realizadas]','$fecha_datos')";
 mysqli_query($conn,$s) or die(mysqli_error($conn));
 //________________________________________________________________________________________________________
 // insertar Comercializacion
