@@ -1529,27 +1529,27 @@ require_once('conexion.php');
               </p>
               </div>
 
-              <div class='input-field col s12 m2 l2'>
+              <div class='input-field col s12 m2 l1'>
                  <input type='number' id='comer_numero".$i."' name='comer_numero[]'/>
                 <label for='comer_numero".$i."'>Número</label>
               </div> 
-              <div class='input-field col s12 m2 l2'>
+              <div class='input-field col s12 m2 l1'>
                  <input type='number' id='comer_local".$i."' name='comer_local[]'/>
                 <label for='comer_local".$i."'>Local</label>
               </div> 
-              <div class='input-field col s12 m2 l2'>
+              <div class='input-field col s12 m2 l1'>
                  <input type='number' id='comer_regional".$i."' name='comer_regional[]'/>
                 <label for='comer_regional".$i."'>Regional</label>
               </div> 
-              <div class='input-field col s12 m2 l2'>
+              <div class='input-field col s12 m2 l1'>
                  <input type='number' id='comer_nacional".$i."' name='comer_nacional[]'/>
                 <label for='comer_nacional".$i."'>Nacional</label>
               </div> 
-              <div class='input-field col s12 m2 l2'>
+              <div class='input-field col s12 m2 l1'>
                  <input type='number' id='comer_global".$i."' name='comer_global[]'/>
                 <label for='comer_global".$i."'>Global</label>
               </div> 
-              <div class='input-field col s12 m12 l12'>
+              <div class='input-field col s12 m12 l5'>
                  <input type='text' id='comer_observacion".$i."' name='comer_observacion[]'/>
                 <label for='comer_observacion".$i."'>Observación</label>
               </div> 
