@@ -1736,14 +1736,23 @@ $s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoj
   ORDER BY hoja_verificacion_2.pregunta_id";
 $r = mysqli_query($conn,$s);
 while ($rw = mysqli_fetch_assoc($r)) {
-  if ($rw['calificador'] == 'N/A') {
+  if ($rw['calificador'] == 'N/A' && $rw['calificador'] == 0) {
+   
     $division = $division;
+
   }else{
     $division++;
   }
 $suma = $suma + $rw['calificador'];
 }
-$prom1 = round($suma/$division*100, 2) ;
+
+if (@is_nan(round($suma/$division*100, 2))) {
+  $prom1 = 0;
+}else{
+  $prom1 = round($suma/$division*100, 2);
+}
+
+
 
 
 $division = 0;
@@ -1754,14 +1763,22 @@ $s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoj
   ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
-    if ($rw['calificador'] == 'N/A') {
+    if ($rw['calificador'] == 'N/A' && $rw['calificador'] == 0) {
+      
       $division = $division;
     }else{
       $division++;
     }
   $suma = $suma + $rw['calificador'];
   }
-  $prom2 =  round($suma/$division*100, 0) ;
+// $prom2 =  round($suma/$division*100, 0) ;
+if (@is_nan(round($suma/$division*100, 2))) {
+  $prom2 = 0;
+}else{
+  $prom2 = round($suma/$division*100, 2);
+}
+
+
 
 $division = 0;
 $suma = 0;
@@ -1771,14 +1788,20 @@ $s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoj
   ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
-    if ($rw['calificador'] == 'N/A') {
+    if ($rw['calificador'] == 'N/A' && $rw['calificador'] == 0) {
+      
       $division = $division;
     }else{
       $division++;
     }
   $suma = $suma + $rw['calificador'];
   }
-  $prom3=  round($suma/$division*100, 2) ;
+if (@is_nan(round($suma/$division*100, 2))) {
+  $prom3 = 0;
+}else{
+  $prom3 = round($suma/$division*100, 2);
+}
+
 
 $division = 0;
 $suma = 0;
@@ -1788,14 +1811,19 @@ $s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoj
   ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
-    if ($rw['calificador'] == 'N/A') {
+    if ($rw['calificador'] == 'N/A' && $rw['calificador'] == 0) {
+      // $rw['calificador'] = 0;
       $division = $division;
     }else{
       $division++;
     }
   $suma = $suma + $rw['calificador'];
   }
-  $prom4=  round($suma/$division*100, 2) ;
+ if (@is_nan(round($suma/$division*100, 2))) {
+  $prom4 = 0;
+}else{
+  $prom4 = round($suma/$division*100, 2);
+}
 
 
 $division = 0;
@@ -1806,15 +1834,20 @@ $s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoj
   ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
-    if ($rw['calificador'] == 'N/A') {
+    if ($rw['calificador'] == 'N/A' && $rw['calificador'] == 0) {
+      // $rw['calificador'] = 0;
       $division = $division;
     }else{
       $division++;
     }
   $suma = $suma + $rw['calificador'];
   }
-  $prom5=  round($suma/$division*100, 2) ;
-
+  // $prom5=  round($suma/$division*100, 2) ;
+ if (@is_nan(round($suma/$division*100, 2))) {
+  $prom5 = 0;
+}else{
+  $prom5 = round($suma/$division*100, 2);
+}
 
 $division = 0;
 $suma = 0;
@@ -1824,15 +1857,20 @@ $s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoj
   ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
-    if ($rw['calificador'] == 'N/A') {
+    if ($rw['calificador'] == 'N/A'&& $rw['calificador'] == 0) {
+      // $rw['calificador'] = 0;
       $division = $division;
     }else{
       $division++;
     }
   $suma = $suma + $rw['calificador'];
   }
-  $prom6=  round($suma/$division*100, 2) ;
-
+  // $prom6=  round($suma/$division*100, 2) ;
+ if (@is_nan(round($suma/$division*100, 2))) {
+  $prom6 = 0;
+}else{
+  $prom6 = round($suma/$division*100, 2);
+}
 
 $division = 0;
 $suma = 0;
@@ -1842,14 +1880,21 @@ $s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoj
   ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
-    if ($rw['calificador'] == 'N/A') {
+    if ($rw['calificador'] == 'N/A' && $rw['calificador'] == 0) {
+      // $rw['calificador'] = 0;
       $division = $division;
     }else{
       $division++;
     }
   $suma = $suma + $rw['calificador'];
   }
-  $prom7=  round($suma/$division*100, 2) ;
+  // $prom7=  round($suma/$division*100, 2) ;
+ if (@is_nan(round($suma/$division*100, 2))) {
+  $prom7 = 0;
+}else{
+  $prom7 = round($suma/$division*100, 2);
+}
+
 
 
 $division = 0;
@@ -1860,15 +1905,20 @@ $s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoj
   ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
-    if ($rw['calificador'] == 'N/A') {
+    if ($rw['calificador'] == 'N/A'&& $rw['calificador'] == 0) {
+      // $rw['calificador'] = 0;
       $division = $division;
     }else{
       $division++;
     }
   $suma = $suma + $rw['calificador'];
   }
-  $prom8=  round($suma/$division*100, 2) ;
-
+  // $prom8=  round($suma/$division*100, 2) ;
+ if (@is_nan(round($suma/$division*100, 2))) {
+  $prom8 = 0;
+}else{
+  $prom8 = round($suma/$division*100, 2);
+}
   $division = 0;
 $suma = 0;
 $s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoja_verificacion_2.pregunta_id    FROM hoja_verificacion_2
@@ -1877,15 +1927,20 @@ $s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoj
   ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
-    if ($rw['calificador'] == 'N/A') {
+    if ($rw['calificador'] == 'N/A'&& $rw['calificador'] == 0) {
+      // $rw['calificador'] = 0;
       $division = $division;
     }else{
       $division++;
     }
   $suma = $suma + $rw['calificador'];
   }
-  $prom9=  round($suma/$division*100, 2) ;
-
+  // $prom9=  round($suma/$division*100, 2) ;
+ if (@is_nan(round($suma/$division*100, 2))) {
+  $prom9 = 0;
+}else{
+  $prom9 = round($suma/$division*100, 2);
+}
 
 $division = 0;
 $suma = 0;
@@ -1895,14 +1950,21 @@ $s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoj
   ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
-    if ($rw['calificador'] == 'N/A') {
+    if ($rw['calificador'] == 'N/A'&& $rw['calificador'] == 0) {
+      // $rw['calificador'] = 0;
       $division = $division;
     }else{
       $division++;
     }
   $suma = $suma + $rw['calificador'];
   }
-  $prom10=  round($suma/$division*100, 2) ;
+  // $prom10=  round($suma/$division*100, 2) ;
+ if (@is_nan(round($suma/$division*100, 2))) {
+  $prom10 = 0;
+}else{
+  $prom10 = round($suma/$division*100, 2);
+}
+
 
 $division = 0;
 $suma = 0;
@@ -1912,15 +1974,25 @@ $s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoj
   ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
-    if ($rw['calificador'] == 'N/A') {
+
+
+    if ($rw['calificador'] == 'N/A'&& $rw['calificador'] == 0) {
+      // $rw['calificador'] = 0;
       $division = $division;
     }else{
       $division++;
     }
+
+
   $suma = $suma + $rw['calificador'];
   }
-  $prom11=  round($suma/$division*100, 2) ;
 
+  // $prom11=  round($suma/$division*100, 2) ;
+ if (@is_nan(round($suma/$division*100, 2))) {
+  $prom11 = 0;
+}else{
+  $prom11 = round($suma/$division*100, 2);
+}
   $suma_total = $prom1+$prom2+$prom3+$prom4+$prom5+$prom6+$prom7+$prom8+$prom9+$prom10+$prom11;
   $prom_total1= round($suma_total/11, 2);
 
@@ -1932,14 +2004,21 @@ $s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoj
   ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
-    if ($rw['calificador'] == 'N/A') {
+    if ($rw['calificador'] == 'N/A'&& $rw['calificador'] == 0) {
+      // $rw['calificador'] = 0;
       $division = $division;
     }else{
       $division++;
     }
   $suma = $suma + $rw['calificador'];
   }
-  $prom12=  round($suma/$division*100, 2) ;
+  // $prom12=  round($suma/$division*100, 2) ;
+ if (@is_nan(round($suma/$division*100, 2))) {
+  $prom12 = 0;
+}else{
+  $prom12 = round($suma/$division*100, 2);
+}
+
 
 $division = 0;
 $suma = 0;
@@ -1949,14 +2028,21 @@ $s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoj
   ORDER BY hoja_verificacion_2.pregunta_id";
   $r = mysqli_query($conn,$s);
   while ($rw = mysqli_fetch_assoc($r)) {
-    if ($rw['calificador'] == 'N/A') {
+    if ($rw['calificador'] == 'N/A'&& $rw['calificador'] == 0) {
+      // $rw['calificador'] = 0;
       $division = $division;
     }else{
       $division++;
     }
   $suma = $suma + $rw['calificador'];
   }
-  $prom13=  round($suma/$division*100, 2) ;
+  // $prom13=  round($suma/$division*100, 2) ;
+ if (@is_nan(round($suma/$division*100, 2))) {
+  $prom13 = 0;
+}else{
+  $prom13 = round($suma/$division*100, 2);
+}
+
 
   $suma_total2 = $prom12+$prom13;
   $prom_total2= round($suma_total2/2, 2);
@@ -2111,10 +2197,9 @@ echo '<table style="margin-top:20px;width:100%" class="bordered">
         </table>'
         ;
 
-          echo"<hr>  <button  class='btn-ver yellow darken-4 btn right' style='margin-bottom: 8px' id='modificar_verificacion2'><i class='material-icons right'>create</i>Modificar</button>
+          echo"
 
-<script type='text/javascript' src='js/canvastoimage.js'></script>
-<script type='text/javascript' src='js/verificacion2_modificar.js'></script>
+<script type='text/javascript' src='js/valida_chart.js'></script>
 <script type='text/javascript' src='js/chart.js'></script>
 <script type='text/javascript'>
 

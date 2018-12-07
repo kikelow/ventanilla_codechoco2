@@ -59,6 +59,8 @@ else {
                     <div id="cargar_info"></div>
                   </form>
 
+                  <hr>  <button  class='btn-ver yellow darken-4 btn right' style='margin-bottom: 8px' id='modificar_verificacion2'><i class='material-icons right'>create</i>Modificar</button>
+
                 </div>
               </div>
             </div>

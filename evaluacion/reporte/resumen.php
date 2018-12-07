@@ -497,7 +497,7 @@ $s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoj
   $prom_total2= round($suma_total2/2, 2);
 
 
-$html.='<table id="t2" class="" style="margin-top:20px">
+$html.='<table id="t2" class="" style="margin-top:20px" >
           <thead>
             <tr>
               <th style="width: 100%;background-color:#a5d6a7" class="" colspan="3">Resultado Nivel 1. Criterios de Cumplimiento de Negocios Verdes</th>
@@ -512,7 +512,7 @@ $html.='<table id="t2" class="" style="margin-top:20px">
             <tr >
               <td>1</td>
               <td>Viabilidad económica del Negocio</td>
-              <td id="prom1">'.$prom1.'%</td>
+              <td id="prom1" >'.$prom1.'%</td>
             </tr>
             <tr style="background-color:#eeeeee;">
             <td>2</td>
@@ -570,13 +570,9 @@ $html.='<table id="t2" class="" style="margin-top:20px">
             </tr>
           </tbody>
           </table>
-
-
-
-
           
 
-<jpgraph table="t2" type="" stacked="1" dpi="400" title="Resultados de nivel 1" splines="1" bandw="0" antialias="1" label-y="% Puntaje" label-x="Item" axis-x="text" axis-y="lin" percent="0" series="cols" data-col-begin="2" data-row-begin="2" data-col-end="0" data-row-end="-1" show-values="1" width="100%" legend-overlap="1" hide-grid="1" hide-y-axis="1" />
+<jpgraph table="t2" type="" stacked="1" dpi="400" title="Resultados de nivel 1" splines="0" bandw="0" antialias="0" label-y="% Porcentaje" label-x="Item" axis-x="text" axis-y="lin" percent="0" series="cols" data-col-begin="2" data-row-begin="2" data-col-end="0" data-row-end="-1" show-values="1" width="100%" legend-overlap="0" hide-grid="0" hide-y-axis="0" />
 
 
 
