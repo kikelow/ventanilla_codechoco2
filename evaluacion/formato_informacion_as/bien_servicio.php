@@ -40,7 +40,7 @@ $empresa = $_POST['empresa_id'];
                 
                 <div class='input-field col s12 m4 l4'>
                  <input   type='number' name='cantidad[]' id='cantidad".$i."' />
-                      <label for='cantidad".$i."'>Cantidad</label>
+                      <label for='cantidad".$i."'>Cantidad (unidad medida)</label>
                 </div>
                 <div class='input-field col s12 m3 l3'>
                  <input   type='number' name='costo_pro_unidad[]' id='costo_pro_unidad".$i."' class='aut'/>

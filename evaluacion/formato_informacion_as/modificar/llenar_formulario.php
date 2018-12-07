@@ -93,7 +93,7 @@ if(mysqli_num_rows($r)>0){
 }
 }
 
-$s="SELECT pregunta_indicativa.descripcion,impacto_practicas.respuesta_id,impacto_practicas.otro_nombre,impacto_practicas.pregunta_id FROM `informacion_complementaria` INNER JOIN impacto_practicas ON impacto_practicas.info_com_id = informacion_complementaria.id INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = impacto_practicas.pregunta_id WHERE pregunta_indicativa.aspecto_id = 21 AND informacion_complementaria.empresa_id = '$empresa' AND pregunta_id = 94";
+$s="SELECT impacto_practicas.id, pregunta_indicativa.descripcion,impacto_practicas.respuesta_id,impacto_practicas.otro_nombre,impacto_practicas.pregunta_id FROM `informacion_complementaria` INNER JOIN impacto_practicas ON impacto_practicas.info_com_id = informacion_complementaria.id INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = impacto_practicas.pregunta_id WHERE pregunta_indicativa.aspecto_id = 21 AND informacion_complementaria.empresa_id = '$empresa' AND pregunta_id = 94";
 $r= mysqli_query($conn,$s) or die("Error");
 if(mysqli_num_rows($r)>0){
   while($rw=mysqli_fetch_assoc($r)){
@@ -101,6 +101,7 @@ if(mysqli_num_rows($r)>0){
    <div class='input-field col s12 m6 l6'>
 
    <input type='text' id='otro_impacto_nom'  name='otro_impacto_nom[]' value='$rw[otro_nombre]'/>
+   <input type='hidden' name='otro_impacto_hidden[]' value='$rw[id]'>
    <label for='' class='activar'>Otro. ¿Cual?</label>
    </div>
    <div class='input-field col s12 m6 l6'>
@@ -198,7 +199,7 @@ if(mysqli_num_rows($r)>0){
 }
 }
 
-$s="SELECT pregunta_indicativa.descripcion,impacto_practicas.respuesta_id,impacto_practicas.otro_nombre,impacto_practicas.pregunta_id FROM `informacion_complementaria` INNER JOIN impacto_practicas ON impacto_practicas.info_com_id = informacion_complementaria.id INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = impacto_practicas.pregunta_id WHERE pregunta_indicativa.aspecto_id = 22 AND informacion_complementaria.empresa_id = '$empresa' AND pregunta_id = 108";
+$s="SELECT impacto_practicas.id,pregunta_indicativa.descripcion,impacto_practicas.respuesta_id,impacto_practicas.otro_nombre,impacto_practicas.pregunta_id FROM `informacion_complementaria` INNER JOIN impacto_practicas ON impacto_practicas.info_com_id = informacion_complementaria.id INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = impacto_practicas.pregunta_id WHERE pregunta_indicativa.aspecto_id = 22 AND informacion_complementaria.empresa_id = '$empresa' AND pregunta_id = 108";
 $r= mysqli_query($conn,$s) or die("Error");
 if(mysqli_num_rows($r)>0){
   while($rw=mysqli_fetch_assoc($r)){
@@ -206,6 +207,7 @@ if(mysqli_num_rows($r)>0){
    <div class='input-field col s12 m6 l6'>
 
    <input type='text' id='otro_practicas_nom'  name='otro_practicas_nom[]' value='$rw[otro_nombre]'/>
+   <input type='hidden' name='otro_practica_hidden[]' value='$rw[id]'>
    <label for='' class='activar'>Otro. ¿Cual?</label>
    </div>
    <div class='input-field col s12 m6 l6'>
@@ -280,13 +282,14 @@ if(mysqli_num_rows($r)>0){
 }
 echo "</div>";
 
-$s="SELECT pregunta_indicativa.descripcion,conservacion.area,conservacion.otro_nombre,conservacion.confirmacion,conservacion.pregunta_id as id FROM `informacion_complementaria` INNER JOIN conservacion ON conservacion.info_com_id = informacion_complementaria.id INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = conservacion.pregunta_id WHERE pregunta_indicativa.aspecto_id = 23 AND informacion_complementaria.empresa_id = '$empresa' AND pregunta_id = 119";
+$s="SELECT conservacion.id as conserva_id, pregunta_indicativa.descripcion,conservacion.area,conservacion.otro_nombre,conservacion.confirmacion,conservacion.pregunta_id as id FROM `informacion_complementaria` INNER JOIN conservacion ON conservacion.info_com_id = informacion_complementaria.id INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = conservacion.pregunta_id WHERE pregunta_indicativa.aspecto_id = 23 AND informacion_complementaria.empresa_id = '$empresa' AND pregunta_id = 119";
 $r= mysqli_query($conn,$s) or die("Error");
 if(mysqli_num_rows($r)>0){
   while($rw=mysqli_fetch_assoc($r)){
    echo "<div class='row'>
    <div class='input-field col s12 m6 l6'>
    <input type='text' id='otro_conservacion_nom'  name='otro_conservacion_nom[]' value='$rw[otro_nombre]'/>
+   <input type='hidden' name='otro_conservacion_hidden[]' value='$rw[conserva_id]'>
    <label for='' class='activar'>Otro. ¿Cual?</label>
    </div>
    <div class='input-field col s12 m6 l6'>
@@ -414,13 +417,14 @@ if(mysqli_num_rows($r)>0){
 }
 }
 
-$s="SELECT certificacion.pregunta_id as id,pregunta_indicativa.descripcion,certificacion.etapa_id,certificacion.vigencia,certificacion.observacion,certificacion.otro_nombre FROM `informacion_complementaria` INNER JOIN certificacion ON certificacion.info_com_id = informacion_complementaria.id INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = certificacion.pregunta_id WHERE pregunta_indicativa.aspecto_id = 24 AND informacion_complementaria.empresa_id = '$empresa' AND pregunta_id = 127";
+$s="SELECT certificacion.id as certifica_id, certificacion.pregunta_id as id,pregunta_indicativa.descripcion,certificacion.etapa_id,certificacion.vigencia,certificacion.observacion,certificacion.otro_nombre FROM `informacion_complementaria` INNER JOIN certificacion ON certificacion.info_com_id = informacion_complementaria.id INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = certificacion.pregunta_id WHERE pregunta_indicativa.aspecto_id = 24 AND informacion_complementaria.empresa_id = '$empresa' AND pregunta_id = 127";
 $r= mysqli_query($conn,$s) or die("Error");
 if(mysqli_num_rows($r)>0){
   while($rw=mysqli_fetch_assoc($r)){
    echo "<div class='row'>
    <div class='input-field col s12 m3 l3'>
    <input type='text' id='otro_certificacion_nom'  name='otro_certificacion_nom[]' value='$rw[otro_nombre]'/>
+   <input type='hidden' name='otro_certificacion_hidden[]' value='$rw[certifica_id]'>
    <label for='' class='activar'>Otro. ¿Cual?</label>
    </div>
    <div class='input-field col s12 m3 l3'>
@@ -1895,7 +1899,7 @@ if(mysqli_num_rows($r)>0){
 }         
 }
 
-$s="SELECT otro_programa.recurso_id,otro_programa.descripcion as programa_desc,otro_programa.nombre,otro_programa.recurso_id FROM `otro_programa` 
+$s="SELECT otro_programa.id, otro_programa.recurso_id,otro_programa.descripcion as programa_desc,otro_programa.nombre,otro_programa.recurso_id FROM `otro_programa` 
 INNER JOIN informacion_complementaria ON otro_programa.info_com_id = informacion_complementaria.id 
 WHERE informacion_complementaria.empresa_id = '$empresa' order by otro_programa.id";
 $r= mysqli_query($conn,$s) or die("Error");
@@ -1904,6 +1908,7 @@ if(mysqli_num_rows($r)>0){
    echo "<div class='row'>
    <div class='input-field col s12 m4 l4'>
    <input type='text' id='otro_programa_nom'  name='otro_programa_nom[]' value='$rw[nombre]'/>
+   <input type='hidden' name='otro_programa_hidden[]' value='$rw[id]'>
    <label for='' class='active'>Otro. ¿Cual?</label>
    </div>
    <div class='input-field col s12 m4 l4'>
@@ -2055,7 +2060,7 @@ echo"
 }
 
 echo "<div class='row' >";
-$s="SELECT cadena_valor.pregunta_id as id, cadena_valor.otro_nombre FROM `cadena_valor` 
+$s="SELECT cadena_valor.id as id, cadena_valor.otro_nombre FROM `cadena_valor` 
 INNER JOIN informacion_complementaria ON cadena_valor.info_com_id = informacion_complementaria.id 
 INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = cadena_valor.pregunta_id 
 WHERE pregunta_indicativa.aspecto_id = 25 AND informacion_complementaria.empresa_id = '$empresa' AND cadena_valor.pregunta_id = 136 ";
@@ -2067,6 +2072,7 @@ if(mysqli_num_rows($r)>0){
    echo"
    <div class='input-field col s12 m6 l6'>
    <input type='text' id='' name='otro_cadena_nom[]' value='$rw[otro_nombre]'/>
+   <input type='hidden' name='otro_cadena_hidden[]' value='$rw[id]'>
    <label for='' class='active'>Otra actividad</label>
    </div> 
    ";
@@ -2123,7 +2129,7 @@ if(mysqli_num_rows($r)>0){
 
   <div class='input-field col s12 m4 l4'>
   <input   type='number' name='cantidad[]' id='cantidad".$i."' value='$rw[cantidad_unidad]' />
-  <label for='cantidad".$i."' class='active'>Cantidad</label>
+  <label for='cantidad".$i."' class='active'>Cantidad (unidad medida)</label>
   </div>
   <div class='input-field col s12 m3 l3'>
   <input   type='number' name='costo_pro_unidad[]' id='costo_pro_unidad".$i."' class='aut' value='$rw[costo_produccion_unidad]'/>

@@ -908,17 +908,99 @@ $.ajax({
  })
 });
  
+//__________________________________Registrar__________________________________________________
 
 $('#registrar_informacion').click(function(event) {
   event.preventDefault();
+var total_contrato = Number($('#t_directo').val())+Number($('#t_indirecto').val())
++Number($('#t_temporal').val());
 
+var total_etaria = Number($('#t_18-30').val())+Number($('#t_30-50').val())+Number($('#t_mayor50').val())
+
+var total_condicion_vul = Number($('#t_discapacitado').val())+Number($('#t_madre').val())
++Number($('#t_adulto').val())+Number($('#t_indigena').val())+Number($('#t_negra').val())+
+Number($('#t_campesino').val())+Number($('#t_reinsertado').val())+Number($('#t_victima').val())+
+Number($('#t_vulnerable').val())+Number($('#otro_vulnerablidad_total').val())
+
+var total_nivel_educativo = Number($('#t_primaria').val())+Number($('#t_bachillerato').val())
++Number($('#t_tecnico').val())+Number($('#t_tecnologo').val())+Number($('#t_universitario').val())
++Number($('#t_otro_nivel').val())
+// alert(total_contrato)
 //valiadacion combo emrpesa
 if ($('#empresa').val() == null) {
 	$('#empresa').selected = true;
 	var $toastContent = $('<span>Debe escoger un emprendimiento</span>');
 	Materialize.toast($toastContent, 3000);
+}else if (Number($('#t_empleados').val()) != total_contrato) {
+  var $toastContent = $('<span>el total tipo de contrato y total de empleados deben ser iguales</span>');
+  Materialize.toast($toastContent, 6000);
+  $('.collapsible').collapsible('close', 1);
+  $('.collapsible').collapsible('open', 1);
+  $('#t_directo').addClass('invalid')
+  $('#t_indirecto').addClass('invalid')
+  $('#t_temporal').addClass('invalid')
+  $('html, body').animate({scrollTop: $( $( '#t_masculino' ) ).offset().top}, 1000);
+}else if (Number($('#t_empleados').val()) != total_etaria) {
+  var $toastContent = $('<span>el total descripcion etaria y total de empleados deben ser iguales</span>');
+  Materialize.toast($toastContent, 6000);
+   $('.collapsible').collapsible('close', 1);
+  $('.collapsible').collapsible('open', 1);
+   $('#t_directo').removeClass('invalid')
+  $('#t_indirecto').removeClass('invalid')
+  $('#t_temporal').removeClass('invalid')
+   $('#t_18-30').addClass('invalid')
+  $('#t_30-50').addClass('invalid')
+  $('#t_mayor50').addClass('invalid')
+  $('html, body').animate({scrollTop: $( $( '#t_masculino' ) ).offset().top}, 1000);
+}else if (Number($('#t_empleados').val()) != total_condicion_vul ) {
+  var $toastContent = $('<span>el total condicion de vulnerabilidad y total de empleados deben ser iguales</span>');
+  Materialize.toast($toastContent, 6000);
+   $('.collapsible').collapsible('close', 1);
+  $('.collapsible').collapsible('open', 1);
+  $('#t_18-30').removeClass('invalid')
+  $('#t_30-50').removeClass('invalid')
+  $('#t_mayor50').removeClass('invalid')
+
+   $('#t_discapacitado').addClass('invalid')
+  $('#t_madre').addClass('invalid')
+  $('#t_adulto').addClass('invalid')
+   $('#t_indigena').addClass('invalid')
+  $('#t_negra').addClass('invalid')
+  $('#t_campesino').addClass('invalid')
+   $('#t_reinsertado').addClass('invalid')
+  $('#t_victima').addClass('invalid')
+  $('#t_vulnerable').addClass('invalid')
+  $('#otro_vulnerablidad_total').addClass('invalid')
+
+  $('html, body').animate({scrollTop: $( $( '#discapacitado_m' ) ).offset().top}, 1000);
+
+}else if (Number($('#t_empleados').val()) != total_nivel_educativo) {
+  var $toastContent = $('<span>el total nivel educativo y total de empleados deben ser iguales</span>');
+  Materialize.toast($toastContent, 6000);
+   $('.collapsible').collapsible('close', 1);
+  $('.collapsible').collapsible('open', 1);
+   $('#t_discapacitado').removeClass('invalid')
+  $('#t_madre').removeClass('invalid')
+  $('#t_adulto').removeClass('invalid')
+   $('#t_indigena').removeClass('invalid')
+  $('#t_negra').removeClass('invalid')
+  $('#t_campesino').removeClass('invalid')
+   $('#t_reinsertado').removeClass('invalid')
+  $('#t_victima').removeClass('invalid')
+  $('#t_vulnerable').removeClass('invalid')
+  $('#otro_vulnerablidad_total').removeClass('invalid')
+
+  $('#t_primaria').addClass('invalid')
+  $('#t_bachillerato').addClass('invalid')
+  $('#t_tecnico').addClass('invalid')
+   $('#t_tecnologo').addClass('invalid')
+  $('#t_universitario').addClass('invalid')
+  $('#t_otro_nivel').addClass('invalid')
+$('html, body').animate({scrollTop: $( $( '#primaria_m' ) ).offset().top}, 1000);
+
 }
 else {
+
 var empresa = $('#empresa').val() 
 	$.ajax({
 		url: 'evaluacion/formato_informacion_as/insertar.php?empresa='+empresa,
@@ -984,13 +1066,96 @@ $('#empresa_m').change(function(event) {
 //boton de modificar
 $('#modificar_informacion').click(function(event) {
   event.preventDefault();
-  var empresa_m = $('#empresa_m').val()
+  var total_contrato = Number($('#t_directo').val())+Number($('#t_indirecto').val())
++Number($('#t_temporal').val());
+
+var total_etaria = Number($('#t_18-30').val())+Number($('#t_30-50').val())+Number($('#t_mayor50').val())
+
+var total_condicion_vul = Number($('#t_discapacitado').val())+Number($('#t_madre').val())
++Number($('#t_adulto').val())+Number($('#t_indigena').val())+Number($('#t_negra').val())+
+Number($('#t_campesino').val())+Number($('#t_reinsertado').val())+Number($('#t_victima').val())+
+Number($('#t_vulnerable').val())+Number($('#otro_vulnerablidad_total').val())
+
+var total_nivel_educativo = Number($('#t_primaria').val())+Number($('#t_bachillerato').val())
++Number($('#t_tecnico').val())+Number($('#t_tecnologo').val())+Number($('#t_universitario').val())
++Number($('#t_otro_nivel').val())
+
+if (Number($('#t_empleados').val()) != total_contrato) {
+  var $toastContent = $('<span>el total tipo de contrato y total de empleados deben ser iguales</span>');
+  Materialize.toast($toastContent, 6000);
+  $('.collapsible').collapsible('close', 1);
+  $('.collapsible').collapsible('open', 1);
+  $('#t_directo').addClass('invalid')
+  $('#t_indirecto').addClass('invalid')
+  $('#t_temporal').addClass('invalid')
+  $('html, body').animate({scrollTop: $( $( '#t_masculino' ) ).offset().top}, 1000);
+}else if (Number($('#t_empleados').val()) != total_etaria) {
+  var $toastContent = $('<span>el total descripcion etaria y total de empleados deben ser iguales</span>');
+  Materialize.toast($toastContent, 6000);
+   $('.collapsible').collapsible('close', 1);
+  $('.collapsible').collapsible('open', 1);
+   $('#t_directo').removeClass('invalid')
+  $('#t_indirecto').removeClass('invalid')
+  $('#t_temporal').removeClass('invalid')
+   $('#t_18-30').addClass('invalid')
+  $('#t_30-50').addClass('invalid')
+  $('#t_mayor50').addClass('invalid')
+  $('html, body').animate({scrollTop: $( $( '#t_masculino' ) ).offset().top}, 1000);
+}else if (Number($('#t_empleados').val()) != total_condicion_vul ) {
+  var $toastContent = $('<span>el total condicion de vulnerabilidad y total de empleados deben ser iguales</span>');
+  Materialize.toast($toastContent, 6000);
+   $('.collapsible').collapsible('close', 1);
+  $('.collapsible').collapsible('open', 1);
+  $('#t_18-30').removeClass('invalid')
+  $('#t_30-50').removeClass('invalid')
+  $('#t_mayor50').removeClass('invalid')
+
+   $('#t_discapacitado').addClass('invalid')
+  $('#t_madre').addClass('invalid')
+  $('#t_adulto').addClass('invalid')
+   $('#t_indigena').addClass('invalid')
+  $('#t_negra').addClass('invalid')
+  $('#t_campesino').addClass('invalid')
+   $('#t_reinsertado').addClass('invalid')
+  $('#t_victima').addClass('invalid')
+  $('#t_vulnerable').addClass('invalid')
+  $('#otro_vulnerablidad_total').addClass('invalid')
+
+  $('html, body').animate({scrollTop: $( $( '#discapacitado_m' ) ).offset().top}, 1000);
+
+}else if (Number($('#t_empleados').val()) != total_nivel_educativo) {
+  var $toastContent = $('<span>el total nivel educativo y total de empleados deben ser iguales</span>');
+  Materialize.toast($toastContent, 6000);
+   $('.collapsible').collapsible('close', 1);
+  $('.collapsible').collapsible('open', 1);
+   $('#t_discapacitado').removeClass('invalid')
+  $('#t_madre').removeClass('invalid')
+  $('#t_adulto').removeClass('invalid')
+   $('#t_indigena').removeClass('invalid')
+  $('#t_negra').removeClass('invalid')
+  $('#t_campesino').removeClass('invalid')
+   $('#t_reinsertado').removeClass('invalid')
+  $('#t_victima').removeClass('invalid')
+  $('#t_vulnerable').removeClass('invalid')
+  $('#otro_vulnerablidad_total').removeClass('invalid')
+
+  $('#t_primaria').addClass('invalid')
+  $('#t_bachillerato').addClass('invalid')
+  $('#t_tecnico').addClass('invalid')
+   $('#t_tecnologo').addClass('invalid')
+  $('#t_universitario').addClass('invalid')
+  $('#t_otro_nivel').addClass('invalid')
+$('html, body').animate({scrollTop: $( $( '#primaria_m' ) ).offset().top}, 1000);
+
+}
+else{
+   var empresa_m = $('#empresa_m').val()
   $.ajax({
     url: 'evaluacion/formato_informacion_as/modificar/modificar.php?empresa='+empresa_m,
     type: 'POST',
     data: $('#form_modificar_informacion').serialize(),
     beforeSend: function() {
-      // $('#modificar_informacion').attr('disabled', 'disabled');
+      $('#modificar_informacion').attr('disabled', 'disabled');
     // console.log('cargando')
     swal ({
           // icon: "success",
@@ -1008,9 +1173,11 @@ $('#modificar_informacion').click(function(event) {
             visible: false
           },
       });
-      // setTimeout("document.location=document.location",1500);
+      setTimeout("document.location=document.location",1500);
     }
   })
+ 
+}
  
   
 });
