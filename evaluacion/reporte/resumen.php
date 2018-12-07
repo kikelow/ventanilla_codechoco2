@@ -1,9 +1,11 @@
 
 <?php 
-	 require_once ('../../jpgraph/src/jpgraph.php');
-    require_once ('../../jpgraph/src/jpgraph_bar.php');
+
    require_once ('../../mpdf60/mpdf.php');
+   require_once ('../../mpdf60/graph.php');
   
+  define("_TTF_FONT_NORMAL", 'arial.ttf');
+define("_TTF_FONT_BOLD", 'arialbd.ttf');
 
 if(isset($_GET["empresa"])){
    require_once('../../conexion.php');
@@ -495,7 +497,7 @@ $s="SELECT hoja_verificacion_2.empresa_id, calificador.nombre AS calificador,hoj
   $prom_total2= round($suma_total2/2, 2);
 
 
-$html.='<table class="" style="margin-top:20px">
+$html.='<table id="t2" class="" style="margin-top:20px">
           <thead>
             <tr>
               <th style="width: 100%;background-color:#a5d6a7" class="" colspan="3">Resultado Nivel 1. Criterios de Cumplimiento de Negocios Verdes</th>
@@ -571,22 +573,10 @@ $html.='<table class="" style="margin-top:20px">
 
 
 
-          <table>
-          <thead>
-          <tr>
-          <th style="width: 100%;background-color:#a5d6a7;text-align:center" >
-          Grafica: Resultados de nivel 1
-          </th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-          <td>
-          <div><img src="../hoja_verificacion_2/img_grafica/grafica.jpg" width="100%"></div>
-          </td>
-          </tr>
-          </tbody>
-          </table>
+
+          
+
+<jpgraph table="t2" type="" stacked="1" dpi="400" title="Resultados de nivel 1" splines="1" bandw="0" antialias="1" label-y="% Puntaje" label-x="Item" axis-x="text" axis-y="lin" percent="0" series="cols" data-col-begin="2" data-row-begin="2" data-col-end="0" data-row-end="-1" show-values="1" width="100%" legend-overlap="1" hide-grid="1" hide-y-axis="1" />
 
 
 
@@ -667,7 +657,21 @@ $html.='';
     $html.='<div style="margin-top:20px; border:1px solid red; background-color:#ffcdd2">NOTA: No se han aplicado las hojas de verificación</div>';
   }
 
-  
+
+
+
+
+// This must be defined before including mpdf.php file define("_JPGRAPH_PATH", '../../jpgraph_5/src/');
+
+// Change these if necessary to the name of font files you can access from JPGraph define("_TTF_FONT_NORMAL", 'arial.ttf');
+
+
+// This must be set to allow mPDF to parse table data
+
+
+
+// // Display the graph
+
   
     date_default_timezone_set('America/Bogota');
     $fecha_impresion = date("Y-m-d H:i:s");
@@ -694,12 +698,16 @@ $html.='';
     $marg_h=5;  // Margen de la cabecera de la página
     $marg_f=5;  // Margen del pie de pagina
  
-    $mpdf=new mPDF($mode,$format,$font_s,$font_f,$marg_l,$marg_r,$marg_t,$marg_b,$marg_h,$marg_f);
+  $mpdf=new mPDF($mode,$format,$font_s,$font_f,$marg_l,$marg_r,$marg_t,$marg_b,$marg_h,$marg_f);
+
+  $mpdf->useGraphs = true;
+
   $mpdf->defaultheaderline=0; 
   $mpdf->defaultfooterline=1; 
   $mpdf->SetHeader($cabezera);
   $mpdf->SetFooter($footer);
   $mpdf->writeHTML($html);
+
   $mpdf->SetTitle($razon_social);//nombre del pdf
   $mpdf->Output($razon_social."."."pdf","I");//nombre con el que se guarda el pdf
    }
