@@ -18,8 +18,26 @@ session_start();
 	<link rel="stylesheet" type="text/css" href="css/select2.css">
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
   <link rel="stylesheet" type="text/css" href="js/Trumbowyg-master/dist/ui/trumbowyg.min.css">
- 
- 
+  <script src="js/jquery.min.js"  type="text/javascript"></script>
+   <script src="js/materialize.min.js"  type="text/javascript"></script>
+  <!-- <script type="text/javascript" src="js/select2.js"></script> -->
+  <script type="text/javascript" src="js/admin_content_crud.js"></script>
+  <script type="text/javascript" src="js/sweetalert.js"></script>
+   <script type="text/javascript" src="js/Trumbowyg-master/dist/trumbowyg.min.js"></script>
+   <script type="text/javascript">
+      $(".button-collapse").sideNav();
+      $('#descripcion').trumbowyg();
+      $('#descripcion_nt').trumbowyg();
+   </script>
+   <script src="js/Trumbowyg-master/plugins/upload/trumbowyg.upload.js"></script>
+  <script>
+    $(document).ready(function(){
+
+      $('.collapsible').collapsible();
+      $('select').material_select();
+
+    });
+  </script>
 </head>
 <body>
   <ul id="ajuste" class="dropdown-content">
@@ -44,7 +62,7 @@ session_start();
             </img></li>
         <li class="no-padding">
           <ul class="collapsible collapsible-accordion">
-            <li class="bold"><a class="collapsible-header  waves-effect waves-green" href="index3.php?modulo=content_admin/inicio">Contenidos</a></li>
+            <li class="bold"><a class="collapsible-header  waves-effect waves-green" href="index3.php?modulo=content_admin/index">Contenidos</a></li>
             <li class="bold"><a class="collapsible-header  waves-effect waves-green" href="index3.php?modulo=content_admin/usuarios">Usuarios</a></li>
           </ul>
         </li>
@@ -83,26 +101,8 @@ session_start();
 
 
 
-  <script src="js/jquery.min.js"  type="text/javascript"></script>
-  <script src="js/materialize.min.js"  type="text/javascript"></script>
-  <!-- <script type="text/javascript" src="js/select2.js"></script> -->
-  <script type="text/javascript" src="js/admin_content_crud.js"></script>
-  <script type="text/javascript" src="js/sweetalert.js"></script>
-   <script type="text/javascript" src="js/Trumbowyg-master/dist/trumbowyg.min.js"></script>
-   <script type="text/javascript">
-      $(".button-collapse").sideNav();
-      $('#descripcion').trumbowyg();
-      $('#descripcion_nt').trumbowyg();
-   </script>
-   <script src="js/Trumbowyg-master/plugins/upload/trumbowyg.upload.js"></script>
-  <script>
-    $(document).ready(function(){
+ 
 
-      $('.collapsible').collapsible();
-      $('select').material_select();
-
-    });
-  </script>
 </body>
 </html>
 <?php 

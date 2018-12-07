@@ -4,10 +4,7 @@ include "../../conexion.php";
 $nombre = $_POST['nombre_archivo'];
 $alias = $_POST['alias_archivo'];
 
-
 $limite_kb = 10240;
-
-
 
     if ($_FILES["file"]["size"] > 0) {
 
@@ -46,6 +43,6 @@ $limite_kb = 10240;
     }
     else{
        
-    	echo "Debe seleccionar una archivo";
+    	echo "Debe seleccionar un archivo";
     }    
 // ?>

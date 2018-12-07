@@ -1,0 +1,1 @@
+[25-Jul-2018 15:55:32 America/Bogota] PHP Warning:  unlink(../content_save/img_content/BANNER PROMOCIONAL code.jpg): No such file or directory in /home/codechoc/public_html/ventanilla/content_admin/content_edit/editar_img.php on line 13

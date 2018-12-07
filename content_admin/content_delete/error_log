@@ -1,0 +1,2 @@
+[14-Jul-2018 12:09:44 America/Bogota] PHP Warning:  unlink(../content_save/img_content/1062_escudo-choco-new-pag_200x): No such file or directory in /home/codechoc/public_html/ventanilla/content_admin/content_delete/borrar_partner.php on line 18
+[17-Jul-2018 21:49:19 America/Bogota] PHP Warning:  unlink(../content_save/img_content/1062_escudo-choco-new-pag_200x): No such file or directory in /home/codechoc/public_html/ventanilla/content_admin/content_delete/borrar_partner.php on line 18

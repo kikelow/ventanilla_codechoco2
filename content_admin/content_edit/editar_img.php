@@ -3,6 +3,7 @@ require_once("../../conexion.php");
 
 $id_img = $_GET['id_img'];
 
+echo $id_img;
 if ($_FILES['file_img']['name']=="") {
 	mysqli_query($conn,"UPDATE img_page set nombre ='".$_POST['nombre_imagen']."' where id=".$id_img.";") or die (mysqli_error($conn));
 	}
