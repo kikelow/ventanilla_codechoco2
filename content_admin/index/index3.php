@@ -485,7 +485,8 @@
 			          </tr>
 			        </thead>
 					<?php 
-					$s = "SELECT a.id,a.nombre,a.ruta,c.nombre as alias from archivo_page a,alias c where a.alias_id = c.id ";
+					$s = "SELECT a.id,a.nombre,a.ruta,c.nombre as alias from archivo_page a,alias c 
+					WHERE a.alias_id = c.id ";
 					$r = mysqli_query($conn,$s) or die (mysqli_error($conn));
 					if (mysqli_num_rows($r)>0) {
 						while ($data=mysqli_fetch_assoc($r)) {
