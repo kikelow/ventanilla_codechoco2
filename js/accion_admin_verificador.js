@@ -12,7 +12,7 @@ $('#form_admin_verificador').submit(function(event) {
 		type: 'POST',
 		data: $("#form_admin_verificador").serialize(),
 		beforeSend: function() {
-	  	// $('#registrar_veri').attr('disabled', 'disabled');
+	  	$('#registrar_veri').attr('disabled', 'disabled');
    	// console.log('cargando')
    	swal ({
   				// icon: "success",
@@ -30,7 +30,7 @@ $('#form_admin_verificador').submit(function(event) {
     				visible: false
   				},
 			});
-    	// window.setTimeout('location.reload()',1500);
+    	window.setTimeout('location.reload()',1500);
     }
 	})
 });

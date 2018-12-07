@@ -3,21 +3,27 @@ if (isset($_POST["usuario"])) {
 	require_once ("../conexion.php");
 	$usuario = $_POST["usuario"];
 	$contrasena = $_POST["contrasena"];
+	
 	$respuesta = "";
-	$s = "SELECT persona.id, persona.rol_id FROM login
+	$s = "SELECT persona.id, persona.rol_id,login.clave FROM login
 		INNER JOIN persona ON login.persona_id = persona.id
-		WHERE login.usuario = '$usuario' AND login.clave = '$contrasena'";
+		WHERE login.usuario = '$usuario'";
 	$resultado = $conn->query($s);
 	if ($resultado->num_rows > 0) {
 		$rol ="";
 		$id = "";
+		$clave_bd = "";
 		
 		while($row=$resultado->fetch_assoc()){
 			$rol = $row['rol_id'];
 			$id = $row['id'];
+			$clave_bd = $row['clave'];
 		}
+
+		$verifi_contraseña = password_verify($contrasena,$clave_bd);
+		if ($verifi_contraseña) {
 		echo $rol;
-		if ($rol == '1') {
+				if ($rol == '1') {
 			session_start();
 			$_SESSION["vev_admin_contenido"]= $id;
 			
@@ -29,6 +35,7 @@ if (isset($_POST["usuario"])) {
 			session_start();
 			$_SESSION["vev_admin_verificador"]= $id;
 		}
+			}
 
 	}else{
 		// print(0);
