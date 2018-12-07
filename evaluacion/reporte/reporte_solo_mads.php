@@ -345,8 +345,9 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 
 	$objPHPExcel->getActiveSheet()->setCellValue('CL8', 'Plan de Mejora');
 	$objPHPExcel->getActiveSheet()->mergeCells('CL8:CM8');
-	$objPHPExcel->getActiveSheet()->setCellValue('CL9', 'Si');
-	$objPHPExcel->getActiveSheet()->setCellValue('CM9', 'No');
+	$objPHPExcel->getActiveSheet()->setCellValue('CL9', 'Si/No');
+	$objPHPExcel->getActiveSheet()->mergeCells('CL9:CM9');
+	
 
 	$objPHPExcel->getActiveSheet()->setCellValue('CN8', 'Ventas Totales (pesos)');
 	$objPHPExcel->getActiveSheet()->mergeCells('CN8:CN9');
@@ -1270,25 +1271,27 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 		}
 
 		// sacar el nivel 21 de la hoja de verificacion 2
-		$s21 = "SELECT calificador.nombre AS calificador FROM empresa
+		$s47 = "SELECT calificador.nombre AS calificador FROM empresa
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
 			WHERE pregunta_indicativa.aspecto_id = 20 AND pregunta_indicativa.No = 12.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
-		$r21 = mysqli_query($conn,$s21);
-		$nivel121 = 10;
-		while ($rw21=mysqli_fetch_assoc($r21)) {
-			$objPHPExcel->getActiveSheet()->SetCellValue('BS'.$nivel121,$rw21['calificador']);
-			$nivel121++;
+		$r47 = mysqli_query($conn,$s47);
+		$nivel147 = 10;
+		while ($rw47=mysqli_fetch_assoc($r47)) {
+			$objPHPExcel->getActiveSheet()->SetCellValue('BS'.$nivel147,$rw47['calificador']);
+			$nivel147++;
 		}
 
 
 
 
 		$objPHPExcel->getActiveSheet()->SetCellValue('BT'.$fila, '=AVERAGE(Y'.$fila.':AG'.$fila.')');
+
+
 		$objPHPExcel->getActiveSheet()->getStyle('BT10:CK10')->getNumberFormat()->applyFromArray( 
         array( 'code' => PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE));
-        
+
 		$objPHPExcel->getActiveSheet()->SetCellValue('BU'.$fila, '=AVERAGE(AH'.$fila.':AK'.$fila.')');
 		$objPHPExcel->getActiveSheet()->SetCellValue('BV'.$fila, '=AVERAGE(AL'.$fila.':AN'.$fila.')');
 		$objPHPExcel->getActiveSheet()->SetCellValue('BW'.$fila, '=AVERAGE(AO'.$fila.':AP'.$fila.')');
@@ -1311,8 +1314,1521 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 
 		$objPHPExcel->getActiveSheet()->SetCellValue('CL'.$fila,$rw['plan_mejora']);
 
+		
+
+		// sacar ventas totales
+		$s48 = "SELECT total_ventas.total_ventas_realizadas_ant from total_ventas ";
+		$r48 = mysqli_query($conn,$s48);
+		$nivel148 = 10;
+		while ($rw48=mysqli_fetch_assoc($r48)) {
+			$objPHPExcel->getActiveSheet()->SetCellValue('CN'.$nivel148,$rw48['total_ventas_realizadas_ant']);
+			$nivel148++;
+		}
 
 
+		// sacar costos totales
+		$s49 = "SELECT total_ventas.total_ventas_realizadas_ant from total_ventas ";
+		$r49 = mysqli_query($conn,$s49);
+		$nivel149 = 10;
+		while ($rw49=mysqli_fetch_assoc($r49)) {
+			$objPHPExcel->getActiveSheet()->SetCellValue('CO'.$nivel149,$rw49['total_ventas_realizadas_ant']);
+			$nivel149++;
+		}
+
+
+		// sacar familias beneficiadas
+		$s50 = "SELECT informacion_complementaria.num_familias FROM informacion_complementaria";
+		$r50 = mysqli_query($conn,$s50);
+		$nivel150 = 10;
+		while ($rw50=mysqli_fetch_assoc($r50)) {
+			$objPHPExcel->getActiveSheet()->SetCellValue('CP'.$nivel150,$rw50['num_familias']);
+			$nivel150++;
+		}
+
+
+			// sacar socias mujeres
+		$s51 = "
+		SELECT
+condicion_vulnerabilidad_es.discapacidad,cabeza_familia,adulto_mayor,indigena,com_negras,campesino,reinsertado,victimas_armado,vulnerabilidad_econo,otro_condicion_vulneravibilidad.cantidad from condicion_vulnerabilidad_es
+INNER JOIN informacion_complementaria on informacion_complementaria.id = condicion_vulnerabilidad_es.info_com_id
+INNER JOIN otro_condicion_vulneravibilidad on otro_condicion_vulneravibilidad.info_com_id = condicion_vulnerabilidad_es.info_com_id 
+where condicion_vulnerabilidad_es.total_rotulo_id = 5 and otro_condicion_vulneravibilidad.otro_rotulo_id = 5 and condicion_vulnerabilidad_es.sexo_id = 2 and otro_condicion_vulneravibilidad.sexo_id = 2";
+		$r51 = mysqli_query($conn,$s51);
+		$nivel151 = 10;
+		while ($rw51=mysqli_fetch_assoc($r51)) {
+
+	 $sumaM = $rw51['discapacidad']
+			+ $rw51['cabeza_familia']
+			+ $rw51['adulto_mayor']
+			+ $rw51['indigena']
+			+ $rw51['com_negras']
+			+ $rw51['campesino']
+			+ $rw51['reinsertado']
+			+ $rw51['victimas_armado']
+			+ $rw51['vulnerabilidad_econo']
+			+ $rw51['cantidad']; 
+
+
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('CQ'.$nivel151,$sumaM);
+			$nivel151++;
+		}
+
+
+
+			// sacar socias mujeres
+		$s52 = "
+		SELECT
+condicion_vulnerabilidad_es.discapacidad,cabeza_familia,adulto_mayor,indigena,com_negras,campesino,reinsertado,victimas_armado,vulnerabilidad_econo,otro_condicion_vulneravibilidad.cantidad from condicion_vulnerabilidad_es
+INNER JOIN informacion_complementaria on informacion_complementaria.id = condicion_vulnerabilidad_es.info_com_id
+INNER JOIN otro_condicion_vulneravibilidad on otro_condicion_vulneravibilidad.info_com_id = condicion_vulnerabilidad_es.info_com_id 
+where condicion_vulnerabilidad_es.total_rotulo_id = 5 and otro_condicion_vulneravibilidad.otro_rotulo_id = 5 and condicion_vulnerabilidad_es.sexo_id = 2 and otro_condicion_vulneravibilidad.sexo_id = 1";
+		$r52 = mysqli_query($conn,$s52);
+		$nivel152 = 10;
+		while ($rw52=mysqli_fetch_assoc($r52)) {
+
+	 $sumaM = $rw52['discapacidad']
+			+ $rw52['cabeza_familia']
+			+ $rw52['adulto_mayor']
+			+ $rw52['indigena']
+			+ $rw52['com_negras']
+			+ $rw52['campesino']
+			+ $rw52['reinsertado']
+			+ $rw52['victimas_armado']
+			+ $rw52['vulnerabilidad_econo']
+			+ $rw52['cantidad']; 
+
+
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('CR'.$nivel152,$sumaM);
+			$nivel152++;
+		}
+
+		$objPHPExcel->getActiveSheet()->SetCellValue('CS'.$fila, '=SUM(CQ'.$fila.':CR'.$fila.')');
+
+
+		// sacar total empleados mujeres
+		$s52 = "
+		SELECT cantidad from total_empleados WHERE total_rotulo_id = 1 and sexo_id = 2";
+		$r52 = mysqli_query($conn,$s52);
+		$nivel152 = 10;
+		while ($rw52=mysqli_fetch_assoc($r52)) {
+	
+			 $sumae = $rw52['cantidad']; 
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('CT'.$nivel152,$sumae);
+			$nivel152++;
+		}
+
+		// sacar total empleados mujeres
+		$s52 = "
+		SELECT cantidad from total_empleados WHERE total_rotulo_id = 1 and sexo_id = 1";
+		$r52 = mysqli_query($conn,$s52);
+		$nivel152 = 10;
+		while ($rw52=mysqli_fetch_assoc($r52)) {
+	
+			 $sumae = $rw52['cantidad']; 
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('CU'.$nivel152,$sumae);
+			$nivel152++;
+		}
+
+		$objPHPExcel->getActiveSheet()->SetCellValue('CV'.$fila, '=SUM(CT'.$fila.':CU'.$fila.')');
+
+		/////////////////// mujeres y hombre entre 18 y 30
+
+
+		// sacar total empleados mujeres
+		$s53 = "SELECT`18_30` from descripcion_etaria where sexo_id = 2";
+		$r53 = mysqli_query($conn,$s53);
+		$nivel153 = 10;
+		while ($rw53=mysqli_fetch_assoc($r53)) {
+	
+			 $sumae = $rw53['18_30']; 
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('CW'.$nivel153,$sumae);
+			$nivel153++;
+		}
+
+		// sacar total empleados mujeres
+		$s54 = "SELECT`18_30` from descripcion_etaria where sexo_id = 1";
+		$r54 = mysqli_query($conn,$s54);
+		$nivel154 = 10;
+		while ($rw54=mysqli_fetch_assoc($r54)) {
+	
+			 $sumae = $rw54['18_30']; 
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('CX'.$nivel154,$sumae);
+			$nivel154++;
+		}
+
+		
+			$s55 = "SELECT `30_50` from descripcion_etaria where sexo_id = 2";
+		$r55 = mysqli_query($conn,$s55);
+		$nivel155 = 10;
+		while ($rw55=mysqli_fetch_assoc($r55)) {
+	
+			 $sumae = $rw55['30_50']; 
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('CY'.$nivel155,$sumae);
+			$nivel155++;
+		}
+
+		// sacar total empleados mujeres
+		$s56 = "SELECT`30_50` from descripcion_etaria where sexo_id = 1";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			 $sumae = $rw56['30_50']; 
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('CZ'.$nivel156,$sumae);
+			$nivel156++;
+		}
+
+		////////////////////
+
+			$s55 = "SELECT `mayor_50` from descripcion_etaria where sexo_id = 2";
+		$r55 = mysqli_query($conn,$s55);
+		$nivel155 = 10;
+		while ($rw55=mysqli_fetch_assoc($r55)) {
+	
+			 $sumae = $rw55['mayor_50']; 
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('DA'.$nivel155,$sumae);
+			$nivel155++;
+		}
+
+		// sacar total empleados mujeres
+		$s56 = "SELECT`mayor_50` from descripcion_etaria where sexo_id = 1";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			 $sumae = $rw56['mayor_50']; 
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('DB'.$nivel156,$sumae);
+			$nivel156++;
+		}
+
+
+		$objPHPExcel->getActiveSheet()->SetCellValue('DC'.$fila, '=SUM(CW'.$fila.':DB'.$fila.')');
+
+
+// vulnerabilidad empleados
+
+		$s56 = "SELECT condicion_vulnerabilidad_es.discapacidad,cabeza_familia,adulto_mayor,indigena,com_negras,campesino,reinsertado,victimas_armado,vulnerabilidad_econo from condicion_vulnerabilidad_es where condicion_vulnerabilidad_es.total_rotulo_id = 4 and condicion_vulnerabilidad_es.sexo_id = 2";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['discapacidad'];
+			$discapacidad2 = $rw56['cabeza_familia'];
+			$discapacidad3 = $rw56['adulto_mayor'];
+			$discapacidad4 = $rw56['indigena'];
+			$discapacidad5 = $rw56['com_negras'];
+			$discapacidad6 = $rw56['campesino'];
+			$discapacidad7 = $rw56['reinsertado'];
+			$discapacidad8 = $rw56['victimas_armado'];
+			$discapacidad9 = $rw56['vulnerabilidad_econo'];
+
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('DD'.$nivel156,$discapacidad1);
+			$objPHPExcel->getActiveSheet()->SetCellValue('DF'.$nivel156,$discapacidad2);
+			$objPHPExcel->getActiveSheet()->SetCellValue('DH'.$nivel156,$discapacidad3);
+			$objPHPExcel->getActiveSheet()->SetCellValue('DJ'.$nivel156,$discapacidad4);
+			$objPHPExcel->getActiveSheet()->SetCellValue('DL'.$nivel156,$discapacidad5);
+			$objPHPExcel->getActiveSheet()->SetCellValue('DN'.$nivel156,$discapacidad6);
+			$objPHPExcel->getActiveSheet()->SetCellValue('DP'.$nivel156,$discapacidad7);
+			$objPHPExcel->getActiveSheet()->SetCellValue('DR'.$nivel156,$discapacidad8);
+			$objPHPExcel->getActiveSheet()->SetCellValue('DT'.$nivel156,$discapacidad9);
+
+			$nivel156++;
+		}
+
+
+// sacar total empleados mujeres
+		$s56 = "SELECT cantidad from otro_condicion_vulneravibilidad where otro_rotulo_id = 4 and sexo_id = 2";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			 $sumae = $rw56['cantidad']; 
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('DV'.$nivel156,$sumae);
+			$nivel156++;
+		}
+
+
+
+		$s56 = "SELECT condicion_vulnerabilidad_es.discapacidad,cabeza_familia,adulto_mayor,indigena,com_negras,campesino,reinsertado,victimas_armado,vulnerabilidad_econo from condicion_vulnerabilidad_es where condicion_vulnerabilidad_es.total_rotulo_id = 4 and condicion_vulnerabilidad_es.sexo_id = 1";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['discapacidad'];
+			$discapacidad2 = $rw56['cabeza_familia'];
+			$discapacidad3 = $rw56['adulto_mayor'];
+			$discapacidad4 = $rw56['indigena'];
+			$discapacidad5 = $rw56['com_negras'];
+			$discapacidad6 = $rw56['campesino'];
+			$discapacidad7 = $rw56['reinsertado'];
+			$discapacidad8 = $rw56['victimas_armado'];
+			$discapacidad9 = $rw56['vulnerabilidad_econo'];
+
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('DE'.$nivel156,$discapacidad1);
+			$objPHPExcel->getActiveSheet()->SetCellValue('DG'.$nivel156,$discapacidad2);
+			$objPHPExcel->getActiveSheet()->SetCellValue('DI'.$nivel156,$discapacidad3);
+			$objPHPExcel->getActiveSheet()->SetCellValue('DK'.$nivel156,$discapacidad4);
+			$objPHPExcel->getActiveSheet()->SetCellValue('DM'.$nivel156,$discapacidad5);
+			$objPHPExcel->getActiveSheet()->SetCellValue('DO'.$nivel156,$discapacidad6);
+			$objPHPExcel->getActiveSheet()->SetCellValue('DQ'.$nivel156,$discapacidad7);
+			$objPHPExcel->getActiveSheet()->SetCellValue('DS'.$nivel156,$discapacidad8);
+			$objPHPExcel->getActiveSheet()->SetCellValue('DU'.$nivel156,$discapacidad9);
+
+			$nivel156++;
+		}
+
+
+// sacar total empleados mujeres
+		$s56 = "SELECT cantidad from otro_condicion_vulneravibilidad where otro_rotulo_id = 4 and sexo_id = 1";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			 $sumae = $rw56['cantidad']; 
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('DW'.$nivel156,$sumae);
+			$nivel156++;
+		}
+
+		$objPHPExcel->getActiveSheet()->SetCellValue('DX'.$fila, '=SUM(DD'.$fila.':DW'.$fila.')');
+
+
+
+		$s56 = "SELECT primaria,bachillerato,tecnico,tecnologo,universitario from nivel_educativo WHERE sexo_id = 2";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['primaria'];
+			$discapacidad2 = $rw56['bachillerato'];
+			$discapacidad3 = $rw56['tecnico'];
+			$discapacidad4 = $rw56['tecnologo'];
+			$discapacidad5 = $rw56['universitario'];
+
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('DY'.$nivel156,$discapacidad1);
+			$objPHPExcel->getActiveSheet()->SetCellValue('EA'.$nivel156,$discapacidad2);
+			$objPHPExcel->getActiveSheet()->SetCellValue('EC'.$nivel156,$discapacidad3);
+			$objPHPExcel->getActiveSheet()->SetCellValue('EE'.$nivel156,$discapacidad4);
+			$objPHPExcel->getActiveSheet()->SetCellValue('EG'.$nivel156,$discapacidad5);
+
+			$nivel156++;
+		}
+
+
+			$s56 = "SELECT cantidad from otro_nivel_educativo where sexo_id = 2";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			 $sumae = $rw56['cantidad']; 
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('EI'.$nivel156,$sumae);
+			$nivel156++;
+		}
+
+/////
+		$s56 = "SELECT primaria,bachillerato,tecnico,tecnologo,universitario from nivel_educativo WHERE sexo_id = 1";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['primaria'];
+			$discapacidad2 = $rw56['bachillerato'];
+			$discapacidad3 = $rw56['tecnico'];
+			$discapacidad4 = $rw56['tecnologo'];
+			$discapacidad5 = $rw56['universitario'];
+
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('DZ'.$nivel156,$discapacidad1);
+			$objPHPExcel->getActiveSheet()->SetCellValue('EB'.$nivel156,$discapacidad2);
+			$objPHPExcel->getActiveSheet()->SetCellValue('ED'.$nivel156,$discapacidad3);
+			$objPHPExcel->getActiveSheet()->SetCellValue('EF'.$nivel156,$discapacidad4);
+			$objPHPExcel->getActiveSheet()->SetCellValue('EH'.$nivel156,$discapacidad5);
+
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT cantidad from otro_nivel_educativo where sexo_id = 1";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			 $sumae = $rw56['cantidad']; 
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('EJ'.$nivel156,$sumae);
+			$nivel156++;
+		}
+
+////////////
+
+		$s56 = "SELECT directo,indirecto,temporal from tipo_contrato where sexo_id = 2";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['directo'];
+			$discapacidad2 = $rw56['indirecto'];
+			$discapacidad3 = $rw56['temporal'];
+
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('EK'.$nivel156,$discapacidad1);
+			$objPHPExcel->getActiveSheet()->SetCellValue('EM'.$nivel156,$discapacidad2);
+			$objPHPExcel->getActiveSheet()->SetCellValue('EO'.$nivel156,$discapacidad3);
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT directo,indirecto,temporal from tipo_contrato where sexo_id = 1";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['directo'];
+			$discapacidad2 = $rw56['indirecto'];
+			$discapacidad3 = $rw56['temporal'];
+
+
+			$objPHPExcel->getActiveSheet()->SetCellValue('EL'.$nivel156,$discapacidad1);
+			$objPHPExcel->getActiveSheet()->SetCellValue('EN'.$nivel156,$discapacidad2);
+			$objPHPExcel->getActiveSheet()->SetCellValue('EP'.$nivel156,$discapacidad3);
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT si_no.nombre from hoja_verificacion_1
+		INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id
+		INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id
+		where pregunta_indicativa.aspecto_id = 3 and pregunta_id IN(6) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['nombre'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('EQ'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT si_no.nombre from hoja_verificacion_1
+		INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id
+		INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id
+		where pregunta_indicativa.aspecto_id = 3 and pregunta_id IN(7) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['nombre'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('ER'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT si_no.nombre from hoja_verificacion_1
+		INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id
+		INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id
+		where pregunta_indicativa.aspecto_id = 3 and pregunta_id IN(8) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['nombre'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('ES'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT si_no.nombre from hoja_verificacion_1
+		INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id
+		INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id
+		where pregunta_indicativa.aspecto_id = 3 and pregunta_id IN(9) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['nombre'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('ET'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT si_no.nombre from hoja_verificacion_1
+		INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id
+		INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id
+		where pregunta_indicativa.aspecto_id = 3 and pregunta_id IN(10) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['nombre'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('EU'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT si_no.nombre from hoja_verificacion_1
+		INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id
+		INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id
+		where pregunta_indicativa.aspecto_id = 3 and pregunta_id IN(11) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['nombre'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('EV'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT si_no.nombre from hoja_verificacion_1
+		INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id
+		INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id
+		where pregunta_indicativa.aspecto_id = 3 and pregunta_id IN(13) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['nombre'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('EW'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+//////////////////////////
+
+
+		$s56 = "SELECT si_no.nombre as respuesta from hoja_verificacion_1
+		INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id
+		INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id        
+		where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(16) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('EX'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT pregunta_id,cumplimiento_id,si_no.nombre as respuesta from hoja_verificacion_1 INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id INNER JOIN si_no ON si_no.id = hoja_verificacion_1.cumplimiento_id where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(16) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('EY'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+		//////////
+
+
+
+		$s56 = "SELECT si_no.nombre as respuesta from hoja_verificacion_1
+		INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id
+		INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id        
+		where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(17) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('EZ'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT pregunta_id,cumplimiento_id,si_no.nombre as respuesta from hoja_verificacion_1 INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id INNER JOIN si_no ON si_no.id = hoja_verificacion_1.cumplimiento_id where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(17) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FA'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+/////
+
+
+		$s56 = "SELECT si_no.nombre as respuesta from hoja_verificacion_1
+		INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id
+		INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id        
+		where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(18) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FB'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT pregunta_id,cumplimiento_id,si_no.nombre as respuesta from hoja_verificacion_1 INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id INNER JOIN si_no ON si_no.id = hoja_verificacion_1.cumplimiento_id where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(18) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FC'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+	///
+
+		$s56 = "SELECT si_no.nombre as respuesta from hoja_verificacion_1
+		INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id
+		INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id        
+		where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(19) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FD'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT pregunta_id,cumplimiento_id,si_no.nombre as respuesta from hoja_verificacion_1 INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id INNER JOIN si_no ON si_no.id = hoja_verificacion_1.cumplimiento_id where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(19) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FE'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+////////
+
+
+		$s56 = "SELECT si_no.nombre as respuesta from hoja_verificacion_1
+		INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id
+		INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id        
+		where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(20) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FF'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT pregunta_id,cumplimiento_id,si_no.nombre as respuesta from hoja_verificacion_1 INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id INNER JOIN si_no ON si_no.id = hoja_verificacion_1.cumplimiento_id where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(20) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FG'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+////
+
+
+		$s56 = "SELECT si_no.nombre as respuesta from hoja_verificacion_1
+		INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id
+		INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id        
+		where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(22) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FH'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT pregunta_id,cumplimiento_id,si_no.nombre as respuesta from hoja_verificacion_1 INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id INNER JOIN si_no ON si_no.id = hoja_verificacion_1.cumplimiento_id where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(22) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FI'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+///////
+
+		$s56 = "SELECT si_no.nombre as respuesta from hoja_verificacion_1
+		INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id
+		INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id        
+		where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(23) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FJ'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT pregunta_id,cumplimiento_id,si_no.nombre as respuesta from hoja_verificacion_1 INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id INNER JOIN si_no ON si_no.id = hoja_verificacion_1.cumplimiento_id where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(23) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FK'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+///////
+
+		$s56 = "SELECT si_no.nombre as respuesta from hoja_verificacion_1
+		INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id
+		INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id        
+		where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(24) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FL'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT pregunta_id,cumplimiento_id,si_no.nombre as respuesta from hoja_verificacion_1 INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id INNER JOIN si_no ON si_no.id = hoja_verificacion_1.cumplimiento_id where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(24) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FM'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+////////
+
+
+
+		$s56 = "SELECT si_no.nombre as respuesta from hoja_verificacion_1
+		INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id
+		INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id        
+		where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(25) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FN'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+		$s56 = "SELECT pregunta_id,cumplimiento_id,si_no.nombre as respuesta from hoja_verificacion_1 INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id INNER JOIN si_no ON si_no.id = hoja_verificacion_1.cumplimiento_id where pregunta_indicativa.aspecto_id = 4 and pregunta_id IN(25) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FO'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+/////////
+
+		$s56 = "SELECT si_no.nombre as respuesta from hoja_verificacion_1 INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id where pregunta_indicativa.aspecto_id = 5 and pregunta_id IN(29) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FP'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+
+	$s56 = "SELECT si_no.nombre as respuesta from hoja_verificacion_1 INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id where pregunta_indicativa.aspecto_id = 5 and pregunta_id IN(30) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FQ'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+	//////
+
+
+$s56 = "SELECT si_no.nombre as respuesta from hoja_verificacion_1 INNER JOIN pregunta_indicativa on pregunta_indicativa.id = hoja_verificacion_1.pregunta_id INNER JOIN si_no ON si_no.id = hoja_verificacion_1.respuesta_id where pregunta_indicativa.aspecto_id = 6 and pregunta_id IN(32) ORDER BY hoja_verificacion_1.id ASC";
+		$r56 = mysqli_query($conn,$s56);
+		$nivel156 = 10;
+		while ($rw56=mysqli_fetch_assoc($r56)) {
+	
+			$discapacidad1 = $rw56['respuesta'];
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('FR'.$nivel156,$discapacidad1);
+			$nivel156++;
+		}
+
+//////////
+
+
+$s56 = "SELECT si_no.nombre from actividad_empresa
+INNER JOIN si_no ON si_no.id = actividad_empresa.si_no_actividad_id
+where actividad_item_id = 1";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('FS'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////
+
+$s56 = "SELECT si_no.nombre from actividad_empresa
+INNER JOIN si_no ON si_no.id = actividad_empresa.si_no_actividad_id
+where actividad_item_id = 2";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('FT'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+
+/////
+
+$s56 = "SELECT si_no.nombre from actividad_empresa
+INNER JOIN si_no ON si_no.id = actividad_empresa.si_no_actividad_id
+where actividad_item_id = 3";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('FU'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT etapa_empresa.nombre FROM `empresa`
+INNER JOIN etapa_empresa ON etapa_empresa.id = empresa.etapa_empresa_id";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('FV'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+
+/////////
+
+$s56 = "SELECT confirmacion FROM `conservacion` WHERE pregunta_id = 109";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['confirmacion'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('FW'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT confirmacion FROM `conservacion` WHERE pregunta_id = 110";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['confirmacion'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('FX'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT confirmacion FROM `conservacion` WHERE pregunta_id = 111";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['confirmacion'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('FY'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT confirmacion FROM `conservacion` WHERE pregunta_id = 112";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['confirmacion'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('FZ'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT confirmacion FROM `conservacion` WHERE pregunta_id = 113";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['confirmacion'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GA'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT confirmacion FROM `conservacion` WHERE pregunta_id = 114";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['confirmacion'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GB'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT confirmacion FROM `conservacion` WHERE pregunta_id = 115";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['confirmacion'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GC'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT confirmacion FROM `conservacion` WHERE pregunta_id = 116";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['confirmacion'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GD'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT confirmacion FROM `conservacion` WHERE pregunta_id = 117";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['confirmacion'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GE'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT confirmacion FROM `conservacion` WHERE pregunta_id = 118";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['confirmacion'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GF'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT otro_nombre,confirmacion FROM `conservacion` WHERE pregunta_id = 119";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$nombre = $rw56['otro_nombre'];
+$discapacidad1 = $rw56['confirmacion'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GG'.$nivel156,$nombre.' - '.$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 82";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GH'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 83";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GI'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 84";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GJ'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 85";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GK'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+
+/////////
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 86";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GL'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 87";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GM'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 88";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('Gn'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 89";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GO'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+
+/////////
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 90";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GP'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 91";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GQ'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 92";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GR'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+
+/////////
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 93";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GS'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+/////////
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 95";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GT'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 96";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GU'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 97";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GV'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 98";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GW'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 99";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GX'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 100";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GY'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 101";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('GZ'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 102";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('HA'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 103";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('Hb'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 104";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('HC'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 105";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('HD'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 106";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('HE'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+$s56 = "SELECT si_no.nombre from impacto_practicas
+		INNER JOIN si_no ON si_no.id = impacto_practicas.respuesta_id
+		where pregunta_id = 107";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('HF'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+
+
+$s56 = "SELECT si_no.nombre from turismo
+		INNER JOIN si_no ON si_no.id = turismo.respuesta_id
+		where pregunta_id = 145";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('HG'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+
+$s56 = "SELECT si_no.nombre from turismo
+		INNER JOIN si_no ON si_no.id = turismo.respuesta_id
+		where pregunta_id = 146";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('HH'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+$s56 = "SELECT si_no.nombre from turismo
+		INNER JOIN si_no ON si_no.id = turismo.respuesta_id
+		where pregunta_id = 147";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('HI'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+$s56 = "SELECT si_no.nombre from turismo
+		INNER JOIN si_no ON si_no.id = turismo.respuesta_id
+		where pregunta_id = 148";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('HJ'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+$s56 = "SELECT si_no.nombre from turismo
+		INNER JOIN si_no ON si_no.id = turismo.respuesta_id
+		where pregunta_id = 149";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('HK'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+
+$s56 = "SELECT si_no.nombre from turismo
+		INNER JOIN si_no ON si_no.id = turismo.respuesta_id
+		where pregunta_id = 150";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('HL'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+$s56 = "SELECT si_no.nombre from turismo
+		INNER JOIN si_no ON si_no.id = turismo.respuesta_id
+		where pregunta_id = 151";
+
+$r56 = mysqli_query($conn,$s56);
+$nivel156 = 10;
+while ($rw56=mysqli_fetch_assoc($r56)) {
+
+$discapacidad1 = $rw56['nombre'];
+
+$objPHPExcel->getActiveSheet()->SetCellValue('HM'.$nivel156,$discapacidad1);
+$nivel156++;
+}
+
+
+
+
+
+
+
+
+
+
+		$fila++;
 	 }
 
 

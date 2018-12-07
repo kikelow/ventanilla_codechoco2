@@ -36,14 +36,14 @@ for ($i=0; $i < sizeof($impacto_amb_confirmacion) ; $i++) {
 	}else if (!$impacto_amb_check) {
 		$s = "INSERT INTO impacto_practicas
 		VALUES (null,'$info_com_id','$impacto_amb_confirmacion[$i]','','4','no')";
-		mysqli_query($conn,$s);
+		mysqli_query($conn,$s) or die(mysqli_error($conn));
 	}
 }
 for ($i=0; $i <sizeof($resultado_nocheck) ; $i++) { 
 	if ($resultado_nocheck[$i]) {
 		$s = "INSERT INTO impacto_practicas
 		VALUES (null,'$info_com_id','$resultado_nocheck[$i]','','4','no')";
-		mysqli_query($conn,$s);
+		mysqli_query($conn,$s) or die(mysqli_error($conn));
 	}
 }
 
