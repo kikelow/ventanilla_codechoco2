@@ -9,7 +9,7 @@ $persona_id = $_POST['persona_id'];
 //$fecha_publicacion = $_POST['fecha_publicacion_nt'];
 // $fuente_autor = $_POST['autor'];
 // $imagen = $_POST['imagen'];
-
+$clave = password_hash($clave,PASSWORD_DEFAULT);
 
 $sql = "UPDATE login SET
  	 		usuario='$usuario',

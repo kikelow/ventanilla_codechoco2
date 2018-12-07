@@ -716,7 +716,7 @@ function cargar_datos_usuario(id){
 					$('.oculto4').show('slow');
  					$('#id').val(content["id"]);
    					$('#usuario').val(content["usuario"]);
-	   				$('#clave').val(content["clave"]);
+	   				// $('#clave').val(content["clave"]);
 					$('#empleado').val(content["persona_id"]);
 					$('#empleado').material_select();
 				

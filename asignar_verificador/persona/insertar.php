@@ -5,7 +5,7 @@ include "../../conexion.php";
 // Inserto los datos del verificador
 	 $s="INSERT INTO `persona`(`id`,`identificacion`, `nombre1`, `nombre2`, `apellido1`, `paellido2`, `correo`, `celular`, `fijo`, `direccion`, `rol_id`, `entidad`, `area_id`, `cargo`) VALUES (null,'$_POST[identificacion]','$_POST[nombre1]','$_POST[nombre2]','$_POST[apellido1]','$_POST[apellido2]','$_POST[email]','$_POST[celular]','$_POST[fijo]','$_POST[direccion]','2','','1','')";
 	mysqli_query($conn,$s) or die(mysqli_error($conn));
-	echo $s;
+	// echo $s;
 
 //selecciono el id del ultimo verificador insertado
 	$s="SELECT id FROM persona WHERE id = (SELECT MAX(id) FROM persona)";
@@ -13,6 +13,7 @@ include "../../conexion.php";
 	$persona_id="";
 	while($resul=mysqli_fetch_array($cs)){
 		$persona_id=$resul[0];
+		// echo $persona_id;
 	}
 
 	$pass = $_POST['identificacion'];
@@ -20,5 +21,5 @@ include "../../conexion.php";
 
 	$s="INSERT INTO `login`(`id`,`usuario`, `clave`, `persona_id`) VALUES (null,'$_POST[identificacion]','$pass','$persona_id')";
 	mysqli_query($conn,$s) or die(mysqli_error($conn));
-	echo $s;
+	// echo $s;
  ?>

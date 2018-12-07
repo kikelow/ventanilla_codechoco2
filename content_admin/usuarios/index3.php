@@ -72,7 +72,7 @@
 
               
 			          <div class="input-field col s12">
-			  		    <select name="empleado" id="empleado">
+			  		    <select name="empleado" id="empleado" disabled="">
 			  		      <option value="" disabled selected>Seleccione...</option>
 			  
 			  				<?php 
