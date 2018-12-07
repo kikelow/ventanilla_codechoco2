@@ -79,7 +79,7 @@ for ($i=0; $i <sizeof($resultado_nocheck) ; $i++) {
 	}
 }
 
-//insertar otro de impacto ambiental
+//insertar otro de buenas practicas
 for ($i=0; $i <count($_POST['otro_practicas_nom']) ; $i++) { 
 $s="INSERT INTO `impacto_practicas` VALUES(null,'$info_com_id','108','".$_POST['otro_practicas_nom'][$i]."','".$_POST['otro_practicas_amb_si_no'][$i]."','')";
 mysqli_query($conn,$s);
@@ -258,7 +258,7 @@ mysqli_query($conn,$s) or die(mysqli_error($conn));
 
 //____________________________________________________________________________________________________
 
-//registrar datos de areas de conservacion
+//registrar datos de actividades
 $actividades_check = $_POST['actividades'];
 $actividades_confirmacion = $_POST['actividades_hidden'];
 $actividades_recurso = $_POST['actividades_recurso'];
