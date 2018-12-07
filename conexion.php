@@ -7,7 +7,7 @@ if (!$conn) {
 }
 else{
 
-	 mysqli_select_db($conn,'vev_codechoco_2017_2');
+	 mysqli_select_db($conn,'vev_codechoco_2017');
 	 // mysqli_select_db($conn,'codechoc_ventanilla');
 	$tildes = $conn->query("SET NAMES 'utf8'");
 }

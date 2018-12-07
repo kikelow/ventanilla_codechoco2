@@ -1007,7 +1007,7 @@ var empresa = $('#empresa').val()
 		type: 'POST',
 		data: $('#form_informacion').serialize(),
     beforeSend: function() {
-      $('#registrar_informacion').attr('disabled', 'disabled');
+      // $('#registrar_informacion').attr('disabled', 'disabled');
     // console.log('cargando')
     swal ({
           // icon: "success",
@@ -1025,7 +1025,7 @@ var empresa = $('#empresa').val()
             visible: false
           },
       });
-      setTimeout("document.location=document.location",1500);
+      // setTimeout("document.location=document.location",1500);
     }
 	})
 	
