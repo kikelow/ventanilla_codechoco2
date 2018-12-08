@@ -146,6 +146,31 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
     )
 	));
 
+//Estilo de la informacion
+	 $estiloInformacion2 = new PHPExcel_Style();
+	$estiloInformacion2->applyFromArray( array(
+    'font' => array(
+	'name'  => 'Arial Arrow',
+	'bold'  => true,
+	'color' => array(
+	'rgb' => '000000'
+	)
+    ),
+    'fill' => array(
+	'type'  => PHPExcel_Style_Fill::FILL_SOLID,
+	'color' => array('rgb' => 'EDEDED')
+	),
+    'borders' => array(
+	'allborders' => array(
+	'style' => PHPExcel_Style_Border::BORDER_THIN
+	)
+    ),
+	'alignment' =>  array(
+	'horizontal'=> PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+	'vertical'  => PHPExcel_Style_Alignment::VERTICAL_CENTER
+    )
+	));
+
 
 
 	$objPHPExcel = new PHPExcel();
@@ -178,13 +203,14 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 	$objPHPExcel->getActiveSheet()->getStyle('FR7')->applyFromArray($estiloTituloColumnas);
 	$objPHPExcel->getActiveSheet()->getStyle('EQ6:FR6')->applyFromArray($estilor2);
 	$objPHPExcel->getActiveSheet()->getStyle('FS7:HF7')->applyFromArray($estilor2);	
-	$objPHPExcel->getActiveSheet()->getStyle('FS8:FU8')->applyFromArray($estiloTituloColumnas);
+	// $objPHPExcel->getActiveSheet()->getStyle('FS8:FU8')->applyFromArray($estiloTituloColumnas);
 	$objPHPExcel->getActiveSheet()->getStyle('FV8:FV9')->applyFromArray($estiloTituloColumnas);
 	$objPHPExcel->getActiveSheet()->getStyle('FW8:GG8')->applyFromArray($estiloTituloColumnas);
 	$objPHPExcel->getActiveSheet()->getStyle('GH8:GS8')->applyFromArray($estiloTituloColumnas);
 	$objPHPExcel->getActiveSheet()->getStyle('GT8:HF8')->applyFromArray($estiloTituloColumnas);
 	$objPHPExcel->getActiveSheet()->getStyle('HG8:HM8')->applyFromArray($estiloTituloColumnas);
 	$objPHPExcel->getActiveSheet()->getStyle('DD8:DW8')->applyFromArray($estilor3);
+	// $objPHPExcel->getActiveSheet()->getStyle('A9:S9')->applyFromArray($estiloInformacion);
 
 	// $objPHPExcel->getActiveSheet()->getStyle('A5:DU5')->applyFromArray($estiloTituloColumnas);
 	// $objPHPExcel->getActiveSheet()->getStyle('A6:DU6')->applyFromArray($estiloTituloColumnas); // aplicar estilos
@@ -347,7 +373,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 	$objPHPExcel->getActiveSheet()->mergeCells('CL8:CM8');
 	$objPHPExcel->getActiveSheet()->setCellValue('CL9', 'Si/No');
 	$objPHPExcel->getActiveSheet()->mergeCells('CL9:CM9');
-	
+	// $objPHPExcel->getActiveSheet()->mergeCells('CF8:CK8');
 
 	$objPHPExcel->getActiveSheet()->setCellValue('CN8', 'Ventas Totales (pesos)');
 	$objPHPExcel->getActiveSheet()->mergeCells('CN8:CN9');
@@ -673,11 +699,11 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 
 
 	 	// sacar el nivel 1.1 de la hoja de verificacion 2
-	 	$s1 = "SELECT calificador.nombre AS calificador FROM empresa
-			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
-			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
-			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+	 	$s1 = "SELECT empresa_id,hoja_verificacion_2.id,calificador.nombre AS calificador FROM empresa
+            INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
+            INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
+            INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
+            WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.1 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r1 = mysqli_query($conn,$s1);
 		$nivel11 = 10;
 		while ($rw1=mysqli_fetch_assoc($r1)) {
@@ -690,7 +716,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.2 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r2 = mysqli_query($conn,$s2);
 		$nivel12 = 10;
 		while ($rw2=mysqli_fetch_assoc($r2)) {
@@ -703,7 +729,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.3 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r3 = mysqli_query($conn,$s3);
 		$nivel13 = 10;
 		while ($rw3=mysqli_fetch_assoc($r3)) {
@@ -716,7 +742,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.4 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.4 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r4 = mysqli_query($conn,$s4);
 		$nivel14 = 10;
 		while ($rw4=mysqli_fetch_assoc($r4)) {
@@ -729,7 +755,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.5 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.5 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r5 = mysqli_query($conn,$s5);
 		$nivel15 = 10;
 		while ($rw5=mysqli_fetch_assoc($r5)) {
@@ -742,7 +768,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.6 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.6 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r6 = mysqli_query($conn,$s6);
 		$nivel16 = 10;
 		while ($rw6=mysqli_fetch_assoc($r6)) {
@@ -755,7 +781,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.7 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.7 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r7 = mysqli_query($conn,$s7);
 		$nivel17 = 10;
 		while ($rw7=mysqli_fetch_assoc($r7)) {
@@ -768,7 +794,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.8 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.8 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r8 = mysqli_query($conn,$s8);
 		$nivel18 = 10;
 		while ($rw8=mysqli_fetch_assoc($r8)) {
@@ -781,7 +807,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.9 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 8 AND pregunta_indicativa.No = 1.9 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r9 = mysqli_query($conn,$s9);
 		$nivel19 = 10;
 		while ($rw9=mysqli_fetch_assoc($r9)) {
@@ -794,7 +820,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 9 AND pregunta_indicativa.No = 2.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 9 AND pregunta_indicativa.No = 2.1 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r10 = mysqli_query($conn,$s10);
 		$nivel110 = 10;
 		while ($rw10=mysqli_fetch_assoc($r10)) {
@@ -807,7 +833,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 9 AND pregunta_indicativa.No = 2.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 9 AND pregunta_indicativa.No = 2.2 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r11 = mysqli_query($conn,$s11);
 		$nivel111 = 10;
 		while ($rw11=mysqli_fetch_assoc($r11)) {
@@ -820,7 +846,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 9 AND pregunta_indicativa.No = 2.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 9 AND pregunta_indicativa.No = 2.3 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r12 = mysqli_query($conn,$s12);
 		$nivel112 = 10;
 		while ($rw12=mysqli_fetch_assoc($r12)) {
@@ -833,7 +859,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 9 AND pregunta_indicativa.No = 2.4 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 9 AND pregunta_indicativa.No = 2.4 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r13 = mysqli_query($conn,$s13);
 		$nivel113 = 10;
 		while ($rw13=mysqli_fetch_assoc($r13)) {
@@ -846,7 +872,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 10 AND pregunta_indicativa.No = 3.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 10 AND pregunta_indicativa.No = 3.1 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r14 = mysqli_query($conn,$s14);
 		$nivel114 = 10;
 		while ($rw14=mysqli_fetch_assoc($r14)) {
@@ -859,7 +885,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 10 AND pregunta_indicativa.No = 3.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 10 AND pregunta_indicativa.No = 3.2 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r15 = mysqli_query($conn,$s15);
 		$nivel115 = 10;
 		while ($rw15=mysqli_fetch_assoc($r15)) {
@@ -872,7 +898,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 10 AND pregunta_indicativa.No = 3.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 10 AND pregunta_indicativa.No = 3.3 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r16 = mysqli_query($conn,$s16);
 		$nivel116 = 10;
 		while ($rw16=mysqli_fetch_assoc($r16)) {
@@ -885,7 +911,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 11 AND pregunta_indicativa.No = 4.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 11 AND pregunta_indicativa.No = 4.1 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r17 = mysqli_query($conn,$s17);
 		$nivel117 = 10;
 		while ($rw17=mysqli_fetch_assoc($r17)) {
@@ -898,7 +924,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 11 AND pregunta_indicativa.No = 4.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 11 AND pregunta_indicativa.No = 4.2 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r18 = mysqli_query($conn,$s18);
 		$nivel118 = 10;
 		while ($rw18=mysqli_fetch_assoc($r18)) {
@@ -911,7 +937,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 12 AND pregunta_indicativa.No = 5.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 12 AND pregunta_indicativa.No = 5.1 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r19 = mysqli_query($conn,$s19);
 		$nivel119 = 10;
 		while ($rw19=mysqli_fetch_assoc($r19)) {
@@ -924,7 +950,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 12 AND pregunta_indicativa.No = 5.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 12 AND pregunta_indicativa.No = 5.2 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r20 = mysqli_query($conn,$s20);
 		$nivel120 = 10;
 		while ($rw20=mysqli_fetch_assoc($r20)) {
@@ -937,7 +963,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 13 AND pregunta_indicativa.No = 6.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 13 AND pregunta_indicativa.No = 6.1 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r21 = mysqli_query($conn,$s21);
 		$nivel121 = 10;
 		while ($rw21=mysqli_fetch_assoc($r21)) {
@@ -950,7 +976,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 13 AND pregunta_indicativa.No = 6.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 13 AND pregunta_indicativa.No = 6.2 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r22 = mysqli_query($conn,$s22);
 		$nivel122 = 10;
 		while ($rw22=mysqli_fetch_assoc($r22)) {
@@ -963,7 +989,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 13 AND pregunta_indicativa.No = 6.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 13 AND pregunta_indicativa.No = 6.3 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r23 = mysqli_query($conn,$s23);
 		$nivel123 = 10;
 		while ($rw23=mysqli_fetch_assoc($r23)) {
@@ -976,7 +1002,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 14 AND pregunta_indicativa.No = 7.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 14 AND pregunta_indicativa.No = 7.1 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r24 = mysqli_query($conn,$s24);
 		$nivel124 = 10;
 		while ($rw24=mysqli_fetch_assoc($r24)) {
@@ -989,7 +1015,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 14 AND pregunta_indicativa.No = 7.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 14 AND pregunta_indicativa.No = 7.2 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r25 = mysqli_query($conn,$s25);
 		$nivel125 = 10;
 		while ($rw25=mysqli_fetch_assoc($r25)) {
@@ -1002,7 +1028,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 14 AND pregunta_indicativa.No = 7.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 14 AND pregunta_indicativa.No = 7.3 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r26 = mysqli_query($conn,$s26);
 		$nivel126 = 10;
 		while ($rw26=mysqli_fetch_assoc($r26)) {
@@ -1015,7 +1041,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 15 AND pregunta_indicativa.No = 8.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 15 AND pregunta_indicativa.No = 8.1 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r27 = mysqli_query($conn,$s27);
 		$nivel127 = 10;
 		while ($rw27=mysqli_fetch_assoc($r27)) {
@@ -1028,7 +1054,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 15 AND pregunta_indicativa.No = 8.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 15 AND pregunta_indicativa.No = 8.2 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r28 = mysqli_query($conn,$s28);
 		$nivel128 = 10;
 		while ($rw28=mysqli_fetch_assoc($r28)) {
@@ -1041,7 +1067,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 15 AND pregunta_indicativa.No = 8.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 15 AND pregunta_indicativa.No = 8.3 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r29 = mysqli_query($conn,$s29);
 		$nivel129 = 10;
 		while ($rw29=mysqli_fetch_assoc($r29)) {
@@ -1054,7 +1080,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 15 AND pregunta_indicativa.No = 8.4 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 15 AND pregunta_indicativa.No = 8.4 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r30 = mysqli_query($conn,$s30);
 		$nivel130 = 10;
 		while ($rw30=mysqli_fetch_assoc($r30)) {
@@ -1067,7 +1093,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 16 AND pregunta_indicativa.No = 9.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 16 AND pregunta_indicativa.No = 9.1 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r31 = mysqli_query($conn,$s31);
 		$nivel131 = 10;
 		while ($rw31=mysqli_fetch_assoc($r31)) {
@@ -1080,7 +1106,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 16 AND pregunta_indicativa.No = 9.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 16 AND pregunta_indicativa.No = 9.2 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r32 = mysqli_query($conn,$s32);
 		$nivel132 = 10;
 		while ($rw32=mysqli_fetch_assoc($r32)) {
@@ -1093,7 +1119,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 16 AND pregunta_indicativa.No = 9.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 16 AND pregunta_indicativa.No = 9.3 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r33 = mysqli_query($conn,$s33);
 		$nivel133 = 10;
 		while ($rw33=mysqli_fetch_assoc($r33)) {
@@ -1106,7 +1132,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.1 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r34 = mysqli_query($conn,$s34);
 		$nivel134 = 10;
 		while ($rw34=mysqli_fetch_assoc($r34)) {
@@ -1119,7 +1145,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.2 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r35 = mysqli_query($conn,$s35);
 		$nivel135 = 10;
 		while ($rw35=mysqli_fetch_assoc($r35)) {
@@ -1132,7 +1158,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.3 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r36 = mysqli_query($conn,$s36);
 		$nivel136 = 10;
 		while ($rw36=mysqli_fetch_assoc($r36)) {
@@ -1145,7 +1171,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.4 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.4 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r37 = mysqli_query($conn,$s37);
 		$nivel137 = 10;
 		while ($rw37=mysqli_fetch_assoc($r37)) {
@@ -1158,7 +1184,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.5 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.5 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r38 = mysqli_query($conn,$s38);
 		$nivel138 = 10;
 		while ($rw38=mysqli_fetch_assoc($r38)) {
@@ -1171,7 +1197,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.6 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 17 AND pregunta_indicativa.No = 10.6 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r39 = mysqli_query($conn,$s39);
 		$nivel139 = 10;
 		while ($rw39=mysqli_fetch_assoc($r39)) {
@@ -1184,7 +1210,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 18 AND pregunta_indicativa.No = 11.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 18 AND pregunta_indicativa.No = 11.1 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r40 = mysqli_query($conn,$s40);
 		$nivel140 = 10;
 		while ($rw40=mysqli_fetch_assoc($r40)) {
@@ -1197,7 +1223,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 18 AND pregunta_indicativa.No = 11.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 18 AND pregunta_indicativa.No = 11.2 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r41 = mysqli_query($conn,$s41);
 		$nivel141 = 10;
 		while ($rw41=mysqli_fetch_assoc($r41)) {
@@ -1210,7 +1236,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 18 AND pregunta_indicativa.No = 11.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 18 AND pregunta_indicativa.No = 11.3 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r42 = mysqli_query($conn,$s42);
 		$nivel142 = 10;
 		while ($rw42=mysqli_fetch_assoc($r42)) {
@@ -1223,7 +1249,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 19 AND pregunta_indicativa.No = 8.5 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 19 AND pregunta_indicativa.No = 8.5 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r43 = mysqli_query($conn,$s43);
 		$nivel143 = 10;
 		while ($rw43=mysqli_fetch_assoc($r43)) {
@@ -1236,7 +1262,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 19 AND pregunta_indicativa.No = 8.6 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 19 AND pregunta_indicativa.No = 8.6 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r44 = mysqli_query($conn,$s44);
 		$nivel144 = 10;
 		while ($rw44=mysqli_fetch_assoc($r44)) {
@@ -1249,7 +1275,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 20 AND pregunta_indicativa.No = 12.1 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 20 AND pregunta_indicativa.No = 12.1 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r45 = mysqli_query($conn,$s45);
 		$nivel145 = 10;
 		while ($rw45=mysqli_fetch_assoc($r45)) {
@@ -1262,7 +1288,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 20 AND pregunta_indicativa.No = 12.2 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 20 AND pregunta_indicativa.No = 12.2 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r46 = mysqli_query($conn,$s46);
 		$nivel146 = 10;
 		while ($rw46=mysqli_fetch_assoc($r46)) {
@@ -1275,7 +1301,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 			INNER JOIN hoja_verificacion_2 ON hoja_verificacion_2.empresa_id = empresa.id
 			INNER JOIN calificador ON  calificador.id = hoja_verificacion_2.calificador_id
 			INNER JOIN pregunta_indicativa ON pregunta_indicativa.id = hoja_verificacion_2.pregunta_id
-			WHERE pregunta_indicativa.aspecto_id = 20 AND pregunta_indicativa.No = 12.3 AND empresa.verificacion2 = 'si' order by pregunta_indicativa.No";
+			WHERE pregunta_indicativa.aspecto_id = 20 AND pregunta_indicativa.No = 12.3 AND empresa.verificacion2 = 'si' order by empresa_id";
 		$r47 = mysqli_query($conn,$s47);
 		$nivel147 = 10;
 		while ($rw47=mysqli_fetch_assoc($r47)) {
@@ -1313,6 +1339,7 @@ $s= "SELECT region.nombre as region,departamento.autoridad_amb,empresa.razon_soc
 		$objPHPExcel->getActiveSheet()->SetCellValue('CK'.$fila, '=AVERAGE(AY'.$fila.':BN'.$fila.')');
 
 		$objPHPExcel->getActiveSheet()->SetCellValue('CL'.$fila,$rw['plan_mejora']);
+		$objPHPExcel->getActiveSheet()->mergeCells('CL'.$fila.':CM'.$fila);
 
 		
 
@@ -2832,13 +2859,201 @@ $nivel156++;
 	 }
 
 
-	foreach (range('A', $objPHPExcel->getActiveSheet()->getHighestDataColumn()) as $col) {
-	$objPHPExcel->getActiveSheet()
-	->getColumnDimension($col)
-	->setAutoSize(true);
-	} 
+foreach (range('A','Z') as $col) { 
+     $objPHPExcel->getActiveSheet() 
+       ->getColumnDimension($col) 
+       ->setAutoSize(true);
+    } 
+
+
+
+$objPHPExcel->getActiveSheet()->getColumnDimension('AA')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AB')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AC')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AD')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AE')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AF')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AG')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AH')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AI')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AJ')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AK')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AL')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AM')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AN')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AO')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AP')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AQ')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AR')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AS')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AT')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AU')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AV')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AW')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AX')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AY')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AZ')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('AB')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BB')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BC')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BD')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BE')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BF')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BG')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BH')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BI')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BJ')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BK')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BL')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BM')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BN')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BO')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BP')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BQ')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BR')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BS')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BT')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BU')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BV')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BW')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BX')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BY')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('BZ')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('CA')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('CB')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('CC')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('CD')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('CE')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('CF')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('CG')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('CH')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('CI')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('CJ')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('CK')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('CL')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('CM')->setAutoSize(true);
+// $objPHPExcel->getActiveSheet()->getColumnDimension('Cn')->setAutoSize(true);
+// $objPHPExcel->getActiveSheet()->getColumnDimension('CO')->setAutoSize(true);
+// $objPHPExcel->getActiveSheet()->getColumnDimension('CP')->setAutoSize(true);
+// $objPHPExcel->getActiveSheet()->getColumnDimension('CQ')->setAutoSize(true);
+// $objPHPExcel->getActiveSheet()->getColumnDimension('CR')->setAutoSize(true);
+// $objPHPExcel->getActiveSheet()->getColumnDimension('CS')->setAutoSize(true);
+// $objPHPExcel->getActiveSheet()->getColumnDimension('CT')->setAutoSize(true);
+// $objPHPExcel->getActiveSheet()->getColumnDimension('CU')->setAutoSize(true);
+// $objPHPExcel->getActiveSheet()->getColumnDimension('CV')->setAutoSize(true);
+// $objPHPExcel->getActiveSheet()->getColumnDimension('CW')->setAutoSize(true);
+// $objPHPExcel->getActiveSheet()->getColumnDimension('CX')->setAutoSize(true);
+// $objPHPExcel->getActiveSheet()->getColumnDimension('CY')->setAutoSize(true);
+// $objPHPExcel->getActiveSheet()->getColumnDimension('CZ')->setAutoSize(true);
+// $objPHPExcel->getActiveSheet()->getColumnDimension('DA')->setAutoSize(true);
+// $objPHPExcel->getActiveSheet()->getColumnDimension('DB')->setAutoSize(true);
+// $objPHPExcel->getActiveSheet()->getColumnDimension('DC')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('DD')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('DE')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('DF')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('DG')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('DL')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('DM')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('DR')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('DS')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('DT')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('DU')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('EK')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('EL')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('EM')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('En')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('EO')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('EP')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('ES')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('EW')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('EX')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('EY')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('EZ')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FA')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FB')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FC')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FD')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FE')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FF')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FG')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FH')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FI')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FJ')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FK')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FL')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FM')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FN')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FO')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FP')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FQ')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FR')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FS')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FT')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FU')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FV')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FW')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FX')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FY')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('FZ')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GA')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GB')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GC')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GD')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GE')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GF')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GG')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GH')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GI')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GJ')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GK')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GL')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GM')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GN')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GO')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GP')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GQ')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GR')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GS')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GT')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GU')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GV')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GW')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GX')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GY')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('GZ')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('HA')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('HB')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('HC')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('HD')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('HE')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('HF')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('HG')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('HH')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('HI')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('HJ')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('HK')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('HL')->setAutoSize(true);
+$objPHPExcel->getActiveSheet()->getColumnDimension('HM')->setAutoSize(true);
+
 
 $objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "A10:HM".$fila);
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion2, "A9:S9");
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion2, "W9:CM9");
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion2, "CW8:Db9");
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion2, "CQ9:CV9");
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion2, "DC8:DC9");
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion2, "DD8:DW8");
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion2, "DD9:DW9");
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion2, "DX8:DX9");
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion2, "DY8:EP8");
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion2, "DY9:EP9");
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion2, "EX8:FO8");
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion2, "EQ9:FO9");
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion2, "FP8:FR9");
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion2, "FS9:FU9");
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion2, "FS8:FU8");
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion2, "FW9:HM9");
+
 //$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "CL7:DU".$fila);
 
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
