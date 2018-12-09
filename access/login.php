@@ -21,6 +21,8 @@ if (isset($_POST["usuario"])) {
 		}
 
 		$verifi_contraseña = password_verify($contrasena,$clave_bd);
+		
+		echo $verifi_contraseña;
 		if ($verifi_contraseña) {
 		echo $rol;
 				if ($rol == '1') {
