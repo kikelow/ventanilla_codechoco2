@@ -127,7 +127,7 @@ if(!isset($_SESSION["vev_verificador"])){
     <li><a href="index2.php?modulo=evaluacion/plan_mejora" class="black-text">Nuevo</a></li>
   </ul> -->
 
-  <nav class="grey lighten-4  hide-on-large-only">
+  <nav class="grey lighten-4  hide-on-large-only" id="mobile">
    <div class=" " style="width: 100%">
     <a href="#" data-activates="mobile-demo" class="button-collapse center"><i class="material-icons black-text">menu</i></a>
     <a href="#" class="brand-logo center black-text"></a>
@@ -175,6 +175,7 @@ if(!isset($_SESSION["vev_verificador"])){
 <script type="text/javascript" src="js/select2.js"></script>
 <!-- <script type="text/javascript" src="js/accion_registro.js"></script> -->
 <script type="text/javascript" src="js/sweetalert.js"></script>
+<!-- <script type="text/javascript" src="js/plan_mejora.js"></script> -->
 
 
 
@@ -196,6 +197,8 @@ if(!isset($_SESSION["vev_verificador"])){
     $(this).addClass("active");
     $('.s').addClass('active')
   });
+
+ 
 });
  });	
 </script>
