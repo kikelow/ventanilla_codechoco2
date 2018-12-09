@@ -54,15 +54,12 @@ $('#departamento').change(function(event) {
 		data: {departamento: departamento},
 	})
 	.done(function(respuesta) {
-		 
+
         $('#municipio').html('<option disabled selected>Seleccione...</option>')  
         $('#municipio').append(respuesta)
 		$('#municipio').material_select();
 
 	})
-
-
-
 	$.ajax({
 		url: 'emprendimiento/registro/combo_region.php',
 		type: 'POST',
@@ -75,29 +72,29 @@ $('#departamento').change(function(event) {
 		
 		$('#region').html('<option value='+aut['id']+'>'+aut['nombre']+'</option>')  
 		$('#region').material_select();
-		$('#autoridad_ambiental').val(aut['autoridad'])
+		
+
+	})
+		
+});
+
+//cargar autoridad ambiental 
+$('#municipio').change(function(event) {
+	var municipio = $('#municipio').val()
+	$.ajax({
+		url: 'emprendimiento/registro/combo_autoridad.php',
+		type: 'POST',
+		 // dataType: "json",
+		data: {municipio: municipio},
+	})
+	.done(function(respuesta) {
+		$('#autoridad_ambiental').val(respuesta)
 		$('#autoridad_ambiental').focus();
 
 	})
-		// $('#municipio').html('<option disabled selected>Seleccione...</option>')
-		// $('#municipio').material_select();
 });
 
-//llenar combo municipio
-// $('#departamento').change(function(event) {
-// 	var departamento = $('#departamento').val()
-// 	// console.log(departamento)
-// 	$.ajax({
-// 		url: 'emprendimiento/registro/combo_municipio.php',
-// 		type: 'POST',
-// 		data: {departamento: departamento},
-// 	})
-// 	.done(function(respuesta) {
-// 		$('#municipio').html('<option disabled selected>Seleccione...</option>')
-//         $('#municipio').append(respuesta)
-// 		$('#municipio').material_select();
-// 	})
-// });
+
 //llenar combo sector
 $('#categoria').change(function(event) {
 	var categoria = $('#categoria').val()

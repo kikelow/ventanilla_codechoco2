@@ -131,6 +131,7 @@ else {
 
                           <div class="input-field col s12 m3 l3" id="municipio_valida">
                             <select id="municipio" name="municipio">
+                              
                             </select>
                             <label>Municipio</label>
                           </div>

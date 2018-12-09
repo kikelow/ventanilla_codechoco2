@@ -20,10 +20,13 @@ if (isset($_POST["usuario"])) {
 			$clave_bd = $row['clave'];
 		}
 
-		$verifi_contraseña = password_verify($contrasena,$clave_bd);
-		
-		echo $verifi_contraseña;
-		if ($verifi_contraseña) {
+		// $verifi_contraseña = password_verify($contrasena,$clave_bd);
+
+		// echo $verifi_contraseña;
+
+		// // echo $verifi_contraseña;
+
+		// if ($verifi_contraseña) {
 		echo $rol;
 				if ($rol == '1') {
 			session_start();
@@ -37,7 +40,7 @@ if (isset($_POST["usuario"])) {
 			session_start();
 			$_SESSION["vev_admin_verificador"]= $id;
 		}
-			}
+			// }
 
 	}else{
 		// print(0);

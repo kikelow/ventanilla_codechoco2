@@ -20,6 +20,11 @@ $('#empresa').change(function(event) {
     	$('#form_plan_mejora').show()
     	$('#preload').removeClass('progress')
     	$('#cargar_infos').html(respuesta)
+
+    	$('#left-sidebar-nav').removeClass('hide-on-med-and-down');
+    	$('#left-sidebar-nav').addClass('hide-on-large-and-down');
+
+    	$('#mobile').removeClass('hide-on-large-only');
     }
 	})
 	
